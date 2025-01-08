@@ -1,9 +1,9 @@
 extends Node
 
-@export var animation_signal : PlayAnimationSignalResource
+@export var pause_animation_signal : PauseAnimationSignalResource
 
 func _ready() -> void:
-	animation_signal.channel.connect(_pause_animation)
+	pause_animation_signal.channel.connect(_pause_animation)
 
 
 func _pause_animation() -> void: 

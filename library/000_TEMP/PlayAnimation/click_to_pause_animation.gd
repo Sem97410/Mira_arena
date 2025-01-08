@@ -1,8 +1,8 @@
 extends Button
 
-@export var play_animation_signal : PlayAnimationSignalResource
+@export var pause_animation_signal : PauseAnimationSignalResource
 
 
 
 func _on_pressed() -> void:
-	play_animation_signal.channel.emit()
+	pause_animation_signal.channel.emit()

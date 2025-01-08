@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1h237lsxdvc3"]
+[gd_scene load_steps=7 format=3 uid="uid://d1h237lsxdvc3"]
 
 [ext_resource type="Script" path="res://library/000_TEMP/PlayAnimation/click_to_start_animation.gd" id="1_d5ou0"]
 [ext_resource type="Resource" uid="uid://bff2i0l1bfnyf" path="res://library/000_TEMP/PlayAnimation/PlayAnimationSignalResource.tres" id="2_0bhpw"]
 [ext_resource type="Script" path="res://library/000_TEMP/PlayAnimation/launch_animation.gd" id="2_u6ra2"]
 [ext_resource type="Script" path="res://library/000_TEMP/PlayAnimation/click_to_pause_animation.gd" id="3_wc747"]
+[ext_resource type="Resource" uid="uid://cg8838ovuvq61" path="res://library/000_TEMP/PauseAnimation/PauseAnimationSignalResource.tres" id="4_kror5"]
 [ext_resource type="Script" path="res://library/000_TEMP/PauseAnimation/pause_animation.gd" id="4_n2b4j"]
 
 [node name="Node3D" type="Node3D"]
@@ -40,7 +41,7 @@ play_animation_signal = ExtResource("2_0bhpw")
 layout_mode = 2
 text = "Pause animation"
 script = ExtResource("3_wc747")
-play_animation_signal = ExtResource("2_0bhpw")
+pause_animation_signal = ExtResource("4_kror5")
 
 [node name="Animation" type="Node" parent="."]
 
@@ -50,7 +51,7 @@ play_animation_signal = ExtResource("2_0bhpw")
 
 [node name="PauseAnimation" type="Node" parent="Animation"]
 script = ExtResource("4_n2b4j")
-animation_signal = ExtResource("2_0bhpw")
+pause_animation_signal = ExtResource("4_kror5")
 
 [connection signal="pressed" from="Control/VBoxContainer/PlayAnimationButton" to="Control/VBoxContainer/PlayAnimationButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/PauseAnimationButton" to="Control/VBoxContainer/PauseAnimationButton" method="_on_pressed"]

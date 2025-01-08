@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PauseAnimationSignalResource" load_steps=2 format=3 uid="uid://cg8838ovuvq61"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/PauseAnimation/PauseAnimationSignalResource.gd" id="1_77qpy"]
+
+[resource]
+script = ExtResource("1_77qpy")
