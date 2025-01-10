@@ -2552,25 +2552,23 @@ animation_04_signal = ExtResource("8_7j7tu")
 script = ExtResource("4_3m1uv")
 animation1_signal = ExtResource("2_6ekxx")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_1_name = "Second_Combo"
+animation_1_name = "First_Combo"
 
 [node name="PlayAnimation2" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_2yikw")
 animation_2_signal = ExtResource("4_2dtmg")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_2_name = "First_Combo"
+animation_2_name = "Second_Combo"
 
 [node name="PlayAnimation3" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("7_nalp7")
 animation_3_signal = ExtResource("6_4oefg")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_3_name = "Second_Combo"
 
 [node name="PlayAnimation4" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("11_p0e35")
 animation_04_signal = ExtResource("8_7j7tu")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_04_name = "First_Combo"
 
 [node name="Environnement" type="Node" parent="."]
 
