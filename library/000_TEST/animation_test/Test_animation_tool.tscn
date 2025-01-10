@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://b46j30gh17w6x"]
+[gd_scene load_steps=55 format=4 uid="uid://b46j30gh17w6x"]
 
 [ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_01/clic_to_start_animation_1.gd" id="1_pt508"]
 [ext_resource type="Resource" uid="uid://bdo611kkup7gy" path="res://library/000_TEST/animation_test/Button_01/animation_01_resource.tres" id="2_6ekxx"]
@@ -6,6 +6,12 @@
 [ext_resource type="Resource" uid="uid://bf10b2r6woyll" path="res://library/000_TEST/animation_test/Button_02/animation_02_resource.tres" id="4_2dtmg"]
 [ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_01/play_animation_1.gd" id="4_3m1uv"]
 [ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_02/play_animation_2.gd" id="5_2yikw"]
+[ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_03/clic_to_start_animation_3.gd" id="5_enxqd"]
+[ext_resource type="Resource" uid="uid://d4ifv1bwy65g" path="res://library/000_TEST/animation_test/Button_03/animation_03_resource.tres" id="6_4oefg"]
+[ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_04/clic_to_start_animation_04.gd" id="7_2bni6"]
+[ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_03/play_animation_3.gd" id="7_nalp7"]
+[ext_resource type="Resource" uid="uid://bti47vsyyrkk8" path="res://library/000_TEST/animation_test/Button_04/animation_04_resource.tres" id="8_7j7tu"]
+[ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_04/play_animation_4.gd" id="11_p0e35"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76k1q"]
 resource_name = "Shiny"
@@ -2531,20 +2537,14 @@ animation_2_signal = ExtResource("4_2dtmg")
 [node name="LaunchAnimation3" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Launch animation 3"
+script = ExtResource("5_enxqd")
+animation_3_signal = ExtResource("6_4oefg")
 
 [node name="LaunchAnimation4" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Launch animation 4"
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22516, 3.68924)
-
-[node name="Background" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -11.1429)
-material_override = SubResource("StandardMaterial3D_p7f34")
-mesh = SubResource("PlaneMesh_vror6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+script = ExtResource("7_2bni6")
+animation_04_signal = ExtResource("8_7j7tu")
 
 [node name="Animations" type="Node" parent="."]
 
@@ -2552,13 +2552,40 @@ mesh = SubResource("PlaneMesh_vror6")
 script = ExtResource("4_3m1uv")
 animation1_signal = ExtResource("2_6ekxx")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_1_name = "First_Combo"
+animation_1_name = "Second_Combo"
 
 [node name="PlayAnimation2" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_2yikw")
 animation_2_signal = ExtResource("4_2dtmg")
 animation_player = NodePath("../../COMBOS/AnimationPlayer")
-animation_2_name = "Second_Combo"
+animation_2_name = "First_Combo"
+
+[node name="PlayAnimation3" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("7_nalp7")
+animation_3_signal = ExtResource("6_4oefg")
+animation_player = NodePath("../../COMBOS/AnimationPlayer")
+animation_3_name = "Second_Combo"
+
+[node name="PlayAnimation4" type="Node" parent="Animations" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("11_p0e35")
+animation_04_signal = ExtResource("8_7j7tu")
+animation_player = NodePath("../../COMBOS/AnimationPlayer")
+animation_04_name = "First_Combo"
+
+[node name="Environnement" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Environnement"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22516, 3.68924)
+
+[node name="Background" type="MeshInstance3D" parent="Environnement"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -11.1429)
+material_override = SubResource("StandardMaterial3D_p7f34")
+mesh = SubResource("PlaneMesh_vror6")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environnement"]
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LaunchAnimation1" to="Control/MarginContainer/VBoxContainer/LaunchAnimation1" method="_on_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LaunchAnimation2" to="Control/MarginContainer/VBoxContainer/LaunchAnimation2" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LaunchAnimation3" to="Control/MarginContainer/VBoxContainer/LaunchAnimation3" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LaunchAnimation4" to="Control/MarginContainer/VBoxContainer/LaunchAnimation4" method="_on_pressed"]

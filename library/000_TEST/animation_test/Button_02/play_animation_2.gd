@@ -9,5 +9,5 @@ func _ready() -> void:
 	animation_2_signal.channel.connect(_play_animation_2)
 
 func _play_animation_2() -> void : 
-	print("Animation 2 was played")
+	print("The button for the animation 2 was pressed")
 	animation_player.play(animation_2_name)
