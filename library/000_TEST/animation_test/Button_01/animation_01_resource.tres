@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Animation1SignalRessource" load_steps=2 format=3 uid="uid://bdo611kkup7gy"]
+
+[ext_resource type="Script" path="res://library/000_TEST/animation_test/Button_01/animation1Resource.gd" id="1_h4kh0"]
+
+[resource]
+script = ExtResource("1_h4kh0")
