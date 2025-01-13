@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="BlendAnimationSignal" load_steps=2 format=3 uid="uid://bcgtaqjrcql4g"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/test_animation_tree/blend_animation_signal.gd" id="1_v5402"]
+
+[resource]
+script = ExtResource("1_v5402")

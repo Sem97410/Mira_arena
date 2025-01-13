@@ -28,7 +28,6 @@ emission_energy_multiplier = 0.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnij8"]
 resource_name = "Skull_mat"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 roughness = 0.783217
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
@@ -237,7 +236,6 @@ bind/14/pose = Transform3D(-3.82813e-16, 0.999885, -0.0151938, -6.70494e-17, 0.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kaxt"]
 resource_name = "Mouth_skin"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 roughness = 0.895105
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
@@ -263,7 +261,6 @@ emission_energy_multiplier = 0.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kg2i"]
 resource_name = "Face_skin"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 roughness = 0.657343
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
