@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="StateMachine2SignalResource" load_steps=2 format=3 uid="uid://c12uyj67cqc05"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/test_transition_animation/StateMachine2SignalResource.gd" id="1_03xwx"]
+
+[resource]
+script = ExtResource("1_03xwx")

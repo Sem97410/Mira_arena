@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=28 format=3 uid="uid://bmpmysyiqu8s1"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=34 format=3 uid="uid://bmpmysyiqu8s1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e8c3p"]
 animation = &"First_Combo"
@@ -38,6 +38,33 @@ states/attaque3/node = SubResource("AnimationNodeAnimation_de3qn")
 states/attaque3/position = Vector2(766, 45)
 transitions = ["Start", "attaque1", SubResource("AnimationNodeStateMachineTransition_lrq8g"), "attaque1", "attaque2", SubResource("AnimationNodeStateMachineTransition_xetlb"), "attaque2", "attaque3", SubResource("AnimationNodeStateMachineTransition_7vi8s"), "attaque3", "attaque1", SubResource("AnimationNodeStateMachineTransition_cupw3"), "attaque3", "End", SubResource("AnimationNodeStateMachineTransition_d8mlk"), "attaque2", "attaque1", SubResource("AnimationNodeStateMachineTransition_3xpiq")]
 graph_offset = Vector2(15, -46)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b2y0w"]
+animation = &"First_Combo"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hbenu"]
+animation = &"Second_Combo"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6er0"]
+animation = &"First_Combo"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56jqn"]
+animation = &"First_Combo"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hcv0"]
+animation = &"First_Combo"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ow352"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b2y0w")
+blend_point_0/pos = Vector2(0, 0.9)
+blend_point_1/node = SubResource("AnimationNodeAnimation_hbenu")
+blend_point_1/pos = Vector2(0.9, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_l6er0")
+blend_point_2/pos = Vector2(0, -0.9)
+blend_point_3/node = SubResource("AnimationNodeAnimation_56jqn")
+blend_point_3/pos = Vector2(-0.9, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_0hcv0")
+blend_point_4/pos = Vector2(0, 0)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_abote"]
 animation = &"First_Combo"
@@ -107,16 +134,18 @@ advance_mode = 2
 states/End/position = Vector2(857, 95)
 states/FightStateMachine/node = SubResource("AnimationNodeStateMachine_00m2f")
 states/FightStateMachine/position = Vector2(491, -16)
+states/JoplinBlendSpace/node = SubResource("AnimationNodeBlendSpace2D_ow352")
+states/JoplinBlendSpace/position = Vector2(409, -141)
 states/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_etvyc")
 states/MovementStateMachine/position = Vector2(491, 95)
 states/Start/position = Vector2(203, 98)
 states/attack_combo/node = SubResource("AnimationNodeBlendSpace1D_wn2kp")
 states/attack_combo/position = Vector2(53, -60)
 transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_pk5kp"), "MovementStateMachine", "FightStateMachine", SubResource("AnimationNodeStateMachineTransition_2jpjc"), "FightStateMachine", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_w20xr"), "MovementStateMachine", "End", SubResource("AnimationNodeStateMachineTransition_mnxk2")]
-graph_offset = Vector2(-3, -78)
+graph_offset = Vector2(82, -191)
 
 [resource]
-graph_offset = Vector2(-333.021, -111.822)
+graph_offset = Vector2(-218.777, -174.34)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ks3t8")
 nodes/StateMachine/position = Vector2(140, -120)
 nodes/output/position = Vector2(580, -100)

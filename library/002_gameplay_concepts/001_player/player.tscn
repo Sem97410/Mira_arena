@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=4 uid="uid://bvhaf87cs6n1c"]
 
-[ext_resource type="AnimationLibrary" uid="uid://dekorlxj1drbu" path="res://library/002_gameplay_concepts/001_player/Mira_run.fbx" id="1_tdkoh"]
-[ext_resource type="AnimationLibrary" uid="uid://wv7eqgo43vj2" path="res://library/002_gameplay_concepts/001_player/Mira_walk.fbx" id="2_rlgd4"]
+[ext_resource type="AnimationLibrary" uid="uid://dekorlxj1drbu" path="res://library/002_gameplay_concepts/001_player/MiraAssets/Mira_run.fbx" id="1_tdkoh"]
+[ext_resource type="AnimationLibrary" uid="uid://wv7eqgo43vj2" path="res://library/002_gameplay_concepts/001_player/MiraAssets/Mira_walk.fbx" id="2_rlgd4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhks0"]
 
