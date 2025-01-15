@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="IdleAnimationSignalResource" load_steps=2 format=3 uid="uid://cq3s2bohdc0sb"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/test_transition_animation/IdleAnimationSignalResource.gd" id="1_pq3y5"]
+
+[resource]
+script = ExtResource("1_pq3y5")

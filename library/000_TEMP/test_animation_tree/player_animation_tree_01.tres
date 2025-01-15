@@ -142,7 +142,7 @@ states/Start/position = Vector2(203, 98)
 states/attack_combo/node = SubResource("AnimationNodeBlendSpace1D_wn2kp")
 states/attack_combo/position = Vector2(53, -60)
 transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_pk5kp"), "MovementStateMachine", "FightStateMachine", SubResource("AnimationNodeStateMachineTransition_2jpjc"), "FightStateMachine", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_w20xr"), "MovementStateMachine", "End", SubResource("AnimationNodeStateMachineTransition_mnxk2")]
-graph_offset = Vector2(82, -191)
+graph_offset = Vector2(-18, -66)
 
 [resource]
 graph_offset = Vector2(-218.777, -174.34)
