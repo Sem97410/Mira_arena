@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://clqqvxk43fc07"]
+
+[ext_resource type="PackedScene" uid="uid://bqvn3atoma471" path="res://library/000_TEMP/test_combo_animation/player_test_fight_combo.tscn" id="1_is1xy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kj85e"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srkep"]
+size = Vector3(20, 0.1, 20)
+
+[node name="TestComboAnimation" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="ground" type="MeshInstance3D" parent="Environment"]
+mesh = SubResource("PlaneMesh_kj85e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_srkep")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player_test_fight_combo" parent="." instance=ExtResource("1_is1xy")]

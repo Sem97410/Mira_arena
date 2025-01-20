@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="FightComboSignal" load_steps=2 format=3 uid="uid://dlhrb5qdnjpiu"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/test_combo_animation/ComboSignal.gd" id="1_6wfyy"]
+
+[resource]
+script = ExtResource("1_6wfyy")

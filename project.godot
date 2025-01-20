@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mira_Arena"
-run/main_scene="res://main_scene.tscn"
+run/main_scene="res://library/000_TEMP/test_combo_animation/test_combo_animation.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [file_customization]
