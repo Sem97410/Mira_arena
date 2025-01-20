@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ManageAnimationSignal" load_steps=2 format=3 uid="uid://tivmsb30mtgy"]
+
+[ext_resource type="Script" path="res://library/000_TEMP/test_combo_animation/ManageAnimationTransitionSignal.gd" id="1_x4hjf"]
+
+[resource]
+script = ExtResource("1_x4hjf")

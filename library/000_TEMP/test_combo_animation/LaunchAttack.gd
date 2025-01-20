@@ -44,3 +44,6 @@ func _handle_animation_condition() -> void :
 		animation_tree.set("parameters/FightStateMachine/conditions/is_combo_2", false)
 		
 		
+## IDEA
+# I need to had a signal that will control when you are able to transition from an animation
+# to an other. 
