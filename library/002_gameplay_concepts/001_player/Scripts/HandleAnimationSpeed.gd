@@ -1,22 +1,30 @@
 extends Node
 
+# --------------------------------------------------
+## SUMMARY
+#This Script will handle the animation speed base on the player velocity
+# --------------------------------------------------
+
+## REFERENCES
 @export var player : CharacterBody3D
 @export var animation_tree : AnimationTree
 
+@export var base_animation_speed : float
+@export var animation_speed : float
 
 
 func _physics_process(delta: float) -> void:
+	
+		modify_animation_time_scale()
 
-	animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/MovementBlendSpace/blend_position", player.velocity.length())
-	
-	modify_animation_time_scale()
-	
-	
-	
-# Modifier la vitesse du time scale en fonction de la velocité du joueur mais uniquement entre 0 et 0.5
+
+#Modify the speed of the TimeScale base on the player velocity.length() but only if this
+#length() is between 0 and 0.5
 
 func modify_animation_time_scale() -> void : 
+	
 	if player.velocity.length() >= 0.0:
 		animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/TimeScale/scale", 2.5)
+		
 	else :
 		animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/TimeScale/scale", 1)
