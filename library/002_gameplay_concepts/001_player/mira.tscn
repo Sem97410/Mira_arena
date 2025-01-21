@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bg5vsni1jl6bu"]
+
+[node name="Mira" type="CharacterBody3D"]
+
+[node name="MovementComponent" type="Node" parent="."]
+
+[node name="MovePlayer" type="Node" parent="MovementComponent"]
+
+[node name="HandleMovementAnimation" type="Node" parent="MovementComponent"]
+
+[node name="LaunchMovementVFX" type="Node" parent="MovementComponent"]
+
+[node name="LaunchMovementSound" type="Node" parent="MovementComponent"]
+
+[node name="DashComponent" type="Node" parent="."]
+
+[node name="CheckDashDestination" type="Node" parent="DashComponent"]
+
+[node name="LaunchDashMovement" type="Node" parent="DashComponent"]
+
+[node name="LaunchDashVFX" type="Node" parent="DashComponent"]
+
+[node name="LaunchDashSound" type="Node" parent="DashComponent"]
+
+[node name="AttackComponent" type="Node" parent="."]
+
+[node name="LightAttackComponent" type="Node" parent="AttackComponent"]
+
+[node name="CheckIndexAnimation" type="Node" parent="AttackComponent/LightAttackComponent"]
+
+[node name="LaunchLightAttackAnimation" type="Node" parent="AttackComponent/LightAttackComponent"]
+
+[node name="LaunchLightAttackVFX" type="Node" parent="AttackComponent/LightAttackComponent"]
+
+[node name="LaunchLightAttackSound" type="Node" parent="AttackComponent/LightAttackComponent"]
+
+[node name="ChargeAttackComponent" type="Node" parent="AttackComponent"]
+
+[node name="HandleChargeAttackMovement" type="Node" parent="AttackComponent/ChargeAttackComponent"]
+
+[node name="LaunchChargeAttackAnimation" type="Node" parent="AttackComponent/ChargeAttackComponent"]
+
+[node name="LaunchChargeAttackVFX" type="Node" parent="AttackComponent/ChargeAttackComponent"]
+
+[node name="LaunchChargeAttackSound" type="Node" parent="AttackComponent/ChargeAttackComponent"]
+
+[node name="HealthComponent" type="Node" parent="."]
+
+[node name="LaunchTakeDamage" type="Node" parent="HealthComponent"]
+
+[node name="LaunchDamageVFX" type="Node" parent="HealthComponent"]
+
+[node name="CheckLifePoint" type="Node" parent="HealthComponent"]
+
+[node name="ManageDieMovement" type="Node" parent="HealthComponent"]
+
+[node name="LaunchDieVFX" type="Node" parent="HealthComponent"]
+
+[node name="LaunchDieSound" type="Node" parent="HealthComponent"]
+
+[node name="LaunchEndGame" type="Node" parent="HealthComponent"]
