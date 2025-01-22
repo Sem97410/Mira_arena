@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://p82dptc81un3"
-path="res://.godot/imported/Slime.fbx-b0e745235b040cffaa129d56a112bf81.scn"
+path="res://.godot/imported/Slime.fbx-1bc313b629021637441714d78ff7088e.scn"
 
 [deps]
 
-source_file="res://library/Slime.fbx"
-dest_files=["res://.godot/imported/Slime.fbx-b0e745235b040cffaa129d56a112bf81.scn"]
+source_file="res://library/001_3d_assets/Mira/Slime.fbx"
+dest_files=["res://.godot/imported/Slime.fbx-1bc313b629021637441714d78ff7088e.scn"]
 
 [params]
 
