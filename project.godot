@@ -11,11 +11,12 @@ config_version=5
 [application]
 
 config/name="Mira_Arena"
-run/main_scene="res://main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [file_customization]
 
 folder_colors={
-"res://library/000_TEMP/": "orange"
+"res://library/000_TEMP/": "orange",
+"res://library/001_3d_assets/": "red",
+"res://library/002_2d_assets/": "green"
 }
