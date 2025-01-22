@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgu5prliujb5e"
-path="res://.godot/imported/Mira_Idle.fbx-6e7b6f999e4ae295fad33109c3787a2e.scn"
+uid="uid://bjx80ov3wj6m7"
+path="res://.godot/imported/Slime.fbx-51a80a77623d2f4cf12c61df6b819587.scn"
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/001_player/Mira_Idle.fbx"
-dest_files=["res://.godot/imported/Mira_Idle.fbx-6e7b6f999e4ae295fad33109c3787a2e.scn"]
+source_file="res://000_Temp/Slime.fbx"
+dest_files=["res://.godot/imported/Slime.fbx-51a80a77623d2f4cf12c61df6b819587.scn"]
 
 [params]
 
