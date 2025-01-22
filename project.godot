@@ -18,5 +18,6 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 folder_colors={
 "res://library/000_TEMP/": "orange",
 "res://library/001_3d_assets/": "red",
-"res://library/002_2d_assets/": "green"
+"res://library/002_2d_assets/": "green",
+"res://library/003_cinematics/": "yellow"
 }
