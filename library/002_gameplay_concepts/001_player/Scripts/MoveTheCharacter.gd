@@ -3,6 +3,8 @@ extends Node
 @export var player_movement_resource : PlayerMovementResource
 @export var player : CharacterBody3D
 
+@export var animation_tree : AnimationTree
+@onready varbase_state_machine = animation_tree["paramaters/MiraAnimation/playback"]
 
 
 func _physics_process(delta: float) -> void:
