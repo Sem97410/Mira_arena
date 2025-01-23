@@ -6,12 +6,13 @@ extends Node
 @export var index_animation_script : FightAnimationIndex
 @onready var base_state_machine = animation_tree["parameters/MiraAnimation/playback"]
 
-
+func _ready() -> void:
+	base_state_machine.travel("FightStateMachine/LightAttackStateMachine")
 
 func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("attack"):
-		base_state_machine.travel("FightStateMachine/LightAttackStateMachine")
+		
 		launch_light_attack_animation()
 		
 

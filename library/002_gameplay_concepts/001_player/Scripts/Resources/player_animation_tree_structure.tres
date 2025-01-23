@@ -113,12 +113,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vvmyd"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qnyd4"]
-states/End/position = Vector2(1019, 109)
+states/End/position = Vector2(856, 196)
 states/MovementBlendTree/node = SubResource("AnimationNodeBlendTree_t6v0g")
 states/MovementBlendTree/position = Vector2(319, 196)
 states/Start/position = Vector2(69, 64)
 states/TempDashAnimation/node = SubResource("AnimationNodeAnimation_o1aeg")
-states/TempDashAnimation/position = Vector2(535, 82)
+states/TempDashAnimation/position = Vector2(528, 75)
 transitions = ["Start", "TempDashAnimation", SubResource("AnimationNodeStateMachineTransition_g523n"), "Start", "MovementBlendTree", SubResource("AnimationNodeStateMachineTransition_qfhw8"), "MovementBlendTree", "TempDashAnimation", SubResource("AnimationNodeStateMachineTransition_hcexn"), "TempDashAnimation", "MovementBlendTree", SubResource("AnimationNodeStateMachineTransition_3axiy"), "MovementBlendTree", "End", SubResource("AnimationNodeStateMachineTransition_vvmyd")]
 graph_offset = Vector2(-426.203, 17)
 
@@ -156,6 +156,7 @@ graph_offset = Vector2(-368.369, -57.0696)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f3oqp"]
 
 [resource]
+graph_offset = Vector2(-722.58, 0)
 nodes/MiraAnimation/node = SubResource("AnimationNodeStateMachine_ixij5")
 nodes/MiraAnimation/position = Vector2(-180, 200)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_f3oqp")
