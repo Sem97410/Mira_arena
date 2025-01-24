@@ -1,16 +1,20 @@
 extends Node
 
+class_name PlayerMovementScript
 @export var player_movement_resource : PlayerMovementResource
 @export var player : CharacterBody3D
 
 @export var animation_tree : AnimationTree
 @onready var base_state_machine = animation_tree["parameters/MiraAnimation/playback"]
 
+var direction_vector_input: Vector2
+
+@onready var player_is_moving : bool = false
 
 func _physics_process(delta: float) -> void:
 	
 	# Get inputs controle
-	var direction_vector_input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	direction_vector_input= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
 	var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
 
@@ -30,3 +34,11 @@ func _physics_process(delta: float) -> void:
 # Appliquer le mouvement au joueur
 	base_state_machine.travel("MovementStateMachine")
 	player.move_and_slide()
+	
+	define_if_player_is_moving()
+
+func define_if_player_is_moving() -> void : 
+	if direction_vector_input.length() > 0.2:
+		player_is_moving = true
+	else: 
+		player_is_moving = false
