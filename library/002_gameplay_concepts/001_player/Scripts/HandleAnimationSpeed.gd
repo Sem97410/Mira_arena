@@ -16,6 +16,7 @@ extends Node
 func _physics_process(delta: float) -> void:
 	
 		modify_animation_time_scale()
+	
 
 
 #Modify the speed of the TimeScale base on the player velocity.length() but only if this

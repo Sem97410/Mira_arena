@@ -17,10 +17,13 @@ func _physics_process(delta: float) -> void:
 	direction_vector_input= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
 	var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
+	
+
+	
 
 	if direction_vector_input.length() > 0.2:
 		# Apply movement
-		player.velocity.x = player_movement_direction.x * player_movement_resource.player_speed * input_strength
+		player.velocity.x = player_movement_direction.x * player_movement_resource.player_speed * input_strength  #Square length ( a regarder)
 		player.velocity.z = player_movement_direction.z * player_movement_resource.player_speed * input_strength
 
 		# Rotation of the character in the direction of the movement
