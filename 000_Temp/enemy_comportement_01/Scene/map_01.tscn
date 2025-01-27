@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://qf3bm05p2avj"]
+
+[ext_resource type="PackedScene" uid="uid://cp51p58dr3ym2" path="res://000_Temp/enemy_comportement_01/Scene/game_logic.tscn" id="1_5oh8l"]
+[ext_resource type="Shader" path="res://floor_shader.gdshader" id="1_31t3d"]
+[ext_resource type="PackedScene" uid="uid://1egyxuk3oeia" path="res://000_Temp/enemy_comportement_01/Scene/player.tscn" id="3_bu7nn"]
+[ext_resource type="PackedScene" uid="uid://4x0a4poef37g" path="res://000_Temp/enemy_comportement_01/Scene/slime.tscn" id="4_e0bqf"]
+[ext_resource type="PackedScene" uid="uid://djuc6xt0hcxqx" path="res://000_Temp/enemy_comportement_01/Scene/update_player_position.tscn" id="5_vk2yn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykm4x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8uql7"]
+sky_material = SubResource("ProceduralSkyMaterial_ykm4x")
+
+[sub_resource type="Environment" id="Environment_ejior"]
+background_mode = 2
+sky = SubResource("Sky_8uql7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ir62k"]
+vertices = PackedVector3Array(-6.5, 0.5, -6.5, -6.5, 0.5, 6.5, 6.5, 0.5, 6.5, 6.5, 0.5, -6.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d2sqh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_80fvm"]
+fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mknbw"]
+noise = SubResource("FastNoiseLite_80fvm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gmhfl"]
+render_priority = 0
+shader = ExtResource("1_31t3d")
+shader_parameter/colorOne = Color(0.282724, 0.595413, 0.281416, 1)
+shader_parameter/colorTwo = Color(0.743545, 0.680199, 0.497957, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_mknbw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlhdt"]
+size = Vector3(14.0303, 1, 13.9854)
+
+[node name="Map_01" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ejior")
+
+[node name="GameLogic" parent="." node_paths=PackedStringArray("player_position", "update_targetPosition") instance=ExtResource("1_5oh8l")]
+player_position = NodePath("../Player")
+update_targetPosition = NodePath("../Slime/UpdatePlayerPosition")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ir62k")
+
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="MeshFloor" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+mesh = SubResource("PlaneMesh_d2sqh")
+surface_material_override/0 = SubResource("ShaderMaterial_gmhfl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00830078, 0, 0.0356445)
+shape = SubResource("BoxShape3D_xlhdt")
+
+[node name="Player" parent="." instance=ExtResource("3_bu7nn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.754486, 4.17218)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847944, 2.66761)
+
+[node name="Slime" parent="." node_paths=PackedStringArray("navigation_agent") instance=ExtResource("4_e0bqf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11939, 0, -5.56997)
+navigation_agent = NodePath("NavigationAgent3D")
+
+[node name="UpdatePlayerPosition" parent="Slime" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("5_vk2yn")]
+navigation_agent = NodePath("../NavigationAgent3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Slime"]
