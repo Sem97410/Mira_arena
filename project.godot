@@ -20,3 +20,7 @@ folder_colors={
 "res://000_Temp/": "orange",
 "res://library/000_TEMP/": "orange"
 }
+
+[global_group]
+
+launcher_animation="My launcher for animations"
