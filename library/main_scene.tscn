@@ -1,76 +1,124 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=14 format=3 uid="uid://cjg1inb63m6bd"]
 
-[ext_resource type="ArrayMesh" uid="uid://y8k1wmmafkhi" path="res://VFX/Slash/Slash.obj" id="1_7xmxo"]
-[ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/main_scene.tres" id="2_t7sy6"]
+[ext_resource type="ArrayMesh" uid="uid://y8k1wmmafkhi" path="res://library/VFX/Slash/Slash.obj" id="1_7xmxo"]
+[ext_resource type="Shader" uid="uid://igd53r3p34nr" path="res://library/VFX/Attack_Charge/Attack_Charge.tres" id="3_eh0em"]
+[ext_resource type="Shader" uid="uid://bm515ir1silnl" path="res://library/VFX/Attack_Charge/Trail_Attack_Charge.tres" id="4_dc0gt"]
+[ext_resource type="ArrayMesh" uid="uid://crwn0sktf76px" path="res://library/VFX/Attack_Charge/Attack_Charge.obj" id="4_u0uxc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_45yn2"]
-render_priority = 0
-shader = ExtResource("2_t7sy6")
-shader_parameter/Color = Color(0, 3.784, 37.298, 1)
-shader_parameter/Gradient_1_Slider = -0.1
-shader_parameter/Gradient_2_Slider = -0.075
-
-[sub_resource type="Animation" id="Animation_fjbsp"]
-length = 0.2
-loop_mode = 1
-step = 0.01
+[sub_resource type="Animation" id="Animation_uygrx"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slash:surface_material_override/0:shader_parameter/Gradient_1_Slider")
+tracks/0/path = NodePath(".:surface_material_override/0:shader_parameter/Gradient_1_Slider")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.1, 0.27, 0.65]
+"values": [0.065]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slash:surface_material_override/0:shader_parameter/Gradient_2_Slider")
+tracks/1/path = NodePath(".:surface_material_override/0:shader_parameter/Gradient_2_Slider")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.16),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.075, 0.1, 0.4]
+"values": [-0.075]
 }
 
-[sub_resource type="Animation" id="Animation_1fe1c"]
-resource_name = "slash"
-length = 0.3
+[sub_resource type="Animation" id="Animation_q3y1o"]
+resource_name = "new_animation"
+length = 0.8
 loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slash:surface_material_override/0:shader_parameter/Gradient_1_Slider")
+tracks/0/path = NodePath(".:surface_material_override/0:shader_parameter/Gradient_1_Slider")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
+"times": PackedFloat32Array(0, 0.2, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-0.07, 0.16, 0.665]
+"values": [-0.19, 0.065, 0.71]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:surface_material_override/0:shader_parameter/Gradient_2_Slider")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.78),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.1, 0.29, 0.45]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpcua"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdnlt"]
 _data = {
-"RESET": SubResource("Animation_fjbsp"),
-"slash": SubResource("Animation_1fe1c")
+"RESET": SubResource("Animation_uygrx"),
+"Slash": SubResource("Animation_q3y1o")
 }
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_5dyvh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4gdf"]
+render_priority = 0
+shader = ExtResource("3_eh0em")
+shader_parameter/ColorParameter = Color(0.4, 0, 4, 1)
+shader_parameter/Speed = Vector2(1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_vjlkb"]
+offsets = PackedFloat32Array(0, 0.336066, 0.893443)
+colors = PackedColorArray(0, 0, 0, 1, 0.147541, 0.147541, 0.147541, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bx4f3"]
+gradient = SubResource("Gradient_vjlkb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cv0x4"]
+render_priority = 0
+shader = ExtResource("4_dc0gt")
+shader_parameter/Trail_Speed = Vector2(3, 0)
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_bx4f3")
+
+[sub_resource type="QuadMesh" id="QuadMesh_eabds"]
 
 [node name="Slash" type="Node3D"]
 
 [node name="Slash" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.236767, 0, 0.0653368)
+visible = false
 mesh = ExtResource("1_7xmxo")
-surface_material_override/0 = SubResource("ShaderMaterial_45yn2")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Slash"]
 libraries = {
-"": SubResource("AnimationLibrary_dpcua")
+"": SubResource("AnimationLibrary_jdnlt")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="Slash/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationRootNode_5dyvh")
+anim_player = NodePath("..")
+
+[node name="AttackCharge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145539, 0, 0.714429)
+material_override = SubResource("ShaderMaterial_a4gdf")
+mesh = ExtResource("4_u0uxc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.16491e-07, 0, 1, 0, 0.707413, 0, -2.665, 0, -4.37114e-08, 0, 0, 1.6865)
+material_override = SubResource("ShaderMaterial_cv0x4")
+mesh = SubResource("QuadMesh_eabds")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.09197e-15, -1, -4.37114e-08, -1.16491e-07, -4.37114e-08, 1, -2.665, 0, -4.37114e-08, 0, 0, 1.87659)
+visible = false
+mesh = SubResource("QuadMesh_eabds")
