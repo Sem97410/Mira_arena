@@ -14,6 +14,10 @@ config/name="Mira_Arena"
 run/main_scene="res://main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+GlobalAnimationPlayer="*res://000_Temp/enemy_comportement_01/Scene/animation_player.gd"
+
 [file_customization]
 
 folder_colors={

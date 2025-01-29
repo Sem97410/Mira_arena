@@ -59,7 +59,7 @@ environment = SubResource("Environment_ejior")
 
 [node name="GameLogic" parent="." node_paths=PackedStringArray("player_position", "update_targetPosition") instance=ExtResource("1_5oh8l")]
 player_position = NodePath("../Player")
-update_targetPosition = NodePath("../ennemi/Slime/UpdatePlayerPosition")
+update_targetPosition = NodePath("../ennemi/UpdatePlayerPosition")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ir62k")
@@ -119,33 +119,34 @@ transform = Transform3D(1, 0, 0, 0, 0.766952, 0.641704, 0, -0.641704, 0.766952, 
 
 [node name="ennemi" type="Node3D" parent="."]
 
-[node name="Slime" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.44066)
-navigation_agent = NodePath("../NavigationAgent3D")
-Player = NodePath("../../Player")
-
-[node name="UpdatePlayerPosition" parent="ennemi/Slime" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("5_vk2yn")]
-navigation_agent = NodePath("../../NavigationAgent3D")
-
-[node name="Slime2" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90047, 0, -3.44066)
-navigation_agent = NodePath("../NavigationAgent3D")
-Player = NodePath("../../Player")
-
-[node name="UpdatePlayerPosition" parent="ennemi/Slime2" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("5_vk2yn")]
-navigation_agent = NodePath("../../NavigationAgent3D")
-
-[node name="Slime3" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34603, 0, -3.44066)
-navigation_agent = NodePath("../NavigationAgent3D")
-Player = NodePath("../../Player")
-
-[node name="UpdatePlayerPosition" parent="ennemi/Slime3" instance=ExtResource("5_vk2yn")]
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="ennemi"]
 path_desired_distance = 5.0
 simplify_path = true
 avoidance_enabled = true
-radius = 5.0
+radius = 35.3
 neighbor_distance = 0.5
 time_horizon_agents = 10.0
+use_3d_avoidance = true
+
+[node name="Slime" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
+transform = Transform3D(-0.998176, 0, 0.0603692, 0, 1, 0, -0.0603692, 0, -0.998176, 0, 0, -3.44066)
+navigation_agent = NodePath("../NavigationAgent3D")
+Player = NodePath("../../Player")
+
+[node name="Slime2" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
+transform = Transform3D(-0.949994, 0, 0.312269, 0, 1, 0, -0.312269, 0, -0.949994, 4.5609, 0, -3.86129)
+navigation_agent = NodePath("../NavigationAgent3D")
+Player = NodePath("../../Player")
+
+[node name="Slime3" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
+transform = Transform3D(-0.998176, 0, 0.0603692, 0, 1, 0, -0.0603692, 0, -0.998176, -3.66392, 0, -0.0496466)
+navigation_agent = NodePath("../NavigationAgent3D")
+Player = NodePath("../../Player")
+
+[node name="Slime4" parent="ennemi" node_paths=PackedStringArray("navigation_agent", "Player") instance=ExtResource("4_e0bqf")]
+transform = Transform3D(-0.998176, 0, 0.0603692, 0, 1, 0, -0.0603692, 0, -0.998176, 2.05182, 0, -0.724077)
+navigation_agent = NodePath("../NavigationAgent3D")
+Player = NodePath("../../Player")
+
+[node name="UpdatePlayerPosition" parent="ennemi" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("5_vk2yn")]
+navigation_agent = NodePath("../NavigationAgent3D")

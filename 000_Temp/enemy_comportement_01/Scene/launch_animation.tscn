@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmwxljulerjrw"]
 
-[ext_resource type="Script" path="res://launch_animation.gd" id="1_j0pu6"]
+[ext_resource type="Script" path="res://000_Temp/enemy_comportement_01/launch_animation.gd" id="1_j0pu6"]
 
-[node name="LaunchAnimation" type="Node" groups=["launcher_animation"]]
+[node name="LaunchAnimation" type="Node"]
 script = ExtResource("1_j0pu6")

@@ -5,9 +5,10 @@ class_name Enemy_Slime
 @export var navigation_agent : NavigationAgent3D
 @export var Player : player
 
-@onready var animation_player: AnimationPlayer = $slime_component/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Slime_001/AnimationPlayer
 
-var speed : float = 5
+
+var speed : float = 2
 var interpole_speed : float = 15
 
 
@@ -17,12 +18,12 @@ func _physics_process(delta: float) -> void:
 	var new_velocity = (slime_next_position - slime_current_position).normalized() * speed
 	velocity = velocity.lerp(new_velocity,interpole_speed * delta)
 	
-	look_at(- Player.global_position)
+	look_at(Player.global_position)
 	rotation_degrees.x = 0
 	rotation_degrees.z = 0
 	
 	
 	
-	animation_player.play("slime/Walk")
+	# animation_player.play("Slime/Walk")
 	move_and_slide()
 	
