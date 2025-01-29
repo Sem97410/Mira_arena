@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cd00gwgs67rl"
-path="res://.godot/imported/Slime_001.fbx-0f15cd3721016d26549794746fa977f9.scn"
+uid="uid://db4ysqjqk1ed"
+path="res://.godot/imported/Slime_001.fbx-dc07570c25e0c3e3754cc0b01a15bf3b.scn"
 
 [deps]
 
-source_file="res://000_Temp/enemy_comportement_01/fbx/Slime_001.fbx"
-dest_files=["res://.godot/imported/Slime_001.fbx-0f15cd3721016d26549794746fa977f9.scn"]
+source_file="res://000_Temp/002_enemi_system_01/FBX/Slime_001.fbx"
+dest_files=["res://.godot/imported/Slime_001.fbx-dc07570c25e0c3e3754cc0b01a15bf3b.scn"]
 
 [params]
 

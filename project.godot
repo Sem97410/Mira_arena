@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-GlobalAnimationPlayer="*res://000_Temp/enemy_comportement_01/Scene/animation_player.gd"
+PlayerData="*res://000_Temp/autoload/global_data.gd"
 
 [file_customization]
 
@@ -27,4 +27,4 @@ folder_colors={
 
 [global_group]
 
-launcher_animation="My launcher for animations"
+updatePlayerPosition=""

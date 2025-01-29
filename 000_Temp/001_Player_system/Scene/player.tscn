@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg1ufkc0act57"]
+
+[ext_resource type="Script" path="res://000_Temp/001_Player_system/player.gd" id="1_yhaa4"]
+[ext_resource type="PackedScene" uid="uid://bcnpufc1pdb8q" path="res://000_Temp/autoload/scene/global_data.tscn" id="2_8srfj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dbbji"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hidt"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_yhaa4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_dbbji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8hidt")
+
+[node name="Player_data" parent="." instance=ExtResource("2_8srfj")]
