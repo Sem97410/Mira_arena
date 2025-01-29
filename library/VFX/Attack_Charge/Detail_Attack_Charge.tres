@@ -1,6 +1,6 @@
-[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://igd53r3p34nr"]
+[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://g8sireat3rr3"]
 
-[ext_resource type="Texture2D" uid="uid://kb11muqco86b" path="res://library/VFX/Noise/marbre noise.jpg" id="1_aif76"]
+[ext_resource type="Texture2D" uid="uid://oih5pbw7phlq" path="res://library/VFX/Noise/Capture d'écran 2024-12-06 134539.png" id="1_svat2"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_bllkd"]
 parameter_name = "Speed"
@@ -22,7 +22,7 @@ parameter_name = "Opacity"
 parameter_name = "ColorParameter"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rrwkm"]
-texture = ExtResource("1_aif76")
+texture = ExtResource("1_svat2")
 
 [sub_resource type="Gradient" id="Gradient_iqxgf"]
 offsets = PackedFloat32Array(0, 0.350575, 0.867816, 1)
@@ -30,7 +30,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.189655, 0.189655, 0.189655, 1, 0.896351,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tciu8"]
 gradient = SubResource("Gradient_iqxgf")
-fill_from = Vector2(1, 0.5)
+fill_from = Vector2(0.811966, 0.538462)
 fill_to = Vector2(0, 0.508547)
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_mltdi"]
@@ -109,7 +109,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-773.375, 130.049)
+graph_offset = Vector2(-610.114, 78.8257)
 modes/cull = 2
 flags/unshaded = true
 flags/ambient_light_disabled = true
@@ -139,4 +139,4 @@ nodes/fragment/13/node = SubResource("VisualShaderNodeInput_j7dv0")
 nodes/fragment/13/position = Vector2(-1940, 1000)
 nodes/fragment/14/node = SubResource("VisualShaderNodeVec2Parameter_flvcq")
 nodes/fragment/14/position = Vector2(-2000, 1240)
-nodes/fragment/connections = PackedInt32Array(3, 0, 5, 0, 4, 0, 5, 1, 5, 0, 6, 0, 6, 0, 0, 1, 7, 0, 3, 0, 9, 0, 7, 2, 2, 0, 0, 0, 13, 0, 12, 0, 12, 0, 11, 0, 14, 0, 11, 2, 8, 0, 9, 0, 10, 0, 9, 1)
+nodes/fragment/connections = PackedInt32Array(3, 0, 5, 0, 4, 0, 5, 1, 5, 0, 6, 0, 6, 0, 0, 1, 7, 0, 3, 0, 2, 0, 0, 0, 12, 0, 11, 0, 14, 0, 11, 2, 10, 0, 9, 1, 13, 0, 12, 0, 8, 0, 9, 0, 9, 0, 7, 2)
