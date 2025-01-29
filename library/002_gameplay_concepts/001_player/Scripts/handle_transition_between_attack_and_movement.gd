@@ -18,9 +18,9 @@ func _process(delta: float) -> void:
 func handle_transition_between_fight_and_movement() -> void : 
 	if index_animation_script.current_reset_countdown > 0 :
 		animation_tree.set("parameters/MiraAnimations/conditions/can_transition", false)
-		print(" Can't transition")
+
 	else :
 		animation_tree.set("parameters/MiraAnimations/conditions/can_transition", true)
-		print(" Allowed to transition")
+
 	
 	
