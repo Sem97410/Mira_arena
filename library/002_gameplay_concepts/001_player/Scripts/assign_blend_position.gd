@@ -8,7 +8,7 @@ extends Node
 		
 func _physics_process(delta: float) -> void:
 
-	animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/MovementBlendSpace/blend_position", player.velocity.length())
+	animation_tree.set("parameters/MiraAnimations/MovementBlendSpace/blend_position", player.velocity.length())
 
 	
 

@@ -14,8 +14,8 @@ extends Node
 
 
 func _physics_process(delta: float) -> void:
-	
-		modify_animation_time_scale()
+	pass
+	#modify_animation_time_scale()
 	
 
 

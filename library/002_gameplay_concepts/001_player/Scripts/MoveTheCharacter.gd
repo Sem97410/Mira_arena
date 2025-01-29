@@ -5,7 +5,7 @@ class_name PlayerMovementScript
 @export var player : CharacterBody3D
 
 @export var animation_tree : AnimationTree
-@onready var base_state_machine = animation_tree["parameters/MiraAnimation/playback"]
+
 
 var direction_vector_input: Vector2
 
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		player.velocity.z = 0
 
 # Appliquer le mouvement au joueur
-	base_state_machine.travel("MovementStateMachine")
+
 	player.move_and_slide()
 	
 	define_if_player_is_moving()

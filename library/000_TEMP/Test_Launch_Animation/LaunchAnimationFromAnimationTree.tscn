@@ -7407,7 +7407,6 @@ transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateM
 graph_offset = Vector2(-101.807, -6)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gwmm4"]
-graph_offset = Vector2(-927, -42)
 nodes/MiraAnimation/node = SubResource("AnimationNodeStateMachine_ix5hp")
 nodes/MiraAnimation/position = Vector2(-200, 120)
 node_connections = [&"output", 0, &"MiraAnimation"]
