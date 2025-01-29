@@ -27,6 +27,3 @@ shadow_enabled = true
 
 [node name="Mira" parent="." instance=ExtResource("1_olyaa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0109491, 0.0500002, 0.674864)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.857446, 0.514574, 0, -0.514574, 0.857446, 0, 4.30723, 6.61647)
