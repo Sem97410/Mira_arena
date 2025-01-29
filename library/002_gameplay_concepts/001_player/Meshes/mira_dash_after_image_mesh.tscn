@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd8al2f82ov3j"]
+
+[ext_resource type="PackedScene" uid="uid://bgmckjk5exabt" path="res://library/002_gameplay_concepts/001_player/Meshes/MiraDashAfterImage.fbx" id="1_6vcos"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7nsu"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(0.254902, 0.87451, 0.65098, 0.0392157)
+
+[node name="MiraDashAfterImage" instance=ExtResource("1_6vcos")]
+
+[node name="Sourcils" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_c7nsu")
