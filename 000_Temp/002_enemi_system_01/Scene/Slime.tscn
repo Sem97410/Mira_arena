@@ -176,7 +176,6 @@ Node contenant la data du slime :
 
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("slime_data", "character_body3D", "nav_agent")]
 script = ExtResource("3_pnsq8")
-Summary = null
 slime_data = NodePath("../Data")
 character_body3D = NodePath("..")
 nav_agent = NodePath("../NavigationAgent3D")

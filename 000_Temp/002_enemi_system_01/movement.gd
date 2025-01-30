@@ -14,6 +14,13 @@ class_name ennemi_movement
 var player = null
  
 func _ready() -> void:
+	player = PlayerData.player
+	if player :
+		print("player is here")
+	else :
+		print("player is not found")
+	
+
 	
 	
 
