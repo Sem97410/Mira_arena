@@ -12,5 +12,5 @@ func _ready() -> void:
 func start_fade_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(after_image_mesh.material_override, "Albedo:a", 0.0, fade_out_time)  # Réduit l'opacité
-	#await tween.finished
-	#queue_free()  # Supprime l’afterimage après le fade
+	await get_tree().create_timer(0.5).timeout
+	root.queue_free()  # Supprime l’afterimage après le fade
