@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=4 format=3 uid="uid://cjg1inb63m6bd"]
 
-[ext_resource type="PackedScene" uid="uid://bfqproi0cs4l6" path="res://library/000_TEMP/Test_Root_Motion_Mixamo/root_motion_character.tscn" id="1_g2t48"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
@@ -28,5 +27,3 @@ shadow_enabled = true
 
 [node name="Mira" parent="." instance=ExtResource("1_vmf81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.78062)
-
-[node name="RootMotionCharacter" parent="." instance=ExtResource("1_g2t48")]

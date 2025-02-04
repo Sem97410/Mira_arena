@@ -31,12 +31,9 @@ class_name LaunchAttackAnimationScript
 @onready var current_combo_windo_length : float = 0
 
 
-
-func _physics_process(delta: float) -> void:
-
+func _process(delta: float) -> void:
 	launch_light_attack()
-
-
+	
 
 
 func launch_light_attack() -> void : 
