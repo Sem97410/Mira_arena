@@ -22,10 +22,14 @@ class_name PlayerMovementScript
 var direction_vector_input: Vector2
 @onready var can_move : bool = true
 
+# -----------------
+#Values
+@onready var temps_player_speed : float = 4.0
 
 func _physics_process(delta: float) -> void:
 	
 	move_the_character()
+
 	
 	
 func move_the_character() -> void: 

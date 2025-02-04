@@ -4,53 +4,32 @@ extends Node
 ## REFERENCES
 @export var player: CharacterBody3D  # Le joueur
 @export var movement_script: PlayerMovementScript  # Le script de mouvement du joueur
-
-# -----------------
-## PARAMÈTRES DU DASH
-@export var dash_distance: float = 5.0  # La distance du dash
-@export var dash_speed: float = 15.0  # La vitesse du dash
-@export var dash_duration: float = 0.2  # La durée du dash
-
-# -----------------
-## ÉTATS
+@export var dash_speed: float = 10.0
+@export var dash_duration: float = 0.2
+var dash_progress: float = 0.0
 var is_dashing: bool = false
-var dash_direction: Vector3 = Vector3.ZERO  # La direction du dash
+var dash_direction: Vector3 = Vector3.ZERO
 
-# -----------------
-## Logique du dash
-
-# Détection du dash via l'entrée
-func _process(delta: float) -> void:
+func _process(delta):
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		start_dash()
 
-# Appel d'un mouvement spécial dans _physics_process
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 	if is_dashing:
 		execute_dash(delta)
+	player.move_and_slide()
 
-# -----------------
-# Démarrer le dash
-func start_dash() -> void:
+func start_dash():
 	is_dashing = true
-	#movement_script.can_move = false  # Empêcher le contrôle du joueur
+	dash_progress = 0.0
+	dash_direction = -player.transform.basis.z  # Direction devant le joueur
 
-	# Direction du dash : dans la direction de la caméra ou de l'orientation du joueur
-	dash_direction = -player.transform.basis.z  # La direction est devant le joueur
+func execute_dash(delta):
+	dash_progress += delta / dash_duration  # Augmente progressivement
+	if dash_progress >= 1.0:
+		is_dashing = false
+		player.velocity = Vector3.ZERO
+		return
 
-	# Appliquer une vélocité initiale sur le joueur (donner un "boost" en avant)
-	player.velocity = dash_direction * dash_speed
-
-	# Attendre la durée du dash avant de remettre le contrôle
-	await get_tree().create_timer(dash_duration).timeout
-
-	# Arrêter le dash, réactiver le contrôle du joueur
-	player.velocity = Vector3.ZERO
-	movement_script.can_move = true
-	is_dashing = false
-
-# -----------------
-# Exécuter le dash (pendant la durée du dash)
-func execute_dash(delta: float) -> void:
-	# Appliquer la vélocité pendant toute la durée du dash
-	player.move_and_slide()  # Déplacer le joueur
+	# Appliquer `lerp` pour interpoler la vélocité
+	player.velocity = player.velocity.lerp(dash_direction * dash_speed, dash_progress)
