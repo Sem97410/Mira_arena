@@ -1,7 +1,7 @@
 extends Node
 class_name TweenLogic
 
-@export var cube : RigidBody3D
+@export var cube : CharacterBody3D
 @export var target_1 : Node3D
 @export var target_2 : Node3D
 @export var lerp_script : LerpLogic
