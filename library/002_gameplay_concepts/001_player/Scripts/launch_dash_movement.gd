@@ -1,35 +1,66 @@
 extends Node
 
-# -----------------
+#----------------------------------
 ## REFERENCES
-@export var player: CharacterBody3D  # Le joueur
-@export var movement_script: PlayerMovementScript  # Le script de mouvement du joueur
-@export var dash_speed: float = 10.0
-@export var dash_duration: float = 0.2
-var dash_progress: float = 0.0
-var is_dashing: bool = false
-var dash_direction: Vector3 = Vector3.ZERO
+#Nodes
+@export var player: CharacterBody3D  
+
+# -----------------
+#Values
+@export var dash_duration: float = 0.2 #In second
+@export var dash_length : float
+@onready var start_time : int = 0 #When the dash start
+
+# -----------------
+#Localisation
+var start_position : Vector3 #Begining of the dash
+var destination_target : Vector3 #End of the dash
+
+#----------------------------------
 
 func _process(delta):
-	if Input.is_action_just_pressed("dash") and not is_dashing:
-		start_dash()
+	if Input.is_action_just_pressed("dash"):
+		start_dash()	#Configure the information of the dash
 
 func _physics_process(delta):
-	if is_dashing:
-		execute_dash(delta)
-	player.move_and_slide()
+	
+	execute_dash() #Launch the dash if all conditions are met
 
+#----------------------------------
+#Dash initialisation
 func start_dash():
-	is_dashing = true
-	dash_progress = 0.0
-	dash_direction = -player.transform.basis.z  # Direction devant le joueur
+	start_position = player.position #Stock the player position
+	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
+	destination_target = player.position + player.transform.basis.z * dash_length #Set up the destination target
+	#Destination target = A position in front of the player 
 
-func execute_dash(delta):
-	dash_progress += delta / dash_duration  # Augmente progressivement
-	if dash_progress >= 1.0:
-		is_dashing = false
-		player.velocity = Vector3.ZERO
-		return
+#----------------------------------
+	
+func execute_dash():
+	
+	if start_time > 0 : #Activate the dash only if start_time is superior to 0
 
-	# Appliquer `lerp` pour interpoler la vélocité
-	player.velocity = player.velocity.lerp(dash_direction * dash_speed, dash_progress)
+		var t : float =  ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
+		
+		#Time.get_ticks_msec() - start_time 									-> Elapsed time since the start of the dash (in milliseconds)
+		#((Time.get_ticks_msec() - start_time) / 1000.0) 						-> convert the result in second (and not milliseconds)
+		#(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration 		-> Normalize in order to be between 0 and 1
+		
+		#It's a temporal interpolation
+		
+		var step : Vector3
+		
+		step = start_position.lerp(destination_target, t) 
+		# Physical interpolation between Start position and destination_target base on t
+		#You could write it like that : 
+		#step = start_position + (destination_target - start_position) * t  ## Same than lerp()
+		#When t = 0 , step = start_position
+		#When t = 1 , step = destination_target
+		step -= player.position
+		
+		var coll : KinematicCollision3D = player.move_and_collide(step)
+		
+		#cube.velocity = step / delta
+		#cube.move_and_slide()
+		if t >= 1 or coll :
+			start_time = 0

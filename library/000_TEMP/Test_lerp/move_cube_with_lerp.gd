@@ -1,14 +1,12 @@
 extends Node
 
-class_name LerpLogic
-
 @export var cube : CharacterBody3D
 
 @export  var duration : float = 0.2
 @export var dash_length : float
 
 var start_position : Vector3
-var start_time : int
+@onready var start_time : int = 0
 var destination_target : Vector3 
 
 
@@ -19,6 +17,7 @@ func _physics_process(delta: float) -> void:
 func move_cube_to_target(delta : float) -> void : 
 	
 	if start_time > 0 :
+		
 		var t : float =  ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / duration
 		
 		var step : Vector3

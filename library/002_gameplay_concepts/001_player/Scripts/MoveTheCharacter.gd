@@ -24,7 +24,7 @@ var direction_vector_input: Vector2
 
 # -----------------
 #Values
-@onready var temps_player_speed : float = 4.0
+@onready var temps_player_speed : float = 6
 
 func _physics_process(delta: float) -> void:
 	
@@ -43,8 +43,8 @@ func move_the_character() -> void:
 
 		if direction_vector_input.length() > 0.2:
 			# Apply movement
-			player.velocity.x = player_movement_direction.x * player_movement_resource.player_speed * input_strength  #Square length ( a regarder)
-			player.velocity.z = player_movement_direction.z * player_movement_resource.player_speed * input_strength
+			player.velocity.x = player_movement_direction.x * temps_player_speed * input_strength  #Square length ( a regarder)
+			player.velocity.z = player_movement_direction.z * temps_player_speed * input_strength
 
 			# Rotation of the character in the direction of the movement
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)

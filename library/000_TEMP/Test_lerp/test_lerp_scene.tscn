@@ -47,7 +47,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_pd8gq")
 
 [node name="CubeA" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1.49395)
+transform = Transform3D(0.499592, 0, 0.866261, 0, 1, 0, -0.866261, 0, 0.499592, 0, 0, 1.49395)
 script = ExtResource("1_ujgdr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CubeA"]
@@ -117,7 +117,7 @@ text = "Move the cube with tween"
 [node name="MoveCubeWithLerp" type="Node" parent="Scripts" node_paths=PackedStringArray("cube")]
 script = ExtResource("1_lcnyg")
 cube = NodePath("../../CubeA")
-duration = 0.5
-dash_length = 10.0
+duration = 0.08
+dash_length = 5.0
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LerpMovementButton" to="Scripts/MoveCubeWithLerp" method="_on_lerp_movement_button_pressed"]
