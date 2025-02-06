@@ -162,59 +162,7 @@ interpolation_strength = 10.0
 
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("slime_data", "character_body3D", "nav_agent")]
 script = ExtResource("3_pnsq8")
-Summary = "Script servant aux mouvement de l'ennemi  
-
-il est posé sur un node vide du nom de Movement qui est enfant du character_body3D \"Slime\"
-
-son class_name : SlimeMouvement
-
-Les réference dont il a besoins :
-- SlimeData : lui donne accès aux donné du slime tel que sa vitesse ou autre
-- Character_body3D : lui donne accès aux méthode propre aux character_body3D
-- nav_agent : Lui donnes accès aux NavigationAgent3D
-
-Les donnés qu'il doit initialisé en ready
-- speed: vitesse du slime stocker dans le script slime_data
-- interpolate_strength: force d'interpolation du mouvement du slime 
- - rotation_axe_x : axe x du character_body3D
- - rotation_axe_z  : axe z du character_body3D
-
-code nécessaire au déplacement dans la fonction _physic_process(delta: float)  propre a godot
-current_position : (position actuelle de l'ennemi)  a besoins d'acceder au global_transform du character_body.3D
-next_position : (prochaine position de l'ennemi)  a besoins du NavigationAgent3D et de sa méthods natif get_next_path_position
-
-new_velocity  récupère le vector3, \"next position\" le soustrait aux vector3 \"current_postion\", puis normalize le résultat de la soustraction et le multiplie par la vitesse( a vérifier mais si on normalize le résultat ici présent c'est pour le réduire entre 0 et 1 pour obtenir uniquement la direction du vecteur et non la longueur)
-character_body3D.velocity = character_body3D.velocity.lerp(new_velocity,interpolate_strength * delta) : récupère le paramètre velocity du character_body3D qui est pris en compte lors de l'appel de la methode move_and_slide() et lui affect le résultat de  new_velocity en créant une interpolation non linéaire  avce un lerp(
-
-	rotation_axe_x = 0 freeze la rotation en x du character_body_3D
-	rotation_axe_z = 0  freeze la rotation en z du character_body_3D
-	
-	character_body3D.move_and_slide() méthode propre aux character_body3D 
-
-Explications du script : Alors ici on le script de déplacement  il fonctionne de la manière suivante   
-Il est posé sur un node  enfant du character_body3D 
-Il doit prendre en référence le character_body3D pour avoir accès a ses méthodes.
-
-pour pouvoir faire en sorte que l'ennemi se déplace on doit être au courant de sa position actuelle qui est lié au global_transform.origin(pas sur, mais global.position, peut aussi fonctioner) c'est un vecteur3
-ensuite il faut qu'on connaisse la prochaine position de notre ennemi. Notre   ennemi se déplace via un NavigationAgent3D qui possède une méthode lié a la prochaine position - >  get_next_path_position()  c'est un vecteur3  
-on soustrait nos deux vecteur on normalize le résultat et on le multiplie par speed   et on stock tout ça dans une variable du nom de new_velocity
-Ensuite on applique le résultat de new_velocity a velocity propre aux character_body3D en utilisant un lerp pour avoir un mouvement qui soit Exponnetielle  et non linéaire  jusqu'a son max définit par speed
-On freeze la rotation de notre character_body3D pour éviter qu'il aille dans tous les sens 
-et on active le mouvement en appellant la méthode move_and_slide()
-
-
-
-
-
-
-
-
-
-
-
-
-
-"
+Summary = null
 slime_data = NodePath("../Data")
 character_body3D = NodePath("..")
 nav_agent = NodePath("../NavigationAgent3D")

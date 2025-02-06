@@ -2,9 +2,9 @@ extends Node
 
 class_name SlimeMouvement
 
+var verif_script_isconnect : 
 
-
-@export_multiline var Summary_movement : String # Règle du script a consulter dans l'inspecteur 
+@export_multiline var Summary : String # Règle du script a consulter dans l'inspecteur 
 
 @export var slime_data : SlimeData # reférence aux script de la data du slime (ex : speed, life,etc....)
 @export var character_body3D : CharacterBody3D # réference au character Body
