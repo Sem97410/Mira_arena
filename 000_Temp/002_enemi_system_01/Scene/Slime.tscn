@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://000_Temp/002_enemi_system_01/movement.gd" id="3_pnsq8"]
 [ext_resource type="Script" path="res://000_Temp/002_enemi_system_01/update_player_position.gd" id="4_efry0"]
 [ext_resource type="Script" path="res://000_Temp/002_enemi_system_01/launch_animation.gd" id="4_iuh0q"]
-[ext_resource type="Script" path="res://000_Temp/002_enemi_system_01/Scene/look_at_player.gd" id="6_16uep"]
+[ext_resource type="Script" path="res://000_Temp/002_enemi_system_01/look_at_player.gd" id="6_16uep"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qw7y"]
 resource_name = "mat_eyes_slime"
@@ -162,7 +162,6 @@ interpolation_strength = 10.0
 
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("slime_data", "character_body3D", "nav_agent")]
 script = ExtResource("3_pnsq8")
-Summary = null
 slime_data = NodePath("../Data")
 character_body3D = NodePath("..")
 nav_agent = NodePath("../NavigationAgent3D")
