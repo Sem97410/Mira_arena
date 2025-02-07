@@ -37,9 +37,10 @@ func _process(delta: float) -> void:
 	
 
 func launch_light_attack() -> void : 
+	
+	var current_index = index_animation_script.handle_animation_index()
 
-	index_animation_script.handle_animation_index()
 	index_animation_script.launch_countdown()
 
-	base_state_machine.travel("Combo_" + str(index_animation_script.animation_index))
+	base_state_machine.travel("Combo_" + str(current_index))
 	

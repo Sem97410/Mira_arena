@@ -57,7 +57,7 @@ func _process(delta):
 		modify_fov_with_tween()
 		launch_action_line()
 		launch_dash_animation()
-		launch_after_images()
+		#launch_after_images()
 		
 		dash_countdown = latence_between_dash
 		
