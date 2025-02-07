@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=6 format=3 uid="uid://cjg1inb63m6bd"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
 
@@ -7,6 +7,12 @@ size = Vector2(60, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqn4c"]
 size = Vector3(60, 0.1, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rw5tb"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ujkw"]
+size = Vector3(20, 3, 0.5)
 
 [node name="MainScene" type="Node3D"]
 
@@ -27,3 +33,12 @@ shadow_enabled = true
 
 [node name="Mira" parent="." instance=ExtResource("1_vmf81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.78062)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96804, 1.52129, -13.2078)
+mesh = SubResource("BoxMesh_rw5tb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ujkw")

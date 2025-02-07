@@ -8,17 +8,8 @@ extends Node
 
 var previous_positions: Array = []  # Stocke les anciennes positions du joueur
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("dash"):
-		start_spawning()
-
-	# Stocke la position du joueur à chaque frame
-	if player:
-		previous_positions.append(player.global_transform.origin)
-
-		# Garde seulement les X dernières positions
-		if previous_positions.size() > spawn_count:
-			previous_positions.pop_front()
+#func _process(delta: float) -> void:
+	
 
 func start_spawning() -> void:
 	if player == null:
@@ -39,3 +30,16 @@ func spawn_next_mesh(index: int) -> void:
 	
 	await get_tree().create_timer(spawn_interval).timeout  
 	spawn_next_mesh(index + 1)
+	
+func launch_after_images() -> void :
+	if Input.is_action_just_pressed("dash"):
+		start_spawning()
+	
+
+	# Stocke la position du joueur à chaque frame
+	if player:
+		previous_positions.append(player.global_transform.origin)
+
+		# Garde seulement les X dernières positions
+		if previous_positions.size() > spawn_count:
+			previous_positions.pop_front()
