@@ -7,7 +7,7 @@ class_name FightAnimationIndex
 #Values
 @onready var animation_index : int = 1
 
-@export var base_reset_countdown : float = 1.0
+@export var base_reset_countdown : float = 0.5
 @onready var current_reset_countdown : float = 0.0
 
 #----------------------------------

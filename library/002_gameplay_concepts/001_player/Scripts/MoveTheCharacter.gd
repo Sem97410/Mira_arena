@@ -29,6 +29,7 @@ var direction_vector_input: Vector2
 func _physics_process(delta: float) -> void:
 	
 	move_the_character()
+	
 
 
 	
@@ -57,4 +58,3 @@ func move_the_character() -> void:
 	# Appliquer le mouvement au joueur
 
 		player.move_and_slide()
-	
