@@ -4,17 +4,22 @@ extends Node
 @export_multiline var SUMMARY : String
 
 #----------------------------------
+@export_category("Scene Nodes")
 ## REFERENCES
 #Nodes
 @export var player: CharacterBody3D  
+@export var camera : Camera3D
+@export var animation_tree : AnimationTree
 
 # -----------------
+@export_category("General values")
 #General value
 @export var dash_duration: float = 0.2 #In second
 @export var latence_between_dash : float = 3.0
 
 # -----------------
 #Dash movement
+@export_category("Dash movement")
 @export var dash_length : float
 @onready var start_time : int = 0 #When the dash start
 @onready var dash_countdown : float = 0.0
@@ -22,27 +27,28 @@ extends Node
 
 # -----------------
 #Localisation of the player
-
+@export_category("Player localisation")
 var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 
 # -----------------
 #FOV
-@export var camera : Camera3D
+@export_category("FOV")
 @onready var base_FOV : float = 75.0
 @onready var dash_FOV : float = 90.0
 
 # -----------------
 #Action lines
+@export_category("Action lines")
 @export var action_line_sprites : AnimatedSprite2D
 
 # -----------------
 #Animations
-@export var animation_tree : AnimationTree
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
 # -----------------
 #After images
+@export_category("After images")
 @export var afterimage_scene: PackedScene  # Utilise MiraAfterImage.tscn
 @export var spawn_count: int = 5  
 @export var spawn_interval: float = 0.1  
