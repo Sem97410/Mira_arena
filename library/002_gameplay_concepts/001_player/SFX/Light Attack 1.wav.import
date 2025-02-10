@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjo8khl4oqcdn"
+path="res://.godot/imported/Light Attack 1.wav-dcc6a224f36fe1a04122c3d65e5ce0d0.sample"
+
+[deps]
+
+source_file="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav"
+dest_files=["res://.godot/imported/Light Attack 1.wav-dcc6a224f36fe1a04122c3d65e5ce0d0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
