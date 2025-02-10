@@ -77,11 +77,9 @@ func _chasing_state(delta) -> void:
 	
 func _pre_attack_state() -> void :
 	animation_player.play("Armature|pre_charge")
-	if animation_player.animation_finished:
-	#if animation_player.current_animation == "pre_charge" and \
-	#animation_player.current_animation_position >= animation_player.current_animation_length :
-		current_state = States.ATTACK
-	#
+	
+	
+	
 		
 	pass
 	
