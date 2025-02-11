@@ -52,15 +52,15 @@ func launch_hit_logic() -> void :
 
 func check_if_dead() -> void :
 	if player_current_hp <= 0 :
-		print("Player is dead")
+		#print("Player is dead")
 		death()
 		
 
 func death() -> void :
-	print("Block movement")
-	print("Death logics")
+	#print("Block movement")
+	#print("Death logics")
 	
-	base_state_machine.travel("Death")
+	#base_state_machine.travesl("Death")
 	is_alive = false
 	#for action in InputMap.get_actions():
 		#InputMap.action_erase_events(action)
