@@ -59,10 +59,11 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("dash") && dash_countdown <= 0:
 		
-		start_dash()	#Configure the information of the dash
-		modify_fov_with_tween()
-		launch_action_line()
+		#start_dash()	#Configure the information of the dash
+		#modify_fov_with_tween()
+		#launch_action_line()
 		launch_dash_animation()
+		
 		#launch_after_images()
 		
 		dash_countdown = latence_between_dash
@@ -153,14 +154,14 @@ func modify_fov_with_tween() -> void :
 ## DASH ACTION LINES
 
 func launch_action_line() -> void : 
-	if Input.is_action_just_pressed("dash"): 
-		action_line_sprites.play("Action lines")
-		action_line_sprites.visible = true
-		
-		await get_tree().create_timer(0.5).timeout
-		
-		action_line_sprites.visible = false
-		action_line_sprites.stop()
+	
+	action_line_sprites.play("Action lines")
+	action_line_sprites.visible = true
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	action_line_sprites.visible = false
+	action_line_sprites.stop()
 
 #----------------------------------
 ## DASH ANIMATIONS

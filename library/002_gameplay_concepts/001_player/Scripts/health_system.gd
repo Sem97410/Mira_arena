@@ -9,7 +9,7 @@ class_name HealthSystem
 #@onready var death_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/DeathStateMachine/playback"]
 
 @export var player : CharacterBody3D
-@export var player_mesh : Node3D 
+@export var player_mesh : Node3D
 
 @onready var blink_interval : float = 0.2
 @onready var after_hit_invicibility : bool = false
@@ -23,7 +23,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 func _process(delta: float) -> void:
-	print("Player current HP : ", player_current_hp)
+	#print("Player current HP : ", player_current_hp)
 	#var current_state = animation_tree.get("parameters/state/current")
 
 	#print("Je suis dans le state : ", current_state)
@@ -31,16 +31,16 @@ func _process(delta: float) -> void:
 		take_damage(50.0)
 		
 		
-func take_damage(damage : float) -> void : 
-	if not after_hit_invicibility :  
+func take_damage(damage : float) -> void :
+	if not after_hit_invicibility :
 		player_current_hp -= damage
 		check_if_dead()
 		launch_hit_logic()
 		
 
 
-func launch_hit_logic() -> void : 
-	if player_current_hp <= 0 : 
+func launch_hit_logic() -> void :
+	if player_current_hp <= 0 :
 		return
 		
 	print("Hit logic")
@@ -50,13 +50,13 @@ func launch_hit_logic() -> void :
 	
 	
 
-func check_if_dead() -> void : 
+func check_if_dead() -> void :
 	if player_current_hp <= 0 :
 		print("Player is dead")
 		death()
 		
 
-func death() -> void : 
+func death() -> void :
 	print("Block movement")
 	print("Death logics")
 	
@@ -69,8 +69,8 @@ func death() -> void :
 	movement_script.can_move = false
 	
 	#await get_tree().create_timer(0.1).timeout
-	#animation_tree.active = false
-	#animation_player.play("Death")
+	animation_tree.active = false
+	animation_player.play("Death")
 	
 	
 	
