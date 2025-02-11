@@ -60,3 +60,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92872, 3.51387)
 
 [node name="Spawner" parent="." instance=ExtResource("3_au60h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12339, -5.13365)
+max_enemies = 10.0
