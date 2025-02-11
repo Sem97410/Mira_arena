@@ -31,8 +31,9 @@ class_name LaunchAttackAnimationScript
 #----------------------------------
 
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("light_attack"):
-		
+	
 		launch_light_attack()
 	
 

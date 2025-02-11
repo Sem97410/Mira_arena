@@ -1,9 +1,12 @@
 extends Node
+class_name HealthSystem
 
 @export var player_max_hp : float = 100
 @onready var player_current_hp : float = player_max_hp
 @export var animation_tree : AnimationTree
+@export var animation_player : AnimationPlayer
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
+#@onready var death_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/DeathStateMachine/playback"]
 
 @export var player : CharacterBody3D
 @export var player_mesh : Node3D 
@@ -13,10 +16,17 @@ extends Node
 @export var invicibility_duration : float = 5.0 #base on the number of blink
 
 @export var movement_script : PlayerMovementScript
+@onready var is_alive : bool = true
+@export var test_button : Button
 
-
+func _ready() -> void:
+	animation_tree.active = true
+	
 func _process(delta: float) -> void:
 	print("Player current HP : ", player_current_hp)
+	#var current_state = animation_tree.get("parameters/state/current")
+
+	#print("Je suis dans le state : ", current_state)
 	if Input.is_action_just_pressed("debug_input"):
 		take_damage(50.0)
 		
@@ -26,6 +36,7 @@ func take_damage(damage : float) -> void :
 		player_current_hp -= damage
 		check_if_dead()
 		launch_hit_logic()
+		
 
 
 func launch_hit_logic() -> void : 
@@ -48,10 +59,21 @@ func check_if_dead() -> void :
 func death() -> void : 
 	print("Block movement")
 	print("Death logics")
+	
 	base_state_machine.travel("Death")
+	is_alive = false
+	#for action in InputMap.get_actions():
+		#InputMap.action_erase_events(action)
+	
+	test_button.grab_focus()
 	movement_script.can_move = false
 	
-	base_state_machine.set("parameters/MiraAnimations/conditions/is_alive", false)  	## A CHECKER
+	#await get_tree().create_timer(0.1).timeout
+	#animation_tree.active = false
+	#animation_player.play("Death")
+	
+	
+	
 	
 func player_is_blinking():
 	if  after_hit_invicibility:
@@ -68,3 +90,9 @@ func player_is_blinking():
 	# Restore visibility and re-enable blinking
 	player_mesh.visible = true
 	after_hit_invicibility = false
+
+
+func _on_test_button_pressed() -> void:
+	print("Button was pressed")
+
+	get_tree().reload_current_scene()
