@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://000_Temp/000_Level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
 [ext_resource type="PackedScene" uid="uid://c02w78k5id0jw" path="res://000_Temp/001_Player_system/001_SCENE/player.tscn" id="2_3d1fe"]
-[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://000_Temp/002_Enemy_system/001_SCENE/spawner.tscn" id="3_au60h"]
+[ext_resource type="PackedScene" uid="uid://n8otoiwc4jji" path="res://000_Temp/002_Enemy_system/001_SCENE/slime.tscn" id="3_hxefb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5dw0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -58,5 +58,5 @@ shape = SubResource("BoxShape3D_pwt2s")
 [node name="Player" parent="." instance=ExtResource("2_3d1fe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92872, 3.51387)
 
-[node name="Spawner" parent="." instance=ExtResource("3_au60h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12339, -5.13365)
+[node name="Slime" parent="." instance=ExtResource("3_hxefb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.94075)
