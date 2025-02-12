@@ -320,5 +320,7 @@ movement_speed = 3.0
 movement_interpolate_strength = 15.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.0
 
 [connection signal="animation_finished" from="SlimeMesh/AnimationPlayer" to="SlimeComportement" method="_on_animation_player_animation_finished"]
