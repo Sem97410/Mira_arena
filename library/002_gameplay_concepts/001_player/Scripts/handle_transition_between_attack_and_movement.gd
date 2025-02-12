@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	handle_transition_between_fight_and_movement()
 
 func handle_transition_between_fight_and_movement() -> void : 

@@ -21,14 +21,16 @@ class_name HealthSystem
 
 func _ready() -> void:
 	animation_tree.active = true
+
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#print("Player current HP : ", player_current_hp)
 	#var current_state = animation_tree.get("parameters/state/current")
 
 	#print("Je suis dans le state : ", current_state)
 	if Input.is_action_just_pressed("debug_input"):
 		take_damage(50.0)
+		
 		
 		
 func take_damage(damage : float) -> void :
@@ -60,7 +62,7 @@ func death() -> void :
 	#print("Block movement")
 	#print("Death logics")
 	
-	#base_state_machine.travesl("Death")
+	base_state_machine.travel("Death")
 	is_alive = false
 	#for action in InputMap.get_actions():
 		#InputMap.action_erase_events(action)
@@ -69,8 +71,9 @@ func death() -> void :
 	movement_script.can_move = false
 	
 	#await get_tree().create_timer(0.1).timeout
-	animation_tree.active = false
-	animation_player.play("Death")
+	
+	#animation_tree.active = false
+	#animation_player.play("Death")
 	
 	
 	

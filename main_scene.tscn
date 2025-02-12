@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=8 format=3 uid="uid://cjg1inb63m6bd"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
+[ext_resource type="PackedScene" uid="uid://cmk2lreji2yy1" path="res://library/002_gameplay_concepts/001_player/Dummies.tscn" id="2_uklt8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
 size = Vector2(60, 60)
@@ -13,6 +14,9 @@ size = Vector3(20, 3, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ujkw"]
 size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijcf7"]
+size = Vector3(4, 4, 4)
 
 [node name="MainScene" type="Node3D"]
 
@@ -42,3 +46,27 @@ mesh = SubResource("BoxMesh_rw5tb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_6ujkw")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.69707)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ijcf7")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -1)
+
+[node name="CharacterBody3D2" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5.0151)
+
+[node name="CharacterBody3D3" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5167, 1, -5.0151)
+
+[node name="CharacterBody3D4" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5167, 1, -2.07215)
+
+[node name="CharacterBody3D5" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5167, 1, 0.118492)
+
+[node name="CharacterBody3D6" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.41754, 1.02977, -1.2326)

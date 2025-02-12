@@ -1,6 +1,9 @@
 extends Node
+class_name ChargedAttackLogic
 
 @export_multiline var Summary : String
+
+@export var mira_game_master : MiraGameMaster
 
 #----------------------------------
 ## REFERENCES
@@ -12,12 +15,10 @@ extends Node
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
 #----------------------------------
+func _ready() -> void:
+	mira_game_master.player_use_charged_attack.connect(launch_charge_attack_animation)
+	
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("charge_attack"):
-		launch_charge_attack_animation()
-		
-		
 #----------------------------------
 
 func launch_charge_attack_animation() -> void : 

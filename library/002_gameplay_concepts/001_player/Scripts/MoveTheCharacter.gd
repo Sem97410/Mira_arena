@@ -26,7 +26,7 @@ var direction_vector_input: Vector2
 #Values
 @onready var temps_player_speed : float = 6
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	move_the_character()
 	

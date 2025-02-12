@@ -1,5 +1,5 @@
 extends Node
-
+class_name DashLogic
 
 @export_multiline var SUMMARY : String
 
@@ -10,6 +10,7 @@ extends Node
 @export var player: CharacterBody3D  
 @export var camera : Camera3D
 @export var animation_tree : AnimationTree
+@export var mira_game_master : MiraGameMaster
 
 # -----------------
 @export_category("General values")
@@ -55,27 +56,34 @@ var destination_target : Vector3 #End of the dash
 var previous_positions: Array = []  # Stocke les anciennes positions du joueur
 #----------------------------------
 
-func _process(delta):
+func _ready() -> void:
+	mira_game_master.player_use_dash.connect(initiate_dash)
+
+func _process(delta: float) -> void:
 	
-	if Input.is_action_just_pressed("dash") && dash_countdown <= 0:
-		
-		#start_dash()	#Configure the information of the dash
-		#modify_fov_with_tween()
-		#launch_action_line()
-		launch_dash_animation()
-		
-		#launch_after_images()
-		
-		dash_countdown = latence_between_dash
-		
 	decrease_dash_countdown(delta)
+	
 		
 
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	execute_dash() #Launch the dash if all conditions are met
 
 #----------------------------------
+func initiate_dash() -> void : 
+	#if Input.is_action_just_pressed("dash") && dash_countdown <= 0:
+		
+	#start_dash()	#Configure the information of the dash
+	#modify_fov_with_tween()
+	#launch_action_line()
+	launch_dash_animation()
+	
+	#launch_after_images()
+	
+	dash_countdown = latence_between_dash
+	
+	
+
 ## DASH countdown
 func decrease_dash_countdown(delta : float ) -> void : 
 	if dash_countdown > 0:

@@ -5,7 +5,7 @@ extends Node
 @export var camera_follow_strength : float = 0.03
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	make_camera_follow_player()
 
 func make_camera_follow_player() -> void : 

@@ -1,6 +1,6 @@
 extends Node
 
-class_name LaunchAttackAnimationScript
+class_name LightAttackAnimationScript
 
 @export_multiline var Summary : String
 
@@ -12,6 +12,7 @@ class_name LaunchAttackAnimationScript
 
 #-----------
 #Scripts
+@export var mira_game_master : MiraGameMaster
 @export var index_animation_script : FightAnimationIndex
 
 #----------------------------------
@@ -29,12 +30,14 @@ class_name LaunchAttackAnimationScript
 @onready var current_combo_windo_length : float = 0
 
 #----------------------------------
+func _ready() -> void:
+	mira_game_master.player_use_light_attack.connect(launch_light_attack)
 
-func _process(delta: float) -> void:
-	
-	if Input.is_action_just_pressed("light_attack"):
-	
-		launch_light_attack()
+#func _process(delta: float) -> void:
+	#
+	#if Input.is_action_just_pressed("light_attack"):
+	#
+		#launch_light_attack()
 	
 
 func launch_light_attack() -> void : 
