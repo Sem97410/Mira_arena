@@ -86,3 +86,8 @@ func enable_charged_attack_collision() -> void :
 
 func disable_charged_attack_collision() -> void : 
 	charged_attack_collision.disabled = true
+
+func freeze_frame() -> void : 
+	Engine.time_scale = 0.1
+	await get_tree().create_timer(0.03).timeout
+	Engine.time_scale = 1.0
