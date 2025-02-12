@@ -4,7 +4,7 @@ extends Node3D
 @export var max_enemies : float # max enemies_spawn
 @onready var enemies_spawned : float = 0 # nombre d'ennemi spawner
 
-const SLIME = preload("res://000_Temp/002_Enemy_system/001_SCENE/slime.tscn")# charge le slime depuis les folder
+const SLIME = preload("res://002_gameplay_concepts/002_Enemy_system/001_SCENE/slime.tscn")# charge le slime depuis les folder
 
 
 #fonction propre a godot qui gère automatique le spawn

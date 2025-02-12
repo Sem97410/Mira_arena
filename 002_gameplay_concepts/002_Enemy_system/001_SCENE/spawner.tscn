@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1glnsyk34yb7"]
 
-[ext_resource type="Script" path="res://000_Temp/002_Enemy_system/002_Script/spawner.gd" id="1_e07w3"]
-[ext_resource type="PackedScene" uid="uid://n8otoiwc4jji" path="res://000_Temp/002_Enemy_system/001_SCENE/slime.tscn" id="2_7y8m5"]
+[ext_resource type="Script" path="res://002_gameplay_concepts/002_Enemy_system/002_Script/spawner.gd" id="1_e07w3"]
+[ext_resource type="PackedScene" uid="uid://n8otoiwc4jji" path="res://002_gameplay_concepts/002_Enemy_system/001_SCENE/slime.tscn" id="2_7y8m5"]
 
 [node name="Spawner" type="Node3D" node_paths=PackedStringArray("spawner_timer")]
 script = ExtResource("1_e07w3")

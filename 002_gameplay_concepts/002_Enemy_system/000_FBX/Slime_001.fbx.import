@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dffffho6c80mh"
-path="res://.godot/imported/Slime_001.fbx-fcac8e9ae6b9b5a4cdd1e8826b1b3d2c.scn"
+path="res://.godot/imported/Slime_001.fbx-de82ddfa00999c414991f5f2a33f4f00.scn"
 
 [deps]
 
-source_file="res://000_Temp/002_Enemy_system/000_FBX/Slime_001.fbx"
-dest_files=["res://.godot/imported/Slime_001.fbx-fcac8e9ae6b9b5a4cdd1e8826b1b3d2c.scn"]
+source_file="res://002_gameplay_concepts/002_Enemy_system/000_FBX/Slime_001.fbx"
+dest_files=["res://.godot/imported/Slime_001.fbx-de82ddfa00999c414991f5f2a33f4f00.scn"]
 
 [params]
 
