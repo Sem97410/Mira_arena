@@ -21,7 +21,7 @@ Reference="*res://002_gameplay_concepts/000_Level_system/002_Script/reference_sh
 [file_customization]
 
 folder_colors={
-"res://000_Temp/": "orange"
+"res://000_TEMP/": "orange"
 }
 
 [global_group]
