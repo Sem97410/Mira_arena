@@ -10,6 +10,7 @@ class_name HealthSystem
 
 @export var player : CharacterBody3D
 @export var player_mesh : Node3D
+@export var camera_shake_logic : CameraShake
 
 @onready var blink_interval : float = 0.2
 @onready var after_hit_invicibility : bool = false
@@ -23,13 +24,13 @@ func _ready() -> void:
 	animation_tree.active = true
 
 	
-func _process(_delta: float) -> void:
+#func _process(_delta: float) -> void:
 	#print("Player current HP : ", player_current_hp)
 	#var current_state = animation_tree.get("parameters/state/current")
 
-	#print("Je suis dans le state : ", current_state)
-	if Input.is_action_just_pressed("debug_input"):
-		take_damage(50.0)
+	##print("Je suis dans le state : ", current_state)
+	#if Input.is_action_just_pressed("debug_input"):
+		#take_damage(50.0)
 		
 		
 		
@@ -45,7 +46,7 @@ func launch_hit_logic() -> void :
 	if player_current_hp <= 0 :
 		return
 		
-	print("Hit logic")
+	#print("Hit logic")
 	base_state_machine.travel("Hit")	#Animation
 	player_is_blinking()				#Blink
 

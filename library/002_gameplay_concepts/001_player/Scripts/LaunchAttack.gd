@@ -16,11 +16,11 @@ func _process(delta: float) -> void:
 	#_handle_animation_condition()
 
 func _launch_attack() -> void :
-	print("Attack button was pressed")
-	print("animation_index = ", animation_index)
+	#print("Attack button was pressed")
+	#print("animation_index = ", animation_index)
 	
 	var animation_to_launch : String = ("combo_" + str(animation_index))
-	print(animation_to_launch)
+	#print(animation_to_launch)
 	fight_state_machine.travel(animation_to_launch)
 	animation_index += 1
 	

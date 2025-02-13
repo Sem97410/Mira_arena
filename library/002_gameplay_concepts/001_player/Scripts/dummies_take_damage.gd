@@ -10,9 +10,11 @@ extends Node
 var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
 
+@export var camera_shake_logic : CameraShake
 
-func _ready() -> void:
-	print("Dummies hp : ", current_hp)
+
+#func _ready() -> void:
+	#print("Dummies hp : ", current_hp)
 	
 func _process(delta: float) -> void:
 	destroy_dummies()
@@ -26,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if not dummies.is_on_floor():
 		#dummies.velocity += dummies.get_gravity() * delta
 		knockback_velocity.y -= 9.8 * delta * 5  # Simule une gravité manuelle
-	print( dummies.is_on_floor())
+	#print( dummies.is_on_floor())
 		
 	# Appliquer le knockback et le réduire progressivement
 	if knockback_velocity.length() > 0.1:
@@ -53,6 +55,10 @@ func take_damage(damage : float) -> void :
 
 func destroy_dummies() -> void : 
 	if current_hp <= 0 : 
+		
+		camera_shake_logic.current_shake = camera_shake_logic.death_shake
+		camera_shake_logic.trigger_shake()
+		
 		dummies.queue_free()
 		
 		

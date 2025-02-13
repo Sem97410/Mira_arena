@@ -50,13 +50,13 @@ func _physics_process(delta: float) -> void:
 func _change_state(new_state : States, delta : float = 0.0) -> void :
 	match new_state :
 		States.CHASING :
-			print("in chasing states")
+			#print("in chasing states")
 			_chasing_state(delta)
 		States.PREATTACK :
-			print("in preattack state")
+			#print("in preattack state")
 			_pre_attack_state()
 		States.ATTACK :
-			print(" in attack state")
+			#print(" in attack state")
 			_attack_state()
 	#____________________________________________________________________________________________		
 			
@@ -129,7 +129,7 @@ func _pre_attack_state() -> void :
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
 	if not is_attacking:# si il n'est pas en train d'ataquer
-		print("in attack state")
+		#print("in attack state")
 		animation_player.play("Armature|charge")#joue l'animation d'attaque
 		attack_cool_down =0.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquer
