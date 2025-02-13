@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://bn1u6y1o4so71"]
 
-[ext_resource type="Texture2D" uid="uid://oih5pbw7phlq" path="res://library/006_VFX/Noise/T_smoke.png" id="1_8eda5"]
+[ext_resource type="Texture2D" uid="uid://oih5pbw7phlq" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_smoke.png" id="1_8eda5"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_8h641"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 0.25)]

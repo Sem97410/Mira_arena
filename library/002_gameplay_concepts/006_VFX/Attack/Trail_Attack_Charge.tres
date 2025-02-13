@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://bmrxb8pcj8g2r"]
 
-[ext_resource type="Texture2D" uid="uid://t7ka0fgrb47s" path="res://library/006_VFX/Noise/T_Fire.png" id="1_qcv4i"]
+[ext_resource type="Texture2D" uid="uid://t7ka0fgrb47s" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fire.png" id="1_qcv4i"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_58y4a"]
 operator = 2

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://dmvq4s6nkkua6"]
 
-[ext_resource type="Shader" uid="uid://b8mshxija5fj8" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE_DETAIL.res" id="1_khjib"]
-[ext_resource type="Shader" uid="uid://b8lx3gnuxlp6s" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE.tres" id="2_ajyfn"]
-[ext_resource type="ArrayMesh" uid="uid://cxccnj2bwopb8" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE_TEST.obj" id="3_20t52"]
-[ext_resource type="ArrayMesh" uid="uid://by5qymxkewicp" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE.obj" id="4_iebtn"]
-[ext_resource type="Shader" path="res://library/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="5_ph1xs"]
-[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/006_VFX/Noise/PerlinExample.png" id="6_1wr22"]
+[ext_resource type="Shader" uid="uid://b8mshxija5fj8" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE_DETAIL.res" id="1_khjib"]
+[ext_resource type="Shader" uid="uid://b8lx3gnuxlp6s" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE.tres" id="2_ajyfn"]
+[ext_resource type="ArrayMesh" uid="uid://cxccnj2bwopb8" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE_TEST.obj" id="3_20t52"]
+[ext_resource type="ArrayMesh" uid="uid://by5qymxkewicp" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE.obj" id="4_iebtn"]
+[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="5_ph1xs"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="6_1wr22"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g5y5"]
 render_priority = 0

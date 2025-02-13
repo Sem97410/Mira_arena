@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://b8lx3gnuxlp6s"]
 
-[ext_resource type="Texture2D" uid="uid://c3usj3safbfcc" path="res://library/006_VFX/Noise/T_flocon.png" id="1_6cyso"]
+[ext_resource type="Texture2D" uid="uid://c3usj3safbfcc" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_flocon.png" id="1_6cyso"]
 
 [sub_resource type="Gradient" id="Gradient_a0763"]
 offsets = PackedFloat32Array(0, 0.137931)
