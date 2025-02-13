@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://n8otoiwc4jji"]
 
-[ext_resource type="Script" path="res://000_Temp/002_Enemy_system/002_Script/slime_comportement.gd" id="1_gotvg"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="1_gotvg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu4np"]
 resource_name = "mat_eyes_slime"
