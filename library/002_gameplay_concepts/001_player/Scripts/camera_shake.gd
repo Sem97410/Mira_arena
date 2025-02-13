@@ -24,4 +24,5 @@ func _process(delta: float) -> void:
 		
 	if shake_strength > 0: 
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
-		camera.transform.origin = Vector3(randf_range(-shake_strength,shake_strength),randf_range(-shake_strength,shake_strength),randf_range(-shake_strength,shake_strength))
+		camera.transform.origin = Vector3(randf_range(-shake_strength,shake_strength),randf_range(-shake_strength,shake_strength),0)
+		#camera.offset = Vector3(randf_range(-shake_strength,shake_strength),randf_range(-shake_strength,shake_strength),0)) # Regarder offset H offset et V offset

@@ -10,7 +10,7 @@ class_name HealthSystem
 
 @export var player : CharacterBody3D
 @export var player_mesh : Node3D
-@export var camera_shake_logic : CameraShake
+#@export var camera_shake_logic : CameraShake
 
 @onready var blink_interval : float = 0.2
 @onready var after_hit_invicibility : bool = false
