@@ -16,13 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Reference="*res://002_gameplay_concepts/000_Level_system/002_Script/reference_shelf.gd"
-
-[file_customization]
-
-folder_colors={
-"res://000_TEMP/": "orange"
-}
+Reference="*res://library/002_gameplay_concepts/004_level_system/002_Script/reference_shelf.gd"
 
 [global_group]
 
