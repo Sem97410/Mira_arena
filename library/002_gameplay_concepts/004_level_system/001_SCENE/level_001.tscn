@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://m66xgkna1w2c"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
-[ext_resource type="PackedScene" uid="uid://c02w78k5id0jw" path="res://000_TEMP/001_Player_system/001_SCENE/player.tscn" id="2_3d1fe"]
+[ext_resource type="PackedScene" uid="uid://c02w78k5id0jw" path="res://library/002_gameplay_concepts/005_tony_player_place_holder/001_SCENE/tony_player_place_holder.tscn" id="2_3d1fe"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/spawner.tscn" id="3_au60h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5dw0"]
