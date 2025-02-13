@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://n8otoiwc4jji"]
+[gd_scene load_steps=16 format=4 uid="uid://n8otoiwc4jji"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="1_gotvg"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/dummies_take_damage.gd" id="2_rlyn8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu4np"]
 resource_name = "mat_eyes_slime"
@@ -261,15 +262,15 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_acknh"]
-radius = 0.397795
+radius = 0.75
 
 [node name="Slime" type="CharacterBody3D"]
 
 [node name="SlimeMesh" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1.3, 0, -1.96295e-07, 0, 1.3, 0, 1.96295e-07, 0, -1.3, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="SlimeMesh"]
-transform = Transform3D(1, -1.32349e-23, -5.78515e-31, 0, -4.37114e-08, 1, -1.32349e-23, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="SlimeMesh/Armature"]
 bones/0/name = "slime_body"
@@ -308,7 +309,7 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261345, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715018, 0)
 shape = SubResource("SphereShape3D_acknh")
 
 [node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "character_body") groups=["slime_comportement_function"]]
@@ -322,5 +323,8 @@ movement_interpolate_strength = 15.0
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
+
+[node name="TakeDamage" type="Node" parent="."]
+script = ExtResource("2_rlyn8")
 
 [connection signal="animation_finished" from="SlimeMesh/AnimationPlayer" to="SlimeComportement" method="_on_animation_player_animation_finished"]

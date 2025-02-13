@@ -20,9 +20,8 @@ height = 0.2
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="TakeDamage" type="Node" parent="." node_paths=PackedStringArray("dummies")]
+[node name="TakeDamage" type="Node" parent="."]
 script = ExtResource("1_87xf1")
-dummies = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="."]
 

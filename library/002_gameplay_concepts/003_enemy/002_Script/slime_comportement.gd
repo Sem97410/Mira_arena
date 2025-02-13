@@ -3,7 +3,8 @@ extends Node
 class_name Slime
 
 #____________________________________________________________________________________________
-@onready var player_body = SlimeAutoload.player_pawn # référence au player
+@onready var player: CharacterBody3D = get_tree().get_nodes_in_group("player")[0]
+
 @export var animation_player : AnimationPlayer # référence animation player
 @export var nav_agent : NavigationAgent3D # référence aux NavigationAgent3D
 @export var character_body :CharacterBody3D # référence aux character body de l'ennemi
@@ -33,9 +34,9 @@ enum States{
 #____________________________________________________________________________________________
 
 
-func _ready() -> void :
-	pass
-
+#func _ready() -> void :
+	#player_body = SlimeAutoload.player # référence au player
+#
 
 	
 func _physics_process(delta: float) -> void:
@@ -93,7 +94,7 @@ func _chasing_state(delta) -> void:
 	#si la distance entre l'ennemi et le joueur et inférieur ou égal a 3 passe en état PREATTAC
 	#sinon reste dans l'état CHASING
 	
-	var player_position = player_body.global_position # position du joueur
+	var player_position = player.global_position # position du joueur
 	var enemy_position = character_body.global_position # position de l'ennemi
 	var distance_to_player = player_position.distance_to(enemy_position)# distance entre le joueur et l'ennemi
 	if distance_to_player <= 3 : # si la distance ennemi_player est inf ou égal a 3
@@ -145,7 +146,7 @@ func _attack_state() -> void:
 #sinon il se remet en PREATTACK
 	else:
 		is_attacking = false
-		var player_position = player_body.global_position # position du jouer
+		var player_position = player.global_position # position du jouer
 		var enemy_position = character_body.global_position # positon de l'enemi
 		var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
 		
@@ -161,7 +162,7 @@ func _attack_state() -> void:
 #______________________________________________________________
 #function qui permet a l'ennemi de regarder dans la direction  du joueur avec la méthode look_at()
 func _look_at_player() -> void :
-	character_body.look_at(player_body.global_position)# la fonction look_at(récupère la position du joueur)
+	character_body.look_at(player.global_position)# la fonction look_at(récupère la position du joueur)
 #____________________________________________________________________________________________	
 	
 	
