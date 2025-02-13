@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://cjg1inb63m6bd"]
 
-[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Slash_R.tscn" id="1_2p8ni"]
-[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Slash_L.tscn" id="2_ii7th"]
-[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Attack_charge.tscn" id="3_k1340"]
-[ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Third_attack.tscn" id="4_cml3j"]
-[ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/CHARGE_Attack_Charge.tscn" id="5_c0ywr"]
-[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/hit_charge.tscn" id="6_th3ak"]
-[ext_resource type="Shader" uid="uid://ba7x3a63jp8kb" path="res://library/002_gameplay_concepts/006_VFX/Dash/Dash.tres" id="7_vqotf"]
-[ext_resource type="ArrayMesh" uid="uid://d2heefyqy82j0" path="res://library/002_gameplay_concepts/006_VFX/Dash/Dash.res" id="8_uhlsu"]
-[ext_resource type="Texture2D" uid="uid://3fi2u1f3gjjq" path="res://library/002_gameplay_concepts/006_VFX/Noise/NicePng_smoke-texture-png_4373200.png" id="9_f45gt"]
+[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/006_VFX/Export/VFX/Slash_R.tscn" id="1_2p8ni"]
+[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/006_VFX/Export/VFX/Slash_L.tscn" id="2_ii7th"]
+[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/006_VFX/Export/VFX/Attack_charge.tscn" id="3_k1340"]
+[ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/006_VFX/Export/VFX/Third_attack.tscn" id="4_cml3j"]
+[ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/006_VFX/Export/VFX/CHARGE_Attack_Charge.tscn" id="5_c0ywr"]
+[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/006_VFX/Export/VFX/hit_charge.tscn" id="6_th3ak"]
+[ext_resource type="Shader" uid="uid://ba7x3a63jp8kb" path="res://library/006_VFX/Dash/Dash.tres" id="7_vqotf"]
+[ext_resource type="ArrayMesh" uid="uid://d2heefyqy82j0" path="res://library/006_VFX/Dash/Dash.res" id="8_uhlsu"]
+[ext_resource type="Texture2D" uid="uid://3fi2u1f3gjjq" path="res://library/006_VFX/Noise/NicePng_smoke-texture-png_4373200.png" id="9_f45gt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xtd6"]
 render_priority = 0

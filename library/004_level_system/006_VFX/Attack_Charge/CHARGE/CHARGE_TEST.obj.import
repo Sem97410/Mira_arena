@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6nfuq4bsa1tn"
+path="res://.godot/imported/CHARGE_TEST.obj-2a3a020c1e4220709325bc1798ae9531.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CHARGE_TEST.obj-2a3a020c1e4220709325bc1798ae9531.mesh"]
+
+source_file="res://library/004_level_system/006_VFX/Attack_Charge/CHARGE/CHARGE_TEST.obj"
+dest_files=["res://.godot/imported/CHARGE_TEST.obj-2a3a020c1e4220709325bc1798ae9531.mesh", "res://.godot/imported/CHARGE_TEST.obj-2a3a020c1e4220709325bc1798ae9531.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,372 @@
+[gd_scene load_steps=16 format=3 uid="uid://fkbit2xqrrq5"]
+
+[ext_resource type="Shader" uid="uid://b8mshxija5fj8" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE_DETAIL.res" id="1_lug68"]
+[ext_resource type="Shader" uid="uid://b8lx3gnuxlp6s" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE.tres" id="2_o5sfq"]
+[ext_resource type="ArrayMesh" uid="uid://cxccnj2bwopb8" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE_TEST.obj" id="3_wu324"]
+[ext_resource type="ArrayMesh" uid="uid://by5qymxkewicp" path="res://library/006_VFX/Attack_Charge/CHARGE/CHARGE.obj" id="4_b43q6"]
+[ext_resource type="Shader" path="res://library/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="5_tmjkq"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/006_VFX/Noise/PerlinExample.png" id="6_n467o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4g5y5"]
+render_priority = 0
+shader = ExtResource("1_lug68")
+shader_parameter/ColorParameter = Color(0.54, 0, 9.189, 1)
+shader_parameter/Speed = Vector2(0, 0)
+shader_parameter/Spawn = Vector2(0, -0.605)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otgjr"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_4g5y5")
+shader = ExtResource("2_o5sfq")
+shader_parameter/ColorParameter = Color(2, 0, 4, 1)
+shader_parameter/Speed = Vector2(0, 0)
+shader_parameter/Spawn = Vector2(0, -1.75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5y40f"]
+render_priority = 0
+shader = ExtResource("2_o5sfq")
+shader_parameter/ColorParameter = Color(11.352, 2, 20, 1)
+shader_parameter/Speed = Vector2(0, 1)
+shader_parameter/Spawn = Vector2(0, 0.11)
+
+[sub_resource type="Animation" id="Animation_6k3bn"]
+resource_name = "CHARGE"
+length = 2.0
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 14.9285),
+"update": 0,
+"values": [Vector2(0, 1.13), Vector2(0, 3.015)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:next_pass:shader_parameter/Spawn")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 16.5642),
+"update": 0,
+"values": [Vector2(0, -0.03), Vector2(0, 1.97)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Charge_Detail:material_override:shader_parameter/Spawn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 14.9285),
+"update": 0,
+"values": [Vector2(0, -0.035), Vector2(0, 0.11), Vector2(0, 3.12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Charge_Detail:material_override:shader_parameter/Speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:material_override:shader_parameter/Speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:material_override:next_pass:shader_parameter/Speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Charge_Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.34]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ball:mesh:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.01, 0.1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Ball:mesh:height")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.02, 0.2]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Ball:material_override:shader_parameter/fesnelAmount")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.5]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Ball:material_override:shader_parameter/distortionVertex")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.065]
+}
+
+[sub_resource type="Animation" id="Animation_k1r6j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:next_pass:shader_parameter/Spawn")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -0.605)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Charge_Detail:material_override:shader_parameter/Spawn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0.11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Charge_Detail:material_override:shader_parameter/Speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:material_override:shader_parameter/Speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:material_override:next_pass:shader_parameter/Speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Charge_Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ball:mesh:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Ball:mesh:height")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Ball:material_override:shader_parameter/fesnelAmount")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Ball:material_override:shader_parameter/distortionVertex")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rho5s"]
+_data = {
+"CHARGE": SubResource("Animation_6k3bn"),
+"RESET": SubResource("Animation_k1r6j")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxjmd"]
+render_priority = 0
+shader = ExtResource("5_tmjkq")
+shader_parameter/distortionView = 0.02
+shader_parameter/speedView = 0.36
+shader_parameter/tintColor = Color(0.244522, 0.0100641, 0.204655, 1)
+shader_parameter/fesnelAmount = 4.7
+shader_parameter/distortionVertex = 0.18
+shader_parameter/speedVertex = 0.4
+shader_parameter/noiseViewX = ExtResource("6_n467o")
+shader_parameter/noiseViewY = ExtResource("6_n467o")
+shader_parameter/noiseVertex = ExtResource("6_n467o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iccdb"]
+render_priority = 0
+shader = ExtResource("5_tmjkq")
+shader_parameter/distortionView = 0.3
+shader_parameter/speedView = 1.0
+shader_parameter/tintColor = Color(2, 1, 3, 1)
+shader_parameter/fesnelAmount = 0.0
+shader_parameter/distortionVertex = 0.0
+shader_parameter/speedVertex = 1.0
+shader_parameter/noiseViewX = ExtResource("6_n467o")
+shader_parameter/noiseViewY = ExtResource("6_n467o")
+shader_parameter/noiseVertex = ExtResource("6_n467o")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ab7w7"]
+radius = 0.1
+height = 0.2
+
+[node name="Charge" type="Node3D"]
+transform = Transform3D(-4.37111e-08, -1.6021e-10, -1, -0.00366518, 0.999993, 0, 0.999993, 0.00366518, -4.37114e-08, -0.0784216, 0.0438186, 0.766525)
+
+[node name="Charge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 4.65661e-10, -7.10543e-15, -4.65661e-10, 1, 0, 0, 2.77556e-17, 1, 0, 0, 0.0219446)
+material_override = SubResource("ShaderMaterial_otgjr")
+mesh = ExtResource("3_wu324")
+skeleton = NodePath("../..")
+
+[node name="Charge_Detail" type="MeshInstance3D" parent="Charge"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.38778e-17, -3.55271e-15, -1.38778e-17, 1, -0.369145, 0, 3.42366e-05)
+material_override = SubResource("ShaderMaterial_5y40f")
+mesh = ExtResource("4_b43q6")
+skeleton = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Charge"]
+libraries = {
+"": SubResource("AnimationLibrary_rho5s")
+}
+
+[node name="Charge_Distortion" type="MeshInstance3D" parent="Charge"]
+transform = Transform3D(0.999994, -0.00246289, 0.00271431, 0.00366515, 0.671975, -0.740565, -1.43383e-08, 0.74057, 0.671979, 0.00402731, -0.00363026, -0.000848778)
+material_override = SubResource("ShaderMaterial_cxjmd")
+transparency = 1.0
+mesh = ExtResource("3_wu324")
+skeleton = NodePath("../../..")
+
+[node name="Ball" type="MeshInstance3D" parent="Charge"]
+transform = Transform3D(1, 6.98492e-10, -1.06581e-14, -6.98492e-10, 1, 4.16334e-17, -3.55271e-15, 0, 1, -1.10933, -0.00406593, 3.72529e-08)
+material_override = SubResource("ShaderMaterial_iccdb")
+transparency = 0.04
+mesh = SubResource("SphereMesh_ab7w7")

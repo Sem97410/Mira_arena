@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brmg1rrqnowg6"
+path="res://.godot/imported/Wave_Attack_Charge.obj-b91ca6ae6b2b6d0a6b3da7daa30c97c9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wave_Attack_Charge.obj-b91ca6ae6b2b6d0a6b3da7daa30c97c9.mesh"]
+
+source_file="res://library/004_level_system/006_VFX/Attack/Wave_Attack_Charge.obj"
+dest_files=["res://.godot/imported/Wave_Attack_Charge.obj-b91ca6ae6b2b6d0a6b3da7daa30c97c9.mesh", "res://.godot/imported/Wave_Attack_Charge.obj-b91ca6ae6b2b6d0a6b3da7daa30c97c9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
