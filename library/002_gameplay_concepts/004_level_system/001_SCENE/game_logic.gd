@@ -2,7 +2,7 @@ extends Node
 
 
 
-@export var player_body : PlayerPawn # référence du player
+@export var player_body : CharacterBody3D # référence du player
 
 func _physics_process(delta: float) -> void:
 	# méthode pour 

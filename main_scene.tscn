@@ -1,13 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=11 format=3 uid="uid://cjg1inb63m6bd"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
 [ext_resource type="PackedScene" uid="uid://cmk2lreji2yy1" path="res://library/002_gameplay_concepts/001_player/Dummies.tscn" id="2_uklt8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
-size = Vector2(60, 60)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uqn4c"]
-size = Vector3(60, 0.1, 60)
+[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/spawner.tscn" id="3_f6gm3"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_242gi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rw5tb"]
 size = Vector3(20, 3, 0.5)
@@ -18,22 +14,17 @@ size = Vector3(20, 3, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ijcf7"]
 size = Vector3(4, 4, 4)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_q1esk"]
+vertices = PackedVector3Array(-29.5, 0.5, -29.5, -29.5, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, -29.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
+size = Vector2(60, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uqn4c"]
+size = Vector3(60, 0.1, 60)
+
 [node name="MainScene" type="Node3D"]
-
-[node name="Environment" type="Node" parent="."]
-
-[node name="GroundMesh" type="MeshInstance3D" parent="Environment"]
-mesh = SubResource("PlaneMesh_rg8vf")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/GroundMesh"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GroundMesh/StaticBody3D"]
-shape = SubResource("BoxShape3D_uqn4c")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Mira" parent="." instance=ExtResource("1_vmf81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.78062)
@@ -106,6 +97,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -0.437298)
 
 [node name="TakeDamage" parent="CharacterBody3D9" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../Mira")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_q1esk")
+
+[node name="Environment" type="Node" parent="NavigationRegion3D"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="NavigationRegion3D/Environment"]
+mesh = SubResource("PlaneMesh_rg8vf")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Environment/GroundMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Environment/GroundMesh/StaticBody3D"]
+shape = SubResource("BoxShape3D_uqn4c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Environment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Spawner" parent="." instance=ExtResource("3_f6gm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+max_enemies = 10.0
+
+[node name="Enemy_game_logic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
+script = ExtResource("4_242gi")
+player_body = NodePath("../Mira")
 
 [editable path="CharacterBody3D"]
 [editable path="CharacterBody3D2"]

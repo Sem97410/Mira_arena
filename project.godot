@@ -14,6 +14,10 @@ config/name="Mira_Arena"
 run/main_scene="res://main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+SlimeAutoload="*res://library/002_gameplay_concepts/003_enemy/002_Script/slime_autoload.gd"
+
 [display]
 
 window/size/viewport_width=1920

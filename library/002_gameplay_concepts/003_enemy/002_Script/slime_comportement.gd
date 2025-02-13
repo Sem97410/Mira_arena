@@ -3,7 +3,7 @@ extends Node
 class_name Slime
 
 #____________________________________________________________________________________________
-@onready var player_body = Reference.player_pawn # référence au player
+@onready var player_body = SlimeAutoload.player_pawn # référence au player
 @export var animation_player : AnimationPlayer # référence animation player
 @export var nav_agent : NavigationAgent3D # référence aux NavigationAgent3D
 @export var character_body :CharacterBody3D # référence aux character body de l'ennemi

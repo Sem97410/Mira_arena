@@ -10,6 +10,10 @@ class_name MiraGameMaster
 @export var health_logic : HealthSystem
 
 #----------------------------------
+## Nodes
+@export var player : CharacterBody3D
+
+#----------------------------------
 ## Tools
 var is_alive : bool
 
@@ -19,6 +23,8 @@ signal player_use_light_attack
 signal player_use_charged_attack
 signal player_use_dash
 
+func _ready() -> void:
+		SlimeAutoload.player_pawn = player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

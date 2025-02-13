@@ -6,7 +6,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
-	Reference.player_pawn = self
+	SlimeAutoload.player_pawn = self
 	pass
 
 func _physics_process(delta: float) -> void:
