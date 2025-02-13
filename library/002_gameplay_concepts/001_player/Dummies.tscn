@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmk2lreji2yy1"]
+
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/dummies_take_damage.gd" id="1_87xf1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5neoq"]
+radius = 0.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b6tls"]
+height = 1.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utk2f"]
+albedo_color = Color(0.921776, 0, 0.34488, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_404i6"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jk3g5"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="TakeDamage" type="Node" parent="." node_paths=PackedStringArray("dummies")]
+script = ExtResource("1_87xf1")
+dummies = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0309908, 0)
+shape = SubResource("CapsuleShape3D_5neoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.47382, 0)
+mesh = SubResource("CapsuleMesh_b6tls")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168448, -0.284679, -0.463806)
+material_override = SubResource("StandardMaterial3D_utk2f")
+mesh = SubResource("CapsuleMesh_404i6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150758, -0.284679, -0.463806)
+material_override = SubResource("StandardMaterial3D_utk2f")
+mesh = SubResource("CapsuleMesh_404i6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_jk3g5")

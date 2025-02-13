@@ -1,3 +1,118 @@
-[gd_scene format=3 uid="uid://cw2d5705dkej5"]
+[gd_scene load_steps=8 format=3 uid="uid://cjg1inb63m6bd"]
+
+[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
+[ext_resource type="PackedScene" uid="uid://cmk2lreji2yy1" path="res://library/002_gameplay_concepts/001_player/Dummies.tscn" id="2_uklt8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
+size = Vector2(60, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uqn4c"]
+size = Vector3(60, 0.1, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rw5tb"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ujkw"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijcf7"]
+size = Vector3(4, 4, 4)
 
 [node name="MainScene" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environment"]
+mesh = SubResource("PlaneMesh_rg8vf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/GroundMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GroundMesh/StaticBody3D"]
+shape = SubResource("BoxShape3D_uqn4c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Mira" parent="." instance=ExtResource("1_vmf81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.78062)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96804, 1.52129, -13.2078)
+mesh = SubResource("BoxMesh_rw5tb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ujkw")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.69707)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ijcf7")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -2.25558)
+
+[node name="TakeDamage" parent="CharacterBody3D" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D2" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, -1.77583)
+
+[node name="TakeDamage" parent="CharacterBody3D2" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D3" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -2.28174)
+
+[node name="TakeDamage" parent="CharacterBody3D3" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D4" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -1.40622)
+
+[node name="TakeDamage" parent="CharacterBody3D4" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D5" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, -0.926471)
+
+[node name="TakeDamage" parent="CharacterBody3D5" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D6" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -1.43239)
+
+[node name="TakeDamage" parent="CharacterBody3D6" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D7" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -0.411129)
+
+[node name="TakeDamage" parent="CharacterBody3D7" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D8" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, 0.0686179)
+
+[node name="TakeDamage" parent="CharacterBody3D8" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[node name="CharacterBody3D9" parent="." instance=ExtResource("2_uklt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -0.437298)
+
+[node name="TakeDamage" parent="CharacterBody3D9" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Mira")
+
+[editable path="CharacterBody3D"]
+[editable path="CharacterBody3D2"]
+[editable path="CharacterBody3D3"]
+[editable path="CharacterBody3D4"]
+[editable path="CharacterBody3D5"]
+[editable path="CharacterBody3D6"]
+[editable path="CharacterBody3D7"]
+[editable path="CharacterBody3D8"]
+[editable path="CharacterBody3D9"]
