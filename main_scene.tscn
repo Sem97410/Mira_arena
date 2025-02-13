@@ -1,0 +1,85 @@
+[gd_scene load_steps=18 format=3 uid="uid://cjg1inb63m6bd"]
+
+[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Slash_R.tscn" id="1_2p8ni"]
+[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Slash_L.tscn" id="2_ii7th"]
+[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Attack_charge.tscn" id="3_k1340"]
+[ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/Third_attack.tscn" id="4_cml3j"]
+[ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/CHARGE_Attack_Charge.tscn" id="5_c0ywr"]
+[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/Export/VFX/hit_charge.tscn" id="6_th3ak"]
+[ext_resource type="Shader" uid="uid://ba7x3a63jp8kb" path="res://library/002_gameplay_concepts/006_VFX/Dash/Dash.tres" id="7_vqotf"]
+[ext_resource type="ArrayMesh" uid="uid://d2heefyqy82j0" path="res://library/002_gameplay_concepts/006_VFX/Dash/Dash.res" id="8_uhlsu"]
+[ext_resource type="Texture2D" uid="uid://3fi2u1f3gjjq" path="res://library/002_gameplay_concepts/006_VFX/Noise/NicePng_smoke-texture-png_4373200.png" id="9_f45gt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xtd6"]
+render_priority = 0
+shader = ExtResource("7_vqotf")
+shader_parameter/ColorParameter = Color(0.5, 0.5, 0.5, 0.5)
+shader_parameter/Speed = Vector2(1, 1)
+shader_parameter/Vector2Parameter = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y117"]
+transparency = 1
+albedo_texture = ExtResource("9_f45gt")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_uyyho"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ru7o5"]
+curve = SubResource("Curve_uyyho")
+
+[sub_resource type="Curve" id="Curve_wgdo5"]
+max_value = 3.0
+_data = [Vector2(0, 1.84615), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gm2b8"]
+curve = SubResource("Curve_wgdo5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hefom"]
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ru7o5")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 10.0
+scale_over_velocity_curve = SubResource("CurveTexture_gm2b8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2m040"]
+
+[node name="VFX" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099555, -0.0438186, -0.0233812)
+
+[node name="Slash" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.04358, -0.0955992, 0, 0.0151509)
+visible = false
+
+[node name="Slash_R" parent="Slash" instance=ExtResource("1_2p8ni")]
+
+[node name="Slash_L" parent="Slash" instance=ExtResource("2_ii7th")]
+
+[node name="Attack_Charge" parent="." instance=ExtResource("3_k1340")]
+
+[node name="Third_Attack" parent="." instance=ExtResource("4_cml3j")]
+visible = false
+
+[node name="Charge" parent="." instance=ExtResource("5_c0ywr")]
+
+[node name="Hit_Charge" parent="." instance=ExtResource("6_th3ak")]
+visible = false
+
+[node name="Dash" type="Node3D" parent="."]
+visible = false
+
+[node name="Dash2" type="MeshInstance3D" parent="Dash"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0999088, 0.0401173, 0.0534022)
+material_override = SubResource("ShaderMaterial_7xtd6")
+mesh = ExtResource("8_uhlsu")
+skeleton = NodePath("../..")
+blend_shapes/Shrinkwrap = 0.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Dash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00104713, 0, 0)
+material_override = SubResource("StandardMaterial3D_8y117")
+process_material = SubResource("ParticleProcessMaterial_hefom")
+draw_pass_1 = SubResource("QuadMesh_2m040")
