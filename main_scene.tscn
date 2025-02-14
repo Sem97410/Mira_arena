@@ -47,56 +47,37 @@ shape = SubResource("BoxShape3D_ijcf7")
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -2.25558)
 
-[node name="TakeDamage" parent="CharacterBody3D" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
-
 [node name="CharacterBody3D2" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, -1.77583)
-
-[node name="TakeDamage" parent="CharacterBody3D2" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
 
 [node name="CharacterBody3D3" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -2.28174)
 
-[node name="TakeDamage" parent="CharacterBody3D3" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
-
 [node name="CharacterBody3D4" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -1.40622)
-
-[node name="TakeDamage" parent="CharacterBody3D4" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
 
 [node name="CharacterBody3D5" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, -0.926471)
 
-[node name="TakeDamage" parent="CharacterBody3D5" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
-
 [node name="CharacterBody3D6" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -1.43239)
-
-[node name="TakeDamage" parent="CharacterBody3D6" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
 
 [node name="CharacterBody3D7" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -0.411129)
 
-[node name="TakeDamage" parent="CharacterBody3D7" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
-
 [node name="CharacterBody3D8" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, 0.0686179)
-
-[node name="TakeDamage" parent="CharacterBody3D8" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
 
 [node name="CharacterBody3D9" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66175, 1, -0.437298)
 
-[node name="TakeDamage" parent="CharacterBody3D9" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Mira")
+[node name="Spawner" parent="." instance=ExtResource("3_f6gm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+max_enemies = 10.0
+
+[node name="Enemy_game_logic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
+script = ExtResource("4_242gi")
+player_body = NodePath("../Mira")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_q1esk")
@@ -115,14 +96,6 @@ shape = SubResource("BoxShape3D_uqn4c")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Spawner" parent="." instance=ExtResource("3_f6gm3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
-max_enemies = 10.0
-
-[node name="Enemy_game_logic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
-script = ExtResource("4_242gi")
-player_body = NodePath("../Mira")
 
 [editable path="CharacterBody3D"]
 [editable path="CharacterBody3D2"]

@@ -32,6 +32,11 @@ folder_colors={
 "res://library/000_TEMP/": "orange"
 }
 
+[global_group]
+
+player=""
+enemy=""
+
 [input]
 
 move_left={

@@ -22,12 +22,13 @@ var charged_attack_damage : float
 
 
 ## Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	#enable_light_attack_area()
 	light_attack_damage = (100 / 3) + 1 #kill a basic enemy in 3 hits
 	charged_attack_damage = 100
-	print("Light attack damage : ", light_attack_damage)
-	print("Charged attack damage : ", charged_attack_damage)
+	#print("Light attack damage : ", light_attack_damage)
+	#print("Charged attack damage : ", charged_attack_damage)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,7 +50,7 @@ func make_damage(area : Area3D, damage : float) -> void :
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
 	for sibling in parent.get_children():
-		if sibling.has_method("take_damage"):
+		if sibling.is_in_group("enemy") and sibling.has_method("take_damage"):
 			sibling.take_damage(damage)
 			#print("Il a la fonction take_damage")
 			break
