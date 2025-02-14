@@ -17,6 +17,7 @@ var shake_strength : float = 0.0
 
 func trigger_shake() -> void : 
 	shake_strength = current_shake
+	print(shake_strength)
 
 
 func _process(delta: float) -> void:
