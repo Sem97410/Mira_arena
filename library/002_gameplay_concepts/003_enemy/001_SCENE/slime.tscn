@@ -157,6 +157,23 @@ tracks/3/path = NodePath("Armature/Skeleton3D:slime_body")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0833333, 1, 0.8612, 0.858675, 1.24257, 0.208333, 1, 1, 1, 1)
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SlimeComportement")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_attack_area"
+}, {
+"args": [],
+"method": &"disable_attack_area"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_evvgt"]
 resource_name = "Armature|idle_02"
@@ -264,15 +281,17 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_acknh"]
-radius = 0.397795
+radius = 0.3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_p6fhr"]
 radius = 0.7
 
 [node name="Slime" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="SlimeMesh" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1.25, 0, -1.88745e-07, 0, 1.25, 0, 1.88745e-07, 0, -1.25, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="SlimeMesh"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -283,8 +302,8 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.000645729, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.760668, 0, 0, 0.649141)
-bones/0/scale = Vector3(1.0446, 0.868206, 1)
+bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "slime_helmet"
 bones/1/parent = -1
 bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
@@ -316,8 +335,8 @@ libraries = {
 "": SubResource("AnimationLibrary_m26lw")
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261345, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
 shape = SubResource("SphereShape3D_acknh")
 
 [node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "slime_attack_area") groups=["enemy", "slime_comportement_function"]]
@@ -328,15 +347,20 @@ slime = NodePath("..")
 movement_speed = 3.0
 movement_interpolate_strength = 15.0
 slime_attack_area = NodePath("../Area3D")
+latence_between_dash = 1.0
+dash_length = 5.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676925, 0)
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["enemy"]]
 shape = SubResource("SphereShape3D_p6fhr")
 
 [connection signal="animation_finished" from="SlimeMesh/AnimationPlayer" to="SlimeComportement" method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area3D" to="SlimeComportement" method="_on_area_3d_area_entered"]

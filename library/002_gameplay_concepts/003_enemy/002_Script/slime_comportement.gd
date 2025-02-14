@@ -51,6 +51,14 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 
 @export var slime_attack_area : Area3D
 
+@export var dash_duration: float = 0.2 #In second
+@export var latence_between_dash : float = 3.0
+@export var dash_length : float
+@onready var start_time : int = 0 #When the dash start
+@onready var dash_countdown : float = 0.0
+
+var start_position : Vector3 #Begining of the dash
+var destination_target : Vector3 #End of the dash
 #---------------------------------------------------------------------------
 
 
@@ -68,6 +76,8 @@ func _physics_process(delta: float) -> void:
 	#print( slime.is_on_floor())
 	
 	_change_state(current_state,delta) # fonction qui permet le changement d'état
+	
+	execute_dash()
 	
 
 		
@@ -179,6 +189,7 @@ func _attack_state() -> void:
 		animation_player.play("Armature|charge")#joue l'animation d'attaque
 		attack_cool_down =0.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquer
+		start_dash()
 		
 #si mon cool_down est sup a zero
 #alors il est égal a get_process_delta_time() ->(petit chronomètre qui va et soustraire du temps a mon cooldown)			
@@ -267,13 +278,14 @@ func knockback() -> void:
 func make_damage(area : Area3D, damage : float) -> void : 
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
+	print("Make damage")
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
 	for sibling in parent.get_children():
 		
 		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
 			sibling.take_damage(damage)
-			#print("Il a la fonction take_damage")
+			print("Il a la fonction take_damage")
 			break
 			
 		else : 
@@ -282,10 +294,78 @@ func make_damage(area : Area3D, damage : float) -> void :
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, basic_slime_damage)
+	print("Suppose to make damage")
 
 
 func disable_attack_area() -> void : 
-	slime_attack_area.monitorable = true
+	slime_attack_area.monitorable = false
+	slime_attack_area.monitoring = false
+	#print("Suppose to be desactivate")
+	
 	
 func enable_attack_area() -> void : 
-	slime_attack_area.monitorable = false
+	slime_attack_area.monitorable = true
+	slime_attack_area.monitoring = true
+	#print("Suppose to be activate")
+
+
+
+
+
+## DASH countdown
+func decrease_dash_countdown(delta : float ) -> void : 
+	if dash_countdown > 0:
+		dash_countdown -= delta
+
+
+#----------------------------------
+## DASH MOVEMENT
+
+# -----------------
+#Dash initialisation
+func start_dash():
+	
+	start_position = slime.position #Stock the player position
+	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
+	#destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
+	var direction = -slime.transform.basis.z
+	direction.y = 0  # Bloque l'inclinaison verticale
+	direction = direction.normalized()  # Normaliser pour éviter des bugs
+	
+	# Définir la destination en gardant le dash horizontal
+	destination_target = slime.position + direction * dash_length
+ #Set up the destination target
+	#Destination target = A position in front of the player 
+	#print("launch dash")
+
+# -----------------
+#Dash physical movement
+func execute_dash():
+	if start_time > 0:  # Activate the dash only if start_time is set
+		#print("Is dashing")
+
+		var t: float = ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
+
+		# Compute the step for the enemy dash
+		var step: Vector3
+		step = start_position.lerp(destination_target, t)  
+		step -= slime.position  # Adjust based on current enemy position
+
+		var coll: KinematicCollision3D = slime.move_and_collide(step)
+
+		#### Stop dash if collision occurs with something other than the player or an enemy
+		#if coll and coll.get_collider():
+			#var collider = coll.get_collider()
+			#if collider == player:
+				#print("Collision avec le joueur : Ignorée")
+			#else:
+				#print("Collision avec :", collider.name)
+				#start_time = 0
+				#var rebound_direction = -step.normalized() * 2
+				#slime.move_and_collide(rebound_direction)
+		##else:
+			##print("No collision detected")
+
+		if t >= 1:
+			start_time = 0
+			#print("Fin du dash : t >= 1")
