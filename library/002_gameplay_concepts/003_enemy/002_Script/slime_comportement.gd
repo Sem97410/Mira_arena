@@ -88,16 +88,16 @@ func _physics_process(delta: float) -> void:
 func _change_state(new_state : States, delta : float = 0.0) -> void :
 	match new_state :
 		States.CHASING :
-			print("in chasing states")
+			#print("in chasing states")
 			_chasing_state(delta)
 		States.PREATTACK :
-			print("in preattack state")
+			#print("in preattack state")
 			_pre_attack_state()
 		States.ATTACK :
-			print(" in attack state")
+			#print(" in attack state")
 			_attack_state()
-		#States.DAMAGE :
-			#print("in damage state")
+		States.DAMAGE :
+			print("in damage state")
 			##_damage_state()
 	#____________________________________________________________________________________________		
 			
@@ -170,7 +170,7 @@ func _pre_attack_state() -> void :
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
 	if not is_attacking:# si il n'est pas en train d'ataquer
-		print("in attack state")
+		#print("in attack state")
 		animation_player.play("Armature|charge")#joue l'animation d'attaque
 		attack_cool_down =0.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquer
@@ -216,12 +216,24 @@ func _update_target_position(target_position): # paramètre target position -> V
 func take_damage(damage : float) -> void : 
 	#print("Ouille")
 	
-	#current_state = States.DAMAGE
+	current_state = States.DAMAGE
+	
 	
 	current_hp -= damage
 	#print("Dummies hp : ", current_hp)
 	
 	knockback()
+	
+	await get_tree().create_timer(0.7).timeout  # Duration of the damage state
+	
+	var player_position = player.global_position # position du jouer
+	var enemy_position = slime.global_position # positon de l'enemi
+	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
+		
+	if distance_to_player > 3 : #si la distance est supérieur a 3
+		current_state = States.CHASING # l'état actuel est égal a CHASING
+	else :
+		current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
 	
 
 
@@ -247,4 +259,19 @@ func knockback() -> void:
 		
 		
 		
+func make_damage(area : Area3D, damage : float) -> void : 
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
 	
+	# Trouver le nœud avec la fonction take_damage parmi les frères
+	for sibling in parent.get_children():
+		if sibling.has_method("take_damage"):
+			sibling.take_damage(damage)
+			#print("Il a la fonction take_damage")
+			break
+		else : 
+			print("Il n'a pas la fonction")
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	make_damage(area, 50)
