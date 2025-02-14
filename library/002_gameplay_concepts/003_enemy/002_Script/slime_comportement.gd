@@ -46,6 +46,10 @@ enum States{ 	# enum qui sert a stocker nos différent états
 var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
 
+
+@onready var basic_slime_damage : float = 50.0
+
+@export var slime_attack_area : Area3D
 #---------------------------------------------------------------------------
 
 
@@ -265,13 +269,22 @@ func make_damage(area : Area3D, damage : float) -> void :
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
 	for sibling in parent.get_children():
-		if sibling.has_method("take_damage"):
+		
+		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
 			sibling.take_damage(damage)
 			#print("Il a la fonction take_damage")
 			break
+			
 		else : 
 			print("Il n'a pas la fonction")
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	make_damage(area, 50)
+	make_damage(area, basic_slime_damage)
+
+
+func disable_attack_area() -> void : 
+	slime_attack_area.monitorable = true
+	
+func enable_attack_area() -> void : 
+	slime_attack_area.monitorable = false
