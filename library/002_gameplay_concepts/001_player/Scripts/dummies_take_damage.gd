@@ -19,8 +19,8 @@ func _ready() -> void:
 	#player = SlimeAutoload.player_pawn
 	slime = get_parent()
 	
-	print(player)
-	print(slime)
+	#print(player)
+	#print(slime)
 	
 func _process(delta: float) -> void:
 	
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	if not slime.is_on_floor():
 		#dummies.velocity += dummies.get_gravity() * delta
 		knockback_velocity.y -= 9.8 * delta * 5  # Simule une gravité manuelle
-	print( slime.is_on_floor())
+	#print( slime.is_on_floor())
 		
 	# Appliquer le knockback et le réduire progressivement
 	if knockback_velocity.length() > 0.1:
