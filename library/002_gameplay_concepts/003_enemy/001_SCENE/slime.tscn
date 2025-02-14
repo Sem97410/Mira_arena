@@ -1,6 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://n8otoiwc4jji"]
+[gd_scene load_steps=18 format=4 uid="uid://n8otoiwc4jji"]
 
+[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_eyes.tres" id="1_203io"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="1_gotvg"]
+[ext_resource type="Material" uid="uid://oreftx4ips5f" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_body.tres" id="2_7ibbb"]
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_helmet.tres" id="3_rcmxb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu4np"]
 resource_name = "mat_eyes_slime"
@@ -269,7 +272,7 @@ radius = 0.397795
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="SlimeMesh"]
-transform = Transform3D(1, -1.32349e-23, -5.78515e-31, 0, -4.37114e-08, 1, -1.32349e-23, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="SlimeMesh/Armature"]
 bones/0/name = "slime_body"
@@ -277,7 +280,7 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.000645729, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.760428, 0, 0, 0.649422)
+bones/0/rotation = Quaternion(0.760668, 0, 0, 0.649141)
 bones/0/scale = Vector3(1.0446, 0.868206, 1)
 bones/1/name = "slime_helmet"
 bones/1/parent = -1
@@ -297,10 +300,13 @@ bones/2/scale = Vector3(1, 1, 1)
 [node name="body" type="MeshInstance3D" parent="SlimeMesh/Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_vw2mm")
 skin = SubResource("Skin_40qlp")
+surface_material_override/0 = ExtResource("1_203io")
+surface_material_override/1 = ExtResource("2_7ibbb")
 
 [node name="helmet" type="MeshInstance3D" parent="SlimeMesh/Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_8gsxs")
 skin = SubResource("Skin_40qlp")
+surface_material_override/0 = ExtResource("3_rcmxb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeMesh"]
 libraries = {
