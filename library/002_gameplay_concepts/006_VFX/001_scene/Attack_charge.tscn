@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40qn7"]
 render_priority = 0
 shader = ExtResource("1_n1kmt")
-shader_parameter/ColorParameter = Color(2, 1, 2, 1)
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
 shader_parameter/Speed = Vector2(6, 0.4)
 shader_parameter/Opacity = Vector2(0.085, 0)
 
@@ -21,7 +21,7 @@ shader_parameter/Opacity = Vector2(0.085, 0)
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_40qn7")
 shader = ExtResource("2_anjca")
-shader_parameter/ColorParameter = Color(10, 10, 30, 1)
+shader_parameter/ColorParameter = Color(1, 11.351, 1, 1)
 shader_parameter/Speed = Vector2(3, 0)
 shader_parameter/Opacity = Vector2(0.62, 0)
 
@@ -29,13 +29,14 @@ shader_parameter/Opacity = Vector2(0.62, 0)
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_lvyt6")
 shader = ExtResource("3_xmhqe")
-shader_parameter/ColorParameter = Color(2, 1, 3, 1)
+shader_parameter/ColorParameter = Color(0, 7.567, 1.081, 1)
 shader_parameter/Speed = Vector2(1.775, 0.5)
 shader_parameter/Opacity = Vector2(0.785, 0)
 
 [sub_resource type="Animation" id="Animation_bm7ad"]
 resource_name = "Attack_Charge"
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -75,26 +76,50 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Distortion:transparency")
+tracks/3/path = NodePath("Trail_1:material_override:shader_parameter/Vector2Parameter")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.433333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [1.0, 0.42]
+"values": [Vector2(1, 0), Vector2(1.23, 0), Vector2(1.23, 0), Vector2(1.99, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:material_override:next_pass:shader_parameter/ColorParameter")
+tracks/4/path = NodePath("Wave_Trail:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.233333, 0.466667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wave_Trail:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.07),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(10, 10, 30, 1), Color(10, 0.5, 30, 1)]
+"values": [1.0, 0.11, 0.94, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_e1jtf"]
@@ -138,26 +163,50 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Distortion:transparency")
+tracks/3/path = NodePath("Trail_1:material_override:shader_parameter/Vector2Parameter")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [Vector2(1.63, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:material_override:next_pass:shader_parameter/ColorParameter")
+tracks/4/path = NodePath("Wave_Trail:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wave_Trail:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(10, 10, 30, 1)]
+"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngapu"]
@@ -169,7 +218,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2tmtw"]
 render_priority = 0
 shader = ExtResource("5_rx0ei")
-shader_parameter/ColorParameter = Color(1, 0, 5.946, 1)
+shader_parameter/ColorParameter = Color(1.081, 2.703, 1.622, 1)
 shader_parameter/Trail_Speed = Vector2(0.5, 2)
 
 [sub_resource type="Curve" id="Curve_neyex"]
@@ -187,30 +236,29 @@ scale_curve = SubResource("CurveTexture_gy0ll")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ndr41"]
 render_priority = 0
 shader = ExtResource("7_cw1hd")
-shader_parameter/ColorParameter = Color(1, 0, 4.324, 1)
+shader_parameter/ColorParameter = Color(1, 4, 1.5, 1)
 shader_parameter/Trail_Speed = Vector2(4, 0)
-shader_parameter/Vector2Parameter = Vector2(1.2745, 0)
+shader_parameter/Vector2Parameter = Vector2(1.63, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_btbl5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_why23"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6pbb"]
 render_priority = 0
 shader = ExtResource("8_0oqbn")
-shader_parameter/distortionView = 0.095
-shader_parameter/speedView = 0.195
-shader_parameter/tintColor = Color(0.396889, 0.396889, 0.396889, 1)
+shader_parameter/distortionView = 0.3
+shader_parameter/speedView = 1.0
+shader_parameter/tintColor = Color(0.78, 1.622, 0.993, 1)
 shader_parameter/fesnelAmount = 5.0
-shader_parameter/distortionVertex = 0.175
-shader_parameter/speedVertex = 1.0
+shader_parameter/distortionVertex = 0.15
+shader_parameter/speedVertex = 0.545
 shader_parameter/noiseViewX = ExtResource("9_eiyn5")
 shader_parameter/noiseViewY = ExtResource("9_eiyn5")
 shader_parameter/noiseVertex = ExtResource("9_eiyn5")
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_lbeej"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_baxbg"]
 top_radius = 0.3
-bottom_radius = 0.02
-height = 3.0
-rings = 20
+bottom_radius = 0.05
+height = 4.5
 cap_top = false
 cap_bottom = false
 
@@ -232,6 +280,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.257784)
 material_override = SubResource("ShaderMaterial_2tmtw")
 lifetime = 1.25
+one_shot = true
 speed_scale = 1.5
 process_material = SubResource("ParticleProcessMaterial_hi8ma")
 draw_pass_1 = ExtResource("6_ukb20")
@@ -247,8 +296,8 @@ material_override = SubResource("ShaderMaterial_ndr41")
 mesh = SubResource("QuadMesh_btbl5")
 
 [node name="Distortion" type="MeshInstance3D" parent="AttackCharge"]
-transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, -0.0128101, 0, 1.97422)
-material_override = SubResource("ShaderMaterial_why23")
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, -0.0128101, -0.021957, 2.04059)
+material_override = SubResource("ShaderMaterial_k6pbb")
 transparency = 1.0
-mesh = SubResource("CylinderMesh_lbeej")
-skeleton = NodePath("../../..")
+mesh = SubResource("CylinderMesh_baxbg")
+skeleton = NodePath("")

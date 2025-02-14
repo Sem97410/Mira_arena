@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqgtkqdgp03hr"]
+[gd_scene load_steps=28 format=3 uid="uid://dqgtkqdgp03hr"]
 
 [ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="1_eyx7h"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="2_32mt2"]
@@ -16,7 +16,7 @@ render_priority = 0
 shader = ExtResource("1_eyx7h")
 shader_parameter/distortionView = 0.03
 shader_parameter/speedView = 0.5
-shader_parameter/tintColor = Color(2, 1, 5, 1)
+shader_parameter/tintColor = Color(1, 5, 1, 1)
 shader_parameter/fesnelAmount = 1.5
 shader_parameter/distortionVertex = 0.13
 shader_parameter/speedVertex = 0.45
@@ -31,7 +31,6 @@ height = 0.2
 [sub_resource type="Animation" id="Animation_a4jaj"]
 resource_name = "HitVFX"
 length = 2.0
-loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -184,10 +183,10 @@ tracks/12/path = NodePath("Interior_Ball:material_override:shader_parameter/tint
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0.59, 0.65, 0.66, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.59, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(20, 20, 20, 1), Color(8.03464, 4.95536, 20.3518, 1), Color(8.108, 5, 20.54, 1), Color(4, 2.5, 10, 1)]
+"values": [Color(20, 20, 20, 1), Color(2, 20, 1, 1), Color(0, 0, 0, 1)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -259,7 +258,7 @@ tracks/18/keys = {
 "times": PackedFloat32Array(0.35, 0.72, 0.95, 1.5, 1.85),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(3, 0.5, 11, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(2, 11, 0.5, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
@@ -283,7 +282,7 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0.95, 1.5, 1.85, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(3.784, 0.541, 11.351, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
+"values": [Color(2, 11, 0.5, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -765,7 +764,7 @@ shader_parameter/Position2 = Vector2(0, -0.105)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wv7jn"]
 blend_mode = 1
 shading_mode = 0
-albedo_color = Color(3, 2, 4, 1)
+albedo_color = Color(2, 4, 1, 1)
 albedo_texture = ExtResource("9_8tcbf")
 billboard_mode = 3
 billboard_keep_scale = true
@@ -789,6 +788,8 @@ scale_curve = SubResource("CurveTexture_y63d3")
 
 [sub_resource type="QuadMesh" id="QuadMesh_87upm"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_hriru"]
+
 [node name="Hit_Charge" type="Node3D"]
 
 [node name="BouleCharge" type="MeshInstance3D" parent="."]
@@ -804,7 +805,7 @@ libraries = {
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BouleCharge/AnimationPlayerHitCharge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1601, 0)
-light_color = Color(0.766003, 0.581678, 0.93052, 1)
+light_color = Color(0.155815, 0.812451, 0.096333, 1)
 light_energy = 0.0
 light_indirect_energy = 0.0
 
@@ -844,4 +845,8 @@ draw_pass_1 = SubResource("QuadMesh_87upm")
 texture_albedo = ExtResource("10_dg3u4")
 texture_emission = ExtResource("11_xjhn1")
 emission_energy = 0.0
-modulate = Color(0.661605, 0.345638, 0.877401, 1)
+modulate = Color(0.348905, 0.598838, 0.156781, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.03842, 0, 0, 0, 8.03842, 0, 0, 0, 8.03842, 0, 0, 0)
+mesh = SubResource("PlaneMesh_hriru")

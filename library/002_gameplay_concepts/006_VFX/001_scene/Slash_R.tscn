@@ -1,32 +1,32 @@
 [gd_scene load_steps=11 format=3 uid="uid://bygamagnp07n4"]
 
-[ext_resource type="Shader" uid="uid://dn2fufwvnbiu4" path="res://library/006_VFX/Slash/Slash_PATTERN.tres" id="1_w404w"]
-[ext_resource type="Shader" uid="uid://cbv3u8a1tcj16" path="res://library/006_VFX/Slash/Slash_HIGHLIGHT.tres" id="2_2xvum"]
-[ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/006_VFX/Slash/Slash_BASE.tres" id="3_br5t1"]
-[ext_resource type="ArrayMesh" uid="uid://y8k1wmmafkhi" path="res://library/006_VFX/Slash/Slash.obj" id="4_43x0q"]
+[ext_resource type="Shader" uid="uid://dn2fufwvnbiu4" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_PATTERN.tres" id="1_w404w"]
+[ext_resource type="Shader" uid="uid://cbv3u8a1tcj16" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_HIGHLIGHT.tres" id="2_2xvum"]
+[ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_BASE.tres" id="3_br5t1"]
+[ext_resource type="ArrayMesh" uid="uid://y8k1wmmafkhi" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash.obj" id="4_43x0q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_820sr"]
 render_priority = 0
 shader = ExtResource("1_w404w")
-shader_parameter/Color = Color(5, 5, 14.595, 1)
-shader_parameter/Gradient_1_Slider = -0.275574
-shader_parameter/Gradient_2_Slider = 0.231799
+shader_parameter/Color = Color(4, 14, 4, 1)
+shader_parameter/Gradient_1_Slider = -0.245
+shader_parameter/Gradient_2_Slider = 0.245
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1q31"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_820sr")
 shader = ExtResource("2_2xvum")
 shader_parameter/Color = Color(0, 0, 0, 1)
-shader_parameter/Gradient_1_Slider = 0.719404
+shader_parameter/Gradient_1_Slider = -0.09
 shader_parameter/Gradient_2_Slider = 0.045
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2s3gy"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_a1q31")
 shader = ExtResource("3_br5t1")
-shader_parameter/Color = Color(0.8, 0, 4, 1)
-shader_parameter/Gradient_1_Slider = 1.40581
-shader_parameter/Gradient_2_Slider = 0.364643
+shader_parameter/Color = Color(0.8, 4, 0, 1)
+shader_parameter/Gradient_1_Slider = 0.85
+shader_parameter/Gradient_2_Slider = 0.08
 
 [sub_resource type="Animation" id="Animation_uygrx"]
 length = 0.7

@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://wre11ncejhia"
-path="res://.godot/imported/MiraDashAfterImage.fbx-92ef9540285181ceb9ba4d10abcd397b.scn"
+valid=false
 
 [deps]
 
 source_file="res://library/002_gameplay_concepts/001_player/Meshes/MiraDashAfterImage.fbx"
-dest_files=["res://.godot/imported/MiraDashAfterImage.fbx-92ef9540285181ceb9ba4d10abcd397b.scn"]
 
 [params]
 
