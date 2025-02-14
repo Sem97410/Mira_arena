@@ -1,0 +1,65 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://cx6dshikq8hrb"]
+
+[ext_resource type="Texture2D" uid="uid://bvhvne4cqkids" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/T_Skull_2.png" id="1_5s6n3"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_p3g4v"]
+parameter_name = "ColorParameter2"
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_7x5j7"]
+output_port_for_preview = 0
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1cnmm"]
+texture = ExtResource("1_5s6n3")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lkhdc"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ColorParameter2 : source_color;
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorParameter:15
+	vec4 n_out15p0 = ColorParameter2;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// SmoothStep:19
+	float n_in19p0 = 0.00000;
+	float n_in19p1 = 0.00000;
+	float n_in19p2 = 0.50000;
+	float n_out19p0 = smoothstep(n_in19p0, n_in19p1, n_in19p2);
+
+
+// FloatOp:20
+	float n_out20p0 = n_out2p0.x * n_out19p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out15p0.xyz);
+	ALPHA = n_out20p0;
+
+
+}
+"
+graph_offset = Vector2(-295.915, 150.983)
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_1cnmm")
+nodes/fragment/2/position = Vector2(-660, 80)
+nodes/fragment/15/node = SubResource("VisualShaderNodeColorParameter_p3g4v")
+nodes/fragment/15/position = Vector2(-500, -280)
+nodes/fragment/19/node = SubResource("VisualShaderNodeSmoothStep_7x5j7")
+nodes/fragment/19/position = Vector2(-680, 680)
+nodes/fragment/20/node = SubResource("VisualShaderNodeFloatOp_lkhdc")
+nodes/fragment/20/position = Vector2(-340, 400)
+nodes/fragment/connections = PackedInt32Array(2, 0, 20, 0, 15, 0, 0, 0, 20, 0, 0, 1, 19, 0, 20, 1)
