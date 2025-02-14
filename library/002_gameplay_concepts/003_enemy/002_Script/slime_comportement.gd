@@ -50,6 +50,7 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 @onready var basic_slime_damage : float = 50.0
 
 @export var slime_attack_area : Area3D
+
 #---------------------------------------------------------------------------
 
 

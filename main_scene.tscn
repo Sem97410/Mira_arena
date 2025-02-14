@@ -47,6 +47,8 @@ shape = SubResource("BoxShape3D_ijcf7")
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -2.25558)
 
+[node name="TakeDamage" parent="CharacterBody3D" index="0" groups=["enemy"]]
+
 [node name="CharacterBody3D2" parent="." instance=ExtResource("2_uklt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585661, 1, -1.77583)
 
