@@ -12,10 +12,13 @@ class_name MiraGameMaster
 #----------------------------------
 ## Nodes
 @onready var player : CharacterBody3D
+@export var slash_r_vfx : MeshInstance3D
 
 #----------------------------------
 ## Tools
 var is_alive : bool
+
+
 
 #----------------------------------
 ## Signals

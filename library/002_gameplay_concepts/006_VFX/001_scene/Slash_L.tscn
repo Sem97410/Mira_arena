@@ -10,7 +10,7 @@ render_priority = 0
 shader = ExtResource("1_q6pen")
 shader_parameter/Color = Color(4, 14, 4, 1)
 shader_parameter/Gradient_1_Slider = -0.245
-shader_parameter/Gradient_2_Slider = 0.245
+shader_parameter/Gradient_2_Slider = 0.13
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1q31"]
 render_priority = 0
@@ -30,7 +30,6 @@ shader_parameter/Gradient_2_Slider = 0.08
 
 [sub_resource type="Animation" id="Animation_uygrx"]
 length = 0.7
-loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -175,3 +174,4 @@ skeleton = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jdnlt")
 }
+autoplay = "RESET"
