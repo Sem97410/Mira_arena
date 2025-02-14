@@ -1,0 +1,303 @@
+[gd_scene load_steps=24 format=3 uid="uid://d0h43o4dilcir"]
+
+[ext_resource type="Shader" uid="uid://g8sireat3rr3" path="res://library/002_gameplay_concepts/006_VFX/Attack/Detail_Attack_Charge.tres" id="1_n1kmt"]
+[ext_resource type="Shader" uid="uid://dfaianoxtxesg" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge_Light.tres" id="2_anjca"]
+[ext_resource type="Shader" uid="uid://igd53r3p34nr" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge.tres" id="3_xmhqe"]
+[ext_resource type="ArrayMesh" uid="uid://unvaybr5yrjm" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge.obj" id="4_y7oie"]
+[ext_resource type="Shader" uid="uid://bm515ir1silnl" path="res://library/002_gameplay_concepts/006_VFX/Attack/Wave_Attack_Charge.tres" id="5_rx0ei"]
+[ext_resource type="ArrayMesh" uid="uid://bnoqaxsolwnek" path="res://library/002_gameplay_concepts/006_VFX/Attack/Wave_Attack_Charge.obj" id="6_ukb20"]
+[ext_resource type="Shader" uid="uid://bmrxb8pcj8g2r" path="res://library/002_gameplay_concepts/006_VFX/Attack/Trail_Attack_Charge.tres" id="7_cw1hd"]
+[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="8_0oqbn"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="9_eiyn5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40qn7"]
+render_priority = 0
+shader = ExtResource("1_n1kmt")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+shader_parameter/Speed = Vector2(6, 0.4)
+shader_parameter/Opacity = Vector2(0.085, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvyt6"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_40qn7")
+shader = ExtResource("2_anjca")
+shader_parameter/ColorParameter = Color(1, 11.351, 1, 1)
+shader_parameter/Speed = Vector2(3, 0)
+shader_parameter/Opacity = Vector2(0.62, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnieu"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_lvyt6")
+shader = ExtResource("3_xmhqe")
+shader_parameter/ColorParameter = Color(0, 7.567, 1.081, 1)
+shader_parameter/Speed = Vector2(1.775, 0.5)
+shader_parameter/Opacity = Vector2(0.785, 0)
+
+[sub_resource type="Animation" id="Animation_bm7ad"]
+resource_name = "Attack_Charge"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.11, 0), Vector2(0.925, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:next_pass:shader_parameter/Opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.62, 0), Vector2(0.99, 0), Vector2(1.01, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material_override:next_pass:next_pass:shader_parameter/Opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.085, 0), Vector2(0.085, 0), Vector2(1.515, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Trail_1:material_override:shader_parameter/Vector2Parameter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1.23, 0), Vector2(1.23, 0), Vector2(1.99, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wave_Trail:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wave_Trail:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.07),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.11, 0.94, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_e1jtf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.785, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:next_pass:shader_parameter/Opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.62, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material_override:next_pass:next_pass:shader_parameter/Opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.085, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Trail_1:material_override:shader_parameter/Vector2Parameter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.63, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wave_Trail:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wave_Trail:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Distortion:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngapu"]
+_data = {
+"Attack_Charge": SubResource("Animation_bm7ad"),
+"RESET": SubResource("Animation_e1jtf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tmtw"]
+render_priority = 0
+shader = ExtResource("5_rx0ei")
+shader_parameter/ColorParameter = Color(1.081, 2.703, 1.622, 1)
+shader_parameter/Trail_Speed = Vector2(0.5, 2)
+
+[sub_resource type="Curve" id="Curve_neyex"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gy0ll"]
+curve = SubResource("Curve_neyex")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hi8ma"]
+gravity = Vector3(0, 0, 9.8)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_gy0ll")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndr41"]
+render_priority = 0
+shader = ExtResource("7_cw1hd")
+shader_parameter/ColorParameter = Color(1, 4, 1.5, 1)
+shader_parameter/Trail_Speed = Vector2(4, 0)
+shader_parameter/Vector2Parameter = Vector2(1.63, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_btbl5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6pbb"]
+render_priority = 0
+shader = ExtResource("8_0oqbn")
+shader_parameter/distortionView = 0.3
+shader_parameter/speedView = 1.0
+shader_parameter/tintColor = Color(0.78, 1.622, 0.993, 1)
+shader_parameter/fesnelAmount = 5.0
+shader_parameter/distortionVertex = 0.15
+shader_parameter/speedVertex = 0.545
+shader_parameter/noiseViewX = ExtResource("9_eiyn5")
+shader_parameter/noiseViewY = ExtResource("9_eiyn5")
+shader_parameter/noiseVertex = ExtResource("9_eiyn5")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_baxbg"]
+top_radius = 0.3
+bottom_radius = 0.05
+height = 4.5
+cap_top = false
+cap_bottom = false
+
+[node name="Attack_Charge" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27856, -0.0486947, 2.14508)
+
+[node name="AttackCharge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235185, 0.0486947, -2.11542)
+material_override = SubResource("ShaderMaterial_xnieu")
+mesh = ExtResource("4_y7oie")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackCharge"]
+libraries = {
+"": SubResource("AnimationLibrary_ngapu")
+}
+
+[node name="Wave_Trail" type="GPUParticles3D" parent="AttackCharge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.257784)
+material_override = SubResource("ShaderMaterial_2tmtw")
+lifetime = 1.25
+one_shot = true
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_hi8ma")
+draw_pass_1 = ExtResource("6_ukb20")
+
+[node name="Trail_1" type="MeshInstance3D" parent="AttackCharge"]
+transform = Transform3D(-2.19556e-07, 0, 0.992889, 0, 0.536941, 0, -5.02286, 0, -4.34006e-08, 0.0106977, 1.78814e-07, 2.11342)
+material_override = SubResource("ShaderMaterial_ndr41")
+mesh = SubResource("QuadMesh_btbl5")
+
+[node name="Trail_2" type="MeshInstance3D" parent="AttackCharge"]
+transform = Transform3D(-8.24768e-15, -0.536941, -4.34006e-08, -2.19556e-07, -2.34704e-08, 0.992889, -5.02286, 0, -4.34006e-08, 0.00857627, -0.0300822, 2.03467)
+material_override = SubResource("ShaderMaterial_ndr41")
+mesh = SubResource("QuadMesh_btbl5")
+
+[node name="Distortion" type="MeshInstance3D" parent="AttackCharge"]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, -0.0128101, -0.021957, 2.04059)
+material_override = SubResource("ShaderMaterial_k6pbb")
+transparency = 1.0
+mesh = SubResource("CylinderMesh_baxbg")
+skeleton = NodePath("")
