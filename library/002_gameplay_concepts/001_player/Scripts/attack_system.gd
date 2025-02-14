@@ -9,6 +9,7 @@ var charged_attack_damage : float
 
 @export var light_attack_logic : LightAttackAnimationScript
 @export var charged_attack_logic : ChargedAttackLogic
+@export var camera_shake_logic : CameraShake
 
 @export var light_attack_area : Area3D
 @export var long_range_collision_shape : CollisionShape3D
@@ -47,6 +48,7 @@ func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 func make_damage(area : Area3D, damage : float) -> void : 
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
+	camera_shake_logic.trigger_shake()
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
 	for sibling in parent.get_children():
@@ -92,3 +94,9 @@ func freeze_frame() -> void :
 	Engine.time_scale = 0.1
 	await get_tree().create_timer(0.03).timeout
 	Engine.time_scale = 1.0
+
+func set_light_attack_camera_shake_value() -> void : 
+	camera_shake_logic.current_shake = camera_shake_logic.light_attack_shake
+
+func set_charged_attack_camera_shake_value() -> void : 
+	camera_shake_logic.current_shake = camera_shake_logic.charged_attack_shake
