@@ -1,0 +1,290 @@
+[gd_scene load_steps=27 format=3 uid="uid://cqj7texbk3do8"]
+
+[ext_resource type="Shader" uid="uid://bner8bywoi3v1" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Smoke.tres" id="1_o67r7"]
+[ext_resource type="Shader" uid="uid://c1wrumgxw3st6" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Sparkle.tres" id="2_emjoe"]
+[ext_resource type="Shader" uid="uid://cx6dshikq8hrb" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Skull.tres" id="3_ff32u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd5k6"]
+render_priority = 0
+shader = ExtResource("1_o67r7")
+shader_parameter/Distance_Fade = 3.895
+shader_parameter/White = null
+shader_parameter/Black = 0.615
+
+[sub_resource type="Curve" id="Curve_rn7hn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5k67n"]
+curve = SubResource("Curve_rn7hn")
+
+[sub_resource type="Curve" id="Curve_8d4os"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.175824), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0fqr"]
+curve = SubResource("Curve_8d4os")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uh7ts"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_y0fqr")
+color = Color(0.590082, 0.448302, 0.829107, 1)
+alpha_curve = SubResource("CurveTexture_5k67n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_an7jm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1yws"]
+render_priority = 0
+shader = ExtResource("2_emjoe")
+shader_parameter/ColorParameter = Color(2, 1, 3, 1)
+
+[sub_resource type="Curve" id="Curve_paht3"]
+_data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f4ilj"]
+texture_mode = 1
+curve = SubResource("Curve_paht3")
+
+[sub_resource type="Curve" id="Curve_q51ul"]
+_data = [Vector2(0, 0.483516), 0.0, 1.38268, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a4ck6"]
+curve = SubResource("Curve_q51ul")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iusee"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_a4ck6")
+alpha_curve = SubResource("CurveTexture_f4ilj")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_nmtkv"]
+size = Vector2(0.25, 1)
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Animation" id="Animation_pv2l6"]
+resource_name = "Puff_Enemy"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puff:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [20.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles3D:material_override:shader_parameter/ColorParameter2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2, 1, 3, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8fnb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puff:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles3D:material_override:shader_parameter/ColorParameter2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2, 1, 3, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tq2y"]
+_data = {
+"Puff_Enemy": SubResource("Animation_pv2l6"),
+"RESET": SubResource("Animation_8fnb7")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5cro"]
+size = Vector2(10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6oh7"]
+render_priority = 0
+shader = ExtResource("3_ff32u")
+shader_parameter/ColorParameter2 = Color(2, 1, 3, 1)
+
+[sub_resource type="Curve" id="Curve_47dj4"]
+_data = [Vector2(0.0144928, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8btux"]
+curve = SubResource("Curve_47dj4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_26n41"]
+angle_min = 360.0
+angle_max = 720.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 3.99998
+gravity = Vector3(0, 3, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_8btux")
+
+[sub_resource type="QuadMesh" id="QuadMesh_odxdo"]
+
+[node name="Smoke" type="Node3D"]
+
+[node name="Puff" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_fd5k6")
+amount = 12
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_uh7ts")
+draw_pass_1 = SubResource("SphereMesh_an7jm")
+
+[node name="Sparkle" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217064, 0)
+material_override = SubResource("ShaderMaterial_r1yws")
+amount = 20
+lifetime = 0.4
+explosiveness = 0.9
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_iusee")
+draw_pass_1 = SubResource("QuadMesh_nmtkv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4tq2y")
+}
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0680073, 0)
+light_color = Color(0.824677, 0.399226, 1, 1)
+light_energy = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.546513, 0)
+mesh = SubResource("PlaneMesh_h5cro")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.297243, 0)
+material_override = SubResource("ShaderMaterial_a6oh7")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_26n41")
+draw_pass_1 = SubResource("QuadMesh_odxdo")
