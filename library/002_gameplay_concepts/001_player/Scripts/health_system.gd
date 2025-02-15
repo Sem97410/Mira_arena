@@ -25,7 +25,7 @@ func _ready() -> void:
 
 	
 func _process(_delta: float) -> void:
-	print("Player current HP : ", player_current_hp)
+	#print("Player current HP : ", player_current_hp)
 	var current_state = animation_tree.get("parameters/state/current")
 
 	#print("Je suis dans le state : ", current_state)

@@ -19,6 +19,9 @@ var current_vfx : MeshInstance3D
 
 @export var attack_2_rotation : int
 
+@export var combo_3_animation_player : AnimationPlayer
+@export var combo_3_vfx : Node3D
+
 func disable_collision_shape() -> void : 
 	player.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, true)
 	player_collision_shape.disabled = true
@@ -69,6 +72,15 @@ func instantiate_combo_2_vfx() -> void :
 	combo_2_vfx_instance.global_transform = Transform3D(new_basis, current_position)
 	
 
+func enable_combo_3_vfx() -> void : 
+	combo_3_vfx.visible = true
+
+func disable_combo_3_vfx() -> void : 
+	combo_3_vfx.visible = false
+	
+func launch_combo_3_vfx_animation() -> void : 
+	combo_3_animation_player.play("Attack_Charge")
+	print("Launch animation 3 ")
 	
 func player_attack_1_sfx() -> void : 
 	attack_1_sound.play()

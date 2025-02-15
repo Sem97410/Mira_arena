@@ -57,8 +57,8 @@ func make_damage(area : Area3D, damage : float) -> void :
 			camera_shake_logic.trigger_shake()
 			#print("Il a la fonction take_damage")
 			break
-		else : 
-			print("Il n'a pas la fonction")
+		#else : 
+			#print("Il n'a pas la fonction")
 			
 			
 func enable_light_attack_area() -> void :
