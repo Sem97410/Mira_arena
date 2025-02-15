@@ -165,7 +165,6 @@ _data = {
 }
 
 [node name="Slash_R" type="MeshInstance3D"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_2s3gy")
 mesh = ExtResource("4_43x0q")
 skeleton = NodePath("../..")
