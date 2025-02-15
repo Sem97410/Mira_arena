@@ -12,6 +12,6 @@ func player_vfx() -> void :
 	animation_player.play("RESET")
 	print("Vfx was played")
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.3).timeout
 	base_node.visible = false
 	

@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bygamagnp07n4"]
+[gd_scene load_steps=11 format=3 uid="uid://bygamagnp07n4"]
 
 [ext_resource type="Shader" uid="uid://dn2fufwvnbiu4" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_PATTERN.tres" id="1_w404w"]
 [ext_resource type="Shader" uid="uid://cbv3u8a1tcj16" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_HIGHLIGHT.tres" id="2_2xvum"]
 [ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_BASE.tres" id="3_br5t1"]
 [ext_resource type="ArrayMesh" uid="uid://y8k1wmmafkhi" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash.obj" id="4_43x0q"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/002_logic/slash_r_vfx.gd" id="5_7ndet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_820sr"]
 render_priority = 0
@@ -165,17 +164,16 @@ _data = {
 "Slash": SubResource("Animation_q3y1o")
 }
 
-[node name="Slash_R" type="MeshInstance3D" node_paths=PackedStringArray("animation_player")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="Slash_R" type="MeshInstance3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_2s3gy")
 mesh = ExtResource("4_43x0q")
 skeleton = NodePath("../..")
-script = ExtResource("5_7ndet")
-animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jdnlt")
 }
+autoplay = "RESET"
 
 [node name="Slash_R" type="Node3D" parent="."]
