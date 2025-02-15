@@ -357,6 +357,7 @@ skeleton = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_rho5s")
 }
+autoplay = "CHARGE"
 
 [node name="Charge_Distortion" type="MeshInstance3D" parent="Charge"]
 transform = Transform3D(0.999994, -0.00246289, 0.00271431, 0.00366515, 0.671975, -0.740565, -1.43383e-08, 0.74057, 0.671979, 0.00402731, -0.00363026, -0.000848778)

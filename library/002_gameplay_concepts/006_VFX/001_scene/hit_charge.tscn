@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqgtkqdgp03hr"]
+[gd_scene load_steps=27 format=3 uid="uid://dqgtkqdgp03hr"]
 
 [ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="1_eyx7h"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="2_32mt2"]
@@ -31,6 +31,7 @@ height = 0.2
 [sub_resource type="Animation" id="Animation_a4jaj"]
 resource_name = "HitVFX"
 length = 2.0
+loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -788,9 +789,8 @@ scale_curve = SubResource("CurveTexture_y63d3")
 
 [sub_resource type="QuadMesh" id="QuadMesh_87upm"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_hriru"]
-
 [node name="Hit_Charge" type="Node3D"]
+top_level = true
 
 [node name="BouleCharge" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.422033, -0.000523005, -0.00237721, -0.00237496, 0.00180161, -0.42203, 0.000533151, 0.422036, 0.00179863, -0.10511, 0.314939, 0.0261622)
@@ -802,6 +802,8 @@ skeleton = NodePath("../../Charge/Charge/Charge_Distortion")
 libraries = {
 "": SubResource("AnimationLibrary_w2wn1")
 }
+autoplay = "HitVFX"
+speed_scale = 2.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BouleCharge/AnimationPlayerHitCharge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1601, 0)
@@ -846,7 +848,3 @@ texture_albedo = ExtResource("10_dg3u4")
 texture_emission = ExtResource("11_xjhn1")
 emission_energy = 0.0
 modulate = Color(0.348905, 0.598838, 0.156781, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.03842, 0, 0, 0, 8.03842, 0, 0, 0, 8.03842, 0, 0, 0)
-mesh = SubResource("PlaneMesh_hriru")

@@ -275,6 +275,7 @@ skeleton = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ngapu")
 }
+speed_scale = 4.0
 
 [node name="Wave_Trail" type="GPUParticles3D" parent="AttackCharge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.257784)
