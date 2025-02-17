@@ -338,17 +338,17 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
 shape = SubResource("SphereShape3D_acknh")
 
-[node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "slime_attack_area", "damage_stars") groups=["enemy", "slime_comportement_function"]]
+[node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area") groups=["enemy", "slime_comportement_function"]]
 script = ExtResource("1_gotvg")
 animation_player = NodePath("../Slime_002/AnimationPlayer")
 nav_agent = NodePath("../NavigationAgent3D")
 slime = NodePath("..")
+damage_stars = NodePath("../Slime_002/damage_stars")
+slime_attack_area = NodePath("../Area3D")
 movement_speed = 10.0
 movement_interpolate_strength = 15.0
-slime_attack_area = NodePath("../Area3D")
 latence_between_dash = 4.0
 dash_length = 5.0
-damage_stars = NodePath("../Slime_002/damage_stars")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

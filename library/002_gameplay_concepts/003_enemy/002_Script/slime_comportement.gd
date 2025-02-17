@@ -9,6 +9,8 @@ class_name Slime
 @export var animation_player : AnimationPlayer # référence animation player
 @export var nav_agent : NavigationAgent3D # référence aux NavigationAgent3D
 @export var slime :CharacterBody3D # référence aux character body de l'ennemi
+@export var damage_stars : Node3D  #Little stars that appears when enemy is hit
+@export var slime_attack_area : Area3D
 
 #-----------------------------------
 #Movement values
@@ -24,6 +26,14 @@ class_name Slime
 var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur 
 var is_attacking = false  #  sert a definir si l'ennemi est en train d'attaquer 
 
+@export var dash_duration: float = 0.2 #In second
+@export var latence_between_dash : float = 3.0
+@export var dash_length : float
+@onready var start_time : int = 0 #When the dash start
+@onready var dash_countdown : float = 0.0
+var start_position : Vector3 #Begining of the dash
+var destination_target : Vector3 #End of the dash
+
 #-----------------------------------
 #States values
 
@@ -37,55 +47,34 @@ enum States{ 	# enum qui sert a stocker nos différent états
 	
 }
 
-
+#-----------------------------------
+#Health values
 @onready var max_hp : float = 200
-
 @onready var current_hp : float = max_hp
 
-
+#-----------------------------------
+#Damage values
 var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
-
-
-@onready var basic_slime_damage : float = 50.0
-
-@export var slime_attack_area : Area3D
-
-@export var dash_duration: float = 0.2 #In second
-@export var latence_between_dash : float = 3.0
-@export var dash_length : float
-@onready var start_time : int = 0 #When the dash start
-@onready var dash_countdown : float = 0.0
-
-var start_position : Vector3 #Begining of the dash
-var destination_target : Vector3 #End of the dash
-
+@onready var damage_duration : float = 1.5
 @onready var is_damage : bool = false
 
-@export var damage_stars : Node3D 
-#---------------------------------------------------------------------------
+#-----------------------------------
+#Hit values
+@onready var basic_slime_damage : float = 50.0
 
-
-#func _ready() -> void :
-	#player_body = SlimeAutoload.player # référence au player    ### Need to check why the autoload references doesn't work
-#
 
 	
 func _physics_process(delta: float) -> void:
-	
-			# Add the gravity.
-	if not slime.is_on_floor():
-		#dummies.velocity += dummies.get_gravity() * delta
-		knockback_velocity.y -= 9.8 * delta * 5  # Simule une gravité manuelle
-	#print( slime.is_on_floor())
+	print("current states is : ",current_state)
+	#print("Is attacking is : ", is_attacking)
+	apply_gravity(delta)
 	
 	_change_state(current_state,delta) # fonction qui permet le changement d'état
-	
 	execute_dash()
-	
-	#enter_in_damage_mode()
 
-		
+	
+	
 	# Appliquer le knockback et le réduire progressivement
 	if knockback_velocity.length() > 0.1:
 		slime.velocity = knockback_velocity
@@ -117,8 +106,8 @@ func _change_state(new_state : States, delta : float = 0.0) -> void :
 			#print(" in attack state")
 			_attack_state()
 		States.DAMAGE :
-			print("in damage state")
-			##_damage_state()
+			#print("in damage state")
+			enter_in_damage_mode()
 	#____________________________________________________________________________________________		
 			
 			
@@ -160,8 +149,8 @@ func _chasing_state(delta) -> void:
 	
 	if distance_to_player <= 3 : # si la distance ennemi_player est inf ou égal a 3
 		current_state = States.PREATTACK # état actuel = a l'état PREATTACK
-	else :# sinon
-		current_state = States.CHASING # état actuel = a l'état CHASING
+	#else :# sinon
+		#current_state = States.CHASING # état actuel = a l'état CHASING
 #____________________________________________________________________________________________		
 		
 		
@@ -177,12 +166,18 @@ func _pre_attack_state() -> void :
 	if is_damage : 
 		animation_player.stop()
 		current_state = States.DAMAGE
-		print("In damage?")
+		#print("In damage?")
 		
 	else : 
-		
-		current_state  = States.CHASING # état actuel = a létat ATTACK
-		print("In attack")
+		#var player_position = player.global_position # position du jouer
+		#var enemy_position = slime.global_position # positon de l'enemi
+		#var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
+		#
+		#if distance_to_player > 3 : #si la distance est supérieur a 3
+			#current_state = States.CHASING # l'état actuel est égal a CHASING
+		#else :
+			current_state = States.ATTACK # l'état actuel est égal a PREATTACK
+
 #____________________________________________________________________________________________
 
 
@@ -199,33 +194,85 @@ func _pre_attack_state() -> void :
 #il verifie sa distance avce le joueur 
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
-	if not is_attacking:# si il n'est pas en train d'ataquer
+	if not is_attacking and attack_cool_down <= 0:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
 		attack_cool_down = 3# le cool down est égal a 0.5 milliseconde
-		is_attacking = true	# il est en train d'attaquer
+		is_attacking = true	# il est en train d'attaquerAttends explique mieux
 		start_dash()
+		print("Suppose to dash")
+		#current_state = States.CHASING
+		
+	
 		
 #si mon cool_down est sup a zero
 #alors il est égal a get_process_delta_time() ->(petit chronomètre qui va et soustraire du temps a mon cooldown)			
 	if attack_cool_down > 0: #si le cooldown est supérieur a zero
 		attack_cool_down -= get_process_delta_time()# le cooldown est soustrait a get_procces_delta_time() jusqu'a le ramené à zero 
-				
+
 #sinon si mon cooldown n'est pas superieur a zero l'ennemi revérifie sa distance avec le joueur 
 #si elle supérieur a 3 il n'attaque plus 
 #il repasse dans l'état CHASING
 #sinon il se remet en PREATTACK
-	else:
+	elif is_attacking:
 		is_attacking = false
-		var player_position = player.global_position # position du jouer
-		var enemy_position = slime.global_position # positon de l'enemi
-		var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
 		
-		if distance_to_player > 3 : #si la distance est supérieur a 3
-			current_state = States.CHASING # l'état actuel est égal a CHASING
-		else :
-			current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
+		var player_position = player.global_position
+		var enemy_position = slime.global_position
+		var distance_to_player = player_position.distance_to(enemy_position)
+		
+		if distance_to_player > 3:
+			current_state = States.CHASING
+		else : 
+			current_state = States.PREATTACK
+	
+	
+
 #____________________________________________________________________________________________
+		
+func take_damage(damage : float) -> void : 
+	#print("Ouille")
+	is_attacking = false
+	damage_stars.visible = true
+	
+	current_state = States.DAMAGE
+	
+	
+	current_hp -= damage
+	#print("Dummies hp : ", current_hp)
+	
+	knockback()
+	
+	await get_tree().create_timer(damage_duration).timeout  # Duration of the damage state
+	
+	var player_position = player.global_position # position du jouer
+	var enemy_position = slime.global_position # positon de l'enemi
+	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
+	
+	damage_stars.visible = false
+	
+	if distance_to_player > 3 : #si la distance est supérieur a 3
+		current_state = States.CHASING # l'état actuel est égal a CHASING
+	else :
+		current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
+	
+#______________________________________________________________
+		
+func make_damage(area : Area3D, damage : float) -> void : 
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
+	#print("Make damage")
+	
+	# Trouver le nœud avec la fonction take_damage parmi les frères
+	for sibling in parent.get_children():
+		
+		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
+			sibling.take_damage(damage)
+			#print("Il a la fonction take_damage")
+			break
+			
+		#else : 
+			#print("Il n'a pas la fonction")
 
 
 #___________________Function_non_état________________________________
@@ -248,35 +295,13 @@ func enter_in_damage_mode() -> void :
 		animation_player.play("Slime|hit")
 		current_state = States.DAMAGE
 	
-		
-		
-func take_damage(damage : float) -> void : 
-	#print("Ouille")
-	is_attacking = false
-	damage_stars.visible = true
-	
-	current_state = States.DAMAGE
-	
-	
-	current_hp -= damage
-	#print("Dummies hp : ", current_hp)
-	
-	knockback()
-	
-	await get_tree().create_timer(1.5).timeout  # Duration of the damage state
-	
-	var player_position = player.global_position # position du jouer
-	var enemy_position = slime.global_position # positon de l'enemi
-	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
-	
-	damage_stars.visible = false
-	if distance_to_player > 3 : #si la distance est supérieur a 3
-		current_state = States.CHASING # l'état actuel est égal a CHASING
-	else :
-		current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
-	
+## DASH countdown
+func decrease_dash_countdown(delta : float ) -> void : 
+	if dash_countdown > 0:
+		dash_countdown -= delta
 
-
+#____________________________________________________________________________________________
+	
 
 func destroy_dummies() -> void : 
 	if current_hp <= 0 : 
@@ -297,24 +322,14 @@ func knockback() -> void:
 	slime.look_at(slime.global_position - direction)
 
 		
-		
-		
-func make_damage(area : Area3D, damage : float) -> void : 
-	# Récupérer le nœud parent de l'Area
-	var parent = area.get_parent()
-	#print("Make damage")
-	
-	# Trouver le nœud avec la fonction take_damage parmi les frères
-	for sibling in parent.get_children():
-		
-		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
-			sibling.take_damage(damage)
-			#print("Il a la fonction take_damage")
-			break
-			
-		#else : 
-			#print("Il n'a pas la fonction")
-
+func apply_gravity(delta : float) -> void : 
+			# Add the gravity.
+	if not slime.is_on_floor():
+		#dummies.velocity += dummies.get_gravity() * delta
+		knockback_velocity.y -= 9.8 * delta * 5  # Simule une gravité manuelle
+	#print( slime.is_on_floor())
+#---------------------------------------------------------------------------
+## Method launch with animations
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, basic_slime_damage)
@@ -335,21 +350,13 @@ func enable_attack_area() -> void :
 
 
 
-
-
-## DASH countdown
-func decrease_dash_countdown(delta : float ) -> void : 
-	if dash_countdown > 0:
-		dash_countdown -= delta
-
-
 #----------------------------------
 ## DASH MOVEMENT
 
 # -----------------
 #Dash initialisation
 func start_dash():
-	
+	print("In start dash")
 	start_position = slime.position #Stock the player position
 	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
 	#destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
@@ -368,6 +375,8 @@ func start_dash():
 func execute_dash():
 	if start_time > 0:  # Activate the dash only if start_time is set
 		#print("Is dashing")
+		
+		
 
 		var t: float = ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
 
@@ -377,6 +386,12 @@ func execute_dash():
 		step -= slime.position  # Adjust based on current enemy position
 
 		var coll: KinematicCollision3D = slime.move_and_collide(step)
+		
+
+		
+		#is_attacking = false
+		
+		
 
 		#### Stop dash if collision occurs with something other than the player or an enemy
 		#if coll and coll.get_collider():
@@ -393,4 +408,19 @@ func execute_dash():
 
 		if t >= 1:
 			start_time = 0
+			#is_attacking = false
 			#print("Fin du dash : t >= 1")
+			
+			current_state = States.CHASING
+			#var player_position = player.global_position # position du jouer
+			#var enemy_position = slime.global_position # positon de l'enemi
+			#var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
+				#
+			#if distance_to_player > 3 : #si la distance est supérieur a 3
+				#current_state = States.CHASING # l'état actuel est égal a CHASING
+				#print("I'm in chasing after dash")
+			#else :
+				##is_attacking = true
+				#current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
+				#print("I'm in preattack after dash")
+			
