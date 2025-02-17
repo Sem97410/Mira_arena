@@ -161,7 +161,7 @@ func _chasing_state(delta) -> void:
 	
 func _pre_attack_state() -> void :
 	animation_player.play("Slime|pre_charge") #lance l'animation
-	await get_tree().create_timer(2).timeout # crée un timer de 0.4 milliseconde
+	
 	
 	if is_damage : 
 		animation_player.stop()
@@ -176,6 +176,7 @@ func _pre_attack_state() -> void :
 		#if distance_to_player > 3 : #si la distance est supérieur a 3
 			#current_state = States.CHASING # l'état actuel est égal a CHASING
 		#else :
+			await get_tree().create_timer(2).timeout # crée un timer de 0.4 milliseconde
 			current_state = States.ATTACK # l'état actuel est égal a PREATTACK
 
 #____________________________________________________________________________________________
@@ -194,10 +195,10 @@ func _pre_attack_state() -> void :
 #il verifie sa distance avce le joueur 
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
-	if not is_attacking and attack_cool_down <= 0:# si il n'est pas en train d'ataquer
+	if not is_attacking:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
-		attack_cool_down = 3# le cool down est égal a 0.5 milliseconde
+		attack_cool_down = 0.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
 		start_dash()
 		print("Suppose to dash")
@@ -214,7 +215,7 @@ func _attack_state() -> void:
 #si elle supérieur a 3 il n'attaque plus 
 #il repasse dans l'état CHASING
 #sinon il se remet en PREATTACK
-	elif is_attacking:
+	else :
 		is_attacking = false
 		
 		var player_position = player.global_position
@@ -387,6 +388,9 @@ func execute_dash():
 
 		var coll: KinematicCollision3D = slime.move_and_collide(step)
 		
+		#await get_tree().create_timer(0.2).timeout 
+		
+		
 
 		
 		#is_attacking = false
@@ -406,7 +410,7 @@ func execute_dash():
 		##else:
 			##print("No collision detected")
 
-		if t >= 1:
+		if t >= 1 or attack_cool_down <= 0:
 			start_time = 0
 			#is_attacking = false
 			#print("Fin du dash : t >= 1")
