@@ -343,14 +343,14 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 
 func disable_attack_area() -> void : 
-	slime_attack_area.monitorable = false
+	#slime_attack_area.monitorable = false
 	slime_attack_area.monitoring = false
 	#print("Suppose to be desactivate")
 	
 	
 	
 func enable_attack_area() -> void : 
-	slime_attack_area.monitorable = true
+	#slime_attack_area.monitorable = true
 	slime_attack_area.monitoring = true
 	#print("Suppose to be activate")
 
