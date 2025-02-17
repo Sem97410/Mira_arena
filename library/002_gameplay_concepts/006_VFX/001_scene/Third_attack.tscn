@@ -44,8 +44,8 @@ shader_parameter/noiseViewY = ExtResource("6_em84j")
 shader_parameter/noiseVertex = ExtResource("6_em84j")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lbeej"]
-top_radius = 0.7
-bottom_radius = 0.01
+top_radius = 1.0
+bottom_radius = 0.1
 height = 3.0
 rings = 20
 cap_top = false
@@ -93,7 +93,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Distortion:transparency")
+tracks/3/path = NodePath("../Distortion:transparency")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -156,7 +156,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Distortion:transparency")
+tracks/3/path = NodePath("../Distortion:transparency")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -188,19 +188,20 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27856, -0.0486947, 2.14508)
 
 [node name="Third_Attack" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.51955, 0.235185, 0.0486947, -2.46233)
+transform = Transform3D(2.04205, 0, 0, 0, 2.04205, 0, 0, 0, 3.103, 0.235185, 0.0486947, -2.46233)
 material_override = SubResource("ShaderMaterial_xnieu")
 mesh = ExtResource("4_glb7b")
 skeleton = NodePath("../..")
 
-[node name="Distortion" type="MeshInstance3D" parent="Third_Attack"]
-transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 0.658089, 8.62978e-08, -0.0128101, 0, 0.233546)
+[node name="Distortion" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 0.999999, 1.31134e-07, 0.222375, 0.0486947, -2.10745)
 material_override = SubResource("ShaderMaterial_why23")
 transparency = 1.0
 mesh = SubResource("CylinderMesh_lbeej")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Third_Attack"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Third_Attack")
 libraries = {
 "": SubResource("AnimationLibrary_ngapu")
 }
