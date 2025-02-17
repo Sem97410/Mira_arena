@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://dndmd7b13m4ab"]
+
+[ext_resource type="Shader" uid="uid://bner8bywoi3v1" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Smoke.tres" id="1_wxfjn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
+render_priority = 0
+shader = ExtResource("1_wxfjn")
+shader_parameter/Distance_Fade = 3.895
+shader_parameter/White = null
+shader_parameter/Black = 0.615
+
+[sub_resource type="Curve" id="Curve_jjj7n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5k67n"]
+curve = SubResource("Curve_jjj7n")
+
+[sub_resource type="Curve" id="Curve_4aa2c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.175824), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0fqr"]
+curve = SubResource("Curve_4aa2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06nvl"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_y0fqr")
+alpha_curve = SubResource("CurveTexture_5k67n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4sx5"]
+
+[sub_resource type="Animation" id="Animation_6o54w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qobwn"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3efi7"]
+_data = {
+"RESET": SubResource("Animation_6o54w"),
+"Walk": SubResource("Animation_qobwn")
+}
+
+[node name="Walk" type="Node3D"]
+
+[node name="Walk" type="GPUParticles3D" parent="."]
+visible = false
+material_override = SubResource("ShaderMaterial_t2d3j")
+amount = 1
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_06nvl")
+draw_pass_1 = SubResource("SphereMesh_g4sx5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Walk"]
+libraries = {
+"": SubResource("AnimationLibrary_3efi7")
+}
