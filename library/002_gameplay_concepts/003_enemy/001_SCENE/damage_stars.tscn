@@ -1,0 +1,141 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi1es8bqohsjo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h362"]
+transparency = 1
+albedo_color = Color(0.713726, 0.690196, 0, 0.27451)
+emission_enabled = true
+emission = Color(0.94359, 0.615929, 0, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qxyal"]
+radius = 0.05
+height = 0.2
+radial_segments = 4
+
+[sub_resource type="Animation" id="Animation_e2ofv"]
+resource_name = "is_hit"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.733333, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3.14159, -0.25, 0, 0.25, 0, -6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.733333, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.733333, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_y65ie"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eajpp"]
+_data = {
+"RESET": SubResource("Animation_y65ie"),
+"is_hit": SubResource("Animation_e2ofv")
+}
+
+[node name="damage_stars" type="Node3D"]
+
+[node name="Stars1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.660788, 0, -0.750573, 0, 1, 0, 0.750573, 0, 0.660788, 0.330394, 0, 0.375286)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.660788, 0, -0.750573, 0, 1, 0, 0.750573, 0, 0.660788, -0.375286, 0, 0.330394)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.660788, 0, -0.750573, 0, 1, 0, 0.750573, 0, 0.660788, -0.330394, 0, -0.375286)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="Stars8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.660788, 0, -0.750573, 0, 1, 0, 0.750573, 0, 0.660788, 0.375286, 0, -0.330394)
+material_override = SubResource("StandardMaterial3D_2h362")
+mesh = SubResource("SphereMesh_qxyal")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eajpp")
+}
+autoplay = "is_hit"
