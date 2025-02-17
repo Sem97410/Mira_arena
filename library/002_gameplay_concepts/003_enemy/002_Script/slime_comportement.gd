@@ -61,6 +61,8 @@ var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 
 @onready var is_damage : bool = false
+
+@export var damage_stars : Node3D 
 #---------------------------------------------------------------------------
 
 
@@ -200,7 +202,7 @@ func _attack_state() -> void:
 	if not is_attacking:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
-		attack_cool_down = 4# le cool down est égal a 0.5 milliseconde
+		attack_cool_down = 3# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquer
 		start_dash()
 		
@@ -251,6 +253,7 @@ func enter_in_damage_mode() -> void :
 func take_damage(damage : float) -> void : 
 	#print("Ouille")
 	is_attacking = false
+	damage_stars.visible = true
 	
 	current_state = States.DAMAGE
 	
@@ -260,12 +263,13 @@ func take_damage(damage : float) -> void :
 	
 	knockback()
 	
-	await get_tree().create_timer(4).timeout  # Duration of the damage state
+	await get_tree().create_timer(1.5).timeout  # Duration of the damage state
 	
 	var player_position = player.global_position # position du jouer
 	var enemy_position = slime.global_position # positon de l'enemi
 	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
-		
+	
+	damage_stars.visible = false
 	if distance_to_player > 3 : #si la distance est supérieur a 3
 		current_state = States.CHASING # l'état actuel est égal a CHASING
 	else :
