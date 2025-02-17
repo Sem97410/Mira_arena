@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqgtkqdgp03hr"]
+[gd_scene load_steps=29 format=3 uid="uid://dqgtkqdgp03hr"]
 
 [ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="1_eyx7h"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="2_32mt2"]
@@ -31,6 +31,7 @@ height = 0.2
 [sub_resource type="Animation" id="Animation_a4jaj"]
 resource_name = "HitVFX"
 length = 2.0
+loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -299,7 +300,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("AnimationPlayerHitCharge/OmniLight3D:light_energy")
+tracks/22/path = NodePath("OmniLight3D:light_energy")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -638,7 +639,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("AnimationPlayerHitCharge/OmniLight3D:light_energy")
+tracks/22/path = NodePath("OmniLight3D:light_energy")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -729,8 +730,11 @@ shader_parameter/ColorParameter = Color(3.784, 0.541, 11.351, 1)
 shader_parameter/Speed = Vector2(0.2, -0.84)
 shader_parameter/Position2 = Vector2(0, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkcdc"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ub2f"]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_tkcdc")
 shader = ExtResource("6_map77")
 shader_parameter/distortionView = 0.03
 shader_parameter/speedView = 0.5
@@ -803,12 +807,6 @@ libraries = {
 "": SubResource("AnimationLibrary_w2wn1")
 }
 
-[node name="OmniLight3D" type="OmniLight3D" parent="BouleCharge/AnimationPlayerHitCharge"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1601, 0)
-light_color = Color(0.155815, 0.812451, 0.096333, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-
 [node name="HitGround" type="MeshInstance3D" parent="BouleCharge"]
 transform = Transform3D(2.3694, -0.0133336, 0.00299319, -0.00293635, 0.0101147, 2.36942, -0.0133463, -2.36938, 0.010098, -0.00173142, 0.00081745, 0.642432)
 material_override = SubResource("ShaderMaterial_m27hw")
@@ -828,6 +826,12 @@ transform = Transform3D(2.3694, -0.0133336, 0.00299319, -0.00293635, 0.0101147, 
 material_override = SubResource("ShaderMaterial_7wowd")
 mesh = ExtResource("8_i8eia")
 blend_shapes/Shrinkwrap = 1.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="BouleCharge"]
+transform = Transform3D(2.3694, -0.0133336, 0.00299319, -0.00293635, 0.0101147, 2.36942, -0.0133463, -2.36938, 0.010098, 0.246868, -0.0607032, -0.375228)
+light_color = Color(0.155815, 0.812451, 0.096333, 1)
+light_energy = 0.0
+light_indirect_energy = 0.0
 
 [node name="Flare" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420434, 0)
@@ -849,4 +853,5 @@ modulate = Color(0.348905, 0.598838, 0.156781, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(8.03842, 0, 0, 0, 8.03842, 0, 0, 0, 8.03842, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_hriru")
