@@ -11,8 +11,8 @@ class_name MiraGameMaster
 
 #----------------------------------
 ## Nodes
-@onready var player : CharacterBody3D
-@export var slash_r_vfx : MeshInstance3D
+@export var player : CharacterBody3D
+
 
 #----------------------------------
 ## Tools
@@ -26,8 +26,6 @@ signal player_use_light_attack
 signal player_use_charged_attack
 signal player_use_dash
 
-func _ready() -> void:
-	SlimeAutoload.player = player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -35,6 +33,7 @@ func _process(_delta: float) -> void:
 	is_alive = health_logic.is_alive
 	
 	if is_alive == false : 
+		player.velocity = Vector3.ZERO
 		return
 		
 	if Input.is_action_just_pressed("charge_attack"):

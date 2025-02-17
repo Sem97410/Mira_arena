@@ -21,7 +21,7 @@ class_name Slime
 @onready var rotation_z = slime.rotation_degrees.z # accès a l'axe z du character body
 
 #-----------------------------------
-#Movement values
+#Attack values
 
 var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur 
 var is_attacking = false  #  sert a definir si l'ennemi est en train d'attaquer 
@@ -56,7 +56,7 @@ enum States{ 	# enum qui sert a stocker nos différent états
 #Damage values
 var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
-@onready var damage_duration : float = 1.5
+@onready var damage_duration : float = 5
 @onready var is_damage : bool = false
 
 #-----------------------------------
@@ -67,6 +67,7 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 	
 func _physics_process(delta: float) -> void:
 	print("current states is : ",current_state)
+	print("Is damage is : ", is_damage)
 	#print("Is attacking is : ", is_attacking)
 	apply_gravity(delta)
 	
@@ -195,13 +196,13 @@ func _pre_attack_state() -> void :
 #il verifie sa distance avce le joueur 
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
-	if not is_attacking:# si il n'est pas en train d'ataquer
+	if not is_attacking and not is_damage:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
 		attack_cool_down = 0.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
 		start_dash()
-		print("Suppose to dash")
+		#print("Suppose to dash")
 		#current_state = States.CHASING
 		
 	
@@ -233,7 +234,10 @@ func _attack_state() -> void:
 		
 func take_damage(damage : float) -> void : 
 	#print("Ouille")
+	animation_player.stop()
 	is_attacking = false
+	is_damage = true
+	attack_cool_down = 0.0
 	damage_stars.visible = true
 	
 	current_state = States.DAMAGE
@@ -246,6 +250,7 @@ func take_damage(damage : float) -> void :
 	
 	await get_tree().create_timer(damage_duration).timeout  # Duration of the damage state
 	
+	is_damage = false
 	var player_position = player.global_position # position du jouer
 	var enemy_position = slime.global_position # positon de l'enemi
 	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
@@ -357,7 +362,7 @@ func enable_attack_area() -> void :
 # -----------------
 #Dash initialisation
 func start_dash():
-	print("In start dash")
+	#print("In start dash")
 	start_position = slime.position #Stock the player position
 	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
 	#destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
@@ -387,6 +392,7 @@ func execute_dash():
 		step -= slime.position  # Adjust based on current enemy position
 
 		var coll: KinematicCollision3D = slime.move_and_collide(step)
+		animation_player.play("Slime|Charge")
 		
 		#await get_tree().create_timer(0.2).timeout 
 		
