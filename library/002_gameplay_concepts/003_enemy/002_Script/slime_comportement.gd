@@ -59,6 +59,8 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 
 var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
+
+@onready var is_damage : bool = false
 #---------------------------------------------------------------------------
 
 
@@ -79,6 +81,7 @@ func _physics_process(delta: float) -> void:
 	
 	execute_dash()
 	
+	#enter_in_damage_mode()
 
 		
 	# Appliquer le knockback et le réduire progressivement
@@ -140,7 +143,7 @@ func _chasing_state(delta) -> void:
 	
 	slime.move_and_slide()
 	_look_at_player() # regarder ver le joueur
-	animation_player.play("Armature|Walk") # lance l'animation
+	animation_player.play("Slime|Walk") # lance l'animation
 	
 	#___condition pour passer au prochain états_________
 	
@@ -152,6 +155,7 @@ func _chasing_state(delta) -> void:
 	var player_position = player.global_position # position du joueur
 	var enemy_position = slime.global_position # position de l'ennemi
 	var distance_to_player = player_position.distance_to(enemy_position)# distance entre le joueur et l'ennemi
+	
 	if distance_to_player <= 3 : # si la distance ennemi_player est inf ou égal a 3
 		current_state = States.PREATTACK # état actuel = a l'état PREATTACK
 	else :# sinon
@@ -165,9 +169,18 @@ func _chasing_state(delta) -> void:
 #passe a l'état ATTACK
 	
 func _pre_attack_state() -> void :
-	animation_player.play("Armature|pre_charge") #lance l'animation
-	await get_tree().create_timer(0.4).timeout # crée un timer de 0.4 milliseconde
-	current_state  = States.ATTACK # état actuel = a létat ATTACK
+	animation_player.play("Slime|pre_charge") #lance l'animation
+	await get_tree().create_timer(2).timeout # crée un timer de 0.4 milliseconde
+	
+	if is_damage : 
+		animation_player.stop()
+		current_state = States.DAMAGE
+		print("In damage?")
+		
+	else : 
+		
+		current_state  = States.CHASING # état actuel = a létat ATTACK
+		print("In attack")
 #____________________________________________________________________________________________
 
 
@@ -186,8 +199,8 @@ func _pre_attack_state() -> void :
 func _attack_state() -> void:
 	if not is_attacking:# si il n'est pas en train d'ataquer
 		#print("in attack state")
-		animation_player.play("Armature|charge")#joue l'animation d'attaque
-		attack_cool_down =0.5# le cool down est égal a 0.5 milliseconde
+		animation_player.play("Slime|Charge")#joue l'animation d'attaque
+		attack_cool_down = 4# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquer
 		start_dash()
 		
@@ -228,9 +241,16 @@ func _update_target_position(target_position): # paramètre target position -> V
 	nav_agent.set_target_position(target_position)# récupère le Vector3 initialisé lors de l'appel de la fonction et l'associe aux navigation_agent
 #____________________________________________________________________________________________
 	
+func enter_in_damage_mode() -> void : 
+	if is_damage :
+		animation_player.play("Slime|hit")
+		current_state = States.DAMAGE
 	
+		
+		
 func take_damage(damage : float) -> void : 
 	#print("Ouille")
+	is_attacking = false
 	
 	current_state = States.DAMAGE
 	
@@ -240,7 +260,7 @@ func take_damage(damage : float) -> void :
 	
 	knockback()
 	
-	await get_tree().create_timer(0.7).timeout  # Duration of the damage state
+	await get_tree().create_timer(4).timeout  # Duration of the damage state
 	
 	var player_position = player.global_position # position du jouer
 	var enemy_position = slime.global_position # positon de l'enemi
@@ -278,29 +298,30 @@ func knockback() -> void:
 func make_damage(area : Area3D, damage : float) -> void : 
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
-	print("Make damage")
+	#print("Make damage")
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
 	for sibling in parent.get_children():
 		
 		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
 			sibling.take_damage(damage)
-			print("Il a la fonction take_damage")
+			#print("Il a la fonction take_damage")
 			break
 			
-		else : 
-			print("Il n'a pas la fonction")
+		#else : 
+			#print("Il n'a pas la fonction")
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, basic_slime_damage)
-	print("Suppose to make damage")
+	#print("Suppose to make damage")
 
 
 func disable_attack_area() -> void : 
 	slime_attack_area.monitorable = false
 	slime_attack_area.monitoring = false
 	#print("Suppose to be desactivate")
+	
 	
 	
 func enable_attack_area() -> void : 
