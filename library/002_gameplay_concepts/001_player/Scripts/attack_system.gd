@@ -17,6 +17,7 @@ var charged_attack_damage : float
 
 @export var charged_attack_area : Area3D
 @export var charged_attack_collision : CollisionShape3D
+@export var charged_attack_impact_collision : CollisionShape3D
 
 @onready var light_damage : float 
 @onready var charged_damage: float 
@@ -87,9 +88,11 @@ func disable_charged_attack_area() -> void :
 
 func enable_charged_attack_collision() -> void : 
 	charged_attack_collision.disabled = false
+	charged_attack_impact_collision.disabled = false
 
 func disable_charged_attack_collision() -> void : 
 	charged_attack_collision.disabled = true
+	charged_attack_impact_collision.disabled = true
 
 func freeze_frame() -> void : 
 	Engine.time_scale = 0.1
