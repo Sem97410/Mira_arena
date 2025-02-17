@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=12 format=3 uid="uid://cjg1inb63m6bd"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
 [ext_resource type="PackedScene" uid="uid://cmk2lreji2yy1" path="res://library/002_gameplay_concepts/001_player/Dummies.tscn" id="2_uklt8"]
@@ -17,6 +17,9 @@ size = Vector3(4, 4, 4)
 [sub_resource type="NavigationMesh" id="NavigationMesh_q1esk"]
 vertices = PackedVector3Array(-29.5, 0.5, -29.5, -29.5, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, -29.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqsec"]
+albedo_color = Color(0.283502, 0.0551685, 0.319446, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rg8vf"]
 size = Vector2(60, 60)
@@ -62,6 +65,7 @@ navigation_mesh = SubResource("NavigationMesh_q1esk")
 [node name="Environment" type="Node" parent="NavigationRegion3D"]
 
 [node name="GroundMesh" type="MeshInstance3D" parent="NavigationRegion3D/Environment"]
+material_override = SubResource("StandardMaterial3D_qqsec")
 mesh = SubResource("PlaneMesh_rg8vf")
 skeleton = NodePath("../../..")
 

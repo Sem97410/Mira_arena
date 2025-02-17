@@ -32,6 +32,7 @@ func enable_collision_shape() -> void :
 	player_collision_shape.disabled = false
 	
 func destroy_light_attack_vfx() -> void : 
+	await get_tree().create_timer(0.5).timeout
 	current_vfx.queue_free()
 
 
