@@ -56,6 +56,22 @@ func instantiate_combo_1_vfx() -> void :
 
 	
 func instantiate_combo_2_vfx() -> void : 
+	#var combo_2_vfx_instance = combo_2_vfx_scene.instantiate()
+	#current_vfx = combo_2_vfx_instance
+	#light_attack_vfx_storage.add_child(combo_2_vfx_instance)
+	#
+	## 1. Positionne le VFX à l'emplacement de spawn
+	#combo_2_vfx_instance.global_transform = base_combo_position.global_transform
+	#
+	## 2. Sauvegarde la position actuelle (après le spawn)
+	#var current_position = combo_2_vfx_instance.global_transform.origin
+	#
+	## 3. Applique le scale et la rotation en gardant la même position
+	#var new_basis = combo_2_vfx_instance.global_transform.basis
+	#new_basis = new_basis.rotated(Vector3(0, 0, 1), -PI)  # Rotation de -180° sur l'axe Z
+	#new_basis = new_basis.scaled(Vector3(1.5, 1, 1.5))
+	#combo_2_vfx_instance.global_transform = Transform3D(new_basis, current_position)
+	
 	var combo_2_vfx_instance = combo_2_vfx_scene.instantiate()
 	current_vfx = combo_2_vfx_instance
 	light_attack_vfx_storage.add_child(combo_2_vfx_instance)
@@ -66,12 +82,11 @@ func instantiate_combo_2_vfx() -> void :
 	# 2. Sauvegarde la position actuelle (après le spawn)
 	var current_position = combo_2_vfx_instance.global_transform.origin
 	
-	# 3. Applique le scale et la rotation en gardant la même position
-	var new_basis = combo_2_vfx_instance.global_transform.basis
-	new_basis = new_basis.rotated(Vector3(0, 0, 1), -PI)  # Rotation de -180° sur l'axe Z
-	new_basis = new_basis.scaled(Vector3(1.5, 1, 1.5))
-	combo_2_vfx_instance.global_transform = Transform3D(new_basis, current_position)
-	
+	# 3. Applique le scale en gardant la même position
+	combo_2_vfx_instance.global_transform = Transform3D(
+		Basis(combo_2_vfx_instance.global_transform.basis.scaled(Vector3(1.5, 1, 1.5))),
+		current_position
+	)
 
 func enable_combo_3_vfx() -> void : 
 	combo_3_vfx.visible = true

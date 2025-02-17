@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxqke11cu6fda"]
+[gd_scene load_steps=12 format=3 uid="uid://cxqke11cu6fda"]
 
 [ext_resource type="Shader" uid="uid://dn2fufwvnbiu4" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_PATTERN.tres" id="1_q6pen"]
 [ext_resource type="Shader" uid="uid://cbv3u8a1tcj16" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_HIGHLIGHT.tres" id="2_e7oof"]
 [ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_BASE.tres" id="3_wmr0w"]
 [ext_resource type="ArrayMesh" uid="uid://dkh3i3c0g8le7" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_1.obj" id="4_rgxuu"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="5_ci64b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_820sr"]
 render_priority = 0
@@ -29,7 +30,6 @@ shader_parameter/Gradient_1_Slider = 0.825
 shader_parameter/Gradient_2_Slider = -0.07
 
 [sub_resource type="Animation" id="Animation_uygrx"]
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -142,6 +142,7 @@ _data = {
 
 [node name="Slash_L" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0233197, 0, 3.82683)
+top_level = true
 material_override = SubResource("ShaderMaterial_2s3gy")
 mesh = ExtResource("4_rgxuu")
 skeleton = NodePath("../..")
@@ -150,3 +151,9 @@ skeleton = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jdnlt")
 }
+autoplay = "RESET"
+
+[node name="DestroyVFX" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("5_ci64b")
+current_vfx = NodePath("..")
+delay_before_queue_free = 0.5
