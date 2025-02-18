@@ -11,6 +11,7 @@ class_name Slime
 @export var slime :CharacterBody3D # référence aux character body de l'ennemi
 @export var damage_stars : Node3D  #Little stars that appears when enemy is hit
 @export var slime_attack_area : Area3D
+@export var slime_mesh : Node3D
 
 #-----------------------------------
 #Movement values
@@ -49,8 +50,10 @@ enum States{ 	# enum qui sert a stocker nos différent états
 
 #-----------------------------------
 #Health values
-@onready var max_hp : float = 200
+@onready var max_hp : float = 50
 @onready var current_hp : float = max_hp
+@export var death_vfx : PackedScene
+@onready var is_dead : bool = false
 
 #-----------------------------------
 #Damage values
@@ -58,6 +61,7 @@ var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
 @onready var damage_duration : float = 5
 @onready var is_damage : bool = false
+
 
 #-----------------------------------
 #Hit values
@@ -87,7 +91,8 @@ func _physics_process(delta: float) -> void:
 		# Réduction progressive du knockback
 		knockback_velocity = lerp(knockback_velocity, Vector3.ZERO, 10.0 * delta)
 		
-	destroy_dummies()
+		if current_hp <= 0 and !is_dead:
+			destroy_dummies()
 	pass
 	
 #____________________________________________________________________________________________
@@ -243,6 +248,8 @@ func take_damage(damage : float) -> void :
 	
 	current_state = States.DAMAGE
 	
+
+	
 	
 	current_hp -= damage
 	#print("Dummies hp : ", current_hp)
@@ -257,6 +264,8 @@ func take_damage(damage : float) -> void :
 	var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
 	
 	damage_stars.visible = false
+	
+
 	
 	if distance_to_player > 3 : #si la distance est supérieur a 3
 		current_state = States.CHASING # l'état actuel est égal a CHASING
@@ -311,8 +320,19 @@ func decrease_dash_countdown(delta : float ) -> void :
 	
 
 func destroy_dummies() -> void : 
-	if current_hp <= 0 : 
-		slime.queue_free()
+	is_dead = true
+	
+	var death_effect = death_vfx.instantiate()
+	get_parent().add_child(death_effect)
+	
+	death_effect.global_transform = slime.global_transform
+	slime.velocity = Vector3.ZERO
+	slime_mesh.visible = false
+	damage_stars.visible = false
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	slime.queue_free()
 		
 		
 func knockback() -> void:

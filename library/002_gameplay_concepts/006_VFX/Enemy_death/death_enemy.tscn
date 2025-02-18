@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://bg3ose75cjvem"]
+[gd_scene load_steps=27 format=3 uid="uid://bg3ose75cjvem"]
 
 [ext_resource type="Shader" uid="uid://bner8bywoi3v1" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Smoke.tres" id="1_t0crc"]
 [ext_resource type="Shader" uid="uid://c1wrumgxw3st6" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Sparkle.tres" id="2_fh5fs"]
 [ext_resource type="Shader" uid="uid://cx6dshikq8hrb" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Skull.tres" id="3_sny2j"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="4_durgk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
 render_priority = 0
@@ -84,7 +85,7 @@ center_offset = Vector3(0, 0.4, 0)
 
 [sub_resource type="Animation" id="Animation_pv2l6"]
 resource_name = "Puff_Enemy"
-length = 3.0
+length = 2.0
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -145,6 +146,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(2, 1, 3, 1), Color(0, 0, 0, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathVFXLogic")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.98),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_vfx"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8fnb7"]
@@ -268,6 +283,7 @@ draw_pass_1 = SubResource("QuadMesh_n5h3a")
 libraries = {
 "": SubResource("AnimationLibrary_4tq2y")
 }
+autoplay = "Puff_Enemy"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0680073, 0)
@@ -282,3 +298,8 @@ amount = 5
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_8i1oc")
 draw_pass_1 = SubResource("QuadMesh_pk6mo")
+
+[node name="DeathVFXLogic" type="Node" parent="." node_paths=PackedStringArray("animation_player", "vfx")]
+script = ExtResource("4_durgk")
+animation_player = NodePath("../AnimationPlayer")
+vfx = NodePath("..")
