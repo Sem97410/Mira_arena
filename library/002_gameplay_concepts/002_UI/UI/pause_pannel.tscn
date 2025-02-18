@@ -1,0 +1,284 @@
+[gd_scene load_steps=5 format=3 uid="uid://binrorr3ct325"]
+
+[ext_resource type="Script" path="res://general/Sprint_06_12/UI/Scripts/pause.gd" id="1_rtg08"]
+[ext_resource type="Texture2D" uid="uid://dfstn2oxlwb3b" path="res://general/Sprint_06_12/UI/magic_systeme_tuto.png" id="2_05j3v"]
+[ext_resource type="Texture2D" uid="uid://bode507dtv1qu" path="res://general/Sprint_06_12/UI/pad.png" id="3_hs3ap"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8mu2n"]
+light_mode = 1
+
+[node name="Pause_pannel" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_rtg08")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -56.5
+offset_right = 48.0
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Quit game")
+focus_neighbor_bottom = NodePath("../Reload")
+theme_override_font_sizes/font_size = 56
+text = "Resume"
+
+[node name="Reload" type="Button" parent="Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Main menu")
+theme_override_font_sizes/font_size = 56
+text = "Reload scene"
+
+[node name="Main menu" type="Button" parent="Buttons_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Reload")
+focus_neighbor_bottom = NodePath("../Settings")
+theme_override_font_sizes/font_size = 56
+text = "Main menu"
+
+[node name="Settings" type="Button" parent="Buttons_container"]
+modulate = Color(0.439049, 0.439049, 0.439049, 1)
+material = SubResource("CanvasItemMaterial_8mu2n")
+layout_mode = 2
+focus_neighbor_top = NodePath("../Main menu")
+focus_neighbor_bottom = NodePath("../Quit game")
+theme_override_font_sizes/font_size = 56
+text = "Settings"
+
+[node name="Quit game" type="Button" parent="Buttons_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Resume")
+theme_override_font_sizes/font_size = 56
+text = "Quit game"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Pause text" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Pause menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -202.0
+offset_right = 252.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="ReloadConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Are you sure that you want to reload this level? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="ReloadConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="YesButton" type="Button" parent="ReloadConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="ReloadConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -202.0
+offset_right = 252.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="MainMenuConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Are you sure you want to go back to the main menu? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="MainMenuConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="YesButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -202.0
+offset_right = 252.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="QuitConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Are you sure that you want to quit? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="QuitConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="YesButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="NotReadyLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -46.0
+offset_right = 211.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Not available yet ...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Magic_image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -212.0
+offset_right = 1821.0
+offset_bottom = 1608.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_05j3v")
+
+[node name="Control_image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -449.0
+offset_top = -241.0
+offset_right = 1299.0
+offset_bottom = 1507.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_hs3ap")
+
+[connection signal="button_down" from="Buttons_container/Resume" to="." method="_on_resume_button_down"]
+[connection signal="pressed" from="Buttons_container/Resume" to="." method="_on_resume_pressed"]
+[connection signal="button_down" from="Buttons_container/Reload" to="." method="_on_reload_button_down"]
+[connection signal="button_down" from="Buttons_container/Main menu" to="." method="_on_main_menu_button_down"]
+[connection signal="button_down" from="Buttons_container/Settings" to="." method="_on_settings_button_down"]
+[connection signal="button_down" from="Buttons_container/Quit game" to="." method="_on_quit_game_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_yes_button_button_down"]
+[connection signal="button_down" from="QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_no_button_button_down"]

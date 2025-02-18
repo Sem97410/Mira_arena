@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://cqgs8cu8r6yfc"]
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main_buttons_margin_container" type="MarginContainer" parent="Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -245.0
+offset_right = 185.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Main_buttons_margin_container"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Main_buttons_V_container" type="VBoxContainer" parent="Control/Main_buttons_margin_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Story_mode" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+modulate = Color(0.41598, 0.41598, 0.41598, 1)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit_game")
+focus_neighbor_bottom = NodePath("../Arena_mode")
+theme_override_font_sizes/font_size = 30
+text = "Story mode"
+
+[node name="Arena_mode" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Story_mode")
+focus_neighbor_bottom = NodePath("../Settings")
+theme_override_font_sizes/font_size = 30
+text = "Arena mode"
+
+[node name="Settings" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+modulate = Color(0.415686, 0.415686, 0.415686, 1)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Arena_mode")
+focus_neighbor_bottom = NodePath("../Quit_game")
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="Quit_game" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Story_mode")
+theme_override_font_sizes/font_size = 30
+text = "Quit game"
+
+[node name="Logo_container" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -420.935
+offset_right = 1408.0
+offset_bottom = 1627.06
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect" type="TextureRect" parent="Control/Logo_container"]
+layout_mode = 2
+
+[node name="Not_ready_pannel" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -401.0
+offset_top = -186.645
+offset_right = 401.0
+offset_bottom = -11.645
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Not_ready_pannel"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="Control/Not_ready_pannel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "This feature is not available yet"
+
+[node name="Quit_game_confirmation_pannel" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -557.5
+offset_top = -78.5
+offset_right = 557.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Quit_game_confirmation_pannel"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Control/Quit_game_confirmation_pannel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Are you sure that you want to close the game?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Quit_game_confirmation_pannel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Quit_game_confirmation_button" type="Button" parent="Control/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stay_in_game_confirmation_button")
+focus_neighbor_right = NodePath("../Stay_in_game_confirmation_button")
+theme_override_font_sizes/font_size = 40
+text = "Quit the game"
+
+[node name="Stay_in_game_confirmation_button" type="Button" parent="Control/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Quit_game_confirmation_button")
+focus_neighbor_right = NodePath("../Quit_game_confirmation_button")
+theme_override_font_sizes/font_size = 40
+text = "Stay in main menu"
+
+[connection signal="button_down" from="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="Control" method="_on_story_mode_button_down"]
+[connection signal="button_down" from="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="Control" method="_on_arena_mode_button_down"]
+[connection signal="button_down" from="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Settings" to="Control" method="_on_settings_button_down"]
+[connection signal="button_down" from="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Quit_game" to="Control" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="Control/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="Control" method="_on_quit_game_confirmation_button_button_down"]
+[connection signal="button_down" from="Control/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button" to="Control" method="_on_stay_in_game_confirmation_button_button_down"]
