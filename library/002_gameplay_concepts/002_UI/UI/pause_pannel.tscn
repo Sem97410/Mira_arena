@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://binrorr3ct325"]
+[gd_scene load_steps=6 format=3 uid="uid://binrorr3ct325"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="1_rtg08"]
-[ext_resource type="Texture2D" uid="uid://dfstn2oxlwb3b" path="res://library/002_gameplay_concepts/002_UI/UI/magic_systeme_tuto.png" id="2_05j3v"]
+[ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="2_ewiw5"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_gbu6i"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_gp3vj"]
-[ext_resource type="Texture2D" uid="uid://bode507dtv1qu" path="res://library/002_gameplay_concepts/002_UI/UI/pad.png" id="3_hs3ap"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8mu2n"]
 light_mode = 1
@@ -19,6 +18,21 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_rtg08")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGroundClockImage" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_ewiw5")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -264,37 +278,6 @@ theme_override_font_sizes/font_size = 45
 text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Magic_image" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -212.0
-offset_right = 1821.0
-offset_bottom = 1608.0
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_05j3v")
-
-[node name="Control_image" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -449.0
-offset_top = -241.0
-offset_right = 1299.0
-offset_bottom = 1507.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_hs3ap")
 
 [connection signal="button_down" from="Buttons_container/Resume" to="." method="_on_resume_button_down"]
 [connection signal="pressed" from="Buttons_container/Resume" to="." method="_on_resume_pressed"]
