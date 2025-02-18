@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://7l55guwk61im"]
 
-[ext_resource type="Texture2D" uid="uid://bts28dihxfg8m" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Motif.png" id="1_1d0gi"]
+[ext_resource type="Texture2D" uid="uid://dqgfonrawjhy8" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Smoke2.jpg" id="1_ryhi3"]
 
 [sub_resource type="Gradient" id="Gradient_yckbv"]
 offsets = PackedFloat32Array(0.0229885, 1)
@@ -31,7 +31,7 @@ parameter_name = "Vector2Parameter2"
 parameter_name = "ColorParameter"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_t3wkq"]
-texture = ExtResource("1_1d0gi")
+texture = ExtResource("1_ryhi3")
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_3er5k"]
 
@@ -41,7 +41,7 @@ op_type = 0
 operator = 2
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_j3eem"]
-input_name = "time"
+input_name = "uv"
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_nojar"]
 parameter_name = "Vector2Parameter"
@@ -69,7 +69,7 @@ void fragment() {
 
 
 // Input:6
-	float n_out6p0 = TIME;
+	vec2 n_out6p0 = UV;
 
 
 // Vector2Parameter:7
@@ -77,7 +77,7 @@ void fragment() {
 
 
 // VectorOp:5
-	vec2 n_out5p0 = vec2(n_out6p0) * n_out7p0;
+	vec2 n_out5p0 = n_out6p0 * n_out7p0;
 
 
 // UVFunc:4
@@ -127,7 +127,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-421.829, -6.78981)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_yqdkt")
 nodes/fragment/2/position = Vector2(-160, 60)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_t3wkq")
