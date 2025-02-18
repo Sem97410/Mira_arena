@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=15 format=3 uid="uid://dj7rqboo47u8s"]
+[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://dj7rqboo47u8s"]
 
 [ext_resource type="Texture2D" uid="uid://bvwo6xgq2gxmm" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fleche.png" id="1_5ql8g"]
 
@@ -13,7 +13,14 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_m8q5i"]
 
+[sub_resource type="Gradient" id="Gradient_88a7o"]
+offsets = PackedFloat32Array(0.425287, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fmbus"]
+gradient = SubResource("Gradient_88a7o")
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_8f5d7"]
+texture = SubResource("GradientTexture2D_fmbus")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_b4hp7"]
 texture = ExtResource("1_5ql8g")
@@ -118,6 +125,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-1024.55, 431.559)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_b4hp7")
 nodes/fragment/2/position = Vector2(-600, 240)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_a033e")

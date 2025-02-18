@@ -26,6 +26,7 @@ class_name Slime
 
 var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur 
 var is_attacking = false  #  sert a definir si l'ennemi est en train d'attaquer 
+@export var attack_lock_visual : Node3D
 
 @export var dash_duration: float = 0.2 #In second
 @export var latence_between_dash : float = 3.0
@@ -168,10 +169,14 @@ func _chasing_state(delta) -> void:
 func _pre_attack_state() -> void :
 	animation_player.play("Slime|pre_charge") #lance l'animation
 	
+	attack_lock_visual.visible = true
+	
+	
 	
 	if is_damage : 
 		animation_player.stop()
 		current_state = States.DAMAGE
+		
 		#print("In damage?")
 		
 	else : 
@@ -201,10 +206,13 @@ func _pre_attack_state() -> void :
 #il verifie sa distance avce le joueur 
 #selon la distance il repart en PREATTACK ou en CHASING
 func _attack_state() -> void:
+	
+	attack_lock_visual.visible = false
+	
 	if not is_attacking and not is_damage:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
-		attack_cool_down = 2# le cool down est égal a 0.5 milliseconde
+		attack_cool_down = 2.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
 		print("Launch attack")
 		start_dash()
@@ -310,6 +318,7 @@ func enter_in_damage_mode() -> void :
 	if is_damage :
 		animation_player.play("Slime|hit")
 		current_state = States.DAMAGE
+		attack_lock_visual.visible = false
 	
 ## DASH countdown
 func decrease_dash_countdown(delta : float ) -> void : 
