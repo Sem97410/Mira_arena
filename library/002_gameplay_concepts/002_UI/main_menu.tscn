@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=7 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
+[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
+[ext_resource type="Texture2D" uid="uid://buobtefbp7cav" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Bouton_menu.png" id="4_3juol"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
+texture = ExtResource("4_3juol")
+expand_margin_left = 100.0
+expand_margin_top = 50.0
+expand_margin_right = 100.0
+expand_margin_bottom = 50.0
+modulate_color = Color(0.588235, 0.760784, 0.121569, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v30wa"]
+texture = ExtResource("4_3juol")
+expand_margin_left = 400.0
+expand_margin_top = 300.0
+expand_margin_right = 400.0
+expand_margin_bottom = 300.0
+modulate_color = Color(0.588235, 0.760784, 0.121569, 1)
 
 [node name="MainMenu" type="Node3D"]
 
@@ -24,11 +43,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -245.0
-offset_right = 185.0
+offset_left = 207.2
+offset_top = -681.095
+offset_right = 404.2
+offset_bottom = -73.095
 grow_vertical = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Main_buttons_margin_container"]
@@ -39,14 +60,14 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 15
+theme_override_constants/separation = 35
 alignment = 1
 
 [node name="Story_mode" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
-modulate = Color(0.41598, 0.41598, 0.41598, 1)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit_game")
 focus_neighbor_bottom = NodePath("../Arena_mode")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 30
 text = "Story mode"
 
@@ -54,14 +75,18 @@ text = "Story mode"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Story_mode")
 focus_neighbor_bottom = NodePath("../Settings")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 30
 text = "Arena mode"
+icon_alignment = 1
+expand_icon = true
 
 [node name="Settings" type="Button" parent="Control/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 modulate = Color(0.415686, 0.415686, 0.415686, 1)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Arena_mode")
 focus_neighbor_bottom = NodePath("../Quit_game")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
@@ -69,6 +94,7 @@ text = "Settings"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_bottom = NodePath("../Story_mode")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 30
 text = "Quit game"
 
@@ -93,17 +119,18 @@ layout_mode = 2
 [node name="Not_ready_pannel" type="PanelContainer" parent="Control"]
 visible = false
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -401.0
-offset_top = -186.645
-offset_right = 401.0
-offset_bottom = -11.645
-grow_horizontal = 2
+offset_left = -839.87
+offset_top = -214.055
+offset_right = -37.87
+offset_bottom = -39.0549
+grow_horizontal = 0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_03kb5")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Not_ready_pannel"]
 layout_mode = 2
@@ -116,6 +143,7 @@ theme_override_constants/margin_bottom = 25
 [node name="Label" type="Label" parent="Control/Not_ready_pannel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 50
 text = "This feature is not available yet"
 
@@ -133,6 +161,7 @@ offset_right = 557.5
 offset_bottom = 78.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v30wa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Quit_game_confirmation_pannel"]
 layout_mode = 2
@@ -140,18 +169,21 @@ theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="Control/Quit_game_confirmation_pannel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_426ai")
+theme_override_font_sizes/font_size = 60
 text = "Are you sure that you want to close the game?"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Quit_game_confirmation_pannel/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 195
 alignment = 1
 
 [node name="Quit_game_confirmation_button" type="Button" parent="Control/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Stay_in_game_confirmation_button")
 focus_neighbor_right = NodePath("../Stay_in_game_confirmation_button")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 40
 text = "Quit the game"
 
@@ -159,6 +191,7 @@ text = "Quit the game"
 layout_mode = 2
 focus_neighbor_left = NodePath("../Quit_game_confirmation_button")
 focus_neighbor_right = NodePath("../Quit_game_confirmation_button")
+theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
 
