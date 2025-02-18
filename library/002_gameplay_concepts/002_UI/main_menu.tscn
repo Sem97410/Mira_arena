@@ -1,14 +1,22 @@
-[gd_scene format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=2 format=3 uid="uid://cqgs8cu8r6yfc"]
+
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 
 [node name="MainMenu" type="Node3D"]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wp124")
+main_button_general_container = NodePath("Main_buttons_margin_container")
+first_main_button = NodePath("Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
+quit_game_confirmation_pannel = NodePath("Quit_game_confirmation_pannel")
+quit_game_confirmation_pannel_first_button = NodePath("Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button")
+not_ready_pannel = NodePath("Not_ready_pannel")
 
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="Control"]
 layout_direction = 1

@@ -13,7 +13,7 @@ extends Control
 
 #INFORMATIONS
 @export var not_ready_pannel : PanelContainer #= $Not_ready_pannel
-@export var close_not_ready_pannel_button : Button # $Not_ready_pannel/MarginContainer/VBoxContainer/Close_not_ready_pannel_button
+#@export var close_not_ready_pannel_button : Button # $Not_ready_pannel/MarginContainer/VBoxContainer/Close_not_ready_pannel_button
 #-----------------
 
 # Called when the node enters the scene tree for the first time.
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 #ARENA MODE
 
 func _on_arena_mode_button_down() -> void:
-	get_tree().change_scene_to_file("res://general/Sprint_06_12/Scenes/blocking_level_design.tscn") 
+	get_tree().change_scene_to_file("res://main_scene.tscn") 
 #-----------------
 
 #QUIT GAME
