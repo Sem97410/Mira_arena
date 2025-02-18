@@ -1,0 +1,49 @@
+[gd_scene load_steps=12 format=3 uid="uid://diukxqj0llno8"]
+
+[ext_resource type="Shader" uid="uid://cu821l0hfxclc" path="res://library/002_gameplay_concepts/006_VFX/Trail/Trail.tres" id="1_j5c3w"]
+[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="2_6qppt"]
+[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="3_bgme3"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="4_h1dw2"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="5_pqopy"]
+[ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="6_yww8y"]
+[ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_mkjyw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hrh3"]
+render_priority = 0
+shader = ExtResource("1_j5c3w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojgfs"]
+shader = ExtResource("2_6qppt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uh8gp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_bgme3")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+shader_parameter/tex = ExtResource("6_yww8y")
+shader_parameter/color_ramp = ExtResource("4_h1dw2")
+shader_parameter/curve = ExtResource("5_pqopy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vlrk3"]
+material = SubResource("ShaderMaterial_uh8gp")
+
+[node name="Trail" type="Node3D"]
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2752, -1.26804)
+material_override = SubResource("ShaderMaterial_3hrh3")
+amount = 36
+lifetime = 36.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_ojgfs")
+draw_pass_1 = SubResource("QuadMesh_vlrk3")
+script = ExtResource("7_mkjyw")
+length = 36
+length_seconds = 0.6
+texture = ExtResource("6_yww8y")
+color_ramp = ExtResource("4_h1dw2")
+curve = ExtResource("5_pqopy")
+_defaults_have_been_set = true

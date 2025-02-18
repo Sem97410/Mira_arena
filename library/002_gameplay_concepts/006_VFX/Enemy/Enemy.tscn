@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://g8wrqf6yhrja"]
+[gd_scene load_steps=19 format=3 uid="uid://g8wrqf6yhrja"]
 
 [ext_resource type="Shader" uid="uid://dj7rqboo47u8s" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_Fleche.tres" id="1_swg2m"]
 [ext_resource type="Shader" uid="uid://61vlrj1vhsgl" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_lock.tres" id="2_6raaa"]
@@ -113,20 +113,12 @@ _data = {
 "RESET": SubResource("Animation_lafj7")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk3ea"]
-render_priority = 0
-shader = ExtResource("3_lkhgt")
-shader_parameter/ColorParameter = Color(7.568, 0.8, 0, 1)
-shader_parameter/Vector2Parameter = Vector2(1, 1)
-shader_parameter/Vector2Parameter2 = Vector2(3.335, -3.8)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnfqo"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_kk3ea")
-shader = ExtResource("3_sqa7f")
-shader_parameter/ColorParameter = Color(1, 0.2, 0, 1)
+shader = ExtResource("3_lkhgt")
+shader_parameter/ColorParameter = Color(18.919, 2, 0, 1)
 shader_parameter/Vector2Parameter = Vector2(0.34, 0)
-shader_parameter/Vector2Parameter2 = Vector2(0, -0.1)
+shader_parameter/Vector2Parameter2 = Vector2(0, -1.405)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]
 render_priority = 0
@@ -145,6 +137,16 @@ gravity = Vector3(0, 5, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_17khm"]
 size = Vector2(0.2, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51p0s"]
+render_priority = 0
+shader = ExtResource("3_sqa7f")
+shader_parameter/ColorParameter = Color(8.108, 1.081, 0, 1)
+shader_parameter/Vector2Parameter = null
+shader_parameter/Vector2Parameter2 = null
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5i7pm"]
+size = Vector2(3, 3)
 
 [node name="Node3D" type="Node3D"]
 
@@ -172,3 +174,7 @@ material_override = SubResource("ShaderMaterial_cmu8v")
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_b56vn")
 draw_pass_1 = SubResource("QuadMesh_17khm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_51p0s")
+mesh = SubResource("PlaneMesh_5i7pm")

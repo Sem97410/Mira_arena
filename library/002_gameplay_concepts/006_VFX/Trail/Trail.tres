@@ -1,0 +1,15 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://cu821l0hfxclc"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_4x77p"]
+parameter_name = "ColorParameter"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+"
+graph_offset = Vector2(79.309, 57.384)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_4x77p")
+nodes/fragment/2/position = Vector2(139.225, 100.965)
