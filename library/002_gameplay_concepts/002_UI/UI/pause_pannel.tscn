@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://binrorr3ct325"]
+[gd_scene load_steps=7 format=3 uid="uid://binrorr3ct325"]
 
-[ext_resource type="Script" path="res://general/Sprint_06_12/UI/Scripts/pause.gd" id="1_rtg08"]
-[ext_resource type="Texture2D" uid="uid://dfstn2oxlwb3b" path="res://general/Sprint_06_12/UI/magic_systeme_tuto.png" id="2_05j3v"]
-[ext_resource type="Texture2D" uid="uid://bode507dtv1qu" path="res://general/Sprint_06_12/UI/pad.png" id="3_hs3ap"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="1_rtg08"]
+[ext_resource type="Texture2D" uid="uid://dfstn2oxlwb3b" path="res://library/002_gameplay_concepts/002_UI/UI/magic_systeme_tuto.png" id="2_05j3v"]
+[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_gbu6i"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_gp3vj"]
+[ext_resource type="Texture2D" uid="uid://bode507dtv1qu" path="res://library/002_gameplay_concepts/002_UI/UI/pad.png" id="3_hs3ap"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8mu2n"]
 light_mode = 1
@@ -23,6 +25,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -47,6 +53,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Quit game")
 focus_neighbor_bottom = NodePath("../Reload")
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 56
 text = "Resume"
 
@@ -55,6 +62,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Resume")
 focus_neighbor_bottom = NodePath("../Main menu")
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 56
 text = "Reload scene"
 
@@ -62,6 +70,7 @@ text = "Reload scene"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Reload")
 focus_neighbor_bottom = NodePath("../Settings")
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 56
 text = "Main menu"
 
@@ -71,6 +80,7 @@ material = SubResource("CanvasItemMaterial_8mu2n")
 layout_mode = 2
 focus_neighbor_top = NodePath("../Main menu")
 focus_neighbor_bottom = NodePath("../Quit game")
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 56
 text = "Settings"
 
@@ -78,6 +88,7 @@ text = "Settings"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_bottom = NodePath("../Resume")
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 56
 text = "Quit game"
 
@@ -90,6 +101,7 @@ grow_horizontal = 2
 
 [node name="Pause text" type="Label" parent="MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gp3vj")
 theme_override_font_sizes/font_size = 96
 text = "Pause menu"
 horizontal_alignment = 1
@@ -98,67 +110,74 @@ uppercase = true
 
 [node name="ReloadConfirmationPannel" type="PanelContainer" parent="."]
 visible = false
-custom_minimum_size = Vector2(500, 500)
-layout_direction = 1
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -202.0
-offset_right = 252.0
-offset_bottom = 298.0
+offset_left = -293.425
+offset_top = -118.5
+offset_right = 306.575
+offset_bottom = 131.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationText" type="Label" parent="ReloadConfirmationPannel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ReloadConfirmationPannel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ConfirmationText" type="Label" parent="ReloadConfirmationPannel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_gp3vj")
+theme_override_font_sizes/font_size = 40
 text = "Are you sure that you want to reload this level? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="ReloadConfirmationPannel"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="ReloadConfirmationPannel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 75
+theme_override_constants/separation = 185
 alignment = 1
 
-[node name="YesButton" type="Button" parent="ReloadConfirmationPannel/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="ReloadConfirmationPannel/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
 [node name="MainMenuConfirmationPannel" type="PanelContainer" parent="."]
 visible = false
-custom_minimum_size = Vector2(500, 500)
-layout_direction = 1
+custom_minimum_size = Vector2(548.33, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -202.0
-offset_right = 252.0
-offset_bottom = 298.0
+offset_left = -274.165
+offset_top = -197.795
+offset_right = 274.165
+offset_bottom = 102.205
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ConfirmationText" type="Label" parent="MainMenuConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gp3vj")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure you want to go back to the main menu? "
 horizontal_alignment = 1
@@ -169,39 +188,41 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 75
+theme_override_constants/separation = 210
 alignment = 1
 
 [node name="YesButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
 [node name="NoButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
 [node name="QuitConfirmationPannel" type="PanelContainer" parent="."]
 visible = false
-custom_minimum_size = Vector2(500, 500)
-layout_direction = 1
+custom_minimum_size = Vector2(600, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
+offset_left = -298.0
 offset_top = -202.0
-offset_right = 252.0
-offset_bottom = 298.0
+offset_right = 302.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ConfirmationText" type="Label" parent="QuitConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gp3vj")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure that you want to quit? "
 horizontal_alignment = 1
@@ -212,16 +233,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 75
+theme_override_constants/separation = 215
 alignment = 1
 
 [node name="YesButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
 [node name="NoButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
+theme = ExtResource("2_gbu6i")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
@@ -236,12 +259,14 @@ offset_top = -46.0
 offset_right = 211.0
 offset_bottom = -18.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_gp3vj")
+theme_override_font_sizes/font_size = 45
 text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Magic_image" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -255,6 +280,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_05j3v")
 
 [node name="Control_image" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -276,8 +302,8 @@ texture = ExtResource("3_hs3ap")
 [connection signal="button_down" from="Buttons_container/Main menu" to="." method="_on_main_menu_button_down"]
 [connection signal="button_down" from="Buttons_container/Settings" to="." method="_on_settings_button_down"]
 [connection signal="button_down" from="Buttons_container/Quit game" to="." method="_on_quit_game_button_down"]
-[connection signal="button_down" from="ReloadConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_reload_yes_button_button_down"]
-[connection signal="button_down" from="ReloadConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="." method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="." method="_on_reload_no_button_button_down"]
 [connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_main_menu_yes_button_button_down"]
 [connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_yes_button_button_down"]

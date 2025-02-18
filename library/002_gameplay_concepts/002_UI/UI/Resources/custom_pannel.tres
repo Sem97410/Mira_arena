@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ofw4ecxjby2m"]
+
+[ext_resource type="Texture2D" uid="uid://buobtefbp7cav" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Bouton_menu.png" id="1_7gtqm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jujnc"]
+texture = ExtResource("1_7gtqm")
+modulate_color = Color(0.588235, 0.760784, 0.121569, 1)
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_jujnc")

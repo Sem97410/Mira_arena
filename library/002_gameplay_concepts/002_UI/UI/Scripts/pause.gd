@@ -17,7 +17,7 @@ extends Control
 #-----------------
 #Reload
 @onready var reload_confirmation_container : PanelContainer = $ReloadConfirmationPannel
-@onready var reload_confirmation_first_button : Button = $ReloadConfirmationPannel/ConfirmationButtonContainer/NoButton
+@onready var reload_confirmation_first_button : Button = $ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton #$ReloadConfirmationPannel/ConfirmationButtonContainer/VBoxContainer
 #-----------------
 #Main menu
 @onready var main_menu_confirmation_container : PanelContainer = $MainMenuConfirmationPannel
@@ -33,11 +33,14 @@ func _ready() -> void:
 		self.visible = false
 		get_tree().paused = false
 		
+		print("Test en début de partie")
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause_game"):
+		print("Pause game was clicked")
 		toggle_pause_pannel()
 
 #------------------------------
@@ -105,7 +108,7 @@ func _on_main_menu_button_down() -> void:
 #Main menu confirmation pannel
 
 func _on_main_menu_yes_button_button_down() -> void:
-	get_tree().change_scene_to_file("res://general/Sprint_06_12/Scenes/MainMenu.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/002_UI/main_menu.tscn") # Replace with function body.
 
 func _on_main_menu_no_button_button_down() -> void:
 	main_menu_confirmation_container.visible = false
