@@ -66,8 +66,8 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 
 	
 func _physics_process(delta: float) -> void:
-	print("current states is : ",current_state)
-	print("Is damage is : ", is_damage)
+	#print("current states is : ",current_state)
+	#print("Is damage is : ", is_damage)
 	#print("Is attacking is : ", is_attacking)
 	apply_gravity(delta)
 	
@@ -199,8 +199,9 @@ func _attack_state() -> void:
 	if not is_attacking and not is_damage:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
-		attack_cool_down = 0.5# le cool down est égal a 0.5 milliseconde
+		attack_cool_down = 2# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
+		print("Launch attack")
 		start_dash()
 		#print("Suppose to dash")
 		#current_state = States.CHASING
@@ -225,8 +226,8 @@ func _attack_state() -> void:
 		
 		if distance_to_player > 3:
 			current_state = States.CHASING
-		else : 
-			current_state = States.PREATTACK
+		#else : 
+			#current_state = States.PREATTACK
 	
 	
 
@@ -260,7 +261,7 @@ func take_damage(damage : float) -> void :
 	if distance_to_player > 3 : #si la distance est supérieur a 3
 		current_state = States.CHASING # l'état actuel est égal a CHASING
 	else :
-		current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
+		current_state = States.PREATTACK # l'état actuel est égal a PREATTACKF
 	
 #______________________________________________________________
 		
@@ -363,6 +364,7 @@ func enable_attack_area() -> void :
 #Dash initialisation
 func start_dash():
 	#print("In start dash")
+	is_attacking = true
 	start_position = slime.position #Stock the player position
 	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
 	#destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
@@ -382,8 +384,6 @@ func execute_dash():
 	if start_time > 0:  # Activate the dash only if start_time is set
 		#print("Is dashing")
 		
-		
-
 		var t: float = ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
 
 		# Compute the step for the enemy dash
@@ -422,6 +422,7 @@ func execute_dash():
 			#print("Fin du dash : t >= 1")
 			
 			current_state = States.CHASING
+			
 			#var player_position = player.global_position # position du jouer
 			#var enemy_position = slime.global_position # positon de l'enemi
 			#var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
