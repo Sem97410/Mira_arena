@@ -8,7 +8,7 @@
 render_priority = 0
 shader = ExtResource("1_fflq8")
 shader_parameter/ColorParameter = Color(18.919, 2, 0, 1)
-shader_parameter/Vector2Parameter2 = Vector2(0.57, 0)
+shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]
 render_priority = 0
@@ -31,6 +31,7 @@ size = Vector2(0.2, 0.5)
 [sub_resource type="Animation" id="Animation_2ivab"]
 resource_name = "Aura_Enemy"
 length = 3.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,14 +39,14 @@ tracks/0/path = NodePath(".:material_override:shader_parameter/Vector2Parameter2
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 2.2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.555, 0), Vector2(0.215, 0), Vector2(0.215, 0), Vector2(0.57, 0)]
+"values": [Vector2(0.215, 0), Vector2(0.215, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Particles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -97,6 +98,7 @@ skeleton = NodePath("../..")
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524175, -0.0721864, 0.0183431)
+visible = false
 material_override = SubResource("ShaderMaterial_cmu8v")
 emitting = false
 amount = 16
@@ -107,3 +109,4 @@ draw_pass_1 = SubResource("QuadMesh_17khm")
 libraries = {
 "": SubResource("AnimationLibrary_yutt6")
 }
+autoplay = "Aura_Enemy"

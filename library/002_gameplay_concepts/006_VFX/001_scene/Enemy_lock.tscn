@@ -119,3 +119,4 @@ mesh = SubResource("PlaneMesh_nikyv")
 libraries = {
 "": SubResource("AnimationLibrary_fxhvd")
 }
+autoplay = "Enemy_lock"
