@@ -124,9 +124,6 @@ shader_parameter/Vector2Parameter2 = Vector2(3.335, -3.8)
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_kk3ea")
 shader = ExtResource("3_sqa7f")
-shader_parameter/ColorParameter = Color(1, 0.2, 0, 1)
-shader_parameter/Vector2Parameter = Vector2(0.34, 0)
-shader_parameter/Vector2Parameter2 = Vector2(0, -0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]
 render_priority = 0
