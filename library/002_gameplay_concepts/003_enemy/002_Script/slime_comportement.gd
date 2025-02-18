@@ -51,7 +51,7 @@ enum States{ 	# enum qui sert a stocker nos différent états
 
 #-----------------------------------
 #Health values
-@onready var max_hp : float = 50
+@onready var max_hp : float = 100
 @onready var current_hp : float = max_hp
 @export var death_vfx : PackedScene
 @onready var is_dead : bool = false
@@ -66,7 +66,7 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 
 #-----------------------------------
 #Hit values
-@onready var basic_slime_damage : float = 50.0
+@onready var basic_slime_damage : float = 10.0
 
 
 	

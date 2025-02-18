@@ -20,8 +20,11 @@ class_name HealthSystem
 @onready var is_alive : bool = true
 @export var test_button : Button
 
+@export var health_bar : ProgressBar
+
 func _ready() -> void:
 	animation_tree.active = true
+	health_bar.init_health(player_max_hp)
 
 	
 func _process(_delta: float) -> void:
@@ -40,6 +43,7 @@ func take_damage(damage : float) -> void :
 		print("Being hit")
 		check_if_dead()
 		launch_hit_logic()
+		health_bar.health = player_current_hp
 		
 
 
