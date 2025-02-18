@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mira_Arena"
-run/main_scene="res://main_scene.tscn"
+run/main_scene="res://library/002_gameplay_concepts/002_UI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
