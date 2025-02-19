@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var health_point : float = 10.0
+@export var health_point : float = 30.0
 # Called when the node enters the scene tree for the first time.
 
 func _on_area_3d_area_entered(area: Area3D) -> void:

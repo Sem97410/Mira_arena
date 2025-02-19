@@ -12,6 +12,7 @@ class_name Slime
 @export var damage_stars : Node3D  #Little stars that appears when enemy is hit
 @export var slime_attack_area : Area3D
 @export var slime_mesh : Node3D
+@export var drop_health_logic : DropHealthLogic
 
 #-----------------------------------
 #Movement values
@@ -339,7 +340,10 @@ func destroy_dummies() -> void :
 	slime_mesh.visible = false
 	damage_stars.visible = false
 	
+	drop_health_logic.drop_health_item()
+		
 	await get_tree().create_timer(2.0).timeout
+	
 	
 	slime.queue_free()
 		

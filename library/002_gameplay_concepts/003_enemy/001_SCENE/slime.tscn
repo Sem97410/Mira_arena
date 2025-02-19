@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=4 uid="uid://n8otoiwc4jji"]
+[gd_scene load_steps=24 format=4 uid="uid://n8otoiwc4jji"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/damage_stars.tscn" id="1_b1xnt"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="1_gotvg"]
 [ext_resource type="PackedScene" uid="uid://dklgn8h8tshwa" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_aura.tscn" id="1_xiexu"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="2_7w4cx"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="4_28r52"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/enemy_death_loot.gd" id="6_juy6b"]
+[ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="7_jkkg7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3pw2"]
 resource_name = "mat_eyes_slime"
@@ -360,7 +362,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
 shape = SubResource("SphereShape3D_acknh")
 
-[node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
+[node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
 script = ExtResource("1_gotvg")
 animation_player = NodePath("../Slime_002/AnimationPlayer")
 nav_agent = NodePath("../NavigationAgent3D")
@@ -368,6 +370,7 @@ slime = NodePath("..")
 damage_stars = NodePath("../Slime_002/damage_stars")
 slime_attack_area = NodePath("../Area3D")
 slime_mesh = NodePath("../Slime_002/Slime")
+drop_health_logic = NodePath("../EnemyDeathLoot")
 movement_speed = 10.0
 movement_interpolate_strength = 15.0
 attack_lock_visual = NodePath("../Lock")
@@ -391,5 +394,10 @@ shape = SubResource("SphereShape3D_p6fhr")
 [node name="Lock" parent="." instance=ExtResource("2_7w4cx")]
 transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
 visible = false
+
+[node name="EnemyDeathLoot" type="Node" parent="." node_paths=PackedStringArray("slime")]
+script = ExtResource("6_juy6b")
+health_item_scene = ExtResource("7_jkkg7")
+slime = NodePath("..")
 
 [connection signal="area_entered" from="Area3D" to="SlimeComportement" method="_on_area_3d_area_entered"]

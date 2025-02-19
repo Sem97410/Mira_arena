@@ -6,6 +6,7 @@ class_name HealthSystem
 @export var animation_tree : AnimationTree
 @export var animation_player : AnimationPlayer
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
+
 #@onready var death_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/DeathStateMachine/playback"]
 
 @export var player : CharacterBody3D
