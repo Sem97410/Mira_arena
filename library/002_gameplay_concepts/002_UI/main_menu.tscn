@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/LAYOUT_CINEMATIQUE.ogv" id="5_0ald4"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
-[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/placeholder_video.ogv" id="5_tk0sb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -223,11 +223,12 @@ theme_override_constants/margin_right = 95
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VideoControl/VideoContainer"]
 layout_mode = 2
+ratio = 1.77
 stretch_mode = 3
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VideoControl/VideoContainer/AspectRatioContainer"]
 layout_mode = 2
-stream = ExtResource("5_tk0sb")
+stream = ExtResource("5_0ald4")
 expand = true
 
 [node name="SkipButtonContainer" type="MarginContainer" parent="VideoControl/VideoContainer"]

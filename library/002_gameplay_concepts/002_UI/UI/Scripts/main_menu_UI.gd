@@ -21,7 +21,7 @@ extends Control
 @export var video_player : VideoStreamPlayer
 @export var video_player_container : Control
 @export var skip_video_button : Button
-@export var video_length : float = 6.0
+@export var video_length : float = 114.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
