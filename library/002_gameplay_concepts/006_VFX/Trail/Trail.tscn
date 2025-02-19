@@ -1,16 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://diukxqj0llno8"]
+[gd_scene load_steps=16 format=3 uid="uid://diukxqj0llno8"]
 
-[ext_resource type="Shader" uid="uid://cu821l0hfxclc" path="res://library/002_gameplay_concepts/006_VFX/Trail/Trail.tres" id="1_j5c3w"]
 [ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="2_6qppt"]
 [ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="3_bgme3"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="4_h1dw2"]
 [ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="5_pqopy"]
 [ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="6_yww8y"]
 [ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_mkjyw"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hrh3"]
-render_priority = 0
-shader = ExtResource("1_j5c3w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ojgfs"]
 shader = ExtResource("2_6qppt")
@@ -29,11 +24,49 @@ shader_parameter/curve = ExtResource("5_pqopy")
 [sub_resource type="QuadMesh" id="QuadMesh_vlrk3"]
 material = SubResource("ShaderMaterial_uh8gp")
 
+[sub_resource type="Curve3D" id="Curve3D_fegxl"]
+bake_interval = 4.15
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_cuftl"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7u2en"]
+curve = SubResource("Curve_cuftl")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_7l8eh"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of7wn"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 4.0
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 471.72
+angular_velocity_curve = SubResource("CurveTexture_7u2en")
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_7l8eh")
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2gcf"]
+size = Vector3(0.5, 0.5, 0.5)
+
 [node name="Trail" type="Node3D"]
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2752, -1.26804)
-material_override = SubResource("ShaderMaterial_3hrh3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.629227, 0.00511038)
 amount = 36
 lifetime = 36.0
 explosiveness = 1.0
@@ -47,3 +80,14 @@ texture = ExtResource("6_yww8y")
 color_ramp = ExtResource("4_h1dw2")
 curve = ExtResource("5_pqopy")
 _defaults_have_been_set = true
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+use_model_front = true
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_fegxl")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_of7wn")
+draw_pass_1 = SubResource("BoxMesh_r2gcf")

@@ -24,22 +24,17 @@ point_count = 2
 curve = SubResource("Curve_4aa2c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06nvl"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
 angle_min = -180.0
 angle_max = 180.0
-radial_velocity_min = 0.999978
-radial_velocity_max = 1.99998
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 2, 0)
 scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_y0fqr")
 alpha_curve = SubResource("CurveTexture_5k67n")
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4sx5"]
+radius = 0.14
+height = 0.28
 
 [sub_resource type="Animation" id="Animation_6o54w"]
 length = 0.001
@@ -81,7 +76,6 @@ _data = {
 [node name="Walk" type="Node3D"]
 
 [node name="Walk" type="GPUParticles3D" parent="."]
-visible = false
 material_override = SubResource("ShaderMaterial_t2d3j")
 amount = 1
 explosiveness = 0.85
