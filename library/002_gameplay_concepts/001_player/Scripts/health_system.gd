@@ -6,6 +6,7 @@ class_name HealthSystem
 @export var animation_tree : AnimationTree
 @export var animation_player : AnimationPlayer
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
+
 #@onready var death_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/DeathStateMachine/playback"]
 
 @export var player : CharacterBody3D
@@ -29,7 +30,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	#print("Player current HP : ", player_current_hp)
-	var current_state = animation_tree.get("parameters/state/current")
+	#var current_state = animation_tree.get("parameters/state/current")
 
 	#print("Je suis dans le state : ", current_state)
 	if Input.is_action_just_pressed("debug_input"):
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :
 		player_current_hp -= damage
-		print("Being hit")
+		#print("Being hit")
 		check_if_dead()
 		launch_hit_logic()
 		health_bar.health = player_current_hp
@@ -103,5 +104,4 @@ func player_is_blinking():
 
 func _on_test_button_pressed() -> void:
 	print("Button was pressed")
-
 	get_tree().reload_current_scene()

@@ -6,6 +6,6 @@ extends Node
 func _ready() -> void:
 	destroy_attack_vfx(current_vfx, delay_before_queue_free)
 
-func destroy_attack_vfx(current_vfx : Node3D, delay : float) -> void : 
+func destroy_attack_vfx(vfx : Node3D, _delay : float) -> void : 
 	await get_tree().create_timer(delay_before_queue_free).timeout
-	current_vfx.queue_free()
+	vfx.queue_free()

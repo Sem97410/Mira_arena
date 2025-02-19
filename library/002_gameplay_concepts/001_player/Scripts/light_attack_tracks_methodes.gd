@@ -96,7 +96,7 @@ func disable_combo_3_vfx() -> void :
 	
 func launch_combo_3_vfx_animation() -> void : 
 	combo_3_animation_player.play("Attack_Charge")
-	print("Launch animation 3 ")
+	#print("Launch animation 3 ")
 	
 func player_attack_1_sfx() -> void : 
 	attack_1_sound.play()

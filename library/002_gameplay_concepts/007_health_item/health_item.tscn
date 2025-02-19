@@ -1,0 +1,117 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwca7do31vyak"]
+
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
+[ext_resource type="PackedScene" uid="uid://bgjm2vu4dpac7" path="res://library/002_gameplay_concepts/007_health_item/health_item_aura.tscn" id="1_xlhy7"]
+[ext_resource type="PackedScene" uid="uid://c01nq5ejq6gkm" path="res://library/002_gameplay_concepts/007_health_item/Sablier.fbx" id="2_qiky3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6ukd"]
+transparency = 1
+albedo_color = Color(0, 0.745, 0.238, 0.01)
+emission_enabled = true
+emission = Color(0, 0.677058, 1.92523e-07, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wsqxd"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Animation" id="Animation_05oki"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sablier/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sablier:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.0866319, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sablier:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 0, 0), Vector3(0.523599, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gwskb"]
+resource_name = "base_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sablier/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcj7i"]
+_data = {
+"RESET": SubResource("Animation_05oki"),
+"base_animation": SubResource("Animation_gwskb")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
+radius = 1.0
+
+[node name="HealthItem" type="Node3D"]
+script = ExtResource("1_w6eme")
+
+[node name="Sablier" parent="." instance=ExtResource("2_qiky3")]
+transform = Transform3D(1.5, 0, 0, 0, 1.29904, -0.75, 0, 0.75, 1.29904, 0, -0.0866319, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sablier"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.107873, 0.0135775)
+material_override = SubResource("StandardMaterial3D_p6ukd")
+mesh = SubResource("SphereMesh_wsqxd")
+skeleton = NodePath("../..")
+
+[node name="Aura" parent="Sablier/MeshInstance3D" instance=ExtResource("1_xlhy7")]
+transform = Transform3D(0.220996, 0.188514, 0.163507, 0.0213774, 0.203304, -0.26329, -0.248626, 0.185044, 0.122698, 0.0468178, -0.006519, -0.0922521)
+skeleton = NodePath("../../../..")
+
+[node name="Aura2" parent="Sablier/MeshInstance3D" instance=ExtResource("1_xlhy7")]
+transform = Transform3D(0.290192, 0.0128487, 0.163507, -0.0289632, 0.331101, 0.0253852, -0.161434, -0.0363068, 0.289365, 0.0468178, -0.006519, -0.0922521)
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.462194, 0.876007, 0, 1)
+light_energy = 16.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pcj7i")
+}
+autoplay = "RESET"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_x06wg")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

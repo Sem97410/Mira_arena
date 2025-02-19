@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3retq7nbgcrj"]
+[gd_scene load_steps=8 format=3 uid="uid://b3retq7nbgcrj"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/heal_bar.gd" id="1_8cg3v"]
+[ext_resource type="Texture2D" uid="uid://c0ees33k4plp7" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/HealthBarSF.png" id="2_ygbvl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgrlq"]
 
@@ -19,10 +20,16 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmuqr"]
 bg_color = Color(0.727066, 0.294322, 0.200202, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3qbu6"]
+texture = ExtResource("2_ygbvl")
+expand_margin_left = 95.0
+expand_margin_top = 120.0
+expand_margin_right = 35.0
+
 [node name="HealthBar" type="ProgressBar" node_paths=PackedStringArray("timer", "damage_bar")]
 z_index = 1
 offset_right = 240.0
-offset_bottom = 15.0
+offset_bottom = 5.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_jgrlq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_va013")
 value = 60.0
@@ -37,6 +44,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -0.5
+offset_bottom = -0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_2milo")
@@ -47,5 +56,17 @@ show_percentage = false
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 24.205
+offset_bottom = 24.205
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_3qbu6")
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

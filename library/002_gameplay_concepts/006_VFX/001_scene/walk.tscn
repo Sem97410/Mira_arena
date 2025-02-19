@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dndmd7b13m4ab"]
+[gd_scene load_steps=13 format=3 uid="uid://dndmd7b13m4ab"]
 
 [ext_resource type="Shader" uid="uid://bner8bywoi3v1" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Smoke.tres" id="1_wxfjn"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="2_a4rwv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
 render_priority = 0
@@ -86,3 +87,9 @@ draw_pass_1 = SubResource("SphereMesh_g4sx5")
 libraries = {
 "": SubResource("AnimationLibrary_3efi7")
 }
+autoplay = "RESET"
+
+[node name="DestroyVFX" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("2_a4rwv")
+current_vfx = NodePath("..")
+delay_before_queue_free = 0.4
