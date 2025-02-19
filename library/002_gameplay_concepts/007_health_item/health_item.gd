@@ -1,5 +1,7 @@
 extends Node3D
 
+
+
 @export var health_point : float = 15.0
 # Called when the node enters the scene tree for the first time.
 #@export var blinking_duration : float = 3.0
