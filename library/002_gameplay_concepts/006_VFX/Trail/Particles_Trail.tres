@@ -1,0 +1,126 @@
+[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://ccop1bw7cpw2i"]
+
+[ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="1_qydju"]
+[ext_resource type="Texture2D" uid="uid://c1xht7a5v0mdq" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fire_2.png" id="2_lrai8"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_qcb41"]
+[ext_resource type="Texture2D" uid="uid://3fi2u1f3gjjq" path="res://library/002_gameplay_concepts/006_VFX/Noise/NicePng_smoke-texture-png_4373200.png" id="4_joaka"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_k2rd2"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_j6f33"]
+texture = ExtResource("1_qydju")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_woxxr"]
+texture = ExtResource("2_lrai8")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_u0g4a"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2sksj"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_026p8"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ugos4"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_yful5"]
+constant = -1.709
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_uhrem"]
+expanded_output_ports = [0]
+texture = ExtResource("3_qcb41")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_be7eo"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q7xpg"]
+expanded_output_ports = [0]
+texture = ExtResource("4_joaka")
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled;
+
+uniform sampler2D tex_vtx_9;
+uniform vec4 ColorParameter : source_color;
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0 = VERTEX;
+
+
+// Texture2D:9
+	vec4 n_out9p0 = texture(tex_vtx_9, UV);
+	float n_out9p1 = n_out9p0.r;
+
+
+// Input:5
+	vec3 n_out5p0 = NORMAL;
+
+
+// VectorOp:8
+	vec3 n_out8p0 = vec3(n_out9p1) * n_out5p0;
+
+
+// FloatConstant:6
+	float n_out6p0 = -1.709000;
+
+
+// VectorOp:4
+	vec3 n_out4p0 = n_out8p0 * vec3(n_out6p0);
+
+
+// VectorOp:3
+	vec3 n_out3p0 = n_out2p0 + n_out4p0;
+
+
+// Output:0
+	VERTEX = n_out3p0;
+
+
+}
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-155.248, -4.09091)
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_u0g4a")
+nodes/vertex/2/position = Vector2(-360, 140)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorOp_2sksj")
+nodes/vertex/3/position = Vector2(20, 200)
+nodes/vertex/4/node = SubResource("VisualShaderNodeVectorOp_026p8")
+nodes/vertex/4/position = Vector2(-260, 420)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_ugos4")
+nodes/vertex/5/position = Vector2(-1420, 380)
+nodes/vertex/6/node = SubResource("VisualShaderNodeFloatConstant_yful5")
+nodes/vertex/6/position = Vector2(-520, 640)
+nodes/vertex/7/node = SubResource("VisualShaderNodeTexture_uhrem")
+nodes/vertex/7/position = Vector2(-1660, 760)
+nodes/vertex/8/node = SubResource("VisualShaderNodeVectorOp_be7eo")
+nodes/vertex/8/position = Vector2(-800, 460)
+nodes/vertex/9/node = SubResource("VisualShaderNodeTexture_q7xpg")
+nodes/vertex/9/position = Vector2(-1340, 680)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 3, 1, 6, 0, 4, 1, 5, 0, 8, 1, 8, 0, 4, 0, 3, 0, 0, 0, 9, 1, 8, 0)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_k2rd2")
+nodes/fragment/2/position = Vector2(-80, 40)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_j6f33")
+nodes/fragment/3/position = Vector2(-221.184, 433.16)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_woxxr")
+nodes/fragment/4/position = Vector2(-527.672, 337.397)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
