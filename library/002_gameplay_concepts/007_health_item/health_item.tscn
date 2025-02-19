@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwca7do31vyak"]
+
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
+[ext_resource type="PackedScene" uid="uid://bgjm2vu4dpac7" path="res://library/002_gameplay_concepts/007_health_item/health_item_aura.tscn" id="1_xlhy7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6ukd"]
+albedo_color = Color(0, 0.745267, 0.238287, 1)
+emission_enabled = true
+emission = Color(0, 0.677058, 1.92523e-07, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wsqxd"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Animation" id="Animation_gwskb"]
+resource_name = "base_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05oki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcj7i"]
+_data = {
+"RESET": SubResource("Animation_05oki"),
+"base_animation": SubResource("Animation_gwskb")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
+radius = 1.0
+
+[node name="HealthItem" type="Node3D"]
+script = ExtResource("1_w6eme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_p6ukd")
+mesh = SubResource("SphereMesh_wsqxd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.462194, 0.876007, 0, 1)
+light_energy = 16.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pcj7i")
+}
+autoplay = "base_animation"
+
+[node name="Aura" parent="." instance=ExtResource("1_xlhy7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00524175, 0, -0.0183431)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_x06wg")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

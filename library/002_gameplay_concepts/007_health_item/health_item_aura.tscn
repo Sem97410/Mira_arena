@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgjm2vu4dpac7"]
+
+[ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="1_yy4ef"]
+[ext_resource type="ArrayMesh" uid="uid://bb7xvu32irgkb" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Aura.obj" id="2_v5phq"]
+[ext_resource type="Shader" uid="uid://cqx7o3keptnwj" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_particle.tres" id="3_3lld0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnfqo"]
+render_priority = 0
+shader = ExtResource("1_yy4ef")
+shader_parameter/ColorParameter = Color(0, 2, 0, 1)
+shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]
+render_priority = 0
+shader = ExtResource("3_3lld0")
+shader_parameter/ColorParameter = Color(4, 2, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b56vn"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 5, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_17khm"]
+size = Vector2(0.2, 0.5)
+
+[sub_resource type="Animation" id="Animation_2ivab"]
+resource_name = "Aura_Enemy"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Vector2Parameter2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.215, 0), Vector2(0.215, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.2, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bpdh7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Vector2Parameter2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.555, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yutt6"]
+_data = {
+"Aura_Enemy": SubResource("Animation_2ivab"),
+"RESET": SubResource("Animation_bpdh7")
+}
+
+[node name="Aura" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00524175, 0, -0.0183431)
+material_override = SubResource("ShaderMaterial_vnfqo")
+mesh = ExtResource("2_v5phq")
+skeleton = NodePath("../..")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524175, -0.0721864, 0.0183431)
+visible = false
+material_override = SubResource("ShaderMaterial_cmu8v")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_b56vn")
+draw_pass_1 = SubResource("QuadMesh_17khm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yutt6")
+}
+autoplay = "Aura_Enemy"
