@@ -1,19 +1,19 @@
 [gd_scene load_steps=22 format=3 uid="uid://diukxqj0llno8"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="1_42w0j"]
-[ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_jf8s6"]
-[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="2_6qppt"]
-[ext_resource type="Shader" uid="uid://38rjveo0slum" path="res://library/002_gameplay_concepts/006_VFX/Trail/Smoke_Dash.tres" id="3_5q0l1"]
-[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="3_bgme3"]
-[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="4_h1dw2"]
-[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="5_pqopy"]
-[ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="6_yww8y"]
-[ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_mkjyw"]
-[ext_resource type="Texture2D" uid="uid://tgptdu01glr3" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Glitch.png" id="8_cuhjl"]
+[ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_cyma5"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="2_blgmt"]
+[ext_resource type="Shader" uid="uid://38rjveo0slum" path="res://library/002_gameplay_concepts/006_VFX/Trail/Smoke_Dash.tres" id="3_adqgk"]
+[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="4_vnwrv"]
+[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="5_adr72"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="6_aavio"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="7_sm6t8"]
+[ext_resource type="Texture2D" uid="uid://tgptdu01glr3" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Glitch.png" id="8_7d3bc"]
+[ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="9_6b1vb"]
+[ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="10_1stre"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ef672"]
 render_priority = 0
-shader = ExtResource("1_jf8s6")
+shader = ExtResource("1_cyma5")
 shader_parameter/ColorParameter = Color(2, 1, 0.2, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of7wn"]
@@ -35,7 +35,7 @@ scale_min = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gfwc"]
 render_priority = 0
-shader = ExtResource("3_5q0l1")
+shader = ExtResource("3_adqgk")
 shader_parameter/Distance_Fade = 0.15
 shader_parameter/White = null
 shader_parameter/Black = -0.075
@@ -63,18 +63,18 @@ anim_speed_max = 10.0
 [sub_resource type="SphereMesh" id="SphereMesh_8s8v8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ew57k"]
-shader = ExtResource("2_6qppt")
+shader = ExtResource("4_vnwrv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3rxej"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("3_bgme3")
+shader = ExtResource("5_adr72")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/flags = 40
-shader_parameter/tex = ExtResource("8_cuhjl")
-shader_parameter/color_ramp = ExtResource("4_h1dw2")
-shader_parameter/curve = ExtResource("5_pqopy")
+shader_parameter/tex = ExtResource("8_7d3bc")
+shader_parameter/color_ramp = ExtResource("6_aavio")
+shader_parameter/curve = ExtResource("7_sm6t8")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ms515"]
 material = SubResource("ShaderMaterial_3rxej")
@@ -90,7 +90,7 @@ lifetime = 0.5
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_of7wn")
 draw_pass_1 = SubResource("QuadMesh_w2blb")
-script = ExtResource("1_42w0j")
+script = ExtResource("2_blgmt")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00388134, 0, 0.0302207)
@@ -107,12 +107,12 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("7_mkjyw")
+script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("6_yww8y")
-color_ramp = ExtResource("4_h1dw2")
-curve = ExtResource("5_pqopy")
+texture = ExtResource("10_1stre")
+color_ramp = ExtResource("6_aavio")
+curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
 
 [node name="GPUTrail3D2" type="GPUParticles3D" parent="."]
@@ -123,12 +123,12 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("7_mkjyw")
+script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("8_cuhjl")
-color_ramp = ExtResource("4_h1dw2")
-curve = ExtResource("5_pqopy")
+texture = ExtResource("8_7d3bc")
+color_ramp = ExtResource("6_aavio")
+curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
 
 [node name="GPUTrail3D3" type="GPUParticles3D" parent="."]
@@ -139,10 +139,10 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("7_mkjyw")
+script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("8_cuhjl")
-color_ramp = ExtResource("4_h1dw2")
-curve = ExtResource("5_pqopy")
+texture = ExtResource("8_7d3bc")
+color_ramp = ExtResource("6_aavio")
+curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
