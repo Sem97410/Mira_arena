@@ -22,9 +22,7 @@ func _ready() -> void:
 	#print(player)
 	#print(slime)
 	
-func _process(delta: float) -> void:
-	
-	
+func _process(_delta: float) -> void:
 	
 	destroy_dummies()
 	

@@ -215,7 +215,7 @@ func _attack_state() -> void:
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
 		attack_cool_down = 2.5# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
-		print("Launch attack")
+		#print("Launch attack")
 		start_dash()
 		#print("Suppose to dash")
 		#current_state = States.CHASING
@@ -331,16 +331,19 @@ func decrease_dash_countdown(delta : float ) -> void :
 
 func destroy_dummies() -> void : 
 	is_dead = true
+	slime_attack_area.monitorable = false
+	slime_attack_area.monitoring = false
 	
+	var slime_position = slime.global_transform.origin
 	var death_effect = death_vfx.instantiate()
 	get_parent().add_child(death_effect)
-	
+	drop_health_logic.drop_health_item(slime_position)
 	death_effect.global_transform = slime.global_transform
 	slime.velocity = Vector3.ZERO
 	slime_mesh.visible = false
 	damage_stars.visible = false
 	
-	drop_health_logic.drop_health_item()
+	
 		
 	await get_tree().create_timer(2.0).timeout
 	

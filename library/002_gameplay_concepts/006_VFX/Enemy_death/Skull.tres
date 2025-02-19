@@ -68,11 +68,11 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-163.727, 126.268)
+graph_offset = Vector2(-257.684, 75.6485)
 modes/cull = 2
 flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_e7e7i")
-nodes/vertex/2/position = Vector2(-20, 360)
+nodes/vertex/2/position = Vector2(-160, 400)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_1cnmm")
 nodes/fragment/2/position = Vector2(-660, 80)

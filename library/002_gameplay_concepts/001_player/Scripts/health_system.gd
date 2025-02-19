@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :
 		player_current_hp -= damage
-		print("Being hit")
+		#print("Being hit")
 		check_if_dead()
 		launch_hit_logic()
 		health_bar.health = player_current_hp

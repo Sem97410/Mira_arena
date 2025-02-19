@@ -362,6 +362,12 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
 shape = SubResource("SphereShape3D_acknh")
 
+[node name="EnemyDeathLoot" type="Node" parent="." node_paths=PackedStringArray("slime")]
+script = ExtResource("6_juy6b")
+health_item_scene = ExtResource("7_jkkg7")
+drop_chance = 0.05
+slime = NodePath("..")
+
 [node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
 script = ExtResource("1_gotvg")
 animation_player = NodePath("../Slime_002/AnimationPlayer")
@@ -374,6 +380,7 @@ drop_health_logic = NodePath("../EnemyDeathLoot")
 movement_speed = 10.0
 movement_interpolate_strength = 15.0
 attack_lock_visual = NodePath("../Lock")
+dash_duration = null
 latence_between_dash = 4.0
 dash_length = 5.0
 death_vfx = ExtResource("4_28r52")
@@ -394,11 +401,5 @@ shape = SubResource("SphereShape3D_p6fhr")
 [node name="Lock" parent="." instance=ExtResource("2_7w4cx")]
 transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
 visible = false
-
-[node name="EnemyDeathLoot" type="Node" parent="." node_paths=PackedStringArray("slime")]
-script = ExtResource("6_juy6b")
-health_item_scene = ExtResource("7_jkkg7")
-drop_chance = 0.05
-slime = NodePath("..")
 
 [connection signal="area_entered" from="Area3D" to="SlimeComportement" method="_on_area_3d_area_entered"]

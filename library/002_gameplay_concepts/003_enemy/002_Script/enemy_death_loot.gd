@@ -6,12 +6,18 @@ class_name DropHealthLogic
 @export var slime : CharacterBody3D 
 
 
-func drop_health_item() -> void : 
+func drop_health_item(position : Vector3) -> void : 
 	if not health_item_scene or not slime:
 		return
+
+	#
+	#if not slime.is_inside_tree() :
+		#print("Pas dans l'arbre")
+		#return
 		
 	if randf() <= drop_chance :
 		print("Suppose to print un truc")
 		var health_item_instance = health_item_scene.instantiate()
-		health_item_instance.global_transform.origin = slime.global_transform.origin
+		
 		get_tree().current_scene.add_child(health_item_instance)
+		health_item_instance.global_transform.origin = position

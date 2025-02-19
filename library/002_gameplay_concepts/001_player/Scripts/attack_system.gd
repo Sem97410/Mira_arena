@@ -27,7 +27,7 @@ var charged_attack_damage : float
 
 func _ready() -> void:
 	#enable_light_attack_area()
-	light_attack_damage = (100 / 3) + 1 #kill a basic enemy in 3 hits
+	light_attack_damage = (100.0 / 3.0) + 1.0 #kill a basic enemy in 3 hits
 	charged_attack_damage = 100
 	#print("Light attack damage : ", light_attack_damage)
 	#print("Charged attack damage : ", charged_attack_damage)
@@ -43,7 +43,7 @@ func _on_attack_system_area_3d_area_entered(area: Area3D) -> void:
 
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	print("Attack something from the charged attack")
+	#print("Attack something from the charged attack")
 	make_damage(area, charged_attack_damage)
 
 func make_damage(area : Area3D, damage : float) -> void : 
