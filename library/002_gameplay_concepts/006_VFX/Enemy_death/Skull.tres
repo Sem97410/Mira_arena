@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://cx6dshikq8hrb"]
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://cx6dshikq8hrb"]
 
 [ext_resource type="Texture2D" uid="uid://bvhvne4cqkids" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/T_Skull_2.png" id="1_5s6n3"]
 
@@ -15,6 +15,9 @@ texture = ExtResource("1_5s6n3")
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lkhdc"]
 operator = 2
 
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_56rif"]
+keep_scale = true
+
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
@@ -23,6 +26,22 @@ uniform vec4 ColorParameter2 : source_color;
 uniform sampler2D tex_frg_2;
 
 
+
+void vertex() {
+	mat4 n_out2p0;
+// GetBillboardMatrix:2
+	{
+		mat4 __mvm = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+		__mvm = __mvm * mat4(vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0), vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		n_out2p0 = __mvm;
+	}
+
+
+// Output:0
+	MODELVIEW_MATRIX = n_out2p0;
+
+
+}
 
 void fragment() {
 // ColorParameter:15
@@ -51,8 +70,12 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-252.886, 109.766)
 modes/cull = 2
 flags/unshaded = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_56rif")
+nodes/vertex/2/position = Vector2(-160, 160)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_1cnmm")
 nodes/fragment/2/position = Vector2(-660, 80)
 nodes/fragment/15/node = SubResource("VisualShaderNodeColorParameter_p3g4v")

@@ -1,6 +1,6 @@
-[gd_resource type="VisualShader" load_steps=30 format=3 uid="uid://bner8bywoi3v1"]
+[gd_resource type="VisualShader" load_steps=30 format=3 uid="uid://38rjveo0slum"]
 
-[ext_resource type="Texture2D" uid="uid://cm64v6su0g5jm" path="res://library/002_gameplay_concepts/006_VFX/Noise/Voronoi.png" id="1_wx8qk"]
+[ext_resource type="Texture2D" uid="uid://cm64v6su0g5jm" path="res://library/002_gameplay_concepts/006_VFX/Noise/Voronoi.png" id="1_kyyy1"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_w5jh3"]
 operator = 2
@@ -79,11 +79,11 @@ input_name = "normal"
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_p6pek"]
-constant = -0.056
+constant = -0.217
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yc1hr"]
 expanded_output_ports = [0]
-texture = ExtResource("1_wx8qk")
+texture = ExtResource("1_kyyy1")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_kua53"]
 operator = 2
@@ -138,7 +138,7 @@ void vertex() {
 
 
 // FloatConstant:6
-	float n_out6p0 = -0.056000;
+	float n_out6p0 = -0.217000;
 
 
 // VectorOp:5
@@ -246,6 +246,7 @@ void light() {
 
 }
 "
+graph_offset = Vector2(-784.327, 198.003)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_3uxot")
 nodes/vertex/2/position = Vector2(-440, 180)
 nodes/vertex/3/node = SubResource("VisualShaderNodeVectorOp_m8qxi")
