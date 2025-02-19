@@ -6,6 +6,7 @@ class_name DropHealthLogic
 @export var slime : CharacterBody3D 
 
 
+	
 func drop_health_item(position : Vector3) -> void : 
 	if not health_item_scene or not slime:
 		return

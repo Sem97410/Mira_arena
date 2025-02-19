@@ -79,11 +79,12 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
 radius = 1.0
 
-[node name="HealthItem" type="Node3D"]
+[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("health_item_mesh")]
 script = ExtResource("1_w6eme")
+health_item_mesh = NodePath(".")
 
 [node name="Sablier" parent="." instance=ExtResource("2_qiky3")]
-transform = Transform3D(1.5, 0, 0, 0, 1.29904, -0.75, 0, 0.75, 1.29904, 0, -0.0866319, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.29904, -0.750001, 0, 0.750001, 1.29904, 0, -0.0866319, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sablier"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.107873, 0.0135775)
