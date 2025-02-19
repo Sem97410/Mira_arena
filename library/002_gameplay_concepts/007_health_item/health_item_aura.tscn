@@ -98,7 +98,6 @@ skeleton = NodePath("../..")
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524175, -0.0721864, 0.0183431)
-visible = false
 material_override = SubResource("ShaderMaterial_cmu8v")
 emitting = false
 amount = 16
