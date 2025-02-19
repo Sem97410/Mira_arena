@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	#print("Player current HP : ", player_current_hp)
-	var current_state = animation_tree.get("parameters/state/current")
+	#var current_state = animation_tree.get("parameters/state/current")
 
 	#print("Je suis dans le state : ", current_state)
 	if Input.is_action_just_pressed("debug_input"):
@@ -103,5 +103,4 @@ func player_is_blinking():
 
 func _on_test_button_pressed() -> void:
 	print("Button was pressed")
-
 	get_tree().reload_current_scene()

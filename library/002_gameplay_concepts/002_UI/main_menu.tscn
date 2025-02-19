@@ -3,24 +3,24 @@
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
-[ext_resource type="Texture2D" uid="uid://buobtefbp7cav" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Bouton_menu.png" id="4_3juol"]
+[ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
 [ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/placeholder_video.ogv" id="5_tk0sb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
-texture = ExtResource("4_3juol")
-expand_margin_left = 100.0
-expand_margin_top = 50.0
-expand_margin_right = 100.0
-expand_margin_bottom = 50.0
-modulate_color = Color(0.588235, 0.760784, 0.121569, 1)
+texture = ExtResource("5_htqbf")
+expand_margin_left = 75.0
+expand_margin_top = 25.0
+expand_margin_right = 75.0
+expand_margin_bottom = 25.0
+modulate_color = Color(1, 1, 1, 0.588235)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v30wa"]
-texture = ExtResource("4_3juol")
-expand_margin_left = 400.0
-expand_margin_top = 300.0
-expand_margin_right = 400.0
-expand_margin_bottom = 300.0
-modulate_color = Color(0.588235, 0.760784, 0.121569, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hv76e"]
+texture = ExtResource("5_htqbf")
+expand_margin_left = 300.0
+expand_margin_top = 200.0
+expand_margin_right = 300.0
+expand_margin_bottom = 200.0
+modulate_color = Color(1, 1, 1, 0.733333)
 
 [node name="MainMenu" type="Node3D"]
 
@@ -132,9 +132,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -839.87
+offset_left = -887.475
 offset_top = -214.055
-offset_right = -37.87
+offset_right = -85.475
 offset_bottom = -39.0549
 grow_horizontal = 0
 grow_vertical = 0
@@ -163,13 +163,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -557.5
-offset_top = -78.5
-offset_right = 557.5
-offset_bottom = 78.5
+offset_left = -606.5
+offset_top = -89.0
+offset_right = 606.5
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_v30wa")
+theme_override_styles/panel = SubResource("StyleBoxTexture_hv76e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuControl/Quit_game_confirmation_pannel"]
 layout_mode = 2
@@ -219,6 +219,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_right = 95
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VideoControl/VideoContainer"]
 layout_mode = 2
