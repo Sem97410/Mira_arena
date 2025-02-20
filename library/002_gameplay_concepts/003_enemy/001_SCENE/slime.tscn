@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=4 uid="uid://n8otoiwc4jji"]
+[gd_scene load_steps=27 format=4 uid="uid://n8otoiwc4jji"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/damage_stars.tscn" id="1_b1xnt"]
+[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_eyes.tres" id="1_g4m0i"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="1_gotvg"]
 [ext_resource type="PackedScene" uid="uid://dklgn8h8tshwa" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_aura.tscn" id="1_xiexu"]
+[ext_resource type="Material" uid="uid://oreftx4ips5f" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_body.tres" id="2_1va7n"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="2_7w4cx"]
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_helmet.tres" id="3_knlq3"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="4_28r52"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/enemy_death_loot.gd" id="6_juy6b"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="7_jkkg7"]
@@ -341,10 +344,13 @@ bones/2/scale = Vector3(1, 1, 1)
 [node name="body" type="MeshInstance3D" parent="Slime_002/Slime/Skeleton3D"]
 mesh = SubResource("ArrayMesh_cicrq")
 skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("1_g4m0i")
+surface_material_override/1 = ExtResource("2_1va7n")
 
 [node name="helmet" type="MeshInstance3D" parent="Slime_002/Slime/Skeleton3D"]
 mesh = SubResource("ArrayMesh_xc7lc")
 skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("3_knlq3")
 
 [node name="Aura" parent="Slime_002/Slime" instance=ExtResource("1_xiexu")]
 transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
