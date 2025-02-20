@@ -91,7 +91,7 @@ text = "Story mode"
 [node name="Arena_mode" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Story_mode")
-focus_neighbor_bottom = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Practice_mode")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
@@ -99,10 +99,21 @@ text = "Arena mode"
 icon_alignment = 1
 expand_icon = true
 
+[node name="Practice_mode" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Arena_mode")
+focus_neighbor_bottom = NodePath("../Settings")
+theme = ExtResource("2_i0oc2")
+theme_override_fonts/font = ExtResource("3_426ai")
+theme_override_font_sizes/font_size = 30
+text = "Training area"
+icon_alignment = 1
+expand_icon = true
+
 [node name="Settings" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 modulate = Color(0.415686, 0.415686, 0.415686, 1)
 layout_mode = 2
-focus_neighbor_top = NodePath("../Arena_mode")
+focus_neighbor_top = NodePath("../Practice_mode")
 focus_neighbor_bottom = NodePath("../Quit_game")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
@@ -261,6 +272,7 @@ text = "Pass the video"
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuControl" method="_on_arena_mode_button_down"]
+[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Practice_mode" to="MainMenuControl" method="_on_practice_mode_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Settings" to="MainMenuControl" method="_on_settings_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Quit_game" to="MainMenuControl" method="_on_quit_game_button_down"]
 [connection signal="button_down" from="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="MainMenuControl" method="_on_quit_game_confirmation_button_button_down"]

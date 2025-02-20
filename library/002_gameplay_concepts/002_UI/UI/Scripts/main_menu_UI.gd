@@ -82,3 +82,7 @@ func stop_video_player() -> void :
 	video_player_container.visible = false
 	self.visible = true
 	first_main_button.grab_focus()
+
+
+func _on_practice_mode_button_down() -> void:
+	get_tree().change_scene_to_file("res://practice_scene.tscn") 
