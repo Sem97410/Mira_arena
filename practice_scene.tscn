@@ -363,6 +363,21 @@ size = Vector3(4, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2h2au"]
 size = Vector3(4, 0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_4ikmc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlateforme:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0295563, 0.348601, -3.92358)]
+}
+
 [sub_resource type="Animation" id="Animation_k4fuj"]
 resource_name = "moving_plateforme_animations"
 length = 0.6
@@ -379,21 +394,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0295563, 0.348601, -3.92358), Vector3(3, 0.349, -3.924), Vector3(0, 0.349, -3.924)]
-}
-
-[sub_resource type="Animation" id="Animation_4ikmc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingPlateforme:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0295563, 0.348601, -3.92358)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_158ig"]
@@ -721,6 +721,9 @@ font_size = 150
 [node name="IndicatorPanel" parent="LightAttackZone" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9306, 0.0500002, -10.4092)
 
+[node name="MeshInstance3D2" parent="LightAttackZone/IndicatorPanel" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
+
 [node name="Label3D" parent="LightAttackZone/IndicatorPanel" index="2"]
 text = "Press X to launch
 a light attack"
@@ -778,6 +781,9 @@ font_size = 75
 
 [node name="IndicatorPanel" parent="LightAttackZone2" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49408, 0.0500002, -10.4266)
+
+[node name="MeshInstance3D2" parent="LightAttackZone2/IndicatorPanel" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
 [node name="Label3D" parent="LightAttackZone2/IndicatorPanel" index="2"]
 text = "Press Y  to launch
@@ -838,6 +844,9 @@ font_size = 75
 
 [node name="IndicatorPanel" parent="LightAttackZone3" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15819, 0.0500002, -10.4266)
+
+[node name="MeshInstance3D2" parent="LightAttackZone3/IndicatorPanel" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
 [node name="Label3D" parent="LightAttackZone3/IndicatorPanel" index="2"]
 text = "Walk over it to 
@@ -911,6 +920,9 @@ font_size = 75
 
 [node name="IndicatorPanel" parent="LightAttackZone4" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
+
+[node name="MeshInstance3D2" parent="LightAttackZone4/IndicatorPanel" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
 [node name="Label3D" parent="LightAttackZone4/IndicatorPanel" index="2"]
 text = "Press A to dash"

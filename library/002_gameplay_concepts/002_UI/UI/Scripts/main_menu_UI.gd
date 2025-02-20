@@ -64,13 +64,13 @@ func _on_story_mode_button_down() -> void:
 	#not_ready_pannel.visible = false
 	
 	self.visible = false
-	main_menu_sounds.paused()
+	#main_menu_sounds.paused()
 	video_player_container.visible = true
 	video_player.play()
 	skip_video_button.grab_focus()
 	await get_tree().create_timer(video_length).timeout
 	stop_video_player()
-	main_menu_sounds.play()
+	#main_menu_sounds.play()
 	
 
 func _on_settings_button_down() -> void:

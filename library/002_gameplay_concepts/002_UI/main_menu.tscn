@@ -276,7 +276,6 @@ text = "Pass the video"
 
 [node name="MusiqueD\'ambiance" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_eief0")
-autoplay = true
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuControl" method="_on_arena_mode_button_down"]
