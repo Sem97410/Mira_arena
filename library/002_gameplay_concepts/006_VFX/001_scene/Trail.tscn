@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://diukxqj0llno8"]
+[gd_scene load_steps=42 format=3 uid="uid://diukxqj0llno8"]
 
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_cyma5"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="2_blgmt"]
@@ -20,10 +20,10 @@ shader_parameter/ColorParameter = Color(2, 1, 0.2, 1)
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of7wn"]
 particle_flag_rotate_y = true
 emission_shape = 6
-emission_ring_axis = Vector3(1, 0, 0)
+emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
-emission_ring_radius = 2.0
-emission_ring_inner_radius = 1.0
+emission_ring_radius = 0.5
+emission_ring_inner_radius = 0.2
 angle_min = -720.0
 angle_max = 720.0
 angular_velocity_min = -360.0
@@ -33,6 +33,7 @@ damping_max = 5.0
 scale_min = 0.2
 
 [sub_resource type="QuadMesh" id="QuadMesh_w2blb"]
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gfwc"]
 render_priority = 0
@@ -145,10 +146,11 @@ curve = SubResource("Curve_y16yy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wx44o"]
 particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.5, 1, 1)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
-emission_ring_radius = 1.0
+emission_ring_radius = 0.5
 emission_ring_inner_radius = 0.5
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.23517e-06
@@ -169,20 +171,37 @@ _data = {
 "Portal": SubResource("Animation_iq4v2")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c17s8"]
+render_priority = 0
+shader = ExtResource("1_cyma5")
+shader_parameter/ColorParameter = Color(5, 1, 5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7d8y"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4mphd"]
+size = Vector2(0.1, 0.1)
+
 [node name="Trail" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549238, 0, 0.215139)
 
-[node name="Stars" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058381, 0, 0)
+[node name="Trail" type="Node3D" parent="."]
+
+[node name="Stars" type="GPUParticles3D" parent="Trail"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058381, 0, -0.259823)
 material_override = SubResource("ShaderMaterial_ef672")
-amount = 3
-lifetime = 0.5
+amount = 20
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_of7wn")
 draw_pass_1 = SubResource("QuadMesh_w2blb")
 script = ExtResource("2_blgmt")
 
-[node name="Smoke" type="GPUParticles3D" parent="."]
+[node name="Smoke" type="GPUParticles3D" parent="Trail"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00388134, 0, 0.0302207)
 visible = false
 material_override = SubResource("ShaderMaterial_1gfwc")
@@ -190,7 +209,7 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_koavv")
 draw_pass_1 = SubResource("SphereMesh_8s8v8")
 
-[node name="GPUTrail_Principal" type="GPUParticles3D" parent="."]
+[node name="GPUTrail_Principal" type="GPUParticles3D" parent="Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011847, 0, 0)
 amount = 25
 lifetime = 25.0
@@ -206,7 +225,7 @@ color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
 
-[node name="GPUTrail3D2" type="GPUParticles3D" parent="."]
+[node name="GPUTrail3D2" type="GPUParticles3D" parent="Trail"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.380125, 0.264312, -0.502132)
 amount = 25
 lifetime = 25.0
@@ -222,7 +241,7 @@ color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
 
-[node name="GPUTrail3D3" type="GPUParticles3D" parent="."]
+[node name="GPUTrail3D3" type="GPUParticles3D" parent="Trail"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.380125, 0.264312, 0.931499)
 amount = 25
 lifetime = 25.0
@@ -238,26 +257,40 @@ color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
 
-[node name="Smoke2" type="GPUParticles3D" parent="."]
+[node name="Smoke2" type="GPUParticles3D" parent="Trail"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0336486, 0, -0.133416)
 material_override = SubResource("StandardMaterial3D_xm8la")
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_j3n5v")
 draw_pass_1 = SubResource("QuadMesh_35xvk")
 
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.142659)
 strength = -128.0
 attenuation = 3.48
 directionality = 1.0
 
-[node name="Portal" type="GPUParticles3D" parent="GPUParticlesAttractorSphere3D"]
+[node name="Portal" type="GPUParticles3D" parent="Trail/GPUParticlesAttractorSphere3D"]
 material_override = SubResource("ShaderMaterial_hebft")
 amount = 3000
 process_material = SubResource("ParticleProcessMaterial_wx44o")
 draw_pass_1 = SubResource("SphereMesh_r4di4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GPUParticlesAttractorSphere3D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trail/GPUParticlesAttractorSphere3D"]
 libraries = {
 "": SubResource("AnimationLibrary_1j7s2")
 }
+
+[node name="Node3D" type="Node3D" parent="."]
+visible = false
+
+[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.778515, 0, 2.18434)
+strength = -88.55
+attenuation = 0.00315173
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D"]
+material_override = SubResource("ShaderMaterial_c17s8")
+amount = 10000
+process_material = SubResource("ParticleProcessMaterial_n7d8y")
+draw_pass_1 = SubResource("PlaneMesh_4mphd")

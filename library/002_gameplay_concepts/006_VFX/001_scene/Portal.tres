@@ -22,7 +22,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-433.289, 42.7739)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_vn5e7")
 nodes/fragment/2/position = Vector2(-20, 140)
 nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
