@@ -52,7 +52,7 @@ enum States{ 	# enum qui sert a stocker nos différent états
 
 #-----------------------------------
 #Health values
-@onready var max_hp : float = 100
+@export var max_hp : float = 100
 @onready var current_hp : float = max_hp
 @export var death_vfx : PackedScene
 @onready var is_dead : bool = false
@@ -61,6 +61,7 @@ enum States{ 	# enum qui sert a stocker nos différent états
 #Damage values
 var knockback_force: float = 30.0
 var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockback
+@export var distance_to_attack : float = 3.0
 @onready var damage_duration : float = 5
 @onready var is_damage : bool = false
 
@@ -238,7 +239,7 @@ func _attack_state() -> void:
 		var enemy_position = slime.global_position
 		var distance_to_player = player_position.distance_to(enemy_position)
 		
-		if distance_to_player > 3:
+		if distance_to_player > distance_to_attack:
 			current_state = States.CHASING
 		#else : 
 			#current_state = States.PREATTACK

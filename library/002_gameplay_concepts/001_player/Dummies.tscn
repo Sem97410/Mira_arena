@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmk2lreji2yy1"]
+[gd_scene load_steps=8 format=3 uid="uid://cmk2lreji2yy1"]
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/dummies_take_damage.gd" id="1_87xf1"]
+[ext_resource type="PackedScene" uid="uid://oohgno4eg0qm" path="res://library/002_gameplay_concepts/003_enemy/000_FBX/Slime_002.fbx" id="2_3fam6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5neoq"]
 radius = 0.7
@@ -19,27 +20,35 @@ height = 0.2
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
 
 [node name="TakeDamage" type="Node" parent="."]
 script = ExtResource("1_87xf1")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0309908, 0)
 shape = SubResource("CapsuleShape3D_5neoq")
 
+[node name="Slime_002" parent="." instance=ExtResource("2_3fam6")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.78811, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.47382, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_b6tls")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168448, -0.284679, -0.463806)
+visible = false
 material_override = SubResource("StandardMaterial3D_utk2f")
 mesh = SubResource("CapsuleMesh_404i6")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150758, -0.284679, -0.463806)
+visible = false
 material_override = SubResource("StandardMaterial3D_utk2f")
 mesh = SubResource("CapsuleMesh_404i6")
 

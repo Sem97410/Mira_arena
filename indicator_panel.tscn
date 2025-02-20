@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://b228mxm8xi1lf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvvag"]
+albedo_color = Color(0.403329, 0.73602, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dlnms"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="TorusMesh" id="TorusMesh_tyy17"]
+rings = 3
+
+[sub_resource type="Animation" id="Animation_xnpak"]
+resource_name = "BaseAnimation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.14159, 0, 0), Vector3(-3.14159, 3.14159, 0), Vector3(-3.14159, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.687973, -0.0666072), Vector3(0, 0.887314, -0.0666072), Vector3(0, 0.688, -0.067)]
+}
+
+[sub_resource type="Animation" id="Animation_trku3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.14159, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.687973, -0.0666072)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5cea"]
+_data = {
+"BaseAnimation": SubResource("Animation_xnpak"),
+"RESET": SubResource("Animation_trku3")
+}
+
+[node name="IndicatorPanel" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lvvag")
+mesh = SubResource("SphereMesh_dlnms")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.687973, -0.0666072)
+material_override = SubResource("StandardMaterial3D_lvvag")
+mesh = SubResource("TorusMesh_tyy17")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61962, 0)
+billboard = 1
+text = "Ceci est un message"
+font_size = 70
+outline_size = 27
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r5cea")
+}
+autoplay = "BaseAnimation"

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var max_hp : float = 200
+@onready var max_hp : float = 200000
 
 @onready var current_hp : float = max_hp
 
@@ -54,6 +54,7 @@ func take_damage(damage : float) -> void :
 	#print("Damage is : ", damage)
 	current_hp -= damage
 	#print("Dummies hp : ", current_hp)
+	print("Dummies is taking damages")
 	
 	knockback()
 	
