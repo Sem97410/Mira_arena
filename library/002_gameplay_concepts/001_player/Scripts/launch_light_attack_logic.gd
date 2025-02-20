@@ -33,12 +33,16 @@ class_name LightAttackAnimationScript
 func _ready() -> void:
 	mira_game_master.player_use_light_attack.connect(launch_light_attack)
 
-#func _process(delta: float) -> void:
-	#
+func _process(delta: float) -> void:
+	
 	#if Input.is_action_just_pressed("light_attack"):
 	#
 		#launch_light_attack()
-	
+	if Input.is_action_just_pressed("Debug_2") : 
+		print("Debug 2")
+		base_state_machine.travel("Attack_Charge")
+	#else: 
+		#base_state_machine.stop()
 
 func launch_light_attack() -> void : 
 	
