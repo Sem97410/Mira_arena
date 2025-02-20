@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cjg1inb63m6bd"]
+[gd_scene load_steps=27 format=4 uid="uid://cjg1inb63m6bd"]
 
 [ext_resource type="ArrayMesh" uid="uid://dkq68hpueldil" path="res://library/002_gameplay_concepts/008_level_system/003_asset/ressource/grass_3.tres" id="1_gog4v"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_242gi"]
 [ext_resource type="Texture2D" uid="uid://c5brqoww048dq" path="res://library/002_gameplay_concepts/008_level_system/003_asset/texture/Substance_graph_normal.png" id="6_bbc0o"]
 [ext_resource type="PackedScene" uid="uid://bymvvlfbsnbsc" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tscn" id="6_mp4l7"]
+[ext_resource type="AudioStream" uid="uid://dqbv64topje7a" path="res://library/002_gameplay_concepts/009_SFX/Musique d'ambiance .wav" id="8_324bn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4c7sc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -683,3 +684,8 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 25.741
 
 [node name="Portal4" parent="." instance=ExtResource("6_mp4l7")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -26.7153, 0.898466, -0.00592113)
+
+[node name="MusiqueD\'ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_324bn")
+volume_db = -10.0
+autoplay = true

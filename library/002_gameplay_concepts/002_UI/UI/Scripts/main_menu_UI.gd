@@ -22,9 +22,7 @@ extends Control
 @export var skip_video_button : Button
 @export var video_length : float = 114.0
 
-#-----------------
-#SOUNDS
-@export var main_menu_sounds : AudioStream
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
