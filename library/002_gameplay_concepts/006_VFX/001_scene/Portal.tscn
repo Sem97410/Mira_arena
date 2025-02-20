@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://bymvvlfbsnbsc"]
+
+[ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_hj780"]
+[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="2_ae0et"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_bpnal"]
+[ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="11_kx46q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hebft"]
+render_priority = 0
+shader = ExtResource("11_kx46q")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_7dtps"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p3js6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_c2m0o"]
+_data = [Vector2(0, 1), 0.0, -1.25275, 0, 0, Vector2(1, 0), -0.593407, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uj6oq"]
+curve_x = SubResource("Curve_7dtps")
+curve_y = SubResource("Curve_p3js6")
+curve_z = SubResource("Curve_c2m0o")
+
+[sub_resource type="Curve" id="Curve_y16yy"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fwlhg"]
+curve = SubResource("Curve_y16yy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wx44o"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.8
+emission_ring_inner_radius = 0.5
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.499998
+tangential_accel_curve = SubResource("CurveTexture_fwlhg")
+scale_min = 0.1
+scale_curve = SubResource("CurveXYZTexture_uj6oq")
+color = Color(5, 1, 6, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_r4di4"]
+radius = 0.01
+height = 0.02
+
+[sub_resource type="Animation" id="Animation_iq4v2"]
+resource_name = "Portal"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1j7s2"]
+_data = {
+"Portal": SubResource("Animation_iq4v2")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jaei"]
+render_priority = 0
+shader = ExtResource("2_ae0et")
+shader_parameter/distortionView = 0.03
+shader_parameter/speedView = 0.535
+shader_parameter/tintColor = Color(0.476393, 0.23094, 0.649121, 1)
+shader_parameter/fesnelAmount = 3.8
+shader_parameter/distortionVertex = 0.08
+shader_parameter/speedVertex = 0.5
+shader_parameter/noiseViewX = ExtResource("3_bpnal")
+shader_parameter/noiseViewY = ExtResource("3_bpnal")
+shader_parameter/noiseVertex = ExtResource("3_bpnal")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8hodq"]
+radius = 0.6
+height = 1.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c17s8"]
+render_priority = 0
+shader = ExtResource("1_hj780")
+shader_parameter/ColorParameter = Color(5, 1, 5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7d8y"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4mphd"]
+size = Vector2(0.1, 0.1)
+
+[node name="Trail" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549238, 0, 0.215139)
+
+[node name="Portal" type="Node3D" parent="."]
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.228317)
+strength = 42.48
+attenuation = 3.48
+directionality = 1.0
+
+[node name="Portal" type="GPUParticles3D" parent="Portal/GPUParticlesAttractorSphere3D"]
+material_override = SubResource("ShaderMaterial_hebft")
+amount = 6000
+process_material = SubResource("ParticleProcessMaterial_wx44o")
+draw_pass_1 = SubResource("SphereMesh_r4di4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Portal/GPUParticlesAttractorSphere3D"]
+libraries = {
+"": SubResource("AnimationLibrary_1j7s2")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.295542, 0, 0, -0.261628)
+material_override = SubResource("ShaderMaterial_1jaei")
+mesh = SubResource("SphereMesh_8hodq")
+
+[node name="Node3D" type="Node3D" parent="."]
+visible = false
+
+[node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.778515, 0, 2.18434)
+strength = -88.55
+attenuation = 0.00315173
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D"]
+material_override = SubResource("ShaderMaterial_c17s8")
+amount = 10000
+process_material = SubResource("ParticleProcessMaterial_n7d8y")
+draw_pass_1 = SubResource("PlaneMesh_4mphd")
