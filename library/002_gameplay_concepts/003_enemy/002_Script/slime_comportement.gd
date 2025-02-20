@@ -214,7 +214,7 @@ func _attack_state() -> void:
 	if not is_attacking and not is_damage:# si il n'est pas en train d'ataquer
 		#print("in attack state")
 		animation_player.play("Slime|Charge")#joue l'animation d'attaque
-		attack_cool_down = 6# le cool down est égal a 0.5 milliseconde
+		attack_cool_down = 10# le cool down est égal a 0.5 milliseconde
 		is_attacking = true	# il est en train d'attaquerAttends explique mieux
 		#print("Launch attack")
 		start_dash()
