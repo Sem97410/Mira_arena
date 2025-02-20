@@ -27,8 +27,8 @@ var charged_attack_damage : float
 
 func _ready() -> void:
 	#enable_light_attack_area()
-	light_attack_damage = (100.0 / 3.0) + 1.0 #kill a basic enemy in 3 hits
-	charged_attack_damage = 100
+	light_attack_damage = 50.0 #kill a basic enemy in 3 hits
+	charged_attack_damage = 100.0
 	#print("Light attack damage : ", light_attack_damage)
 	#print("Charged attack damage : ", charged_attack_damage)
 

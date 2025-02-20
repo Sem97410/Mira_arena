@@ -67,7 +67,7 @@ var knockback_velocity: Vector3 = Vector3.ZERO  # Stocker la vitesse du knockbac
 
 #-----------------------------------
 #Hit values
-@onready var basic_slime_damage : float = 10.0
+@onready var basic_slime_damage : float = 35.0
 
 
 	

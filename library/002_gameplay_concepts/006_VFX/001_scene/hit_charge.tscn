@@ -208,10 +208,10 @@ tracks/14/path = NodePath("HitGround2:blend_shapes/Shrinkwrap")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0.35, 0.55, 0.72, 0.95, 1.85),
+"times": PackedFloat32Array(0.35, 0.55, 0.72, 1.85, 2.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.0, 1.0, -1.0, -0.69079, -0.49296]
+"values": [1.0, 1.0, -1.0, -0.49296, -0.69079]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -819,7 +819,7 @@ draw_pass_1 = SubResource("QuadMesh_87upm")
 texture_albedo = ExtResource("10_dg3u4")
 texture_emission = ExtResource("11_xjhn1")
 emission_energy = 0.0
-modulate = Color(0.348905, 0.598838, 0.156781, 1)
+modulate = Color(0.603528, 0.384946, 0.889849, 1)
 
 [node name="DestroyVFX" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
 script = ExtResource("11_i23s1")
