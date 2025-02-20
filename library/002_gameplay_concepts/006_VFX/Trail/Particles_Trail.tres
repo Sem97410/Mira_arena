@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="1_qydju"]
 [ext_resource type="Texture2D" uid="uid://c1xht7a5v0mdq" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fire_2.png" id="2_lrai8"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_qcb41"]
-[ext_resource type="Texture2D" uid="uid://3fi2u1f3gjjq" path="res://library/002_gameplay_concepts/006_VFX/Noise/NicePng_smoke-texture-png_4373200.png" id="4_joaka"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_k2rd2"]
 parameter_name = "ColorParameter"
@@ -35,9 +34,11 @@ texture = ExtResource("3_qcb41")
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_be7eo"]
 operator = 2
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g8jvs"]
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q7xpg"]
 expanded_output_ports = [0]
-texture = ExtResource("4_joaka")
+texture = SubResource("CompressedTexture2D_g8jvs")
 
 [resource]
 code = "shader_type spatial;

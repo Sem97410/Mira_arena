@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://diukxqj0llno8"]
+[gd_scene load_steps=39 format=3 uid="uid://diukxqj0llno8"]
 
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_cyma5"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="2_blgmt"]
@@ -7,9 +7,10 @@
 [ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="5_adr72"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="6_aavio"]
 [ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="7_sm6t8"]
-[ext_resource type="Texture2D" uid="uid://tgptdu01glr3" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Glitch.png" id="8_7d3bc"]
+[ext_resource type="Texture2D" uid="uid://bmxmlvj77h8xm" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed_2.png" id="8_42drb"]
 [ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="9_6b1vb"]
-[ext_resource type="Texture2D" uid="uid://dmmoo0d3m0oyq" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed.png" id="10_1stre"]
+[ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_particle_sprite_smoke.png" id="10_8ba5e"]
+[ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="11_e7qsl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ef672"]
 render_priority = 0
@@ -72,15 +73,104 @@ shader = ExtResource("5_adr72")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/flags = 40
-shader_parameter/tex = ExtResource("8_7d3bc")
+shader_parameter/tex = ExtResource("8_42drb")
 shader_parameter/color_ramp = ExtResource("6_aavio")
 shader_parameter/curve = ExtResource("7_sm6t8")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ms515"]
 material = SubResource("ShaderMaterial_3rxej")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm8la"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_8ba5e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_4wsvj"]
+offsets = PackedFloat32Array(0.1, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.117703, 3.03705e-05, 0.141661, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dppll"]
+gradient = SubResource("Gradient_4wsvj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j3n5v"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.5
+emission_ring_inner_radius = 0.0
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_dppll")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_35xvk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hebft"]
+render_priority = 0
+shader = ExtResource("11_e7qsl")
+shader_parameter/ColorParameter = Color(1.621, 0, 9.729, 1)
+
+[sub_resource type="Curve" id="Curve_7dtps"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p3js6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_c2m0o"]
+_data = [Vector2(0, 1), 0.0, -1.25275, 0, 0, Vector2(1, 0), -0.593407, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uj6oq"]
+curve_x = SubResource("Curve_7dtps")
+curve_y = SubResource("Curve_p3js6")
+curve_z = SubResource("Curve_c2m0o")
+
+[sub_resource type="Curve" id="Curve_y16yy"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fwlhg"]
+curve = SubResource("Curve_y16yy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wx44o"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.5
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.499998
+tangential_accel_curve = SubResource("CurveTexture_fwlhg")
+scale_min = 0.1
+scale_curve = SubResource("CurveXYZTexture_uj6oq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_r4di4"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="Animation" id="Animation_iq4v2"]
+resource_name = "Portal"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1j7s2"]
+_data = {
+"Portal": SubResource("Animation_iq4v2")
+}
+
 [node name="Trail" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14617, 0, 0.0479423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549238, 0, 0.215139)
 
 [node name="Stars" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058381, 0, 0)
@@ -94,6 +184,7 @@ script = ExtResource("2_blgmt")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00388134, 0, 0.0302207)
+visible = false
 material_override = SubResource("ShaderMaterial_1gfwc")
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_koavv")
@@ -110,7 +201,7 @@ draw_pass_1 = SubResource("QuadMesh_ms515")
 script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("10_1stre")
+texture = ExtResource("8_42drb")
 color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
@@ -126,7 +217,7 @@ draw_pass_1 = SubResource("QuadMesh_ms515")
 script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("8_7d3bc")
+texture = ExtResource("8_42drb")
 color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
@@ -142,7 +233,31 @@ draw_pass_1 = SubResource("QuadMesh_ms515")
 script = ExtResource("9_6b1vb")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("8_7d3bc")
+texture = ExtResource("8_42drb")
 color_ramp = ExtResource("6_aavio")
 curve = ExtResource("7_sm6t8")
 _defaults_have_been_set = true
+
+[node name="Smoke2" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0336486, 0, -0.133416)
+material_override = SubResource("StandardMaterial3D_xm8la")
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_j3n5v")
+draw_pass_1 = SubResource("QuadMesh_35xvk")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.142659)
+strength = -128.0
+attenuation = 3.48
+directionality = 1.0
+
+[node name="Portal" type="GPUParticles3D" parent="GPUParticlesAttractorSphere3D"]
+material_override = SubResource("ShaderMaterial_hebft")
+amount = 3000
+process_material = SubResource("ParticleProcessMaterial_wx44o")
+draw_pass_1 = SubResource("SphereMesh_r4di4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GPUParticlesAttractorSphere3D"]
+libraries = {
+"": SubResource("AnimationLibrary_1j7s2")
+}
