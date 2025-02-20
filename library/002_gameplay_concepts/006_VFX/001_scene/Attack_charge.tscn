@@ -22,7 +22,7 @@ shader_parameter/Opacity = Vector2(0.085, 0)
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_40qn7")
 shader = ExtResource("2_anjca")
-shader_parameter/ColorParameter = Color(1, 11.351, 1, 1)
+shader_parameter/ColorParameter = Color(0.5, 0, 6.5, 1)
 shader_parameter/Speed = Vector2(3, 0)
 shader_parameter/Opacity = Vector2(0.62, 0)
 
@@ -30,7 +30,7 @@ shader_parameter/Opacity = Vector2(0.62, 0)
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_lvyt6")
 shader = ExtResource("3_xmhqe")
-shader_parameter/ColorParameter = Color(0, 7.567, 1.081, 1)
+shader_parameter/ColorParameter = Color(0.5, 0, 6.5, 1)
 shader_parameter/Speed = Vector2(1.775, 0.5)
 shader_parameter/Opacity = Vector2(0.785, 0)
 
@@ -219,7 +219,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2tmtw"]
 render_priority = 0
 shader = ExtResource("5_rx0ei")
-shader_parameter/ColorParameter = Color(1.081, 2.703, 1.622, 1)
+shader_parameter/ColorParameter = Color(2, 1, 3.784, 1)
 shader_parameter/Trail_Speed = Vector2(0.5, 2)
 
 [sub_resource type="Curve" id="Curve_neyex"]
@@ -237,7 +237,7 @@ scale_curve = SubResource("CurveTexture_gy0ll")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ndr41"]
 render_priority = 0
 shader = ExtResource("7_cw1hd")
-shader_parameter/ColorParameter = Color(1, 4, 1.5, 1)
+shader_parameter/ColorParameter = Color(4, 0, 9, 1)
 shader_parameter/Trail_Speed = Vector2(4, 0)
 shader_parameter/Vector2Parameter = Vector2(1.63, 0)
 
@@ -248,7 +248,7 @@ render_priority = 0
 shader = ExtResource("8_0oqbn")
 shader_parameter/distortionView = 0.3
 shader_parameter/speedView = 1.0
-shader_parameter/tintColor = Color(0.78, 1.622, 0.993, 1)
+shader_parameter/tintColor = Color(0.5, 0, 6.5, 1)
 shader_parameter/fesnelAmount = 5.0
 shader_parameter/distortionVertex = 0.15
 shader_parameter/speedVertex = 0.545

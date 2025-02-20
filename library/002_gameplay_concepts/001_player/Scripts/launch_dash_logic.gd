@@ -54,8 +54,15 @@ var destination_target : Vector3 #End of the dash
 @export var spawn_count: int = 5  
 @export var spawn_interval: float = 0.1  
 var previous_positions: Array = []  # Stocke les anciennes positions du joueur
-#----------------------------------
 
+# -----------------
+#Trail VFX
+@export_category("TrailVFX")
+@export var dash_vfx : PackedScene
+@export var player_mesh : Node3D
+var active_trails = []
+
+#----------------------------------
 func _ready() -> void:
 	mira_game_master.player_use_dash.connect(initiate_dash)
 
@@ -107,7 +114,7 @@ func start_dash():
 func execute_dash():
 	
 	if start_time > 0 : #Activate the dash only if start_time is superior to 0
-
+		#enable_dash_vfx()
 		var t : float =  ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
 		
 		#Time.get_ticks_msec() - start_time 									-> Elapsed time since the start of the dash (in milliseconds)
@@ -132,6 +139,7 @@ func execute_dash():
 		#cube.move_and_slide()
 		if t >= 1 or coll :
 			start_time = 0
+			#disable_dash_vfx()
 
 
 #----------------------------------
@@ -210,3 +218,25 @@ func launch_after_images() -> void :
 		# Garde seulement les X dernières positions
 		if previous_positions.size() > spawn_count:
 			previous_positions.pop_front()
+			
+#----------------------------------
+## DASH VFX
+
+#func enable_dash_vfx() -> void : 
+	##player_mesh.visible = false
+	##dash_vfx.visible = true
+	##var new_trail = dash_vfx.instantiate()
+	##new_trail.global_transform = player.global_transform
+	##get_tree().root.add_child(new_trail)
+	##active_trails.append(new_trail)
+	#player_mesh.visible = false
+	#
+	   ##var new_trail = dash_trail_scene.instantiate()
+	##new_trail.global_transform = global_transform
+	##get_tree().root.add_child(new_trail)
+	##active_trails.append(new_trail)
+	##player_mesh.visible = false
+	#
+#func disable_dash_vfx() -> void : 
+	#player_mesh.visible = true
+	##dash_vfx.visible = false

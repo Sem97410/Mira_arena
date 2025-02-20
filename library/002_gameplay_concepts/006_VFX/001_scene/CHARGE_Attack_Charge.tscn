@@ -11,7 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g5y5"]
 render_priority = 0
 shader = ExtResource("1_khjib")
-shader_parameter/ColorParameter = Color(0, 9, 0.5, 1)
+shader_parameter/ColorParameter = Color(0.5, 0, 6.5, 1)
 shader_parameter/Speed = Vector2(0, 0)
 shader_parameter/Spawn = Vector2(0, -0.605)
 
@@ -26,7 +26,7 @@ shader_parameter/Spawn = Vector2(0, -1.75)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5y40f"]
 render_priority = 0
 shader = ExtResource("2_ajyfn")
-shader_parameter/ColorParameter = Color(1, 5, 1, 1)
+shader_parameter/ColorParameter = Color(0.5, 0, 6, 1)
 shader_parameter/Speed = Vector2(0, 1)
 shader_parameter/Spawn = Vector2(0, 0.11)
 
@@ -314,7 +314,7 @@ render_priority = 0
 shader = ExtResource("5_ph1xs")
 shader_parameter/distortionView = 0.02
 shader_parameter/speedView = 0.36
-shader_parameter/tintColor = Color(0.110022, 0.323765, 0.171572, 1)
+shader_parameter/tintColor = Color(0.321614, 0.165761, 0.544243, 1)
 shader_parameter/fesnelAmount = 4.7
 shader_parameter/distortionVertex = 0.18
 shader_parameter/speedVertex = 0.4
@@ -327,7 +327,7 @@ render_priority = 0
 shader = ExtResource("5_ph1xs")
 shader_parameter/distortionView = 0.3
 shader_parameter/speedView = 1.0
-shader_parameter/tintColor = Color(0.338875, 0.713638, 0.279485, 1)
+shader_parameter/tintColor = Color(0.314564, 0.136044, 0.502658, 1)
 shader_parameter/fesnelAmount = 0.0
 shader_parameter/distortionVertex = 0.0
 shader_parameter/speedVertex = 1.0

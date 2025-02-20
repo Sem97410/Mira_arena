@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_820sr"]
 render_priority = 0
 shader = ExtResource("1_q6pen")
-shader_parameter/Color = Color(4, 14, 4, 1)
+shader_parameter/Color = Color(5, 2, 10, 1)
 shader_parameter/Gradient_1_Slider = -0.325
 shader_parameter/Gradient_2_Slider = -0.055
 
@@ -17,7 +17,7 @@ shader_parameter/Gradient_2_Slider = -0.055
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_820sr")
 shader = ExtResource("2_e7oof")
-shader_parameter/Color = Color(5, 8, 5, 1)
+shader_parameter/Color = Color(4, 4, 7, 1)
 shader_parameter/Gradient_1_Slider = -0.175
 shader_parameter/Gradient_2_Slider = 0.42
 
@@ -25,7 +25,7 @@ shader_parameter/Gradient_2_Slider = 0.42
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_a1q31")
 shader = ExtResource("3_wmr0w")
-shader_parameter/Color = Color(0.8, 4, 0, 1)
+shader_parameter/Color = Color(0.8, 0, 4, 1)
 shader_parameter/Gradient_1_Slider = 0.825
 shader_parameter/Gradient_2_Slider = -0.07
 
