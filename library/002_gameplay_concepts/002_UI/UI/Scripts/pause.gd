@@ -2,13 +2,15 @@ extends Control
 #------------------------------
 #REFERENCES
 #------------------------------
-@onready var first_button : Button = $Buttons_container/Resume
+@onready var first_button : Button = $Buttons_container/Reload
 @onready var pause_buttons_container : VBoxContainer = $Buttons_container
 
 @onready var is_pause_panel_activated : bool = false
 @onready var is_confirmation_quit_pannel_activated : bool = false
 
 @onready var not_ready_label : Label = $NotReadyLabel
+
+@export var health_script : HealthSystem
 
 #------------------------------
 
@@ -33,13 +35,13 @@ func _ready() -> void:
 		self.visible = false
 		get_tree().paused = false
 		
-		print("Test en début de partie")
+		#print("Test en début de partie")
 		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause_game"):
+	if Input.is_action_just_pressed("pause_game") and  health_script.is_alive:
 		print("Pause game was clicked")
 		toggle_pause_pannel()
 

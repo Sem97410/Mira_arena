@@ -22,6 +22,8 @@ class_name HealthSystem
 @export var test_button : Button
 
 @export var health_bar : ProgressBar
+@export var death_pannel : Control
+@export var death_pannel_first_button : Button
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -73,8 +75,8 @@ func death() -> void :
 	is_alive = false
 	#for action in InputMap.get_actions():
 		#InputMap.action_erase_events(action)
-	
-	test_button.grab_focus()
+	death_pannel.visible = true
+	#test_button.grab_focus()
 	movement_script.can_move = false
 	
 	#await get_tree().create_timer(0.1).timeout
@@ -82,6 +84,7 @@ func death() -> void :
 	#animation_tree.active = false
 	#animation_player.play("Death")
 	
+	death_pannel_first_button.grab_focus()
 	
 	
 	

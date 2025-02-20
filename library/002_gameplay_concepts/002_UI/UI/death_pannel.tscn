@@ -1,0 +1,265 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ixunb8xu2s2"]
+
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="1_1e1hc"]
+[ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="2_nmhds"]
+[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="3_34vej"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="4_fh1jj"]
+
+[node name="death_pannel" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_1e1hc")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGroundClockImage" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_nmhds")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -56.5
+offset_right = 48.0
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Reload" type="Button" parent="Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Main menu")
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 56
+text = "Try again"
+
+[node name="Main menu" type="Button" parent="Buttons_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Reload")
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 56
+text = "Main menu"
+
+[node name="Quit game" type="Button" parent="Buttons_container"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 56
+text = "Quit game"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Pause text" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fh1jj")
+theme_override_font_sizes/font_size = 96
+text = "Game over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.425
+offset_top = -118.5
+offset_right = 306.575
+offset_bottom = 131.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReloadConfirmationPannel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ConfirmationText" type="Label" parent="ReloadConfirmationPannel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fh1jj")
+theme_override_font_sizes/font_size = 40
+text = "Are you sure that you want to reload this level? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="ReloadConfirmationPannel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 185
+alignment = 1
+
+[node name="YesButton" type="Button" parent="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(548.33, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.165
+offset_top = -197.795
+offset_right = 274.165
+offset_bottom = 102.205
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="MainMenuConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fh1jj")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure you want to go back to the main menu? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="MainMenuConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 210
+alignment = 1
+
+[node name="YesButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -202.0
+offset_right = 302.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="QuitConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fh1jj")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure that you want to quit? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="QuitConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 215
+alignment = 1
+
+[node name="YesButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_34vej")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="NotReadyLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -46.0
+offset_right = 211.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_fh1jj")
+theme_override_font_sizes/font_size = 45
+text = "Not available yet ...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="Buttons_container/Reload" to="." method="_on_reload_button_down"]
+[connection signal="button_down" from="Buttons_container/Main menu" to="." method="_on_main_menu_button_down"]
+[connection signal="button_down" from="Buttons_container/Quit game" to="." method="_on_quit_game_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="." method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="." method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="." method="_on_yes_button_button_down"]
+[connection signal="button_down" from="QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="." method="_on_no_button_button_down"]

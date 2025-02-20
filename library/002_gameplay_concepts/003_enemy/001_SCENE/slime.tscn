@@ -365,7 +365,7 @@ shape = SubResource("SphereShape3D_acknh")
 [node name="EnemyDeathLoot" type="Node" parent="." node_paths=PackedStringArray("slime")]
 script = ExtResource("6_juy6b")
 health_item_scene = ExtResource("7_jkkg7")
-drop_chance = 0.05
+drop_chance = 0.02
 slime = NodePath("..")
 
 [node name="SlimeComportement" type="Node" parent="." node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
