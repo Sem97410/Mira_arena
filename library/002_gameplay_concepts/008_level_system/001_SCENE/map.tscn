@@ -86,9 +86,8 @@ size = Vector3(1, 1.00342, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qeo35"]
 
-[node name="Map" type="Node3D" node_paths=PackedStringArray("player_body")]
+[node name="Map" type="Node3D"]
 script = ExtResource("1_u4vkr")
-player_body = NodePath("")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 1.70106, 0)
