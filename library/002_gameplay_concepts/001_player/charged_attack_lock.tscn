@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0qnfixy3aaum"]
+
+[ext_resource type="Shader" uid="uid://dj7rqboo47u8s" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_Fleche.tres" id="1_6l60h"]
+[ext_resource type="Shader" uid="uid://61vlrj1vhsgl" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_lock.tres" id="2_ksp0i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtoy7"]
+render_priority = 0
+shader = ExtResource("1_6l60h")
+shader_parameter/ColorParameter = Color(100, 5, 5, 1)
+shader_parameter/Trail_Speed = Vector2(-1, 0)
+shader_parameter/Vector2Parameter = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4w05"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_xtoy7")
+shader = ExtResource("2_ksp0i")
+shader_parameter/ColorParameter = Color(0.908558, 0.477717, 1, 1)
+shader_parameter/Trail_Speed = Vector2(-1, 0)
+shader_parameter/Vector2Parameter = Vector2(0.535, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nikyv"]
+size = Vector2(20, 1.5)
+center_offset = Vector3(10, 0, 0)
+
+[sub_resource type="Animation" id="Animation_mkjb8"]
+resource_name = "Enemy_lock"
+length = 2.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lock:material_override:shader_parameter/Vector2Parameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.04, 0), Vector2(0.0399998, 0), Vector2(0.63, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lock:material_override:next_pass:shader_parameter/Vector2Parameter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.235, 0), Vector2(-0.26, 0), Vector2(0.1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lock:material_override:next_pass:shader_parameter/Trail_Speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, 0), Vector2(-1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lafj7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lock:material_override:shader_parameter/Vector2Parameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.535, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lock:material_override:next_pass:shader_parameter/Vector2Parameter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lock:material_override:next_pass:shader_parameter/Trail_Speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxhvd"]
+_data = {
+"Enemy_lock": SubResource("Animation_mkjb8"),
+"RESET": SubResource("Animation_lafj7")
+}
+
+[node name="Lock" type="Node3D"]
+
+[node name="Lock" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_g4w05")
+mesh = SubResource("PlaneMesh_nikyv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fxhvd")
+}
+autoplay = "Enemy_lock"

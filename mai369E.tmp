@@ -71,12 +71,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 1, -2.25558)
 
 [node name="TakeDamage" parent="CharacterBody3D" index="0" groups=["enemy"]]
 
-[node name="CharacterBody3D2" parent="." instance=ExtResource("2_uklt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634228, 3, -2.25558)
-
 [node name="Spawner" parent="." instance=ExtResource("3_f6gm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7542, 0, 0)
-max_enemies = 10.0
 
 [node name="Enemy_game_logic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 script = ExtResource("4_242gi")
@@ -102,4 +98,3 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [editable path="CharacterBody3D"]
-[editable path="CharacterBody3D2"]

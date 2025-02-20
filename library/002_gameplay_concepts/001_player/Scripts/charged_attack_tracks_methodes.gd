@@ -2,12 +2,14 @@ extends Node
 
 @export var charged_attack_sound : AudioStreamPlayer
 
-@export var charge_attack_broom_dash_vfx : Node3D
+#@export var charge_attack_broom_dash_vfx : Node3D
 @export var charge_attack_charging : Node3D
-@export var charge_attack_impact : Node3D
-@export var charge_attack_impact_animation_player : AnimationPlayer
+#@export var charge_attack_impact : Node3D
+#@export var charge_attack_impact_animation_player : AnimationPlayer
 
-
+#@export var game_master : MiraGameMaster
+@export var charge_attack_lock_mesh : Node3D
+@export var movement_script : PlayerMovementScript
 
 
 func charged_attack_sfx() -> void : 
@@ -18,3 +20,19 @@ func enable_charge_attack_charging_vfx() -> void :
 
 func disable_charge_attack_charging_vfx() -> void : 
 	charge_attack_charging. visible = false
+
+
+func enable_charge_attack_mode() -> void : 
+	#print("Test")
+	movement_script.can_move = false
+	movement_script.charge_attack_mode = true
+	
+func disable_charge_attack_mode() -> void : 
+	movement_script.can_move = true
+	movement_script.charge_attack_mode = false
+
+func enable_charge_attack_lock_mesh() -> void : 
+	charge_attack_lock_mesh.visible = true
+
+func disable_charge_attack_lock_mesh() -> void : 
+	charge_attack_lock_mesh.visible = false

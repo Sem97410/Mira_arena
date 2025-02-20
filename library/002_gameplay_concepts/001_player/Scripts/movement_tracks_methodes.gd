@@ -5,6 +5,13 @@ extends Node
 @export var vfx_scene : PackedScene
 @export var movement_vfx_storage : Node
 
+
+@onready var rotation_speed : float = 5.0
+var direction_vector_input: Vector2
+#
+#func _ready() -> void:
+	#game_master.player_use_charged_attack.connect(launch_charge_attack_mode)
+	
 func enable_movement() -> void : 
 	movement_script.can_move = true
 	
