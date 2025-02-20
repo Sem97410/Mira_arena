@@ -28,6 +28,7 @@ class_name HealthSystem
 func _ready() -> void:
 	animation_tree.active = true
 	health_bar.init_health(player_max_hp)
+	Engine.time_scale = 1.0
 
 	
 func _process(_delta: float) -> void:
@@ -85,6 +86,9 @@ func death() -> void :
 	#animation_player.play("Death")
 	
 	death_pannel_first_button.grab_focus()
+	
+	await get_tree().create_timer(0.5).timeout
+	Engine.time_scale = 0.0
 	
 	
 	

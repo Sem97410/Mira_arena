@@ -129,19 +129,19 @@ shape = SubResource("BoxShape3D_ijcf7")
 
 [node name="Spawner" parent="." instance=ExtResource("3_f6gm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8957, 0, 0)
-max_enemies = 1.0
+max_enemies = 25.0
 
 [node name="Spawner2" parent="." instance=ExtResource("3_f6gm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.344361, 0, 25.8329)
-max_enemies = 1.0
+max_enemies = 25.0
 
 [node name="Spawner3" parent="." instance=ExtResource("3_f6gm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9636, 0, -0.114197)
-max_enemies = 1.0
+max_enemies = 25.0
 
 [node name="Spawner4" parent="." instance=ExtResource("3_f6gm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.260944, 0, -27.3485)
-max_enemies = 1.0
+max_enemies = 25.0
 
 [node name="Enemy_game_logic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 script = ExtResource("4_242gi")
