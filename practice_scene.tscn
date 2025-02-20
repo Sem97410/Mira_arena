@@ -915,43 +915,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
 [node name="Label3D" parent="LightAttackZone4/IndicatorPanel" index="2"]
 text = "Press A to dash"
 
-[node name="MovingPlateforme" type="Node3D" parent="LightAttackZone4/IndicatorPanel"]
+[node name="MovingPlateforme" type="Node3D" parent="LightAttackZone4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
 
-[node name="MovingPlateforme" type="MeshInstance3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme"]
+[node name="MovingPlateforme" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0295563, 0.348601, -3.92358)
 material_override = SubResource("StandardMaterial3D_j4e2t")
 mesh = SubResource("BoxMesh_kims7")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MovingPlateforme"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MovingPlateforme"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MovingPlateforme/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MovingPlateforme/StaticBody3D"]
 shape = SubResource("BoxShape3D_2h2au")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LightAttackZone4/MovingPlateforme"]
 libraries = {
 "": SubResource("AnimationLibrary_158ig")
 }
 autoplay = "moving_plateforme_animations"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
 transform = Transform3D(-5.78823e-08, 0, 3.84569, 0, 1, 0, -1.32419, 0, -1.68101e-07, 0, 0, -5.42012)
 material_override = SubResource("StandardMaterial3D_mbvxb")
 mesh = SubResource("BoxMesh_enyvx")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
 transform = Transform3D(-5.78823e-08, 0, 3.84569, 0, 1, 0, -1.32419, 0, -1.68101e-07, 6.14063, 0, -5.42012)
 material_override = SubResource("StandardMaterial3D_mbvxb")
 mesh = SubResource("BoxMesh_enyvx")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/IndicatorPanel/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
 [connection signal="area_entered" from="Slime/Area3D" to="Slime/SlimeComportement" method="_on_area_3d_area_entered"]

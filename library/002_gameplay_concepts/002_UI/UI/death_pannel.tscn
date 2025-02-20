@@ -63,6 +63,7 @@ alignment = 1
 [node name="Reload" type="Button" parent="Buttons_container"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Quit game")
 focus_neighbor_bottom = NodePath("../Main menu")
 theme = ExtResource("3_34vej")
 theme_override_font_sizes/font_size = 56
@@ -71,12 +72,15 @@ text = "Try again"
 [node name="Main menu" type="Button" parent="Buttons_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Reload")
+focus_neighbor_bottom = NodePath("../Quit game")
 theme = ExtResource("3_34vej")
 theme_override_font_sizes/font_size = 56
 text = "Main menu"
 
 [node name="Quit game" type="Button" parent="Buttons_container"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Main menu")
+focus_neighbor_bottom = NodePath("../Reload")
 theme = ExtResource("3_34vej")
 theme_override_font_sizes/font_size = 56
 text = "Quit game"

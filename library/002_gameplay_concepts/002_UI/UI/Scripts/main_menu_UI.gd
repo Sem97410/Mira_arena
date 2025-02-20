@@ -16,12 +16,15 @@ extends Control
 #@export var close_not_ready_pannel_button : Button # $Not_ready_pannel/MarginContainer/VBoxContainer/Close_not_ready_pannel_button
 #-----------------
 
-
 #VIDEO
 @export var video_player : VideoStreamPlayer
 @export var video_player_container : Control
 @export var skip_video_button : Button
 @export var video_length : float = 114.0
+
+#-----------------
+#SOUNDS
+@export var main_menu_sounds : AudioStream
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,11 +64,13 @@ func _on_story_mode_button_down() -> void:
 	#not_ready_pannel.visible = false
 	
 	self.visible = false
+	main_menu_sounds.paused()
 	video_player_container.visible = true
 	video_player.play()
 	skip_video_button.grab_focus()
 	await get_tree().create_timer(video_length).timeout
 	stop_video_player()
+	main_menu_sounds.play()
 	
 
 func _on_settings_button_down() -> void:
