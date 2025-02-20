@@ -117,7 +117,6 @@ _data = {
 render_priority = 0
 shader = ExtResource("3_lkhgt")
 shader_parameter/ColorParameter = Color(18.919, 2, 0, 1)
-shader_parameter/Vector2Parameter = Vector2(0.34, 0)
 shader_parameter/Vector2Parameter2 = Vector2(0, -1.405)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]

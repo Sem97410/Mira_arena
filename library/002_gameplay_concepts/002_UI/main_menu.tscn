@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
-[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/LAYOUT_CINEMATIQUE.ogv" id="5_0ald4"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/CINEMATIQUE_LAYOUT_V3.ogv" id="5_x5dhc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -40,6 +40,7 @@ not_ready_pannel = NodePath("Not_ready_pannel")
 video_player = NodePath("../VideoControl/VideoContainer/AspectRatioContainer/VideoStreamPlayer")
 video_player_container = NodePath("../VideoControl")
 skip_video_button = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton")
+video_length = 116.0
 
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuControl"]
 layout_direction = 1
@@ -228,7 +229,7 @@ stretch_mode = 3
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VideoControl/VideoContainer/AspectRatioContainer"]
 layout_mode = 2
-stream = ExtResource("5_0ald4")
+stream = ExtResource("5_x5dhc")
 expand = true
 
 [node name="SkipButtonContainer" type="MarginContainer" parent="VideoControl/VideoContainer"]
