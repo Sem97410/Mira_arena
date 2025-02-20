@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brie8eo7c53nm"]
+
+[ext_resource type="Texture2D" uid="uid://k1nk8su0said" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hair_texture/hair_BaseColor.png" id="1_3olst"]
+
+[resource]
+albedo_texture = ExtResource("1_3olst")

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://da8k8ytwnvd23"]
+
+[ext_resource type="Texture2D" uid="uid://dljbpkq80pvnv" path="res://library/002_gameplay_concepts/001_player/Texture/mira_ruban_shirt_texture/ruban_shirt_BaseColor.png" id="1_wrspf"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_wrspf")
+roughness = 0.0

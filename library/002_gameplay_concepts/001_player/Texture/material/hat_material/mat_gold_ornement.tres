@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://byxttwxihr5fd"]
+
+[ext_resource type="Texture2D" uid="uid://kqlt8n4iguuf" path="res://library/002_gameplay_concepts/001_player/Texture/mira_goldOrnement_texture/gold_ornement_BaseColor.png" id="1_qa106"]
+[ext_resource type="Texture2D" uid="uid://6y6umgrt3tc4" path="res://library/002_gameplay_concepts/001_player/Texture/mira_goldOrnement_texture/gold_ornement_Metallic.png" id="2_lv0ou"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_qa106")
+metallic = 1.0
+metallic_texture = ExtResource("2_lv0ou")
+roughness = 0.0

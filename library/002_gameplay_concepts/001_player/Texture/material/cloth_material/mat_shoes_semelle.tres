@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ctbukj1n2g4we"]
+
+[ext_resource type="Texture2D" uid="uid://bwbpynb4yxnx7" path="res://library/002_gameplay_concepts/001_player/Texture/mira_semelle_texture/semelle_BaseColor.png" id="1_kk2sx"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_kk2sx")
+roughness = 0.0

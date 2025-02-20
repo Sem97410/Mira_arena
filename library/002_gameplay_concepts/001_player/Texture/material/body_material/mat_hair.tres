@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bpwi1hpn7v1nu"]
+
+[ext_resource type="Texture2D" uid="uid://k1nk8su0said" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hair_texture/hair_BaseColor.png" id="1_bu07k"]
+[ext_resource type="Texture2D" uid="uid://dpld6hfnw0egl" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hair_texture/hair_Metallic.png" id="2_g23r7"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_bu07k")
+metallic = 1.0
+metallic_texture = ExtResource("2_g23r7")
+roughness = 0.0

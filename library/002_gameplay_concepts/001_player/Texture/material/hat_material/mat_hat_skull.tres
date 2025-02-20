@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://vqoauteyrtek"]
+
+[ext_resource type="Texture2D" uid="uid://kty41hd30n5b" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_skull/hat_skull_BaseColor.png" id="1_swmak"]
+[ext_resource type="Texture2D" uid="uid://cdp7irux4g0ny" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_skull/hat_skull_Metallic.png" id="2_8th0o"]
+[ext_resource type="Texture2D" uid="uid://dfavrs07nmuby" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_skull/hat_skull_Roughness.png" id="3_bfve4"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_swmak")
+metallic = 1.0
+metallic_texture = ExtResource("2_8th0o")
+roughness = 0.0
+roughness_texture = ExtResource("3_bfve4")
