@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/spawner.tscn" id="3_f6gm3"]
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_242gi"]
 [ext_resource type="Texture2D" uid="uid://c5brqoww048dq" path="res://library/002_gameplay_concepts/008_level_system/003_asset/texture/Substance_graph_normal.png" id="6_bbc0o"]
-[ext_resource type="PackedScene" uid="uid://bymvvlfbsnbsc" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tscn" id="6_mp4l7"]
+[ext_resource type="PackedScene" uid="uid://celjjpyawiyid" path="res://library/002_gameplay_concepts/008_level_system/Portal.tscn" id="7_yigfo"]
 [ext_resource type="AudioStream" uid="uid://dqbv64topje7a" path="res://library/002_gameplay_concepts/009_SFX/Musique d'ambiance .wav" id="8_324bn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4c7sc"]
@@ -673,19 +673,19 @@ transform = Transform3D(3.01992e-08, 0, 0.492, 0, 1.32, 0, -0.4, 0, 3.7145e-08, 
 mesh = SubResource("ArrayMesh_nevy1")
 skeleton = NodePath("")
 
-[node name="Portal1" parent="." instance=ExtResource("6_mp4l7")]
-transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.187496, 0.898466, -27.5092)
-
-[node name="Portal2" parent="." instance=ExtResource("6_mp4l7")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.398435, 0.898466, 26.3169)
-
-[node name="Portal3" parent="." instance=ExtResource("6_mp4l7")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 25.7412, 0.898466, -0.00592113)
-
-[node name="Portal4" parent="." instance=ExtResource("6_mp4l7")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -26.7153, 0.898466, -0.00592113)
-
 [node name="MusiqueD\'ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_324bn")
 volume_db = -10.0
 autoplay = true
+
+[node name="Trail" parent="." instance=ExtResource("7_yigfo")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 4.21708, 0, -3, 0, -1.31134e-07, -25.7614, 0.916396, -0.028075)
+
+[node name="Trail2" parent="." instance=ExtResource("7_yigfo")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 4.21708, 0, -3, 0, -1.31134e-07, 26.2147, 0.916396, -0.028075)
+
+[node name="Trail3" parent="." instance=ExtResource("7_yigfo")]
+transform = Transform3D(3, 0, 0, 0, 4.21708, 0, 0, 0, 3, 0.142514, 0.916396, 26.6876)
+
+[node name="Trail4" parent="." instance=ExtResource("7_yigfo")]
+transform = Transform3D(3, 0, 0, 0, 4.21708, 0, 0, 0, 3, -0.222538, 1.01175, -26.4352)

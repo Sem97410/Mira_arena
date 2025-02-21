@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://celjjpyawiyid"]
+
+[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="2_ae0et"]
+[ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_bpnal"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jaei"]
+render_priority = 0
+shader = ExtResource("2_ae0et")
+shader_parameter/distortionView = 0.03
+shader_parameter/speedView = 0.535
+shader_parameter/tintColor = Color(0.476393, 0.23094, 0.649121, 1)
+shader_parameter/fesnelAmount = 2.1
+shader_parameter/distortionVertex = 0.08
+shader_parameter/speedVertex = 0.5
+shader_parameter/noiseViewX = ExtResource("3_bpnal")
+shader_parameter/noiseViewY = ExtResource("3_bpnal")
+shader_parameter/noiseVertex = ExtResource("3_bpnal")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8hodq"]
+radius = 0.6
+height = 1.2
+
+[node name="Trail" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549238, 0, 0.215139)
+
+[node name="Portal" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.295542, 0, 0, -0.261628)
+material_override = SubResource("ShaderMaterial_1jaei")
+mesh = SubResource("SphereMesh_8hodq")
