@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=53 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -43,6 +43,12 @@ size = Vector3(100, 30, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nv3yi"]
 size = Vector3(100, 30, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_na65c"]
+size = Vector3(2, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0oe8"]
+size = Vector3(2, 1, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3pw2"]
 resource_name = "mat_eyes_slime"
@@ -471,6 +477,78 @@ material_override = SubResource("StandardMaterial3D_78x34")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_nv3yi")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1.47822, -0.711732, 0, 1.49775, 0.702451, 0, 0, 0, 1, -2.74803, -0.224884, 0)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(3.83519, 0, 0, 0, 1.86221, 0, 0, 0, 1, 2.28987, 0.691288, 0)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D6/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1.47822, -0.711732, 0, 1.49775, 0.702451, 0, 0, 0, 1, -2.74803, -0.224884, 7.65653)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D7/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(3.83519, 0, 0, 0, 1.86221, 0, 0, 0, 1, 2.28987, 0.691288, 7.65653)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D8/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-1.47817, 0.711707, 0.0082727, 1.49775, 0.702451, 0, -0.0122289, 0.00588795, -0.999966, 20.8694, -0.224884, 7.67724)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D9/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-3.83506, 0, 0.0082727, 0, 1.86221, 0, -0.0317274, 0, -0.999966, 15.8317, 0.691288, 7.63556)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D10/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-1.47817, 0.711707, 0.0082727, 1.49775, 0.702451, 0, -0.0122289, 0.00588795, -0.999966, 20.9328, -0.224884, 0.0209694)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D11/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-3.83506, 0, 0.0082727, 0, 1.86221, 0, -0.0317274, 0, -0.999966, 15.895, 0.691288, -0.0207076)
+mesh = SubResource("BoxMesh_na65c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D12/StaticBody3D"]
+shape = SubResource("BoxShape3D_o0oe8")
 
 [node name="Mira" parent="." instance=ExtResource("1_vq0e2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3263, 0, -5.40992)
