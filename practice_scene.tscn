@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=71 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -12,15 +12,17 @@
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="10_vympl"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="11_xo2mf"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="12_x7y7m"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/spawner.gd" id="13_6fvlx"]
+[ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygtom"]
 albedo_color = Color(0.583663, 0.519238, 0.478449, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3awx"]
-size = Vector2(90, 50)
+size = Vector2(100, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqri1"]
-size = Vector3(90, 0.1, 50)
+size = Vector3(100, 0.1, 50)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l7l7u"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -365,36 +367,12 @@ size = Vector3(4, 0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_4ikmc"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingPlateforme:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0295563, 0.348601, -3.92358)]
-}
 
 [sub_resource type="Animation" id="Animation_k4fuj"]
 resource_name = "moving_plateforme_animations"
 length = 0.6
 loop_mode = 1
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingPlateforme:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0295563, 0.348601, -3.92358), Vector3(3, 0.349, -3.924), Vector3(0, 0.349, -3.924)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_158ig"]
 _data = {
@@ -410,6 +388,19 @@ size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_givkb"]
 size = Vector3(6, 1, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_oqkdt"]
+vertices = PackedVector3Array(-8, 0.45, -4, -8, 0.45, 4, 8, 0.45, 4, 8, 0.45, -4)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ftwn"]
+albedo_color = Color(1, 0.423729, 0.374267, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1dviu"]
+size = Vector3(17, 0.1, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxkp5"]
+size = Vector3(17, 0.1, 9)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30i1h"]
 resource_name = "Material"
@@ -475,12 +466,20 @@ size = Vector3(3, 4.5, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2edg"]
 size = Vector3(3, 4.5, 3)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_cte61"]
+vertices = PackedVector3Array(64.0314, 1.69082, -19.512, 64.0314, 1.69082, -11.762, 70.5314, 1.69082, -11.762, 70.5314, 1.69082, -19.512, 73.2814, 1.69082, -19.012, 73.2814, 1.69082, -16.262, 80.0314, 1.69082, -16.262, 80.0314, 1.69082, -19.012)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r68a5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26kip"]
+
 [node name="PracticeScene" type="Node3D"]
 
 [node name="Environment" type="Node" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3032, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1392, 0, 0)
 material_override = SubResource("StandardMaterial3D_ygtom")
 mesh = SubResource("PlaneMesh_i3awx")
 skeleton = NodePath("../..")
@@ -511,7 +510,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_nv3yi")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0578, 10.3243, -20.6076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.191, 10.3243, -20.6076)
 material_override = SubResource("StandardMaterial3D_78x34")
 mesh = SubResource("BoxMesh_pk51a")
 skeleton = NodePath("../..")
@@ -522,7 +521,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_nv3yi")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 62.8107, 10.3243, -20.6076)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 81.9946, 10.3243, -20.6076)
 material_override = SubResource("StandardMaterial3D_78x34")
 mesh = SubResource("BoxMesh_pk51a")
 skeleton = NodePath("../..")
@@ -543,7 +542,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_nv3yi")
 
 [node name="Mira" parent="." instance=ExtResource("1_vq0e2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3263, 0, -5.40992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.2578, 0, -5.40992)
 
 [node name="LightAttackZone" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
@@ -1041,6 +1040,86 @@ mesh = SubResource("BoxMesh_enyvx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
+[node name="FreeFightZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4785, 0, 0)
+
+[node name="Wall01" type="MeshInstance3D" parent="FreeFightZone"]
+transform = Transform3D(2.12461, 0, 0, 0, 1, 0, 0, 0, 1, 24.2698, 1.82454, -20.1011)
+mesh = SubResource("BoxMesh_bhkf8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/Wall01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/Wall01/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Wall02" type="MeshInstance3D" parent="FreeFightZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34.8098, 1.82454, -15.499)
+mesh = SubResource("BoxMesh_bhkf8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/Wall02"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/Wall02/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Wall03" type="MeshInstance3D" parent="FreeFightZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.6024, 1.82454, -15.499)
+mesh = SubResource("BoxMesh_bhkf8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/Wall03"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/Wall03/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Label3D" type="Label3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6821, 3.23517, -19.3693)
+modulate = Color(0.465483, 0.336758, 0.53848, 1)
+text = "Free fight zone"
+font_size = 150
+
+[node name="Label3D2" type="Label3D" parent="FreeFightZone"]
+transform = Transform3D(0.841396, 0, 0, 0, 1, 0, 0, 0, 1, 26.502, 1.74199, -19.369)
+modulate = Color(0, 0, 0, 1)
+text = "If an enemy attacks you or if you want to move 
+faster, you can dash forward to take cover."
+font_size = 75
+
+[node name="MovingPlateforme" type="Node3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FreeFightZone/MovingPlateforme"]
+libraries = {
+"": SubResource("AnimationLibrary_158ig")
+}
+autoplay = "moving_plateforme_animations"
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0587, 0, -13.8864)
+start_position = Vector3(-0.565, 0.065, 1.365)
+end_position = Vector3(-7.355, 1.615, 1.32)
+
+[node name="NavigationLink3D2" type="NavigationLink3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0587, 1.371, -18.8864)
+start_position = Vector3(-0.565, 0.065, 1.365)
+end_position = Vector3(4.87, 0.16, 1.32)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2812, 0, -14.8864)
+navigation_mesh = SubResource("NavigationMesh_oqkdt")
+
+[node name="Tatami" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_3ftwn")
+mesh = SubResource("BoxMesh_1dviu")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D/Tatami"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D/Tatami/StaticBody3D"]
+shape = SubResource("BoxShape3D_oxkp5")
+
+[node name="GameLogic" type="Node" parent="FreeFightZone" node_paths=PackedStringArray("player_body")]
+script = ExtResource("13_h62yh")
+player_body = NodePath("../../Mira")
+
 [node name="MovementZone" type="Node3D" parent="."]
 
 [node name="Wall04" type="MeshInstance3D" parent="MovementZone"]
@@ -1144,7 +1223,7 @@ mesh = SubResource("BoxMesh_24jd1")
 shape = SubResource("BoxShape3D_1maoq")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="MovementZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.931, 2, -18.163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1571, 2, -18.163)
 mesh = SubResource("BoxMesh_pml4r")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D5"]
@@ -1152,8 +1231,72 @@ mesh = SubResource("BoxMesh_pml4r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D5/StaticBody3D"]
 shape = SubResource("BoxShape3D_p2edg")
 
+[node name="HighLabel" type="Node3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3882, 0.78374, -16.5709)
+
+[node name="Label3D3" type="Label3D" parent="MovementZone/HighLabel"]
+text = "1.5 meters 
+					
+"
+font_size = 70
+
+[node name="Label3D4" type="Label3D" parent="MovementZone/HighLabel"]
+transform = Transform3D(-1.84466e-08, -1, 0, 0.422008, -4.37114e-08, 0, 0, 0, 1, -1.0244, 0.024704, 0)
+text = "<-------------------------->
+					
+"
+font_size = 70
+
+[node name="WidthLabel" type="Label3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.152, 0.78374, -16.5709)
+text = "3 meters
+< ----------- >"
+font_size = 70
+
+[node name="WidthLabel2" type="Label3D" parent="MovementZone"]
+transform = Transform3D(0.621998, 0, 0, 0, 1, 0, 0, 0, 1, 14.8017, 3.23698, -16.5709)
+text = "Mira metric : 
+- Longueur de dash : 6 m
+- Dash + saut : environ 9 m
+- Hauteur de saut : 1.5m"
+font_size = 60
+horizontal_alignment = 0
+
+[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("spawner_timer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.9491, 0.791729, -14.382)
+script = ExtResource("13_6fvlx")
+spawner_timer = NodePath("SpawnerTimer")
+max_enemies = 1.0
+
+[node name="SpawnerTimer" type="Timer" parent="Spawner"]
+autostart = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_cte61")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 8.82255, 67.2711, 0, -15.6008)
+mesh = SubResource("BoxMesh_r68a5")
+skeleton = NodePath("../../FreeFightZone/NavigationRegion3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_26kip")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 3.39329, 76.6765, 0, -17.6008)
+mesh = SubResource("BoxMesh_r68a5")
+skeleton = NodePath("../../FreeFightZone/NavigationRegion3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_26kip")
+
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Spawner/SpawnerTimer" to="Spawner" method="_on_spawner_timer_timeout"]
 
 [editable path="LightAttackZone/IndicatorPanel"]
 [editable path="ChargedAttackZone/IndicatorPanel"]

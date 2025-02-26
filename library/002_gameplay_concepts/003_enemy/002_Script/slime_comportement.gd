@@ -37,6 +37,8 @@ var is_attacking = false  #  sert a definir si l'ennemi est en train d'attaquer
 var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 
+@onready var can_jump = true
+
 #-----------------------------------
 #States values
 
@@ -472,3 +474,39 @@ func execute_dash():
 				#current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
 				#print("I'm in preattack after dash")
 			
+
+
+func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
+	
+	if not can_jump : 
+		return
+	else:
+		can_jump = false
+		var start_position = details["link_entry_position"]  # Point A
+		var end_position = details["link_exit_position"]    # Point B
+		jump_to_target(start_position, end_position)
+		print('Acces navigation link')
+
+
+func jump_to_target(start: Vector3, end: Vector3) -> void:
+	var jump_height = 5.0  # Hauteur du saut
+	var duration = 0.5  # Temps total du saut
+	var elapsed_time = 0.0
+	
+	print('Suppose to jump')
+	
+	while elapsed_time < duration:
+		await get_tree().process_frame
+		elapsed_time += get_process_delta_time()
+		
+		var t = elapsed_time / duration  # Normaliser le temps (0 à 1)
+		
+		# Lerp entre A et B
+		var new_position = start.lerp(end, t)
+		
+		# Ajouter la hauteur du saut avec une parabole
+		new_position.y += jump_height * sin(t * PI)
+		
+		slime.global_transform.origin = new_position
+		
+		
