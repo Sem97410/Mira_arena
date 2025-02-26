@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=51 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -17,10 +17,10 @@
 albedo_color = Color(0.583663, 0.519238, 0.478449, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3awx"]
-size = Vector2(50, 50)
+size = Vector2(90, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqri1"]
-size = Vector3(50, 0.1, 50)
+size = Vector3(90, 0.1, 50)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l7l7u"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,11 +44,11 @@ size = Vector3(100, 30, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nv3yi"]
 size = Vector3(100, 30, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_na65c"]
-size = Vector3(2, 1, 4)
+[sub_resource type="BoxMesh" id="BoxMesh_bhkf8"]
+size = Vector3(10, 4, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o0oe8"]
-size = Vector3(2, 1, 4)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lv7c"]
+size = Vector3(10, 4, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3pw2"]
 resource_name = "mat_eyes_slime"
@@ -348,12 +348,6 @@ radius = 0.3
 [sub_resource type="SphereShape3D" id="SphereShape3D_p6fhr"]
 radius = 0.7
 
-[sub_resource type="BoxMesh" id="BoxMesh_bhkf8"]
-size = Vector3(10, 4, 0.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3lv7c"]
-size = Vector3(10, 4, 0.5)
-
 [sub_resource type="BoxMesh" id="BoxMesh_sojvy"]
 size = Vector3(10, 0.5, 0.5)
 
@@ -422,7 +416,7 @@ size = Vector3(6, 1, 1)
 [node name="Environment" type="Node" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83821, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3032, 0, 0)
 material_override = SubResource("StandardMaterial3D_ygtom")
 mesh = SubResource("PlaneMesh_i3awx")
 skeleton = NodePath("../..")
@@ -439,329 +433,56 @@ environment = SubResource("Environment_asgbr")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+[node name="Walls" type="Node" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.8142, 10.3243, -0.636742)
 material_override = SubResource("StandardMaterial3D_78x34")
 mesh = SubResource("BoxMesh_pk51a")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Walls/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Walls/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_nv3yi")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0513, 10.3243, -20.6076)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0578, 10.3243, -20.6076)
 material_override = SubResource("StandardMaterial3D_78x34")
 mesh = SubResource("BoxMesh_pk51a")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Walls/MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Walls/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_nv3yi")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.217, 10.3243, -20.6076)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 62.8107, 10.3243, -20.6076)
 material_override = SubResource("StandardMaterial3D_78x34")
 mesh = SubResource("BoxMesh_pk51a")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Walls/MeshInstance3D3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Walls/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_nv3yi")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.217, 10.3243, 14.1558)
 material_override = SubResource("StandardMaterial3D_78x34")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Walls/MeshInstance3D4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Walls/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_nv3yi")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1.47822, -0.711732, 0, 1.49775, 0.702451, 0, 0, 0, 1, -2.74803, -0.224884, 0)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D5/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(3.83519, 0, 0, 0, 1.86221, 0, 0, 0, 1, 2.28987, 0.691288, 0)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D6/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1.47822, -0.711732, 0, 1.49775, 0.702451, 0, 0, 0, 1, -2.74803, -0.224884, 7.65653)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D7/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(3.83519, 0, 0, 0, 1.86221, 0, 0, 0, 1, 2.28987, 0.691288, 7.65653)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D8/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-1.47817, 0.711707, 0.0082727, 1.49775, 0.702451, 0, -0.0122289, 0.00588795, -0.999966, 20.8694, -0.224884, 7.67724)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D9/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-3.83506, 0, 0.0082727, 0, 1.86221, 0, -0.0317274, 0, -0.999966, 15.8317, 0.691288, 7.63556)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D10"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D10/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-1.47817, 0.711707, 0.0082727, 1.49775, 0.702451, 0, -0.0122289, 0.00588795, -0.999966, 20.9328, -0.224884, 0.0209694)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D11"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D11/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
-
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-3.83506, 0, 0.0082727, 0, 1.86221, 0, -0.0317274, 0, -0.999966, 15.895, 0.691288, -0.0207076)
-mesh = SubResource("BoxMesh_na65c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D12"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D12/StaticBody3D"]
-shape = SubResource("BoxShape3D_o0oe8")
 
 [node name="Mira" parent="." instance=ExtResource("1_vq0e2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3263, 0, -5.40992)
 
-[node name="Slime" type="CharacterBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.1924, 0, -12.5773)
-collision_layer = 2
-axis_lock_linear_x = true
-axis_lock_angular_x = true
-
-[node name="Slime_002" type="Node3D" parent="Slime"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Slime" type="Node3D" parent="Slime/Slime_002"]
-transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
-
-[node name="Skeleton3D" type="Skeleton3D" parent="Slime/Slime_002/Slime"]
-bones/0/name = "slime_body"
-bones/0/parent = -1
-bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
-bones/0/enabled = true
-bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1.2, 0.8, 1.2)
-bones/1/name = "slime_helmet"
-bones/1/parent = -1
-bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
-bones/1/enabled = true
-bones/1/position = Vector3(0, -0.00480924, 0.358782)
-bones/1/rotation = Quaternion(0.707107, 8.42937e-08, 8.42937e-08, 0.707107)
-bones/1/scale = Vector3(1, 1, 1)
-bones/2/name = "helmet"
-bones/2/parent = 1
-bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.73219e-16)
-bones/2/enabled = true
-bones/2/position = Vector3(0, 0, -2.73219e-16)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
-bones/2/scale = Vector3(1, 1, 1)
-
-[node name="body" type="MeshInstance3D" parent="Slime/Slime_002/Slime/Skeleton3D"]
-mesh = SubResource("ArrayMesh_cicrq")
-skin = SubResource("Skin_emvte")
-surface_material_override/0 = ExtResource("3_rrb7m")
-surface_material_override/1 = ExtResource("4_d16t8")
-
-[node name="helmet" type="MeshInstance3D" parent="Slime/Slime_002/Slime/Skeleton3D"]
-mesh = SubResource("ArrayMesh_xc7lc")
-skin = SubResource("Skin_emvte")
-surface_material_override/0 = ExtResource("5_mkiwt")
-
-[node name="Aura" parent="Slime/Slime_002/Slime" instance=ExtResource("6_17im7")]
-transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Slime/Slime_002"]
-libraries = {
-"": SubResource("AnimationLibrary_bv0ke")
-}
-
-[node name="damage_stars" parent="Slime/Slime_002" instance=ExtResource("7_vb4l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862847, 0)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Slime" groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
-shape = SubResource("SphereShape3D_acknh")
-
-[node name="EnemyDeathLoot" type="Node" parent="Slime" node_paths=PackedStringArray("slime")]
-script = ExtResource("8_yrdo5")
-health_item_scene = ExtResource("9_xoflt")
-drop_chance = 0.02
-slime = NodePath("..")
-
-[node name="SlimeComportement" type="Node" parent="Slime" node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
-script = ExtResource("10_vympl")
-animation_player = NodePath("../Slime_002/AnimationPlayer")
-nav_agent = NodePath("../NavigationAgent3D")
-slime = NodePath("..")
-damage_stars = NodePath("../Slime_002/damage_stars")
-slime_attack_area = NodePath("../Area3D")
-slime_mesh = NodePath("../Slime_002/Slime")
-drop_health_logic = NodePath("../EnemyDeathLoot")
-movement_speed = 10.0
-movement_interpolate_strength = 15.0
-attack_lock_visual = NodePath("../Lock")
-dash_duration = 0.0
-latence_between_dash = 4.0
-max_hp = 1e+07
-death_vfx = ExtResource("11_xo2mf")
-distance_to_attack = 0.1
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Slime"]
-avoidance_enabled = true
-radius = 1.0
-
-[node name="Area3D" type="Area3D" parent="Slime" groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676925, 0)
-collision_layer = 3
-collision_mask = 3
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Slime/Area3D" groups=["enemy"]]
-shape = SubResource("SphereShape3D_p6fhr")
-
-[node name="Lock" parent="Slime" instance=ExtResource("12_x7y7m")]
-transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
-visible = false
-
-[node name="Slime2" type="CharacterBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.199999, 0, -17)
-collision_layer = 2
-axis_lock_linear_x = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-
-[node name="Slime_002" type="Node3D" parent="Slime2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Slime" type="Node3D" parent="Slime2/Slime_002"]
-transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
-
-[node name="Skeleton3D" type="Skeleton3D" parent="Slime2/Slime_002/Slime"]
-bones/0/name = "slime_body"
-bones/0/parent = -1
-bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
-bones/0/enabled = true
-bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1.2, 0.8, 1.2)
-bones/1/name = "slime_helmet"
-bones/1/parent = -1
-bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
-bones/1/enabled = true
-bones/1/position = Vector3(0, -0.00480924, 0.358782)
-bones/1/rotation = Quaternion(0.707107, 8.42937e-08, 8.42937e-08, 0.707107)
-bones/1/scale = Vector3(1, 1, 1)
-bones/2/name = "helmet"
-bones/2/parent = 1
-bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.73219e-16)
-bones/2/enabled = true
-bones/2/position = Vector3(0, 0, -2.73219e-16)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
-bones/2/scale = Vector3(1, 1, 1)
-
-[node name="body" type="MeshInstance3D" parent="Slime2/Slime_002/Slime/Skeleton3D"]
-mesh = SubResource("ArrayMesh_cicrq")
-skin = SubResource("Skin_emvte")
-surface_material_override/0 = ExtResource("3_rrb7m")
-surface_material_override/1 = ExtResource("4_d16t8")
-
-[node name="helmet" type="MeshInstance3D" parent="Slime2/Slime_002/Slime/Skeleton3D"]
-mesh = SubResource("ArrayMesh_xc7lc")
-skin = SubResource("Skin_emvte")
-surface_material_override/0 = ExtResource("5_mkiwt")
-
-[node name="Aura" parent="Slime2/Slime_002/Slime" instance=ExtResource("6_17im7")]
-transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Slime2/Slime_002"]
-libraries = {
-"": SubResource("AnimationLibrary_bv0ke")
-}
-
-[node name="damage_stars" parent="Slime2/Slime_002" instance=ExtResource("7_vb4l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862847, 0)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Slime2" groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
-shape = SubResource("SphereShape3D_acknh")
-
-[node name="EnemyDeathLoot" type="Node" parent="Slime2" node_paths=PackedStringArray("slime")]
-script = ExtResource("8_yrdo5")
-health_item_scene = ExtResource("9_xoflt")
-drop_chance = 0.02
-slime = NodePath("..")
-
-[node name="SlimeComportement" type="Node" parent="Slime2" node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
-script = ExtResource("10_vympl")
-animation_player = NodePath("../Slime_002/AnimationPlayer")
-nav_agent = NodePath("../NavigationAgent3D")
-slime = NodePath("..")
-damage_stars = NodePath("../Slime_002/damage_stars")
-slime_attack_area = NodePath("../Area3D")
-slime_mesh = NodePath("../Slime_002/Slime")
-drop_health_logic = NodePath("../EnemyDeathLoot")
-movement_speed = 10.0
-movement_interpolate_strength = 15.0
-attack_lock_visual = NodePath("../Lock")
-dash_duration = 0.0
-latence_between_dash = 4.0
-max_hp = 1e+07
-death_vfx = ExtResource("11_xo2mf")
-distance_to_attack = 0.1
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Slime2"]
-avoidance_enabled = true
-radius = 1.0
-
-[node name="Area3D" type="Area3D" parent="Slime2" groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676925, 0)
-collision_layer = 3
-collision_mask = 3
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Slime2/Area3D" groups=["enemy"]]
-shape = SubResource("SphereShape3D_p6fhr")
-
-[node name="Lock" parent="Slime2" instance=ExtResource("12_x7y7m")]
-transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
-visible = false
-
-[node name="LightAttackZone" type="Node" parent="."]
+[node name="LightAttackZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
 
 [node name="Wall01" type="MeshInstance3D" parent="LightAttackZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1602, 1.82454, -20.1011)
@@ -814,42 +535,146 @@ back enemies that are too close.
 It is possible to perform a 3-hit combo."
 font_size = 75
 
-[node name="LightAttackZone2" type="Node" parent="."]
+[node name="LightAttackSlime" type="CharacterBody3D" parent="LightAttackZone"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.1924, 0, -12.5773)
+collision_layer = 2
+axis_lock_linear_x = true
+axis_lock_angular_x = true
 
-[node name="Wall01" type="MeshInstance3D" parent="LightAttackZone2"]
+[node name="Slime_002" type="Node3D" parent="LightAttackZone/LightAttackSlime"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Slime" type="Node3D" parent="LightAttackZone/LightAttackSlime/Slime_002"]
+transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="LightAttackZone/LightAttackSlime/Slime_002/Slime"]
+bones/0/name = "slime_body"
+bones/0/parent = -1
+bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, -0.000645729, 0)
+bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/0/scale = Vector3(1.2, 0.8, 1.2)
+bones/1/name = "slime_helmet"
+bones/1/parent = -1
+bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
+bones/1/enabled = true
+bones/1/position = Vector3(0, -0.00480924, 0.358782)
+bones/1/rotation = Quaternion(0.707107, 8.42937e-08, 8.42937e-08, 0.707107)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "helmet"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.73219e-16)
+bones/2/enabled = true
+bones/2/position = Vector3(0, 0, -2.73219e-16)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1, 1)
+
+[node name="body" type="MeshInstance3D" parent="LightAttackZone/LightAttackSlime/Slime_002/Slime/Skeleton3D"]
+mesh = SubResource("ArrayMesh_cicrq")
+skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("3_rrb7m")
+surface_material_override/1 = ExtResource("4_d16t8")
+
+[node name="helmet" type="MeshInstance3D" parent="LightAttackZone/LightAttackSlime/Slime_002/Slime/Skeleton3D"]
+mesh = SubResource("ArrayMesh_xc7lc")
+skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("5_mkiwt")
+
+[node name="Aura" parent="LightAttackZone/LightAttackSlime/Slime_002/Slime" instance=ExtResource("6_17im7")]
+transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LightAttackZone/LightAttackSlime/Slime_002"]
+libraries = {
+"": SubResource("AnimationLibrary_bv0ke")
+}
+
+[node name="damage_stars" parent="LightAttackZone/LightAttackSlime/Slime_002" instance=ExtResource("7_vb4l1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862847, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone/LightAttackSlime" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
+shape = SubResource("SphereShape3D_acknh")
+
+[node name="EnemyDeathLoot" type="Node" parent="LightAttackZone/LightAttackSlime" node_paths=PackedStringArray("slime")]
+script = ExtResource("8_yrdo5")
+health_item_scene = ExtResource("9_xoflt")
+drop_chance = 0.02
+slime = NodePath("..")
+
+[node name="SlimeComportement" type="Node" parent="LightAttackZone/LightAttackSlime" node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
+script = ExtResource("10_vympl")
+animation_player = NodePath("../Slime_002/AnimationPlayer")
+nav_agent = NodePath("../NavigationAgent3D")
+slime = NodePath("..")
+damage_stars = NodePath("../Slime_002/damage_stars")
+slime_attack_area = NodePath("../Area3D")
+slime_mesh = NodePath("../Slime_002/Slime")
+drop_health_logic = NodePath("../EnemyDeathLoot")
+movement_speed = 10.0
+movement_interpolate_strength = 15.0
+attack_lock_visual = NodePath("../Lock")
+dash_duration = 0.0
+latence_between_dash = 4.0
+max_hp = 1e+07
+death_vfx = ExtResource("11_xo2mf")
+distance_to_attack = 0.1
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="LightAttackZone/LightAttackSlime"]
+avoidance_enabled = true
+radius = 1.0
+
+[node name="Area3D" type="Area3D" parent="LightAttackZone/LightAttackSlime" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676925, 0)
+collision_layer = 3
+collision_mask = 3
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone/LightAttackSlime/Area3D" groups=["enemy"]]
+shape = SubResource("SphereShape3D_p6fhr")
+
+[node name="Lock" parent="LightAttackZone/LightAttackSlime" instance=ExtResource("12_x7y7m")]
+transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
+visible = false
+
+[node name="ChargedAttackZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
+
+[node name="Wall01" type="MeshInstance3D" parent="ChargedAttackZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.513001, 1.82454, -20.1011)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone2/Wall01"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ChargedAttackZone/Wall01"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone2/Wall01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/Wall01/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall02" type="MeshInstance3D" parent="LightAttackZone2"]
+[node name="Wall02" type="MeshInstance3D" parent="ChargedAttackZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.53033, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone2/Wall02"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ChargedAttackZone/Wall02"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone2/Wall02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/Wall02/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall03" type="MeshInstance3D" parent="LightAttackZone2"]
+[node name="Wall03" type="MeshInstance3D" parent="ChargedAttackZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.65761, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone2/Wall03"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ChargedAttackZone/Wall03"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone2/Wall03/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/Wall03/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Label3D" type="Label3D" parent="LightAttackZone2"]
+[node name="Label3D" type="Label3D" parent="ChargedAttackZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.507556, 3.23517, -19.3693)
 modulate = Color(0.465483, 0.336758, 0.53848, 1)
 text = "Charged attack zone"
 font_size = 150
 
-[node name="Label3D2" type="Label3D" parent="LightAttackZone2"]
+[node name="Label3D2" type="Label3D" parent="ChargedAttackZone"]
 transform = Transform3D(0.841396, 0, 0, 0, 1, 0, 0, 0, 1, -0.609055, 1.43755, -19.369)
 modulate = Color(0, 0, 0, 1)
 text = "When a charged attack is launched, 
@@ -857,61 +682,167 @@ it cannot be stopped, but it will deal heavy damage
  to distant enemies, making it ideal for mid-range attacks."
 font_size = 75
 
-[node name="IndicatorPanel" parent="LightAttackZone2" instance=ExtResource("2_h2jg4")]
+[node name="IndicatorPanel" parent="ChargedAttackZone" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49408, 0.0500002, -10.4266)
 
-[node name="MeshInstance3D2" parent="LightAttackZone2/IndicatorPanel" index="1"]
+[node name="MeshInstance3D2" parent="ChargedAttackZone/IndicatorPanel" index="1"]
 transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
-[node name="Label3D" parent="LightAttackZone2/IndicatorPanel" index="2"]
+[node name="Label3D" parent="ChargedAttackZone/IndicatorPanel" index="2"]
 text = "Press Y  to launch
 a  charged attack"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightAttackZone2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargedAttackZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47766, 0, -10.7072)
 mesh = SubResource("BoxMesh_sojvy")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone2/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ChargedAttackZone/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone2/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_fhoa6")
 
-[node name="LightAttackZone3" type="Node" parent="."]
+[node name="ChargedAttackZone" type="CharacterBody3D" parent="ChargedAttackZone"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.199999, 0, -17)
+collision_layer = 2
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 
-[node name="Wall01" type="MeshInstance3D" parent="LightAttackZone3"]
+[node name="Slime_002" type="Node3D" parent="ChargedAttackZone/ChargedAttackZone"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Slime" type="Node3D" parent="ChargedAttackZone/ChargedAttackZone/Slime_002"]
+transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="ChargedAttackZone/ChargedAttackZone/Slime_002/Slime"]
+bones/0/name = "slime_body"
+bones/0/parent = -1
+bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, -0.000645729, 0)
+bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/0/scale = Vector3(1.2, 0.8, 1.2)
+bones/1/name = "slime_helmet"
+bones/1/parent = -1
+bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
+bones/1/enabled = true
+bones/1/position = Vector3(0, -0.00480924, 0.358782)
+bones/1/rotation = Quaternion(0.707107, 8.42937e-08, 8.42937e-08, 0.707107)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "helmet"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.73219e-16)
+bones/2/enabled = true
+bones/2/position = Vector3(0, 0, -2.73219e-16)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1, 1)
+
+[node name="body" type="MeshInstance3D" parent="ChargedAttackZone/ChargedAttackZone/Slime_002/Slime/Skeleton3D"]
+mesh = SubResource("ArrayMesh_cicrq")
+skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("3_rrb7m")
+surface_material_override/1 = ExtResource("4_d16t8")
+
+[node name="helmet" type="MeshInstance3D" parent="ChargedAttackZone/ChargedAttackZone/Slime_002/Slime/Skeleton3D"]
+mesh = SubResource("ArrayMesh_xc7lc")
+skin = SubResource("Skin_emvte")
+surface_material_override/0 = ExtResource("5_mkiwt")
+
+[node name="Aura" parent="ChargedAttackZone/ChargedAttackZone/Slime_002/Slime" instance=ExtResource("6_17im7")]
+transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ChargedAttackZone/ChargedAttackZone/Slime_002"]
+libraries = {
+"": SubResource("AnimationLibrary_bv0ke")
+}
+
+[node name="damage_stars" parent="ChargedAttackZone/ChargedAttackZone/Slime_002" instance=ExtResource("7_vb4l1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862847, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/ChargedAttackZone" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268758, -0.0303587)
+shape = SubResource("SphereShape3D_acknh")
+
+[node name="EnemyDeathLoot" type="Node" parent="ChargedAttackZone/ChargedAttackZone" node_paths=PackedStringArray("slime")]
+script = ExtResource("8_yrdo5")
+health_item_scene = ExtResource("9_xoflt")
+drop_chance = 0.02
+slime = NodePath("..")
+
+[node name="SlimeComportement" type="Node" parent="ChargedAttackZone/ChargedAttackZone" node_paths=PackedStringArray("animation_player", "nav_agent", "slime", "damage_stars", "slime_attack_area", "slime_mesh", "drop_health_logic", "attack_lock_visual") groups=["enemy", "slime_comportement_function"]]
+script = ExtResource("10_vympl")
+animation_player = NodePath("../Slime_002/AnimationPlayer")
+nav_agent = NodePath("../NavigationAgent3D")
+slime = NodePath("..")
+damage_stars = NodePath("../Slime_002/damage_stars")
+slime_attack_area = NodePath("../Area3D")
+slime_mesh = NodePath("../Slime_002/Slime")
+drop_health_logic = NodePath("../EnemyDeathLoot")
+movement_speed = 10.0
+movement_interpolate_strength = 15.0
+attack_lock_visual = NodePath("../Lock")
+dash_duration = 0.0
+latence_between_dash = 4.0
+max_hp = 1e+07
+death_vfx = ExtResource("11_xo2mf")
+distance_to_attack = 0.1
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="ChargedAttackZone/ChargedAttackZone"]
+avoidance_enabled = true
+radius = 1.0
+
+[node name="Area3D" type="Area3D" parent="ChargedAttackZone/ChargedAttackZone" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676925, 0)
+collision_layer = 3
+collision_mask = 3
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargedAttackZone/ChargedAttackZone/Area3D" groups=["enemy"]]
+shape = SubResource("SphereShape3D_p6fhr")
+
+[node name="Lock" parent="ChargedAttackZone/ChargedAttackZone" instance=ExtResource("12_x7y7m")]
+transform = Transform3D(-1.9444e-08, 4.37114e-08, 1, 1.67917e-08, 1, -4.37114e-08, -0.222413, 7.54976e-08, -8.74228e-08, 0, 0.390235, 0)
+visible = false
+
+[node name="HealZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
+
+[node name="Wall01" type="MeshInstance3D" parent="HealZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1393, 1.82454, -20.1011)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone3/Wall01"]
+[node name="StaticBody3D" type="StaticBody3D" parent="HealZone/Wall01"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone3/Wall01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealZone/Wall01/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall02" type="MeshInstance3D" parent="LightAttackZone3"]
+[node name="Wall02" type="MeshInstance3D" parent="HealZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.1826, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone3/Wall02"]
+[node name="StaticBody3D" type="StaticBody3D" parent="HealZone/Wall02"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone3/Wall02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealZone/Wall02/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall03" type="MeshInstance3D" parent="LightAttackZone3"]
+[node name="Wall03" type="MeshInstance3D" parent="HealZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.99466, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone3/Wall03"]
+[node name="StaticBody3D" type="StaticBody3D" parent="HealZone/Wall03"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone3/Wall03/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealZone/Wall03/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Label3D" type="Label3D" parent="LightAttackZone3"]
+[node name="Label3D" type="Label3D" parent="HealZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1447, 3.23517, -19.3693)
 modulate = Color(0.465483, 0.336758, 0.53848, 1)
 text = "Heal zone"
 font_size = 150
 
-[node name="Label3D2" type="Label3D" parent="LightAttackZone3"]
+[node name="Label3D2" type="Label3D" parent="HealZone"]
 transform = Transform3D(0.841396, 0, 0, 0, 1, 0, 0, 0, 1, 10.0432, 1.74199, -19.369)
 modulate = Color(0, 0, 0, 1)
 text = "Sometimes, when dying, an enemy may 
@@ -920,135 +851,168 @@ drop healing items that restore a bit of your health.
 if you are at full health, the item won't be picked up."
 font_size = 75
 
-[node name="IndicatorPanel" parent="LightAttackZone3" instance=ExtResource("2_h2jg4")]
+[node name="IndicatorPanel" parent="HealZone" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15819, 0.0500002, -10.4266)
 
-[node name="MeshInstance3D2" parent="LightAttackZone3/IndicatorPanel" index="1"]
+[node name="MeshInstance3D2" parent="HealZone/IndicatorPanel" index="1"]
 transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
-[node name="Label3D" parent="LightAttackZone3/IndicatorPanel" index="2"]
+[node name="Label3D" parent="HealZone/IndicatorPanel" index="2"]
 text = "Walk over it to 
 collect the item."
 
-[node name="HealthItem" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33316, 0.0500002, -16.2588)
 
-[node name="HealthItem2" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem2" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.36326, 0.0500002, -16.2588)
 
-[node name="HealthItem3" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem3" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2357, 0.0500002, -16.2588)
 
-[node name="HealthItem4" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem4" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8935, 0.0500002, -16.2588)
 
-[node name="HealthItem5" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem5" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33316, 0.0500002, -14.8344)
 
-[node name="HealthItem6" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem6" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.36326, 0.0500002, -14.8344)
 
-[node name="HealthItem7" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem7" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2357, 0.0500002, -14.8344)
 
-[node name="HealthItem8" parent="LightAttackZone3" instance=ExtResource("9_xoflt")]
+[node name="HealthItem8" parent="HealZone" instance=ExtResource("9_xoflt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8935, 0.0500002, -14.8344)
 
-[node name="LightAttackZone4" type="Node" parent="."]
+[node name="DashZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
 
-[node name="Wall01" type="MeshInstance3D" parent="LightAttackZone4"]
+[node name="Wall01" type="MeshInstance3D" parent="DashZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.747, 1.82454, -20.1011)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/Wall01"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/Wall01"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/Wall01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/Wall01/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall02" type="MeshInstance3D" parent="LightAttackZone4"]
+[node name="Wall02" type="MeshInstance3D" parent="DashZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.7903, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/Wall02"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/Wall02"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/Wall02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/Wall02/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Wall03" type="MeshInstance3D" parent="LightAttackZone4"]
+[node name="Wall03" type="MeshInstance3D" parent="DashZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.6024, 1.82454, -15.499)
 mesh = SubResource("BoxMesh_bhkf8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/Wall03"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/Wall03"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/Wall03/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/Wall03/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
 
-[node name="Label3D" type="Label3D" parent="LightAttackZone4"]
+[node name="Label3D" type="Label3D" parent="DashZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7525, 3.23517, -19.3693)
 modulate = Color(0.465483, 0.336758, 0.53848, 1)
 text = "Dash zone"
 font_size = 150
 
-[node name="Label3D2" type="Label3D" parent="LightAttackZone4"]
+[node name="Label3D2" type="Label3D" parent="DashZone"]
 transform = Transform3D(0.841396, 0, 0, 0, 1, 0, 0, 0, 1, 20.651, 1.74199, -19.369)
 modulate = Color(0, 0, 0, 1)
 text = "If an enemy attacks you or if you want to move 
 faster, you can dash forward to take cover."
 font_size = 75
 
-[node name="IndicatorPanel" parent="LightAttackZone4" instance=ExtResource("2_h2jg4")]
+[node name="IndicatorPanel" parent="DashZone" instance=ExtResource("2_h2jg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
 
-[node name="MeshInstance3D2" parent="LightAttackZone4/IndicatorPanel" index="1"]
+[node name="MeshInstance3D2" parent="DashZone/IndicatorPanel" index="1"]
 transform = Transform3D(0.5, 0, 0, 0, -0.5, 1.26759e-06, 0, -1.26759e-06, -0.5, 0, 0.687973, -0.0666072)
 
-[node name="Label3D" parent="LightAttackZone4/IndicatorPanel" index="2"]
+[node name="Label3D" parent="DashZone/IndicatorPanel" index="2"]
 text = "Press A to dash"
 
-[node name="MovingPlateforme" type="Node3D" parent="LightAttackZone4"]
+[node name="MovingPlateforme" type="Node3D" parent="DashZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
 
-[node name="MovingPlateforme" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
+[node name="MovingPlateforme" type="MeshInstance3D" parent="DashZone/MovingPlateforme"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0295563, 0.348601, -3.92358)
 material_override = SubResource("StandardMaterial3D_j4e2t")
 mesh = SubResource("BoxMesh_kims7")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MovingPlateforme"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/MovingPlateforme/MovingPlateforme"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MovingPlateforme/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/MovingPlateforme/MovingPlateforme/StaticBody3D"]
 shape = SubResource("BoxShape3D_2h2au")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LightAttackZone4/MovingPlateforme"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DashZone/MovingPlateforme"]
 libraries = {
 "": SubResource("AnimationLibrary_158ig")
 }
 autoplay = "moving_plateforme_animations"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DashZone/MovingPlateforme"]
 transform = Transform3D(-5.78823e-08, 0, 3.84569, 0, 1, 0, -1.32419, 0, -1.68101e-07, 0, 0, -5.42012)
 material_override = SubResource("StandardMaterial3D_mbvxb")
 mesh = SubResource("BoxMesh_enyvx")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/MovingPlateforme/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/MovingPlateforme/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="LightAttackZone4/MovingPlateforme"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DashZone/MovingPlateforme"]
 transform = Transform3D(-5.78823e-08, 0, 3.84569, 0, 1, 0, -1.32419, 0, -1.68101e-07, 6.14063, 0, -5.42012)
 material_override = SubResource("StandardMaterial3D_mbvxb")
 mesh = SubResource("BoxMesh_enyvx")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DashZone/MovingPlateforme/MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightAttackZone4/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
-[connection signal="area_entered" from="Slime/Area3D" to="Slime/SlimeComportement" method="_on_area_3d_area_entered"]
-[connection signal="area_entered" from="Slime2/Area3D" to="Slime2/SlimeComportement" method="_on_area_3d_area_entered"]
+[node name="MovementZone" type="Node" parent="."]
+
+[node name="Wall04" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.9908, 1.82454, -15.499)
+mesh = SubResource("BoxMesh_bhkf8")
+skeleton = NodePath("../../LightAttackZone")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Wall04"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Wall04/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Wall05" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.2473, 1.82454, -15.499)
+mesh = SubResource("BoxMesh_bhkf8")
+skeleton = NodePath("../../LightAttackZone")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Wall05"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Wall05/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Wall06" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(3.7085, 0, 0, 0, 1, 0, 0, 0, 1, 0.651501, 1.82454, -20.1011)
+mesh = SubResource("BoxMesh_bhkf8")
+skeleton = NodePath("../../LightAttackZone")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Wall06"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Wall06/StaticBody3D"]
+shape = SubResource("BoxShape3D_3lv7c")
+
+[connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]
 
 [editable path="LightAttackZone/IndicatorPanel"]
-[editable path="LightAttackZone2/IndicatorPanel"]
-[editable path="LightAttackZone3/IndicatorPanel"]
-[editable path="LightAttackZone4/IndicatorPanel"]
+[editable path="ChargedAttackZone/IndicatorPanel"]
+[editable path="HealZone/IndicatorPanel"]
+[editable path="DashZone/IndicatorPanel"]
