@@ -467,7 +467,7 @@ size = Vector3(3, 4.5, 3)
 size = Vector3(3, 4.5, 3)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cte61"]
-vertices = PackedVector3Array(64.0314, 1.69082, -19.512, 64.0314, 1.69082, -11.762, 70.5314, 1.69082, -11.762, 70.5314, 1.69082, -19.512, 73.2814, 1.69082, -19.012, 73.2814, 1.69082, -16.262, 80.0314, 1.69082, -16.262, 80.0314, 1.69082, -19.012)
+vertices = PackedVector3Array(73.2814, 1.69081, -18.7974, 73.2814, 1.69081, -16.2974, 80.0314, 1.69081, -16.2974, 80.0314, 1.69081, -18.7974, 64.0314, 1.69081, -1.79745, 64.0314, 1.69081, 6.20255, 70.5314, 1.69081, 6.20255, 70.5314, 1.69081, -1.79745)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_r68a5"]
@@ -1094,8 +1094,8 @@ autoplay = "moving_plateforme_animations"
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="FreeFightZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0587, 0, -13.8864)
-start_position = Vector3(-0.565, 0.065, 1.365)
-end_position = Vector3(-7.355, 1.615, 1.32)
+start_position = Vector3(-0.79, 0.34, 1.365)
+end_position = Vector3(-7.355, 1.615, 18.92)
 
 [node name="NavigationLink3D2" type="NavigationLink3D" parent="FreeFightZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0587, 1.371, -18.8864)
@@ -1275,7 +1275,7 @@ autostart = true
 navigation_mesh = SubResource("NavigationMesh_cte61")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 8.82255, 67.2711, 0, -15.6008)
+transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 8.82255, 67.2711, 0, 2.2865)
 mesh = SubResource("BoxMesh_r68a5")
 skeleton = NodePath("../../FreeFightZone/NavigationRegion3D")
 

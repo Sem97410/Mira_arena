@@ -478,14 +478,14 @@ func execute_dash():
 
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	
-	if not can_jump : 
-		return
-	else:
-		can_jump = false
-		var start_position = details["link_entry_position"]  # Point A
-		var end_position = details["link_exit_position"]    # Point B
-		jump_to_target(start_position, end_position)
-		print('Acces navigation link')
+	if not can_jump: 
+		return  # Bloque si un saut est déjà en cours
+	
+	can_jump = false  # Désactive le saut temporairement
+	var start_position = details["link_entry_position"]  # Point A
+	var end_position = details["link_exit_position"]    # Point B
+	jump_to_target(start_position, end_position)
+	print("Accès navigation link")
 
 
 func jump_to_target(start: Vector3, end: Vector3) -> void:
@@ -493,13 +493,13 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 	var duration = 0.5  # Temps total du saut
 	var elapsed_time = 0.0
 	
-	print('Suppose to jump')
+	print("Suppose to jump")
 	
 	while elapsed_time < duration:
 		await get_tree().process_frame
 		elapsed_time += get_process_delta_time()
 		
-		var t = elapsed_time / duration  # Normaliser le temps (0 à 1)
+		var t = elapsed_time / duration  # Normalisation du temps (0 à 1)
 		
 		# Lerp entre A et B
 		var new_position = start.lerp(end, t)
@@ -508,5 +508,5 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 		new_position.y += jump_height * sin(t * PI)
 		
 		slime.global_transform.origin = new_position
-		
-		
+
+	can_jump = true  # Réactive le saut une fois terminé
