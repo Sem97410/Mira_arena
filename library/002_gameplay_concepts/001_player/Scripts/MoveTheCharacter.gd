@@ -11,6 +11,7 @@ class_name PlayerMovementScript
 ## REFERENCES
 #Resources
 @export var player_movement_resource : PlayerMovementResource
+@export var game_master : MiraGameMaster
 
 
 
@@ -18,6 +19,7 @@ class_name PlayerMovementScript
 #Nodes
 @export var player : CharacterBody3D
 @export var animation_tree : AnimationTree
+@export var aura_mesh : MeshInstance3D
 
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
@@ -27,16 +29,22 @@ var direction_vector_input: Vector2
 @onready var can_move : bool = true
 @onready var charge_attack_mode : bool = false
 
+
 # -----------------
 #Values
 @onready var temps_player_speed : float = 6
+@export var jump_strength : float = 7.5
 
 var last_rotation_angle : float = 0.0
+
+func _ready() -> void:
+	game_master.player_use_jump.connect(jump_the_character)
 
 func _physics_process(_delta: float) -> void:
 	
 	move_the_character()
 	charge_attack_movement_mode()
+	launch_in_the_air_animation()
 
 
 
@@ -89,3 +97,14 @@ func charge_attack_movement_mode() -> void :
 		else:
 			# Maintenir la dernière orientation connue
 			player.rotation.y = last_rotation_angle
+
+func jump_the_character() -> void : 
+	player.velocity.y = jump_strength
+	
+func launch_in_the_air_animation() -> void : 
+	if not player.is_on_floor():
+		base_state_machine.travel("Fly")
+		aura_mesh.visible = false
+	elif player.is_on_floor() :
+		base_state_machine.travel("MovementBlendSpace")
+		aura_mesh.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=62 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -410,6 +410,70 @@ size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_givkb"]
 size = Vector3(6, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30i1h"]
+resource_name = "Material"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_otcg1"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwABAAAAAAAEAAMAAgAFAAQABAAAAAIABQADAAQAAQADAAUABQACAAEA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AACAvwAAgL8AAIA/AACAvwAAgD8AAIA/AACAPwAAgL8AAIA/AACAvwAAgD8AAIC/AACAvwAAgL8AAIC/AACAPwAAgL8AAIC/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wtexv"]
+resource_name = "Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("AADAPgAAAAAAACA/AAAAAAAAwD4AAIA+AAAgPwAAQD8AACA/AACAPwAAwD4AAIA/AADAPgAAQD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAAD8AAAA+AACAPgAAwD4AAAA/AAAgPwAAQD8AAMA+AABAPwAAYD8AAIA+AABgPwAAAD8AAMA+AAAAPwAAwD4AAIA+"),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABQAGAAMABwAIAAkACQAKAAcACwAMAA0ADgAPABAAEAARAA4A"),
+"material": SubResource("StandardMaterial3D_30i1h"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("AACAvwAAgL8AAIA/AACAvwAAgD8AAIA/AACAPwAAgL8AAIA/AACAvwAAgD8AAIC/AACAvwAAgD8AAIA/AACAvwAAgL8AAIA/AACAvwAAgL8AAIC/AACAPwAAgL8AAIA/AACAPwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIA/AACAPwAAgL8AAIC/AACAvwAAgD8AAIC/AACAvwAAgL8AAIC/AACAvwAAgD8AAIA/AACAvwAAgD8AAIC/AACAPwAAgL8AAIC/AACAPwAAgL8AAIA//3//f/9/////f/9//3////9//3//f///AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9/////fwAA////v/9/AAD///+//38AAP///7//fwAA////v///////f/////////9//////////3////+//7//P//f/7//v/8//9//v/+//z//3/+//7//P//f")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_otcg1")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g2ql2"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, 1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, 1, -1, -1, 1, -1, -1, 1, -1, 1, -1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7etk5"]
+size = Vector3(3, 1.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1g3r2"]
+size = Vector3(3, 10, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dhfng"]
+size = Vector3(3, 1.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_24jd1"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1maoq"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pml4r"]
+size = Vector3(3, 4.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2edg"]
+size = Vector3(3, 4.5, 3)
 
 [node name="PracticeScene" type="Node3D"]
 
@@ -977,7 +1041,7 @@ mesh = SubResource("BoxMesh_enyvx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DashZone/MovingPlateforme/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_givkb")
 
-[node name="MovementZone" type="Node" parent="."]
+[node name="MovementZone" type="Node3D" parent="."]
 
 [node name="Wall04" type="MeshInstance3D" parent="MovementZone"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.9908, 1.82454, -15.499)
@@ -1008,6 +1072,85 @@ skeleton = NodePath("../../LightAttackZone")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Wall06/StaticBody3D"]
 shape = SubResource("BoxShape3D_3lv7c")
+
+[node name="Label3D2" type="Label3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19254, 3.235, -19.369)
+modulate = Color(0.466667, 0.337255, 0.537255, 1)
+text = "Movement zone"
+font_size = 150
+
+[node name="Rampe" type="Node3D" parent="MovementZone"]
+transform = Transform3D(-0.602646, 0, 5.22616e-08, 0, 1, 0, -5.2685e-08, 0, -0.597803, -12.4087, 0, -16.9941)
+
+[node name="Cube" type="MeshInstance3D" parent="MovementZone/Rampe"]
+transform = Transform3D(5, 0, 2.84217e-14, 0, 1.5, 0, 5.68434e-14, 0, 2.80371, 0, 1.49321, 1.97671)
+mesh = SubResource("ArrayMesh_wtexv")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe/Cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe/Cube/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_g2ql2")
+
+[node name="Rampe2" type="Node3D" parent="MovementZone"]
+transform = Transform3D(0.602646, 0, 0, 0, 1, 0, 0, 0, 0.597803, 5.38378, 0, -16.9941)
+
+[node name="Cube" type="MeshInstance3D" parent="MovementZone/Rampe2"]
+transform = Transform3D(5, 0, 0, 0, 1.5, 0, 0, 0, 2.80371, -3.68073, 1.49321, -1.97671)
+mesh = SubResource("ArrayMesh_wtexv")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe2/Cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe2/Cube/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_g2ql2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.40185, -7.88653, -2.02201, -18.1837)
+mesh = SubResource("BoxMesh_7etk5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_1g3r2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.40185, -1.32578, -2.02201, -18.1837)
+mesh = SubResource("BoxMesh_7etk5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_dhfng")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3215, 0.75, -18.184)
+mesh = SubResource("BoxMesh_7etk5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_dhfng")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1809, 1.5, -18.1615)
+mesh = SubResource("BoxMesh_24jd1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("BoxShape3D_1maoq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MovementZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.931, 2, -18.163)
+mesh = SubResource("BoxMesh_pml4r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("BoxShape3D_p2edg")
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]

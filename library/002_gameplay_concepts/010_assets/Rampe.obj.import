@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cc2qvmoqi0b40"
+path="res://.godot/imported/Rampe.obj-12ebad943be9d7c3e3b87952be7191e3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rampe.obj-12ebad943be9d7c3e3b87952be7191e3.mesh"]
+
+source_file="res://library/002_gameplay_concepts/010_assets/Rampe.obj"
+dest_files=["res://.godot/imported/Rampe.obj-12ebad943be9d7c3e3b87952be7191e3.mesh", "res://.godot/imported/Rampe.obj-12ebad943be9d7c3e3b87952be7191e3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -25,6 +25,9 @@ var is_alive : bool
 signal player_use_light_attack
 signal player_use_charged_attack
 signal player_use_dash
+signal player_use_jump
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,12 +39,17 @@ func _process(_delta: float) -> void:
 		player.velocity = Vector3.ZERO
 		return
 		
-	if Input.is_action_just_pressed("charge_attack"):
+	if Input.is_action_just_pressed("charge_attack") and player.is_on_floor():
 		player_use_charged_attack.emit()
 		
 		
 	if Input.is_action_just_pressed("dash") && dash_logic.dash_countdown <= 0:
 		player_use_dash.emit()
 	
-	if Input.is_action_just_pressed("light_attack") :
+	if Input.is_action_just_pressed("light_attack") and player.is_on_floor():
 		player_use_light_attack.emit()
+		
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+		
+		player_use_jump.emit()
