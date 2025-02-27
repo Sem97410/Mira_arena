@@ -25,6 +25,8 @@ class_name DashLogic
 @onready var start_time : int = 0 #When the dash start
 @onready var dash_countdown : float = 0.0
 
+var was_in_air = false  # Pour savoir si on était en l'air avant le dash
+
 
 # -----------------
 #Localisation of the player
@@ -104,44 +106,105 @@ func decrease_dash_countdown(delta : float ) -> void :
 #Dash initialisation
 func start_dash():
 	
-	start_position = player.position #Stock the player position
-	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
-	destination_target = player.position + player.transform.basis.z * dash_length #Set up the destination target
-	#Destination target = A position in front of the player 
+	#start_position = player.position #Stock the player position
+	#start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
+	#destination_target = player.position + player.transform.basis.z * dash_length #Set up the destination target
+	##Destination target = A position in front of the player 
+	
+	## REWORK
+	start_position = player.position
+	start_time = Time.get_ticks_msec()
+	destination_target = player.position + player.transform.basis.z * dash_length
 
+	# Vérifie si le joueur était en l'air avant de dasher
+	was_in_air = not player.is_on_floor()
 # -----------------
 #Dash physical movement
 func execute_dash():
+	#
+	#if start_time > 0 : #Activate the dash only if start_time is superior to 0
+		##enable_dash_vfx()
+		#var t : float =  ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
+		#
+		##Time.get_ticks_msec() - start_time 									-> Elapsed time since the start of the dash (in milliseconds)
+		##((Time.get_ticks_msec() - start_time) / 1000.0) 						-> convert the result in second (and not milliseconds)
+		##(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration 		-> Normalize in order to be between 0 and 1
+		#
+		##It's a temporal interpolation
+		#
+		#var step : Vector3
+		#
+		#step = start_position.lerp(destination_target, t) 
+		## Physical interpolation between Start position and destination_target base on t
+		##You could write it like that : 
+		##step = start_position + (destination_target - start_position) * t  ## Same than lerp()
+		##When t = 0 , step = start_position
+		##When t = 1 , step = destination_target
+		#step -= player.position
+		#
+		#var coll : KinematicCollision3D = player.move_and_collide(step)
+		#
+		##cube.velocity = step / delta
+		##cube.move_and_slide()
+		#if t >= 1 or coll :
+			#start_time = 0
+			##disable_dash_vfx()
+			
+			
+		## REWORK
+	if start_time > 0:
+		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0
+		var t = elapsed_time / dash_duration
+
+		if t >= 1:
+			stop_dash()
+			return
+
+		# Interpolation entre le point de départ et la destination
+		var target_position = start_position.lerp(destination_target, t)
+		var dash_direction = (destination_target - start_position).normalized()
+
+		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI ON DASH DANS LES AIRS ⚠️
+		if not was_in_air:
+			if dash_direction.y >= 0:
+				target_position = adjust_height_to_ground(target_position)
+			# Si on dash vers le bas, on laisse la physique gérer et on ajuste plus tard
+
+		# Déplacement avec collision
+		var step = target_position - player.global_transform.origin
+		var coll = player.move_and_collide(step)
+
+		if coll:
+			stop_dash()
+
+func adjust_height_to_ground(target_position: Vector3) -> Vector3:
+	var space_state = player.get_world_3d().direct_space_state
+
+	# Raycast vers le bas (pour coller au sol si nécessaire)
+	var ray_down_origin = target_position + Vector3(0, 1, 0)
+	var ray_down_end = target_position + Vector3(0, -3, 0)
+	var query_down = PhysicsRayQueryParameters3D.create(ray_down_origin, ray_down_end)
+	var result_down = space_state.intersect_ray(query_down)
+
+	# Raycast vers l'avant et vers le bas pour détecter les montées
+	var ray_forward_origin = target_position + Vector3(0, 1, 0)
+	var ray_forward_end = target_position + player.transform.basis.z * 2 + Vector3(0, -3, 0)
+	var query_forward = PhysicsRayQueryParameters3D.create(ray_forward_origin, ray_forward_end)
+	var result_forward = space_state.intersect_ray(query_forward)
+
+	# Si le sol est détecté et qu'on ne dash pas vers le bas, ajuster la hauteur
+	if result_down:
+		target_position.y = result_down.position.y + 0.1  
+	elif result_forward:
+		target_position.y = result_forward.position.y + 0.1  
+
+	return target_position
+
+
+
+func stop_dash():
+	start_time = 0
 	
-	if start_time > 0 : #Activate the dash only if start_time is superior to 0
-		#enable_dash_vfx()
-		var t : float =  ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
-		
-		#Time.get_ticks_msec() - start_time 									-> Elapsed time since the start of the dash (in milliseconds)
-		#((Time.get_ticks_msec() - start_time) / 1000.0) 						-> convert the result in second (and not milliseconds)
-		#(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration 		-> Normalize in order to be between 0 and 1
-		
-		#It's a temporal interpolation
-		
-		var step : Vector3
-		
-		step = start_position.lerp(destination_target, t) 
-		# Physical interpolation between Start position and destination_target base on t
-		#You could write it like that : 
-		#step = start_position + (destination_target - start_position) * t  ## Same than lerp()
-		#When t = 0 , step = start_position
-		#When t = 1 , step = destination_target
-		step -= player.position
-		
-		var coll : KinematicCollision3D = player.move_and_collide(step)
-		
-		#cube.velocity = step / delta
-		#cube.move_and_slide()
-		if t >= 1 or coll :
-			start_time = 0
-			#disable_dash_vfx()
-
-
 #----------------------------------
 ## DASH FOV
 func modify_fov_with_tween() -> void : 

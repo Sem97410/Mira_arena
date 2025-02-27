@@ -402,6 +402,14 @@ size = Vector3(17, 0.1, 9)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkp5"]
 size = Vector3(17, 0.1, 9)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_cte61"]
+vertices = PackedVector3Array(73.2814, 1.69081, -18.7974, 73.2814, 1.69081, -16.2974, 80.0314, 1.69081, -16.2974, 80.0314, 1.69081, -18.7974, 64.0314, 1.69081, -1.79745, 64.0314, 1.69081, 6.20255, 70.5314, 1.69081, 6.20255, 70.5314, 1.69081, -1.79745)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r68a5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26kip"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30i1h"]
 resource_name = "Material"
 vertex_color_use_as_albedo = true
@@ -465,14 +473,6 @@ size = Vector3(3, 4.5, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2edg"]
 size = Vector3(3, 4.5, 3)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_cte61"]
-vertices = PackedVector3Array(73.2814, 1.69081, -18.7974, 73.2814, 1.69081, -16.2974, 80.0314, 1.69081, -16.2974, 80.0314, 1.69081, -18.7974, 64.0314, 1.69081, -1.79745, 64.0314, 1.69081, 6.20255, 70.5314, 1.69081, 6.20255, 70.5314, 1.69081, -1.79745)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
-
-[sub_resource type="BoxMesh" id="BoxMesh_r68a5"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_26kip"]
 
 [node name="PracticeScene" type="Node3D"]
 
@@ -1099,8 +1099,8 @@ end_position = Vector3(-7.355, 1.615, 18.92)
 
 [node name="NavigationLink3D2" type="NavigationLink3D" parent="FreeFightZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0587, 1.371, -18.8864)
-start_position = Vector3(-0.565, 0.065, 1.365)
-end_position = Vector3(4.87, 0.16, 1.32)
+start_position = Vector3(-2.045, 0.065, 18.135)
+end_position = Vector3(4.87, 0.51, 1.32)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="FreeFightZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2812, 0, -14.8864)
@@ -1119,6 +1119,28 @@ shape = SubResource("BoxShape3D_oxkp5")
 [node name="GameLogic" type="Node" parent="FreeFightZone" node_paths=PackedStringArray("player_body")]
 script = ExtResource("13_h62yh")
 player_body = NodePath("../../Mira")
+
+[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="FreeFightZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4785, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_cte61")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D2"]
+transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 8.82255, 67.2711, 0, 2.2865)
+mesh = SubResource("BoxMesh_r68a5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D2/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D2/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_26kip")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D2"]
+transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 3.39329, 76.6765, 0, -17.6008)
+mesh = SubResource("BoxMesh_r68a5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D2/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D2/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_26kip")
 
 [node name="MovementZone" type="Node3D" parent="."]
 
@@ -1183,6 +1205,17 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe2/Cube"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe2/Cube/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_g2ql2")
+
+[node name="Cube2" type="MeshInstance3D" parent="MovementZone/Rampe2"]
+transform = Transform3D(10.0902, 0, 0, 0, 1.5, 0, 0, 0, 6.51435, 57.1628, 1.49321, 35.8931)
+mesh = SubResource("ArrayMesh_wtexv")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe2/Cube2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe2/Cube2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_g2ql2")
 
@@ -1270,29 +1303,6 @@ max_enemies = 1.0
 
 [node name="SpawnerTimer" type="Timer" parent="Spawner"]
 autostart = true
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_cte61")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 8.82255, 67.2711, 0, 2.2865)
-mesh = SubResource("BoxMesh_r68a5")
-skeleton = NodePath("../../FreeFightZone/NavigationRegion3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
-shape = SubResource("BoxShape3D_26kip")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 3.39329, 76.6765, 0, -17.6008)
-mesh = SubResource("BoxMesh_r68a5")
-skeleton = NodePath("../../FreeFightZone/NavigationRegion3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
-shape = SubResource("BoxShape3D_26kip")
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]

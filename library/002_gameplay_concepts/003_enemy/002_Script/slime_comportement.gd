@@ -490,7 +490,7 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 
 func jump_to_target(start: Vector3, end: Vector3) -> void:
 	var jump_height = 5.0  # Hauteur du saut
-	var duration = 0.5  # Temps total du saut
+	var duration = 1.5  # Temps total du saut
 	var elapsed_time = 0.0
 	
 	print("Suppose to jump")
