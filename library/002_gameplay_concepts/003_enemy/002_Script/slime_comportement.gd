@@ -22,6 +22,8 @@ class_name Slime
 @onready var rotation_x = slime.rotation_degrees.x # accès a l'axe x du character body
 @onready var rotation_z = slime.rotation_degrees.z # accès a l'axe z du character body
 
+var was_in_air = false  # Pour savoir si on était en l'air avant le dash
+
 #-----------------------------------
 #Attack values
 
@@ -402,78 +404,115 @@ func enable_attack_area() -> void :
 # -----------------
 #Dash initialisation
 func start_dash():
-	#print("In start dash")
+	##print("In start dash")
+	#is_attacking = true
+	#start_position = slime.position #Stock the player position
+	#start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
+	##destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
+	#var direction = -slime.transform.basis.z
+	#direction.y = 0  # Bloque l'inclinaison verticale
+	#direction = direction.normalized()  # Normaliser pour éviter des bugs
+	#
+	## Définir la destination en gardant le dash horizontal
+	#destination_target = slime.position + direction * dash_length
+	#
+	## REWORK
+	# Initialisation des variables pour le dash
 	is_attacking = true
-	start_position = slime.position #Stock the player position
-	start_time = Time.get_ticks_msec() #Save the exact moment when the dash started
-	#destination_target = (slime.position + Vector3(0,0.5,0)) + -slime.transform.basis.z * dash_length
+	start_position = slime.position  # Stocke la position de départ du slime
+	start_time = Time.get_ticks_msec()  # Sauvegarde le moment exact où le dash commence
+	
+	# Définir la direction du dash (en tenant compte de la direction de l'axe z de la transformation)
 	var direction = -slime.transform.basis.z
 	direction.y = 0  # Bloque l'inclinaison verticale
-	direction = direction.normalized()  # Normaliser pour éviter des bugs
+	direction = direction.normalized()  # Normaliser la direction pour éviter des bugs
 	
-	# Définir la destination en gardant le dash horizontal
+	# Définir la destination du dash en fonction de la direction et de la longueur du dash
 	destination_target = slime.position + direction * dash_length
- #Set up the destination target
-	#Destination target = A position in front of the player 
-	#print("launch dash")
+
+	# Vérifie si le slime était en l'air avant de dasher
+	was_in_air = not slime.is_on_floor()
+
 
 # -----------------
 #Dash physical movement
 func execute_dash():
-	if start_time > 0:  # Activate the dash only if start_time is set
-		#print("Is dashing")
+	#if start_time > 0:  # Activate the dash only if start_time is set
+		##print("Is dashing")
+		#
+		#var t: float = ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
+#
+		## Compute the step for the enemy dash
+		#var step: Vector3
+		#step = start_position.lerp(destination_target, t)  
+		#step -= slime.position  # Adjust based on current enemy position
+#
+		#var coll: KinematicCollision3D = slime.move_and_collide(step)
+		#animation_player.play("Slime|Charge")
+		#
+#
+		#if t >= 1 or attack_cool_down <= 0:
+			#start_time = 0
+			#current_state = States.CHASING
+	
+	## REWORK
+	if start_time > 0:  # Active le dash seulement si start_time est défini
+		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0  # Temps écoulé depuis le début du dash
+		var t = elapsed_time / dash_duration  # Normalisation du temps (de 0 à 1)
+
+		# Si le dash est terminé ou que le cooldown d'attaque est atteint
+		if t >= 1 or attack_cool_down <= 0:
+			stop_dash()
+			return
 		
-		var t: float = ((float)(Time.get_ticks_msec() - start_time) / 1000.0) / dash_duration
+		# Interpolation entre la position de départ et la destination
+		var target_position = start_position.lerp(destination_target, t)
+		var dash_direction = (destination_target - start_position).normalized()
 
-		# Compute the step for the enemy dash
-		var step: Vector3
-		step = start_position.lerp(destination_target, t)  
-		step -= slime.position  # Adjust based on current enemy position
+		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
+		if not was_in_air:
+			if dash_direction.y >= 0:
+				target_position = adjust_height_to_ground(target_position)
+			# Si le slime dash vers le bas, on laisse la physique gérer et on ajuste plus tard
 
-		var coll: KinematicCollision3D = slime.move_and_collide(step)
+		# Déplacement avec collision
+		var step = target_position - slime.global_transform.origin
+		var coll = slime.move_and_collide(step)
+
+		# Si collision, on arrête le dash
+		if coll:
+			stop_dash()
+
+		# Lancer l'animation pendant le dash
 		animation_player.play("Slime|Charge")
 		
-		#await get_tree().create_timer(0.2).timeout 
-		
-		
+func adjust_height_to_ground(target_position: Vector3) -> Vector3:
+	var space_state = slime.get_world_3d().direct_space_state
 
-		
-		#is_attacking = false
-		
-		
+	# Raycast vers le bas (pour coller au sol si nécessaire)
+	var ray_down_origin = target_position + Vector3(0, 1, 0)
+	var ray_down_end = target_position + Vector3(0, -3, 0)
+	var query_down = PhysicsRayQueryParameters3D.create(ray_down_origin, ray_down_end)
+	var result_down = space_state.intersect_ray(query_down)
 
-		#### Stop dash if collision occurs with something other than the player or an enemy
-		#if coll and coll.get_collider():
-			#var collider = coll.get_collider()
-			#if collider == player:
-				#print("Collision avec le joueur : Ignorée")
-			#else:
-				#print("Collision avec :", collider.name)
-				#start_time = 0
-				#var rebound_direction = -step.normalized() * 2
-				#slime.move_and_collide(rebound_direction)
-		##else:
-			##print("No collision detected")
+	# Raycast vers l'avant et vers le bas pour détecter les montées
+	var ray_forward_origin = target_position + Vector3(0, 1, 0)
+	var ray_forward_end = target_position + slime.transform.basis.z * 2 + Vector3(0, -3, 0)
+	var query_forward = PhysicsRayQueryParameters3D.create(ray_forward_origin, ray_forward_end)
+	var result_forward = space_state.intersect_ray(query_forward)
 
-		if t >= 1 or attack_cool_down <= 0:
-			start_time = 0
-			#is_attacking = false
-			#print("Fin du dash : t >= 1")
-			
-			current_state = States.CHASING
-			
-			#var player_position = player.global_position # position du jouer
-			#var enemy_position = slime.global_position # positon de l'enemi
-			#var distance_to_player = player_position.distance_to(enemy_position) # distance enemmi_player
-				#
-			#if distance_to_player > 3 : #si la distance est supérieur a 3
-				#current_state = States.CHASING # l'état actuel est égal a CHASING
-				#print("I'm in chasing after dash")
-			#else :
-				##is_attacking = true
-				#current_state = States.PREATTACK # l'état actuel est égal a PREATTACK
-				#print("I'm in preattack after dash")
-			
+	# Si le sol est détecté et qu'on ne dash pas vers le bas, ajuster la hauteur
+	if result_down:
+		target_position.y = result_down.position.y + 0.1  # Ajuste la hauteur du slime pour coller au sol
+	elif result_forward:
+		target_position.y = result_forward.position.y + 0.1  # Ajuste la hauteur si une montée est détectée
+
+	return target_position
+
+func stop_dash():
+	start_time = 0
+	current_state = States.CHASING  # Changer l'état du slime après le dash
+
 
 
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
