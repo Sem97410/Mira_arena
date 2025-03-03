@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch3ecm47hhaw6"
-path="res://.godot/imported/slim_helmet_roughness.png-489bda010d4946ad355d62f9a017aaa8.ctex"
+path="res://.godot/imported/slim_helmet_roughness.png-e2803a07b20e92939a6133f32132a418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/003_enemy/004_assets/001_texture/slim_helmet_roughness.png"
-dest_files=["res://.godot/imported/slim_helmet_roughness.png-489bda010d4946ad355d62f9a017aaa8.ctex"]
+source_file="res://library/002_gameplay_concepts/003_enemy/V01/004_assets/001_texture/slim_helmet_roughness.png"
+dest_files=["res://.godot/imported/slim_helmet_roughness.png-e2803a07b20e92939a6133f32132a418.ctex"]
 
 [params]
 
