@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_pe7yj"]
-[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/V01/001_SCENE/spawner.tscn" id="3_au60h"]
+[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="3_au60h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5dw0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
