@@ -1,10 +1,10 @@
 extends Node
 class_name DropHealthLogic
 
+
 @export var health_item_scene : PackedScene
 @export var drop_chance : float = 0.15
 @export var slime : CharacterBody3D 
-
 
 	
 func drop_health_item(position : Vector3) -> void : 
