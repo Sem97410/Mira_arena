@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1wnqq3rpkhir"]
+
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_abthj"]
+[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_q7gag"]
+[ext_resource type="Script" uid="uid://d0n7iegy28s7u" path="res://addons/godot_state_charts/atomic_state.gd" id="3_5w2ux"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abthj"]
+albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
+
+[node name="Hunter" instance=ExtResource("1_abthj")]
+
+[node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_abthj")
+
+[node name="PrintSomething" parent="." index="1"]
+debug_message = "Hunter message"
+idle_message = "Hunter is idle"
+
+[node name="PrintAnotherThings" parent="." index="3"]
+message2 = "This is a second hunter  message"
+
+[node name="Transition" type="Node" parent="StateChart/root/Idle" index="0"]
+script = ExtResource("2_q7gag")
+to = NodePath("../../Death")
+event = &"isdead"
+delay_in_seconds = "0.0"
+
+[node name="Hunt" type="Node" parent="StateChart/root" index="3"]
+script = ExtResource("3_5w2ux")
+metadata/_custom_type_script = "uid://d0n7iegy28s7u"

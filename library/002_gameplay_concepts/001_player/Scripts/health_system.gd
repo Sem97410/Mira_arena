@@ -30,16 +30,16 @@ func _ready() -> void:
 	health_bar.init_health(player_max_hp)
 	Engine.time_scale = 1.0
 
-	
-func _process(_delta: float) -> void:
-	#print("Player current HP : ", player_current_hp)
-	#var current_state = animation_tree.get("parameters/state/current")
-
-	#print("Je suis dans le state : ", current_state)
-	if Input.is_action_just_pressed("debug_input"):
-		take_damage(50.0)
-		
-		
+	#
+#func _process(_delta: float) -> void:
+	##print("Player current HP : ", player_current_hp)
+	##var current_state = animation_tree.get("parameters/state/current")
+#
+	###print("Je suis dans le state : ", current_state)
+	##if Input.is_action_just_pressed("debug_input"):
+		##take_damage(50.0)
+		##
+		#
 		
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :

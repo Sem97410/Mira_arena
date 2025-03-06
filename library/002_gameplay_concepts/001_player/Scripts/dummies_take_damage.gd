@@ -26,8 +26,8 @@ func _process(_delta: float) -> void:
 	
 	destroy_dummies()
 	
-	if Input.is_action_just_pressed("debug_input"):
-		knockback_force = 140.0
+	#if Input.is_action_just_pressed("debug_input"):
+		#knockback_force = 140.0
 
 func _physics_process(delta: float) -> void:
 	

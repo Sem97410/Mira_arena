@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=27 format=3 uid="uid://cmjq7a7f07m5l"]
 
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_1eume"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_bnacy"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_4lw5b"]
-[ext_resource type="PackedScene" uid="uid://bgflvrvk3rpfq" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter_slime.tscn" id="5_tg3fe"]
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="4_npp4q"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="5_j8n4o"]
+[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="6_j8n4o"]
+[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="7_07k7e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
 albedo_color = Color(0.360784, 0.47451, 1, 1)
@@ -251,32 +254,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59465, 0, 9.96962)
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="InvisibleWalls" type="Node" parent="."]
+[node name="InvisibleWalls" type="Node" parent="Environment"]
 
-[node name="Behavior1InvisibleWall" type="StaticBody3D" parent="InvisibleWalls"]
+[node name="Behavior1InvisibleWall" type="StaticBody3D" parent="Environment/InvisibleWalls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2.40075, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/Behavior1InvisibleWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/InvisibleWalls/Behavior1InvisibleWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.3994, 0, 0)
 shape = SubResource("BoxShape3D_a5da5")
 
-[node name="Behavior1InvisibleWall2" type="StaticBody3D" parent="InvisibleWalls"]
+[node name="Behavior1InvisibleWall2" type="StaticBody3D" parent="Environment/InvisibleWalls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7648, 2.41253, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/Behavior1InvisibleWall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/InvisibleWalls/Behavior1InvisibleWall2"]
 shape = SubResource("BoxShape3D_gm0y5")
 
-[node name="Behavior1InvisibleWall3" type="StaticBody3D" parent="InvisibleWalls"]
+[node name="Behavior1InvisibleWall3" type="StaticBody3D" parent="Environment/InvisibleWalls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.294, 0, -14.788)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/Behavior1InvisibleWall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/InvisibleWalls/Behavior1InvisibleWall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42588, 0)
 shape = SubResource("BoxShape3D_bpoia")
 
-[node name="Behavior1InvisibleWall4" type="StaticBody3D" parent="InvisibleWalls"]
+[node name="Behavior1InvisibleWall4" type="StaticBody3D" parent="Environment/InvisibleWalls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.294, 0, 14.9978)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/Behavior1InvisibleWall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/InvisibleWalls/Behavior1InvisibleWall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.46321, -0.104939)
 shape = SubResource("BoxShape3D_4kwbi")
 
@@ -284,5 +287,14 @@ shape = SubResource("BoxShape3D_4kwbi")
 script = ExtResource("4_4lw5b")
 player_body = NodePath("../Mira")
 
-[node name="HunterSlime" parent="." instance=ExtResource("5_tg3fe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9463, 0.0499992, -1.90868)
+[node name="BaseSlime" parent="." instance=ExtResource("4_npp4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3881, 0.422963, -1.45292)
+
+[node name="Hunter" parent="." instance=ExtResource("5_j8n4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39681, 0.422963, -1.23962)
+
+[node name="scared_slime" parent="." instance=ExtResource("6_j8n4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60567, 0.422963, -1.20148)
+
+[node name="WandererSlime" parent="." instance=ExtResource("7_07k7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4726, 0.422963, -1.59426)
