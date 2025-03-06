@@ -109,8 +109,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fxhvd"]
 _data = {
-"Enemy_lock": SubResource("Animation_mkjb8"),
-"RESET": SubResource("Animation_lafj7")
+&"Enemy_lock": SubResource("Animation_mkjb8"),
+&"RESET": SubResource("Animation_lafj7")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnfqo"]
@@ -130,6 +130,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 radial_velocity_min = -2.23517e-05
 radial_velocity_max = 0.999978
 gravity = Vector3(0, 5, 0)
@@ -141,8 +142,8 @@ size = Vector2(0.2, 0.5)
 render_priority = 0
 shader = ExtResource("3_sqa7f")
 shader_parameter/ColorParameter = Color(8.108, 1.081, 0, 1)
-shader_parameter/Vector2Parameter = null
-shader_parameter/Vector2Parameter2 = null
+shader_parameter/Vector2Parameter = Vector2(0, 0)
+shader_parameter/Vector2Parameter2 = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5i7pm"]
 size = Vector2(3, 3)

@@ -1,7 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c82m5ccu1muxc"]
 
-[ext_resource type="Script" path="res://general/Sprint_06_12/UI/Scripts/main_menu_UI.gd" id="1_ne3vm"]
-[ext_resource type="Texture2D" uid="uid://3mndwf7e5h7u" path="res://general/Import_assets/Main_menu/Logo2.png" id="2_hmoms"]
+[sub_resource type="Resource" id="Resource_l7c4m"]
+metadata/__load_path__ = "res://general/Sprint_06_12/UI/Scripts/main_menu_UI.gd"
+
+[sub_resource type="Resource" id="Resource_xwl4v"]
+metadata/__load_path__ = "res://general/Import_assets/Main_menu/Logo2.png"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ne3vm")
+script = SubResource("Resource_l7c4m")
 
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="."]
 layout_direction = 1
@@ -83,7 +86,7 @@ scale = Vector2(0.2, 0.2)
 
 [node name="TextureRect" type="TextureRect" parent="Logo_container"]
 layout_mode = 2
-texture = ExtResource("2_hmoms")
+texture = SubResource("Resource_xwl4v")
 
 [node name="Not_ready_pannel" type="PanelContainer" parent="."]
 visible = false

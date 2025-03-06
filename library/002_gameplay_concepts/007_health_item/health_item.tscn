@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dwca7do31vyak"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
+[ext_resource type="Script" uid="uid://cw3vje0x307dl" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
 [ext_resource type="PackedScene" uid="uid://bgjm2vu4dpac7" path="res://library/002_gameplay_concepts/007_health_item/health_item_aura.tscn" id="1_xlhy7"]
 [ext_resource type="PackedScene" uid="uid://c01nq5ejq6gkm" path="res://library/002_gameplay_concepts/007_health_item/Sablier.fbx" id="2_qiky3"]
 
@@ -72,8 +72,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcj7i"]
 _data = {
-"RESET": SubResource("Animation_05oki"),
-"base_animation": SubResource("Animation_gwskb")
+&"RESET": SubResource("Animation_05oki"),
+&"base_animation": SubResource("Animation_gwskb")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]

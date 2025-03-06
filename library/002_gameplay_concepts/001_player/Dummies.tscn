@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cmk2lreji2yy1"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/dummies_take_damage.gd" id="1_87xf1"]
+[ext_resource type="Script" uid="uid://ylkomr1y57g3" path="res://library/002_gameplay_concepts/001_player/Scripts/dummies_take_damage.gd" id="1_87xf1"]
 [ext_resource type="PackedScene" uid="uid://oohgno4eg0qm" path="res://library/002_gameplay_concepts/003_enemy/v_01/000_FBX/Slime_002.fbx" id="2_3fam6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5neoq"]

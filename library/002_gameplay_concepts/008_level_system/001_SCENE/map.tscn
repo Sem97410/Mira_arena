@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://o8sm0enwfbaw"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_u4vkr"]
+[ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_u4vkr"]
 [ext_resource type="ArrayMesh" uid="uid://dkq68hpueldil" path="res://library/002_gameplay_concepts/008_level_system/003_asset/ressource/grass_3.tres" id="2_ifn21"]
 [ext_resource type="Texture2D" uid="uid://c5brqoww048dq" path="res://library/002_gameplay_concepts/008_level_system/003_asset/texture/Substance_graph_normal.png" id="2_sxdi2"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="4_c80st"]

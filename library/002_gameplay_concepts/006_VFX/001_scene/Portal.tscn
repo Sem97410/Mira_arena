@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bymvvlfbsnbsc"]
 
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_hj780"]
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="2_ae0et"]
+[ext_resource type="Shader" uid="uid://dsp0pjm1rwsoc" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="2_ae0et"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_bpnal"]
 [ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="11_kx46q"]
 
@@ -28,8 +28,7 @@ curve_y = SubResource("Curve_p3js6")
 curve_z = SubResource("Curve_c2m0o")
 
 [sub_resource type="Curve" id="Curve_y16yy"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -43,6 +42,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
 emission_ring_radius = 0.8
 emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.23517e-06
 radial_accel_max = 0.499998
@@ -60,7 +60,7 @@ resource_name = "Portal"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1j7s2"]
 _data = {
-"Portal": SubResource("Animation_iq4v2")
+&"Portal": SubResource("Animation_iq4v2")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jaei"]
@@ -68,12 +68,12 @@ render_priority = 0
 shader = ExtResource("2_ae0et")
 shader_parameter/distortionView = 0.03
 shader_parameter/speedView = 0.535
+shader_parameter/noiseViewX = ExtResource("3_bpnal")
+shader_parameter/noiseViewY = ExtResource("3_bpnal")
 shader_parameter/tintColor = Color(0.476393, 0.23094, 0.649121, 1)
 shader_parameter/fesnelAmount = 3.8
 shader_parameter/distortionVertex = 0.08
 shader_parameter/speedVertex = 0.5
-shader_parameter/noiseViewX = ExtResource("3_bpnal")
-shader_parameter/noiseViewY = ExtResource("3_bpnal")
 shader_parameter/noiseVertex = ExtResource("3_bpnal")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8hodq"]
@@ -91,6 +91,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4mphd"]

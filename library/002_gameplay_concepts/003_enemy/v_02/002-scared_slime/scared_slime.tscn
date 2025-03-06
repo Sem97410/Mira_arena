@@ -290,13 +290,13 @@ tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0833333, 1, 1.15, 0.75, 1.15
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxt44"]
 _data = {
-"Slime|Charge": SubResource("Animation_3h04a"),
-"Slime|Walk": SubResource("Animation_34vas"),
-"Slime|death": SubResource("Animation_fbdh1"),
-"Slime|hit": SubResource("Animation_1d4o2"),
-"Slime|idle": SubResource("Animation_0h0uw"),
-"Slime|pre_charge": SubResource("Animation_rmmwh"),
-"pre_charge": SubResource("Animation_as255")
+&"Slime|Charge": SubResource("Animation_3h04a"),
+&"Slime|Walk": SubResource("Animation_34vas"),
+&"Slime|death": SubResource("Animation_fbdh1"),
+&"Slime|hit": SubResource("Animation_1d4o2"),
+&"Slime|idle": SubResource("Animation_0h0uw"),
+&"Slime|pre_charge": SubResource("Animation_rmmwh"),
+&"pre_charge": SubResource("Animation_as255")
 }
 
 [node name="ScaredSlime" type="CharacterBody3D"]
@@ -345,5 +345,5 @@ skin = SubResource("Skin_4qtk0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="scared_slime"]
 libraries = {
-"": SubResource("AnimationLibrary_dxt44")
+&"": SubResource("AnimationLibrary_dxt44")
 }

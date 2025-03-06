@@ -4,9 +4,9 @@
 [ext_resource type="Shader" uid="uid://b8lx3gnuxlp6s" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE.tres" id="2_ajyfn"]
 [ext_resource type="ArrayMesh" uid="uid://cxccnj2bwopb8" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE_TEST.obj" id="3_20t52"]
 [ext_resource type="ArrayMesh" uid="uid://by5qymxkewicp" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/CHARGE/CHARGE.obj" id="4_iebtn"]
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="5_ph1xs"]
+[ext_resource type="Shader" uid="uid://dan82v640now" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="5_ph1xs"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="6_1wr22"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_charge_vfx_logic.gd" id="7_emdxv"]
+[ext_resource type="Script" uid="uid://5xj36xibr23l" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_charge_vfx_logic.gd" id="7_emdxv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g5y5"]
 render_priority = 0
@@ -305,8 +305,8 @@ tracks/10/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rho5s"]
 _data = {
-"CHARGE": SubResource("Animation_6k3bn"),
-"RESET": SubResource("Animation_k1r6j")
+&"CHARGE": SubResource("Animation_6k3bn"),
+&"RESET": SubResource("Animation_k1r6j")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cxjmd"]
@@ -314,12 +314,12 @@ render_priority = 0
 shader = ExtResource("5_ph1xs")
 shader_parameter/distortionView = 0.02
 shader_parameter/speedView = 0.36
+shader_parameter/noiseViewX = ExtResource("6_1wr22")
+shader_parameter/noiseViewY = ExtResource("6_1wr22")
 shader_parameter/tintColor = Color(0.321614, 0.165761, 0.544243, 1)
 shader_parameter/fesnelAmount = 4.7
 shader_parameter/distortionVertex = 0.18
 shader_parameter/speedVertex = 0.4
-shader_parameter/noiseViewX = ExtResource("6_1wr22")
-shader_parameter/noiseViewY = ExtResource("6_1wr22")
 shader_parameter/noiseVertex = ExtResource("6_1wr22")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iccdb"]
@@ -327,12 +327,12 @@ render_priority = 0
 shader = ExtResource("5_ph1xs")
 shader_parameter/distortionView = 0.3
 shader_parameter/speedView = 1.0
+shader_parameter/noiseViewX = ExtResource("6_1wr22")
+shader_parameter/noiseViewY = ExtResource("6_1wr22")
 shader_parameter/tintColor = Color(0.314564, 0.136044, 0.502658, 1)
 shader_parameter/fesnelAmount = 0.0
 shader_parameter/distortionVertex = 0.0
 shader_parameter/speedVertex = 1.0
-shader_parameter/noiseViewX = ExtResource("6_1wr22")
-shader_parameter/noiseViewY = ExtResource("6_1wr22")
 shader_parameter/noiseVertex = ExtResource("6_1wr22")
 
 [sub_resource type="SphereMesh" id="SphereMesh_ab7w7"]

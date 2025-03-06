@@ -7,9 +7,9 @@
 [ext_resource type="Shader" uid="uid://bm515ir1silnl" path="res://library/002_gameplay_concepts/006_VFX/Attack/Wave_Attack_Charge.tres" id="5_rx0ei"]
 [ext_resource type="ArrayMesh" uid="uid://bnoqaxsolwnek" path="res://library/002_gameplay_concepts/006_VFX/Attack/Wave_Attack_Charge.obj" id="6_ukb20"]
 [ext_resource type="Shader" uid="uid://bmrxb8pcj8g2r" path="res://library/002_gameplay_concepts/006_VFX/Attack/Trail_Attack_Charge.tres" id="7_cw1hd"]
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="8_0oqbn"]
+[ext_resource type="Shader" uid="uid://dsp0pjm1rwsoc" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="8_0oqbn"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="9_eiyn5"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/activate_attack_charge_vfx.gd" id="10_4f7jr"]
+[ext_resource type="Script" uid="uid://c1xcataqrh3lt" path="res://library/002_gameplay_concepts/001_player/Scripts/activate_attack_charge_vfx.gd" id="10_4f7jr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40qn7"]
 render_priority = 0
@@ -212,8 +212,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngapu"]
 _data = {
-"Attack_Charge": SubResource("Animation_bm7ad"),
-"RESET": SubResource("Animation_e1jtf")
+&"Attack_Charge": SubResource("Animation_bm7ad"),
+&"RESET": SubResource("Animation_e1jtf")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2tmtw"]
@@ -248,12 +248,12 @@ render_priority = 0
 shader = ExtResource("8_0oqbn")
 shader_parameter/distortionView = 0.3
 shader_parameter/speedView = 1.0
+shader_parameter/noiseViewX = ExtResource("9_eiyn5")
+shader_parameter/noiseViewY = ExtResource("9_eiyn5")
 shader_parameter/tintColor = Color(0.5, 0, 6.5, 1)
 shader_parameter/fesnelAmount = 5.0
 shader_parameter/distortionVertex = 0.15
 shader_parameter/speedVertex = 0.545
-shader_parameter/noiseViewX = ExtResource("9_eiyn5")
-shader_parameter/noiseViewY = ExtResource("9_eiyn5")
 shader_parameter/noiseVertex = ExtResource("9_eiyn5")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_baxbg"]

@@ -67,8 +67,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5cea"]
 _data = {
-"BaseAnimation": SubResource("Animation_xnpak"),
-"RESET": SubResource("Animation_trku3")
+&"BaseAnimation": SubResource("Animation_xnpak"),
+&"RESET": SubResource("Animation_trku3")
 }
 
 [node name="IndicatorPanel" type="Node3D"]
