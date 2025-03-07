@@ -368,9 +368,11 @@ script = ExtResource("5_m7hht")
 [node name="Patrol" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="HealthArea3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405009, 0)
 shape = SubResource("SphereShape3D_baove")
 debug_color = Color(0, 0.494, 0.196, 0.696)
+
+[node name="SlimeBehavior" type="Node" parent="."]

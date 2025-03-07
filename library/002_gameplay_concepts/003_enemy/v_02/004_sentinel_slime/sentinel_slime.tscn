@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkhicl5xhybrs"]
+[gd_scene load_steps=4 format=3 uid="uid://bkhicl5xhybrs"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_8hone"]
+[ext_resource type="Script" uid="uid://cm7tqbgrb87qu" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/sentinel_behavior.gd" id="2_2gh82"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hone"]
 albedo_color = Color(0.882156, 0.546574, 0, 1)
@@ -10,5 +11,5 @@ albedo_color = Color(0.882156, 0.546574, 0, 1)
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_8hone")
 
-[node name="CollisionShape3D" parent="." index="1"]
-debug_color = Color(0.829, 0.588, 0, 0.574)
+[node name="SlimeBehavior" parent="." index="4"]
+script = ExtResource("2_2gh82")

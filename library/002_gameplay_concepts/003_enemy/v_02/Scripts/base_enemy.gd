@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name BaseEnemy
 
 #----------------------------------------------
 ##SUMMARY
@@ -49,12 +50,13 @@ var can_move : bool
 
 func take_damage(damage : float) -> void : 
 	current_health_point -= damage
-	
+	knockback()
+#---
 func activate_after_damage_invincibility(invincibility_duration : float) -> void :
 	is_invincible = true
 	await get_tree().create_timer(invincibility_duration).timeout
 	is_invincible = false
-		
+#---
 func death(entity : CharacterBody3D, death_animation_duration : float) : 
 	freeze_movement()
 	await get_tree().create_timer(death_animation_duration).timeout
@@ -67,10 +69,10 @@ func blink(entity_mesh : MeshInstance3D, blink_duration : float) -> void:
 	#Start the blink for "Entity"
 	await get_tree().create_timer(blink_duration).timeout
 	#Stop the blink for "entity"
-
+#---
 func hide_mesh(entity_mesh : MeshInstance3D) -> void : 
 	entity_mesh.visible = false
-	
+#---
 func show_mesh(entity_mesh : MeshInstance3D) -> void : 
 	entity_mesh.visible = true
 
@@ -91,22 +93,23 @@ func move(target : Vector3) -> void:
 	else:
 		#move to target
 		pass
-
+#---
 func entity_rotation() -> void : 
 	#Rotation logic
 	pass
-
+	
+#---
 func look_at_player(player : CharacterBody3D, look_at_range : float) -> void : 
 	#if player is in range
 	look_at(player.position)
-	
+#---
 func knockback() -> void : 
 	#Knockback logic
 	pass
-	
+#---
 func freeze_movement() -> void :
 	can_move = false
-
+#---
 func unfreeze_movement():
 	can_move = true
 
@@ -128,5 +131,5 @@ func instantiate_vfx(position : Vector3, vfx : PackedScene) -> void :
 
 func play_sound(stream_player : AudioStreamPlayer) -> void : 
 	stream_player.play()
-	
+
 #----------------------------------------------

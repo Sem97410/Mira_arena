@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1wnqq3rpkhir"]
+[gd_scene load_steps=5 format=3 uid="uid://c1wnqq3rpkhir"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_abthj"]
+[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_q7gag"]
+[ext_resource type="Script" uid="uid://cw0fte20u6nua" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/hunter_behavior.gd" id="3_5w2ux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abthj"]
 albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
@@ -9,3 +11,11 @@ albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_abthj")
+
+[node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="0"]
+script = ExtResource("2_q7gag")
+to = NodePath("../../Hunt")
+delay_in_seconds = "0.0"
+
+[node name="SlimeBehavior" parent="." index="4"]
+script = ExtResource("3_5w2ux")
