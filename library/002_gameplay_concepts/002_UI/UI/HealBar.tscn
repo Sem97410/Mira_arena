@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3retq7nbgcrj"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/heal_bar.gd" id="1_8cg3v"]
+[ext_resource type="Script" uid="uid://b06t5pnxry5u8" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/heal_bar.gd" id="1_8cg3v"]
 [ext_resource type="Texture2D" uid="uid://c0ees33k4plp7" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/HealthBarSF.png" id="2_ygbvl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgrlq"]

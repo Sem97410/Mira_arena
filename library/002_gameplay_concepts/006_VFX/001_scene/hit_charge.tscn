@@ -1,15 +1,15 @@
 [gd_scene load_steps=29 format=3 uid="uid://dqgtkqdgp03hr"]
 
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="1_eyx7h"]
+[ext_resource type="Shader" uid="uid://lwdtsufg5l6c" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball.gdshader" id="1_eyx7h"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="2_32mt2"]
 [ext_resource type="Shader" uid="uid://dfsw52qcrda40" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Detail_Ground_2.tres" id="3_65x3s"]
 [ext_resource type="Shader" uid="uid://dadfoaub2e28j" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Detail_Ground.tres" id="4_n67pi"]
 [ext_resource type="ArrayMesh" uid="uid://bvxhsx8eroggf" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ground.obj" id="5_uqivp"]
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball_Interior.gdshader" id="6_map77"]
+[ext_resource type="Shader" uid="uid://bpy2xvnr5ie5j" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ball_Interior.gdshader" id="6_map77"]
 [ext_resource type="ArrayMesh" uid="uid://crmusv878wno2" path="res://library/002_gameplay_concepts/006_VFX/Attack_Charge/Hit/Hit_Ground.res" id="8_i8eia"]
 [ext_resource type="Texture2D" uid="uid://cw01ew86y54m5" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Sparkle_2.png" id="9_8tcbf"]
 [ext_resource type="Texture2D" uid="uid://bimy7bs8ofgma" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque.png" id="10_dg3u4"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="11_i23s1"]
+[ext_resource type="Script" uid="uid://b4hcenq1s66rm" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="11_i23s1"]
 [ext_resource type="Texture2D" uid="uid://dgk7bw2cxesld" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque_E.png" id="11_xjhn1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fm0w3"]
@@ -17,12 +17,12 @@ render_priority = 0
 shader = ExtResource("1_eyx7h")
 shader_parameter/distortionView = 0.03
 shader_parameter/speedView = 0.5
+shader_parameter/noiseViewX = ExtResource("2_32mt2")
+shader_parameter/noiseViewY = ExtResource("2_32mt2")
 shader_parameter/tintColor = Color(0.5, 0, 6.5, 1)
 shader_parameter/fesnelAmount = 1.5
 shader_parameter/distortionVertex = 0.13
 shader_parameter/speedVertex = 0.45
-shader_parameter/noiseViewX = ExtResource("2_32mt2")
-shader_parameter/noiseViewY = ExtResource("2_32mt2")
 shader_parameter/noiseVertex = ExtResource("2_32mt2")
 
 [sub_resource type="SphereMesh" id="SphereMesh_sqcne"]
@@ -687,15 +687,15 @@ tracks/26/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w2wn1"]
 _data = {
-"HitVFX": SubResource("Animation_a4jaj"),
-"RESET": SubResource("Animation_q8xko")
+&"HitVFX": SubResource("Animation_a4jaj"),
+&"RESET": SubResource("Animation_q8xko")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0kpq"]
 render_priority = 0
 shader = ExtResource("3_65x3s")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
-shader_parameter/Speed = null
+shader_parameter/Speed = Vector2(0, 0)
 shader_parameter/Position2 = Vector2(0, -3.255)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m27hw"]
@@ -714,12 +714,12 @@ next_pass = SubResource("ShaderMaterial_tkcdc")
 shader = ExtResource("6_map77")
 shader_parameter/distortionView = 0.03
 shader_parameter/speedView = 0.5
+shader_parameter/noiseViewX = ExtResource("2_32mt2")
+shader_parameter/noiseViewY = ExtResource("2_32mt2")
 shader_parameter/tintColor = Color(8.108, 5, 20.54, 1)
 shader_parameter/fesnelAmount = 0.0
 shader_parameter/distortionVertex = 0.3
 shader_parameter/speedVertex = 0.265
-shader_parameter/noiseViewX = ExtResource("2_32mt2")
-shader_parameter/noiseViewY = ExtResource("2_32mt2")
 shader_parameter/noiseVertex = ExtResource("2_32mt2")
 
 [sub_resource type="SphereMesh" id="SphereMesh_u3cyr"]
@@ -730,8 +730,8 @@ height = 0.2
 render_priority = 0
 shader = ExtResource("3_65x3s")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
-shader_parameter/Speed = null
-shader_parameter/Position2 = null
+shader_parameter/Speed = Vector2(0, 0)
+shader_parameter/Position2 = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wowd"]
 render_priority = 0

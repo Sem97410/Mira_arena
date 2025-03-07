@@ -3,13 +3,13 @@
 [ext_resource type="Shader" uid="uid://bner8bywoi3v1" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Smoke.tres" id="1_t0crc"]
 [ext_resource type="Shader" uid="uid://c1wrumgxw3st6" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Sparkle.tres" id="2_fh5fs"]
 [ext_resource type="Shader" uid="uid://cx6dshikq8hrb" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/Skull.tres" id="3_sny2j"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="4_durgk"]
+[ext_resource type="Script" uid="uid://b8stjh2cri1gr" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="4_durgk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
 render_priority = 0
 shader = ExtResource("1_t0crc")
 shader_parameter/Distance_Fade = 3.895
-shader_parameter/White = null
+shader_parameter/White = 0.0
 shader_parameter/Black = 0.615
 
 [sub_resource type="Curve" id="Curve_jjj7n"]
@@ -32,6 +32,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 radial_velocity_min = 0.999978
@@ -227,8 +228,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tq2y"]
 _data = {
-"Puff_Enemy": SubResource("Animation_pv2l6"),
-"RESET": SubResource("Animation_8fnb7")
+&"Puff_Enemy": SubResource("Animation_pv2l6"),
+&"RESET": SubResource("Animation_8fnb7")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnksy"]

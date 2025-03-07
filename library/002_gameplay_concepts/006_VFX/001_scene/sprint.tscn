@@ -6,7 +6,7 @@
 render_priority = 0
 shader = ExtResource("1_xhfy8")
 shader_parameter/Distance_Fade = 3.895
-shader_parameter/White = null
+shader_parameter/White = 0.0
 shader_parameter/Black = 0.615
 
 [sub_resource type="Curve" id="Curve_jjj7n"]
@@ -72,8 +72,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yoqnm"]
 _data = {
-"RESET": SubResource("Animation_2mfsp"),
-"Sprint": SubResource("Animation_hbpu5")
+&"RESET": SubResource("Animation_2mfsp"),
+&"Sprint": SubResource("Animation_hbpu5")
 }
 
 [node name="Sprint" type="Node3D"]

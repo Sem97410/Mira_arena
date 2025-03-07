@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=72 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -7,13 +7,13 @@
 [ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/004_assets/000_material/mat_slime_helmet.tres" id="5_mkiwt"]
 [ext_resource type="PackedScene" uid="uid://dklgn8h8tshwa" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_aura.tscn" id="6_17im7"]
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/damage_stars.tscn" id="7_vb4l1"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/enemy_death_loot.gd" id="8_yrdo5"]
+[ext_resource type="Script" uid="uid://dk1eo42b6lgcp" path="res://library/002_gameplay_concepts/003_enemy/002_Script/enemy_death_loot.gd" id="8_yrdo5"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="9_xoflt"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="10_vympl"]
+[ext_resource type="Script" uid="uid://c1hpmvjvifqjr" path="res://library/002_gameplay_concepts/003_enemy/002_Script/slime_comportement.gd" id="10_vympl"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="11_xo2mf"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="12_x7y7m"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/003_enemy/002_Script/spawner.gd" id="13_6fvlx"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
+[ext_resource type="Script" uid="uid://wdafv3wb43yw" path="res://library/002_gameplay_concepts/003_enemy/002_Script/spawner.gd" id="13_6fvlx"]
+[ext_resource type="Script" uid="uid://c88y6tciyt71x" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygtom"]
 albedo_color = Color(0.583663, 0.519238, 0.478449, 1)
@@ -335,13 +335,13 @@ tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0833333, 1, 1.15, 0.75, 1.15
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bv0ke"]
 _data = {
-"Slime|Charge": SubResource("Animation_dbhsp"),
-"Slime|Walk": SubResource("Animation_6bs3h"),
-"Slime|death": SubResource("Animation_w130g"),
-"Slime|hit": SubResource("Animation_bjpy7"),
-"Slime|idle": SubResource("Animation_2vr5u"),
-"Slime|pre_charge": SubResource("Animation_xt81y"),
-"pre_charge": SubResource("Animation_qtbyn")
+&"Slime|Charge": SubResource("Animation_dbhsp"),
+&"Slime|Walk": SubResource("Animation_6bs3h"),
+&"Slime|death": SubResource("Animation_w130g"),
+&"Slime|hit": SubResource("Animation_bjpy7"),
+&"Slime|idle": SubResource("Animation_2vr5u"),
+&"Slime|pre_charge": SubResource("Animation_xt81y"),
+&"pre_charge": SubResource("Animation_qtbyn")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_acknh"]
@@ -376,8 +376,8 @@ step = 0.1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_158ig"]
 _data = {
-"RESET": SubResource("Animation_4ikmc"),
-"moving_plateforme_animations": SubResource("Animation_k4fuj")
+&"RESET": SubResource("Animation_4ikmc"),
+&"moving_plateforme_animations": SubResource("Animation_k4fuj")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbvxb"]
@@ -473,6 +473,9 @@ size = Vector3(3, 4.5, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2edg"]
 size = Vector3(3, 4.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q1afl"]
+size = Vector3(8.07275, 1, 6.87524)
 
 [node name="PracticeScene" type="Node3D"]
 
@@ -649,7 +652,7 @@ transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LightAttackZone/LightAttackSlime/Slime_002"]
 libraries = {
-"": SubResource("AnimationLibrary_bv0ke")
+&"": SubResource("AnimationLibrary_bv0ke")
 }
 
 [node name="damage_stars" parent="LightAttackZone/LightAttackSlime/Slime_002" instance=ExtResource("7_vb4l1")]
@@ -817,7 +820,7 @@ transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ChargedAttackZone/ChargedAttackZone/Slime_002"]
 libraries = {
-"": SubResource("AnimationLibrary_bv0ke")
+&"": SubResource("AnimationLibrary_bv0ke")
 }
 
 [node name="damage_stars" parent="ChargedAttackZone/ChargedAttackZone/Slime_002" instance=ExtResource("7_vb4l1")]
@@ -1016,7 +1019,7 @@ shape = SubResource("BoxShape3D_2h2au")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DashZone/MovingPlateforme"]
 libraries = {
-"": SubResource("AnimationLibrary_158ig")
+&"": SubResource("AnimationLibrary_158ig")
 }
 autoplay = "moving_plateforme_animations"
 
@@ -1088,7 +1091,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7659, 0.0500002, -10.4266)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FreeFightZone/MovingPlateforme"]
 libraries = {
-"": SubResource("AnimationLibrary_158ig")
+&"": SubResource("AnimationLibrary_158ig")
 }
 autoplay = "moving_plateforme_animations"
 
@@ -1303,6 +1306,12 @@ max_enemies = 1.0
 
 [node name="SpawnerTimer" type="Timer" parent="Spawner"]
 autostart = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.942291, 0.334794, 0, -0.334794, 0.942291, 0, 0, 0, 1, -3.53638, 0.742517, -0.0435791)
+shape = SubResource("BoxShape3D_q1afl")
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]

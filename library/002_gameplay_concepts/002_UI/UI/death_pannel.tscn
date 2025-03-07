@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2ixunb8xu2s2"]
 
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="1_1e1hc"]
+[ext_resource type="Script" uid="uid://i5fqv4veahv4" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="1_1e1hc"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="2_nmhds"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="3_34vej"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="4_fh1jj"]

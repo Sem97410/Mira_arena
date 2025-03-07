@@ -105,8 +105,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fxhvd"]
 _data = {
-"Enemy_lock": SubResource("Animation_mkjb8"),
-"RESET": SubResource("Animation_lafj7")
+&"Enemy_lock": SubResource("Animation_mkjb8"),
+&"RESET": SubResource("Animation_lafj7")
 }
 
 [node name="Lock" type="Node3D"]

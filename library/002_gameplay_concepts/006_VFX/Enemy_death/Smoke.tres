@@ -98,7 +98,7 @@ uniform sampler2D tex_vtx_7;
 uniform float Distance_Fade = 0.30000001192093;
 uniform sampler2D depth_tex_frg_4 : hint_depth_texture;
 uniform float White;
-uniform float Black = 0;
+uniform float Black = 0.0;
 
 
 

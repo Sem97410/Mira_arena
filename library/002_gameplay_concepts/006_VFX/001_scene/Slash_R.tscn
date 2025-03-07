@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://cbv3u8a1tcj16" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_HIGHLIGHT.tres" id="2_2xvum"]
 [ext_resource type="Shader" uid="uid://bn1u6y1o4so71" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_BASE.tres" id="3_br5t1"]
 [ext_resource type="ArrayMesh" uid="uid://c87k5jb0m307j" path="res://library/002_gameplay_concepts/006_VFX/Slash/Slash_1_R.obj" id="4_tow7h"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="5_l23fj"]
+[ext_resource type="Script" uid="uid://b4hcenq1s66rm" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="5_l23fj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_820sr"]
 render_priority = 0
@@ -137,8 +137,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdnlt"]
 _data = {
-"RESET": SubResource("Animation_uygrx"),
-"Slash": SubResource("Animation_q3y1o")
+&"RESET": SubResource("Animation_uygrx"),
+&"Slash": SubResource("Animation_q3y1o")
 }
 
 [node name="Slash_R" type="MeshInstance3D"]

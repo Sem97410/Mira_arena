@@ -1,13 +1,13 @@
 [gd_scene load_steps=33 format=3 uid="uid://5gcssvuc2u07"]
 
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="1_p571g"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="2_svl5m"]
-[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="3_12p01"]
-[ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="4_xssm3"]
+[ext_resource type="Script" uid="uid://cvihmq5as2er0" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="2_svl5m"]
+[ext_resource type="Shader" uid="uid://b80avxa0555eu" path="res://GPUTrail-main/shaders/trail.gdshader" id="3_12p01"]
+[ext_resource type="Shader" uid="uid://bcdjoxlpmfwwv" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="4_xssm3"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="5_jghqf"]
 [ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="6_6qjm6"]
 [ext_resource type="Texture2D" uid="uid://bmxmlvj77h8xm" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed_2.png" id="7_sug6a"]
-[ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="8_xuhmk"]
+[ext_resource type="Script" uid="uid://c8xonsktcudv4" path="res://GPUTrail-main/GPUTrail3D.gd" id="8_xuhmk"]
 [ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_particle_sprite_smoke.png" id="9_hevcm"]
 [ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="10_6qryx"]
 
@@ -23,6 +23,7 @@ emission_ring_axis = Vector3(1, 0, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
 angle_min = -720.0
 angle_max = 720.0
 angular_velocity_min = -360.0
@@ -40,12 +41,12 @@ shader = ExtResource("3_12p01")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_xssm3")
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/flags = 40
 shader_parameter/tex = ExtResource("7_sug6a")
+shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = ExtResource("5_jghqf")
 shader_parameter/curve = ExtResource("6_6qjm6")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
 
 [sub_resource type="QuadMesh" id="QuadMesh_ms515"]
 material = SubResource("ShaderMaterial_3rxej")
@@ -74,6 +75,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
 emission_ring_radius = 0.5
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 spread = 5.0
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_dppll")
@@ -105,8 +107,7 @@ curve_y = SubResource("Curve_p3js6")
 curve_z = SubResource("Curve_c2m0o")
 
 [sub_resource type="Curve" id="Curve_y16yy"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -121,6 +122,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 0.0
 emission_ring_radius = 0.5
 emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.23517e-06
 radial_accel_max = 0.499998
@@ -137,7 +139,7 @@ resource_name = "Portal"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1j7s2"]
 _data = {
-"Portal": SubResource("Animation_iq4v2")
+&"Portal": SubResource("Animation_iq4v2")
 }
 
 [node name="Trail" type="Node3D"]

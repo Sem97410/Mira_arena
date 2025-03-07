@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://dfaianoxtxesg" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge_Light.tres" id="2_67dm5"]
 [ext_resource type="Shader" uid="uid://igd53r3p34nr" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge.tres" id="3_1snhm"]
 [ext_resource type="ArrayMesh" uid="uid://unvaybr5yrjm" path="res://library/002_gameplay_concepts/006_VFX/Attack/Attack_Charge.obj" id="4_glb7b"]
-[ext_resource type="Shader" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="5_qmbcf"]
+[ext_resource type="Shader" uid="uid://bflmb1e8434o7" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="5_qmbcf"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="6_em84j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40qn7"]
@@ -35,12 +35,12 @@ render_priority = 0
 shader = ExtResource("5_qmbcf")
 shader_parameter/distortionView = 0.095
 shader_parameter/speedView = 1.0
+shader_parameter/noiseViewX = ExtResource("6_em84j")
+shader_parameter/noiseViewY = ExtResource("6_em84j")
 shader_parameter/tintColor = Color(0.59543, 0.201312, 0.598778, 1)
 shader_parameter/fesnelAmount = 5.0
 shader_parameter/distortionVertex = 0.175
 shader_parameter/speedVertex = 1.0
-shader_parameter/noiseViewX = ExtResource("6_em84j")
-shader_parameter/noiseViewY = ExtResource("6_em84j")
 shader_parameter/noiseVertex = ExtResource("6_em84j")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lbeej"]
@@ -179,8 +179,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngapu"]
 _data = {
-"Attack_Charge": SubResource("Animation_bm7ad"),
-"RESET": SubResource("Animation_e1jtf")
+&"Attack_Charge": SubResource("Animation_bm7ad"),
+&"RESET": SubResource("Animation_e1jtf")
 }
 
 [node name="Third_Attack" type="Node3D"]

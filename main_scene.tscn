@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dkq68hpueldil" path="res://library/002_gameplay_concepts/008_level_system/003_asset/ressource/grass_3.tres" id="1_gog4v"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vmf81"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/001_SCENE/spawner.tscn" id="3_f6gm3"]
-[ext_resource type="Script" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_242gi"]
+[ext_resource type="Script" uid="uid://c88y6tciyt71x" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_242gi"]
 [ext_resource type="Texture2D" uid="uid://c5brqoww048dq" path="res://library/002_gameplay_concepts/008_level_system/003_asset/texture/Substance_graph_normal.png" id="6_bbc0o"]
 [ext_resource type="ArrayMesh" uid="uid://cc2qvmoqi0b40" path="res://library/002_gameplay_concepts/010_assets/Rampe.obj" id="6_sn88c"]
 [ext_resource type="PackedScene" uid="uid://celjjpyawiyid" path="res://library/002_gameplay_concepts/008_level_system/Portal.tscn" id="7_yigfo"]
