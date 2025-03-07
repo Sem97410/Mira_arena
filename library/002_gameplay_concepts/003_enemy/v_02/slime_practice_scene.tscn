@@ -1,12 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=28 format=3 uid="uid://cmjq7a7f07m5l"]
 
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_1eume"]
-[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_bnacy"]
-[ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="4_4lw5b"]
-[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="4_npp4q"]
-[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="5_j8n4o"]
-[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="6_j8n4o"]
-[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="7_07k7e"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
+[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_ykcya"]
+[ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="3_k41v4"]
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="4_7u3tx"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="5_fdq0l"]
+[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="6_r0w8j"]
+[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="7_jg05f"]
+[ext_resource type="PackedScene" uid="uid://bkhicl5xhybrs" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_sentinel_slime/sentinel_slime.tscn" id="8_nm5de"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
 albedo_color = Color(0.360784, 0.47451, 1, 1)
@@ -94,7 +95,7 @@ font_size = 180
 [node name="Label3D2" type="Label3D" parent="Behavior1/LabelWall"]
 transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201449, 3.02363)
 text = "The slime is suppose to go in direction of the player and attack him if too close"
-font = ExtResource("1_1eume")
+font = ExtResource("1_j8glw")
 font_size = 180
 autowrap_mode = 2
 width = 3000.0
@@ -138,7 +139,7 @@ font_size = 180
 transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201449, 3.02363)
 texture_filter = 2
 text = "Chases the player but runs away when near another slime. Continues attacking the player if close enough."
-font = ExtResource("1_1eume")
+font = ExtResource("1_j8glw")
 font_size = 180
 autowrap_mode = 2
 width = 3000.0
@@ -182,7 +183,7 @@ font_size = 180
 transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201449, 3.02363)
 texture_filter = 2
 text = "Patrols a specific area randomly. The area changes periodically. Continues attacking the player if too close."
-font = ExtResource("1_1eume")
+font = ExtResource("1_j8glw")
 font_size = 180
 autowrap_mode = 2
 width = 3000.0
@@ -226,7 +227,7 @@ font_size = 180
 transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201449, 2.69269)
 texture_filter = 2
 text = "The slime will move back and forth between two points created during its instantiation. It will continue attacking the player if close enough."
-font = ExtResource("1_1eume")
+font = ExtResource("1_j8glw")
 font_size = 180
 autowrap_mode = 2
 width = 3000.0
@@ -245,7 +246,7 @@ skeleton = NodePath("../../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Behavior4/NavigationRegion3D/Behavior1Ground/StaticBody3D"]
 shape = SubResource("BoxShape3D_io2ai")
 
-[node name="Mira" parent="." instance=ExtResource("1_bnacy")]
+[node name="Mira" parent="." instance=ExtResource("2_ykcya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59465, 0, 9.96962)
 
 [node name="Environment" type="Node" parent="."]
@@ -284,17 +285,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.46321, -0.1049
 shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="GameLogic" type="Node" parent="." node_paths=PackedStringArray("player_body")]
-script = ExtResource("4_4lw5b")
+script = ExtResource("3_k41v4")
 player_body = NodePath("../Mira")
 
-[node name="BaseSlime" parent="." instance=ExtResource("4_npp4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3881, 0.422963, -1.45292)
+[node name="BaseSlime" parent="." instance=ExtResource("4_7u3tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
 
-[node name="Hunter" parent="." instance=ExtResource("5_j8n4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39681, 0.422963, -1.23962)
+[node name="Hunter" parent="." instance=ExtResource("5_fdq0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="scared_slime" parent="." instance=ExtResource("6_j8n4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60567, 0.422963, -1.20148)
+[node name="scared_slime" parent="." instance=ExtResource("6_r0w8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="WandererSlime" parent="." instance=ExtResource("7_07k7e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4726, 0.422963, -1.59426)
+[node name="WandererSlime" parent="." instance=ExtResource("7_jg05f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="SentinelSlime" parent="." instance=ExtResource("8_nm5de")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)

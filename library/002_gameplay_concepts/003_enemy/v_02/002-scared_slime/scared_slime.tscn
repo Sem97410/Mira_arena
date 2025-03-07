@@ -10,9 +10,5 @@ albedo_color = Color(0, 0.806398, 0.490657, 1)
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_l0pjp")
 
-[node name="PrintSomething" parent="." index="1"]
-debug_message = "Scared message"
-idle_message = "scared is idle"
-
-[node name="PrintAnotherThings" parent="." index="3"]
-message2 = "This is a second scared message"
+[node name="CollisionShape3D" parent="." index="1"]
+debug_color = Color(0.829, 0.588, 0, 0.574)

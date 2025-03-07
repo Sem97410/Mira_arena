@@ -9,13 +9,9 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="Skeleton3D" parent="Mesh/Slime" index="0"]
 bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1.2, 0.8, 1.2)
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_24o0h")
 
-[node name="PrintSomething" parent="." index="1"]
-debug_message = "Wanderer message"
-
-[node name="PrintAnotherThings" parent="." index="3"]
-message2 = "This is a second wanderer  message"
+[node name="CollisionShape3D" parent="." index="1"]
+debug_color = Color(0.829, 0.588, 0, 0.574)
