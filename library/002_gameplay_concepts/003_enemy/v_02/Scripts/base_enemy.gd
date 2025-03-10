@@ -16,6 +16,17 @@ class_name BaseEnemy
 
 ##VARIABLES
 #----------------------
+@export_category("General variables")
+
+#general variables
+
+@export var slime : CharacterBody3D			
+@export var nav_agent : NavigationAgent3D	# Ref to the NavigationAgent3D
+var player : CharacterBody3D
+
+#----------------------
+@export_category("Health variables")
+
 #Health variables
 
 var current_health_point : float
@@ -28,9 +39,14 @@ var is_invincible : bool
 #Fight variables
 
 #----------------------
+@export_category("Movement variables")
+
 #Movement variables
 
 var can_move : bool
+@export var movement_speed : float
+@export var movement_interpolate_strength : float
+
 #----------------------
 #Animation variables
 
@@ -87,16 +103,32 @@ func activate_attack_area(area : Area3D, attack_duration : float) -> void:
 #----------------------------------------------
 ##Movement functions
 
-func move(target : Vector3) -> void:
+func move(target : Vector3, delta : float) -> void:
+	#print("Move function is being called")
+
+
 	if not can_move :
 		return
 	else:
 		#move to target
-		pass
+		nav_agent.target_position = target
+		var current_position = slime.global_position # position actuelle de l'ennemi
+		var next_position = nav_agent.get_next_path_position() # prochaine position de l'ennemi
+		var new_velocity = (next_position - current_position).normalized() * movement_speed # calcul la nouvelle vitesse de l'ennemi
+		#associe la nouvelle vitesse de l'ennemy a la velocity du charracter body utilisation d'un lerp pour fluidifier le mouvement
+		slime.velocity = slime.velocity.lerp(new_velocity,movement_interpolate_strength * delta) 
+
+
+
+
+		slime.move_and_slide()
+
+
 #---
 func entity_rotation() -> void : 
 	#Rotation logic
 	pass
+	
 	
 #---
 func look_at_player(player : CharacterBody3D, look_at_range : float) -> void : 
