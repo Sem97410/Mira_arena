@@ -300,14 +300,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 collision_mask = 2
 target_entity = NodePath("../SentinelSlime")
 
-[node name="scared_slime" parent="." instance=ExtResource("6_r0w8j")]
+[node name="scared_slime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_r0w8j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 collision_mask = 2
+target_entity = NodePath("../WandererSlime")
 movement_speed = 10.0
 
-[node name="WandererSlime" parent="." instance=ExtResource("7_jg05f")]
+[node name="WandererSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("7_jg05f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 collision_mask = 2
+target_entity = NodePath("../SentinelSlime")
 movement_speed = 10.0
 
 [node name="SentinelSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("8_nm5de")]
