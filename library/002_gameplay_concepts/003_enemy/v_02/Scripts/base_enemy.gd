@@ -47,6 +47,10 @@ var can_move : bool
 @export var movement_speed : float
 @export var movement_interpolate_strength : float
 
+var gravity: float = 9.8  # Force de la gravité
+@export var max_fall_speed: float = 100.0  # Vitesse maximale de chute
+var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
+
 #----------------------
 #Animation variables
 
@@ -118,6 +122,8 @@ func move(target : Vector3, delta : float) -> void:
 		#associe la nouvelle vitesse de l'ennemy a la velocity du charracter body utilisation d'un lerp pour fluidifier le mouvement
 		slime.velocity = slime.velocity.lerp(new_velocity,movement_interpolate_strength * delta) 
 
+		#print("Current Pos:", slime.global_position, " Next Pos:", next_position)
+
 
 
 
@@ -127,13 +133,26 @@ func move(target : Vector3, delta : float) -> void:
 #---
 func entity_rotation() -> void : 
 	#Rotation logic
-	pass
+	slime.look_at(player.global_position)# la fonction look_at(récupère la position du joueur)
 	
 	
 #---
-func look_at_player(player : CharacterBody3D, look_at_range : float) -> void : 
-	#if player is in range
-	look_at(player.position)
+# Fonction générique pour gérer le regard
+func look_at_target_or_movement(entity : Node3D, target : Node3D, movement_direction : Vector3, threshold_distance : float) -> void:
+		var current_position : Vector3 = entity.global_position  # Position actuelle de l'entité
+		var target_position : Vector3 = target.global_position  # Position de la cible (joueur ou autre)
+
+		# Calcul de la distance entre l'entité et la cible
+		var distance_to_target : float = current_position.distance_to(target_position)
+
+		# Si l'entité est assez proche de la cible (distance inférieure au seuil)
+		if distance_to_target < threshold_distance:
+				entity.look_at(target_position)  # Regarde vers la cible (le joueur)
+		else:
+				# Regarde dans la direction du mouvement
+				var look_at_position : Vector3 = current_position + movement_direction.normalized()  # Utilise la direction du mouvement
+				entity.look_at(look_at_position)  # Regarde dans la direction de son déplacement
+
 #---
 func knockback() -> void : 
 	#Knockback logic
@@ -144,6 +163,16 @@ func freeze_movement() -> void :
 #---
 func unfreeze_movement():
 	can_move = true
+#---
+func apply_gravity(delta : float):
+	if not slime.is_on_floor():  
+		vertical_velocity -= gravity * delta  # Applique la gravité
+		vertical_velocity = max(vertical_velocity, -max_fall_speed)  # Limite la vitesse de chute
+	else:
+		vertical_velocity = 0  # Réinitialise la vitesse si au sol
+
+		slime.velocity.y = vertical_velocity  # Met à jour la vélocité verticale
+
 
 #----------------------------------------------
 ##Animation functions

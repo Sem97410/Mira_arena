@@ -280,8 +280,7 @@ _data = {
 &"pre_charge": SubResource("Animation_vd1an")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lg5qr"]
-radius = 0.664429
+[sub_resource type="SphereShape3D" id="SphereShape3D_13pv3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
@@ -296,9 +295,10 @@ movement_speed = 2.0
 movement_interpolate_strength = 1.0
 
 [node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Slime" type="Node3D" parent="Mesh"]
-transform = Transform3D(1.25, 0, 0, 0, -5.46392e-08, 1.25, 0, -1.25, -5.46392e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Mesh/Slime"]
 bones/0/name = "slime_body"
@@ -337,8 +337,8 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47935, 0.260166)
-shape = SubResource("SphereShape3D_lg5qr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47798, 0.0135172)
+shape = SubResource("SphereShape3D_13pv3")
 debug_color = Color(0.829, 0.588, 0, 0.574)
 
 [node name="StateChart" type="Node" parent="."]

@@ -66,11 +66,22 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	can_move = true
+	apply_gravity(delta)
 	
 	target_position = calculate_destination(target_entity)  #in the final code, the target_entity will change base on the state (could be : player, wander_point, patrol point, flee_point )
 	
-	move(target_position, delta)
+	move(target_position - Vector3(0,1,0), delta)
+	entity_rotation()
+	if  slime.is_on_floor() :
+		print("Il touche le sol")
+	
+	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
+	#print("Slime Position:", slime.global_position)
+	#print("Is on floor:", slime.is_on_floor())
 
+
+	
+	
 #----------------------------------------------
 ##Health functions
 

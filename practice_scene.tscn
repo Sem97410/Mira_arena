@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=77 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -12,8 +12,12 @@
 [ext_resource type="Script" uid="uid://ck408sx48sxxx" path="res://library/002_gameplay_concepts/003_enemy/v_01/002_Script/slime_comportement.gd" id="10_vympl"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="11_xo2mf"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="12_x7y7m"]
-[ext_resource type="Script" uid="uid://bbw7w7ddra01e" path="res://library/002_gameplay_concepts/003_enemy/v_01/002_Script/spawner.gd" id="13_6fvlx"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="14_q1afl"]
+[ext_resource type="PackedScene" uid="uid://bkhicl5xhybrs" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_sentinel_slime/sentinel_slime.tscn" id="15_vgq3d"]
+[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="16_jkd83"]
+[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="17_w5irx"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="18_o6a7b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygtom"]
 albedo_color = Color(0.583663, 0.519238, 0.478449, 1)
@@ -390,8 +394,10 @@ size = Vector3(6, 1, 1)
 size = Vector3(6, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oqkdt"]
-vertices = PackedVector3Array(-8, 0.45, -4, -8, 0.45, 4, 8, 0.45, 4, 8, 0.45, -4)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(0.75, 0.0649981, 4, 1, 0.0649981, 3, -0.5, 0.0649981, 3, -8, 0.0649981, 4, -0.5, 0.0649981, -0.75, 1, 0.0649981, -0.75, 0.75, 0.0649981, -4, -8, 0.0649981, -4, -0.5, 0.244998, 2, 6, 2.445, 2, 6, 2.445, 0.25, -0.5, 0.244998, 0.25, 4.7, 1.935, 2, 4.7, 1.935, 0.25, -1.75, 0.0649981, 0.875, -1.75, 0.0649981, 2.33333, 7.5, 0.0649981, 3, 8, 0.0649981, 4, 7.75, 0.0649981, -0.5, 8, 0.0649981, -4, 4.25, 0.0649981, 0.5, 4.25, 0.0649981, 1.5, 6.25, 0.0649981, 1.5, 6.25, 0.0649981, 0.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 12, 10), PackedInt32Array(10, 12, 13), PackedInt32Array(13, 12, 8), PackedInt32Array(13, 8, 11), PackedInt32Array(11, 14, 4), PackedInt32Array(4, 14, 3), PackedInt32Array(4, 3, 7), PackedInt32Array(11, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(14, 15, 3), PackedInt32Array(8, 2, 15), PackedInt32Array(15, 2, 3), PackedInt32Array(1, 16, 0), PackedInt32Array(0, 16, 17), PackedInt32Array(5, 6, 18), PackedInt32Array(18, 6, 19), PackedInt32Array(17, 16, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21)]
+geometry_collision_mask = 4294901767
+cell_height = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ftwn"]
 albedo_color = Color(1, 0.423729, 0.374267, 1)
@@ -401,6 +407,12 @@ size = Vector3(17, 0.1, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkp5"]
 size = Vector3(17, 0.1, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q1afl"]
+size = Vector3(8, 4, 2.46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j4hiw"]
+size = Vector3(8, 4, 2.435)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cte61"]
 vertices = PackedVector3Array(73.2814, 1.69081, -18.7974, 73.2814, 1.69081, -16.2974, 80.0314, 1.69081, -16.2974, 80.0314, 1.69081, -18.7974, 64.0314, 1.69081, -1.79745, 64.0314, 1.69081, 6.20255, 70.5314, 1.69081, 6.20255, 70.5314, 1.69081, -1.79745)
@@ -480,6 +492,7 @@ size = Vector3(3, 4.5, 3)
 
 [node name="Ground" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1392, 0, 0)
+layers = 3
 material_override = SubResource("StandardMaterial3D_ygtom")
 mesh = SubResource("PlaneMesh_i3awx")
 skeleton = NodePath("../..")
@@ -542,7 +555,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_nv3yi")
 
 [node name="Mira" parent="." instance=ExtResource("1_vq0e2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.2578, 0, -5.40992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.2578, 0.0581598, -12.3873)
+collision_mask = 1
 
 [node name="LightAttackZone" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.8569, 0, 0)
@@ -1107,6 +1121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2812, 0, -14.8864)
 navigation_mesh = SubResource("NavigationMesh_oqkdt")
 
 [node name="Tatami" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
+layers = 3
 material_override = SubResource("StandardMaterial3D_3ftwn")
 mesh = SubResource("BoxMesh_1dviu")
 skeleton = NodePath("../..")
@@ -1115,6 +1130,16 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D/Tatami/StaticBody3D"]
 shape = SubResource("BoxShape3D_oxkp5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
+transform = Transform3D(0.947261, -0.320464, 0, 0.320464, 0.947261, 0, 0, 0, 1, 3.30289, -0.678624, 1.02129)
+mesh = SubResource("BoxMesh_q1afl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0275269)
+shape = SubResource("BoxShape3D_j4hiw")
 
 [node name="GameLogic" type="Node" parent="FreeFightZone" node_paths=PackedStringArray("player_body")]
 script = ExtResource("13_h62yh")
@@ -1135,6 +1160,7 @@ shape = SubResource("BoxShape3D_26kip")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D2"]
 transform = Transform3D(7.47934, 0, 0, 0, 2.61837, 0, 0, 0, 3.39329, 76.6765, 0, -17.6008)
+layers = 7
 mesh = SubResource("BoxMesh_r68a5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D2/MeshInstance3D3"]
@@ -1295,18 +1321,37 @@ text = "Mira metric :
 font_size = 60
 horizontal_alignment = 0
 
-[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("spawner_timer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.9491, 0.791729, -14.382)
-script = ExtResource("13_6fvlx")
-spawner_timer = NodePath("SpawnerTimer")
-max_enemies = 1.0
+[node name="BaseSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("14_q1afl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.9536, 0.422963, -17.6337)
+collision_mask = 6
+target_entity = NodePath("../Mira")
 
-[node name="SpawnerTimer" type="Timer" parent="Spawner"]
-autostart = true
+[node name="SentinelSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("15_vgq3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8043, 0.422963, -16.8282)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 2.0
+
+[node name="WandererSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("16_jkd83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8709, 0.422963, -15.6309)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 2.0
+
+[node name="scared_slime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("17_w5irx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.6576, 0.422963, -15.8464)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 2.0
+
+[node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4059, 0.422963, -15.4532)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 2.0
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]
-[connection signal="timeout" from="Spawner/SpawnerTimer" to="Spawner" method="_on_spawner_timer_timeout"]
 
 [editable path="LightAttackZone/IndicatorPanel"]
 [editable path="ChargedAttackZone/IndicatorPanel"]

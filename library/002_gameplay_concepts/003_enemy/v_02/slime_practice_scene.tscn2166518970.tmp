@@ -1,9 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=28 format=3 uid="uid://cmjq7a7f07m5l"]
 
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_ykcya"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="3_k41v4"]
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="4_7u3tx"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="5_fdq0l"]
+[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="6_r0w8j"]
+[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="7_jg05f"]
+[ext_resource type="PackedScene" uid="uid://bkhicl5xhybrs" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_sentinel_slime/sentinel_slime.tscn" id="8_nm5de"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
 albedo_color = Color(0.360784, 0.47451, 1, 1)
@@ -72,7 +76,6 @@ size = Vector3(0.5, 5, 100)
 
 [node name="LabelWall" type="MeshInstance3D" parent="Behavior1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5.34886, 4.66836, -14.5287)
-layers = 3
 material_override = SubResource("StandardMaterial3D_pgcsp")
 mesh = SubResource("PlaneMesh_ta6wm")
 
@@ -99,11 +102,9 @@ width = 3000.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Behavior1"]
 navigation_mesh = SubResource("NavigationMesh_knwbd")
-navigation_layers = 3
 
 [node name="Behavior1Ground" type="MeshInstance3D" parent="Behavior1/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05177, 0, 0)
-layers = 1023
 material_override = SubResource("StandardMaterial3D_2fgcc")
 mesh = SubResource("PlaneMesh_62nt1")
 skeleton = NodePath("../../..")
@@ -152,7 +153,6 @@ navigation_mesh = SubResource("NavigationMesh_4c3jy")
 
 [node name="Behavior1Ground" type="MeshInstance3D" parent="Behavior2/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05177, 0, 0)
-layers = 3
 material_override = SubResource("StandardMaterial3D_8q3ul")
 mesh = SubResource("PlaneMesh_62nt1")
 skeleton = NodePath("../../..")
@@ -197,7 +197,6 @@ navigation_mesh = SubResource("NavigationMesh_ufoog")
 
 [node name="Behavior1Ground" type="MeshInstance3D" parent="Behavior3/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05177, 0, 0)
-layers = 3
 material_override = SubResource("StandardMaterial3D_m2v5u")
 mesh = SubResource("PlaneMesh_62nt1")
 skeleton = NodePath("../../..")
@@ -242,7 +241,6 @@ navigation_mesh = SubResource("NavigationMesh_d7we1")
 
 [node name="Behavior1Ground" type="MeshInstance3D" parent="Behavior4/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05177, 0, 0)
-layers = 3
 material_override = SubResource("StandardMaterial3D_pxu6e")
 mesh = SubResource("PlaneMesh_62nt1")
 skeleton = NodePath("../../..")
@@ -292,9 +290,31 @@ script = ExtResource("3_k41v4")
 player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
 [node name="BaseSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("4_7u3tx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.91815, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.0238446, 0)
+collision_mask = 2
+death_animation_duration = null
+target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+movement_speed = 5.0
+
+[node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("5_fdq0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.0238446, 0)
 collision_mask = 2
 target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
 movement_speed = 5.0
 
-[editable path="BaseSlime"]
+[node name="scared_slime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_r0w8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.0238446, 0)
+collision_mask = 2
+target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+
+[node name="WandererSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("7_jg05f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.0238446, 0)
+collision_mask = 2
+target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+movement_speed = 5.0
+
+[node name="SentinelSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("8_nm5de")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.0238446, 0)
+collision_mask = 2
+target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+movement_speed = 5.0
