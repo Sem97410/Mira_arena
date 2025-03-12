@@ -58,7 +58,7 @@ var distance_to_target : float
 @export_category("Debug variables") ## MUST BE DELETE
 
 #Debug variables
-
+#add a comment NEED TO BE SUPP
 @export var target_entity : Node3D   #Test that allow me to assign a target with the inspector. In the final code the slime will assign the target through the code
 
 #----------------------
