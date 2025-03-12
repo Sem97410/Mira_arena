@@ -40,6 +40,10 @@ var distance_to_target : float
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
+
+@onready var jump_height = 1.5  # Hauteur du saut
+@onready var duration = 0.5  # Temps total du saut
+@onready var elapsed_time = 0
 #----------------------
 @export_category("Animation variables")
 
@@ -158,25 +162,27 @@ func _on_idle_state_processing(delta: float) -> void:
 #---
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	print("J'ai touché un navigation link")
+	print("Au contact du nav link can jump is : ", can_jump)
 	if not can_jump: 
-		print("Je peux pas sauter")
+		#print("Je peux pas sauter")
+		print("can jump devrait etre faux ici et il est  : ", can_jump)
 		return  # Bloque si un saut est déjà en cours
-	
+	#
 	can_jump = false  # Désactive le saut temporairement
+	print("Je suis dans la fonction avant le calcule et can jump devrait etre faux il est : ", can_jump)
 	var start_position = details["link_entry_position"]  # Point A
 	var end_position = details["link_exit_position"]    # Point B
 	jump_to_target(start_position, end_position)
-	print("Accès navigation link")
+	#print("can jump : ", can_jump)
 
 
 func jump_to_target(start: Vector3, end: Vector3) -> void:
-	var jump_height = 5.0  # Hauteur du saut
-	var duration = 1.5  # Temps total du saut
-	var elapsed_time = 0.0
-	
-	print("Suppose to jump")
-	
+	#print("Suppose to jump")
+
+	elapsed_time = 0.0  # 🔥 Réinitialisation ici
+
 	while elapsed_time < duration:
+		print("Je suis dans le while et ca devrait etre false et c'est  : ", can_jump)
 		await get_tree().process_frame
 		elapsed_time += get_process_delta_time()
 		
@@ -190,7 +196,11 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 		
 		slime.global_transform.origin = new_position
 
-	can_jump = true  # Réactive le saut une fois terminé
+	# 🔥 Attendre un peu avant de réactiver le saut (évite les spams)
+	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
+
+	can_jump = true  # Réactive le saut après un court délai
+	print("Fin de jump to target, can_jump est maintenant : ", can_jump)
 #----------------------------------------------
 ##Animation functions
 

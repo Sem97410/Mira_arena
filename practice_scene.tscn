@@ -547,7 +547,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_nv3yi")
 
 [node name="Mira" parent="." instance=ExtResource("1_vq0e2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.2578, 0.0581598, -12.3873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.6018, 0.444657, -17.7989)
 collision_mask = 1
 
 [node name="LightAttackZone" type="Node3D" parent="."]
@@ -1292,15 +1292,17 @@ font_size = 60
 horizontal_alignment = 0
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4059, 0.422963, -15.4532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2308, 1.6185, -17.773)
 collision_mask = 6
 target_entity = NodePath("../Mira")
 movement_speed = 2.0
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.5475, 0.0500002, -17.3591)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.5475, 0.0500002, -17.3835)
+navigation_layers = 3
 start_position = Vector3(1.56, 0.2, -0.825)
-end_position = Vector3(4.635, 1.27, 0)
+end_position = Vector3(5.361, 1.434, -0.347)
+travel_cost = 0.0
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]
