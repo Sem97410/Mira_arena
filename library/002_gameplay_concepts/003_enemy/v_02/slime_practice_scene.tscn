@@ -90,7 +90,7 @@ Chase the player"
 font_size = 180
 
 [node name="Label3D2" type="Label3D" parent="Behavior1/LabelWall"]
-transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201449, 3.02363)
+transform = Transform3D(1, 0, 0, 0, -0.0827556, 0.99657, 0, -0.99657, -0.0827556, 0, 0.201448, 2.48364)
 text = "The slime is suppose to go in direction of the player and attack him if too close"
 font = ExtResource("1_j8glw")
 font_size = 180

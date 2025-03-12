@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://dwmnh08kw2nfx"]
+[gd_scene load_steps=72 format=4 uid="uid://dwmnh08kw2nfx"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
@@ -13,10 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="11_xo2mf"]
 [ext_resource type="PackedScene" uid="uid://bnrs75b065n4o" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Enemy_lock.tscn" id="12_x7y7m"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
-[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="14_q1afl"]
-[ext_resource type="PackedScene" uid="uid://bkhicl5xhybrs" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_sentinel_slime/sentinel_slime.tscn" id="15_vgq3d"]
-[ext_resource type="PackedScene" uid="uid://dbbhnnroave2g" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="16_jkd83"]
-[ext_resource type="PackedScene" uid="uid://ccigy1smnxak8" path="res://library/002_gameplay_concepts/003_enemy/v_02/002-scared_slime/scared_slime.tscn" id="17_w5irx"]
 [ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="18_o6a7b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygtom"]
@@ -1102,16 +1098,6 @@ libraries = {
 }
 autoplay = "moving_plateforme_animations"
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="FreeFightZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0587, 0, -13.8864)
-start_position = Vector3(-2.795, 0.34, 1.365)
-end_position = Vector3(-7.355, 1.615, 18.92)
-
-[node name="NavigationLink3D2" type="NavigationLink3D" parent="FreeFightZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0587, 1.371, -18.8864)
-start_position = Vector3(-2.045, 0.065, 18.135)
-end_position = Vector3(4.87, 0.51, 1.32)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="FreeFightZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2812, 0, -14.8864)
 navigation_mesh = SubResource("NavigationMesh_oqkdt")
@@ -1305,34 +1291,16 @@ text = "Mira metric :
 font_size = 60
 horizontal_alignment = 0
 
-[node name="BaseSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("14_q1afl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.9536, 0.422963, -17.6337)
-collision_mask = 6
-target_entity = NodePath("../Mira")
-
-[node name="SentinelSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("15_vgq3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8043, 0.422963, -16.8282)
-collision_mask = 6
-target_entity = NodePath("../Mira")
-movement_speed = 2.0
-
-[node name="WandererSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("16_jkd83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8709, 0.422963, -15.6309)
-collision_mask = 6
-target_entity = NodePath("../Mira")
-movement_speed = 2.0
-
-[node name="scared_slime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("17_w5irx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.6576, 0.422963, -15.8464)
-collision_mask = 6
-target_entity = NodePath("../Mira")
-movement_speed = 2.0
-
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4059, 0.422963, -15.4532)
 collision_mask = 6
 target_entity = NodePath("../Mira")
 movement_speed = 2.0
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.5475, 0.0500002, -17.3591)
+start_position = Vector3(1.56, 0.2, -0.825)
+end_position = Vector3(4.635, 1.27, 0)
 
 [connection signal="area_entered" from="LightAttackZone/LightAttackSlime/Area3D" to="LightAttackZone/LightAttackSlime/SlimeComportement" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="ChargedAttackZone/ChargedAttackZone/Area3D" to="ChargedAttackZone/ChargedAttackZone/SlimeComportement" method="_on_area_3d_area_entered"]

@@ -12,9 +12,6 @@ movement_speed = 10.0
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_abthj")
 
-[node name="root" parent="StateChart" index="0"]
-initial_state = NodePath("Idle")
-
 [node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="0"]
 script = ExtResource("2_q7gag")
 to = NodePath("../../Hunt")
@@ -32,3 +29,4 @@ debug_enabled = true
 debug_path_custom_color = Color(0.736468, 0.216054, 9.62615e-08, 1)
 
 [connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
+[connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]

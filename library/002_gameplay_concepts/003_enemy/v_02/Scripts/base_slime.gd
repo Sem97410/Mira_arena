@@ -24,6 +24,7 @@ var target_position : Vector3
 var distance_to_target : float 
 
 @export var state_chart : StateChart
+@export var animation_player : AnimationPlayer
 
 
 #----------------------
@@ -38,7 +39,7 @@ var distance_to_target : float
 @onready var attack_range : float = 3.0
 #----------------------
 #Movement variables
-
+@onready var can_jump : bool = true
 #----------------------
 @export_category("Animation variables")
 
@@ -71,7 +72,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	apply_gravity(delta)
 	var distance_to_target = check_distance_to_target(player)
-	print("Distance to target is : ", distance_to_target)
+	#print("Distance to target is : ", distance_to_target)
 	
 
 
@@ -145,13 +146,51 @@ func _on_hunt_state_processing(delta: float) -> void:
 	entity_rotation()
 	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
 	activate_idle_mode()
+	animation_player.play("Slime|Walk")
 #---
 
 func _on_idle_state_processing(delta: float) -> void:
 	can_move = false
 	#print("Je suis dans le State 'idle'")
-
+	
+	animation_player.play("Slime|idle")
 	activate_hunt_mode()
+#---
+func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
+	print("J'ai touché un navigation link")
+	if not can_jump: 
+		print("Je peux pas sauter")
+		return  # Bloque si un saut est déjà en cours
+	
+	can_jump = false  # Désactive le saut temporairement
+	var start_position = details["link_entry_position"]  # Point A
+	var end_position = details["link_exit_position"]    # Point B
+	jump_to_target(start_position, end_position)
+	print("Accès navigation link")
+
+
+func jump_to_target(start: Vector3, end: Vector3) -> void:
+	var jump_height = 5.0  # Hauteur du saut
+	var duration = 1.5  # Temps total du saut
+	var elapsed_time = 0.0
+	
+	print("Suppose to jump")
+	
+	while elapsed_time < duration:
+		await get_tree().process_frame
+		elapsed_time += get_process_delta_time()
+		
+		var t = elapsed_time / duration  # Normalisation du temps (0 à 1)
+		
+		# Lerp entre A et B
+		var new_position = start.lerp(end, t)
+		
+		# Ajouter la hauteur du saut avec une parabole
+		new_position.y += jump_height * sin(t * PI)
+		
+		slime.global_transform.origin = new_position
+
+	can_jump = true  # Réactive le saut une fois terminé
 #----------------------------------------------
 ##Animation functions
 

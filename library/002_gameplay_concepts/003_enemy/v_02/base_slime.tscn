@@ -285,11 +285,12 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
 
-[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("state_chart", "slime", "nav_agent")]
+[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("state_chart", "animation_player", "slime", "nav_agent")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("4_13pv3")
 state_chart = NodePath("StateChart")
+animation_player = NodePath("Mesh/AnimationPlayer")
 slime = NodePath(".")
 nav_agent = NodePath("NavigationAgent3D")
 movement_speed = 2.0
@@ -307,8 +308,8 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1.2, 0.8, 1.2)
+bones/0/rotation = Quaternion(0.707099, 0.00322039, -0.00322039, 0.707099)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "slime_helmet"
 bones/1/parent = -1
 bones/1/rest = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.38419e-07, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, -0.00480924, 0.358782)
@@ -348,7 +349,7 @@ metadata/_custom_type_script = "uid://cw27nttbyw2yh"
 
 [node name="root" type="Node" parent="StateChart"]
 script = ExtResource("4_baove")
-initial_state = NodePath("Hunt")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
@@ -386,4 +387,4 @@ debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]
+[connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
