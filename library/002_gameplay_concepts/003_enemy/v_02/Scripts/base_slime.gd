@@ -21,6 +21,9 @@ class_name BaseSlime
 #general variables
 var player_position : Vector3
 var target_position : Vector3
+var distance_to_target : float 
+
+@export var state_chart : StateChart
 
 
 #----------------------
@@ -32,7 +35,7 @@ var target_position : Vector3
 
 #----------------------
 #Fight variables
-
+@onready var attack_range : float = 3.0
 #----------------------
 #Movement variables
 
@@ -62,26 +65,46 @@ var target_position : Vector3
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") #Assign the player
+	can_move = true
 
 
 func _process(delta: float) -> void:
-	can_move = true
 	apply_gravity(delta)
+	var distance_to_target = check_distance_to_target(player)
+	print("Distance to target is : ", distance_to_target)
 	
-	target_position = calculate_destination(target_entity)  #in the final code, the target_entity will change base on the state (could be : player, wander_point, patrol point, flee_point )
-	
-	move(target_position - Vector3(0,1,0), delta)
-	entity_rotation()
+
+
+
 	if  slime.is_on_floor() :
 		print("Il touche le sol")
 	
-	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
+
 	#print("Slime Position:", slime.global_position)
 	#print("Is on floor:", slime.is_on_floor())
 
 
-	
-	
+#----------------------------------------------
+##Check States functions
+func check_distance_to_target(target : Node3D) -> float :
+	return global_position.distance_to(target.global_position)
+#---
+func send_event_state_chart(event_name : String)-> void : 
+	state_chart.send_event(event_name)
+#---
+func activate_hunt_mode() -> void : 
+	var distance_to_target = check_distance_to_target(player)
+	#print("Distance to target is : ", distance_to_target)
+	if distance_to_target > attack_range : 
+		#print("Move in hunting mode")
+		send_event_state_chart("IsHunting")
+#---
+func activate_idle_mode() -> void : 
+	var distance_to_target = check_distance_to_target(player)
+	if distance_to_target <= attack_range : 
+		#print("Move in Idle mode")
+		send_event_state_chart("IsIdle")
+#----------------------------------------------
 #----------------------------------------------
 ##Health functions
 
@@ -109,13 +132,26 @@ func calculate_destination(target: Node3D) -> Vector3:
 		return target.global_position
 	return slime.global_position  # Si la cible est invalide, le slime reste sur place
 
-	
-	
 #---
 func step_away_from_close_enemy(separation_distance : float):
 	#if an enemy si too close, move in the opposite direction
 	pass
+#---
+func _on_hunt_state_processing(delta: float) -> void:
+	#print("Je suis dans le State 'hunt'")
+	can_move = true
+	target_position = calculate_destination(target_entity)  #in the final code, the target_entity will change base on the state (could be : player, wander_point, patrol point, flee_point )
+	move(target_position, delta)
+	entity_rotation()
+	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
+	activate_idle_mode()
+#---
 
+func _on_idle_state_processing(delta: float) -> void:
+	can_move = false
+	#print("Je suis dans le State 'idle'")
+
+	activate_hunt_mode()
 #----------------------------------------------
 ##Animation functions
 

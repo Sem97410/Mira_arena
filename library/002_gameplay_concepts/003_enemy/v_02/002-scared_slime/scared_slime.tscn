@@ -10,3 +10,7 @@ movement_speed = 5.0
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_l0pjp")
+
+[node name="NavigationAgent3D" parent="." index="4"]
+debug_enabled = true
+debug_path_custom_color = Color(0.0608011, 0.590079, 0, 1)

@@ -285,10 +285,11 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
 
-[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("slime", "nav_agent")]
+[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("state_chart", "slime", "nav_agent")]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 3
 script = ExtResource("4_13pv3")
+state_chart = NodePath("StateChart")
 slime = NodePath(".")
 nav_agent = NodePath("NavigationAgent3D")
 movement_speed = 2.0
@@ -347,7 +348,7 @@ metadata/_custom_type_script = "uid://cw27nttbyw2yh"
 
 [node name="root" type="Node" parent="StateChart"]
 script = ExtResource("4_baove")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Hunt")
 
 [node name="Idle" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
@@ -384,3 +385,5 @@ shape = SubResource("SphereShape3D_baove")
 debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]
