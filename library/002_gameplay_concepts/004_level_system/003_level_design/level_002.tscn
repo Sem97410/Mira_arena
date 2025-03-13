@@ -1,6 +1,5 @@
-[gd_scene load_steps=303 format=4 uid="uid://ciuscyplmadeg"]
+[gd_scene load_steps=302 format=4 uid="uid://ciuscyplmadeg"]
 
-[ext_resource type="Script" uid="uid://c88y6tciyt71x" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_kfjv8"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_sadgr"]
 [ext_resource type="Script" uid="uid://iadvelev2t2" path="res://library/002_gameplay_concepts/004_level_system/002_Script/death_zone.gd" id="2_sadgr"]
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="2_wgewv"]
@@ -2880,9 +2879,7 @@ _data = {
 &"geo|geo|Take 001|BaseLayer": SubResource("Animation_cxwcb")
 }
 
-[node name="Level_002" type="Node3D" node_paths=PackedStringArray("player_body")]
-script = ExtResource("1_kfjv8")
-player_body = NodePath("Mira")
+[node name="Level_002" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -2921,7 +2918,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02695, 1.448, 24.1202)
 shape = SubResource("BoxShape3D_yuej8")
 
 [node name="death_zone" type="Area3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, 0, 0)
+transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -17.1054, 0)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("2_sadgr")
 player = NodePath("../Mira")
 
