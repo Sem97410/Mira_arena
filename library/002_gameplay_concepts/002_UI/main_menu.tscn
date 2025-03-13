@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=10 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://3c3rej0hlcdv" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="VideoStream" uid="uid://dsqfo0c7o0rqf" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinematique_Layout_V4.ogv" id="5_c3nnq"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
+[ext_resource type="AudioStream" uid="uid://dneh46r3iv06o" path="res://library/002_gameplay_concepts/009_SFX/wind_whistle.wav" id="7_3rw7x"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -269,6 +270,10 @@ theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 20
 text = "Pass the video"
+
+[node name="music_title_screen" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_3rw7x")
+autoplay = true
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuControl" method="_on_arena_mode_button_down"]
