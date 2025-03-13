@@ -7,6 +7,7 @@
 albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
 
 [node name="Hunter" instance=ExtResource("1_abthj")]
+collision_mask = 1
 movement_speed = 5.0
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]

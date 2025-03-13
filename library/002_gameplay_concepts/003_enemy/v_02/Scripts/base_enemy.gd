@@ -142,26 +142,33 @@ func entity_rotation() -> void :
 	
 	
 #---
-# Fonction générique pour gérer le regard
 func look_at_target_or_movement(entity: Node3D, target: Node3D, movement_direction: Vector3, threshold_distance: float) -> void:
 	var current_position: Vector3 = entity.global_position
 	var target_position: Vector3 = target.global_position
-	
-	# Vérifier si la cible et l'entité sont trop proches pour éviter l'erreur look_at()
-	if not current_position.is_equal_approx(target_position):
-		# Calculer la distance entre l'entité et la cible
-		var distance_to_target: float = current_position.distance_to(target_position)
 
-		# Si l'entité est proche de la cible, elle la regarde directement
-		if distance_to_target < threshold_distance:
-			entity.look_at(target_position, Vector3.UP)
-		else:
-			# Si elle est loin, elle regarde dans la direction du mouvement
-			var look_at_position: Vector3 = current_position + movement_direction.normalized()
+	# Vérifier si l'entité et la cible ne sont pas exactement au même endroit
+	if current_position.is_equal_approx(target_position):
+		return  # Ne fait rien si la position est identique, évite l'erreur
 
-			# Vérification supplémentaire pour éviter les erreurs avec des directions nulles
-			if not current_position.is_equal_approx(look_at_position):
-				entity.look_at(look_at_position, Vector3.UP)
+	# Calculer la distance à la cible
+	var distance_to_target: float = current_position.distance_to(target_position)
+
+	# Déterminer la direction vers laquelle regarder
+	var look_at_position: Vector3
+	if distance_to_target < threshold_distance:
+		look_at_position = target_position
+	else:
+		look_at_position = current_position + movement_direction.normalized()
+
+	# Vérifier que le vecteur de direction est valide
+	if not current_position.is_equal_approx(look_at_position):
+		var up_vector: Vector3 = Vector3.UP
+
+		# Si la direction de visée est trop colinéaire avec UP, on ajuste
+		if abs((look_at_position - current_position).normalized().dot(up_vector)) > 0.99:
+			up_vector = Vector3.FORWARD  # Alternative pour éviter l'erreur
+
+		entity.look_at(look_at_position, up_vector)
 
 
 #---
