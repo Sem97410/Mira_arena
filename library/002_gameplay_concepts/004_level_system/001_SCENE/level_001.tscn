@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://m66xgkna1w2c"]
 
-[ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
+[ext_resource type="Script" uid="uid://c88y6tciyt71x" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_pe7yj"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="3_au60h"]
 
