@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://wre11ncejhia"
-path="res://.godot/imported/MiraDashAfterImage.fbx-92ef9540285181ceb9ba4d10abcd397b.scn"
+uid="uid://cso4cdraoho0l"
+path="res://.godot/imported/Map_002.fbx-acc6e1cc4e85732ca83e70055ffae9ff.scn"
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/001_player/Meshes/MiraDashAfterImage.fbx"
-dest_files=["res://.godot/imported/MiraDashAfterImage.fbx-92ef9540285181ceb9ba4d10abcd397b.scn"]
+source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/Map_002.fbx"
+dest_files=["res://.godot/imported/Map_002.fbx-acc6e1cc4e85732ca83e70055ffae9ff.scn"]
 
 [params]
 
@@ -33,6 +33,6 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=1
+fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
