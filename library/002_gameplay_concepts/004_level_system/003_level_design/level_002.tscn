@@ -2918,7 +2918,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02695, 1.448, 24.1202)
 shape = SubResource("BoxShape3D_yuej8")
 
 [node name="death_zone" type="Area3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -17.1054, 0)
+transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -3.43168, 0)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_sadgr")
