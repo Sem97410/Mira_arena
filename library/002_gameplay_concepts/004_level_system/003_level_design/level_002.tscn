@@ -3493,9 +3493,29 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -37.7655, 11.055, -14.7379)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -37.7655, 5.40244, -14.7379)
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_4mpak")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1772, 1.32046, -4.2917)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3216, 1.32046, -4.2917)
 target_entity = NodePath("../Mira")
-max_health_point = 200.0
+max_health_point = 50.0
+
+[node name="Hunter2" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_4mpak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3216, 1.32046, -1.84752)
+target_entity = NodePath("../Mira")
+max_health_point = 50.0
+
+[node name="Hunter3" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_4mpak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3216, 1.32046, -0.0292697)
+target_entity = NodePath("../Mira")
+max_health_point = 50.0
+
+[node name="Hunter4" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_4mpak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3216, 1.32046, 1.12753)
+target_entity = NodePath("../Mira")
+max_health_point = 50.0
+
+[node name="Hunter5" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("6_4mpak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3216, 1.32046, 3.00989)
+target_entity = NodePath("../Mira")
+max_health_point = 50.0
 
 [connection signal="area_entered" from="death_zone" to="death_zone" method="_on_area_entered"]
 [connection signal="body_entered" from="death_zone" to="death_zone" method="_on_body_entered"]

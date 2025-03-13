@@ -283,7 +283,7 @@ draw_pass_1 = SubResource("QuadMesh_n5h3a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4tq2y")
+&"": SubResource("AnimationLibrary_4tq2y")
 }
 autoplay = "Puff_Enemy"
 

@@ -33,8 +33,10 @@ var distance_to_target : float
 
 #----------------------
 @export_category("Meshes variables")
+
 #Mesh variables
 @export var damage_stars : Node3D
+@export var slime_body : Node3D
 #----------------------
 #Fight variables
 @onready var attack_range : float = 3.0
@@ -57,7 +59,7 @@ var random_point_around_target : Vector3
 
 #----------------------
 #Vfx variables
-
+@export var death_vfx : PackedScene
 #----------------------
 @export_category("Debug variables") ## MUST BE DELETE
 
@@ -125,12 +127,30 @@ func activate_idle_mode() -> void :
 #----------------------------------------------
 ##Health functions
 
+func _on_hit_reaction_state_entered() -> void:
+	print("I'm in hit reaction!")
+	damage_stars.visible = true
+	check_if_dead()
+	knockback() 
+	can_move = false
+
+
+func _on_hit_reaction_state_exited() -> void:
+	damage_stars.visible = false
+	can_move = true
+
+
+	
 func check_if_dead()-> void:
 	
 	if current_health_point <= 0 : 
-		death(slime, death_animation_duration)
+		state_chart.send_event("IsDead")
 
 	
+func _on_death_state_entered() -> void:
+	slime_body.visible = false
+	instantiate_vfx(slime.global_position, death_vfx )
+	death(slime, 1.5)
 #----------------------------------------------
 ##Mesh functions
 
@@ -150,6 +170,7 @@ func calculate_destination(target: Node3D) -> Vector3:
 	return slime.global_position  # Si la cible est invalide, le slime reste sur place
 
 #---
+
 func create_random_point_around(target: Vector3, range: float) -> Vector3:
 	var offset_x = randf_range(-range, range)
 	var offset_z = randf_range(-range, range)
@@ -161,6 +182,7 @@ func create_random_point_around(target: Vector3, range: float) -> Vector3:
 
 
 #---
+
 func get_random_point_around(range: float) -> void:
 	if is_generating_random_point:
 		return  # Empêche de relancer la fonction si elle est déjà en cours
@@ -169,11 +191,15 @@ func get_random_point_around(range: float) -> void:
 	await get_tree().create_timer(random_point_interval).timeout
 	random_point_around_target = create_random_point_around(player_position, range)
 	is_generating_random_point = false  # Marque comme terminé
+	
 #---
+
 func step_away_from_close_enemy(separation_distance : float):
 	#if an enemy si too close, move in the opposite direction
 	pass
+	
 #---
+
 func _on_hunt_state_processing(delta: float) -> void:
 	get_random_point_around(3.0)  # Change la cible régulièrement
 	can_move = true
@@ -184,13 +210,16 @@ func _on_hunt_state_processing(delta: float) -> void:
 	animation_player.play("Slime|Walk")
 
 #---
+
 func _on_idle_state_processing(delta: float) -> void:
 	can_move = false
 	#print("Je suis dans le State 'idle'")
 	
 	animation_player.play("Slime|idle")
 	activate_hunt_mode()
+	
 #---
+
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	#print("J'ai touché un navigation link")
 	#print("Au contact du nav link can jump is : ", can_jump)
@@ -206,6 +235,7 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	jump_to_target(start_position, end_position)
 	#print("can jump : ", can_jump)
 
+#---
 
 func jump_to_target(start: Vector3, end: Vector3) -> void:
 	#print("Suppose to jump")
@@ -232,7 +262,9 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 
 	can_jump = true  # Réactive le saut après un court délai
 	#print("Fin de jump to target, can_jump est maintenant : ", can_jump)
+	
 #----------------------------------------------
+
 ##Animation functions
 
 	
@@ -246,15 +278,3 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 
 	
 #----------------------------------------------
-
-
-func _on_hit_reaction_state_entered() -> void:
-	print("I'm in hit reaction!")
-	damage_stars.visible = true
-	knockback() 
-	can_move = false
-
-
-func _on_hit_reaction_state_exited() -> void:
-	damage_stars.visible = false
-	can_move = true

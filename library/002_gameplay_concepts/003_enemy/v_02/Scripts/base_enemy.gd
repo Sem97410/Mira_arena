@@ -188,10 +188,21 @@ func play_animation(base_state_machne : AnimationNodeStateMachinePlayback, anima
 #----------------------------------------------
 ##Vfx functions
 
-func instantiate_vfx(position : Vector3, vfx : PackedScene) -> void : 
-	#Instantiate logic
-	pass
+func instantiate_vfx(position: Vector3, vfx: PackedScene) -> void:
+	if vfx == null:
+		print("❌ Erreur : Le VFX est nul, impossible d'instancier.")
+		return
 
+	var vfx_instance = vfx.instantiate()
+	if not vfx_instance:
+		print("❌ Erreur : Impossible d'instancier le VFX.")
+		return
+
+	# Ajouter le VFX à la scène AVANT de modifier sa position
+	get_tree().current_scene.add_child(vfx_instance)
+
+	# Maintenant, on peut modifier sa position
+	vfx_instance.global_position = position
 #----------------------------------------------
 ##Sfx functions
 

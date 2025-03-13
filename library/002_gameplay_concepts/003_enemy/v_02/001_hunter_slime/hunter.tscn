@@ -18,7 +18,7 @@ to = NodePath("../../Hunt")
 event = &"IsHunting"
 delay_in_seconds = "0.0"
 
-[node name="Transition" type="Node" parent="StateChart/root/Hunt" index="0"]
+[node name="ToIdle" type="Node" parent="StateChart/root/Hunt" index="0"]
 script = ExtResource("2_q7gag")
 to = NodePath("../../Idle")
 event = &"IsIdle"

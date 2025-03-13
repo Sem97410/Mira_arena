@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://ck634gxyhffr"]
+[gd_scene load_steps=24 format=4 uid="uid://ck634gxyhffr"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/damage_stars.tscn" id="2_baove"]
+[ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="2_m7hht"]
 [ext_resource type="Script" uid="uid://cw27nttbyw2yh" path="res://addons/godot_state_charts/state_chart.gd" id="3_vshtb"]
 [ext_resource type="Script" uid="uid://d3eyv3bwjgt31" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/base_slime.gd" id="4_13pv3"]
 [ext_resource type="Script" uid="uid://0q415e2thjsw" path="res://addons/godot_state_charts/compound_state.gd" id="4_baove"]
@@ -287,12 +288,14 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
 
-[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "damage_stars", "slime", "nav_agent", "state_chart") groups=["enemy"]]
+[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "damage_stars", "slime_body", "slime", "nav_agent", "state_chart") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("4_13pv3")
 animation_player = NodePath("Mesh/AnimationPlayer")
 damage_stars = NodePath("Mesh/damage_stars")
+slime_body = NodePath("Mesh")
+death_vfx = ExtResource("2_m7hht")
 slime = NodePath(".")
 nav_agent = NodePath("NavigationAgent3D")
 state_chart = NodePath("StateChart")
@@ -479,4 +482,5 @@ debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [connection signal="state_entered" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_entered"]
 [connection signal="state_exited" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_exited"]
+[connection signal="state_entered" from="StateChart/root/Death" to="." method="_on_death_state_entered"]
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
