@@ -49,15 +49,20 @@ func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 func make_damage(area : Area3D, damage : float) -> void : 
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
-	
+	print("Je suis dans l'Area")
+	if parent.has_method("take_damage"):
+		parent.take_damage(damage)
+		camera_shake_logic.trigger_shake()
+		return
 	
 	# Trouver le nœud avec la fonction take_damage parmi les frères
-	for sibling in parent.get_children():
-		if sibling.is_in_group("enemy") and sibling.has_method("take_damage"):
-			sibling.take_damage(damage)
-			camera_shake_logic.trigger_shake()
-			#print("Il a la fonction take_damage")
-			break
+	#for sibling in parent.get_children():
+		#if sibling.is_in_group("enemy") and sibling.has_method("take_damage"):
+			#sibling.take_damage(damage)
+			#camera_shake_logic.trigger_shake()
+			#print("Il a la bonne fonction")
+			##print("Il a la fonction take_damage")
+			#break
 		#else : 
 			#print("Il n'a pas la fonction")
 			

@@ -50,14 +50,6 @@ var destination_target : Vector3 #End of the dash
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
 # -----------------
-#After images
-@export_category("After images")
-@export var afterimage_scene: PackedScene  # Utilise MiraAfterImage.tscn
-@export var spawn_count: int = 5  
-@export var spawn_interval: float = 0.1  
-var previous_positions: Array = []  # Stocke les anciennes positions du joueur
-
-# -----------------
 #Trail VFX
 @export_category("TrailVFX")
 @export var dash_vfx : PackedScene
@@ -248,41 +240,7 @@ func launch_dash_animation() -> void :
 	
 	base_state_machine.travel("Dash")
 
-#----------------------------------
-## DASH AFTER IMAGES
 
-func start_spawning() -> void:
-	if player == null:
-		print("⚠️ Player non assigné !")
-		return
-	#print("Start spawning")
-	spawn_next_mesh(0)
-
-func spawn_next_mesh(index: int) -> void:
-	if index >= spawn_count or previous_positions.size() < spawn_count:
-		#print("Probleme de spawn")
-		return  
-	
-	#print("Peut spawn")
-	var new_mesh = afterimage_scene.instantiate() as Node3D  # Instancie l'afterimage
-	new_mesh.global_transform.origin = previous_positions[index]  # Place à une ancienne position
-	player.get_parent().add_child(new_mesh)
-	
-	await get_tree().create_timer(spawn_interval).timeout  
-	spawn_next_mesh(index + 1)
-	
-func launch_after_images() -> void :
-	start_spawning()
-	
-	# Stocke la position du joueur à chaque frame
-	if player:
-		previous_positions.append(player.global_transform.origin)
-
-		# Garde seulement les X dernières positions
-		if previous_positions.size() > spawn_count:
-			previous_positions.pop_front()
-			
-#----------------------------------
 ## DASH VFX
 
 #func enable_dash_vfx() -> void : 

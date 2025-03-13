@@ -23,7 +23,7 @@ var player_position : Vector3
 var target_position : Vector3
 var distance_to_target : float 
 
-@export var state_chart : StateChart
+
 @export var animation_player : AnimationPlayer
 
 
@@ -32,8 +32,9 @@ var distance_to_target : float
 
 
 #----------------------
+@export_category("Meshes variables")
 #Mesh variables
-
+@export var damage_stars : Node3D
 #----------------------
 #Fight variables
 @onready var attack_range : float = 3.0
@@ -74,6 +75,7 @@ var random_point_around_target : Vector3
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") #Assign the player
 	can_move = true
+	current_health_point = max_health_point
 
 
 func _process(delta: float) -> void:
@@ -81,6 +83,8 @@ func _process(delta: float) -> void:
 	player_position = player.global_transform.origin
 	var distance_to_target = check_distance_to_target(player)
 	#print("Distance to target is : ", distance_to_target)
+	
+	#print("current_health_point is ", current_health_point)
 	
 	if Input.is_action_just_pressed("Debug_2"):
 		var random_number = create_random_point_around(player_position, 5)
@@ -151,7 +155,7 @@ func create_random_point_around(target: Vector3, range: float) -> Vector3:
 	var offset_z = randf_range(-range, range)
 	var new_point = Vector3(target.x + offset_x, target.y, target.z + offset_z)
 	
-	print("🎯 Nouveau point aléatoire autour du joueur : ", new_point)
+	#print("🎯 Nouveau point aléatoire autour du joueur : ", new_point)
 	
 	return new_point
 
@@ -242,3 +246,15 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 
 	
 #----------------------------------------------
+
+
+func _on_hit_reaction_state_entered() -> void:
+	print("I'm in hit reaction!")
+	damage_stars.visible = true
+	knockback() 
+	can_move = false
+
+
+func _on_hit_reaction_state_exited() -> void:
+	damage_stars.visible = false
+	can_move = true

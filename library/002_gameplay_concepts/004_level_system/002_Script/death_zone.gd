@@ -1,8 +1,13 @@
 extends Area3D
 
-@export var respawn_position : Vector3
+var respawn_position : Vector3
+@export var player : CharacterBody3D
 
-func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		body.global_position = respawn_position
+func _ready() -> void:
+	respawn_position =  player.global_position
 	
+
+
+func _on_area_entered(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		player.global_position = respawn_position

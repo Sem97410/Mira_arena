@@ -1,9 +1,11 @@
-[gd_scene load_steps=21 format=4 uid="uid://ck634gxyhffr"]
+[gd_scene load_steps=23 format=4 uid="uid://ck634gxyhffr"]
 
+[ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/damage_stars.tscn" id="2_baove"]
 [ext_resource type="Script" uid="uid://cw27nttbyw2yh" path="res://addons/godot_state_charts/state_chart.gd" id="3_vshtb"]
 [ext_resource type="Script" uid="uid://d3eyv3bwjgt31" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/base_slime.gd" id="4_13pv3"]
 [ext_resource type="Script" uid="uid://0q415e2thjsw" path="res://addons/godot_state_charts/compound_state.gd" id="4_baove"]
 [ext_resource type="Script" uid="uid://d0n7iegy28s7u" path="res://addons/godot_state_charts/atomic_state.gd" id="5_m7hht"]
+[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="5_vshtb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m80vl"]
 resource_name = "mat_eyes_slime"
@@ -285,14 +287,15 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
 
-[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("state_chart", "animation_player", "slime", "nav_agent")]
+[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "damage_stars", "slime", "nav_agent", "state_chart") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("4_13pv3")
-state_chart = NodePath("StateChart")
 animation_player = NodePath("Mesh/AnimationPlayer")
+damage_stars = NodePath("Mesh/damage_stars")
 slime = NodePath(".")
 nav_agent = NodePath("NavigationAgent3D")
+state_chart = NodePath("StateChart")
 movement_speed = 2.0
 movement_interpolate_strength = 1.0
 
@@ -338,6 +341,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_ws2bj")
 }
 
+[node name="damage_stars" parent="Mesh" instance=ExtResource("2_baove")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86762, 0)
+visible = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47798, 0.0135172)
 shape = SubResource("SphereShape3D_13pv3")
@@ -354,8 +361,32 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
+[node name="ToHit" type="Node" parent="StateChart/root/Idle"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Idle"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
 [node name="PreAttack" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
+
+[node name="ToHit" type="Node" parent="StateChart/root/PreAttack"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/PreAttack"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
 
 [node name="Attack" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
@@ -363,22 +394,81 @@ script = ExtResource("5_m7hht")
 [node name="HitReaction" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
+[node name="ToIdle" type="Node" parent="StateChart/root/HitReaction"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Idle")
+delay_in_seconds = "1.5"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/HitReaction"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
 [node name="Death" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
 [node name="Hunt" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
+[node name="ToHit" type="Node" parent="StateChart/root/Hunt"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Hunt"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
 [node name="Flee" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
+
+[node name="ToHit" type="Node" parent="StateChart/root/Flee"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Flee"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
 
 [node name="Wander" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
+[node name="ToHit" type="Node" parent="StateChart/root/Wander"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Wander"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
 [node name="Patrol" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
-[node name="HealthArea3D" type="Area3D" parent="."]
+[node name="ToHit" type="Node" parent="StateChart/root/Patrol"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Patrol"]
+script = ExtResource("5_vshtb")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
+[node name="HealthArea3D" type="Area3D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HealthArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405009, 0)
@@ -387,4 +477,6 @@ debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+[connection signal="state_entered" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_entered"]
+[connection signal="state_exited" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_exited"]
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]

@@ -23,6 +23,7 @@ class_name BaseEnemy
 @export var slime : CharacterBody3D			
 @export var nav_agent : NavigationAgent3D	# Ref to the NavigationAgent3D
 var player : CharacterBody3D
+@export var state_chart : StateChart
 
 #----------------------
 @export_category("Health variables")
@@ -30,6 +31,7 @@ var player : CharacterBody3D
 #Health variables
 
 var current_health_point : float
+@export var max_health_point : float
 var is_invincible : bool
 
 #----------------------
@@ -69,8 +71,11 @@ var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
 ##Health functions
 
 func take_damage(damage : float) -> void : 
+	print("New slime take damage")
+	
 	current_health_point -= damage
-	knockback()
+	state_chart.send_event("IsHit")
+
 #---
 func activate_after_damage_invincibility(invincibility_duration : float) -> void :
 	is_invincible = true
