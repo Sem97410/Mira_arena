@@ -390,8 +390,8 @@ size = Vector3(6, 1, 1)
 size = Vector3(6, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oqkdt"]
-vertices = PackedVector3Array(8, 0.394998, 4, 8, 0.394998, -0.5, 7.5, 0.394998, 3, -0.25, 0.394998, -0.75, 0.5, 0.394998, -0.75, 0.5, 0.394998, -4, -8, 0.394998, -4, -0.25, 0.644998, 2, 6.25, 2.895, 2, 6.25, 2.895, 0.25, -0.25, 0.644998, 0.25, -8, 0.394998, 4, -0.25, 0.394998, 3, 1.5, 1.645, -4, 1.5, 1.645, -1.5, 8.25, 1.645, -1.5, 8.25, 1.645, -4, 4.5, 0.394998, 0.5, 4.5, 0.394998, 1.5, 6, 0.394998, 1.5, 6, 0.394998, 0.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(10, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(10, 7, 11), PackedInt32Array(2, 0, 12), PackedInt32Array(12, 0, 11), PackedInt32Array(3, 10, 6), PackedInt32Array(6, 10, 11), PackedInt32Array(7, 12, 11), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18)]
+vertices = PackedVector3Array(-0.25, 0.394998, -0.881325, 0.5, 0.394998, -0.881325, 0.5, 0.394998, -4.63132, -8, 0.394998, -4.63132, -0.25, 0.644998, 1.86868, 6.25, 2.895, 1.86868, 6.25, 2.895, 0.118675, -0.25, 0.644998, 0.118675, -8, 0.394998, 3.36868, 0, 0.394998, 2.86868, 1.5, 1.645, -4.13132, 1.5, 1.645, -1.38132, 8.25, 1.645, -1.38132, 8.25, 1.645, -4.13132, 7.5, 0.394998, 2.86868, -8, 0.394998, 44.3687, 8, 0.394998, 44.3687, 8, 0.394998, -0.381325, 4.5, 0.394998, 0.368675, 4.5, 0.394998, 1.61868, 6, 0.394998, 1.61868, 6, 0.394998, 0.368675)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(7, 8, 0), PackedInt32Array(0, 8, 3), PackedInt32Array(4, 9, 8), PackedInt32Array(7, 4, 8), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(9, 14, 8), PackedInt32Array(8, 14, 15), PackedInt32Array(15, 14, 16), PackedInt32Array(14, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19)]
 geometry_collision_mask = 4294901767
 agent_max_slope = 80.0
 
@@ -399,7 +399,7 @@ agent_max_slope = 80.0
 albedo_color = Color(1, 0.423729, 0.374267, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1dviu"]
-size = Vector3(17, 0.1, 9)
+size = Vector3(17, 0.1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkp5"]
 size = Vector3(17, 0.1, 9)
@@ -1103,6 +1103,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2812, 0, -14.8864)
 navigation_mesh = SubResource("NavigationMesh_oqkdt")
 
 [node name="Tatami" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.8687)
 layers = 3
 material_override = SubResource("StandardMaterial3D_3ftwn")
 mesh = SubResource("BoxMesh_1dviu")
@@ -1295,7 +1296,29 @@ horizontal_alignment = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2308, 1.6185, -17.773)
 collision_mask = 6
 target_entity = NodePath("../Mira")
-movement_speed = 2.0
+movement_speed = 7.0
+movement_interpolate_strength = 2.0
+
+[node name="Hunter2" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1605, 0.422963, -8.08881)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 7.0
+movement_interpolate_strength = 2.0
+
+[node name="Hunter3" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7096, 0.422963, -8.08881)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 7.0
+movement_interpolate_strength = 2.0
+
+[node name="Hunter4" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3997, 0.422963, -8.08881)
+collision_mask = 6
+target_entity = NodePath("../Mira")
+movement_speed = 7.0
+movement_interpolate_strength = 2.0
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.5475, 0.0500002, -17.3835)

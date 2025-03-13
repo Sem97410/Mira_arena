@@ -44,6 +44,9 @@ var distance_to_target : float
 @onready var jump_height = 1.5  # Hauteur du saut
 @onready var duration = 0.5  # Temps total du saut
 @onready var elapsed_time = 0
+@onready var random_point_interval : float = 0.5
+var random_point_around_target : Vector3
+@onready var is_generating_random_point = false  # Pour éviter les doublons
 #----------------------
 @export_category("Animation variables")
 
@@ -75,8 +78,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	apply_gravity(delta)
+	player_position = player.global_transform.origin
 	var distance_to_target = check_distance_to_target(player)
 	#print("Distance to target is : ", distance_to_target)
+	
+	if Input.is_action_just_pressed("Debug_2"):
+		var random_number = create_random_point_around(player_position, 5)
+		print("Random number is : ", random_number)
 	
 
 
@@ -138,21 +146,40 @@ func calculate_destination(target: Node3D) -> Vector3:
 	return slime.global_position  # Si la cible est invalide, le slime reste sur place
 
 #---
+func create_random_point_around(target: Vector3, range: float) -> Vector3:
+	var offset_x = randf_range(-range, range)
+	var offset_z = randf_range(-range, range)
+	var new_point = Vector3(target.x + offset_x, target.y, target.z + offset_z)
+	
+	print("🎯 Nouveau point aléatoire autour du joueur : ", new_point)
+	
+	return new_point
+
+
+#---
+func get_random_point_around(range: float) -> void:
+	if is_generating_random_point:
+		return  # Empêche de relancer la fonction si elle est déjà en cours
+	
+	is_generating_random_point = true  # Marque comme en cours
+	await get_tree().create_timer(random_point_interval).timeout
+	random_point_around_target = create_random_point_around(player_position, range)
+	is_generating_random_point = false  # Marque comme terminé
+#---
 func step_away_from_close_enemy(separation_distance : float):
 	#if an enemy si too close, move in the opposite direction
 	pass
 #---
 func _on_hunt_state_processing(delta: float) -> void:
-	#print("Je suis dans le State 'hunt'")
+	get_random_point_around(3.0)  # Change la cible régulièrement
 	can_move = true
-	target_position = calculate_destination(target_entity)  #in the final code, the target_entity will change base on the state (could be : player, wander_point, patrol point, flee_point )
-	move(target_position, delta)
+	move(random_point_around_target, delta)
 	entity_rotation()
 	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
 	activate_idle_mode()
 	animation_player.play("Slime|Walk")
-#---
 
+#---
 func _on_idle_state_processing(delta: float) -> void:
 	can_move = false
 	#print("Je suis dans le State 'idle'")
@@ -161,15 +188,15 @@ func _on_idle_state_processing(delta: float) -> void:
 	activate_hunt_mode()
 #---
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
-	print("J'ai touché un navigation link")
-	print("Au contact du nav link can jump is : ", can_jump)
+	#print("J'ai touché un navigation link")
+	#print("Au contact du nav link can jump is : ", can_jump)
 	if not can_jump: 
 		#print("Je peux pas sauter")
-		print("can jump devrait etre faux ici et il est  : ", can_jump)
+		#print("can jump devrait etre faux ici et il est  : ", can_jump)
 		return  # Bloque si un saut est déjà en cours
 	#
 	can_jump = false  # Désactive le saut temporairement
-	print("Je suis dans la fonction avant le calcule et can jump devrait etre faux il est : ", can_jump)
+	#print("Je suis dans la fonction avant le calcule et can jump devrait etre faux il est : ", can_jump)
 	var start_position = details["link_entry_position"]  # Point A
 	var end_position = details["link_exit_position"]    # Point B
 	jump_to_target(start_position, end_position)
@@ -182,7 +209,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 	elapsed_time = 0.0  # 🔥 Réinitialisation ici
 
 	while elapsed_time < duration:
-		print("Je suis dans le while et ca devrait etre false et c'est  : ", can_jump)
+		#print("Je suis dans le while et ca devrait etre false et c'est  : ", can_jump)
 		await get_tree().process_frame
 		elapsed_time += get_process_delta_time()
 		
@@ -200,7 +227,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
 
 	can_jump = true  # Réactive le saut après un court délai
-	print("Fin de jump to target, can_jump est maintenant : ", can_jump)
+	#print("Fin de jump to target, can_jump est maintenant : ", can_jump)
 #----------------------------------------------
 ##Animation functions
 
