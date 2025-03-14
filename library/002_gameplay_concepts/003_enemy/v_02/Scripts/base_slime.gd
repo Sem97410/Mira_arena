@@ -24,7 +24,7 @@ var target_position : Vector3
 var distance_to_target : float 
 
 
-@export var animation_player : AnimationPlayer
+
 
 
 #----------------------
@@ -81,23 +81,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	apply_gravity(delta)
+	apply_gravity(delta)  # Applique la gravité toujours
 	player_position = player.global_transform.origin
 	var distance_to_target = check_distance_to_target(player)
-	#print("Distance to target is : ", distance_to_target)
 	
-	#print("current_health_point is ", current_health_point)
-	
-	if Input.is_action_just_pressed("Debug_2"):
-		var random_number = create_random_point_around(player_position, 5)
-		print("Random number is : ", random_number)
-	
-
-
-
-	if  slime.is_on_floor() :
-		print("Il touche le sol")
-	
+	# Applique le knockback s'il est actif
+	apply_knockback_movement(delta)
 
 	#print("Slime Position:", slime.global_position)
 	#print("Is on floor:", slime.is_on_floor())
@@ -131,13 +120,13 @@ func _on_hit_reaction_state_entered() -> void:
 	print("I'm in hit reaction!")
 	damage_stars.visible = true
 	check_if_dead()
-	knockback() 
-	can_move = false
+	knockback(player_position) 
+	#can_move = false
 
 
 func _on_hit_reaction_state_exited() -> void:
 	damage_stars.visible = false
-	can_move = true
+	#can_move = true
 
 
 	

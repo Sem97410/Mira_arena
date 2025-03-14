@@ -34,6 +34,15 @@ var current_health_point : float
 @export var max_health_point : float
 var is_invincible : bool
 
+
+var is_knockback_active : bool = false  # Knockback en cours ?
+var knockback_velocity : Vector3 = Vector3.ZERO  # Stocke la force actuelle du knockback
+var knockback_force : float = 15.0  # Intensité du knockback
+var knockback_vertical_boost : float = 5.0  # Hauteur de l'effet "en cloche"
+var knockback_decay : float = 5.0  # Vitesse de réduction du knockback
+var knockback_duration : float = 0.5  # Durée totale du knockback
+var knockback_timer : float = 0.0  # Temps écoulé depuis le début du knockback
+
 #----------------------
 #Mesh variables
 
@@ -55,7 +64,7 @@ var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
 
 #----------------------
 #Animation variables
-
+@export var animation_player : AnimationPlayer
 #----------------------
 #Vfx variables
 
@@ -171,25 +180,89 @@ func look_at_target_or_movement(entity: Node3D, target: Node3D, movement_directi
 		entity.look_at(look_at_position, up_vector)
 
 
+#--- A DOCUMENTER
+func knockback(attacker_position: Vector3) -> void:
+	# Si le knockback est déjà actif, on l'ignore
+	if is_knockback_active:
+		return
+
+	# 📌 Calculer la direction opposée à l'attaquant
+	var direction = (slime.global_position - attacker_position).normalized()
+	direction.y = 0  # On annule le Y pour éviter un mouvement vertical involontaire
+
+	# 📌 Appliquer une force initiale (recul + montée en cloche)
+	knockback_velocity = direction * knockback_force  
+	knockback_velocity.y = knockback_vertical_boost  # Donne une poussée vers le haut pour le mouvement en cloche
+
+	# 📌 Activer le knockback
+	is_knockback_active = true
+	knockback_timer = knockback_duration  
+
+	# 📌 Empêcher le mouvement normal pendant le knockback
+	can_move = false  
+
+	# 📌 Envoyer un signal au StateChart pour rester en `HitReaction`
+	state_chart.send_event("IsHit")
+
+	# 📌 Faire regarder l'ennemi dans la direction opposée
+	slime.look_at(slime.global_position - direction)
+
+	# Debugging
+	print("🚀 Knockback lancé ! Velocity :", knockback_velocity)
+
+
+
+
+
+#--- A DOCUMENTER
+func apply_knockback_movement(delta: float) -> void:
+	if is_knockback_active:
+		# 📌 Appliquer la vélocité du knockback
+		slime.velocity = knockback_velocity
+
+		# 📌 Appliquer la gravité pendant le knockback
+		knockback_velocity.y -= gravity * delta  
+		knockback_velocity.y = max(knockback_velocity.y, -max_fall_speed)  # Limite la chute
+
+		# 📌 Réduire progressivement la vélocité horizontale pour un arrêt naturel
+		knockback_velocity.x = lerp(knockback_velocity.x, 0.0, knockback_decay * delta)
+		knockback_velocity.z = lerp(knockback_velocity.z, 0.0, knockback_decay * delta)
+
+		# 📌 Réduire le timer
+		knockback_timer -= delta
+
+		# 📌 Appliquer le mouvement avec collision
+		slime.move_and_slide()
+
+		# 📌 Vérifier si le knockback doit s'arrêter
+		if knockback_timer <= 0 and slime.is_on_floor():
+			knockback_velocity = Vector3.ZERO
+			is_knockback_active = false
+			can_move = true  # 🔥 Réautoriser le mouvement normal
+			
+			animation_player.play("Slime|hit")
+			await get_tree().create_timer(1.4).timeout
+			# 🔥 Revenir à Idle SEULEMENT si le slime touche bien le sol
+			state_chart.send_event("IsIdle")
+			print("⏹ Knockback terminé.")
+
 #---
-func knockback() -> void : 
-	#Knockback logic
-	pass
-#---
+
 func freeze_movement() -> void :
 	can_move = false
 #---
 func unfreeze_movement():
 	can_move = true
 #---
-func apply_gravity(delta : float):
+func apply_gravity(delta: float):
 	if not slime.is_on_floor():  
 		vertical_velocity -= gravity * delta  # Applique la gravité
 		vertical_velocity = max(vertical_velocity, -max_fall_speed)  # Limite la vitesse de chute
 	else:
 		vertical_velocity = 0  # Réinitialise la vitesse si au sol
 
-		slime.velocity.y = vertical_velocity  # Met à jour la vélocité verticale
+	slime.velocity.y = vertical_velocity  # Met à jour la vélocité tout le temps
+
 
 
 #----------------------------------------------

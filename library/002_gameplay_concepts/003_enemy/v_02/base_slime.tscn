@@ -288,11 +288,10 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
 radius = 2.0
 
-[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "damage_stars", "slime_body", "slime", "nav_agent", "state_chart") groups=["enemy"]]
+[node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("damage_stars", "slime_body", "slime", "nav_agent", "state_chart", "animation_player") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("4_13pv3")
-animation_player = NodePath("Mesh/AnimationPlayer")
 damage_stars = NodePath("Mesh/damage_stars")
 slime_body = NodePath("Mesh")
 death_vfx = ExtResource("2_m7hht")
@@ -301,6 +300,7 @@ nav_agent = NodePath("NavigationAgent3D")
 state_chart = NodePath("StateChart")
 movement_speed = 2.0
 movement_interpolate_strength = 1.0
+animation_player = NodePath("Mesh/AnimationPlayer")
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -314,7 +314,7 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(0.845761, 0.109726, -9.49949e-09, -9.49949e-09, 0, -0.85, -0.084788, 1.09451, 0, 0, -0.000645729, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, -0.000645729, 0)
-bones/0/rotation = Quaternion(0.707099, 0.00322039, -0.00322039, 0.707099)
+bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "slime_helmet"
 bones/1/parent = -1
@@ -400,7 +400,11 @@ script = ExtResource("5_m7hht")
 [node name="ToIdle" type="Node" parent="StateChart/root/HitReaction"]
 script = ExtResource("5_vshtb")
 to = NodePath("../../Idle")
-delay_in_seconds = "1.5"
+event = &"IsIdle"
+delay_in_seconds = "0.0
+
+
+"
 
 [node name="ToDeath" type="Node" parent="StateChart/root/HitReaction"]
 script = ExtResource("5_vshtb")

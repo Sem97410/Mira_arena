@@ -2908,6 +2908,7 @@ script = ExtResource("3_xewij")
 owls_sound = NodePath("OwlsAudioStreamPlayer3D")
 
 [node name="OwlsAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Area3D"]
+visible = false
 stream = ExtResource("5_nusk7")
 volume_db = 10.0
 max_db = 2.062
@@ -3480,11 +3481,13 @@ end_position = Vector3(12.875, 0, 0)
 
 [node name="NavigationLink3D8" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.999709, 0, 0.0241356, 0, 1, 0, -0.0241356, 0, -0.999709, -52.3411, 1.6651, 17.3912)
+start_position = Vector3(0.17, 1.81, 0)
 end_position = Vector3(16.085, 0, 0)
 
 [node name="NavigationLink3D12" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.0157944, 0, 0.999875, 0, 1, 0, -0.999875, 0, -0.0157944, -51.1521, 3.33021, 42.5777)
-end_position = Vector3(18.8518, 0.0188503, 0.413563)
+start_position = Vector3(0, 0.93, 0)
+end_position = Vector3(17.537, 0.149, 0.414)
 
 [node name="NavigationLink3D9" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.0335042, 0, 0.999439, 0, 1, 0, -0.999439, 0, 0.0335042, 9.7839, 1.88232, -24.2337)
@@ -3496,32 +3499,32 @@ end_position = Vector3(9.66, 0, 0)
 
 [node name="Spawner" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.66048, 2.17668, -19.5033)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner2" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 17.1396, 2.17668, 11.1723)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner3" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7.3253, 2.57878, -36.489)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner4" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.6647, 1.63599, -1.37818)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner5" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 11.552, 6.0001, -68.4698)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner6" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 29.9055, 3.52363, -41.0053)
-max_enemies = 15.0
+max_enemies = 1.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Tree" parent="." instance=ExtResource("5_d7nw5")]

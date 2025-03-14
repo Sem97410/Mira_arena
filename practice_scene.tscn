@@ -390,8 +390,8 @@ size = Vector3(6, 1, 1)
 size = Vector3(6, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oqkdt"]
-vertices = PackedVector3Array(-0.25, 0.394998, -0.881325, 0.5, 0.394998, -0.881325, 0.5, 0.394998, -4.63132, -8, 0.394998, -4.63132, -0.25, 0.644998, 1.86868, 6.25, 2.895, 1.86868, 6.25, 2.895, 0.118675, -0.25, 0.644998, 0.118675, -8, 0.394998, 3.36868, 0, 0.394998, 2.86868, 1.5, 1.645, -4.13132, 1.5, 1.645, -1.38132, 8.25, 1.645, -1.38132, 8.25, 1.645, -4.13132, 7.5, 0.394998, 2.86868, -8, 0.394998, 44.3687, 8, 0.394998, 44.3687, 8, 0.394998, -0.381325, 4.5, 0.394998, 0.368675, 4.5, 0.394998, 1.61868, 6, 0.394998, 1.61868, 6, 0.394998, 0.368675)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(7, 8, 0), PackedInt32Array(0, 8, 3), PackedInt32Array(4, 9, 8), PackedInt32Array(7, 4, 8), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(9, 14, 8), PackedInt32Array(8, 14, 15), PackedInt32Array(15, 14, 16), PackedInt32Array(14, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19)]
+vertices = PackedVector3Array(-0.25, 0.394998, -0.8813, 0.5, 0.394998, -0.8813, 0.5, 0.394998, -4.6313, -8, 0.394998, -4.6313, -0.25, 0.644998, 1.8687, 6.25, 2.895, 1.8687, 6.25, 2.895, 0.1187, -0.25, 0.644998, 0.1187, -8, 0.394998, 3.3687, 0, 0.394998, 2.8687, 1.5, 1.645, -4.1313, 1.5, 1.645, -1.3813, 8.25, 1.645, -1.3813, 8.25, 1.645, -4.1313, 3.75, 0.644998, 20.3687, 4.5, 0.394998, 20.3687, 8, 0.394998, 19.8687, -2, 0.644998, 20.1187, -8, 0.394998, 22.1187, -3, 0.394998, 22.1187, -3, 0.394998, 20.1187, -2, 1.395, 21.8687, 3.5, 1.395, 22.1187, 8, 0.394998, -0.3813, 7.5, 0.394998, 2.8687, 4.5, 0.394998, 0.3687, 4.5, 0.394998, 1.6187, 6, 0.394998, 1.6187, 6, 0.394998, 0.3687, 4.75, 0.394998, 22.6187, 4.25, 0.394998, 27.1187, 8, 0.394998, 27.3687, -2.25, 3.395, 27.3687, 2, 3.395, 27.8687, 3.25, 3.395, 27.8687, -3.5, 0.394998, 27.8687, -8, 0.394998, 27.8687, 3, 0.394998, 27.6187, 3.25, 0.394998, 25.3687, 2.75, 0.394998, 24.8687, -2, 0.394998, 24.6187, -2, 0.394998, 27.1187, -1.25, 0.394998, 27.3687, 4, 0.394998, 28.8687, 8, 0.394998, 44.3687, -3.25, 0.394998, 28.3687, -2, 0.394998, 28.6187, -8, 0.394998, 44.3687)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(7, 8, 0), PackedInt32Array(0, 8, 3), PackedInt32Array(4, 9, 8), PackedInt32Array(7, 4, 8), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 8), PackedInt32Array(21, 17, 22), PackedInt32Array(22, 17, 14), PackedInt32Array(24, 23, 16), PackedInt32Array(17, 20, 16), PackedInt32Array(16, 20, 24), PackedInt32Array(24, 20, 9), PackedInt32Array(9, 20, 8), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 15, 16), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 16), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 21), PackedInt32Array(34, 21, 22), PackedInt32Array(36, 18, 35), PackedInt32Array(35, 18, 19), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 42), PackedInt32Array(39, 42, 41), PackedInt32Array(39, 41, 40), PackedInt32Array(30, 31, 43), PackedInt32Array(43, 31, 44), PackedInt32Array(36, 35, 45), PackedInt32Array(45, 46, 36), PackedInt32Array(36, 46, 47), PackedInt32Array(43, 44, 46), PackedInt32Array(46, 44, 47)]
 geometry_collision_mask = 4294901767
 agent_max_slope = 80.0
 
@@ -1135,6 +1135,17 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_26kip")
 
+[node name="Cube2" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
+transform = Transform3D(0.308445, 0, 3.17984, 0, 1.5, 0, -4.25513, 0, 0.2305, 0.695068, 1.49321, 23.751)
+mesh = SubResource("ArrayMesh_wtexv")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D/Cube2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeFightZone/NavigationRegion3D/Cube2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_g2ql2")
+
 [node name="GameLogic" type="Node" parent="FreeFightZone" node_paths=PackedStringArray("player_body")]
 script = ExtResource("13_h62yh")
 player_body = NodePath("../../Mira")
@@ -1202,17 +1213,6 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe2/Cube"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe2/Cube/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_g2ql2")
-
-[node name="Cube2" type="MeshInstance3D" parent="MovementZone/Rampe2"]
-transform = Transform3D(10.0902, 0, 0, 0, 1.5, 0, 0, 0, 6.51435, 57.1628, 1.49321, 35.8931)
-mesh = SubResource("ArrayMesh_wtexv")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MovementZone/Rampe2/Cube2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementZone/Rampe2/Cube2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_g2ql2")
 
@@ -1294,32 +1294,24 @@ horizontal_alignment = 0
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2308, 1.6185, -17.773)
-collision_mask = 6
-death_vfx = null
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter2" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1605, 0.422963, -8.08881)
-collision_mask = 6
-death_vfx = null
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter3" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7096, 0.422963, -8.08881)
-collision_mask = 6
-death_vfx = null
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter4" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3997, 0.422963, -8.08881)
-collision_mask = 6
-death_vfx = null
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
