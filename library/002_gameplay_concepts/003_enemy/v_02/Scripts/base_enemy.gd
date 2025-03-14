@@ -121,27 +121,31 @@ func activate_attack_area(area : Area3D, attack_duration : float) -> void:
 	area.enable = false
 	
 #----------------------------------------------
-##Movement functions
-func move(target : Vector3, delta : float) -> void:
-	# Vérifie si le slime peut bouger
+func move(target: Vector3, delta: float) -> void:
 	if not can_move:
 		return
-	
-	# Définit la cible dans le NavigationAgent
+
+	# Définit la position cible pour le NavigationAgent
 	nav_agent.target_position = target
-	
-	# Récupère la position actuelle et la prochaine position du chemin
+
+	# Vérifie si l'agent a un chemin valide
+	if nav_agent.is_navigation_finished():
+		slime.velocity = Vector3.ZERO  # Stoppe le mouvement si pas de chemin
+		return
+
+	# Récupère les positions actuelles et suivantes sur le chemin
 	var current_position = slime.global_position
 	var next_position = nav_agent.get_next_path_position()
-	
-	# Calcule la nouvelle direction normale vers la cible
+
+	# Calcule la direction vers la cible
 	var new_velocity = (next_position - current_position).normalized() * movement_speed
 
-	# Mélange le déplacement naturel avec le safe_velocity (évite les collisions)
-	var final_velocity = new_velocity.lerp(stored_safe_velocity, 0.5)  # Ajuste le 0.5 si besoin
-	
-	# Enregistre cette vélocité dans le NavigationAgent
-	nav_agent.set_velocity(final_velocity)
+	# Mélange la direction avec le safe_velocity
+	var final_velocity = new_velocity.lerp(stored_safe_velocity, 0.5)
+
+	# Applique la vélocité
+	slime.velocity = final_velocity
+	slime.move_and_slide()
 
 
 
