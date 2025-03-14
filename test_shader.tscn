@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp6iyygi7unx"]
+
+[ext_resource type="Shader" uid="uid://n1nykmjngf0o" path="res://000_temp/post_process_003.gdshader" id="1_gi6pi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qv613"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7bh1k"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_mdh0l"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrtu3"]
+render_priority = 0
+shader = ExtResource("1_gi6pi")
+shader_parameter/effect_thresold = 0.5
+shader_parameter/paint_variation_intensity = 0.0
+shader_parameter/alpha_intensity = 0.0
+shader_parameter/distorsion_strenght = 0.0
+
+[node name="test_shader" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qv613")
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558128, 0)
+mesh = SubResource("BoxMesh_7bh1k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.844406, 2.96298)
+
+[node name="post_process" type="MeshInstance3D" parent="Camera3D"]
+mesh = SubResource("QuadMesh_mdh0l")
+surface_material_override/0 = SubResource("ShaderMaterial_qrtu3")
