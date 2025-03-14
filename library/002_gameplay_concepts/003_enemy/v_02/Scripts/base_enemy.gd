@@ -82,7 +82,7 @@ var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
 ##Health functions
 
 func take_damage(damage : float) -> void : 
-	print("New slime take damage")
+	#print("New slime take damage")
 	
 	current_health_point -= damage
 	state_chart.send_event("IsHit")
