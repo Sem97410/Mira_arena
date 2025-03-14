@@ -214,7 +214,7 @@ func knockback(attacker_position: Vector3) -> void:
 	slime.look_at(slime.global_position - direction)
 
 	# Debugging
-	print("🚀 Knockback lancé ! Velocity :", knockback_velocity)
+	#print("🚀 Knockback lancé ! Velocity :", knockback_velocity)
 
 
 
@@ -250,7 +250,7 @@ func apply_knockback_movement(delta: float) -> void:
 			await get_tree().create_timer(1.4).timeout
 			# 🔥 Revenir à Idle SEULEMENT si le slime touche bien le sol
 			state_chart.send_event("IsIdle")
-			print("⏹ Knockback terminé.")
+			#print("⏹ Knockback terminé.")
 
 #---
 
@@ -282,12 +282,12 @@ func play_animation(base_state_machne : AnimationNodeStateMachinePlayback, anima
 
 func instantiate_vfx(position: Vector3, vfx: PackedScene) -> void:
 	if vfx == null:
-		print("❌ Erreur : Le VFX est nul, impossible d'instancier.")
+		#print("❌ Erreur : Le VFX est nul, impossible d'instancier.")
 		return
 
 	var vfx_instance = vfx.instantiate()
 	if not vfx_instance:
-		print("❌ Erreur : Impossible d'instancier le VFX.")
+		#print("❌ Erreur : Impossible d'instancier le VFX.")
 		return
 
 	# Ajouter le VFX à la scène AVANT de modifier sa position
