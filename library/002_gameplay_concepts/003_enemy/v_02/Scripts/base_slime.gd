@@ -117,7 +117,7 @@ func activate_idle_mode() -> void :
 ##Health functions
 
 func _on_hit_reaction_state_entered() -> void:
-	print("I'm in hit reaction!")
+	#print("I'm in hit reaction!")
 	damage_stars.visible = true
 	check_if_dead()
 	knockback(player_position) 
@@ -271,3 +271,13 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3):
 	stored_safe_velocity = safe_velocity
+
+
+func launch_slime_step_sound() -> void:
+	
+	var footstep_manager = get_tree().get_first_node_in_group("FootStepManager")
+	#print("Je suis dans launch_slime_step")
+	
+	if footstep_manager:
+		footstep_manager.request_footstep(self)  # Envoie le slime lui-même
+		#print("Je lance la request footstep")
