@@ -7,7 +7,7 @@
 albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
 
 [node name="Hunter" instance=ExtResource("1_abthj")]
-collision_mask = 7
+collision_mask = 5
 max_health_point = 200.0
 movement_speed = 5.0
 movement_interpolate_strength = 10.0

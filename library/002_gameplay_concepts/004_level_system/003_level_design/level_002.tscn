@@ -3499,32 +3499,32 @@ end_position = Vector3(9.66, 0, 0)
 
 [node name="Spawner" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.66048, 2.17668, -19.5033)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner2" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 17.1396, 2.17668, 11.1723)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner3" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7.3253, 2.57878, -36.489)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner4" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.6647, 1.63599, -1.37818)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner5" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 11.552, 6.0001, -68.4698)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Spawner6" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 29.9055, 3.52363, -41.0053)
-max_enemies = 1.0
+max_enemies = 15.0
 enemy = ExtResource("10_nusk7")
 
 [node name="Tree" parent="." instance=ExtResource("5_d7nw5")]

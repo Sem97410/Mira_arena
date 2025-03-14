@@ -58,6 +58,8 @@ var can_move : bool
 @export var movement_speed : float
 @export var movement_interpolate_strength : float
 
+@onready var stored_safe_velocity = Vector3.ZERO
+
 var gravity: float = 9.8  # Force de la gravité
 @export var max_fall_speed: float = 100.0  # Vitesse maximale de chute
 var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
@@ -120,28 +122,28 @@ func activate_attack_area(area : Area3D, attack_duration : float) -> void:
 	
 #----------------------------------------------
 ##Movement functions
-
 func move(target : Vector3, delta : float) -> void:
-	#print("Move function is being called")
-
-
-	if not can_move :
+	# Vérifie si le slime peut bouger
+	if not can_move:
 		return
-	else:
-		#move to target
-		nav_agent.target_position = target
-		var current_position = slime.global_position # position actuelle de l'ennemi
-		var next_position = nav_agent.get_next_path_position() # prochaine position de l'ennemi
-		var new_velocity = (next_position - current_position).normalized() * movement_speed # calcul la nouvelle vitesse de l'ennemi
-		#associe la nouvelle vitesse de l'ennemy a la velocity du charracter body utilisation d'un lerp pour fluidifier le mouvement
-		slime.velocity = slime.velocity.lerp(new_velocity,movement_interpolate_strength * delta) 
+	
+	# Définit la cible dans le NavigationAgent
+	nav_agent.target_position = target
+	
+	# Récupère la position actuelle et la prochaine position du chemin
+	var current_position = slime.global_position
+	var next_position = nav_agent.get_next_path_position()
+	
+	# Calcule la nouvelle direction normale vers la cible
+	var new_velocity = (next_position - current_position).normalized() * movement_speed
 
-		#print("Current Pos:", slime.global_position, " Next Pos:", next_position)
+	# Mélange le déplacement naturel avec le safe_velocity (évite les collisions)
+	var final_velocity = new_velocity.lerp(stored_safe_velocity, 0.5)  # Ajuste le 0.5 si besoin
+	
+	# Enregistre cette vélocité dans le NavigationAgent
+	nav_agent.set_velocity(final_velocity)
 
 
-
-
-		slime.move_and_slide()
 
 
 #---

@@ -267,3 +267,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 
 	
 #----------------------------------------------
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3):
+	stored_safe_velocity = safe_velocity
