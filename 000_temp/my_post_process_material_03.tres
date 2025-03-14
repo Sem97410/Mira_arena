@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dueddwja8sum1"]
+
+[ext_resource type="Shader" uid="uid://cp7s1envsd7t4" path="res://000_temp/chat_postProcess.gdshader" id="1_4wyp0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4wyp0")
+shader_parameter/brush_stroke_size = 6.49
+shader_parameter/distortion_intensity = 5.08
+shader_parameter/blur_strength = 3.675

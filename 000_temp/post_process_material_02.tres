@@ -1,7 +1,23 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://f4kqejw6fxy"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://f4kqejw6fxy"]
 
-[ext_resource type="Shader" uid="uid://bf8olwrjnieih" path="res://000_temp/post_process_shader_02.gdshader" id="1_rt5ep"]
+[ext_resource type="Shader" uid="uid://bf8olwrjnieih" path="res://000_temp/chat_post_process_shader_02.gdshader" id="1_rt5ep"]
+
+[sub_resource type="Gradient" id="Gradient_njnlg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rt5ep"]
+frequency = 0.0001
+fractal_lacunarity = 3.585
+fractal_gain = 1.985
+fractal_weighted_strength = 0.31
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_njnlg"]
+color_ramp = SubResource("Gradient_njnlg")
+noise = SubResource("FastNoiseLite_rt5ep")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_rt5ep")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_njnlg")
+shader_parameter/brush_stroke_size = 10.675
+shader_parameter/distortion_intensity = 8.355
+shader_parameter/blur_strength = 12.245
