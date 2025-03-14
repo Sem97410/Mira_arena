@@ -1,10 +1,31 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dueddwja8sum1"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dueddwja8sum1"]
 
-[ext_resource type="Shader" uid="uid://cp7s1envsd7t4" path="res://000_temp/chat_postProcess.gdshader" id="1_4wyp0"]
+[ext_resource type="Shader" uid="uid://n1nykmjngf0o" path="res://000_temp/post_process_003.gdshader" id="1_4wyp0"]
+
+[sub_resource type="Gradient" id="Gradient_u702o"]
+offsets = PackedFloat32Array(0, 0.789773)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oc227"]
+frequency = 1.0
+fractal_octaves = 1
+fractal_lacunarity = 2.365
+fractal_gain = 1.185
+fractal_weighted_strength = 1.0
+domain_warp_enabled = true
+domain_warp_amplitude = 29.7
+domain_warp_frequency = 4.025
+domain_warp_fractal_lacunarity = 10.875
+domain_warp_fractal_gain = 1.195
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eeb28"]
+color_ramp = SubResource("Gradient_u702o")
+noise = SubResource("FastNoiseLite_oc227")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_4wyp0")
-shader_parameter/brush_stroke_size = 6.49
-shader_parameter/distortion_intensity = 5.08
-shader_parameter/blur_strength = 3.675
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_eeb28")
+shader_parameter/effect_thresold = 0.21
+shader_parameter/paint_variation_intensity = 0.0
+shader_parameter/alpha_intensity = 1.0
+shader_parameter/distorsion_strenght = 0.015
