@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=26 format=3 uid="uid://cmjq7a7f07m5l"]
 
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_ykcya"]
@@ -22,6 +22,7 @@ albedo_color = Color(0.361917, 0.475739, 1, 1)
 size = Vector2(25, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_io2ai"]
+margin = 0.001
 size = Vector3(25, 0.1, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3g33"]
@@ -65,6 +66,12 @@ size = Vector3(0.5, 5, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kwbi"]
 size = Vector3(0.5, 5, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6c41i"]
+size = Vector3(10, 5, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6c41i"]
+data = PackedVector3Array(-5, 2.5, 5, 5, 2.5, 5, -5, -2.5, 5, 5, 2.5, 5, 5, -2.5, 5, -5, -2.5, 5, 5, 2.5, -5, -5, 2.5, -5, 5, -2.5, -5, -5, 2.5, -5, -5, -2.5, -5, 5, -2.5, -5, 5, 2.5, 5, 5, 2.5, -5, 5, -2.5, 5, 5, 2.5, -5, 5, -2.5, -5, 5, -2.5, 5, -5, 2.5, -5, -5, 2.5, 5, -5, -2.5, -5, -5, 2.5, 5, -5, -2.5, 5, -5, -2.5, -5, 5, 2.5, 5, -5, 2.5, 5, 5, 2.5, -5, -5, 2.5, 5, -5, 2.5, -5, 5, 2.5, -5, -5, -2.5, 5, 5, -2.5, 5, -5, -2.5, -5, 5, -2.5, 5, 5, -2.5, -5, -5, -2.5, -5)
 
 [node name="SlimePracticeScene" type="Node3D"]
 
@@ -114,7 +121,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_io2ai")
 
 [node name="Mira" parent="Behavior1/NavigationRegion3D" instance=ExtResource("2_ykcya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59465, 0, 9.96962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47257, 1.35981, 3.84526)
 collision_mask = 1
 
 [node name="Behavior2" type="Node3D" parent="."]
@@ -292,7 +299,16 @@ script = ExtResource("3_k41v4")
 player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("4_6c41i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.62647, 0.422963, 0.936743)
-death_vfx = null
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9705, 0.422963, -5.32304)
+attack_cool_down = 4.0
 target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
 movement_speed = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.936501, -0.350665, 0, 0.350665, 0.936501, 0, 0, 0, 0.601513, 0, -0.819056, 0)
+mesh = SubResource("BoxMesh_6c41i")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6c41i")
