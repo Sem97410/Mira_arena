@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp6iyygi7unx"]
-
-[ext_resource type="Material" uid="uid://f4kqejw6fxy" path="res://000_temp/post_process_material_02.tres" id="1_gi6pi"]
+[gd_scene load_steps=9 format=3 uid="uid://dp6iyygi7unx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qv613"]
 
@@ -9,6 +7,72 @@
 [sub_resource type="QuadMesh" id="QuadMesh_mdh0l"]
 flip_faces = true
 size = Vector2(2, 2)
+
+[sub_resource type="Shader" id="Shader_7m2s4"]
+code = "
+
+shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D screen_texture : hint_screen_texture; // Capture de l’écran
+uniform sampler2D noise_texture; // Bruit pour simuler la déformation
+uniform float brush_stroke_size = 0.01; // Taille des coups de pinceau
+uniform float distortion_intensity = 0.02; // Intensité de la déformation
+uniform float blur_strength = 0.6; // Force du flou
+
+void fragment() {
+    // Récupérer la couleur de base de l’écran
+    vec3 screen_color = texture(screen_texture, SCREEN_UV).rgb;
+
+    // Ajouter une distorsion basée sur une texture de bruit
+    vec2 noise_value = texture(noise_texture, SCREEN_UV * 5.0).rg; // Bruit aléatoire
+    vec2 distortion = (noise_value - 0.5) * distortion_intensity; // Centrage du bruit autour de 0
+    vec2 distorted_uv = SCREEN_UV + distortion; // Modifier les UVs
+
+    // Appliquer un effet de flou en moyennant plusieurs échantillons proches
+    vec3 blurred_color = (
+        texture(screen_texture, distorted_uv + vec2(brush_stroke_size, 0.0)).rgb +
+        texture(screen_texture, distorted_uv + vec2(-brush_stroke_size, 0.0)).rgb +
+        texture(screen_texture, distorted_uv + vec2(0.0, brush_stroke_size)).rgb +
+        texture(screen_texture, distorted_uv + vec2(0.0, -brush_stroke_size)).rgb
+    ) * 0.25; // Moyenne des couleurs voisines
+
+    // Mélanger la couleur de base avec la couleur floutée pour un effet peinture
+    vec3 paint_effect = mix(screen_color, blurred_color, blur_strength);
+
+    // Appliquer le rendu final
+    //ALBEDO = paint_effect;
+	ALBEDO = texture(noise_texture,SCREEN_UV).rgb;
+}
+
+ 
+
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="Gradient" id="Gradient_njnlg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rt5ep"]
+frequency = 0.0001
+fractal_lacunarity = 3.585
+fractal_gain = 1.985
+fractal_weighted_strength = 0.31
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_njnlg"]
+color_ramp = SubResource("Gradient_njnlg")
+noise = SubResource("FastNoiseLite_rt5ep")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gi6pi"]
+render_priority = 0
+shader = SubResource("Shader_7m2s4")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_njnlg")
+shader_parameter/brush_stroke_size = 10.675
+shader_parameter/distortion_intensity = 8.355
+shader_parameter/blur_strength = 12.245
 
 [node name="test_shader" type="Node3D"]
 
@@ -25,4 +89,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.844406, 2.96298)
 
 [node name="post_process" type="MeshInstance3D" parent="Camera3D"]
 mesh = SubResource("QuadMesh_mdh0l")
-surface_material_override/0 = ExtResource("1_gi6pi")
+surface_material_override/0 = SubResource("ShaderMaterial_gi6pi")
