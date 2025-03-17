@@ -121,6 +121,7 @@ func activate_attack_area(area : Area3D, attack_duration : float) -> void:
 	area.enable = false
 	
 #----------------------------------------------
+
 func move(target: Vector3, delta: float) -> void:
 	if not can_move:
 		return
@@ -143,9 +144,13 @@ func move(target: Vector3, delta: float) -> void:
 	# Mélange la direction avec le safe_velocity
 	var final_velocity = new_velocity.lerp(stored_safe_velocity, 0.5)
 
-	# Applique la vélocité
-	slime.velocity = final_velocity
+	# Applique la vélocité horizontale mais conserve la gravité
+	slime.velocity.x = final_velocity.x
+	slime.velocity.z = final_velocity.z  # Ne touche pas au Y ici
+
+	# Appliquer le mouvement et mettre à jour `is_on_floor()`
 	slime.move_and_slide()
+
 
 
 
@@ -260,14 +265,15 @@ func freeze_movement() -> void :
 func unfreeze_movement():
 	can_move = true
 #---
-func apply_gravity(delta: float):
-	if not slime.is_on_floor():  
-		vertical_velocity -= gravity * delta  # Applique la gravité
-		vertical_velocity = max(vertical_velocity, -max_fall_speed)  # Limite la vitesse de chute
+func apply_gravity(delta: float) -> void:
+# Vérifie si le Slime est en l'air
+	if not slime.is_on_floor():
+		slime.velocity.y -= gravity * delta  # Applique la gravité correctement
+		slime.velocity.y = max(slime.velocity.y, -max_fall_speed)  # Empêche la chute infinie
 	else:
-		vertical_velocity = 0  # Réinitialise la vitesse si au sol
+		slime.velocity.y = 0  # Réinitialise la vitesse verticale si au sol
 
-	slime.velocity.y = vertical_velocity  # Met à jour la vélocité tout le temps
+
 
 
 
