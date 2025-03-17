@@ -1294,28 +1294,24 @@ horizontal_alignment = 0
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2308, 1.6185, -17.773)
-dash_length = 4.0
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter2" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1605, 0.422963, -8.08881)
-dash_length = 4.0
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter3" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7096, 0.422963, -8.08881)
-dash_length = 4.0
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0
 
 [node name="Hunter4" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3997, 0.422963, -8.08881)
-dash_length = 4.0
 target_entity = NodePath("../Mira")
 movement_speed = 7.0
 movement_interpolate_strength = 2.0

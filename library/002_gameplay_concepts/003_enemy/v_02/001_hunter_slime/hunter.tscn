@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_abthj"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_q7gag"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abthj"]
-albedo_color = Color(0.729412, 0.025565, 3.85046e-07, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7gag"]
+albedo_color = Color(0.692609, 0.362995, 1.92523e-07, 1)
 
 [node name="Hunter" instance=ExtResource("1_abthj")]
 collision_mask = 5
@@ -14,12 +14,8 @@ max_health_point = 200.0
 movement_speed = 5.0
 movement_interpolate_strength = 10.0
 
-[node name="Skeleton3D" parent="Mesh/Slime" index="0"]
-bones/0/rotation = Quaternion(0.707099, 0.00322039, -0.00322039, 0.707099)
-bones/0/scale = Vector3(1, 1, 1)
-
-[node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
-material_override = SubResource("StandardMaterial3D_abthj")
+[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_q7gag")
 
 [node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="0"]
 script = ExtResource("2_q7gag")
@@ -57,7 +53,7 @@ to = NodePath("../../PreAttack")
 event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
-[node name="NavigationAgent3D" parent="." index="5"]
+[node name="NavigationAgent3D" parent="." index="4"]
 debug_path_custom_color = Color(0.736468, 0.216054, 9.62615e-08, 1)
 
 [connection signal="state_physics_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_physics_processing"]

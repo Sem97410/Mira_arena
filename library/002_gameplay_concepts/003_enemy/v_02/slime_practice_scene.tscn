@@ -300,7 +300,8 @@ player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("4_6c41i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9705, 0.422963, -5.32304)
-attack_cool_down = 4.0
+latence_between_dash = 0.1
+attack_cool_down = 0.1
 target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
 movement_speed = 2.0
 
