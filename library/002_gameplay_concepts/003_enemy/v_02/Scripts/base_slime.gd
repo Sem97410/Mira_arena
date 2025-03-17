@@ -103,7 +103,7 @@ func _process(delta: float) -> void:
 
 	#print("Slime Position:", slime.global_position)
 	#print("Is on floor:", slime.is_on_floor())
-	print("Start time is : ", start_time)
+	#print("Start time is : ", start_time)
 
 
 #----------------------------------------------
@@ -130,12 +130,12 @@ func activate_idle_mode() -> void :
 func activate_pre_attack_mode() -> void : 
 	distance_to_target = check_distance_to_target(player)
 	if distance_to_target <= attack_range : 
-		print("Move in preattack mode")
+		#print("Move in preattack mode")
 		send_event_state_chart("IsPreAttack")
 #---
 func _on_idle_state_physics_processing(delta: float) -> void:
 	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
-		print("I'm able to go to pre attack")
+		#print("I'm able to go to pre attack")
 		#print("Move in Idle mode")
 		activate_pre_attack_mode()
 #---
@@ -149,7 +149,7 @@ func _on_hunt_state_processing(delta: float) -> void:
 	distance_to_target = check_distance_to_target(player)
 	
 	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
-		print("I'm able to go to pre attack")
+		#print("I'm able to go to pre attack")
 		#print("Move in Idle mode")
 		activate_pre_attack_mode()
 	elif attack_cool_down > 0 : 
@@ -176,7 +176,7 @@ func _on_pre_attack_state_processing(delta: float) -> void:
 
 #---
 func _on_attack_state_entered() -> void:
-	print("I'm in attack state")
+	#print("I'm in attack state")
 	start_dash()
 #---
 func _on_attack_state_processing(delta: float) -> void:
@@ -327,6 +327,7 @@ func start_dash():
 
 	# Vérifie si le slime était en l'air avant de dasher
 	was_in_air = not slime.is_on_floor()
+	#print("📍 Position du slime AVANT dash :", slime.global_position)
 
 #---
 #Dash physical movement
@@ -344,7 +345,8 @@ func execute_dash():
 			return
 		#print("The dash is not stopping")
 		# Interpolation entre la position de départ et la destination
-		var target_position = start_position.lerp(destination_target, t)
+		var target_position = adjust_height_to_ground(start_position.lerp(destination_target, t))
+
 		var dash_direction = (destination_target - start_position).normalized()
 
 		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
@@ -352,15 +354,25 @@ func execute_dash():
 			#print("Not in the air")
 			if dash_direction.y >= 0:
 				target_position = adjust_height_to_ground(target_position)
+				target_position.y = start_position.y  # Empêche les changements de hauteur inattendus
+
 			# Si le slime dash vers le bas, on laisse la physique gérer et on ajuste plus tard
 
 		# Déplacement avec collision
 		var step = target_position - slime.global_transform.origin
+		#print("🎯 Tentative de déplacement vers :", target_position)
+		#print("➡️ Différence de déplacement :", step)
+		
 		var coll = slime.move_and_collide(step)
 		#print("Suppose to make a movement")
 
 		# Si collision, on arrête le dash
 		if coll:
+			var collider = coll.get_collider()
+			#print("⚠️ Collision détectée avec:", collider.name)
+			#print("📌 Type du collider:", collider.get_class())
+			#print("📍 Position de la collision:", coll.get_position())
+			#print("🔄 Normal de la collision:", coll.get_normal())
 			stop_dash()
 
 		# Lancer l'animation pendant le dash
@@ -387,6 +399,14 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 		target_position.y = result_down.position.y + 0.1  # Ajuste la hauteur du slime pour coller au sol
 	elif result_forward:
 		target_position.y = result_forward.position.y + 0.1  # Ajuste la hauteur si une montée est détectée
+	
+	if result_down:
+		print("✅ Sol détecté en bas à :", result_down.position)
+	elif result_forward:
+		print("🔄 Montée détectée en avant à :", result_forward.position)
+	else:
+		print("❌ Aucun sol détecté ! Problème possible !")
+
 
 	return target_position
 
