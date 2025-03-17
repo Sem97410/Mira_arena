@@ -786,8 +786,9 @@ travel_cost = 0.0
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8652, 0.10414, -9.57998)
-latence_between_dash = 0.1
-attack_cool_down = 0.1
+dash_duration = 0.3
+dash_length = 5.0
+attack_cool_down = 1.0
 target_entity = NodePath("../Mira")
 
 [editable path="LightAttackZone/IndicatorPanel"]

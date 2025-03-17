@@ -338,7 +338,7 @@ func execute_dash():
 		var t = elapsed_time / dash_duration  # Normalisation du temps (de 0 à 1)
 
 		# Si le dash est terminé ou que le cooldown d'attaque est atteint
-		if t >= 1 or attack_cool_down <= 0:
+		if t >= 1 :  # or attack_cool_down <= 0:
 			#print('Suppose to stop the dash?')
 			stop_dash()
 			return
@@ -392,6 +392,7 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 
 func stop_dash():
 	start_time = 0
+	print("Stop dash")
 	state_chart.send_event("IsIdle")
 
 #endregion
