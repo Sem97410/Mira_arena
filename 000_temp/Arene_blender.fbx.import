@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c7akuu77uiqny"
-valid=false
+uid="uid://cavlmjjj5ek0u"
+path="res://.godot/imported/Arene_blender.fbx-866607b60703b189cf2a1c070f7deef9.scn"
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/003_enemy/v_01/000_FBX/Slime_001.fbx"
+source_file="res://000_temp/Arene_blender.fbx"
+dest_files=["res://.godot/imported/Arene_blender.fbx-866607b60703b189cf2a1c070f7deef9.scn"]
 
 [params]
 
@@ -32,6 +33,6 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=1
+fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
