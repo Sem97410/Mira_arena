@@ -83,8 +83,8 @@ size = Vector3(6, 1, 1)
 size = Vector3(6, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oqkdt"]
-vertices = PackedVector3Array(-0.25, 0.394998, -0.8813, 0.5, 0.394998, -0.8813, 0.5, 0.394998, -4.6313, -8, 0.394998, -4.6313, -0.25, 0.644998, 1.8687, 6.25, 2.895, 1.8687, 6.25, 2.895, 0.1187, -0.25, 0.644998, 0.1187, -8, 0.394998, 3.3687, 0, 0.394998, 2.8687, 1.5, 1.645, -4.1313, 1.5, 1.645, -1.3813, 8.25, 1.645, -1.3813, 8.25, 1.645, -4.1313, 3.75, 0.644998, 20.3687, 4.5, 0.394998, 20.3687, 8, 0.394998, 19.8687, -2, 0.644998, 20.1187, -8, 0.394998, 22.1187, -3, 0.394998, 22.1187, -3, 0.394998, 20.1187, -2, 1.395, 21.8687, 3.5, 1.395, 22.1187, 8, 0.394998, -0.3813, 7.5, 0.394998, 2.8687, 4.5, 0.394998, 0.3687, 4.5, 0.394998, 1.6187, 6, 0.394998, 1.6187, 6, 0.394998, 0.3687, 4.75, 0.394998, 22.6187, 4.25, 0.394998, 27.1187, 8, 0.394998, 27.3687, -2.25, 3.395, 27.3687, 2, 3.395, 27.8687, 3.25, 3.395, 27.8687, -3.5, 0.394998, 27.8687, -8, 0.394998, 27.8687, 3, 0.394998, 27.6187, 3.25, 0.394998, 25.3687, 2.75, 0.394998, 24.8687, -2, 0.394998, 24.6187, -2, 0.394998, 27.1187, -1.25, 0.394998, 27.3687, 4, 0.394998, 28.8687, 8, 0.394998, 44.3687, -3.25, 0.394998, 28.3687, -2, 0.394998, 28.6187, -8, 0.394998, 44.3687)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(7, 8, 0), PackedInt32Array(0, 8, 3), PackedInt32Array(4, 9, 8), PackedInt32Array(7, 4, 8), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 8), PackedInt32Array(21, 17, 22), PackedInt32Array(22, 17, 14), PackedInt32Array(24, 23, 16), PackedInt32Array(17, 20, 16), PackedInt32Array(16, 20, 24), PackedInt32Array(24, 20, 9), PackedInt32Array(9, 20, 8), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 15, 16), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 16), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 21), PackedInt32Array(34, 21, 22), PackedInt32Array(36, 18, 35), PackedInt32Array(35, 18, 19), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 42), PackedInt32Array(39, 42, 41), PackedInt32Array(39, 41, 40), PackedInt32Array(30, 31, 43), PackedInt32Array(43, 31, 44), PackedInt32Array(36, 35, 45), PackedInt32Array(45, 46, 36), PackedInt32Array(36, 46, 47), PackedInt32Array(43, 44, 46), PackedInt32Array(46, 44, 47)]
+vertices = PackedVector3Array(7.5, 0.478629, -0.1313, 7.75, 0.478629, 2.1187, 8, 0.478629, 2.1187, 8, 0.478629, -0.3813, 1.5, 0.728629, 10.1187, 6.5, 1.72863, 10.1187, 6.5, 1.72863, 0.8687, 1.5, 0.728629, 0.8687, 1.5, 0.478629, -0.1313, 0.75, 0.478629, -0.3813, -8, 0.478629, -4.6313, -8, 0.478629, 10.6187, 1.5, 0.728629, 10.6187, 0.5, 0.478629, -4.6313, 1.5, 1.72863, -4.1313, 1.5, 1.72863, -1.3813, 8.25, 1.72863, -1.3813, 8.25, 1.72863, -4.1313, -8, 0.478629, 22.3687, -3, 0.478629, 22.3687, -3, 0.478629, 20.3687, -2, 0.728629, 20.3687, -2, 1.47863, 22.1187, 3.5, 1.47863, 22.3687, 3.75, 0.728629, 20.6187, 4.75, 0.478629, 20.6187, 8, 0.478629, 27.3687, 7.75, 0.478629, 10.8687, 1.5, 0.478629, 11.1187, 4.25, 0.478629, 27.1187, -2.25, 3.22863, 27.3687, 2, 3.47863, 27.8687, 3.25, 3.22863, 27.8687, -3.5, 0.478629, 27.8687, -8, 0.478629, 27.8687, -2, 0.478629, 27.1187, 3, 0.478629, 27.6187, 3, 0.478629, 25.1187, -2, 0.478629, 24.8687, 4, 0.478629, 28.8687, 8, 0.478629, 44.3687, -3.25, 0.478629, 28.3687, -2, 0.478629, 28.6187, -8, 0.478629, 44.3687)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(0, 8, 3), PackedInt32Array(3, 8, 9), PackedInt32Array(7, 4, 9), PackedInt32Array(9, 4, 11), PackedInt32Array(9, 11, 10), PackedInt32Array(9, 8, 7), PackedInt32Array(4, 12, 11), PackedInt32Array(9, 10, 13), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(24, 21, 25), PackedInt32Array(25, 21, 28), PackedInt32Array(26, 29, 25), PackedInt32Array(1, 2, 27), PackedInt32Array(27, 2, 26), PackedInt32Array(12, 28, 11), PackedInt32Array(11, 28, 20), PackedInt32Array(11, 20, 18), PackedInt32Array(21, 20, 28), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 22), PackedInt32Array(32, 22, 23), PackedInt32Array(34, 18, 33), PackedInt32Array(33, 18, 19), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(29, 26, 39), PackedInt32Array(39, 26, 40), PackedInt32Array(34, 33, 41), PackedInt32Array(41, 42, 34), PackedInt32Array(34, 42, 43), PackedInt32Array(39, 40, 42), PackedInt32Array(42, 40, 43)]
 geometry_collision_mask = 4294901767
 agent_max_slope = 80.0
 
@@ -98,10 +98,10 @@ size = Vector3(17, 0.1, 50)
 size = Vector3(17, 0.1, 9)
 
 [sub_resource type="BoxMesh" id="BoxMesh_q1afl"]
-size = Vector3(8, 4, 2.46)
+size = Vector3(8, 4, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j4hiw"]
-size = Vector3(8, 4, 2.435)
+size = Vector3(8, 4, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r68a5"]
 
@@ -600,7 +600,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_oxkp5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FreeFightZone/NavigationRegion3D"]
-transform = Transform3D(0.947261, -0.320464, 0, 0.320464, 0.947261, 0, 0, 0, 1, 3.30289, -0.678624, 1.02129)
+transform = Transform3D(0.980454, -0.19675, 0, 0.19675, 0.980454, 0, 0, 0, 1, 3.30289, -1.27346, 5.54841)
 mesh = SubResource("BoxMesh_q1afl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FreeFightZone/NavigationRegion3D/MeshInstance3D"]

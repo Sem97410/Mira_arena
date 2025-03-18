@@ -470,6 +470,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86762, 0)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.451533, 0)
 shape = SubResource("SphereShape3D_l7mnk")
 
 [connection signal="state_entered" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_entered"]
