@@ -30,9 +30,9 @@ roughness_texture = ExtResource("5_odapp")
 normal_enabled = true
 normal_texture = ExtResource("4_a4jxl")
 heightmap_enabled = true
-heightmap_scale = -0.242
+heightmap_scale = 0.585
 heightmap_deep_parallax = true
-heightmap_min_layers = 8
+heightmap_min_layers = 23
 heightmap_max_layers = 32
 heightmap_texture = ExtResource("3_x0bme")
 
