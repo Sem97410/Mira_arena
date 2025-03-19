@@ -101,7 +101,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	apply_gravity(delta)  # Applique la gravité toujours
 	player_position = player.global_transform.origin
-	var distance_to_target = check_distance_to_target(player)
+	distance_to_target = check_distance_to_target(player)
 	create_attack_cooldown()
 	
 	# Applique le knockback s'il est actif
@@ -121,7 +121,7 @@ func send_event_state_chart(event_name : String)-> void :
 	state_chart.send_event(event_name)
 #---
 func activate_hunt_mode() -> void : 
-	var distance_to_target = check_distance_to_target(player)
+	distance_to_target = check_distance_to_target(player)
 	#print("Distance to target is : ", distance_to_target)
 	if distance_to_target > attack_range : 
 		#print("Move in hunting mode")
