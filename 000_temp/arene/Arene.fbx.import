@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c30v6jyx1g1ck"
-path="res://.godot/imported/slime_reimport.fbx-4e08aacb23a3f262d9deb24eaba2ecd8.scn"
+uid="uid://bgfjq2ktffkru"
+path="res://.godot/imported/Arene.fbx-8d39e2f77d2b88b0c918950fb9706ca1.scn"
 
 [deps]
 
-source_file="res://000_temp/slime_reimport.fbx"
-dest_files=["res://.godot/imported/slime_reimport.fbx-4e08aacb23a3f262d9deb24eaba2ecd8.scn"]
+source_file="res://000_temp/arene/Arene.fbx"
+dest_files=["res://.godot/imported/Arene.fbx-8d39e2f77d2b88b0c918950fb9706ca1.scn"]
 
 [params]
 
