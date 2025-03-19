@@ -266,7 +266,6 @@ radius = 2.0
 
 [node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("damage_stars", "slime_body", "slime", "nav_agent", "state_chart", "animation_player") groups=["enemy"]]
 collision_layer = 2
-collision_mask = 3
 script = ExtResource("4_13pv3")
 damage_stars = NodePath("damage_stars")
 slime_body = NodePath("Mesh/Slime")

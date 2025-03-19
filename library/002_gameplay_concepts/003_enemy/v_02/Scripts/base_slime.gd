@@ -309,17 +309,125 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3):
 	stored_safe_velocity = safe_velocity
 #---
+##DASH V1
+#func start_dash():
+#
+	## Initialisation des variables pour le dash
+	##print("I'm in start_dash")
+	#attack_cool_down = 2.0
+	#start_position = slime.position  # Stocke la position de départ du slime
+	#start_time = Time.get_ticks_msec()  # Sauvegarde le moment exact où le dash commence
+	#
+	## Définir la direction du dash (en tenant compte de la direction de l'axe z de la transformation)
+	#var direction = -slime.transform.basis.z
+	#direction.y = 0  # Bloque l'inclinaison verticale
+	#direction = direction.normalized()  # Normaliser la direction pour éviter des bugs
+	#
+	## Définir la destination du dash en fonction de la direction et de la longueur du dash
+	#destination_target = slime.position + direction * dash_length
+#
+	## Vérifie si le slime était en l'air avant de dasher
+	#was_in_air = not slime.is_on_floor()
+	##print("📍 Position du slime AVANT dash :", slime.global_position)
+#
+##---
+##Dash physical movement
+#func execute_dash():
+	#
+	#if start_time > 0:  # Active le dash seulement si start_time est défini
+		##print('I am in execute_dash')
+		#var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0  # Temps écoulé depuis le début du dash
+		#var t = elapsed_time / dash_duration  # Normalisation du temps (de 0 à 1)
+#
+		## Si le dash est terminé ou que le cooldown d'attaque est atteint
+		#if t >= 1 :  # or attack_cool_down <= 0:
+			##print('Suppose to stop the dash?')
+			#stop_dash()
+			#return
+		##print("The dash is not stopping")
+		## Interpolation entre la position de départ et la destination
+		#var target_position = adjust_height_to_ground(start_position.lerp(destination_target, t))
+#
+		#var dash_direction = (destination_target - start_position).normalized()
+#
+		## ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
+		#if not was_in_air:
+			##print("Not in the air")
+			#if dash_direction.y >= 0:
+				#target_position = adjust_height_to_ground(target_position)
+				#target_position.y = start_position.y  # Empêche les changements de hauteur inattendus
+#
+			## Si le slime dash vers le bas, on laisse la physique gérer et on ajuste plus tard
+#
+		## Déplacement avec collision
+		#var step = target_position - slime.global_transform.origin
+		##print("🎯 Tentative de déplacement vers :", target_position)
+		##print("➡️ Différence de déplacement :", step)
+		#
+		#var coll = slime.move_and_collide(step)
+		##print("Suppose to make a movement")
+#
+		## Si collision, on arrête le dash
+		#if coll:
+			#var collider = coll.get_collider()
+			##print("⚠️ Collision détectée avec:", collider.name)
+			##print("📌 Type du collider:", collider.get_class())
+			##print("📍 Position de la collision:", coll.get_position())
+			##print("🔄 Normal de la collision:", coll.get_normal())
+			#stop_dash()
+#
+		## Lancer l'animation pendant le dash
+		#animation_player.play("Slime|Charge")
+#
+#func adjust_height_to_ground(target_position: Vector3) -> Vector3:
+	##print('I am in ajust_height_to_ground')
+	#var space_state = slime.get_world_3d().direct_space_state
+#
+	## Raycast vers le bas (pour coller au sol si nécessaire)
+	#var ray_down_origin = target_position + Vector3(0, 1, 0)
+	#var ray_down_end = target_position + Vector3(0, -3, 0)
+	#var query_down = PhysicsRayQueryParameters3D.create(ray_down_origin, ray_down_end)
+	#var result_down = space_state.intersect_ray(query_down)
+#
+	## Raycast vers l'avant et vers le bas pour détecter les montées
+	#var ray_forward_origin = target_position + Vector3(0, 1, 0)
+	#var ray_forward_end = target_position + slime.transform.basis.z * 2 + Vector3(0, -3, 0)
+	#var query_forward = PhysicsRayQueryParameters3D.create(ray_forward_origin, ray_forward_end)
+	#var result_forward = space_state.intersect_ray(query_forward)
+#
+	## Si le sol est détecté et qu'on ne dash pas vers le bas, ajuster la hauteur
+	#if result_down:
+		#target_position.y = result_down.position.y + 0.1  # Ajuste la hauteur du slime pour coller au sol
+	#elif result_forward:
+		#target_position.y = result_forward.position.y + 0.1  # Ajuste la hauteur si une montée est détectée
+	#
+	#if result_down:
+		#print("✅ Sol détecté en bas à :", result_down.position)
+	#elif result_forward:
+		#print("🔄 Montée détectée en avant à :", result_forward.position)
+	#else:
+		#print("❌ Aucun sol détecté ! Problème possible !")
+#
+#
+	#return target_position
+#
+#func stop_dash():
+	#start_time = 0
+	#print("Stop dash")
+	#state_chart.send_event("IsIdle")
+
+##DASH V2
 func start_dash():
 
 	# Initialisation des variables pour le dash
-	#print("I'm in start_dash")
+
 	attack_cool_down = 2.0
 	start_position = slime.position  # Stocke la position de départ du slime
 	start_time = Time.get_ticks_msec()  # Sauvegarde le moment exact où le dash commence
 	
 	# Définir la direction du dash (en tenant compte de la direction de l'axe z de la transformation)
 	var direction = -slime.transform.basis.z
-	direction.y = 0  # Bloque l'inclinaison verticale
+	#direction.y = 0  # Bloque l'inclinaison verticale
 	direction = direction.normalized()  # Normaliser la direction pour éviter des bugs
 	
 	# Définir la destination du dash en fonction de la direction et de la longueur du dash
@@ -327,56 +435,50 @@ func start_dash():
 
 	# Vérifie si le slime était en l'air avant de dasher
 	was_in_air = not slime.is_on_floor()
-	#print("📍 Position du slime AVANT dash :", slime.global_position)
+
 
 #---
 #Dash physical movement
 func execute_dash():
-	
 	if start_time > 0:  # Active le dash seulement si start_time est défini
-		#print('I am in execute_dash')
 		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0  # Temps écoulé depuis le début du dash
 		var t = elapsed_time / dash_duration  # Normalisation du temps (de 0 à 1)
 
 		# Si le dash est terminé ou que le cooldown d'attaque est atteint
-		if t >= 1 :  # or attack_cool_down <= 0:
-			#print('Suppose to stop the dash?')
+		if t >= 1 or attack_cool_down <= 0:
 			stop_dash()
 			return
-		#print("The dash is not stopping")
-		# Interpolation entre la position de départ et la destination
-		var target_position = adjust_height_to_ground(start_position.lerp(destination_target, t))
 
+		# Calcul de la direction du dash
 		var dash_direction = (destination_target - start_position).normalized()
+		var dash_speed = (destination_target - start_position).length() / dash_duration
+		var velocity = dash_direction * dash_speed
+
+		# Désactiver temporairement la détection du sol en passant en mode flottant
+		slime.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 
 		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
 		if not was_in_air:
-			#print("Not in the air")
 			if dash_direction.y >= 0:
-				target_position = adjust_height_to_ground(target_position)
-				target_position.y = start_position.y  # Empêche les changements de hauteur inattendus
+				var ground_height = adjust_height_to_ground(slime.global_transform.origin + velocity * get_physics_process_delta_time())
+				var target_y = ground_height.y
+				velocity.y = lerp(slime.velocity.y, target_y - slime.global_transform.origin.y, 0.1)  # Lissage progressif
+			# Si le slime dash vers le bas, on laisse la physique gérer
 
-			# Si le slime dash vers le bas, on laisse la physique gérer et on ajuste plus tard
+		# Déplacement avec move_and_slide
+		slime.velocity = velocity
+		slime.move_and_slide()
 
-		# Déplacement avec collision
-		var step = target_position - slime.global_transform.origin
-		#print("🎯 Tentative de déplacement vers :", target_position)
-		#print("➡️ Différence de déplacement :", step)
-		
-		var coll = slime.move_and_collide(step)
-		#print("Suppose to make a movement")
-
-		# Si collision, on arrête le dash
-		if coll:
-			var collider = coll.get_collider()
-			#print("⚠️ Collision détectée avec:", collider.name)
-			#print("📌 Type du collider:", collider.get_class())
-			#print("📍 Position de la collision:", coll.get_position())
-			#print("🔄 Normal de la collision:", coll.get_normal())
-			stop_dash()
+		# Réactiver la détection du sol après le dash
+		slime.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
 		# Lancer l'animation pendant le dash
 		animation_player.play("Slime|Charge")
+
+
+
+#
+
 
 func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 	#print('I am in ajust_height_to_ground')
@@ -400,12 +502,12 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 	elif result_forward:
 		target_position.y = result_forward.position.y + 0.1  # Ajuste la hauteur si une montée est détectée
 	
-	if result_down:
-		print("✅ Sol détecté en bas à :", result_down.position)
-	elif result_forward:
-		print("🔄 Montée détectée en avant à :", result_forward.position)
-	else:
-		print("❌ Aucun sol détecté ! Problème possible !")
+	#if result_down:
+		#print("✅ Sol détecté en bas à :", result_down.position)
+	#elif result_forward:
+		#print("🔄 Montée détectée en avant à :", result_forward.position)
+	#else:
+		#print("❌ Aucun sol détecté ! Problème possible !")
 
 
 	return target_position
@@ -414,7 +516,6 @@ func stop_dash():
 	start_time = 0
 	print("Stop dash")
 	state_chart.send_event("IsIdle")
-
 #endregion
 
 ##Animation functions

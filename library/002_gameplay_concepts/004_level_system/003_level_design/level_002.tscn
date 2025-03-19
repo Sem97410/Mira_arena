@@ -2924,6 +2924,22 @@ shape = SubResource("BoxShape3D_yuej8")
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -3.43168, 0)
 player = NodePath("../Mira")
 
+[node name="death_zone2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_nusk7")]
+transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, -46.2476, -3.43168, -53.0913)
+player = NodePath("../Mira")
+
+[node name="death_zone3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_nusk7")]
+transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, 48.8128, -3.43167, 53.887)
+player = NodePath("../Mira")
+
+[node name="death_zone4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_nusk7")]
+transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, 86.2736, -3.43167, -114.548)
+player = NodePath("../Mira")
+
+[node name="death_zone5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_nusk7")]
+transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, -54.7803, -3.43167, 8.50123)
+player = NodePath("../Mira")
+
 [node name="Mira" parent="." instance=ExtResource("1_sadgr")]
 transform = Transform3D(-0.656836, 0, 0.754034, 0, 1, 0, -0.754034, 0, -0.656836, -29.0517, -1.59725, 25.3068)
 
