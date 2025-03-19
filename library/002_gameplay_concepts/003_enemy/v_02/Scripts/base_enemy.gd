@@ -115,11 +115,27 @@ func show_mesh(entity_mesh : MeshInstance3D) -> void :
 #----------------------------------------------
 ##Fight functions
 
-func activate_attack_area(area : Area3D, attack_duration : float) -> void:
-	area.enable = true
-	await get_tree().create_timer(attack_duration).timeout
-	area.enable = false
+func activate_attack_area(area : Area3D) -> void:
+	area.monitorable = true
+	area.monitoring = true
+
+func disable_attack_area(area : Area3D) -> void :
+	area.monitorable = false
+	area.monitoring = false
+
+func make_damage(area : Area3D, damage : float) -> void : 
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
+	#print("Make damage")
 	
+	# Trouver le nœud avec la fonction take_damage parmi les frères
+	for sibling in parent.get_children():
+		
+		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
+			sibling.take_damage(damage)
+			#print("Il a la fonction take_damage")
+			break
+
 #----------------------------------------------
 
 func move(target: Vector3, delta: float) -> void:

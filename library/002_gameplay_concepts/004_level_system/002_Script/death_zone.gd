@@ -28,24 +28,24 @@ func _save_player_position(delta: float) -> void:
 		time_on_ground = 0.0  # Reset si le joueur n'est plus au sol
 
 func _on_body_entered(body: Node3D) -> void:
-	print("🚀 Collision détectée avec:", body.name, "| Groupes:", body.get_groups())
+	#print("🚀 Collision détectée avec:", body.name, "| Groupes:", body.get_groups())
 	if body.is_in_group("player"):
-		print("Respawn du joueur à :", respawn_position)
+		#print("Respawn du joueur à :", respawn_position)
 		body.global_position = respawn_position
 
 		var health_component = body.find_child("HealthComponent", true, false)
 		if health_component:
 			health_component.take_damage(player_damage)
-			print("Player took:", player_damage, "damages")
+			#print("Player took:", player_damage, "damages")
 
 	elif body.is_in_group("enemy"):
 		# Vérifie si l'ennemi a les variables attendues
 		#if body.has_method("take_damage") and body.has_variable("max_health_point"):
 		var enemy_damage = body.max_health_point  # Récupère les PV max de l'ennemi
-		print("Enemy damage is supposed to be:", enemy_damage)
+		#print("Enemy damage is supposed to be:", enemy_damage)
 		body.take_damage(enemy_damage)
 		body.send_event_state_chart("IsDead")
-		print("Enemy took:", enemy_damage, "damages")
-		print("enemy current_health_point is : ", body.current_health_point)
+		#print("Enemy took:", enemy_damage, "damages")
+		#print("enemy current_health_point is : ", body.current_health_point)
 		#else:
 			#print("⚠️ L'ennemi", body.name, "n'a pas take_damage() ou max_health_point !")

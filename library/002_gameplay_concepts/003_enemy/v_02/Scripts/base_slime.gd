@@ -52,6 +52,12 @@ var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @export var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur 
+
+@export var attack_area : Area3D
+@export var slime_attack_damage : float
+
+@export var pre_attack_indicator : Sprite3D
+@export var attack_indicator : Sprite3D
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
@@ -178,9 +184,20 @@ func _on_pre_attack_state_processing(delta: float) -> void:
 func _on_attack_state_entered() -> void:
 	#print("I'm in attack state")
 	start_dash()
+	attack_indicator.visible = true
 #---
 func _on_attack_state_processing(delta: float) -> void:
 	execute_dash()
+#---
+func _on_pre_attack_state_entered() -> void:
+	pre_attack_indicator.visible = true
+#---
+func _on_pre_attack_state_exited() -> void:
+	pre_attack_indicator.visible = false
+#---
+func _on_attack_state_exited() -> void:
+	attack_indicator.visible = false
+	
 #endregion
 #----------------------------------------------
 #region Health Region
@@ -219,26 +236,28 @@ func _on_death_state_entered() -> void:
 #region Fight Region
 #----------------------------------------------
 ##Fight functions
+func _on_attack_area_3d_area_entered(area: Area3D) -> void:
+	if area.get_parent().is_in_group("player"):
+		print("Contact with player")
+		make_damage(area, slime_attack_damage)
 
-func attack_movement(dash_duraton : float, dash_speed : float) -> void: 
-	#Make a dash that lasts dash_duration at dash_speed speed
-	pass
-	
+
 #----------------------------------------------
 ##Movement functions
+
+#endregion
+
+#region Movement Region
 func calculate_destination(target: Node3D) -> Vector3:
 	if target:
 		return target.global_position
 	return slime.global_position  # Si la cible est invalide, le slime reste sur place
-
 #---
-
 func create_random_point_around(target: Vector3, range: float) -> Vector3:
 	var offset_x = randf_range(-range, range)
 	var offset_z = randf_range(-range, range)
 	var new_point = Vector3(target.x + offset_x, target.y, target.z + offset_z)
 	
-	#print("🎯 Nouveau point aléatoire autour du joueur : ", new_point)
 	
 	return new_point
 	
@@ -247,7 +266,6 @@ func create_attack_cooldown() -> void :
 		attack_cool_down -= get_process_delta_time()# le cooldown est soustrait a get_procces_delta_time() jusqu'a le ramené à zero 
 
 #---
-
 func get_random_point_around(range: float) -> void:
 	if is_generating_random_point:
 		return  # Empêche de relancer la fonction si elle est déjà en cours
@@ -256,15 +274,7 @@ func get_random_point_around(range: float) -> void:
 	await get_tree().create_timer(random_point_interval).timeout
 	random_point_around_target = create_random_point_around(player_position, range)
 	is_generating_random_point = false  # Marque comme terminé
-	
 #---
-#endregion
-
-#region Movement Region
-func step_away_from_close_enemy(separation_distance : float): ## Maybe not necessary anymore, used the avoidance from navigation agent instead
-	#if an enemy si too close, move in the opposite direction
-	pass
-	
 #---
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	if not can_jump: 
@@ -281,146 +291,54 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 #---
 #A DOCUMENTER
 func jump_to_target(start: Vector3, end: Vector3) -> void:
-	#print("Suppose to jump")
-
 	elapsed_time = 0.0  
 
 	while elapsed_time < duration:
-		#print("Je suis dans le while et ca devrait etre false et c'est  : ", can_jump)
+		# Vérifier si l'objet est toujours valide ET qu'il est dans l'arbre de scène
+		if not is_instance_valid(self) or not is_inside_tree():
+			return  # Stoppe immédiatement si le nœud n'existe plus ou est supprimé
+
 		await get_tree().process_frame
 		elapsed_time += get_process_delta_time()
 		
 		var t = elapsed_time / duration  # Normalisation du temps (0 à 1)
 		
+		# Vérifier encore avant d'accéder à global_transform
+		if not is_instance_valid(self) or not is_inside_tree():
+			return  
+
 		# Lerp entre A et B
 		var new_position = start.lerp(end, t)
 		
 		# Ajouter la hauteur du saut avec une parabole
 		new_position.y += jump_height * sin(t * PI)
 		
+		# Vérifier encore une fois avant de modifier la position
+		if not is_instance_valid(slime) or not slime.is_inside_tree():
+			return  
+
 		slime.global_transform.origin = new_position
 
-	# Attendre un peu avant de réactiver le saut (évite les spams)
+	# Vérifier avant d'attendre (évite une erreur si la scène a changé entre-temps)
+	if not is_instance_valid(self) or not is_inside_tree():
+		return  
+
 	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
 
-	can_jump = true  # Réactive le saut après un court délai
-	#print("Fin de jump to target, can_jump est maintenant : ", can_jump)
+	# Vérifier avant de réactiver le saut
+	if is_instance_valid(self) and is_inside_tree():
+		can_jump = true
+
+
 #---
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3):
 	stored_safe_velocity = safe_velocity
-#---
-##DASH V1
-#func start_dash():
-#
-	## Initialisation des variables pour le dash
-	##print("I'm in start_dash")
-	#attack_cool_down = 2.0
-	#start_position = slime.position  # Stocke la position de départ du slime
-	#start_time = Time.get_ticks_msec()  # Sauvegarde le moment exact où le dash commence
-	#
-	## Définir la direction du dash (en tenant compte de la direction de l'axe z de la transformation)
-	#var direction = -slime.transform.basis.z
-	#direction.y = 0  # Bloque l'inclinaison verticale
-	#direction = direction.normalized()  # Normaliser la direction pour éviter des bugs
-	#
-	## Définir la destination du dash en fonction de la direction et de la longueur du dash
-	#destination_target = slime.position + direction * dash_length
-#
-	## Vérifie si le slime était en l'air avant de dasher
-	#was_in_air = not slime.is_on_floor()
-	##print("📍 Position du slime AVANT dash :", slime.global_position)
-#
-##---
-##Dash physical movement
-#func execute_dash():
-	#
-	#if start_time > 0:  # Active le dash seulement si start_time est défini
-		##print('I am in execute_dash')
-		#var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0  # Temps écoulé depuis le début du dash
-		#var t = elapsed_time / dash_duration  # Normalisation du temps (de 0 à 1)
-#
-		## Si le dash est terminé ou que le cooldown d'attaque est atteint
-		#if t >= 1 :  # or attack_cool_down <= 0:
-			##print('Suppose to stop the dash?')
-			#stop_dash()
-			#return
-		##print("The dash is not stopping")
-		## Interpolation entre la position de départ et la destination
-		#var target_position = adjust_height_to_ground(start_position.lerp(destination_target, t))
-#
-		#var dash_direction = (destination_target - start_position).normalized()
-#
-		## ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
-		#if not was_in_air:
-			##print("Not in the air")
-			#if dash_direction.y >= 0:
-				#target_position = adjust_height_to_ground(target_position)
-				#target_position.y = start_position.y  # Empêche les changements de hauteur inattendus
-#
-			## Si le slime dash vers le bas, on laisse la physique gérer et on ajuste plus tard
-#
-		## Déplacement avec collision
-		#var step = target_position - slime.global_transform.origin
-		##print("🎯 Tentative de déplacement vers :", target_position)
-		##print("➡️ Différence de déplacement :", step)
-		#
-		#var coll = slime.move_and_collide(step)
-		##print("Suppose to make a movement")
-#
-		## Si collision, on arrête le dash
-		#if coll:
-			#var collider = coll.get_collider()
-			##print("⚠️ Collision détectée avec:", collider.name)
-			##print("📌 Type du collider:", collider.get_class())
-			##print("📍 Position de la collision:", coll.get_position())
-			##print("🔄 Normal de la collision:", coll.get_normal())
-			#stop_dash()
-#
-		## Lancer l'animation pendant le dash
-		#animation_player.play("Slime|Charge")
-#
-#func adjust_height_to_ground(target_position: Vector3) -> Vector3:
-	##print('I am in ajust_height_to_ground')
-	#var space_state = slime.get_world_3d().direct_space_state
-#
-	## Raycast vers le bas (pour coller au sol si nécessaire)
-	#var ray_down_origin = target_position + Vector3(0, 1, 0)
-	#var ray_down_end = target_position + Vector3(0, -3, 0)
-	#var query_down = PhysicsRayQueryParameters3D.create(ray_down_origin, ray_down_end)
-	#var result_down = space_state.intersect_ray(query_down)
-#
-	## Raycast vers l'avant et vers le bas pour détecter les montées
-	#var ray_forward_origin = target_position + Vector3(0, 1, 0)
-	#var ray_forward_end = target_position + slime.transform.basis.z * 2 + Vector3(0, -3, 0)
-	#var query_forward = PhysicsRayQueryParameters3D.create(ray_forward_origin, ray_forward_end)
-	#var result_forward = space_state.intersect_ray(query_forward)
-#
-	## Si le sol est détecté et qu'on ne dash pas vers le bas, ajuster la hauteur
-	#if result_down:
-		#target_position.y = result_down.position.y + 0.1  # Ajuste la hauteur du slime pour coller au sol
-	#elif result_forward:
-		#target_position.y = result_forward.position.y + 0.1  # Ajuste la hauteur si une montée est détectée
-	#
-	#if result_down:
-		#print("✅ Sol détecté en bas à :", result_down.position)
-	#elif result_forward:
-		#print("🔄 Montée détectée en avant à :", result_forward.position)
-	#else:
-		#print("❌ Aucun sol détecté ! Problème possible !")
-#
-#
-	#return target_position
-#
-#func stop_dash():
-	#start_time = 0
-	#print("Stop dash")
-	#state_chart.send_event("IsIdle")
 
 ##DASH V2
 func start_dash():
 
 	# Initialisation des variables pour le dash
-
+	activate_attack_area(attack_area)
 	attack_cool_down = 2.0
 	start_position = slime.position  # Stocke la position de départ du slime
 	start_time = Time.get_ticks_msec()  # Sauvegarde le moment exact où le dash commence
@@ -435,8 +353,6 @@ func start_dash():
 
 	# Vérifie si le slime était en l'air avant de dasher
 	was_in_air = not slime.is_on_floor()
-
-
 #---
 #Dash physical movement
 func execute_dash():
@@ -474,12 +390,7 @@ func execute_dash():
 
 		# Lancer l'animation pendant le dash
 		animation_player.play("Slime|Charge")
-
-
-
-#
-
-
+#---
 func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 	#print('I am in ajust_height_to_ground')
 	var space_state = slime.get_world_3d().direct_space_state
@@ -511,11 +422,12 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 
 
 	return target_position
-
+#---
 func stop_dash():
 	start_time = 0
 	print("Stop dash")
 	state_chart.send_event("IsIdle")
+	disable_attack_area(attack_area)
 #endregion
 
 ##Animation functions
