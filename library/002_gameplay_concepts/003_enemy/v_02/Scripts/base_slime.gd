@@ -139,12 +139,6 @@ func activate_pre_attack_mode() -> void :
 		#print("Move in preattack mode")
 		send_event_state_chart("IsPreAttack")
 #---
-func _on_idle_state_physics_processing(delta: float) -> void:
-	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
-		#print("I'm able to go to pre attack")
-		#print("Move in Idle mode")
-		activate_pre_attack_mode()
-#---
 func _on_hunt_state_processing(delta: float) -> void:
 	get_random_point_around(3.0)  # Change la cible régulièrement
 	can_move = true
@@ -165,13 +159,20 @@ func _on_hunt_state_processing(delta: float) -> void:
 #---
 func _on_idle_state_processing(delta: float) -> void:
 	can_move = false
-	#print("Je suis dans le State 'idle'")
-	
+
 	animation_player.play("Slime|idle")
+	
+	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
+		activate_pre_attack_mode()
 	activate_hunt_mode()
 	
 #---
-
+func _on_pre_attack_state_entered() -> void:
+	pre_attack_indicator.visible = true
+#---
+func _on_pre_attack_state_exited() -> void:
+	pre_attack_indicator.visible = false
+#---
 func _on_pre_attack_state_processing(delta: float) -> void:
 	#print("I'm in pre attack")
 	
@@ -186,18 +187,14 @@ func _on_attack_state_entered() -> void:
 	start_dash()
 	attack_indicator.visible = true
 #---
+func _on_attack_state_exited() -> void:
+	attack_indicator.visible = false
+#---
 func _on_attack_state_processing(delta: float) -> void:
 	execute_dash()
 #---
-func _on_pre_attack_state_entered() -> void:
-	pre_attack_indicator.visible = true
-#---
-func _on_pre_attack_state_exited() -> void:
-	pre_attack_indicator.visible = false
-#---
-func _on_attack_state_exited() -> void:
-	attack_indicator.visible = false
-	
+
+
 #endregion
 #----------------------------------------------
 #region Health Region

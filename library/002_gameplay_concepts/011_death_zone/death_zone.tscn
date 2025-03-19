@@ -6,7 +6,6 @@
 size = Vector3(190.23, 1, 145.304)
 
 [node name="death_zone" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_y4uqy")

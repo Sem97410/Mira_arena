@@ -505,13 +505,17 @@ visible = false
 billboard = 1
 texture = ExtResource("11_8eyjs")
 
+[connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
 [connection signal="state_entered" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_entered"]
 [connection signal="state_exited" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_exited"]
+[connection signal="state_processing" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_processing"]
 [connection signal="state_entered" from="StateChart/root/Attack" to="." method="_on_attack_state_entered"]
 [connection signal="state_exited" from="StateChart/root/Attack" to="." method="_on_attack_state_exited"]
+[connection signal="state_processing" from="StateChart/root/Attack" to="." method="_on_attack_state_processing"]
 [connection signal="state_entered" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_entered"]
 [connection signal="state_exited" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_exited"]
 [connection signal="state_entered" from="StateChart/root/Death" to="." method="_on_death_state_entered"]
+[connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="area_entered" from="AttackArea3D" to="." method="_on_attack_area_3d_area_entered"]

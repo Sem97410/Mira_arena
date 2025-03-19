@@ -57,8 +57,3 @@ delay_in_seconds = "0.0"
 debug_path_custom_color = Color(0.736468, 0.216054, 9.62615e-08, 1)
 
 [connection signal="state_physics_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_physics_processing"]
-[connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
-[connection signal="state_processing" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_processing"]
-[connection signal="state_entered" from="StateChart/root/Attack" to="." method="_on_attack_state_entered"]
-[connection signal="state_processing" from="StateChart/root/Attack" to="." method="_on_attack_state_processing"]
-[connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]
