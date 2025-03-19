@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cavlmjjj5ek0u"
-path="res://.godot/imported/Arene_blender.fbx-866607b60703b189cf2a1c070f7deef9.scn"
+uid="uid://bgfjq2ktffkru"
+path="res://.godot/imported/Arene.fbx-8d39e2f77d2b88b0c918950fb9706ca1.scn"
 
 [deps]
 
-source_file="res://000_temp/Arene_blender.fbx"
-dest_files=["res://.godot/imported/Arene_blender.fbx-866607b60703b189cf2a1c070f7deef9.scn"]
+source_file="res://000_temp/arene/Arene.fbx"
+dest_files=["res://.godot/imported/Arene.fbx-8d39e2f77d2b88b0c918950fb9706ca1.scn"]
 
 [params]
 

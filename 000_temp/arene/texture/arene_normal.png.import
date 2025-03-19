@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl8o3ws0awinj"
-path.s3tc="res://.godot/imported/ARENE_DefaultMaterial_Normal.png-2120cdf4ed2d79ffe89bf11c0655c017.s3tc.ctex"
+uid="uid://cmi3j056ud8n4"
+path.s3tc="res://.godot/imported/arene_normal.png-84058645dff06a7c1864b9201555e608.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/ARENE_DefaultMaterial_Normal.png"
-dest_files=["res://.godot/imported/ARENE_DefaultMaterial_Normal.png-2120cdf4ed2d79ffe89bf11c0655c017.s3tc.ctex"]
+source_file="res://000_temp/arene/texture/arene_normal.png"
+dest_files=["res://.godot/imported/arene_normal.png-84058645dff06a7c1864b9201555e608.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://000_temp/ARENE_DefaultMaterial_Normal.png"
+roughness/src_normal="res://000_temp/arene/texture/arene_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

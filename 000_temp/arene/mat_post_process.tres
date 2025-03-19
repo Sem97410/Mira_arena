@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckepac65bpwb2"]
+
+[sub_resource type="Shader" id="Shader_t7yop"]
+code = "shader_type canvas_item;
+
+uniform float bloom_intensity : hint_range(0.0, 2.0) = 1.0;
+uniform float bloom_threshold : hint_range(0.0, 1.0) = 0.7;
+uniform float blur_size : hint_range(0.001, 0.02) = 0.005;
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
+
+
+void fragment() {
+    vec3 color = texture(screen_texture, SCREEN_UV).rgb;
+
+    // 🎯 Détection des hautes lumières
+    vec3 bloom_color = max(color - bloom_threshold, 0.0);
+
+    // 🔥 Appliquer un flou léger sur les hautes lumières
+    vec3 blurred = (
+        texture(screen_texture, SCREEN_UV + vec2( blur_size,  blur_size)).rgb +
+        texture(screen_texture, SCREEN_UV + vec2(-blur_size,  blur_size)).rgb +
+        texture(screen_texture, SCREEN_UV + vec2( blur_size, -blur_size)).rgb +
+        texture(screen_texture, SCREEN_UV + vec2(-blur_size, -blur_size)).rgb
+    ) / 4.0;
+
+    // 🎆 Mélange de l’image originale et du bloom
+    vec3 final_color = color + blurred * bloom_color * bloom_intensity;
+
+    COLOR = vec4(final_color, 1.0);
+}
+
+
+
+
+"
+
+[resource]
+shader = SubResource("Shader_t7yop")
+shader_parameter/bloom_intensity = 0.0
+shader_parameter/bloom_threshold = 0.336
+shader_parameter/blur_size = 0.001

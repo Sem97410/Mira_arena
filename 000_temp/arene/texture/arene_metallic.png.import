@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjqd31jfvhj7e"
-path.s3tc="res://.godot/imported/ARENE_DefaultMaterial_Height.png-c15256c6502ba83d941659140311df85.s3tc.ctex"
+uid="uid://dje7fuo2xtpwm"
+path.s3tc="res://.godot/imported/arene_metallic.png-81b2b2c42c80a55b4069f896957e7155.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/ARENE_DefaultMaterial_Height.png"
-dest_files=["res://.godot/imported/ARENE_DefaultMaterial_Height.png-c15256c6502ba83d941659140311df85.s3tc.ctex"]
+source_file="res://000_temp/arene/texture/arene_metallic.png"
+dest_files=["res://.godot/imported/arene_metallic.png-81b2b2c42c80a55b4069f896957e7155.s3tc.ctex"]
 
 [params]
 

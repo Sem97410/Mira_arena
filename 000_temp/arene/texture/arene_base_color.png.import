@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sg0q1vhrahr7"
-path.s3tc="res://.godot/imported/ARENE_DefaultMaterial_BaseColor.png-33a26f91a88021881c5a29ec5af49cbe.s3tc.ctex"
+uid="uid://ruhckvfei2o3"
+path.s3tc="res://.godot/imported/arene_base_color.png-7d9c8930c7f6fa8c9877c27722ec1b9d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/ARENE_DefaultMaterial_BaseColor.png"
-dest_files=["res://.godot/imported/ARENE_DefaultMaterial_BaseColor.png-33a26f91a88021881c5a29ec5af49cbe.s3tc.ctex"]
+source_file="res://000_temp/arene/texture/arene_base_color.png"
+dest_files=["res://.godot/imported/arene_base_color.png-7d9c8930c7f6fa8c9877c27722ec1b9d.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jxx2p6toa2uy"
-path.s3tc="res://.godot/imported/ARENE_DefaultMaterial_Roughness.png-57a419c33f5efdf8586a33c56dac90b6.s3tc.ctex"
+uid="uid://cb0q7f6yegt41"
+path.s3tc="res://.godot/imported/aren_roughness.png-e1bdc0b5a522c900581fbde51924040b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/ARENE_DefaultMaterial_Roughness.png"
-dest_files=["res://.godot/imported/ARENE_DefaultMaterial_Roughness.png-57a419c33f5efdf8586a33c56dac90b6.s3tc.ctex"]
+source_file="res://000_temp/arene/texture/aren_roughness.png"
+dest_files=["res://.godot/imported/aren_roughness.png-e1bdc0b5a522c900581fbde51924040b.s3tc.ctex"]
 
 [params]
 
