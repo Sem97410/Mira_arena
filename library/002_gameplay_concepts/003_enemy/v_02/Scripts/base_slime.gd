@@ -72,16 +72,21 @@ var random_point_around_target : Vector3
 @export_category("Animation variables")
 
 #Animation variables
-
 @export var death_animation_duration : float
 
 #----------------------
 #Vfx variables
 @export var death_vfx : PackedScene
 #----------------------
-@export_category("Debug variables") ## MUST BE DELETE
 
+#----------------------
+@export_category("Items variables") ## MUST BE DELETE
+#Items variables
+@export var health_item_scene : PackedScene
+@export var drop_chance : float = 0.15
+#----------------------
 #Debug variables
+@export_category("Debug variables") ## MUST BE DELETE
 #add a comment NEED TO BE SUPP
 @export var target_entity : Node3D   #Test that allow me to assign a target with the inspector. In the final code the slime will assign the target through the code
 
@@ -222,6 +227,7 @@ func check_if_dead()-> void:
 	
 func _on_death_state_entered() -> void:
 	slime_body.visible = false
+	drop_health_item(slime.global_position)
 	instantiate_vfx(slime.global_position, death_vfx )
 	death(slime, 1.5)
 #----------------------------------------------
@@ -427,6 +433,24 @@ func stop_dash():
 	disable_attack_area(attack_area)
 #endregion
 
+#region Items Region
+func drop_health_item(position : Vector3) -> void : 
+	print("I'm calling the function")
+	if not health_item_scene or not slime:
+		return
+
+	#
+	#if not slime.is_inside_tree() :
+		#print("Pas dans l'arbre")
+		#return
+		
+	if randf() <= drop_chance :
+		print("Devrait faire apparaitre l'item")
+		var health_item_instance = health_item_scene.instantiate()
+		
+		get_tree().current_scene.add_child(health_item_instance)
+		health_item_instance.global_transform.origin = position
+#endregion
 ##Animation functions
 
 	

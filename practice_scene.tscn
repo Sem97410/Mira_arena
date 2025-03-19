@@ -786,6 +786,7 @@ travel_cost = 0.0
 
 [node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8088, 0.10414, -7.55739)
+drop_chance = 100.0
 target_entity = NodePath("../Mira")
 
 [editable path="LightAttackZone/IndicatorPanel"]
