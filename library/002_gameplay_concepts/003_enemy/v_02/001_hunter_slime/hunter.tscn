@@ -60,7 +60,6 @@ event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
 [node name="NavigationAgent3D" parent="." index="4"]
-debug_enabled = true
 debug_path_custom_color = Color(0.736468, 0.216054, 9.62615e-08, 1)
 
 [connection signal="state_physics_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_physics_processing"]
