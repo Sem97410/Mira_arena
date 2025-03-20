@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://xdab2qa5grxv"]
+
+[ext_resource type="Script" uid="uid://ces85d213c6ff" path="res://library/002_gameplay_concepts/008_level_system/002_Script/fps_counter.gd" id="1_dxqwj"]
+
+[node name="FPSCounter" type="Label"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_top = 23.0
+offset_right = -42.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.659311, 0.386311, 1)
+theme_override_colors/font_outline_color = Color(0.968158, 0, 0.0459574, 1)
+script = ExtResource("1_dxqwj")

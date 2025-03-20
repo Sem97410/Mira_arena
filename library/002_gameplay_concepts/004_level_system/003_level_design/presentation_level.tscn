@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b1vgthbcyvaio" path="res://library/002_gameplay_concepts/011_death_zone/death_zone.tscn" id="7_1cfxb"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="8_woufi"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="10_in1d2"]
-[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="11_056ne"]
 [ext_resource type="PackedScene" uid="uid://c1svhchjp0pba" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/stairs_long.fbx" id="11_m13e3"]
+[ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter.tscn" id="11_piipt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -2039,34 +2039,38 @@ player = NodePath("../Mira")
 transform = Transform3D(-0.656836, 0, 0.754034, 0, 1, 0, -0.754034, 0, -0.656836, -29.0517, -1.59725, 25.3068)
 
 [node name="Spawner" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.66048, 2.17668, -19.5033)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.7191, 2.17668, -12.385)
+initial_spawn_count = 1
+spawn_increase_percent = 0.0
+spawn_range = 3.0
 
 [node name="Spawner2" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 17.1396, 2.17668, 11.1723)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 15.8262, 2.17668, 13.2391)
+initial_spawn_count = 1
+spawn_increase_percent = 0.0
+spawn_range = 2.0
 
 [node name="Spawner3" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7.3253, 2.57878, -36.489)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 8.96389, 2.57878, -34.8504)
+initial_spawn_count = 1
+spawn_increase_percent = 0.0
+spawn_range = 2.0
 
 [node name="Spawner4" parent="." instance=ExtResource("10_in1d2")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.6647, 1.63599, -1.37818)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+spawn_increase_percent = 0.0
 
 [node name="Spawner5" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 11.552, 6.0001, -68.4698)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 5.37761, 6.0001, -69.313)
+initial_spawn_count = 1
+spawn_increase_percent = 0.0
+spawn_range = 3.0
 
 [node name="Spawner6" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 29.9055, 3.52363, -41.0053)
-max_enemies = 3.0
-enemy = ExtResource("11_056ne")
+transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 21.8188, 3.52363, -49.9732)
+initial_spawn_count = 1
+spawn_increase_percent = 0.0
+spawn_range = 3.0
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(-0.748423, 0, -0.663221, 0, 1, 0, 0.663221, 0, -0.748423, 0, 0, 0)
@@ -2576,6 +2580,8 @@ end_position = Vector3(7.57, 0, 0)
 [node name="NavigationLink3D8" type="NavigationLink3D" parent="Map/NavigationRegion3D"]
 transform = Transform3D(0.737183, 0, 0.675693, 0, 1, 0, -0.675693, 0, 0.737183, 39.1738, 1.42315, 27.8084)
 end_position = Vector3(7.57, 0, 0)
+
+[node name="FPSCounter" parent="." instance=ExtResource("11_piipt")]
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
