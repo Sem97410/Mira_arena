@@ -4,8 +4,8 @@
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
-[ext_resource type="VideoStream" uid="uid://b0eed5gf5s144" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinematique_Layout_V4.ogv" id="5_c3nnq"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinematique_Layout_UE5_V1_1.ogv" id="6_3rw7x"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
@@ -251,8 +251,10 @@ ratio = 1.77
 stretch_mode = 3
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VideoControl/VideoContainer/AspectRatioContainer"]
+texture_filter = 1
+clip_contents = true
 layout_mode = 2
-stream = ExtResource("5_c3nnq")
+stream = ExtResource("6_3rw7x")
 expand = true
 
 [node name="SkipButtonContainer" type="MarginContainer" parent="VideoControl/VideoContainer"]
@@ -274,7 +276,6 @@ text = "Pass the video"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_3rw7x")
 volume_db = -6.0
-autoplay = true
 bus = &"title_screen"
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
