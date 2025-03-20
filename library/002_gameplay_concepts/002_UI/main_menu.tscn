@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=13 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
 [ext_resource type="VideoStream" uid="uid://dweo3ur4vrhmv" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinematique_Layout_UE5_V1_1.ogv" id="6_3rw7x"]
+[ext_resource type="Theme" uid="uid://ofw4ecxjby2m" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_pannel.tres" id="6_e4my3"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
+[ext_resource type="Texture2D" uid="uid://btwe8uepc4sob" path="res://library/002_gameplay_concepts/IllustrationLevel1.png" id="7_ruk6f"]
+[ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -55,6 +58,7 @@ texture = ExtResource("5_6yoec")
 expand_mode = 1
 
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuControl"]
+visible = false
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 2
@@ -226,6 +230,76 @@ focus_neighbor_right = NodePath("../Quit_game_confirmation_button")
 theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
+
+[node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_i0oc2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("6_e4my3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 106
+text = "Map Selection"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -55
+theme_override_constants/margin_bottom = 205
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 285
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SlimageddonButton" type="Button" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Slimageddon"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("7_vg8no")
+expand_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FlugdrasilButton" type="Button" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Flugdrasil"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("7_ruk6f")
+expand_mode = 3
 
 [node name="VideoControl" type="Control" parent="."]
 visible = false
