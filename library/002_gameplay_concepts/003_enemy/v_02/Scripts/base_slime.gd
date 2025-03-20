@@ -68,6 +68,9 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @onready var random_point_interval : float = 0.5
 var random_point_around_target : Vector3
 @onready var is_generating_random_point = false  # Pour éviter les doublons
+var random_point_navmesh: Vector3
+@export var time_before_new_target: float = 5.0
+
 #----------------------
 @export_category("Animation variables")
 
@@ -132,6 +135,13 @@ func activate_hunt_mode() -> void :
 		#print("Move in hunting mode")
 		send_event_state_chart("IsHunting")
 #---
+func activate_wander_mode() -> void : 
+	distance_to_target = check_distance_to_target(player)
+	#print("Distance to target is : ", distance_to_target)
+	if distance_to_target > attack_range : 
+		#print("Move in hunting mode")
+		send_event_state_chart("IsWander")
+#---
 func activate_idle_mode() -> void : 
 	var distance_to_target = check_distance_to_target(player)
 	if distance_to_target <= attack_range : 
@@ -170,6 +180,7 @@ func _on_idle_state_processing(delta: float) -> void:
 	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
 		activate_pre_attack_mode()
 	activate_hunt_mode()
+	activate_wander_mode()
 	
 #---
 func _on_pre_attack_state_entered() -> void:
@@ -375,6 +386,7 @@ func execute_dash():
 
 		# Désactiver temporairement la détection du sol en passant en mode flottant
 		slime.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+		look_at_target_or_movement(slime, player, slime.velocity, 10.0)
 
 		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI LE SLIME DANS LES AIRS ⚠️
 		if not was_in_air:
@@ -388,7 +400,7 @@ func execute_dash():
 		slime.velocity = velocity
 		slime.move_and_slide()
 
-		# Réactiver la détection du sol après le dash
+		# Réactiver la détection du sol après le dashq
 		slime.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
 		# Lancer l'animation pendant le dash
@@ -475,3 +487,57 @@ func launch_slime_step_sound() -> void:
 
 	
 #----------------------------------------------
+
+
+func _on_random_state_processing(delta: float) -> void:
+	# Vérifie si on a atteint le point aléatoire actuel ou si la navigation est terminée
+	if slime.global_position.distance_to(random_point_navmesh) < 0.5 or nav_agent.is_navigation_finished():
+		generate_random_navmesh_point()  # Génère un nouveau point sur le navmesh
+		_restart_target_timer()  # Redémarre le timer
+
+	# Déplacer vers le point généré via NavigationAgent3D
+	can_move = true
+	move(random_point_navmesh, delta)  # <-- Ça garde ton move() existant
+
+	# Rotation vers la direction du déplacement
+	if slime.velocity.length() > 0.1:
+		slime.look_at(slime.global_position + slime.velocity)
+
+	# Vérifie la distance avec la cible (le joueur)
+	distance_to_target = check_distance_to_target(player)
+	
+	if distance_to_target <= attack_range and attack_cool_down <= 0:
+		activate_pre_attack_mode()
+	elif attack_cool_down > 0:
+		activate_idle_mode()
+
+	# Animation du slime en déplacement
+	animation_player.play("Slime|Walk")
+
+
+func generate_random_navmesh_point() -> void:
+	# Vérifie si le slime est bien sur une carte avec un NavMesh
+	var navigation_map: RID = slime.get_world_3d().navigation_map
+	if navigation_map.is_valid():
+		# Génère un point aléatoire sur le NavMesh avec layer 1 et non-uniforme
+		random_point_navmesh = NavigationServer3D.map_get_random_point(navigation_map, 1, false)
+		
+		# Vérifie que le point généré est bien valide
+		if random_point_navmesh != Vector3.ZERO:
+			print("Nouvelle target: ", random_point_navmesh)
+		else:
+			print("Échec de la génération du point, on garde l'ancien")
+	else:
+		# Sécurité si pas de NavMesh, on garde sa position actuelle
+		random_point_navmesh = slime.global_position
+
+
+func _restart_target_timer():
+	# Crée un timer qui va forcer un changement de cible après X secondes
+	get_tree().create_timer(time_before_new_target).timeout.connect(_force_new_target, CONNECT_ONE_SHOT)
+
+
+func _force_new_target():
+	print("Forçage d’un nouveau point après timeout!")
+	generate_random_navmesh_point()
+	_restart_target_timer()  # Relance le timer pour le prochain cycle

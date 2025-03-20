@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://b228mxm8xi1lf" path="res://indicator_panel.tscn" id="2_h2jg4"]
+[ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="5_dbupr"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="9_xoflt"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="13_h62yh"]
-[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="18_o6a7b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygtom"]
 albedo_color = Color(0.583663, 0.519238, 0.478449, 1)
@@ -784,9 +784,8 @@ start_position = Vector3(1.56, 0.2, -0.825)
 end_position = Vector3(5.361, 1.434, -0.347)
 travel_cost = 0.0
 
-[node name="Hunter" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("18_o6a7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8088, 0.10414, -7.55739)
-drop_chance = 100.0
+[node name="Wanderer" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("5_dbupr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.7767, 0.10414, 0.352283)
 target_entity = NodePath("../Mira")
 
 [editable path="LightAttackZone/IndicatorPanel"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=302 format=4 uid="uid://ciuscyplmadeg"]
+[gd_scene load_steps=303 format=4 uid="uid://ciuscyplmadeg"]
 
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="1_sadgr"]
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="2_wgewv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b1vgthbcyvaio" path="res://library/002_gameplay_concepts/011_death_zone/death_zone.tscn" id="7_nusk7"]
 [ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter.tscn" id="10_nusk7"]
 [ext_resource type="Script" uid="uid://cflmj47i313qo" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/foot_step_manager.gd" id="11_nusk7"]
+[ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="12_ag2od"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -3464,7 +3465,8 @@ end_position = Vector3(15.85, 0, 0)
 
 [node name="NavigationLink3D2" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.000942498, 0, 1, 0, 1, 0, -1, 0, 0.000942498, -5.17239, 1.66994, 19.4669)
-end_position = Vector3(13.16, 0, 0)
+start_position = Vector3(0.075, 0.185, 2.74)
+end_position = Vector3(12.335, 0.12, 0)
 
 [node name="NavigationLink3D3" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.00298455, 0, -0.999996, 0, 1, 0, 0.999996, 0, -0.00298455, -5.59343, 1.66994, -18.371)
@@ -3480,7 +3482,8 @@ end_position = Vector3(9.66, 0, 0)
 
 [node name="NavigationLink3D5" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.999709, 0, 0.0241356, 0, 1, 0, -0.0241356, 0, -0.999709, -7.63094, 1.05004, -22.3384)
-end_position = Vector3(9.66, 0, 0)
+start_position = Vector3(-1.095, 0.125, -0.555)
+end_position = Vector3(11.11, 0.11, 0)
 
 [node name="NavigationLink3D6" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.999709, 0, 0.0241356, 0, 1, 0, -0.0241356, 0, -0.999709, -32.9538, 0.590923, -20.7653)
@@ -3488,12 +3491,13 @@ end_position = Vector3(10.815, 0, 0)
 
 [node name="NavigationLink3D7" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.999709, 0, 0.0241356, 0, 1, 0, -0.0241356, 0, -0.999709, -57.7996, 0.381585, -22.1248)
-end_position = Vector3(12.875, 0, 0)
+start_position = Vector3(-0.985, 0.275, 0)
+end_position = Vector3(13.08, 0.935, 0)
 
 [node name="NavigationLink3D8" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.999709, 0, 0.0241356, 0, 1, 0, -0.0241356, 0, -0.999709, -52.3411, 1.6651, 17.3912)
-start_position = Vector3(0.17, 1.81, 0)
-end_position = Vector3(16.085, 0, 0)
+start_position = Vector3(0.17, 2.135, 0)
+end_position = Vector3(16.085, 0.2, 0)
 
 [node name="NavigationLink3D12" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.0157944, 0, 0.999875, 0, 1, 0, -0.999875, 0, -0.0157944, -51.1521, 3.33021, 42.5777)
@@ -3541,17 +3545,17 @@ enemy = ExtResource("10_nusk7")
 [node name="Spawner4" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.6647, 1.63599, -1.37818)
 max_enemies = 15.0
-enemy = ExtResource("10_nusk7")
+enemy = ExtResource("12_ag2od")
 
 [node name="Spawner5" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 11.552, 6.0001, -68.4698)
 max_enemies = 15.0
-enemy = ExtResource("10_nusk7")
+enemy = ExtResource("12_ag2od")
 
 [node name="Spawner6" parent="." instance=ExtResource("3_nu1ct")]
 transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 29.9055, 3.52363, -41.0053)
 max_enemies = 15.0
-enemy = ExtResource("10_nusk7")
+enemy = ExtResource("12_ag2od")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
