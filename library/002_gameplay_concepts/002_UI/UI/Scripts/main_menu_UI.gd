@@ -5,6 +5,9 @@ extends Control
 #MAIN BUTTONS
 @export var main_button_general_container : MarginContainer  #= $Main_buttons_margin_container
 @export var first_main_button : Button # = $Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode
+#------------------------------
+#LOGO
+@export var logo_container : MarginContainer
 #-----------------
 #Quit
 @export var quit_game_confirmation_pannel : PanelContainer # $Quit_game_confirmation_pannel
@@ -15,12 +18,18 @@ extends Control
 @export var not_ready_pannel : PanelContainer #= $Not_ready_pannel
 #@export var close_not_ready_pannel_button : Button # $Not_ready_pannel/MarginContainer/VBoxContainer/Close_not_ready_pannel_button
 #-----------------
-
 #VIDEO
 @export var video_player : VideoStreamPlayer
 @export var video_player_container : Control
 @export var skip_video_button : Button
 @export var video_length : float = 114.0
+#-----------------
+#MAP SELECTION
+@export var map_selection_container : MarginContainer
+@export var map_selection_main_button : Button
+@export var map_1_information : MarginContainer
+@export var map_2_information : MarginContainer 
+
 
 
 
@@ -36,13 +45,19 @@ func _ready() -> void:
 #ARENA MODE
 
 func _on_arena_mode_button_down() -> void:
-	get_tree().change_scene_to_file("res://main_scene.tscn") 
+	#get_tree().change_scene_to_file("res://main_scene.tscn") 
+	main_button_general_container.visible = false
+	logo_container.visible = false
+	map_selection_container.visible = true
+	map_selection_main_button.grab_focus()
+	
 #-----------------
 
 #QUIT GAME
 func _on_quit_game_button_down() -> void:
 	main_button_general_container.visible = false
 	quit_game_confirmation_pannel.visible = true
+	logo_container.visible = false
 	quit_game_confirmation_pannel_first_button.grab_focus()
 
 func _on_quit_game_confirmation_button_button_down() -> void:
@@ -51,6 +66,7 @@ func _on_quit_game_confirmation_button_button_down() -> void:
 func _on_stay_in_game_confirmation_button_button_down() -> void:
 	quit_game_confirmation_pannel.visible = false
 	main_button_general_container.visible = true
+	logo_container.visible = true
 	first_main_button.grab_focus()
 		
 #-----------------
@@ -89,3 +105,34 @@ func stop_video_player() -> void :
 
 func _on_practice_mode_button_down() -> void:
 	get_tree().change_scene_to_file("res://practice_scene.tscn") 
+
+
+func _on_slimageddon_button_focus_entered() -> void:
+	map_1_information.visible = true
+
+
+func _on_slimageddon_button_focus_exited() -> void:
+	map_1_information.visible = false
+
+
+func _on_flugdrasil_button_focus_entered() -> void:
+	map_2_information.visible = true
+
+
+func _on_flugdrasil_button_focus_exited() -> void:
+	map_2_information.visible = false
+
+
+func _on_slimageddon_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://000_temp/slimageddon.tscn") 
+
+
+func _on_flugdrasil_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/004_level_system/003_level_design/presentation_level.tscn")
+
+
+func _on_go_to_main_menu_button_pressed() -> void:
+	map_selection_container.visible = false
+	logo_container.visible = true
+	main_button_general_container.visible = true
+	first_main_button.grab_focus()
