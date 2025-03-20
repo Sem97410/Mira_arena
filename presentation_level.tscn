@@ -1,141 +1,99 @@
-[gd_scene load_steps=174 format=4 uid="uid://cqmpoj0u21a0f"]
+[gd_scene load_steps=164 format=4 uid="uid://cne5vt8j4tgfc"]
 
-[ext_resource type="Material" uid="uid://oyiattye6pjb" path="res://000_temp/arene/mat_arene_3d.tres" id="1_nlan6"]
-[ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="2_maeic"]
-[ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="3_lsh4g"]
-[ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="4_jvj3f"]
-[ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="5_bbiy4"]
-[ext_resource type="Material" uid="uid://cr06kcu4nsnyw" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_base.tres" id="6_ixlpc"]
-[ext_resource type="Material" uid="uid://dm0342xb6ckek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_rubban_hat.tres" id="7_1iily"]
-[ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="8_2a4oq"]
-[ext_resource type="Material" uid="uid://cobr0f5nrq8k4" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_body_skin.tres" id="9_ju54m"]
-[ext_resource type="Material" uid="uid://bv47o0yljbaey" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_skin_eyes.tres" id="10_d1ssw"]
-[ext_resource type="Material" uid="uid://dfbsp704n85ts" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_skirt.tres" id="11_n2e0p"]
-[ext_resource type="Material" uid="uid://ctbukj1n2g4we" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes_semelle.tres" id="12_c7m5m"]
-[ext_resource type="Material" uid="uid://dxbmnk70bggae" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes.tres" id="13_wlu5u"]
-[ext_resource type="Material" uid="uid://d5d8486vlnmc" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_belt.tres" id="14_k4kxa"]
-[ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="15_jw5y7"]
-[ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="16_8drcj"]
-[ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="17_tlog0"]
-[ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="18_arhp5"]
-[ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="19_f1t58"]
-[ext_resource type="Script" uid="uid://duy4574tj6hem" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="20_ofsgl"]
-[ext_resource type="Shader" uid="uid://c8w5u1opufoth" path="res://GPUTrail-main/shaders/trail.gdshader" id="21_ny3ql"]
-[ext_resource type="Shader" uid="uid://c5jbpnglg2mwo" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="22_ox3hq"]
-[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="23_rfak4"]
-[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="24_mpf5e"]
-[ext_resource type="Texture2D" uid="uid://bmxmlvj77h8xm" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed_2.png" id="25_s2ycu"]
-[ext_resource type="Script" uid="uid://5bmwcf60w64d" path="res://GPUTrail-main/GPUTrail3D.gd" id="26_wop7j"]
-[ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_particle_sprite_smoke.png" id="27_dht32"]
-[ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="28_khkg8"]
-[ext_resource type="PackedScene" uid="uid://c68r4on6xv3km" path="res://library/002_gameplay_concepts/001_player/player_aura.tscn" id="29_73tcb"]
-[ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="30_uyjtn"]
-[ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="31_kdsyr"]
-[ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="32_evsik"]
-[ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="33_variw"]
-[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/charged_attack_lock.tscn" id="34_gueyv"]
-[ext_resource type="Script" uid="uid://bdfqwphlrip12" path="res://library/002_gameplay_concepts/001_player/Scripts/health_system.gd" id="35_ksd5f"]
-[ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="36_pv4op"]
-[ext_resource type="PackedScene" uid="uid://c4pl5aut7eugc" path="res://000_temp/post_process.tscn" id="37_natva"]
-[ext_resource type="Material" uid="uid://ckepac65bpwb2" path="res://000_temp/arene/mat_post_process.tres" id="38_bxh3k"]
-[ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="39_q5mn2"]
-[ext_resource type="Script" uid="uid://bj0eblia7nksm" path="res://library/002_gameplay_concepts/001_player/Scripts/add_gravity.gd" id="40_t2pj6"]
-[ext_resource type="Script" uid="uid://cj3m46sppfgy4" path="res://library/002_gameplay_concepts/001_player/Scripts/MoveTheCharacter.gd" id="41_0ehyh"]
-[ext_resource type="Script" uid="uid://bdnpuax8gfmyy" path="res://library/002_gameplay_concepts/001_player/Scripts/PlayerMovementResource.gd" id="42_6yt44"]
-[ext_resource type="Script" uid="uid://5i103oxysh75" path="res://library/002_gameplay_concepts/001_player/Scripts/assign_blend_position.gd" id="43_t0r4r"]
-[ext_resource type="Script" uid="uid://epr735sc7jvv" path="res://library/002_gameplay_concepts/001_player/Scripts/HandleAnimationSpeed.gd" id="44_y1co0"]
-[ext_resource type="Script" uid="uid://kamb60lwfybj" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_root_motion.gd" id="45_fc5a0"]
-[ext_resource type="Script" uid="uid://d01qsfhevp4dk" path="res://library/002_gameplay_concepts/001_player/Scripts/movement_tracks_methodes.gd" id="46_n7irg"]
-[ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="47_htueu"]
-[ext_resource type="AudioStream" uid="uid://b46rqog643ldk" path="res://library/002_gameplay_concepts/009_SFX/footstep/01-footstep.ogg" id="48_qcps7"]
-[ext_resource type="AudioStream" uid="uid://bxnfuowu8clin" path="res://library/002_gameplay_concepts/009_SFX/footstep/02-footstep.ogg" id="49_f1cl5"]
-[ext_resource type="AudioStream" uid="uid://da6rgvju7uq45" path="res://library/002_gameplay_concepts/009_SFX/footstep/03-footstep.ogg" id="50_nloug"]
-[ext_resource type="AudioStream" uid="uid://5dynnaecuj4t" path="res://library/002_gameplay_concepts/009_SFX/footstep/06-footstep.ogg" id="51_f58q6"]
-[ext_resource type="Script" uid="uid://dkrsvoe6uv3ba" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_dash_logic.gd" id="52_re84j"]
-[ext_resource type="PackedScene" uid="uid://diukxqj0llno8" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Trail.tscn" id="53_aco1p"]
-[ext_resource type="Texture2D" uid="uid://b7giv6sy8xd0e" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_1.png" id="54_0pufj"]
-[ext_resource type="Texture2D" uid="uid://col0iffowx2jb" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_2.png" id="55_5q0u2"]
-[ext_resource type="Script" uid="uid://cm0yhdkvlkx7a" path="res://library/002_gameplay_concepts/001_player/Scripts/attack_system.gd" id="56_4uvab"]
-[ext_resource type="Script" uid="uid://b4i20wyx781lm" path="res://library/002_gameplay_concepts/001_player/Scripts/light_attack_tracks_methodes.gd" id="57_lyouo"]
-[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_R.tscn" id="58_b0mb7"]
-[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_L.tscn" id="59_mj6h3"]
-[ext_resource type="Script" uid="uid://dd4kmcb6n4goy" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_light_attack_index_animation.gd" id="60_7qlbh"]
-[ext_resource type="Script" uid="uid://codohfarmlof3" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_light_attack_logic.gd" id="61_em2jk"]
-[ext_resource type="Script" uid="uid://xnqx3tinlkwe" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_transition_between_attack_and_movement.gd" id="62_qejgj"]
-[ext_resource type="Script" uid="uid://doabclk4yyj6p" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_charge_attack_logic.gd" id="63_pggc2"]
-[ext_resource type="Script" uid="uid://85taxqbbt6tr" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_tracks_methodes.gd" id="64_wkllm"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/Scripts/Resources/web_system_tree_structure.tres" id="65_875tt"]
-[ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="66_sulji"]
-[ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="67_44pd4"]
-[ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="68_kf7xk"]
-[ext_resource type="AudioStream" uid="uid://b8x3f23pogxay" path="res://library/002_gameplay_concepts/001_player/SFX/Charged attack.wav" id="69_5fwcf"]
-[ext_resource type="Texture2D" uid="uid://bsuq2uyqfsqdg" path="res://library/002_gameplay_concepts/001_player/UI/HitScreenPink.png" id="70_sofhm"]
-[ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="71_2erpq"]
-[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="72_meqea"]
-[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Attack_charge.tscn" id="73_vm2it"]
-[ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="74_8bi73"]
-[ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="75_b1j3t"]
-[ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="76_b02tm"]
-[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="77_es6mq"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="78_nf1fl"]
-[ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="79_n4gb3"]
+[ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="3_ceanh"]
+[ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="4_rwpcj"]
+[ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="5_n42jx"]
+[ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="6_fs3y0"]
+[ext_resource type="Material" uid="uid://cr06kcu4nsnyw" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_base.tres" id="7_havut"]
+[ext_resource type="Material" uid="uid://dm0342xb6ckek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_rubban_hat.tres" id="8_bu0qc"]
+[ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="9_vyvid"]
+[ext_resource type="Material" uid="uid://cobr0f5nrq8k4" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_body_skin.tres" id="10_ue6g6"]
+[ext_resource type="Material" uid="uid://bv47o0yljbaey" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_skin_eyes.tres" id="11_j1ose"]
+[ext_resource type="Material" uid="uid://dfbsp704n85ts" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_skirt.tres" id="12_b8qtp"]
+[ext_resource type="Material" uid="uid://ctbukj1n2g4we" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes_semelle.tres" id="13_ya2o5"]
+[ext_resource type="Material" uid="uid://dxbmnk70bggae" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes.tres" id="14_is5w4"]
+[ext_resource type="Material" uid="uid://d5d8486vlnmc" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_belt.tres" id="15_fvm2x"]
+[ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="16_32ike"]
+[ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="17_hicsr"]
+[ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="18_ti166"]
+[ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="19_xbohl"]
+[ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="20_s5p2s"]
+[ext_resource type="Script" uid="uid://duy4574tj6hem" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="21_7b128"]
+[ext_resource type="Shader" uid="uid://c8w5u1opufoth" path="res://GPUTrail-main/shaders/trail.gdshader" id="22_ooh8w"]
+[ext_resource type="Shader" uid="uid://c5jbpnglg2mwo" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="23_0ptm4"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://GPUTrail-main/defaults/texture.tres" id="24_xh7no"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://GPUTrail-main/defaults/curve.tres" id="25_auddm"]
+[ext_resource type="Texture2D" uid="uid://bmxmlvj77h8xm" path="res://library/002_gameplay_concepts/006_VFX/Trail/T_Speed_2.png" id="26_5ovrm"]
+[ext_resource type="Script" uid="uid://5bmwcf60w64d" path="res://GPUTrail-main/GPUTrail3D.gd" id="27_a1h4q"]
+[ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_particle_sprite_smoke.png" id="28_7h57o"]
+[ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="29_4cjxs"]
+[ext_resource type="PackedScene" uid="uid://c68r4on6xv3km" path="res://library/002_gameplay_concepts/001_player/player_aura.tscn" id="30_6pcwt"]
+[ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="31_sleik"]
+[ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="32_ptn7d"]
+[ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="33_nsvjw"]
+[ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="34_1j4wo"]
+[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/charged_attack_lock.tscn" id="35_v84o8"]
+[ext_resource type="Script" uid="uid://bdfqwphlrip12" path="res://library/002_gameplay_concepts/001_player/Scripts/health_system.gd" id="36_col0g"]
+[ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="37_1wiru"]
+[ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="39_d3xec"]
+[ext_resource type="Script" uid="uid://bj0eblia7nksm" path="res://library/002_gameplay_concepts/001_player/Scripts/add_gravity.gd" id="40_3y3ht"]
+[ext_resource type="Script" uid="uid://cj3m46sppfgy4" path="res://library/002_gameplay_concepts/001_player/Scripts/MoveTheCharacter.gd" id="41_ulohx"]
+[ext_resource type="Script" uid="uid://bdnpuax8gfmyy" path="res://library/002_gameplay_concepts/001_player/Scripts/PlayerMovementResource.gd" id="42_tq304"]
+[ext_resource type="Script" uid="uid://5i103oxysh75" path="res://library/002_gameplay_concepts/001_player/Scripts/assign_blend_position.gd" id="43_804mf"]
+[ext_resource type="Script" uid="uid://epr735sc7jvv" path="res://library/002_gameplay_concepts/001_player/Scripts/HandleAnimationSpeed.gd" id="44_bqbrf"]
+[ext_resource type="Script" uid="uid://kamb60lwfybj" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_root_motion.gd" id="45_35t5u"]
+[ext_resource type="Script" uid="uid://d01qsfhevp4dk" path="res://library/002_gameplay_concepts/001_player/Scripts/movement_tracks_methodes.gd" id="46_vhaqu"]
+[ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="47_0slv4"]
+[ext_resource type="AudioStream" uid="uid://b46rqog643ldk" path="res://library/002_gameplay_concepts/009_SFX/footstep/01-footstep.ogg" id="48_xm0v6"]
+[ext_resource type="AudioStream" uid="uid://bxnfuowu8clin" path="res://library/002_gameplay_concepts/009_SFX/footstep/02-footstep.ogg" id="49_36bkv"]
+[ext_resource type="AudioStream" uid="uid://da6rgvju7uq45" path="res://library/002_gameplay_concepts/009_SFX/footstep/03-footstep.ogg" id="50_2spru"]
+[ext_resource type="AudioStream" uid="uid://5dynnaecuj4t" path="res://library/002_gameplay_concepts/009_SFX/footstep/06-footstep.ogg" id="51_vnfmv"]
+[ext_resource type="Script" uid="uid://dkrsvoe6uv3ba" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_dash_logic.gd" id="52_17tqc"]
+[ext_resource type="PackedScene" uid="uid://diukxqj0llno8" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Trail.tscn" id="53_wd27q"]
+[ext_resource type="Texture2D" uid="uid://b7giv6sy8xd0e" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_1.png" id="54_7e0xs"]
+[ext_resource type="Texture2D" uid="uid://col0iffowx2jb" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_2.png" id="55_wnu72"]
+[ext_resource type="Script" uid="uid://cm0yhdkvlkx7a" path="res://library/002_gameplay_concepts/001_player/Scripts/attack_system.gd" id="56_s3een"]
+[ext_resource type="Script" uid="uid://b4i20wyx781lm" path="res://library/002_gameplay_concepts/001_player/Scripts/light_attack_tracks_methodes.gd" id="57_yn2lo"]
+[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_R.tscn" id="58_80tqo"]
+[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_L.tscn" id="59_6hp12"]
+[ext_resource type="Script" uid="uid://dd4kmcb6n4goy" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_light_attack_index_animation.gd" id="60_pxqd0"]
+[ext_resource type="Script" uid="uid://codohfarmlof3" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_light_attack_logic.gd" id="61_x4u8i"]
+[ext_resource type="Script" uid="uid://xnqx3tinlkwe" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_transition_between_attack_and_movement.gd" id="62_4lf3w"]
+[ext_resource type="Script" uid="uid://doabclk4yyj6p" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_charge_attack_logic.gd" id="63_kw5ua"]
+[ext_resource type="Script" uid="uid://85taxqbbt6tr" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_tracks_methodes.gd" id="64_mpxqh"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/Scripts/Resources/web_system_tree_structure.tres" id="65_7um0i"]
+[ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="66_2527q"]
+[ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="67_7nt4s"]
+[ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="68_awhi2"]
+[ext_resource type="AudioStream" uid="uid://b8x3f23pogxay" path="res://library/002_gameplay_concepts/001_player/SFX/Charged attack.wav" id="69_0xmlj"]
+[ext_resource type="Texture2D" uid="uid://bsuq2uyqfsqdg" path="res://library/002_gameplay_concepts/001_player/UI/HitScreenPink.png" id="70_ayme4"]
+[ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="71_aecwr"]
+[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="72_gj6q5"]
+[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Attack_charge.tscn" id="73_tdpm6"]
+[ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="74_qkhb3"]
+[ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="75_duva1"]
+[ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="76_eemje"]
+[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="77_5x4sf"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="78_6t51r"]
+[ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="79_c3j45"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xcd2p"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ij0b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_qahgr"]
-sky_material = SubResource("ProceduralSkyMaterial_xcd2p")
+[sub_resource type="Sky" id="Sky_ceanh"]
+sky_material = SubResource("ProceduralSkyMaterial_3ij0b")
 
-[sub_resource type="Environment" id="Environment_p4ntp"]
+[sub_resource type="Environment" id="Environment_rwpcj"]
 background_mode = 2
-sky = SubResource("Sky_qahgr")
+sky = SubResource("Sky_ceanh")
 tonemap_mode = 2
+tonemap_exposure = 0.76
+tonemap_white = 2.26
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oned"]
-resource_name = "arene_ground_material"
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ttsoe"]
-_surfaces = [{
-"aabb": AABB(-0.249276, -0.305357, -0.0248542, 0.577452, 0.577452, 0.0254319),
-"format": 34359742465,
-"index_count": 768,
-"index_data": PackedByteArray("PABlADsANQA7AGUAOwA0ADwAZQA8AGYAPgA7ADUAZQBnADUAOwA+AD0APQA0ADsAIQA9AD4APgAiACEAPQAhAB8AIgA+AEAANQBAAD4AQAAjACIAHwA/AD0ANAA9AD8APwAfAB4AQAA1ACAAIAA1AGcAIwBAAGQAIABkAEAAZAAlACMAZwA2ACAAZAAgADYAJQBkAGMANgBjAGQAYwAkACUAJABjAGIAYgAGACQAYwA2ADcANwBiAGMANgBnAGgAaAA3ADYAaQBoAGcAZwBlAGkAZgBpAGUABgBiAGEAYQADAAYAYgA3AF8AXwBhAGIAagBfADcANwBoAGoAaABpAGsAawBqAGgAAwBhAGAAYAAEAAMAYQBfAAEAAQBgAGEAXwBqAGwAbAABAF8AbABqAGsAYAABADgAOAABAGwABABgAF4AOABeAGAAXgAFAAQAbABdADgABQBeAFwAXAAHAAUAXgA4ADkAOQBcAF4AOQA4AF0ABwBcAFoAWgAIAAcAXAA5ADoAOgBaAFwAXQBbADkAOgA5AFsACABaAFkAWQAJAAgAWgA6AAAAAABZAFoAAAA6AG0AWwBtADoAWQAAAFcAbQBXAAAACQBZAFgAVwBYAFkAWAAKAAkAVwBtAG4AbgBtAFsAWABXACcAbgAnAFcACgBYAG8AJwBvAFgAbwALAAoACwBvAHAAcAAMAAsAbwAnACYAJgBwAG8AJwBuAFYAVgAmACcADABwAFMAUwANAAwAcAAmAAIAAgBTAHAAJgBWAFQAVAACACYAcQBWAG4AVABWAHEAbgByAHEAWwByAG4AUwACACgAKAACAFQADQBTAFIAKABSAFMAUgAOAA0AcwByAFsAWwBdAHMAcwBdAGwAcgBzAHQAdABxAHIAbAB1AHMAdABzAHUAawB1AGwADgBSAFEAUQAPAA4AKQBRAFIAUgAoACkADwBRAFAAUAAQAA8AUQApACoAKgBQAFEAKQAoAE0AVABNACgAKgApAHYATQB2ACkAEABQAE8ATwASABAAUAAqACsAKwBPAFAAdgB3ACoAKwAqAHcAEgBPAE4ATwArABEAdwARACsAEQBOAE8ATgATABIAEQB3AHgAeAB3AHYATgARAEwAeABMABEAEwBOAEsATABLAE4ASwAUABMAFABLAEoASgAWABQASwBMACwALABKAEsATAB4AHkAeQAsAEwAFgBKAEkASQAXABYASgAsAC0ALQBJAEoALAB5AHoAegAtACwAewB5AHgAegB5AHsAeAB8AHsAdgB8AHgAfAB2AE0ASQAtAC4ALgAtAHoAFwBJAEgALgBIAEkASAAYABcAegB9AC4AGABIAEcARwAZABgASAAuAC8ALwBHAEgALwAuAH0AGQBHAEYARgAaABkARwAvADAAMABGAEcAfQB+AC8AMAAvAH4AfgB9AH8AfwB9AHoAGgBGAEUARQAbABoARgAwABUAFQBFAEYAfgCAADAAFQAwAIAAfwCBAH4AgAB+AIEAgAAxABUARQAVADEAGwBFAEQAMQBEAEUARAAcABsAMQCAAIIAgQCCAIAARAAxADIAggAyADEAHABEAEMAMgBDAEQAQwAdABwAHQBDAEEAQQAeAB0AHgBBAD8AQgBBAEMAQwAyAEIAMwA/AEEAQQBCADMAPwAzADQANAAzAIMAgwAzAEIAgwA8ADQAhABCADIAQgCEAIMAMgCCAIQAPACDAIUAhQCDAIQAhQBmADwAhgCEAIIAhACGAIUAggCBAIYAZgCFAIcAhwCFAIYAiACGAIEAhgCIAIcAgQB/AIgAiAB/AIkAegCJAH8AewCJAHoAiQCKAIgAhwCIAIoAiQB7AIsAiwCKAIkAiwB7AHwAfACMAIsATQCMAHwAigCLAI0AjQCLAIwAVQCMAE0AjABVAI0ATQBUAFUAcQBVAFQAVQBxAHQAdACNAFUAjQCOAIoAjgCNAHQAigCOAIcAdACPAI4AhwCOAI8AdQCPAHQAjwB1AGsAjwCQAIcAawCQAI8AhwCQAGYAkABrAGkAaQBmAJAA"),
-"lods": [1.66889e-05, PackedByteArray("OwA0ADwAPQA0ADsANQA7ADwAOwA+AD0APgA7ADUAIQA9AD4APQAhAB8APgAiACEAHwA/AD0ANAA9AD8APwAfAB4AIgA+AEAANQBAAD4AQAAjACIAHgBBAD8AQQAeAB0APwAzADQAMwA/AEEAQQBCADMANAAzADIAMgAzAEIAQgBBAEMAHQBDAEEAQwAyAEIAQwAdABwAMgA8ADQAHABEAEMAMgBDAEQARAAcABsAGwBFAEQARQAbABoAMQBEAEUARAAxADIARQAVADEAGgBGAEUAFQBFAEYARgAaABkAFQAwADEARgAwABUAMQAwADIAGQBHAEYAMABGAEcARwAZABgARwAvADAAGABIAEcALwBHAEgASAAYABcALgAwAC8ASAAuAC8AMAAuAC0ALQAyADAALgBIAEkAFwBJAEgASQAtAC4ASQAXABYAFgBKAEkALQBJAEoASgAWABQASgAsAC0AFABLAEoALABKAEsASwAUABMALQAsAEwASwBMACwAMgAtAE0ATABNAC0AEwBOAEsATABLAE4ATgATABIATgARAEwAEgBPAE4AEQBOAE8ATwASABAAEQArAEwATwArABEATAArAE0AEABQAE8AKwBPAFAAUAAQAA8AUAAqACsATQArACoADwBRAFAAKgBQAFEAUQAPAA4AUQApACoAKgApAE0ADgBSAFEAKQBRAFIAUgAOAA0AUgAoACkAKQAoAE0ADQBTAFIAKABSAFMAUwANAAwAUwACACgADAAmAFMAAgBTACYAJgAMAAsAKAACAFQAVAACACYAVABNACgATQBUAFUAPABNAFUAPABVAFQAMgBNADwAJgBWAFQAVABWADwAVgAmACcACwAnACYAJwBXAFYAPABWAFcAJwALAFgAWABXACcACgBYAAsAWAAKAAkACQBZAFgAVwBYAFkAWQAJAAgACABaAFkAWgAIAAcAWQAAAFcAAABZAFoAVwAAAFsAWwA8AFcAWgA6AAAAWwAAADoABwBcAFoAOgBaAFwAXAAHAAUAOgA5AFsAXAA5ADoAWwBdADwAXQBbADkABQBeAFwAOQBcAF4AXgAFAAQAOQA4AF0AXgA4ADkAPABdAF8AXwBdADgABABgAF4AOABeAGAAYAAEAAMAYAABADgAOAABAF8AAwBhAGAAAQBgAGEAYQBfAAEAYQADAAYAPABfADUABgBiAGEAXwBhAGIAYgAGACQANwA1AF8AYgA3AF8AJABjAGIANwBiAGMAYwAkACUANQA3ADYAYwA2ADcANQA2ACAAQAA1ACAANgBjAGQAJQBkAGMAZAAgADYAIABkAEAAZAAlACMAIwBAAGQA"), 0.0019748, PackedByteArray("AAAmACcACwAnACYAJwALAAoACgAAACcAJgAMAAsAAAAKAAkADAAmAA0AAAAJAAgAAgANACYAAAACACYADQACACgAKAACAAAAKAAOAA0ADgAoACkAKQAoAAAAKQAPAA4ADwApABAAKgAQACkAAAAqACkAEAAqACsAKwASABAAEgArABEAEQArACoAEQATABIAEQAUABMAFAARACwALAAWABQAEQAqAC0ALQAsABEAFgAsAC0AKgAAAC0ALQAXABYAFwAtAC4ALgAYABcAGAAuAC8ALwAZABgALgAwAC8AGQAvADAAMAAuAC0AMAAaABkAGgAwABUAFQAbABoAGwAVADEAFQAwADEAMQAcABsAHAAxADIAMgAdABwAMQAwADMAMwAyADEAHQAyADMALQAzADAAMwAeAB0AMwAfAB4AMwAtAAEAHwAzADQANAAzAAEANAAhAB8AAQAtAAAAIQA0ADUAAQA1ADQANQAiACEANQAjACIAIwA1ACAAIAAlACMAJQAgADYANQA2ACAANgAkACUANQA3ADYAJAA2ADcANwA1AAEANwAGACQABgA3AAEAAQADAAYAAQAEAAMABAABADgAOAAFAAQAAQA5ADgABQA4ADkAAAA5AAEAOQAHAAUAOgA5AAAABwA5ADoACAA6AAAAOgAIAAcA"), 0.0316404, PackedByteArray("AAABAAIAAwABAAQAAQAFAAQAAQADAAYAAQAHAAUABwABAAAAAAAIAAcAAAAJAAgAAAAKAAkACgAAAAIAAgALAAoAAgAMAAsADAACAA0AAgAOAA0AAgAPAA4ADwACABAAEAACABEAEQASABAAEQATABIAEQAUABMAFAARABUAEQACABUAFQAWABQAFQAXABYAFQAYABcAFQAZABgAFQAaABkAFQAbABoAFQAcABsAFQAdABwAFQAeAB0AFQAfAB4AHwAVACAAIAAVAAIAIAAhAB8AAQAgAAIAIAAiACEABgAgAAEAIAAjACIAIAAGACQAIAAlACMAIAAkACUA")],
-"name": "arene_ground_material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 145,
-"vertex_data": PackedByteArray("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")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_qkuun"]
-resource_name = "Circle_002"
-_surfaces = [{
-"aabb": AABB(-0.249276, -0.305357, -0.0248542, 0.577452, 0.577452, 0.0254319),
-"attribute_data": PackedByteArray("0cMqP6C3VT1EQ1s/UI3gPVgj/D60/RQ+OCdzP56HkT7jvjc/NScRP5DH4z4y9MQ+kyIuPkZKbD+X0+89ed9pP6YKpz3tdmA/hSQjPuJHcT+YfFM+QmR2P26Dgz4AAHk/xqZdPRBvVT+u3J0+AAB5PyjBaj2wvkc/69gSPc43ST/8/988V048P9ZG5DxmIy8/SLrKPoIxbD91wLc+3GN2P4Ms0D5xRnE/FzTmPuLdaT8LXJk9WGIYP21SAz8hJCM/2kYWPcciIj/082A9ttMVP3RTqD12tQo/J57wPSA5AT8p9/g+vm5gP0cMWj5e/vM+R9sDPydVVT9rQCM+/H3zPqLuCD/4/kg/QkhTPnQm6T6yggs/iuY7P5I+gz7K1OM+4m6dPqS44z6XU7c+1LroPvHPzz7mwvI+aublPrK4AD+1fQs/wI0uP+S3+D58Ggo/8d8IP+54IT+ewwM/zikVP3A/Bz9IjeA9egoSP6jbpj3ytu0+2ClAPpLH4z5QInA++LbePpqHkT74tt4+wH2rPnA/Bz8GcQI/ViP8PoKG8j7lvjc/oLdVPR16RD9wPH49O3hQP7Dbpj0HcWQ/hIbyPjunaz9y8Nw+OCdzP8R9qz48p2s/4ClAPuyecD9cInA+z8MqPzUnET94ChI/OacJP5cIHj/ong4/G3pEP+ieDj86eFA/OqcJP+GmBj62iWU/rdPKPUb1XD+RSlo+nPFwPzCvhD6VT3M/+mxLPTLjOz/IwJw+S0tzP1IATj2lrS8//2e0PgzkcD8bxW49gqkjP7ED8D5Ywlw/VhIHPhCNBT8rff0+6ZhSPwk8Lj6gcP0+kGEDP2tORz8/vAU/nFI7P3pihD58JO8+HLcFPy4cLz+e/7M+6LfzPnFM/T4M4Rc/SmDKPozp/D6+wu8+jMINP+qecD809MQ+WuNVP/42uT4IcWQ/uP0UPoGbPj9gfSo+WAE1P/D3Cj6YCB4/YDx+PVMDHT+MuTc+VtEUPyirXz7Kqh0//Ld8PlqfDD9gzoM+8LbtPnDw3D5CQ1s/BnECPwd44j46mmc/T2n0PmiSXj9x3t4+iGZlP85lzT6Asm4/2EEBPwPzUz98CrY+LplzP15JnT4OGnY/nBiEPtwbdj+l61Y+JJ9zP860KD7mvW4/OniDPVQjVD/Sfpc9dOVSPyV5Pz0Ldkg/ClAePW4VPD8gnyA90GcvP2I1Qz3c5yI/5EOFPfYeFz/Mmro91HwMP1E9zD0IOA4/Gqn/PRlrAz8x2yg+kIr4Pja/Vj4uqO4+INeDPv6T6T6Q4Zw+Zn/pPuJOnD7kGO8+qaa1Pv5Q7j54EM0+0Oz3Ph8v4j4S/QI/so/ePtosBT+WLfQ+a/cLP3grAT+WjBY/hg4GP6xTIj/1jgg/5dcuP62TCD8unTs/bhwGP/MkSD+2xF0/rAKmPmF/RT+YKOE+XrFNP8wvzT6E20Q/Sq++PlrjVT/+Nrk+vgxNPz61qj7FqDw/2KbSPgaePT/qXPQ+rcY0P/bZ5T7QWjY/6gcDP8qCLT/Ei/c+z8MqPzUnET9k7g8/wP7GPsvqGT+4Ytc+eAoSPzmnCT8y5yM/sMbnPmgqKz/GE9Y+OlQGPwY8tz6O9fo+nLWoPpsxFz/WS7U+cpcNPxyJpT4CLiE/zq/FPsQLMz9038I+Xw8pP3x7sj73Eh8/hBeiPs54FT/MVJI+80QnP7gejj5aQTE/sIKePlqfDD9gzoM+VtEUPyirXz7G3CU/YMZUPlMDHT+MuTc+8HYvP9RLdD4jvi0/wF0uPlZzOT/kiYo+S1g3PzDjTT6yVEE/IKtuPuiXSD9QRUs+WAE1P/D3Cj4dekQ/cDx+PU+UUj9ADWw+r+QkP+hQET7APTs/qOauPlpBMT+wgp4+VnM5P+SJij68b0M/2u2aPuiXSD9QRUs+T5RSP0ANbD4ZUUs/iLmHPrJUQT8gq24+VnM5P+SJij68b0M/2u2aPjt4UD+w26Y9RENbP1CN4D2Bmz4/YH0qPlgBNT/w9wo+S1g3PzDjTT4jvi0/wF0uPuQnLD8o1ts9r+QkP+hQET56ChI/qNumPeQnLD8o1ts9mAgeP2A8fj07p2s/cvDcPgdxZD+EhvI+XrFNP8wvzT5a41U//ja5PsqCLT/Ei/c+0Fo2P+oHAz/qnnA/NPTEPrbEXT+sAqY+7AdlP8RPlD44J3M/xH2rPuwHZT/ET5Q+Xu1UP7h/lz7mL1w/tMuFPrbEXT+sAqY+vgxNPz61qj5e7VQ/uH+XPrbEXT+sAqY+WuNVP/42uT4y5yM/sMbnPsqCLT/Ei/c+lwgeP+ieDj/snnA/XCJwPuwHZT/ET5Q+5i9cP7TLhT68b0M/2u2aPhlRSz+IuYc+Xu1UP7h/lz6+DE0/PrWqPr4MTT8+tao+hNtEP0qvvj7APTs/qOauPrxvQz/a7Zo+5i9cP7TLhT5e7VQ/uH+XPhlRSz+IuYc+T5RSP0ANbD48p2s/4ClAPuYvXD+0y4U+T5RSP0ANbD4IcWQ/uP0UPiO+LT/AXS4+r+QkP+hQET7kJyw/KNbbPXA/Bz9IjeA9UwMdP4y5Nz7G3CU/YMZUPlMDHT+MuTc+r+QkP+hQET4jvi0/wF0uPlgBNT/w9wo+5CcsPyjW2z3lvjc/oLdVPcqqHT/8t3w+xtwlP2DGVD7wdi8/1Et0PvNEJz+4Ho4+VtEUPyirXz5YI/w+tP0UPv69BD+wApc++LbePpqHkT6O9fo+nLWoPjpUBj8GPLc+cpcNPxyJpT7OeBU/zFSSPsA9Oz+o5q4+hNtEP0qvvj7FqDw/2KbSPsQLMz9038I+wD07P6jmrj7ECzM/dN/CPl8PKT98e7I+WkExP7CCnj7ECzM/dN/CPsWoPD/YptI+rcY0P/bZ5T5oKis/xhPWPmgqKz/GE9Y+rcY0P/bZ5T7Kgi0/xIv3PjLnIz+wxuc+YcT+PXiqZz8mMrk9aa1ePw=="),
-"format": 34359742487,
-"index_count": 768,
-"index_data": PackedByteArray("VwCFAFYAVgA4AFcAYQCGAIcAhwA3AGEAhgBhAEAAiACHAIYAiQCHAIgAiACKAIkAhgCLAIgAQACMAIYAiwCGAIwAjABAAD8AjACNAIsAPwCOAIwAjQCMAI4AjgCPAI0AjgA/AAQABACQAI4AMwCRAJIAkgAyADMAkQAzAGAAkwAyAJIAkgCUAJMAlQCUAJIAYACWAJEAlgBgAAUABQCXAJYAlwAFADEAMQAwAJcAmACRAJYAkgCRAJgAlgCZAJgAkgCaAJUAmACaAJIAmwCVAJoAmgCcAJsAmgCYAJ0AnQCYAJkAnQCcAJoAmQCeAJ0AnACdAJ8AnwCdAJ4AnwCgAJwAngBeAJ8AXgCeAKEAoQCiAF4AowBeAKIAogCkAKMAoACfAKUApQCjAKYApQCnAKAApgCoAKUAqQCnAKUApQCoAKkAqgCpAKgAqABZAKoAWQCrAKwArAA2AFkAWACtAKoAqgABAFgALQCuAFwAXAAsAC0ArwCwALEAsQCyAK8AswC0ALUAtQC2ALMAtwC2ALUAtQC4ALcAuQC6ALMAswC7ALkAvAC7AL0AvQC+ALwAWwC/AMAAwADBAFsAAAA0AMIAwgDDAAAAxADFAMYAxgDHAMQAyADJADwAPAA+AMgAOQDKAMsAywDMADkAAwDNAM4AzgA7AAMAzwDQAM4AzgDRAM8A0gDTANQA1ADVANIA1gDXANgA2AA9ANYA2QDaANsA2wA6ANkA3ADdAN4A3gDfANwA4ADhAOIA4gDjAOAA5ADlAOYA5gDnAOQA6ADpAOoA6gDrAOgAWgDsAO0A7QDuAFoA7wDwAF0AXQACAO8A8QDyAPMA8wD0APEA9QD2APcA9wA1APUA+AD5APoA+gD7APgA/ABfAC4ALgD9APwALwAuAF8AXwD+AC8A/wAvAP4A/gAAAf8AAQEAAf4A/gACAQEBAgH+AF8AXwADAQIBBAEFAQYBBgEHAQQBCAEJAQoBCgELAQgBDAENAQ4BDgEPAQwBEAERARIBEgETARABFQBiAGMAYgAVABQAYwAcABUASgBjAGIAYgBkAEoAYwBKAEwAFABlAGIAZABiAGUAZQAUABMAZQASAGQATABmAGMAHABjAGYAZgBMAE4AZgAeABwAEgBlAGcAEwBnAGUAZwBIABIAZwATAA0ASABnAGgADQBoAGcAaABGAEgAaAANAAsARgBoAGkACwBpAGgAaQBEAEYAaQALAAoARABpAGoACgBqAGkAagBDAEQAagAKAAkAQwBqAGsACQBrAGoAawAGAEMAawAJAAcABgBrABQBBwAUAWsAFAFBAAYAFAEHAAgAQQAUARUBCAAVARQBFQFCAEEAFQEIAAwAQgAVAWwADABsABUBbABtAEIAbAAMAA8AbQBsAG4ADwBuAGwAbgAOAG0AbgAPABAADgBuAG8AEABvAG4AbwBFAA4AbwAQABEARQBvAHAAEQBwAG8AcABHAEUAcAARABgARwBwAHEAGABxAHAAcQBJAEcAcQAYABkASQBxAHIAGQByAHEAcgAWAEkAcgAZABoAFgByAHMAGgBzAHIAcwB0ABYAcwAaABsAdABzAHUAGwB1AHMAdQBLAHQAdQAbAB8ASwB1AHYAHwB2AHUAdgBNAEsAdgAfACEATQB2AHcAIQB3AHYAdwAdAE0AdwAhACMAHQB3AHgAIwB4AHcAeABQAB0AeAAjACQAUAB4AHkAJAB5AHgAeQB6AFAAeQAkACUAegB5AHsAJQB7AHkAewBSAHoAewAlACYAUgB7AHwAJgB8AHsAfABUAFIAfAAmACcAVAB8AH0AJwB9AHwAfQB+AFQAfQAnACkAfgB9AH8AKQB/AH0AfwBVAH4AfwApACsAVQB/AIAAKwCAAH8AgABTAFUAgAArACoAUwCAAIEAKgCBAIAAgQAXAFMAgQAqACgAFwCBAIIAKACCAIEAggBRABcAggAoACIAUQCCAIMAIgCDAIIAgwBPAFEAgwAiACAATwCDAIQAIACEAIMAhABOAE8AhAAgAB4ATgCEAGYAHgBmAIQA"),
-"lods": [1.66889e-05, PackedByteArray("VgA4AFcAOQBWAFcAOQA7AAMAOQA6ADsAOgA5AFgAVwBYADkANgABAFgAWABZADYAVwBZAFgANQA2AFkAWQBaADUAWgBZAFcANAA1AFoAWgAAADQAWwAAAFoAWgBXAFsAVwBcAFsALQBbAFwAXAAsAC0ALABcAF0AXQBcAFcAXQACACwALgACAF0AVwBeAF0AXQBfAC4AXwBdAF4AVwBfAF4ALwAuAF8AMAAvAF8AXwAxADAAYAAxAF8ABQAxAGAAQABfAFcAQABXADgAOAA3AEAAQAA3AGEAYABfADIAQAAyAF8AMgAzAGAAMgBAADwAPwA8AEAABAA8AD8APAA9ADIAPQA8AD4AFQBiAGMAYgAVABQAYwAcABUASgBjAGIAYgBkAEoAYwBKAEwAFABlAGIAZABiAGUAZQAUABMAZQASAGQATABmAGMAHABjAGYAZgBMAE4AZgAeABwAEgBlAGcAEwBnAGUAZwBIABIAZwATAA0ASABnAGgADQBoAGcAaABGAEgAaAANAAsARgBoAGkACwBpAGgAaQBEAEYAaQALAAoARABpAGoACgBqAGkAagBDAEQAagAKAAkAQwBqAGsACQBrAGoAawAGAEMAawAJAAcABgBrAEEABwBBAGsAQQAHAAgACABCAEEAQgAIAGwADABsAAgAbABtAEIAbAAMAA8AbQBsAG4ADwBuAGwAbgAOAG0AbgAPABAADgBuAG8AEABvAG4AbwBFAA4AbwAQABEARQBvAHAAEQBwAG8AcABHAEUAcAARABgARwBwAHEAGABxAHAAcQBJAEcAcQAYABkASQBxAHIAGQByAHEAcgAWAEkAcgAZABoAFgByAHMAGgBzAHIAcwB0ABYAcwAaABsAdABzAHUAGwB1AHMAdQBLAHQAdQAbAB8ASwB1AHYAHwB2AHUAdgBNAEsAdgAfACEATQB2AHcAIQB3AHYAdwAdAE0AdwAhACMAHQB3AHgAIwB4AHcAeABQAB0AeAAjACQAUAB4AHkAJAB5AHgAeQB6AFAAeQAkACUAegB5AHsAJQB7AHkAewBSAHoAewAlACYAUgB7AHwAJgB8AHsAfABUAFIAfAAmACcAVAB8AH0AJwB9AHwAfQB+AFQAfQAnACkAfgB9AH8AKQB/AH0AfwBVAH4AfwApACsAVQB/AIAAKwCAAH8AgABTAFUAgAArACoAUwCAAIEAKgCBAIAAgQAXAFMAgQAqACgAFwCBAIIAKACCAIEAggBRABcAggAoACIAUQCCAIMAIgCDAIIAgwBPAFEAgwAiACAATwCDAIQAIACEAIMAhABOAE8AhAAgAB4ATgCEAGYAHgBmAIQA"), 0.0019748, PackedByteArray("AAAsAC0AAAACACwALgACAAAALwAuAAAAAAAwAC8ABQAxADAABQAwADIAMAAAADIAMgAzAAUANAA1AAAAAAA1AAEAAQAyAAAAAQA1ADYANwAyAAEAOAA3AAEAAQA5ADgAOgA5AAEAOQA6ADsAOQA7AAMAMgA3ADwAPAA9ADIAPQA8AD4APwA8ADcABAA8AD8ANwBAAD8AQQAHAAgABwBBAAkACABCAEEABgAJAEEAQgAIAAwACQAGAEMADAAOAEIAQwAKAAkADgAMAA8ACgBDAEQADgAPABAARAALAAoAEABFAA4ACwBEAA0ARQAQABEARgANAEQAEQBHAEUADQBGAEgARwARABgASAATAA0AGABJAEcAEwBIABIASQAYABkAEgAUABMAGQAWAEkAEgAVABQAFgAZABoAFQASAEoAFgAaABsASgAcABUAGwBLABYAHABKAEwASwAbAB8ATAAeABwAHwBNAEsAHgBMAE4ATQAfACEATgAgAB4AIQAdAE0AIABOAE8AHQAhACMATwAiACAAIwBQAB0AIgBPAFEAUAAjACQAUQAoACIAUAAkACUAKABRABcAJQBSAFAAFwAqACgAUgAlACYAKgAXAFMAJgBUAFIAUwArACoAVAAmACcAKwBTAFUAVAAnACkAVQApACsAKQBVAFQA"), 0.0316404, PackedByteArray("AAABAAIAAQADAAIAAwAEAAIABQACAAQABgAHAAgABwAGAAkABgAKAAkABgALAAoABgAIAAwACwAGAA0ADAAOAAYADgAMAA8ADgAPABAADgAQABEADQAGABIAEgATAA0AEgAUABMAEgAVABQAEQAWAA4AFQASABcAFgARABgAFgAYABkAGgAWABkAFgAaABsAFwAcABUAGwAdABYAFwAeABwAHQAbAB8AFwAgAB4AHQAfACEAFwAiACAAHQAhACMAHQAjACQAHQAkACUAHQAlACYAJgAXAB0AFwAmACcAFwAoACIAFwAnACkAFwAqACgAFwApACsAFwArACoA")],
-"material": SubResource("StandardMaterial3D_5oned"),
-"name": "arene_ground_material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 278,
-"vertex_data": PackedByteArray("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jZYhPVJjwD05cBc6jZYhPUiZIj05cBc6jkKKvFyZIj05cBc6f7j3vUhKwD05cBc6qH2RvRRSwD05cBc6qH2RvUiZIj05cBc6f7j3vVyZIj05cBc6xMBovq45wD05cBc6f7j3vUhKwD05cBc6f7j3vVyZIj05cBc61pN5vlyZIj05cBc6qH2RvRQsAr45cBc6qH2RvYBJNb45cBc6f7j3vYVJNb45cBc6jEKKvI2Amb45cBc6jkKKvIBJNb45cBc6jkKKvBosAr45cBc6jkKKvIBJNb45cBc6qH2RvYBJNb45cBc6qH2RvRQsAr45cBc6f7j3vRQsAr45cBc6f7j3vYVJNb45cBc6dm5NvoBJNb45cBc6jZYhPRQsAr45cBc6jkKKvBosAr45cBc6jkKKvClrlb05cBc6jZYhPSlrlb05cBc6jZYhPYBJNb45cBc6jZYhPbZXnL45cBc6GYoZPoBJNb45cBc6hqdMPtxtg745cBc6iadMPoBJNb45cBc6iadMPhQsAr45cBc6GIoZPhQsAr45cBc6LSfEPRQsAr45cBc6jZYhPUiZIj05cBc6jZYhPVJjwD05cBc6LifEPYVawD05cBc6LifEPUiZIj05cBc6jZYhPUiZIj05cBc6LifEPUiZIj05cBc6LSfEPfY8iLw5cBc6jZYhPfY8iLw5cBc6LifEPUiZIj05cBc6LifEPYVawD05cBc6GIoZPhRSwD05cBc6GooZPlyZIj05cBc6GooZPlyZIj05cBc6GIoZPhRSwD05cBc6iadMPkhKwD05cBc6iadMPlyZIj05cBc6jEKKvI2Amb6M30a8qX2RvQMXkb6M30a8/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/38AACzT/7/DajwVjr7GuYJafSVormK2/38AACHT/787lTwVr9RryHylfSUJ1GfRukxEMxGgSLVEs0QzGdAn3P8//z8OkXe3/z//P2eSy7ZEM7pMqYXCu30lglpwfEvEusy6TDLIWu3/v/8/V8ur5brMuky7yIjtgdqCWqjIifQAAP9//38L1v+//79f7U+JPBXDagB7jswAAP9//3/l1DwVO5UQik7ZfSV8pZOWQNvC6sNqEMzU+v8//7+wtFfa////f0HU//9EM0Szm6Rk28LqO5UKG079/z//v2e0M9qB2nyl+wgi/rpMusx1x9/XglqB2g3d0dXDasLqC+9h1f9//////wXWO5XC6mTzrZ+6zESzrPVyg3ylgdpm7KaX/7//vy/s54lEs7rM0+mWkP9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl48NqPBVVvsy5glp9JeWtfbY7lTwV29RvyHylfSUn1G3RRDO6TOKDFr1Es0QzDNAd3H0lglpGe7LF/7//PxjLi+U8FcNqhXrDzcLqw2qJyq36fSV8pf2WwNv///9/+9H//0QzRLP+pK7bwuo7lZodDf2B2nylIAx8/bpMusydx+zXusxEszH4moLDasLqBe9U1USzusxb6jGQ/3//////BdZ8pYHamexpl/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl44HaglouyG/0wurDakzLwfqB2oJatsdW9LrMukx2yHHt////fx3T////v/8/N8ub5USzRDMS0CLcfKV9JRjUatE7lTwVxdRtyP9/AAAn0/+/ukxEM6SfbLW6TEQzMZ+Ttf8//z+/kR+3RDO6TMuEaLx9JYJa2HsCxTwVw2rCeirNAAD/f/9/eNU8FTuVOYq02TwVO5VhihnafSV8pciWgNtEM0SzzaSJ2/8//7+MtEXauky6zInH5deCWoHaDd3R1YJagdoN3dDVw2rC6gjvW9X/f/////8F1juVwupq85+fO5XC6nDzkJ98pYHaf+yIl0SzuswW6mSQ/7//v8PsnYm6zESz5fYJg4HafKWRCs79wuo7lVQcLf3/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXj/3//f01GJeP/f/9/TUYl4/9//39NRiXjw2o8FXK+ybmCWn0lKK5vtg==")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ttsoe")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_81x25"]
-data = PackedVector3Array(-0.0169, 0.1438, 0.0006, -0.071, 0.1438, 0.0006, -0.071, 0.2501, 0.0006, -0.071, 0.2501, 0.0006, -0.0169, 0.2665, 0.0006, -0.0169, 0.1438, 0.0006, 0.0958, 0.2665, 0.0006, 0.0958, 0.1438, 0.0006, 0.0395, 0.1438, 0.0006, 0.0395, 0.1438, 0.0006, 0.0395, 0.2721, 0.0006, 0.0958, 0.2665, 0.0006, 0.0958, 0.1438, 0.0006, 0.0958, 0.2665, 0.0006, 0.1499, 0.2501, 0.0006, 0.0395, 0.0939, 0.0006, 0.0395, 0.1438, 0.0006, 0.0958, 0.1438, 0.0006, -0.0169, 0.1438, 0.0006, 0.0395, 0.1438, 0.0006, 0.0395, 0.0939, 0.0006, 0.0395, 0.0939, 0.0006, -0.0169, 0.0939, 0.0006, -0.0169, 0.1438, 0.0006, 0.0958, 0.1438, 0.0006, 0.0958, 0.0939, 0.0006, 0.0395, 0.0939, 0.0006, 0.1499, 0.2501, 0.0006, 0.1499, 0.1438, 0.0006, 0.0958, 0.1438, 0.0006, 0.0958, 0.0939, 0.0006, 0.0958, 0.1438, 0.0006, 0.1499, 0.1438, 0.0006, 0.1499, 0.1438, 0.0006, 0.1499, 0.2501, 0.0006, 0.1999, 0.2234, 0.0006, 0.1499, 0.1438, 0.0006, 0.1499, 0.0939, 0.0006, 0.0958, 0.0939, 0.0006, 0.1999, 0.2234, 0.0006, 0.1999, 0.1438, 0.0006, 0.1499, 0.1438, 0.0006, 0.1499, 0.0939, 0.0006, 0.1499, 0.1438, 0.0006, 0.1999, 0.1438, 0.0006, 0.1999, 0.1438, 0.0006, 0.1999, 0.0939, 0.0006, 0.1499, 0.0939, 0.0006, 0.1999, 0.1438, 0.0006, 0.1999, 0.2234, 0.0006, 0.2436, 0.1875, 0.0006, 0.2436, 0.1875, 0.0006, 0.2795, 0.1438, 0.0006, 0.1999, 0.1438, 0.0006, 0.3226, -0.073, 0.0006, 0.1999, -0.073, 0.0006, 0.1999, -0.0166, 0.0006, 0.1999, -0.0166, 0.0006, 0.3282, -0.0166, 0.0006, 0.3226, -0.073, 0.0006, 0.1999, -0.073, 0.0006, 0.3226, -0.073, 0.0006, 0.3062, -0.1271, 0.0006, 0.3226, 0.0397, 0.0006, 0.3282, -0.0166, 0.0006, 0.1999, -0.0166, 0.0006, 0.1999, -0.0166, 0.0006, 0.1999, 0.0397, 0.0006, 0.3226, 0.0397, 0.0006, 0.1499, 0.0397, 0.0006, 0.1999, 0.0397, 0.0006, 0.1999, -0.0166, 0.0006, 0.3062, -0.1271, 0.0006, 0.1999, -0.1271, 0.0006, 0.1999, -0.073, 0.0006, 0.1999, -0.1271, 0.0006, 0.3062, -0.1271, 0.0006, 0.2795, -0.177, 0.0006, 0.2795, -0.177, 0.0006, 0.1999, -0.177, 0.0006, 0.1999, -0.1271, 0.0006, 0.1999, -0.177, 0.0006, 0.2795, -0.177, 0.0006, 0.2436, -0.2208, 0.0006, 0.2436, -0.2208, 0.0006, 0.1999, -0.2567, 0.0006, 0.1999, -0.177, 0.0006, 0.1499, -0.073, 0.0006, 0.1999, -0.073, 0.0006, 0.1999, -0.1271, 0.0006, 0.1999, -0.0166, 0.0006, 0.1999, -0.073, 0.0006, 0.1499, -0.073, 0.0006, 0.1999, -0.1271, 0.0006, 0.1499, -0.1271, 0.0006, 0.1499, -0.073, 0.0006, 0.1999, -0.0166, 0.0006, 0.1499, -0.0166, 0.0006, 0.1499, 0.0397, 0.0006, 0.1499, -0.073, 0.0006, 0.1499, -0.0166, 0.0006, 0.1999, -0.0166, 0.0006, 0.0958, 0.0397, 0.0006, 0.1499, 0.0397, 0.0006, 0.1499, -0.0166, 0.0006, 0.1499, -0.0166, 0.0006, 0.0958, -0.0166, 0.0006, 0.0958, 0.0397, 0.0006, 0.1499, -0.0166, 0.0006, 0.1499, -0.073, 0.0006, 0.0958, -0.073, 0.0006, 0.0958, -0.073, 0.0006, 0.1499, -0.073, 0.0006, 0.1499, -0.1271, 0.0006, 0.0958, -0.073, 0.0006, 0.0958, -0.0166, 0.0006, 0.1499, -0.0166, 0.0006, 0.1499, -0.1271, 0.0006, 0.0958, -0.1271, 0.0006, 0.0958, -0.073, 0.0006, 0.0958, -0.0166, 0.0006, 0.0958, -0.073, 0.0006, 0.0395, -0.073, 0.0006, 0.0395, -0.073, 0.0006, 0.0958, -0.073, 0.0006, 0.0958, -0.1271, 0.0006, 0.0395, -0.073, 0.0006, 0.0395, -0.0166, 0.0006, 0.0958, -0.0166, 0.0006, 0.0958, -0.1271, 0.0006, 0.0395, -0.1271, 0.0006, 0.0395, -0.073, 0.0006, 0.0395, -0.1271, 0.0006, 0.0958, -0.1271, 0.0006, 0.0958, -0.177, 0.0006, 0.0958, -0.177, 0.0006, 0.0395, -0.177, 0.0006, 0.0395, -0.1271, 0.0006, -0.0169, -0.1271, 0.0006, 0.0395, -0.1271, 0.0006, 0.0395, -0.177, 0.0006, 0.0395, -0.177, 0.0006, -0.0169, -0.177, 0.0006, -0.0169, -0.1271, 0.0006, 0.0395, -0.0166, 0.0006, 0.0395, -0.073, 0.0006, -0.0169, -0.073, 0.0006, -0.0169, -0.073, 0.0006, -0.0169, -0.1271, 0.0006, -0.071, -0.1271, 0.0006, -0.0169, -0.073, 0.0006, -0.0169, -0.0166, 0.0006, 0.0395, -0.0166, 0.0006, -0.071, -0.1271, 0.0006, -0.071, -0.073, 0.0006, -0.0169, -0.073, 0.0006, -0.071, -0.0166, 0.0006, -0.0169, -0.0166, 0.0006, -0.0169, -0.073, 0.0006, -0.0169, -0.073, 0.0006, -0.071, -0.073, 0.0006, -0.071, -0.0166, 0.0006, -0.121, -0.0166, 0.0006, -0.071, -0.0166, 0.0006, -0.071, -0.073, 0.0006, -0.071, -0.073, 0.0006, -0.121, -0.073, 0.0006, -0.121, -0.0166, 0.0006, -0.121, -0.073, 0.0006, -0.121, -0.1271, 0.0006, -0.2273, -0.1271, 0.0006, -0.2273, -0.1271, 0.0006, -0.2437, -0.073, 0.0006, -0.121, -0.073, 0.0006, -0.2437, 0.0397, 0.0006, -0.121, 0.0397, 0.0006, -0.121, -0.0166, 0.0006, -0.121, -0.0166, 0.0006, -0.2493, -0.0166, 0.0006, -0.2437, 0.0397, 0.0006, -0.071, -0.2834, 0.0006, -0.071, -0.177, 0.0006, -0.0169, -0.177, 0.0006, -0.0169, -0.177, 0.0006, -0.0169, -0.2998, 0.0006, -0.071, -0.2834, 0.0006, 0.0395, 0.0397, 0.0006, 0.0395, -0.0166, 0.0006, -0.0169, -0.0166, 0.0006, -0.0169, -0.0166, 0.0006, -0.0169, 0.0397, 0.0006, 0.0395, 0.0397, 0.0006, -0.121, -0.0166, 0.0006, -0.121, 0.0397, 0.0006, -0.071, 0.0397, 0.0006, -0.071, 0.0397, 0.0006, -0.071, -0.0166, 0.0006, -0.121, -0.0166, 0.0006, -0.0169, -0.0166, 0.0006, -0.071, -0.0166, 0.0006, -0.071, 0.0397, 0.0006, -0.071, 0.0397, 0.0006, -0.0169, 0.0397, 0.0006, -0.0169, -0.0166, 0.0006, -0.2437, -0.073, 0.0006, -0.2493, -0.0166, 0.0006, -0.121, -0.0166, 0.0006, -0.121, -0.0166, 0.0006, -0.121, -0.073, 0.0006, -0.2437, -0.073, 0.0006, -0.121, -0.1271, 0.0006, -0.121, -0.073, 0.0006, -0.071, -0.073, 0.0006, -0.071, -0.073, 0.0006, -0.071, -0.1271, 0.0006, -0.121, -0.1271, 0.0006, -0.121, -0.2567, 0.0006, -0.121, -0.177, 0.0006, -0.071, -0.177, 0.0006, -0.071, -0.177, 0.0006, -0.071, -0.2834, 0.0006, -0.121, -0.2567, 0.0006, -0.1647, -0.2208, 0.0006, -0.2006, -0.177, 0.0006, -0.121, -0.177, 0.0006, -0.121, -0.177, 0.0006, -0.121, -0.2567, 0.0006, -0.1647, -0.2208, 0.0006, -0.0169, 0.2665, 0.0006, 0.0395, 0.2721, 0.0006, 0.0395, 0.1438, 0.0006, 0.0395, 0.1438, 0.0006, -0.0169, 0.1438, 0.0006, -0.0169, 0.2665, 0.0006, 0.1999, 0.0939, 0.0006, 0.1999, 0.1438, 0.0006, 0.2795, 0.1438, 0.0006, 0.2795, 0.1438, 0.0006, 0.3062, 0.0939, 0.0006, 0.1999, 0.0939, 0.0006, -0.121, 0.2234, 0.0006, -0.071, 0.2501, 0.0006, -0.071, 0.1438, 0.0006, -0.071, 0.1438, 0.0006, -0.121, 0.1438, 0.0006, -0.121, 0.2234, 0.0006, -0.1647, 0.1875, 0.0006, -0.121, 0.2234, 0.0006, -0.121, 0.1438, 0.0006, -0.121, 0.1438, 0.0006, -0.2006, 0.1438, 0.0006, -0.1647, 0.1875, 0.0006, -0.071, 0.0939, 0.0006, -0.121, 0.0939, 0.0006, -0.121, 0.1438, 0.0006, -0.121, 0.1438, 0.0006, -0.071, 0.1438, 0.0006, -0.071, 0.0939, 0.0006, -0.0169, 0.0939, 0.0006, -0.071, 0.0939, 0.0006, -0.071, 0.1438, 0.0006, -0.071, 0.1438, 0.0006, -0.0169, 0.1438, 0.0006, -0.0169, 0.0939, 0.0006, 0.1999, 0.0397, 0.0006, 0.1999, 0.0939, 0.0006, 0.3062, 0.0939, 0.0006, 0.3062, 0.0939, 0.0006, 0.3226, 0.0397, 0.0006, 0.1999, 0.0397, 0.0006, -0.2006, 0.1438, 0.0006, -0.121, 0.1438, 0.0006, -0.121, 0.0939, 0.0006, -0.121, 0.0939, 0.0006, -0.2273, 0.0939, 0.0006, -0.2006, 0.1438, 0.0006, -0.0169, 0.0397, 0.0006, -0.071, 0.0397, 0.0006, -0.071, 0.0939, 0.0006, -0.071, 0.0939, 0.0006, -0.0169, 0.0939, 0.0006, -0.0169, 0.0397, 0.0006, -0.0169, 0.0939, 0.0006, 0.0395, 0.0939, 0.0006, 0.0395, 0.0397, 0.0006, 0.0395, 0.0397, 0.0006, -0.0169, 0.0397, 0.0006, -0.0169, 0.0939, 0.0006, -0.121, 0.0939, 0.0006, -0.071, 0.0939, 0.0006, -0.071, 0.0397, 0.0006, -0.071, 0.0397, 0.0006, -0.121, 0.0397, 0.0006, -0.121, 0.0939, 0.0006, -0.2273, 0.0939, 0.0006, -0.121, 0.0939, 0.0006, -0.121, 0.0397, 0.0006, -0.121, 0.0397, 0.0006, -0.2437, 0.0397, 0.0006, -0.2273, 0.0939, 0.0006, -0.121, -0.1271, 0.0006, -0.071, -0.1271, 0.0006, -0.071, -0.177, 0.0006, -0.071, -0.177, 0.0006, -0.121, -0.177, 0.0006, -0.121, -0.1271, 0.0006, -0.0169, -0.2998, 0.0006, -0.0169, -0.177, 0.0006, 0.0395, -0.177, 0.0006, 0.0395, -0.177, 0.0006, 0.0395, -0.3054, 0.0006, -0.0169, -0.2998, 0.0006, -0.0169, -0.1271, 0.0006, -0.0169, -0.177, 0.0006, -0.071, -0.177, 0.0006, -0.071, -0.177, 0.0006, -0.071, -0.1271, 0.0006, -0.0169, -0.1271, 0.0006, -0.121, -0.1271, 0.0006, -0.121, -0.177, 0.0006, -0.2006, -0.177, 0.0006, -0.2006, -0.177, 0.0006, -0.2273, -0.1271, 0.0006, -0.121, -0.1271, 0.0006, 0.0395, -0.1271, 0.0006, -0.0169, -0.1271, 0.0006, -0.0169, -0.073, 0.0006, -0.0169, -0.073, 0.0006, 0.0395, -0.073, 0.0006, 0.0395, -0.1271, 0.0006, 0.0395, -0.177, 0.0006, 0.0958, -0.177, 0.0006, 0.0958, -0.2998, 0.0006, 0.0958, -0.2998, 0.0006, 0.0395, -0.3054, 0.0006, 0.0395, -0.177, 0.0006, 0.1499, -0.2834, 0.0006, 0.0958, -0.2998, 0.0006, 0.0958, -0.177, 0.0006, 0.0958, -0.177, 0.0006, 0.1499, -0.177, 0.0006, 0.1499, -0.2834, 0.0006, 0.1999, -0.2567, 0.0006, 0.1499, -0.2834, 0.0006, 0.1499, -0.177, 0.0006, 0.1499, -0.177, 0.0006, 0.1999, -0.177, 0.0006, 0.1999, -0.2567, 0.0006, 0.1999, -0.1271, 0.0006, 0.1999, -0.177, 0.0006, 0.1499, -0.177, 0.0006, 0.1499, -0.177, 0.0006, 0.1499, -0.1271, 0.0006, 0.1999, -0.1271, 0.0006, 0.1499, -0.1271, 0.0006, 0.1499, -0.177, 0.0006, 0.0958, -0.177, 0.0006, 0.0958, -0.177, 0.0006, 0.0958, -0.1271, 0.0006, 0.1499, -0.1271, 0.0006, 0.0395, 0.0397, 0.0006, 0.0395, 0.0939, 0.0006, 0.0958, 0.0939, 0.0006, 0.0958, 0.0939, 0.0006, 0.0958, 0.0397, 0.0006, 0.0395, 0.0397, 0.0006, 0.0395, 0.0397, 0.0006, 0.0958, 0.0397, 0.0006, 0.0958, -0.0166, 0.0006, 0.0958, -0.0166, 0.0006, 0.0395, -0.0166, 0.0006, 0.0395, 0.0397, 0.0006, 0.0958, 0.0397, 0.0006, 0.0958, 0.0939, 0.0006, 0.1499, 0.0939, 0.0006, 0.1499, 0.0939, 0.0006, 0.1499, 0.0397, 0.0006, 0.0958, 0.0397, 0.0006, 0.1499, 0.0397, 0.0006, 0.1499, 0.0939, 0.0006, 0.1999, 0.0939, 0.0006, 0.1999, 0.0939, 0.0006, 0.1999, 0.0397, 0.0006, 0.1499, 0.0397, 0.0006, 0.3062, -0.1271, -0.0249, 0.3062, -0.1271, -0.0121, 0.3226, -0.073, -0.0121, 0.3062, -0.1271, -0.0121, 0.3062, -0.1271, -0.0249, 0.2795, -0.177, -0.0249, 0.3226, -0.073, -0.0121, 0.3226, -0.073, -0.0249, 0.3062, -0.1271, -0.0249, 0.3226, -0.073, 0.0006, 0.3226, -0.073, -0.0121, 0.3062, -0.1271, -0.0121, 0.3062, -0.1271, -0.0121, 0.3062, -0.1271, 0.0006, 0.3226, -0.073, 0.0006, 0.3226, -0.073, -0.0121, 0.3226, -0.073, 0.0006, 0.3282, -0.0166, 0.0006, 0.2795, -0.177, -0.0249, 0.2795, -0.177, -0.0121, 0.3062, -0.1271, -0.0121, 0.3062, -0.1271, 0.0006, 0.3062, -0.1271, -0.0121, 0.2795, -0.177, -0.0121, 0.2795, -0.177, -0.0121, 0.2795, -0.177, -0.0249, 0.2436, -0.2208, -0.0249, 0.2795, -0.177, -0.0121, 0.2795, -0.177, 0.0006, 0.3062, -0.1271, 0.0006, 0.3282, -0.0166, 0.0006, 0.3282, -0.0166, -0.0121, 0.3226, -0.073, -0.0121, 0.3226, -0.073, -0.0249, 0.3226, -0.073, -0.0121, 0.3282, -0.0166, -0.0121, 0.3282, -0.0166, -0.0121, 0.3282, -0.0166, 0.0006, 0.3226, 0.0397, 0.0006, 0.3282, -0.0166, -0.0121, 0.3282, -0.0166, -0.0249, 0.3226, -0.073, -0.0249, 0.2795, -0.177, 0.0006, 0.2795, -0.177, -0.0121, 0.2436, -0.2208, -0.0121, 0.2436, -0.2208, -0.0249, 0.2436, -0.2208, -0.0121, 0.2795, -0.177, -0.0121, 0.2436, -0.2208, -0.0121, 0.2436, -0.2208, 0.0006, 0.2795, -0.177, 0.0006, 0.2436, -0.2208, -0.0121, 0.2436, -0.2208, -0.0249, 0.1999, -0.2567, -0.0249, 0.2436, -0.2208, 0.0006, 0.2436, -0.2208, -0.0121, 0.1999, -0.2567, -0.0121, 0.1999, -0.2567, -0.0249, 0.1999, -0.2567, -0.0121, 0.2436, -0.2208, -0.0121, 0.1999, -0.2567, -0.0121, 0.1999, -0.2567, 0.0006, 0.2436, -0.2208, 0.0006, 0.1999, -0.2567, -0.0121, 0.1999, -0.2567, -0.0249, 0.1499, -0.2834, -0.0249, 0.1999, -0.2567, 0.0006, 0.1999, -0.2567, -0.0121, 0.1499, -0.2834, -0.0121, 0.1499, -0.2834, -0.0249, 0.1499, -0.2834, -0.0121, 0.1999, -0.2567, -0.0121, 0.1499, -0.2834, -0.0121, 0.1499, -0.2834, 0.0006, 0.1999, -0.2567, 0.0006, 0.1499, -0.2834, -0.0121, 0.1499, -0.2834, -0.0249, 0.0958, -0.2998, -0.0249, 0.1499, -0.2834, 0.0006, 0.1499, -0.2834, -0.0121, 0.0958, -0.2998, -0.0121, 0.0958, -0.2998, -0.0249, 0.0958, -0.2998, -0.0121, 0.1499, -0.2834, -0.0121, 0.0958, -0.2998, -0.0121, 0.0958, -0.2998, 0.0006, 0.1499, -0.2834, 0.0006, 0.0958, -0.2998, -0.0121, 0.0958, -0.2998, -0.0249, 0.0395, -0.3054, -0.0249, 0.0958, -0.2998, 0.0006, 0.0958, -0.2998, -0.0121, 0.0395, -0.3054, -0.0121, 0.0395, -0.3054, -0.0249, 0.0395, -0.3054, -0.0121, 0.0958, -0.2998, -0.0121, 0.0395, -0.3054, -0.0121, 0.0395, -0.3054, 0.0006, 0.0958, -0.2998, 0.0006, 0.0395, -0.3054, -0.0121, 0.0395, -0.3054, -0.0249, -0.0169, -0.2998, -0.0249, 0.0395, -0.3054, 0.0006, 0.0395, -0.3054, -0.0121, -0.0169, -0.2998, -0.0121, -0.0169, -0.2998, -0.0249, -0.0169, -0.2998, -0.0121, 0.0395, -0.3054, -0.0121, -0.0169, -0.2998, -0.0121, -0.0169, -0.2998, 0.0006, 0.0395, -0.3054, 0.0006, -0.0169, -0.2998, -0.0121, -0.0169, -0.2998, -0.0249, -0.071, -0.2834, -0.0249, -0.0169, -0.2998, 0.0006, -0.0169, -0.2998, -0.0121, -0.071, -0.2834, -0.0121, -0.071, -0.2834, -0.0249, -0.071, -0.2834, -0.0121, -0.0169, -0.2998, -0.0121, -0.071, -0.2834, -0.0121, -0.071, -0.2834, 0.0006, -0.0169, -0.2998, 0.0006, -0.071, -0.2834, -0.0121, -0.071, -0.2834, -0.0249, -0.121, -0.2567, -0.0249, -0.071, -0.2834, 0.0006, -0.071, -0.2834, -0.0121, -0.121, -0.2567, -0.0121, -0.121, -0.2567, -0.0249, -0.121, -0.2567, -0.0121, -0.071, -0.2834, -0.0121, -0.121, -0.2567, -0.0121, -0.121, -0.2567, 0.0006, -0.071, -0.2834, 0.0006, -0.121, -0.2567, -0.0121, -0.121, -0.2567, -0.0249, -0.1647, -0.2208, -0.0249, -0.121, -0.2567, 0.0006, -0.121, -0.2567, -0.0121, -0.1647, -0.2208, -0.0121, -0.1647, -0.2208, -0.0249, -0.1647, -0.2208, -0.0121, -0.121, -0.2567, -0.0121, -0.1647, -0.2208, -0.0121, -0.1647, -0.2208, 0.0006, -0.121, -0.2567, 0.0006, -0.1647, -0.2208, -0.0121, -0.1647, -0.2208, -0.0249, -0.2006, -0.177, -0.0249, -0.1647, -0.2208, 0.0006, -0.1647, -0.2208, -0.0121, -0.2006, -0.177, -0.0121, -0.2006, -0.177, -0.0249, -0.2006, -0.177, -0.0121, -0.1647, -0.2208, -0.0121, -0.2006, -0.177, -0.0121, -0.2006, -0.177, 0.0006, -0.1647, -0.2208, 0.0006, -0.2006, -0.177, -0.0121, -0.2006, -0.177, -0.0249, -0.2273, -0.1271, -0.0249, -0.2006, -0.177, 0.0006, -0.2006, -0.177, -0.0121, -0.2273, -0.1271, -0.0121, -0.2273, -0.1271, -0.0249, -0.2273, -0.1271, -0.0121, -0.2006, -0.177, -0.0121, -0.2273, -0.1271, -0.0121, -0.2273, -0.1271, 0.0006, -0.2006, -0.177, 0.0006, -0.2273, -0.1271, -0.0121, -0.2273, -0.1271, -0.0249, -0.2437, -0.073, -0.0249, -0.2273, -0.1271, 0.0006, -0.2273, -0.1271, -0.0121, -0.2437, -0.073, -0.0121, -0.2437, -0.073, -0.0249, -0.2437, -0.073, -0.0121, -0.2273, -0.1271, -0.0121, -0.2437, -0.073, -0.0121, -0.2437, -0.073, 0.0006, -0.2273, -0.1271, 0.0006, -0.2437, -0.073, -0.0121, -0.2437, -0.073, -0.0249, -0.2493, -0.0166, -0.0249, -0.2437, -0.073, 0.0006, -0.2437, -0.073, -0.0121, -0.2493, -0.0166, -0.0121, -0.2493, -0.0166, -0.0249, -0.2493, -0.0166, -0.0121, -0.2437, -0.073, -0.0121, -0.2493, -0.0166, -0.0121, -0.2493, -0.0166, 0.0006, -0.2437, -0.073, 0.0006, -0.2493, -0.0166, -0.0121, -0.2493, -0.0166, -0.0249, -0.2437, 0.0397, -0.0249, -0.2493, -0.0166, 0.0006, -0.2493, -0.0166, -0.0121, -0.2437, 0.0397, -0.0121, -0.2437, 0.0397, -0.0249, -0.2437, 0.0397, -0.0121, -0.2493, -0.0166, -0.0121, -0.2437, 0.0397, -0.0121, -0.2437, 0.0397, 0.0006, -0.2493, -0.0166, 0.0006, -0.2437, 0.0397, -0.0121, -0.2437, 0.0397, -0.0249, -0.2273, 0.0939, -0.0249, -0.2437, 0.0397, 0.0006, -0.2437, 0.0397, -0.0121, -0.2273, 0.0939, -0.0121, -0.2273, 0.0939, -0.0249, -0.2273, 0.0939, -0.0121, -0.2437, 0.0397, -0.0121, -0.2273, 0.0939, -0.0121, -0.2273, 0.0939, 0.0006, -0.2437, 0.0397, 0.0006, -0.2273, 0.0939, -0.0121, -0.2273, 0.0939, -0.0249, -0.2006, 0.1438, -0.0249, -0.2273, 0.0939, 0.0006, -0.2273, 0.0939, -0.0121, -0.2006, 0.1438, -0.0121, -0.2006, 0.1438, -0.0249, -0.2006, 0.1438, -0.0121, -0.2273, 0.0939, -0.0121, -0.2006, 0.1438, -0.0121, -0.2006, 0.1438, 0.0006, -0.2273, 0.0939, 0.0006, -0.2006, 0.1438, -0.0121, -0.2006, 0.1438, -0.0249, -0.1647, 0.1875, -0.0249, -0.2006, 0.1438, 0.0006, -0.2006, 0.1438, -0.0121, -0.1647, 0.1875, -0.0121, -0.1647, 0.1875, -0.0249, -0.1647, 0.1875, -0.0121, -0.2006, 0.1438, -0.0121, -0.1647, 0.1875, -0.0121, -0.1647, 0.1875, 0.0006, -0.2006, 0.1438, 0.0006, -0.1647, 0.1875, -0.0121, -0.1647, 0.1875, -0.0249, -0.121, 0.2234, -0.0249, -0.1647, 0.1875, 0.0006, -0.1647, 0.1875, -0.0121, -0.121, 0.2234, -0.0121, -0.121, 0.2234, -0.0249, -0.121, 0.2234, -0.0121, -0.1647, 0.1875, -0.0121, -0.121, 0.2234, -0.0121, -0.121, 0.2234, 0.0006, -0.1647, 0.1875, 0.0006, -0.121, 0.2234, -0.0121, -0.121, 0.2234, -0.0249, -0.071, 0.2501, -0.0249, -0.121, 0.2234, 0.0006, -0.121, 0.2234, -0.0121, -0.071, 0.2501, -0.0121, -0.071, 0.2501, -0.0249, -0.071, 0.2501, -0.0121, -0.121, 0.2234, -0.0121, -0.071, 0.2501, -0.0121, -0.071, 0.2501, 0.0006, -0.121, 0.2234, 0.0006, -0.071, 0.2501, -0.0121, -0.071, 0.2501, -0.0249, -0.0169, 0.2665, -0.0249, -0.071, 0.2501, 0.0006, -0.071, 0.2501, -0.0121, -0.0169, 0.2665, -0.0121, -0.0169, 0.2665, -0.0249, -0.0169, 0.2665, -0.0121, -0.071, 0.2501, -0.0121, -0.0169, 0.2665, -0.0121, -0.0169, 0.2665, 0.0006, -0.071, 0.2501, 0.0006, -0.0169, 0.2665, -0.0121, -0.0169, 0.2665, -0.0249, 0.0395, 0.2721, -0.0249, -0.0169, 0.2665, 0.0006, -0.0169, 0.2665, -0.0121, 0.0395, 0.2721, -0.0121, 0.0395, 0.2721, -0.0249, 0.0395, 0.2721, -0.0121, -0.0169, 0.2665, -0.0121, 0.0395, 0.2721, -0.0121, 0.0395, 0.2721, 0.0006, -0.0169, 0.2665, 0.0006, 0.0395, 0.2721, -0.0121, 0.0395, 0.2721, -0.0249, 0.0958, 0.2665, -0.0249, 0.0395, 0.2721, 0.0006, 0.0395, 0.2721, -0.0121, 0.0958, 0.2665, -0.0121, 0.0958, 0.2665, -0.0249, 0.0958, 0.2665, -0.0121, 0.0395, 0.2721, -0.0121, 0.0958, 0.2665, -0.0121, 0.0958, 0.2665, 0.0006, 0.0395, 0.2721, 0.0006, 0.0958, 0.2665, -0.0121, 0.0958, 0.2665, -0.0249, 0.1499, 0.2501, -0.0249, 0.0958, 0.2665, 0.0006, 0.0958, 0.2665, -0.0121, 0.1499, 0.2501, -0.0121, 0.1499, 0.2501, -0.0249, 0.1499, 0.2501, -0.0121, 0.0958, 0.2665, -0.0121, 0.1499, 0.2501, -0.0121, 0.1499, 0.2501, 0.0006, 0.0958, 0.2665, 0.0006, 0.1499, 0.2501, -0.0121, 0.1499, 0.2501, -0.0249, 0.1999, 0.2234, -0.0249, 0.1499, 0.2501, 0.0006, 0.1499, 0.2501, -0.0121, 0.1999, 0.2234, -0.0121, 0.1999, 0.2234, -0.0249, 0.1999, 0.2234, -0.0121, 0.1499, 0.2501, -0.0121, 0.1999, 0.2234, -0.0121, 0.1999, 0.2234, 0.0006, 0.1499, 0.2501, 0.0006, 0.1999, 0.2234, -0.0121, 0.1999, 0.2234, -0.0249, 0.2436, 0.1875, -0.0249, 0.1999, 0.2234, 0.0006, 0.1999, 0.2234, -0.0121, 0.2436, 0.1875, -0.0121, 0.2436, 0.1875, -0.0249, 0.2436, 0.1875, -0.0121, 0.1999, 0.2234, -0.0121, 0.2436, 0.1875, -0.0121, 0.2436, 0.1875, 0.0006, 0.1999, 0.2234, 0.0006, 0.2436, 0.1875, -0.0121, 0.2436, 0.1875, -0.0249, 0.2795, 0.1438, -0.0249, 0.2436, 0.1875, 0.0006, 0.2436, 0.1875, -0.0121, 0.2795, 0.1438, -0.0121, 0.2795, 0.1438, -0.0249, 0.2795, 0.1438, -0.0121, 0.2436, 0.1875, -0.0121, 0.2795, 0.1438, -0.0121, 0.2795, 0.1438, 0.0006, 0.2436, 0.1875, 0.0006, 0.2795, 0.1438, -0.0121, 0.2795, 0.1438, -0.0249, 0.3062, 0.0939, -0.0249, 0.2795, 0.1438, 0.0006, 0.2795, 0.1438, -0.0121, 0.3062, 0.0939, -0.0121, 0.3062, 0.0939, -0.0249, 0.3062, 0.0939, -0.0121, 0.2795, 0.1438, -0.0121, 0.3062, 0.0939, -0.0121, 0.3062, 0.0939, 0.0006, 0.2795, 0.1438, 0.0006, 0.3062, 0.0939, -0.0121, 0.3062, 0.0939, -0.0249, 0.3226, 0.0397, -0.0249, 0.3062, 0.0939, 0.0006, 0.3062, 0.0939, -0.0121, 0.3226, 0.0397, -0.0121, 0.3226, 0.0397, -0.0249, 0.3226, 0.0397, -0.0121, 0.3062, 0.0939, -0.0121, 0.3226, 0.0397, -0.0121, 0.3226, 0.0397, 0.0006, 0.3062, 0.0939, 0.0006, 0.3226, 0.0397, -0.0121, 0.3226, 0.0397, -0.0249, 0.3282, -0.0166, -0.0249, 0.3226, 0.0397, 0.0006, 0.3226, 0.0397, -0.0121, 0.3282, -0.0166, -0.0121, 0.3282, -0.0166, -0.0249, 0.3282, -0.0166, -0.0121, 0.3226, 0.0397, -0.0121)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0246
+volumetric_fog_sky_affect = 0.73
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nywaf"]
 resource_name = "Hat"
@@ -1188,7 +1146,7 @@ bind/14/pose = Transform3D(-3.82813e-16, 0.999885, -0.0151938, -6.70494e-17, 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ef672"]
 render_priority = 0
-shader = ExtResource("19_f1t58")
+shader = ExtResource("20_s5p2s")
 shader_parameter/ColorParameter = Color(2, 1, 0.2, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of7wn"]
@@ -1210,16 +1168,16 @@ scale_min = 0.2
 [sub_resource type="QuadMesh" id="QuadMesh_w2blb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ew57k"]
-shader = ExtResource("21_ny3ql")
+shader = ExtResource("22_ooh8w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3rxej"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("22_ox3hq")
-shader_parameter/tex = ExtResource("25_s2ycu")
+shader = ExtResource("23_0ptm4")
+shader_parameter/tex = ExtResource("26_5ovrm")
 shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/color_ramp = ExtResource("23_rfak4")
-shader_parameter/curve = ExtResource("24_mpf5e")
+shader_parameter/color_ramp = ExtResource("24_xh7no")
+shader_parameter/curve = ExtResource("25_auddm")
 shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/flags = 40
 
@@ -1230,7 +1188,7 @@ material = SubResource("ShaderMaterial_3rxej")
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("27_dht32")
+albedo_texture = ExtResource("28_7h57o")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8
@@ -1261,7 +1219,7 @@ anim_speed_max = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hebft"]
 render_priority = 0
-shader = ExtResource("28_khkg8")
+shader = ExtResource("29_4cjxs")
 shader_parameter/ColorParameter = Color(1.621, 0, 9.729, 1)
 
 [sub_resource type="Curve" id="Curve_7dtps"]
@@ -1387,10 +1345,10 @@ bind/3/pose = Transform3D(-0.042971, 0.999076, -3.85186e-34, -6.11758e-17, -2.63
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5uxjs"]
 diffuse_mode = 3
 specular_mode = 1
-albedo_texture = ExtResource("30_uyjtn")
+albedo_texture = ExtResource("31_sleik")
 roughness = 0.0
 normal_enabled = true
-normal_texture = ExtResource("31_kdsyr")
+normal_texture = ExtResource("32_ptn7d")
 
 [sub_resource type="Animation" id="Animation_exo7v"]
 resource_name = "Attack_Charge"
@@ -8128,28 +8086,17 @@ radius = 2.5
 radius = 0.35
 height = 1.7
 
-[sub_resource type="Environment" id="Environment_maeic"]
-tonemap_mode = 2
-tonemap_exposure = 0.5
-tonemap_white = 0.74
-
-[sub_resource type="QuadMesh" id="QuadMesh_v64pg"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_maeic"]
-
 [sub_resource type="Resource" id="Resource_0lh1u"]
-script = ExtResource("42_6yt44")
+script = ExtResource("42_tq304")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_683g8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("54_0pufj")
+"texture": ExtResource("54_7e0xs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("55_5q0u2")
+"texture": ExtResource("55_wnu72")
 }],
 "loop": true,
 "name": &"Action lines",
@@ -8161,47 +8108,35 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8mu2n"]
 light_mode = 1
 
-[node name="Arene" type="Node3D"]
+[node name="presentation_level" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_p4ntp")
+environment = SubResource("Environment_rwpcj")
 
-[node name="Arene" type="Node3D" parent="."]
-
-[node name="mesh_arene" type="MeshInstance3D" parent="Arene"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -10.0623, -5.76784, 10.4825)
-mesh = SubResource("ArrayMesh_qkuun")
-skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_nlan6")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Arene/mesh_arene"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arene/mesh_arene/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_81x25")
-
-[node name="Mira" type="CharacterBody3D" parent="Arene" groups=["player"]]
+[node name="Mira" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -10.1073, -1.48475, 37.899)
 collision_layer = 4
 collision_mask = 5
 
-[node name="MiraGameMaster" type="Node" parent="Arene/Mira" node_paths=PackedStringArray("light_attack_logic", "charged_attack_logic", "dash_logic", "health_logic", "player") groups=["player"]]
-script = ExtResource("2_maeic")
+[node name="MiraGameMaster" type="Node" parent="Mira" node_paths=PackedStringArray("light_attack_logic", "charged_attack_logic", "dash_logic", "health_logic", "player") groups=["player"]]
+script = ExtResource("3_ceanh")
 light_attack_logic = NodePath("../AttackComponent/LightAttackComponent/LaunchLightAttackLogic")
 charged_attack_logic = NodePath("../AttackComponent/ChargeAttackComponent/LaunchChargeAttackLogic")
 dash_logic = NodePath("../DashComponent/LaunchDash")
 health_logic = NodePath("../HealthComponent")
 player = NodePath("..")
 
-[node name="Animation_exportTest_" type="Node3D" parent="Arene/Mira" groups=["player"]]
+[node name="Animation_exportTest_" type="Node3D" parent="Mira" groups=["player"]]
 
-[node name="Group" type="Node3D" parent="Arene/Mira/Animation_exportTest_"]
+[node name="Group" type="Node3D" parent="Mira/Animation_exportTest_"]
 
-[node name="DeformationSystem" type="Node3D" parent="Arene/Mira/Animation_exportTest_/Group"]
+[node name="DeformationSystem" type="Node3D" parent="Mira/Animation_exportTest_/Group"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem"]
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -8213,50 +8148,50 @@ bones/1/name = "Root_M"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.0498396, -0.0570118, 0.997129, 0.948629, 0.315021, -0.0294037, -0.31244, 0.947371, 0.0697836, -0.099144, 0.431293, -0.188987)
 bones/1/enabled = true
-bones/1/position = Vector3(0.0378416, 0.76848, 0.296305)
-bones/1/rotation = Quaternion(0.58532, 0.421925, 0.562557, 0.403622)
+bones/1/position = Vector3(0.0116614, 0.825222, 0.295175)
+bones/1/rotation = Quaternion(0.54376, 0.356043, 0.596592, 0.470782)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Hip_R"
 bones/2/parent = 1
 bones/2/rest = Transform3D(-0.970376, -0.232165, 0.0668522, -0.219383, 0.962648, 0.158682, -0.101195, 0.139315, -0.985064, -0.0128613, -0.00707624, -0.0679599)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.0128613, -0.00707624, -0.0679599)
-bones/2/rotation = Quaternion(0.0530749, 0.995319, 0.0795833, 0.0137356)
+bones/2/rotation = Quaternion(0.444174, 0.891784, 0.0861949, -0.00112549)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "HipPart1_R"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 6.01853e-35, -8.67362e-18, 6.01853e-35, 1, 1.38778e-17, 8.67362e-18, -1.38778e-17, 1, 0.133626, 5.28882e-14, 1.18899e-10)
 bones/3/enabled = true
 bones/3/position = Vector3(0.133626, -8.8949e-11, 7.88998e-11)
-bones/3/rotation = Quaternion(0.0263908, -7.94172e-37, 0, 0.999652)
+bones/3/rotation = Quaternion(0.0386261, -1.16237e-36, 0, 0.999254)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "HipPart2_R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 0.960575, -0.278021, 0, 0.278021, 0.960575, 0.133626, -6.35064e-11, 1.00519e-10)
 bones/4/enabled = true
 bones/4/position = Vector3(0.133626, -6.35064e-11, 1.00519e-10)
-bones/4/rotation = Quaternion(0.0263908, 0, 0, 0.999652)
+bones/4/rotation = Quaternion(0.0386261, 0, 0, 0.999254)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Knee_R"
 bones/5/parent = 4
 bones/5/rest = Transform3D(-0.582043, 0.813158, 0, -0.7811, -0.559096, -0.278021, -0.226075, -0.16182, 0.960575, 0.133626, -3.30563e-11, 1.14212e-10)
 bones/5/enabled = true
 bones/5/position = Vector3(0.133626, -3.30563e-11, 1.14212e-10)
-bones/5/rotation = Quaternion(-0.021114, -0.0156671, 0.595799, -0.802703)
+bones/5/rotation = Quaternion(-0.0352644, -0.0157735, 0.405082, -0.913464)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Ankle_R"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.974781, -0.175036, 0.138436, 0.203653, 0.951377, -0.231099, -0.091254, 0.253464, 0.963031, 0.332143, 1.31839e-13, 2.93062e-10)
 bones/6/enabled = true
 bones/6/position = Vector3(0.332143, 5.50671e-16, -1.72016e-10)
-bones/6/rotation = Quaternion(0.00991311, 0.00259973, -0.251448, 0.967817)
+bones/6/rotation = Quaternion(0.0194829, -0.027157, 0.220253, 0.97487)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Toes_R"
 bones/7/parent = 6
 bones/7/rest = Transform3D(0.332982, -0.942925, 0.00393292, 0.942769, 0.332999, 0.0172945, -0.0176171, -0.00205093, 0.999843, 0.0822142, 0.123556, 2.10646e-09)
 bones/7/enabled = true
 bones/7/position = Vector3(0.0822142, 0.123556, 2.15914e-09)
-bones/7/rotation = Quaternion(-0.00592429, 0.00659944, 0.577465, 0.816367)
+bones/7/rotation = Quaternion(-0.00592429, 0.00659945, 0.577465, 0.816367)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "ToesEnd_R"
 bones/8/parent = 7
@@ -8269,14 +8204,14 @@ bones/9/name = "Knee_R_endSlider0"
 bones/9/parent = 5
 bones/9/rest = Transform3D(1, 2.77556e-17, 1.04083e-17, -2.77556e-17, 1, -1.44445e-34, -1.04083e-17, -1.44445e-34, 1, 0.0552396, -0.0508652, 4.87398e-11)
 bones/9/enabled = true
-bones/9/position = Vector3(0.069266, -0.0508652, 4.87399e-11)
+bones/9/position = Vector3(0.0644403, -0.0508652, 4.87399e-11)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Knee_R_endSlider2"
 bones/10/parent = 5
 bones/10/rest = Transform3D(1, 2.77556e-17, 1.04083e-17, -2.77556e-17, 1, -1.44445e-34, -1.04083e-17, -1.44445e-34, 1, 0.0552396, 0.0508652, 4.87395e-11)
 bones/10/enabled = true
-bones/10/position = Vector3(0.040626, 0.0508652, 4.87399e-11)
+bones/10/position = Vector3(0.046685, 0.0508652, 4.87399e-11)
 bones/10/rotation = Quaternion(0, 0, 0, 1)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Knee_R_Slide50"
@@ -8284,34 +8219,34 @@ bones/11/parent = 4
 bones/11/rest = Transform3D(0.397334, 0.914194, 0.0798418, -0.90357, 0.404939, -0.139953, -0.160275, -0.0165346, 0.986934, 0.133954, -3.30563e-11, 1.14212e-10)
 bones/11/enabled = true
 bones/11/position = Vector3(0.133954, -3.30563e-11, 1.14212e-10)
-bones/11/rotation = Quaternion(0.011006, 0.0081401, -0.344367, 0.938735)
+bones/11/rotation = Quaternion(0.0179031, 0.00801296, -0.238652, 0.970907)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Knee_R_middleSlider0"
 bones/12/parent = 11
 bones/12/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00325016, -0.0782433, -1.77636e-17)
 bones/12/enabled = true
-bones/12/position = Vector3(0.00325016, -0.0704322, -1.77636e-17)
+bones/12/position = Vector3(0.00325016, -0.0651448, -1.77636e-17)
 bones/12/rotation = Quaternion(0, 0, 0, 1)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "Knee_R_middleSlider2"
 bones/13/parent = 11
 bones/13/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00390193, 0.0852584, 0)
 bones/13/enabled = true
-bones/13/position = Vector3(-0.00390193, 0.070906, 0)
+bones/13/position = Vector3(-0.00390193, 0.0643449, 0)
 bones/13/rotation = Quaternion(0, 0, 0, 1)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "Knee_R_startSlider0"
 bones/14/parent = 4
 bones/14/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0540644, -0.0581415, 6.97476e-11)
 bones/14/enabled = true
-bones/14/position = Vector3(0.0622967, -0.0581415, 6.97476e-11)
+bones/14/position = Vector3(0.0678693, -0.0581415, 6.97476e-11)
 bones/14/rotation = Quaternion(0, 0, 0, 1)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Knee_R_startSlider2"
 bones/15/parent = 4
 bones/15/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11024, 0.0581415, 6.97476e-11)
 bones/15/enabled = true
-bones/15/position = Vector3(0.0950902, 0.0581415, 6.97476e-11)
+bones/15/position = Vector3(0.0881646, 0.0581415, 6.97476e-11)
 bones/15/rotation = Quaternion(0, 0, 0, 1)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "RootPart1_M"
@@ -8319,14 +8254,14 @@ bones/16/parent = 1
 bones/16/rest = Transform3D(1, 2.77556e-17, 3.9289e-32, -2.77556e-17, 1, 6.16298e-33, -3.9289e-32, -6.16298e-33, 1, 0.0471296, -2.77556e-17, -5.62592e-18)
 bones/16/enabled = true
 bones/16/position = Vector3(0.0471296, -4.44089e-17, -3.55271e-17)
-bones/16/rotation = Quaternion(0.022176, -0.000835685, 0.0549453, 0.998243)
+bones/16/rotation = Quaternion(-0.0846245, -0.0183611, 0.052069, 0.994882)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "RootPart2_M"
 bones/17/parent = 16
 bones/17/rest = Transform3D(1, 2.77556e-17, 3.9289e-32, -2.77556e-17, 1, 6.16298e-33, -3.9289e-32, -6.16298e-33, 1, 0.0471296, -2.77556e-17, -5.62592e-18)
 bones/17/enabled = true
 bones/17/position = Vector3(0.0471296, 7.99361e-17, 1.77636e-17)
-bones/17/rotation = Quaternion(0.022176, -0.000835685, 0.0549453, 0.998243)
+bones/17/rotation = Quaternion(-0.0846245, -0.0183611, 0.052069, 0.994882)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Spine1_M"
 bones/18/parent = 17
@@ -8361,21 +8296,21 @@ bones/22/parent = 21
 bones/22/rest = Transform3D(0.999534, -0.0305212, -1.86888e-18, 0.0305212, 0.999534, -2.85269e-20, 1.86888e-18, -2.85269e-20, 1, 0.116115, 3.33067e-16, 3.78446e-17)
 bones/22/enabled = true
 bones/22/position = Vector3(0.116115, 0, -8.88178e-18)
-bones/22/rotation = Quaternion(-0.0576458, -0.000276532, -0.0456107, 0.997295)
+bones/22/rotation = Quaternion(0.0461897, -0.00359513, -0.044606, 0.99793)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "NeckPart1_M"
 bones/23/parent = 22
 bones/23/rest = Transform3D(1, 1.38778e-17, -2.2726e-32, -1.38778e-17, 1, 6.16298e-33, 2.2726e-32, -6.16298e-33, 1, 0.0299284, -2.91434e-16, -9.4181e-18)
 bones/23/enabled = true
 bones/23/position = Vector3(0.0299284, -2.84217e-16, 2.66454e-17)
-bones/23/rotation = Quaternion(-0.0576434, 0.000603311, -0.0608264, 0.996482)
+bones/23/rotation = Quaternion(0.0461295, -0.00429968, -0.0598316, 0.997133)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "NeckPart2_M"
 bones/24/parent = 23
 bones/24/rest = Transform3D(1, 1.38778e-17, -2.2726e-32, -1.38778e-17, 1, 6.16298e-33, 2.2726e-32, -6.16298e-33, 1, 0.0299284, 4.44089e-16, -9.4181e-18)
 bones/24/enabled = true
 bones/24/position = Vector3(0.0299284, 7.10543e-17, -1.77636e-17)
-bones/24/rotation = Quaternion(-0.0576434, 0.000603311, -0.0608264, 0.996482)
+bones/24/rotation = Quaternion(0.0461295, -0.00429968, -0.0598316, 0.997133)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "Head_M"
 bones/25/parent = 24
@@ -8417,63 +8352,63 @@ bones/30/parent = 29
 bones/30/rest = Transform3D(0.608074, -0.687166, 0.397553, 0.449971, 0.710891, 0.540518, -0.654043, -0.149788, 0.741479, 0.105377, 6.43929e-15, -1.9762e-14)
 bones/30/enabled = true
 bones/30/position = Vector3(0.105377, 3.97904e-15, -1.08713e-14)
-bones/30/rotation = Quaternion(-0.149363, 0.419847, 0.504349, 0.73963)
+bones/30/rotation = Quaternion(-0.17804, 0.111776, 0.226956, 0.950946)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "ShoulderPart1_R"
 bones/31/parent = 30
 bones/31/rest = Transform3D(1, -5.41668e-35, -7.80626e-18, -5.41668e-35, 1, -1.38778e-17, 7.80626e-18, 1.38778e-17, 1, 0.0802278, -9.4369e-16, 2.22045e-15)
 bones/31/enabled = true
 bones/31/position = Vector3(0.0802278, 1.77636e-16, 0)
-bones/31/rotation = Quaternion(-0.0102158, -2.76679e-37, 0, 0.999948)
+bones/31/rotation = Quaternion(-0.0523988, -1.41914e-36, 0, 0.998626)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "ShoulderPart2_R"
 bones/32/parent = 31
 bones/32/rest = Transform3D(1, -5.41668e-35, -7.80626e-18, -5.41668e-35, 1, -1.38778e-17, 7.80626e-18, 1.38778e-17, 1, 0.0802278, -8.88178e-16, 1.9984e-15)
 bones/32/enabled = true
 bones/32/position = Vector3(0.0802278, 1.06581e-16, 1.42109e-16)
-bones/32/rotation = Quaternion(-0.0102158, -2.76679e-37, 0, 0.999948)
+bones/32/rotation = Quaternion(-0.0523988, -1.41914e-36, 0, 0.998626)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "Elbow_R"
 bones/33/parent = 32
 bones/33/rest = Transform3D(0.993803, -0.11116, -3.64538e-17, 0.11116, 0.993803, 1.23256e-16, 2.25268e-17, -1.26544e-16, 1, 0.0802278, 1.66533e-16, -4.44089e-16)
 bones/33/enabled = true
 bones/33/position = Vector3(0.0802278, 1.06581e-16, 0)
-bones/33/rotation = Quaternion(-0.0108809, 0.0618909, 0.64455, 0.761975)
+bones/33/rotation = Quaternion(-0.0508455, 0.132216, 0.496835, 0.856206)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "ElbowPart1_R"
 bones/34/parent = 33
 bones/34/rest = Transform3D(1, 1.38778e-17, -2.90566e-17, -1.38778e-17, 1, -3.46945e-18, 2.90566e-17, 3.46945e-18, 1, 0.07005, 1.94289e-16, 1.89848e-14)
 bones/34/enabled = true
 bones/34/position = Vector3(0.07005, 2.41585e-15, 1.85452e-14)
-bones/34/rotation = Quaternion(0.0413366, -1.55097e-25, 1.55097e-25, 0.999145)
+bones/34/rotation = Quaternion(0.028157, -3.48967e-25, 1.55096e-25, 0.999604)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "ElbowPart2_R"
 bones/35/parent = 34
 bones/35/rest = Transform3D(1, 1.38778e-17, -2.90566e-17, -1.38778e-17, 1, -3.46945e-18, 2.90566e-17, 3.46945e-18, 1, 0.07005, 5.55112e-17, 1.78746e-14)
 bones/35/enabled = true
 bones/35/position = Vector3(0.07005, 1.67688e-14, 8.02913e-15)
-bones/35/rotation = Quaternion(0.0413366, -1.55097e-25, 1.55097e-25, 0.999145)
+bones/35/rotation = Quaternion(0.028157, -3.48967e-25, 1.55096e-25, 0.999604)
 bones/35/scale = Vector3(1, 1, 1)
 bones/36/name = "Wrist_R"
 bones/36/parent = 35
 bones/36/rest = Transform3D(0.966774, -0.237958, -0.093404, 0.23769, 0.971238, -0.0141483, 0.0940842, -0.00852291, 0.995528, 0.07005, 3.05311e-16, 1.86517e-14)
 bones/36/enabled = true
 bones/36/position = Vector3(0.07005, 1.60583e-14, -9.20153e-15)
-bones/36/rotation = Quaternion(0.0424259, -0.0521848, 0.117855, 0.990751)
+bones/36/rotation = Quaternion(0.0293397, -0.050624, 0.118533, 0.991225)
 bones/36/scale = Vector3(1, 1, 1)
 bones/37/name = "MiddleFinger1_R"
 bones/37/parent = 36
 bones/37/rest = Transform3D(0.958578, 0.225247, 0.174331, -0.226026, 0.973996, -0.0156328, -0.173319, -0.0244183, 0.984563, 0.114317, 3.53884e-16, 5.55112e-16)
 bones/37/enabled = true
 bones/37/position = Vector3(0.114317, 7.10543e-17, -7.10543e-17)
-bones/37/rotation = Quaternion(0.0153268, 0.23886, -0.112993, 0.964336)
+bones/37/rotation = Quaternion(0.0150974, 0.236902, -0.113023, 0.964819)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/name = "MiddleFinger2_R"
 bones/38/parent = 37
 bones/38/rest = Transform3D(0.998521, -0.0535141, 0.00961437, 0.0535171, 0.998567, -5.52187e-05, -0.00959764, 0.000569671, 0.999954, 0.0287864, -9.71445e-16, -3.33067e-16)
 bones/38/enabled = true
 bones/38/position = Vector3(0.0287864, 7.10543e-17, 0)
-bones/38/rotation = Quaternion(-0.00395914, 0.158367, 0.0264738, 0.987017)
+bones/38/rotation = Quaternion(-0.00390539, 0.156363, 0.0264818, 0.987337)
 bones/38/scale = Vector3(1, 1, 1)
 bones/39/name = "MiddleFinger3_R"
 bones/39/parent = 38
@@ -8515,14 +8450,14 @@ bones/44/parent = 36
 bones/44/rest = Transform3D(0.986657, 0.0608778, 0.151001, -0.0594925, 0.998135, -0.0136789, -0.151552, 0.00451295, 0.988439, 0.111789, 0.0249323, -0.00541427)
 bones/44/enabled = true
 bones/44/position = Vector3(0.111789, 0.0249323, -0.00541427)
-bones/44/rotation = Quaternion(0.0037714, 0.227625, 0.0392115, 0.972952)
+bones/44/rotation = Quaternion(0.00392011, 0.225663, 0.0383049, 0.973444)
 bones/44/scale = Vector3(1, 1, 1)
 bones/45/name = "IndexFinger2_R"
 bones/45/parent = 44
 bones/45/rest = Transform3D(0.999526, 0.0180767, -0.0249201, -0.0180823, 0.999837, 2.91038e-11, 0.024916, 0.000450612, 0.999689, 0.0242924, -7.63278e-17, 9.37916e-12)
 bones/45/enabled = true
 bones/45/position = Vector3(0.0242924, -1.42109e-16, 9.37952e-12)
-bones/45/rotation = Quaternion(0.00150068, 0.141346, -0.0089161, 0.989919)
+bones/45/rotation = Quaternion(0.00148258, 0.139336, -0.00891913, 0.990204)
 bones/45/scale = Vector3(1, 1, 1)
 bones/46/name = "IndexFinger3_R"
 bones/46/parent = 45
@@ -8536,21 +8471,21 @@ bones/47/parent = 36
 bones/47/rest = Transform3D(0.998559, -0.053464, 0.00469614, 0.0535355, 0.986051, -0.157596, 0.00379505, 0.15762, 0.987493, 0.0311616, -0.0184533, -0.00309319)
 bones/47/enabled = true
 bones/47/position = Vector3(0.0311616, -0.0184533, -0.00309319)
-bones/47/rotation = Quaternion(0.189185, 0.0032038, 0.0266527, 0.981575)
+bones/47/rotation = Quaternion(0.188969, 0.00319793, 0.0266534, 0.981616)
 bones/47/scale = Vector3(1, 1, 1)
 bones/48/name = "PinkyFinger1_R"
 bones/48/parent = 47
 bones/48/rest = Transform3D(0.85481, 0.490873, 0.168358, -0.515432, 0.840774, 0.165617, -0.0602543, -0.228348, 0.971713, 0.059513, -0.0352402, -0.00527617)
 bones/48/enabled = true
 bones/48/position = Vector3(0.059513, -0.0352402, -0.00527617)
-bones/48/rotation = Quaternion(-0.0518863, 0.190455, -0.372059, 0.906977)
+bones/48/rotation = Quaternion(-0.0527661, 0.188832, -0.370705, 0.907819)
 bones/48/scale = Vector3(1, 1, 1)
 bones/49/name = "PinkyFinger2_R"
 bones/49/parent = 48
 bones/49/rest = Transform3D(0.992066, -0.0469994, 0.116604, 0.047488, 0.998871, -0.001414, -0.116406, 0.00694007, 0.993177, 0.0323767, -9.99201e-16, 3.33067e-16)
 bones/49/enabled = true
 bones/49/position = Vector3(0.0323767, -2.84217e-16, 2.84217e-16)
-bones/49/rotation = Quaternion(-0.00156954, 0.211046, 0.0237094, 0.977187)
+bones/49/rotation = Quaternion(-0.0015214, 0.209061, 0.0237124, 0.977614)
 bones/49/scale = Vector3(1, 1, 1)
 bones/50/name = "PinkyFinger3_R"
 bones/50/parent = 49
@@ -8564,14 +8499,14 @@ bones/51/parent = 47
 bones/51/rest = Transform3D(0.953584, 0.269756, 0.133824, -0.287445, 0.947867, 0.137564, -0.0897384, -0.169646, 0.981411, 0.0749369, -0.0142376, -0.00053685)
 bones/51/enabled = true
 bones/51/position = Vector3(0.0749369, -0.0142376, -0.00053685)
-bones/51/rotation = Quaternion(-0.0503236, 0.202112, -0.20198, 0.956986)
+bones/51/rotation = Quaternion(-0.0507985, 0.200243, -0.201219, 0.957514)
 bones/51/scale = Vector3(1, 1, 1)
 bones/52/name = "RingFinger2_R"
 bones/52/parent = 51
 bones/52/rest = Transform3D(0.990936, 0.132789, 0.0203297, -0.132914, 0.991115, 0.0049432, -0.0194926, -0.00760049, 0.999781, 0.0266553, 4.996e-16, -1.09912e-14)
 bones/52/enabled = true
 bones/52/position = Vector3(0.0266553, 1.13687e-15, -1.11555e-14)
-bones/52/rotation = Quaternion(0.0071256, 0.163187, -0.0662693, 0.984341)
+bones/52/rotation = Quaternion(0.00699105, 0.161188, -0.0662836, 0.984671)
 bones/52/scale = Vector3(1, 1, 1)
 bones/53/name = "RingFinger3_R"
 bones/53/parent = 52
@@ -8592,63 +8527,63 @@ bones/55/parent = 54
 bones/55/rest = Transform3D(0.608074, -0.687166, 0.397553, 0.449971, 0.710891, 0.540518, -0.654043, -0.149788, 0.741479, -0.105377, -4.38538e-15, 1.28786e-14)
 bones/55/enabled = true
 bones/55/position = Vector3(-0.105377, -3.55271e-15, 1.07647e-14)
-bones/55/rotation = Quaternion(-0.0609736, 0.247665, 0.591996, 0.764516)
+bones/55/rotation = Quaternion(0.125074, 0.131026, 0.840685, 0.51033)
 bones/55/scale = Vector3(1, 1, 1)
 bones/56/name = "ShoulderPart1_L"
 bones/56/parent = 55
 bones/56/rest = Transform3D(1, -2.21181e-34, -4.25007e-17, -2.21181e-34, 1, -1.04083e-17, 4.25007e-17, 1.04083e-17, 1, -0.0802278, 7.21645e-16, -1.55431e-15)
 bones/56/enabled = true
 bones/56/position = Vector3(-0.0802278, 2.4869e-16, -1.42109e-16)
-bones/56/rotation = Quaternion(0.000926541, 1.02466e-37, 0, 1)
+bones/56/rotation = Quaternion(0.0279771, 3.09397e-36, 0, 0.999609)
 bones/56/scale = Vector3(1, 1, 1)
 bones/57/name = "ShoulderPart2_L"
 bones/57/parent = 56
 bones/57/rest = Transform3D(1, -2.21181e-34, -4.25007e-17, -2.21181e-34, 1, -1.04083e-17, 4.25007e-17, 1.04083e-17, 1, -0.0802278, -1.55431e-15, 2.33147e-15)
 bones/57/enabled = true
 bones/57/position = Vector3(-0.0802278, 2.13163e-16, 0)
-bones/57/rotation = Quaternion(0.000926541, 1.02466e-37, 0, 1)
+bones/57/rotation = Quaternion(0.0279771, 3.09397e-36, 0, 0.999609)
 bones/57/scale = Vector3(1, 1, 1)
 bones/58/name = "Elbow_L"
 bones/58/parent = 57
 bones/58/rest = Transform3D(0.993803, -0.11116, -8.83834e-17, 0.11116, 0.993803, 4.03154e-17, 8.33542e-17, -4.98902e-17, 1, -0.0802278, 3.33067e-16, -1.44329e-15)
 bones/58/enabled = true
 bones/58/position = Vector3(-0.0802278, 2.66454e-16, 1.42109e-16)
-bones/58/rotation = Quaternion(-0.00027586, 0.0156705, 0.710179, 0.703846)
+bones/58/rotation = Quaternion(0.0189545, -0.0582703, 0.794246, 0.604499)
 bones/58/scale = Vector3(1, 1, 1)
 bones/59/name = "ElbowPart1_L"
 bones/59/parent = 58
 bones/59/rest = Transform3D(1, -5.86807e-35, 3.38271e-17, -5.86807e-35, 1, 3.46945e-18, -3.38271e-17, -3.46945e-18, 1, -0.07005, 2.77556e-17, -1.80966e-14)
 bones/59/enabled = true
 bones/59/position = Vector3(-0.07005, -1.15108e-14, -1.4353e-14)
-bones/59/rotation = Quaternion(0.0404588, 1.18708e-36, 0, 0.999181)
+bones/59/rotation = Quaternion(0.0525673, 1.54234e-36, 0, 0.998617)
 bones/59/scale = Vector3(1, 1, 1)
 bones/60/name = "ElbowPart2_L"
 bones/60/parent = 59
 bones/60/rest = Transform3D(1, -5.86807e-35, 3.38271e-17, -5.86807e-35, 1, 3.46945e-18, -3.38271e-17, -3.46945e-18, 1, -0.07005, -5.27356e-16, -1.90958e-14)
 bones/60/enabled = true
 bones/60/position = Vector3(-0.07005, -1.55609e-14, -1.03739e-14)
-bones/60/rotation = Quaternion(0.0404588, 1.18708e-36, 0, 0.999181)
+bones/60/rotation = Quaternion(0.0525673, 1.54234e-36, 0, 0.998617)
 bones/60/scale = Vector3(1, 1, 1)
 bones/61/name = "Wrist_L"
 bones/61/parent = 60
 bones/61/rest = Transform3D(0.966774, -0.237958, -0.093404, 0.23769, 0.971238, -0.0141483, 0.0940842, -0.00852291, 0.995528, -0.07005, 1.66533e-16, -1.80966e-14)
 bones/61/enabled = true
 bones/61/position = Vector3(-0.07005, -1.77636e-14, -4.68958e-15)
-bones/61/rotation = Quaternion(0.0415282, -0.052078, 0.117902, 0.990789)
+bones/61/rotation = Quaternion(0.0535448, -0.0535045, 0.117262, 0.990212)
 bones/61/scale = Vector3(1, 1, 1)
 bones/62/name = "MiddleFinger1_L"
 bones/62/parent = 61
 bones/62/rest = Transform3D(0.958578, 0.225247, 0.174331, -0.226026, 0.973996, -0.0156328, -0.173319, -0.0244183, 0.984563, -0.114317, 2.84495e-16, -5.55112e-16)
 bones/62/enabled = true
 bones/62/position = Vector3(-0.114317, -7.10543e-17, -1.95399e-16)
-bones/62/rotation = Quaternion(0.016757, 0.251057, -0.112789, 0.961233)
+bones/62/rotation = Quaternion(0.0178878, 0.260689, -0.112615, 0.958665)
 bones/62/scale = Vector3(1, 1, 1)
 bones/63/name = "MiddleFinger2_L"
 bones/63/parent = 62
 bones/63/rest = Transform3D(0.998521, -0.0535141, 0.00961437, 0.0535171, 0.998567, -5.52187e-05, -0.00959764, 0.000569671, 0.999954, -0.0287864, 5.27356e-16, 8.88178e-16)
 bones/63/enabled = true
 bones/63/position = Vector3(-0.0287864, 1.59872e-16, 2.13163e-16)
-bones/63/rotation = Quaternion(-0.0042942, 0.170858, 0.0264215, 0.984932)
+bones/63/rotation = Quaternion(-0.00455909, 0.180732, 0.026377, 0.983168)
 bones/63/scale = Vector3(1, 1, 1)
 bones/64/name = "MiddleFinger3_L"
 bones/64/parent = 63
@@ -8669,14 +8604,14 @@ bones/66/parent = 65
 bones/66/rest = Transform3D(0.987016, -0.128605, 0.0962333, 0.133267, 0.990118, -0.0436664, -0.0896666, 0.0559241, 0.994401, -0.0388226, -4.996e-16, 6.93022e-16)
 bones/66/enabled = true
 bones/66/position = Vector3(-0.0388226, -6.03961e-16, 1.42109e-16)
-bones/66/rotation = Quaternion(0.0145129, 0.200355, 0.0687787, 0.977199)
+bones/66/rotation = Quaternion(0.014532, 0.200082, 0.0687746, 0.977254)
 bones/66/scale = Vector3(1, 1, 1)
 bones/67/name = "ThumbFinger3_L"
 bones/67/parent = 66
 bones/67/rest = Transform3D(0.999706, 0.0230174, -0.00765386, -0.0230115, 0.999735, 0.0008622, 0.00767167, -0.000685819, 0.99997, -0.0256132, -3.46945e-16, -6.245e-16)
 bones/67/enabled = true
 bones/67/position = Vector3(-0.0256132, 6.39488e-16, -2.13163e-16)
-bones/67/rotation = Quaternion(0.00139941, 0.151031, -0.0114293, 0.988462)
+bones/67/rotation = Quaternion(0.00139622, 0.150755, -0.0114296, 0.988504)
 bones/67/scale = Vector3(1, 1, 1)
 bones/68/name = "ThumbFinger4_L"
 bones/68/parent = 67
@@ -8690,14 +8625,14 @@ bones/69/parent = 61
 bones/69/rest = Transform3D(0.986657, 0.0608778, 0.151001, -0.0594925, 0.998135, -0.0136789, -0.151552, 0.00451295, 0.988439, -0.111789, -0.0249323, 0.00541427)
 bones/69/enabled = true
 bones/69/position = Vector3(-0.111789, -0.0249323, 0.00541427)
-bones/69/rotation = Quaternion(0.00316128, 0.239912, 0.0404908, 0.969945)
+bones/69/rotation = Quaternion(0.00275485, 0.249633, 0.0405204, 0.967488)
 bones/69/scale = Vector3(1, 1, 1)
 bones/70/name = "IndexFinger2_L"
 bones/70/parent = 69
 bones/70/rest = Transform3D(0.999526, 0.0180767, -0.0249201, -0.0180823, 0.999837, 2.91038e-11, 0.024916, 0.000450612, 0.999689, -0.0242924, 1.11022e-16, -9.37928e-12)
 bones/70/enabled = true
 bones/70/position = Vector3(-0.0242924, 1.42109e-16, -9.37953e-12)
-bones/70/rotation = Quaternion(0.00161352, 0.153874, -0.00889638, 0.988049)
+bones/70/rotation = Quaternion(0.0017027, 0.16378, -0.00887974, 0.986455)
 bones/70/scale = Vector3(1, 1, 1)
 bones/71/name = "IndexFinger3_L"
 bones/71/parent = 70
@@ -8711,21 +8646,21 @@ bones/72/parent = 61
 bones/72/rest = Transform3D(0.998559, -0.053464, 0.00469614, 0.0535355, 0.986051, -0.157596, 0.00379505, 0.15762, 0.987493, -0.0311616, 0.0184533, 0.00309319)
 bones/72/enabled = true
 bones/72/position = Vector3(-0.0311616, 0.0184533, 0.00309319)
-bones/72/rotation = Quaternion(0.189185, 0.0032038, 0.0266527, 0.981575)
+bones/72/rotation = Quaternion(0.188969, 0.00319793, 0.0266534, 0.981616)
 bones/72/scale = Vector3(1, 1, 1)
 bones/73/name = "PinkyFinger1_L"
 bones/73/parent = 72
 bones/73/rest = Transform3D(0.85481, 0.490873, 0.168358, -0.515432, 0.840774, 0.165617, -0.0602543, -0.228348, 0.971713, -0.059513, 0.0352402, 0.00527617)
 bones/73/enabled = true
 bones/73/position = Vector3(-0.059513, 0.0352402, 0.00527617)
-bones/73/rotation = Quaternion(-0.0469722, 0.201619, -0.374399, 0.903863)
+bones/73/rotation = Quaternion(-0.0432133, 0.210678, -0.374852, 0.901795)
 bones/73/scale = Vector3(1, 1, 1)
 bones/74/name = "PinkyFinger2_L"
 bones/74/parent = 73
 bones/74/rest = Transform3D(0.992066, -0.0469994, 0.116604, 0.047488, 0.998871, -0.001414, -0.116406, 0.00694007, 0.993177, -0.0323767, 5.55112e-17, -5.55112e-16)
 bones/74/enabled = true
 bones/74/position = Vector3(-0.0323767, 4.9738e-16, -3.55271e-16)
-bones/74/rotation = Quaternion(-0.00186976, 0.223408, 0.0236876, 0.974435)
+bones/74/rotation = Quaternion(-0.00210734, 0.233174, 0.0236676, 0.972145)
 bones/74/scale = Vector3(1, 1, 1)
 bones/75/name = "PinkyFinger3_L"
 bones/75/parent = 74
@@ -8739,14 +8674,14 @@ bones/76/parent = 72
 bones/76/rest = Transform3D(0.953584, 0.269756, 0.133824, -0.287445, 0.947867, 0.137564, -0.0897384, -0.169646, 0.981411, -0.0749369, 0.0142376, 0.00053685)
 bones/76/enabled = true
 bones/76/position = Vector3(-0.0749369, 0.0142376, 0.00053685)
-bones/76/rotation = Quaternion(-0.0476581, 0.214115, -0.203506, 0.954185)
+bones/76/rotation = Quaternion(-0.0456138, 0.223679, -0.203974, 0.951988)
 bones/76/scale = Vector3(1, 1, 1)
 bones/77/name = "RingFinger2_L"
 bones/77/parent = 76
 bones/77/rest = Transform3D(0.990936, 0.132789, 0.0203297, -0.132914, 0.991115, 0.0049432, -0.0194926, -0.00760049, 0.999781, -0.0266553, -1.58207e-15, 1.16573e-14)
 bones/77/enabled = true
 bones/77/position = Vector3(-0.0266553, -1.20792e-15, 1.08713e-14)
-bones/77/rotation = Quaternion(0.00796454, 0.175643, -0.0661736, 0.982195)
+bones/77/rotation = Quaternion(0.0086281, 0.185489, -0.0660905, 0.980383)
 bones/77/scale = Vector3(1, 1, 1)
 bones/78/name = "RingFinger3_L"
 bones/78/parent = 77
@@ -8760,42 +8695,42 @@ bones/79/parent = 1
 bones/79/rest = Transform3D(0.970376, 0.232165, -0.0668522, 0.219383, -0.962648, -0.158682, -0.101195, 0.139315, -0.985064, -0.0128613, -0.00707624, 0.0679599)
 bones/79/enabled = true
 bones/79/position = Vector3(-0.0128613, -0.00707624, 0.0679599)
-bones/79/rotation = Quaternion(0.881452, -0.463266, -0.0212783, 0.0892997)
+bones/79/rotation = Quaternion(0.99422, -0.0365976, -0.0564158, 0.0836885)
 bones/79/scale = Vector3(1, 1, 1)
 bones/80/name = "HipPart1_L"
 bones/80/parent = 79
 bones/80/rest = Transform3D(1, -6.93889e-18, 6.07153e-18, 6.93889e-18, 1, -2.77556e-17, -6.07153e-18, 2.77556e-17, 1, -0.133626, -8.40764e-10, -1.18899e-10)
 bones/80/enabled = true
 bones/80/position = Vector3(-0.133626, -6.36935e-10, 5.61468e-10)
-bones/80/rotation = Quaternion(0.0516641, -9.04729e-26, -7.75482e-26, 0.998665)
+bones/80/rotation = Quaternion(0.0741462, 1.03398e-25, 2.58494e-26, 0.997247)
 bones/80/scale = Vector3(1, 1, 1)
 bones/81/name = "HipPart2_L"
 bones/81/parent = 80
 bones/81/rest = Transform3D(1, 0, 0, 0, 0.958908, 0.283717, 0, -0.283717, 0.958908, -0.133626, -7.7006e-10, 3.57687e-10)
 bones/81/enabled = true
 bones/81/position = Vector3(-0.133626, -7.7006e-10, 3.57687e-10)
-bones/81/rotation = Quaternion(0.0516641, 0, 0, 0.998665)
+bones/81/rotation = Quaternion(0.0741462, 0, 0, 0.997247)
 bones/81/scale = Vector3(1, 1, 1)
 bones/82/name = "Knee_L"
 bones/82/parent = 81
 bones/82/rest = Transform3D(0.269703, 0.962944, 0, -0.923374, 0.25862, 0.283717, 0.273203, -0.0765192, 0.958908, -0.133626, -8.39899e-10, 1.2451e-10)
 bones/82/enabled = true
 bones/82/position = Vector3(-0.133626, -8.39899e-10, 1.2451e-10)
-bones/82/rotation = Quaternion(0.0513463, 0.00410587, -0.0795462, 0.995499)
+bones/82/rotation = Quaternion(0.0643264, 0.0368766, -0.495397, 0.865497)
 bones/82/scale = Vector3(1, 1, 1)
 bones/83/name = "Ankle_L"
 bones/83/parent = 82
 bones/83/rest = Transform3D(0.974781, -0.175036, 0.138436, 0.203653, 0.951377, -0.231099, -0.091254, 0.253464, 0.963031, -0.332143, -2.08982e-09, -2.65325e-10)
 bones/83/enabled = true
 bones/83/position = Vector3(-0.332143, -2.08969e-09, -7.97078e-11)
-bones/83/rotation = Quaternion(-0.0150501, -0.0583735, -0.330452, 0.941896)
+bones/83/rotation = Quaternion(0.0137341, -0.0594669, -0.303247, 0.950955)
 bones/83/scale = Vector3(1, 1, 1)
 bones/84/name = "Toes_L"
 bones/84/parent = 83
 bones/84/rest = Transform3D(0.332982, -0.942925, 0.00393294, 0.942769, 0.332999, 0.0172945, -0.0176171, -0.00205091, 0.999843, -0.0822142, -0.123556, -4.41676e-10)
 bones/84/enabled = true
 bones/84/position = Vector3(-0.0822142, -0.123556, -7.82064e-11)
-bones/84/rotation = Quaternion(-0.00485923, 0.00370636, 0.57694, 0.816764)
+bones/84/rotation = Quaternion(-0.00592409, 0.00659886, 0.577468, 0.816365)
 bones/84/scale = Vector3(1, 1, 1)
 bones/85/name = "ToesEnd_L"
 bones/85/parent = 84
@@ -8808,14 +8743,14 @@ bones/86/name = "Knee_L_endSlider0"
 bones/86/parent = 82
 bones/86/rest = Transform3D(1, 1.20371e-35, 1.73472e-18, 1.20371e-35, 1, -1.38778e-17, -1.73472e-18, 1.38778e-17, 1, -0.0552396, -0.0508652, -5.10738e-09)
 bones/86/enabled = true
-bones/86/position = Vector3(-0.0548783, -0.0508652, -5.10738e-09)
+bones/86/position = Vector3(-0.0440008, -0.0508652, -5.10738e-09)
 bones/86/rotation = Quaternion(0, 0, 0, 1)
 bones/86/scale = Vector3(1, 1, 1)
 bones/87/name = "Knee_L_endSlider2"
 bones/87/parent = 82
 bones/87/rest = Transform3D(1, 1.20371e-35, 1.73472e-18, 1.20371e-35, 1, -1.38778e-17, -1.73472e-18, 1.38778e-17, 1, -0.0552396, 0.0508652, -4.90395e-09)
 bones/87/enabled = true
-bones/87/position = Vector3(-0.055641, 0.0508652, -4.90395e-09)
+bones/87/position = Vector3(-0.0667599, 0.0508652, -4.90395e-09)
 bones/87/rotation = Quaternion(0, 0, 0, 1)
 bones/87/scale = Vector3(1, 1, 1)
 bones/88/name = "Knee_L_Slide50"
@@ -8823,120 +8758,120 @@ bones/88/parent = 81
 bones/88/rest = Transform3D(0.755276, 0.653975, -0.0432955, -0.643138, 0.752241, 0.143204, 0.126221, -0.0803137, 0.988746, -0.133954, -8.39899e-10, 1.2451e-10)
 bones/88/enabled = true
 bones/88/position = Vector3(-0.133954, -8.39899e-10, 1.2451e-10)
-bones/88/rotation = Quaternion(0.0256806, 0.00203008, -0.0721689, 0.99706)
+bones/88/rotation = Quaternion(0.0330347, 0.0189396, -0.287664, 0.956974)
 bones/88/scale = Vector3(1, 1, 1)
 bones/89/name = "Knee_L_middleSlider0"
 bones/89/parent = 88
 bones/89/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00390193, -0.0708749, -4.47938e-09)
 bones/89/enabled = true
-bones/89/position = Vector3(0.00390193, -0.0572794, -4.47938e-09)
+bones/89/position = Vector3(0.00390193, -0.0672515, -4.47938e-09)
 bones/89/rotation = Quaternion(0, 0, 0, 1)
 bones/89/scale = Vector3(1, 1, 1)
 bones/90/name = "Knee_L_middleSlider2"
 bones/90/parent = 88
 bones/90/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00325016, 0.0704046, -4.25891e-09)
 bones/90/enabled = true
-bones/90/position = Vector3(-0.00325016, 0.0580291, -4.25891e-09)
+bones/90/position = Vector3(-0.00325016, 0.0676606, -4.25891e-09)
 bones/90/rotation = Quaternion(0, 0, 0, 1)
 bones/90/scale = Vector3(1, 1, 1)
 bones/91/name = "Knee_L_startSlider0"
 bones/91/parent = 81
 bones/91/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0950574, -0.0581415, -3.912e-09)
 bones/91/enabled = true
-bones/91/position = Vector3(-0.0787992, -0.0581415, -3.912e-09)
+bones/91/position = Vector3(-0.0912327, -0.0581415, -3.912e-09)
 bones/91/rotation = Quaternion(0, 0, 0, 1)
 bones/91/scale = Vector3(1, 1, 1)
 bones/92/name = "Knee_L_startSlider2"
 bones/92/parent = 81
 bones/92/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0623259, 0.0581415, -3.76168e-09)
 bones/92/enabled = true
-bones/92/position = Vector3(-0.0779274, 0.0581415, -3.76168e-09)
+bones/92/position = Vector3(-0.0652179, 0.0581415, -3.76168e-09)
 bones/92/rotation = Quaternion(0, 0, 0, 1)
 bones/92/scale = Vector3(1, 1, 1)
 
-[node name="Hat" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Hat" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_nywaf")
 skin = SubResource("Skin_723mw")
-surface_material_override/0 = ExtResource("3_lsh4g")
-surface_material_override/1 = ExtResource("4_jvj3f")
-surface_material_override/2 = ExtResource("5_bbiy4")
-surface_material_override/3 = ExtResource("6_ixlpc")
-surface_material_override/4 = ExtResource("7_1iily")
+surface_material_override/0 = ExtResource("4_rwpcj")
+surface_material_override/1 = ExtResource("5_n42jx")
+surface_material_override/2 = ExtResource("6_fs3y0")
+surface_material_override/3 = ExtResource("7_havut")
+surface_material_override/4 = ExtResource("8_bu0qc")
 
-[node name="Hair1" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Hair1" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_u0b45")
 skin = SubResource("Skin_4jqid")
-surface_material_override/0 = ExtResource("8_2a4oq")
+surface_material_override/0 = ExtResource("9_vyvid")
 
-[node name="Body" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Body" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_84sdi")
 skin = SubResource("Skin_pg2hp")
-surface_material_override/0 = ExtResource("9_ju54m")
-surface_material_override/3 = ExtResource("10_d1ssw")
+surface_material_override/0 = ExtResource("10_ue6g6")
+surface_material_override/3 = ExtResource("11_j1ose")
 
-[node name="Jupe" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Jupe" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_0sim6")
 skin = SubResource("Skin_hrbaq")
-surface_material_override/0 = ExtResource("11_n2e0p")
+surface_material_override/0 = ExtResource("12_b8qtp")
 
-[node name="Chaussures" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Chaussures" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_4aotk")
 skin = SubResource("Skin_prrj3")
-surface_material_override/0 = ExtResource("12_c7m5m")
-surface_material_override/1 = ExtResource("13_wlu5u")
+surface_material_override/0 = ExtResource("13_ya2o5")
+surface_material_override/1 = ExtResource("14_is5w4")
 
-[node name="Belt" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Belt" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_epr0f")
 skin = SubResource("Skin_t2pf6")
-surface_material_override/0 = ExtResource("14_k4kxa")
+surface_material_override/0 = ExtResource("15_fvm2x")
 
-[node name="Fiole_1" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Fiole_1" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_kt3c2")
 skin = SubResource("Skin_qmh6t")
 
-[node name="Ring_4" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Ring_4" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_1akr6")
 skin = SubResource("Skin_qmh6t")
 
-[node name="Fiole_2" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Fiole_2" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_yobus")
 skin = SubResource("Skin_qmh6t")
 
-[node name="Sourcils" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Sourcils" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_sekri")
 skin = SubResource("Skin_wjl7t")
-surface_material_override/0 = ExtResource("15_jw5y7")
+surface_material_override/0 = ExtResource("16_32ike")
 
-[node name="Attache" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Attache" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_p42bt")
 skin = SubResource("Skin_63yvc")
-surface_material_override/0 = ExtResource("16_8drcj")
-surface_material_override/1 = ExtResource("17_tlog0")
+surface_material_override/0 = ExtResource("17_hicsr")
+surface_material_override/1 = ExtResource("18_ti166")
 
-[node name="Haut" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+[node name="Haut" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
 mesh = SubResource("ArrayMesh_8n6nt")
 skin = SubResource("Skin_q5xq7")
-surface_material_override/0 = ExtResource("18_arhp5")
+surface_material_override/0 = ExtResource("19_xbohl")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
-transform = Transform3D(0.0499346, 0.178672, 0.982641, 0.772721, -0.63026, 0.0753318, 0.632779, 0.755545, -0.169535, 0.0408048, 0.89627, 0.35539)
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D"]
+transform = Transform3D(-0.0400239, -0.444728, 0.894771, 0.786482, -0.566367, -0.246321, 0.616315, 0.693863, 0.372439, 0.0168458, 0.953173, 0.35375)
 bone_name = "Spine1_M"
 bone_idx = 18
 
-[node name="Trail" type="Node3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2"]
+[node name="Trail" type="Node3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2"]
 transform = Transform3D(-0.0327125, 0.484, -0.633057, -0.0615741, -0.3966, -0.771081, -0.997566, 0.00860849, 0.0683536, -0.328379, -0.325225, -0.0641953)
 visible = false
 
-[node name="Stars" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="Stars" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058381, 0, 0)
 material_override = SubResource("ShaderMaterial_ef672")
 amount = 3
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_of7wn")
 draw_pass_1 = SubResource("QuadMesh_w2blb")
-script = ExtResource("20_ofsgl")
+script = ExtResource("21_7b128")
 
-[node name="GPUTrail_Principal" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="GPUTrail_Principal" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011847, 0, 0)
 amount = 25
 lifetime = 25.0
@@ -8944,15 +8879,15 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("26_wop7j")
+script = ExtResource("27_a1h4q")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("25_s2ycu")
-color_ramp = ExtResource("23_rfak4")
-curve = ExtResource("24_mpf5e")
+texture = ExtResource("26_5ovrm")
+color_ramp = ExtResource("24_xh7no")
+curve = ExtResource("25_auddm")
 _defaults_have_been_set = true
 
-[node name="GPUTrail3D2" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="GPUTrail3D2" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.380125, 0.264312, -0.502132)
 amount = 25
 lifetime = 25.0
@@ -8960,15 +8895,15 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("26_wop7j")
+script = ExtResource("27_a1h4q")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("25_s2ycu")
-color_ramp = ExtResource("23_rfak4")
-curve = ExtResource("24_mpf5e")
+texture = ExtResource("26_5ovrm")
+color_ramp = ExtResource("24_xh7no")
+curve = ExtResource("25_auddm")
 _defaults_have_been_set = true
 
-[node name="GPUTrail3D3" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="GPUTrail3D3" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.380125, 0.264312, 0.931499)
 amount = 25
 lifetime = 25.0
@@ -8976,15 +8911,15 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ShaderMaterial_ew57k")
 draw_pass_1 = SubResource("QuadMesh_ms515")
-script = ExtResource("26_wop7j")
+script = ExtResource("27_a1h4q")
 length = 25
 length_seconds = 0.416667
-texture = ExtResource("25_s2ycu")
-color_ramp = ExtResource("23_rfak4")
-curve = ExtResource("24_mpf5e")
+texture = ExtResource("26_5ovrm")
+color_ramp = ExtResource("24_xh7no")
+curve = ExtResource("25_auddm")
 _defaults_have_been_set = true
 
-[node name="Smoke2" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="Smoke2" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0336486, 0, -0.133416)
 material_override = SubResource("StandardMaterial3D_xm8la")
 amount = 200
@@ -8992,41 +8927,42 @@ lifetime = 0.7
 process_material = SubResource("ParticleProcessMaterial_j3n5v")
 draw_pass_1 = SubResource("QuadMesh_35xvk")
 
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.142659)
 strength = -5.0
 attenuation = 3.48
 directionality = 1.0
 
-[node name="Portal" type="GPUParticles3D" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail/GPUParticlesAttractorSphere3D"]
+[node name="Portal" type="GPUParticles3D" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail/GPUParticlesAttractorSphere3D"]
 material_override = SubResource("ShaderMaterial_hebft")
 amount = 3000
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_wx44o")
 draw_pass_1 = SubResource("SphereMesh_r4di4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Arene/Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail/GPUParticlesAttractorSphere3D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mira/Animation_exportTest_/Group/DeformationSystem/Skeleton3D/BoneAttachment3D2/Trail/GPUParticlesAttractorSphere3D"]
 libraries = {
 &"": SubResource("AnimationLibrary_1j7s2")
 }
 
-[node name="Geometry" type="Node3D" parent="Arene/Mira/Animation_exportTest_/Group"]
+[node name="Geometry" type="Node3D" parent="Mira/Animation_exportTest_/Group"]
 
-[node name="geo" type="Node3D" parent="Arene/Mira/Animation_exportTest_/Group/Geometry"]
+[node name="geo" type="Node3D" parent="Mira/Animation_exportTest_/Group/Geometry"]
 
-[node name="Mira_geo" type="Node3D" parent="Arene/Mira/Animation_exportTest_/Group/Geometry/geo"]
+[node name="Mira_geo" type="Node3D" parent="Mira/Animation_exportTest_/Group/Geometry/geo"]
 visible = false
 
-[node name="Aura" parent="Arene/Mira/Animation_exportTest_/Group" instance=ExtResource("29_73tcb")]
+[node name="Aura" parent="Mira/Animation_exportTest_/Group" instance=ExtResource("30_6pcwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0270004, -0.0199373, 0.0499979)
 
-[node name="Rig_Vorace_DONTTOUCH" type="Node3D" parent="Arene/Mira/Animation_exportTest_"]
+[node name="Rig_Vorace_DONTTOUCH" type="Node3D" parent="Mira/Animation_exportTest_"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH"]
 bones/0/name = "Rig_Vorace_joint1"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.0419211, 1.50941e-16, 0.999121, 7.40725e-14, -1, -2.95686e-15, 0.999121, 7.41313e-14, -0.0419213, -0.972292, 0.7482, 6.03041)
 bones/0/enabled = true
-bones/0/position = Vector3(0.560497, 0.317654, -0.537681)
+bones/0/position = Vector3(0.559838, 0.322605, -0.535534)
 bones/0/rotation = Quaternion(0.609526, 0.370641, 0.583715, 0.387789)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Rig_Vorace_joint2"
@@ -9058,66 +8994,66 @@ bones/4/position = Vector3(-1.71196, 0.257236, -0.545747)
 bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/4/scale = Vector3(1, 1, 1)
 
-[node name="Rig_Vorace_sweep27" type="MeshInstance3D" parent="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D"]
+[node name="Rig_Vorace_sweep27" type="MeshInstance3D" parent="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D"]
 mesh = SubResource("ArrayMesh_q8236")
 skin = SubResource("Skin_soxfb")
 surface_material_override/0 = SubResource("StandardMaterial3D_5uxjs")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D"]
-transform = Transform3D(0.0438043, -0.000885814, 0.99904, 0.904547, -0.42449, -0.0400375, 0.424118, 0.905432, -0.0177932, 0.560497, 0.317654, -0.537681)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D"]
+transform = Transform3D(0.0438043, -0.000885814, 0.99904, 0.904547, -0.42449, -0.0400375, 0.424118, 0.905432, -0.0177932, 0.559838, 0.322605, -0.535534)
 bone_name = "Rig_Vorace_joint1"
 bone_idx = 0
 
-[node name="Third_Attack" parent="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D" instance=ExtResource("32_evsik")]
+[node name="Third_Attack" parent="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D" instance=ExtResource("33_nsvjw")]
 transform = Transform3D(0.00147955, -0.0113087, -0.599892, -0.0481796, 0.597954, -0.011391, 0.598061, 0.048199, 0.000566426, -0.672339, -0.0463571, -0.196321)
 visible = false
 
-[node name="Charge" parent="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D" instance=ExtResource("33_variw")]
+[node name="Charge" parent="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D" instance=ExtResource("34_1j4wo")]
 transform = Transform3D(-0.996487, -0.00318632, -0.0836774, -0.00349063, 0.999988, 0.00349065, 0.0836653, 0.00377048, -0.996487, 0.342, 0, 0.074)
 visible = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Arene/Mira/Animation_exportTest_"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mira/Animation_exportTest_"]
 libraries = {
 &"": SubResource("AnimationLibrary_2b7w0")
 }
 
-[node name="LightAttackSystemArea3D" type="Area3D" parent="Arene/Mira/Animation_exportTest_"]
+[node name="LightAttackSystemArea3D" type="Area3D" parent="Mira/Animation_exportTest_"]
 collision_mask = 3
 monitoring = false
 
-[node name="ContactCollisionShape3D" type="CollisionShape3D" parent="Arene/Mira/Animation_exportTest_/LightAttackSystemArea3D" groups=["player"]]
+[node name="ContactCollisionShape3D" type="CollisionShape3D" parent="Mira/Animation_exportTest_/LightAttackSystemArea3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915043, 1.07984)
 shape = SubResource("SphereShape3D_vyaqo")
 disabled = true
 debug_color = Color(0.532, 0, 0.156, 0.712)
 
-[node name="DistanceCollisionShape3D" type="CollisionShape3D" parent="Arene/Mira/Animation_exportTest_/LightAttackSystemArea3D" groups=["player"]]
+[node name="DistanceCollisionShape3D" type="CollisionShape3D" parent="Mira/Animation_exportTest_/LightAttackSystemArea3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 0.290619, 0.956839, 0, -0.956839, 0.290619, -0.272269, 1.22883, 2.02767)
 shape = SubResource("CylinderShape3D_bdq43")
 disabled = true
 debug_color = Color(0.532, 0, 0.156, 0.712)
 
-[node name="ChargedAttackSystemArea3D" type="Area3D" parent="Arene/Mira/Animation_exportTest_"]
+[node name="ChargedAttackSystemArea3D" type="Area3D" parent="Mira/Animation_exportTest_"]
 collision_mask = 3
 
-[node name="ChargedAttackCollision3D" type="CollisionShape3D" parent="Arene/Mira/Animation_exportTest_/ChargedAttackSystemArea3D" groups=["player"]]
+[node name="ChargedAttackCollision3D" type="CollisionShape3D" parent="Mira/Animation_exportTest_/ChargedAttackSystemArea3D" groups=["player"]]
 transform = Transform3D(0.995811, 0.0914321, 3.99662e-09, 0, -4.37114e-08, 1, 0.0914321, -0.995811, -4.35283e-08, -0.502374, 0.715516, 3.58459)
 shape = SubResource("CylinderShape3D_yu43w")
 disabled = true
 debug_color = Color(0.532, 0, 0.156, 0.712)
 
-[node name="ChargeAttackImpactCollisionShape3D" type="CollisionShape3D" parent="Arene/Mira/Animation_exportTest_/ChargedAttackSystemArea3D"]
+[node name="ChargeAttackImpactCollisionShape3D" type="CollisionShape3D" parent="Mira/Animation_exportTest_/ChargedAttackSystemArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0253, 0, 7.03437)
 shape = SubResource("SphereShape3D_c2low")
 disabled = true
 debug_color = Color(0.532, 0, 0.156, 0.712)
 
-[node name="Lock" parent="Arene/Mira/Animation_exportTest_" instance=ExtResource("34_gueyv")]
+[node name="Lock" parent="Mira/Animation_exportTest_" instance=ExtResource("35_v84o8")]
 transform = Transform3D(-1.80951e-08, 0, -1, 0, 1, 0, 0.413968, 0, -4.37114e-08, 0, 0, 0)
 visible = false
 
-[node name="HealthComponent" type="Node" parent="Arene/Mira" node_paths=PackedStringArray("animation_tree", "animation_player", "player", "player_mesh", "movement_script", "health_bar", "death_pannel", "death_pannel_first_button") groups=["player"]]
-script = ExtResource("35_ksd5f")
+[node name="HealthComponent" type="Node" parent="Mira" node_paths=PackedStringArray("animation_tree", "animation_player", "player", "player_mesh", "movement_script", "health_bar", "death_pannel", "death_pannel_first_button") groups=["player"]]
+script = ExtResource("36_col0g")
 animation_tree = NodePath("../AnimationTree")
 animation_player = NodePath("../Animation_exportTest_/AnimationPlayer")
 player = NodePath("..")
@@ -9127,92 +9063,79 @@ health_bar = NodePath("../HealthBar")
 death_pannel = NodePath("../death_pannel")
 death_pannel_first_button = NodePath("../death_pannel/Buttons_container/Reload")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arene/Mira" groups=["player"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mira" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.851973, 0)
 shape = SubResource("CapsuleShape3D_qjoqe")
 
-[node name="CameraComponent" type="Node" parent="Arene/Mira" groups=["player"]]
+[node name="CameraComponent" type="Node" parent="Mira" groups=["player"]]
 
-[node name="MakeCameraFollowPlayer" type="Node" parent="Arene/Mira/CameraComponent" node_paths=PackedStringArray("camera_controller", "player")]
-script = ExtResource("36_pv4op")
+[node name="MakeCameraFollowPlayer" type="Node" parent="Mira/CameraComponent" node_paths=PackedStringArray("camera_controller", "player")]
+script = ExtResource("37_1wiru")
 camera_controller = NodePath("../CameraController")
 player = NodePath("../..")
 
-[node name="CameraController" type="Node3D" parent="Arene/Mira/CameraComponent"]
+[node name="CameraController" type="Node3D" parent="Mira/CameraComponent"]
 
-[node name="CameraTarget" type="Node3D" parent="Arene/Mira/CameraComponent/CameraController"]
+[node name="CameraTarget" type="Node3D" parent="Mira/CameraComponent/CameraController"]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.93517, 5.66232)
 
-[node name="Camera3D" type="Camera3D" parent="Arene/Mira/CameraComponent/CameraController/CameraTarget"]
+[node name="Camera3D" type="Camera3D" parent="Mira/CameraComponent/CameraController/CameraTarget"]
 transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0, 3.71616, 3.5845)
-environment = SubResource("Environment_maeic")
 
-[node name="post_process" parent="Arene/Mira/CameraComponent/CameraController/CameraTarget/Camera3D" instance=ExtResource("37_natva")]
-mesh = SubResource("QuadMesh_v64pg")
-surface_material_override/0 = ExtResource("38_bxh3k")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Arene/Mira/CameraComponent/CameraController/CameraTarget/Camera3D"]
-
-[node name="ColorRect" type="ColorRect" parent="Arene/Mira/CameraComponent/CameraController/CameraTarget/Camera3D/CanvasLayer"]
-material = SubResource("ShaderMaterial_maeic")
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MakeCameraShake" type="Node" parent="Arene/Mira/CameraComponent" node_paths=PackedStringArray("camera_position")]
-script = ExtResource("39_q5mn2")
+[node name="MakeCameraShake" type="Node" parent="Mira/CameraComponent" node_paths=PackedStringArray("camera_position")]
+script = ExtResource("39_d3xec")
 camera_position = NodePath("../CameraController/CameraTarget/Camera3D")
 
-[node name="MovementComponent" type="Node" parent="Arene/Mira" groups=["player"]]
+[node name="MovementComponent" type="Node" parent="Mira" groups=["player"]]
 
-[node name="AddGravity" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("player")]
-script = ExtResource("40_t2pj6")
+[node name="AddGravity" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("player")]
+script = ExtResource("40_3y3ht")
 player = NodePath("../..")
 
-[node name="MovePlayer" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("game_master", "player", "animation_tree", "aura_mesh")]
-script = ExtResource("41_0ehyh")
+[node name="MovePlayer" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("game_master", "player", "animation_tree", "aura_mesh")]
+script = ExtResource("41_ulohx")
 player_movement_resource = SubResource("Resource_0lh1u")
 game_master = NodePath("../../MiraGameMaster")
 player = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 aura_mesh = NodePath("../../Animation_exportTest_/Group/Aura")
 
-[node name="HandleMovementAnimation" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("player", "animation_tree")]
-script = ExtResource("43_t0r4r")
+[node name="HandleMovementAnimation" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("player", "animation_tree")]
+script = ExtResource("43_804mf")
 player = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
-[node name="HandleMovementAnimationSpeed" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("player", "animation_tree")]
-script = ExtResource("44_y1co0")
+[node name="HandleMovementAnimationSpeed" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("player", "animation_tree")]
+script = ExtResource("44_bqbrf")
 player = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
-[node name="LaunchMovementVFX" type="Node" parent="Arene/Mira/MovementComponent"]
+[node name="LaunchMovementVFX" type="Node" parent="Mira/MovementComponent"]
 
-[node name="LaunchMovementSound" type="Node" parent="Arene/Mira/MovementComponent"]
+[node name="LaunchMovementSound" type="Node" parent="Mira/MovementComponent"]
 
-[node name="HandleRootMotion" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("animation_player", "animation_tree")]
-script = ExtResource("45_fc5a0")
+[node name="HandleRootMotion" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("animation_player", "animation_tree")]
+script = ExtResource("45_35t5u")
 animation_player = NodePath("../../Animation_exportTest_/AnimationPlayer")
 animation_tree = NodePath("../../AnimationTree")
 
-[node name="MovementTracksMethodes" type="Node" parent="Arene/Mira/MovementComponent" node_paths=PackedStringArray("mira_step", "player", "movement_script", "movement_vfx_storage")]
-script = ExtResource("46_n7irg")
+[node name="MovementTracksMethodes" type="Node" parent="Mira/MovementComponent" node_paths=PackedStringArray("mira_step", "player", "movement_script", "movement_vfx_storage")]
+script = ExtResource("46_vhaqu")
 mira_step = NodePath("mira_step")
 player = NodePath("../..")
 movement_script = NodePath("../MovePlayer")
-vfx_scene = ExtResource("47_htueu")
+vfx_scene = ExtResource("47_0slv4")
 movement_vfx_storage = NodePath("../MovementVFXStorage")
-footstep_sounds = Array[AudioStream]([ExtResource("48_qcps7"), ExtResource("49_f1cl5"), ExtResource("50_nloug"), ExtResource("51_f58q6")])
+footstep_sounds = Array[AudioStream]([ExtResource("48_xm0v6"), ExtResource("49_36bkv"), ExtResource("50_2spru"), ExtResource("51_vnfmv")])
 
-[node name="mira_step" type="AudioStreamPlayer3D" parent="Arene/Mira/MovementComponent/MovementTracksMethodes"]
-bus = &"mira_step"
+[node name="mira_step" type="AudioStreamPlayer3D" parent="Mira/MovementComponent/MovementTracksMethodes"]
 
-[node name="MovementVFXStorage" type="Node" parent="Arene/Mira/MovementComponent"]
+[node name="MovementVFXStorage" type="Node" parent="Mira/MovementComponent"]
 
-[node name="DashComponent" type="Node" parent="Arene/Mira" groups=["player"]]
+[node name="DashComponent" type="Node" parent="Mira" groups=["player"]]
 
-[node name="LaunchDash" type="Node" parent="Arene/Mira/DashComponent" node_paths=PackedStringArray("player", "camera", "animation_tree", "mira_game_master", "action_line_sprites", "player_mesh")]
-script = ExtResource("52_re84j")
+[node name="LaunchDash" type="Node" parent="Mira/DashComponent" node_paths=PackedStringArray("player", "camera", "animation_tree", "mira_game_master", "action_line_sprites", "player_mesh")]
+script = ExtResource("52_17tqc")
 SUMMARY = "- Launch a travel towards the dash animation node contained in the AnimationTree"
 player = NodePath("../..")
 camera = NodePath("../../CameraComponent/CameraController/CameraTarget/Camera3D")
@@ -9221,20 +9144,20 @@ mira_game_master = NodePath("../../MiraGameMaster")
 latence_between_dash = 0.5
 dash_length = 5.0
 action_line_sprites = NodePath("../Control/ActionLineSprites")
-dash_vfx = ExtResource("53_aco1p")
+dash_vfx = ExtResource("53_wd27q")
 player_mesh = NodePath("../../Animation_exportTest_/Group")
 
-[node name="Control" type="CanvasLayer" parent="Arene/Mira/DashComponent"]
+[node name="Control" type="CanvasLayer" parent="Mira/DashComponent"]
 
-[node name="ActionLineSprites" type="AnimatedSprite2D" parent="Arene/Mira/DashComponent/Control"]
+[node name="ActionLineSprites" type="AnimatedSprite2D" parent="Mira/DashComponent/Control"]
 visible = false
 position = Vector2(984, 514)
 scale = Vector2(1.66099, 1.37333)
 sprite_frames = SubResource("SpriteFrames_683g8")
 animation = &"Action lines"
 
-[node name="AttackComponent" type="Node" parent="Arene/Mira" node_paths=PackedStringArray("light_attack_logic", "charged_attack_logic", "camera_shake_logic", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision")]
-script = ExtResource("56_4uvab")
+[node name="AttackComponent" type="Node" parent="Mira" node_paths=PackedStringArray("light_attack_logic", "charged_attack_logic", "camera_shake_logic", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision")]
+script = ExtResource("56_s3een")
 light_attack_logic = NodePath("LightAttackComponent/LaunchLightAttackLogic")
 charged_attack_logic = NodePath("ChargeAttackComponent/LaunchChargeAttackLogic")
 camera_shake_logic = NodePath("../CameraComponent/MakeCameraShake")
@@ -9245,102 +9168,102 @@ charged_attack_area = NodePath("../Animation_exportTest_/ChargedAttackSystemArea
 charged_attack_collision = NodePath("../Animation_exportTest_/ChargedAttackSystemArea3D/ChargedAttackCollision3D")
 charged_attack_impact_collision = NodePath("../Animation_exportTest_/ChargedAttackSystemArea3D/ChargeAttackImpactCollisionShape3D")
 
-[node name="LightAttackComponent" type="Node" parent="Arene/Mira/AttackComponent"]
+[node name="LightAttackComponent" type="Node" parent="Mira/AttackComponent"]
 
-[node name="LightAttackTracksMethodes" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("player_collision_shape", "player", "attack_1_sound", "attack_2_sound", "attack_3_sound", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx")]
-script = ExtResource("57_lyouo")
+[node name="LightAttackTracksMethodes" type="Node" parent="Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("player_collision_shape", "player", "attack_1_sound", "attack_2_sound", "attack_3_sound", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx")]
+script = ExtResource("57_yn2lo")
 player_collision_shape = NodePath("../../../CollisionShape3D")
 player = NodePath("../../..")
 attack_1_sound = NodePath("../../../Sounds/LightAttack1")
 attack_2_sound = NodePath("../../../Sounds/LightAttack2")
 attack_3_sound = NodePath("../../../Sounds/LightAttack3V2")
 light_attack_vfx_storage = NodePath("../../../VFX")
-combo_1_vfx_scene = ExtResource("58_b0mb7")
-combo_2_vfx_scene = ExtResource("59_mj6h3")
+combo_1_vfx_scene = ExtResource("58_80tqo")
+combo_2_vfx_scene = ExtResource("59_6hp12")
 base_combo_position = NodePath("../../../VFX/SlashPosition")
 combo_3_animation_player = NodePath("../../../Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack/AnimationPlayer")
 combo_3_vfx = NodePath("../../../Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack")
 
-[node name="HandleLightAttackIndexAnimation" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent"]
-script = ExtResource("60_7qlbh")
+[node name="HandleLightAttackIndexAnimation" type="Node" parent="Mira/AttackComponent/LightAttackComponent"]
+script = ExtResource("60_pxqd0")
 base_reset_countdown = 0.25
 
-[node name="LaunchLightAttackLogic" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("animation_tree", "animation_player", "mira_game_master", "index_animation_script")]
-script = ExtResource("61_em2jk")
+[node name="LaunchLightAttackLogic" type="Node" parent="Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("animation_tree", "animation_player", "mira_game_master", "index_animation_script")]
+script = ExtResource("61_x4u8i")
 animation_tree = NodePath("../../../AnimationTree")
 animation_player = NodePath("../../../Animation_exportTest_/AnimationPlayer")
 mira_game_master = NodePath("../../../MiraGameMaster")
 index_animation_script = NodePath("../HandleLightAttackIndexAnimation")
 
-[node name="LaunchLightAttackVFX" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent"]
+[node name="LaunchLightAttackVFX" type="Node" parent="Mira/AttackComponent/LightAttackComponent"]
 
-[node name="LaunchLightAttackSound" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent"]
+[node name="LaunchLightAttackSound" type="Node" parent="Mira/AttackComponent/LightAttackComponent"]
 
-[node name="HandleTransitionBetweenAttackAndMovement" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("index_animation_script", "animation_tree")]
-script = ExtResource("62_qejgj")
+[node name="HandleTransitionBetweenAttackAndMovement" type="Node" parent="Mira/AttackComponent/LightAttackComponent" node_paths=PackedStringArray("index_animation_script", "animation_tree")]
+script = ExtResource("62_4lf3w")
 Summary = "29/01/2025
 - Doesn't allow the transition from the attack to the movement if the player is in countdown (after an attack)"
 index_animation_script = NodePath("../HandleLightAttackIndexAnimation")
 animation_tree = NodePath("../../../AnimationTree")
 
-[node name="LightVfxStorage" type="Node" parent="Arene/Mira/AttackComponent/LightAttackComponent"]
+[node name="LightVfxStorage" type="Node" parent="Mira/AttackComponent/LightAttackComponent"]
 
-[node name="ChargeAttackComponent" type="Node" parent="Arene/Mira/AttackComponent"]
+[node name="ChargeAttackComponent" type="Node" parent="Mira/AttackComponent"]
 
-[node name="HandleChargeAttackMovement" type="Node" parent="Arene/Mira/AttackComponent/ChargeAttackComponent"]
+[node name="HandleChargeAttackMovement" type="Node" parent="Mira/AttackComponent/ChargeAttackComponent"]
 
-[node name="LaunchChargeAttackLogic" type="Node" parent="Arene/Mira/AttackComponent/ChargeAttackComponent" node_paths=PackedStringArray("mira_game_master", "animation_tree")]
-script = ExtResource("63_pggc2")
+[node name="LaunchChargeAttackLogic" type="Node" parent="Mira/AttackComponent/ChargeAttackComponent" node_paths=PackedStringArray("mira_game_master", "animation_tree")]
+script = ExtResource("63_kw5ua")
 Summary = "29/01/2025 
 - Launch a travel towards the charge_attack animation node contained in the AnimationTree"
 mira_game_master = NodePath("../../../MiraGameMaster")
 animation_tree = NodePath("../../../AnimationTree")
 
-[node name="LaunchChargeAttackVFX" type="Node" parent="Arene/Mira/AttackComponent/ChargeAttackComponent"]
+[node name="LaunchChargeAttackVFX" type="Node" parent="Mira/AttackComponent/ChargeAttackComponent"]
 
-[node name="LaunchChargeAttackSound" type="Node" parent="Arene/Mira/AttackComponent/ChargeAttackComponent"]
+[node name="LaunchChargeAttackSound" type="Node" parent="Mira/AttackComponent/ChargeAttackComponent"]
 
-[node name="ChargedAttackTracksMethodes" type="Node" parent="Arene/Mira/AttackComponent/ChargeAttackComponent" node_paths=PackedStringArray("charged_attack_sound", "charge_attack_charging", "charge_attack_lock_mesh", "movement_script")]
-script = ExtResource("64_wkllm")
+[node name="ChargedAttackTracksMethodes" type="Node" parent="Mira/AttackComponent/ChargeAttackComponent" node_paths=PackedStringArray("charged_attack_sound", "charge_attack_charging", "charge_attack_lock_mesh", "movement_script")]
+script = ExtResource("64_mpxqh")
 charged_attack_sound = NodePath("../../../Sounds/ChargedAttack")
 charge_attack_charging = NodePath("../../../VFX/Attack_Charge")
 charge_attack_lock_mesh = NodePath("../../../Animation_exportTest_/Lock")
 movement_script = NodePath("../../../MovementComponent/MovePlayer")
 
-[node name="AnimationTree" type="AnimationTree" parent="Arene/Mira" groups=["player"]]
+[node name="AnimationTree" type="AnimationTree" parent="Mira" groups=["player"]]
 root_node = NodePath("../Animation_exportTest_")
 root_motion_track = NodePath("Group/DeformationSystem/Skeleton3D:root")
 root_motion_local = false
-tree_root = ExtResource("65_875tt")
+tree_root = ExtResource("65_7um0i")
 anim_player = NodePath("../Animation_exportTest_/AnimationPlayer")
 parameters/MiraAnimations/conditions/can_transition = false
 parameters/MiraAnimations/conditions/is_alive = true
 parameters/MiraAnimations/MovementBlendSpace/blend_position = 7.99174
 parameters/TimeScale/scale = 1.75
 
-[node name="RootMotionView" type="RootMotionView" parent="Arene/Mira" groups=["player"]]
+[node name="RootMotionView" type="RootMotionView" parent="Mira" groups=["player"]]
 animation_path = NodePath("../AnimationTree")
 
-[node name="Sounds" type="Node" parent="Arene/Mira" groups=["player"]]
+[node name="Sounds" type="Node" parent="Mira" groups=["player"]]
 
-[node name="LightAttack3V2" type="AudioStreamPlayer" parent="Arene/Mira/Sounds"]
-stream = ExtResource("66_sulji")
+[node name="LightAttack3V2" type="AudioStreamPlayer" parent="Mira/Sounds"]
+stream = ExtResource("66_2527q")
 pitch_scale = 1.12
 
-[node name="LightAttack1" type="AudioStreamPlayer" parent="Arene/Mira/Sounds"]
-stream = ExtResource("67_44pd4")
+[node name="LightAttack1" type="AudioStreamPlayer" parent="Mira/Sounds"]
+stream = ExtResource("67_7nt4s")
 volume_db = -10.0
 
-[node name="LightAttack2" type="AudioStreamPlayer" parent="Arene/Mira/Sounds"]
-stream = ExtResource("68_kf7xk")
+[node name="LightAttack2" type="AudioStreamPlayer" parent="Mira/Sounds"]
+stream = ExtResource("68_awhi2")
 volume_db = -10.0
 
-[node name="ChargedAttack" type="AudioStreamPlayer" parent="Arene/Mira/Sounds"]
-stream = ExtResource("69_5fwcf")
+[node name="ChargedAttack" type="AudioStreamPlayer" parent="Mira/Sounds"]
+stream = ExtResource("69_0xmlj")
 volume_db = -10.0
 pitch_scale = 2.15
 
-[node name="Control" type="Control" parent="Arene/Mira"]
+[node name="Control" type="Control" parent="Mira"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -9348,7 +9271,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Arene/Mira/Control"]
+[node name="TextureRect" type="TextureRect" parent="Mira/Control"]
 visible = false
 modulate = Color(0.678431, 0.729412, 0.92549, 1)
 layout_mode = 1
@@ -9357,48 +9280,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("70_sofhm")
+texture = ExtResource("70_ayme4")
 expand_mode = 1
 
-[node name="HealthArea" type="Area3D" parent="Arene/Mira" groups=["player"]]
+[node name="HealthArea" type="Area3D" parent="Mira" groups=["player"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arene/Mira/HealthArea" groups=["player"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mira/HealthArea" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840333, 0)
 shape = SubResource("CapsuleShape3D_2g04f")
 debug_color = Color(0, 0.494, 0.196, 0.696)
 
-[node name="VFX" type="Node3D" parent="Arene/Mira"]
+[node name="VFX" type="Node3D" parent="Mira"]
 
-[node name="SlashPosition" type="Node3D" parent="Arene/Mira/VFX"]
+[node name="SlashPosition" type="Node3D" parent="Mira/VFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588622, 1.06759, 0.911223)
 
-[node name="ChargeAttackImpactPosition" type="Node3D" parent="Arene/Mira/VFX"]
+[node name="ChargeAttackImpactPosition" type="Node3D" parent="Mira/VFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.984142, -0.0078817, 7.60665)
 
-[node name="ChargedAttackImpactVFXLogic" type="Node" parent="Arene/Mira/VFX" node_paths=PackedStringArray("charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position")]
-script = ExtResource("71_2erpq")
-charged_attack_impact_vfx = ExtResource("72_meqea")
+[node name="ChargedAttackImpactVFXLogic" type="Node" parent="Mira/VFX" node_paths=PackedStringArray("charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position")]
+script = ExtResource("71_aecwr")
+charged_attack_impact_vfx = ExtResource("72_gj6q5")
 charged_attack_impact_vfx_storage = NodePath("../ChargeAttackImpactPosition")
 charged_attack_impact_vfx_spawn_position = NodePath("../ChargeAttackImpactPosition")
 
-[node name="Attack_Charge" parent="Arene/Mira/VFX" instance=ExtResource("73_vm2it")]
+[node name="Attack_Charge" parent="Mira/VFX" instance=ExtResource("73_tdpm6")]
 transform = Transform3D(0.999507, -8.73796e-08, 0.0314107, -8.74228e-08, -1, 0, 0.0314107, -2.74601e-09, -0.999507, -1.349, 0.931, 3.238)
 visible = false
 
-[node name="AttackCharge" parent="Arene/Mira/VFX/Attack_Charge" index="0"]
+[node name="AttackCharge" parent="Mira/VFX/Attack_Charge" index="0"]
 skeleton = NodePath("../../../Animation_exportTest_/Group")
 
-[node name="AnimationPlayer" parent="Arene/Mira/VFX/Attack_Charge/AttackCharge" index="0"]
+[node name="AnimationPlayer" parent="Mira/VFX/Attack_Charge/AttackCharge" index="0"]
 speed_scale = 10.0
 
-[node name="HealthBar" parent="Arene/Mira" instance=ExtResource("74_8bi73")]
+[node name="HealthBar" parent="Mira" instance=ExtResource("74_qkhb3")]
 offset_left = 135.0
 offset_top = 124.0
 offset_right = 579.0
 offset_bottom = 163.0
 scale = Vector2(0.706707, 1.19661)
 
-[node name="Pause_pannel" type="Control" parent="Arene/Mira" node_paths=PackedStringArray("health_script")]
+[node name="Pause_pannel" type="Control" parent="Mira" node_paths=PackedStringArray("health_script")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -9408,10 +9331,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-script = ExtResource("75_b1j3t")
+script = ExtResource("75_duva1")
 health_script = NodePath("../HealthComponent")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="MarginContainer2" type="MarginContainer" parent="Mira/Pause_pannel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -9419,14 +9342,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackGroundClockImage" type="TextureRect" parent="Arene/Mira/Pause_pannel/MarginContainer2"]
+[node name="BackGroundClockImage" type="TextureRect" parent="Mira/Pause_pannel/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("76_b02tm")
+texture = ExtResource("76_eemje")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Panel" type="Panel" parent="Arene/Mira/Pause_pannel"]
+[node name="Panel" type="Panel" parent="Mira/Pause_pannel"]
 modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -9439,7 +9362,7 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons_container" type="VBoxContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="Buttons_container" type="VBoxContainer" parent="Mira/Pause_pannel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -9455,67 +9378,67 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Resume" type="Button" parent="Arene/Mira/Pause_pannel/Buttons_container"]
+[node name="Resume" type="Button" parent="Mira/Pause_pannel/Buttons_container"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Quit game")
 focus_neighbor_bottom = NodePath("../Reload")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Resume"
 
-[node name="Reload" type="Button" parent="Arene/Mira/Pause_pannel/Buttons_container"]
+[node name="Reload" type="Button" parent="Mira/Pause_pannel/Buttons_container"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Resume")
 focus_neighbor_bottom = NodePath("../Main menu")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Reload scene"
 
-[node name="Main menu" type="Button" parent="Arene/Mira/Pause_pannel/Buttons_container"]
+[node name="Main menu" type="Button" parent="Mira/Pause_pannel/Buttons_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Reload")
 focus_neighbor_bottom = NodePath("../Settings")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Main menu"
 
-[node name="Settings" type="Button" parent="Arene/Mira/Pause_pannel/Buttons_container"]
+[node name="Settings" type="Button" parent="Mira/Pause_pannel/Buttons_container"]
 modulate = Color(0.439049, 0.439049, 0.439049, 1)
 material = SubResource("CanvasItemMaterial_8mu2n")
 layout_mode = 2
 focus_neighbor_top = NodePath("../Main menu")
 focus_neighbor_bottom = NodePath("../Quit game")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Settings"
 
-[node name="Quit game" type="Button" parent="Arene/Mira/Pause_pannel/Buttons_container"]
+[node name="Quit game" type="Button" parent="Mira/Pause_pannel/Buttons_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_bottom = NodePath("../Resume")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Quit game"
 
-[node name="MarginContainer" type="MarginContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="MarginContainer" type="MarginContainer" parent="Mira/Pause_pannel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 132.0
 grow_horizontal = 2
 
-[node name="Pause text" type="Label" parent="Arene/Mira/Pause_pannel/MarginContainer"]
+[node name="Pause text" type="Label" parent="Mira/Pause_pannel/MarginContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 96
 text = "Pause menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ReloadConfirmationPannel" type="PanelContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="Mira/Pause_pannel"]
 visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 1
@@ -9531,21 +9454,21 @@ offset_bottom = 131.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Arene/Mira/Pause_pannel/ReloadConfirmationPannel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Mira/Pause_pannel/ReloadConfirmationPannel"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
+[node name="ConfirmationText" type="Label" parent="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 40
 text = "Are you sure that you want to reload this level? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9553,19 +9476,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 185
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="Mira/Pause_pannel"]
 visible = false
 custom_minimum_size = Vector2(548.33, 300)
 layout_mode = 1
@@ -9581,16 +9504,16 @@ offset_bottom = 102.205
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel"]
+[node name="ConfirmationText" type="Label" parent="Mira/Pause_pannel/MainMenuConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure you want to go back to the main menu? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/Pause_pannel/MainMenuConfirmationPannel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9598,19 +9521,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 210
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="QuitConfirmationPannel" type="PanelContainer" parent="Arene/Mira/Pause_pannel"]
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="Mira/Pause_pannel"]
 visible = false
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 1
@@ -9626,16 +9549,16 @@ offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/Pause_pannel/QuitConfirmationPannel"]
+[node name="ConfirmationText" type="Label" parent="Mira/Pause_pannel/QuitConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure that you want to quit? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/Pause_pannel/QuitConfirmationPannel"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/Pause_pannel/QuitConfirmationPannel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9643,19 +9566,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 215
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="NotReadyLabel" type="Label" parent="Arene/Mira/Pause_pannel"]
+[node name="NotReadyLabel" type="Label" parent="Mira/Pause_pannel"]
 visible = false
 layout_mode = 1
 anchors_preset = 2
@@ -9666,13 +9589,13 @@ offset_top = -46.0
 offset_right = 211.0
 offset_bottom = -18.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 45
 text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="death_pannel" type="Control" parent="Arene/Mira"]
+[node name="death_pannel" type="Control" parent="Mira"]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -9682,9 +9605,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-script = ExtResource("79_n4gb3")
+script = ExtResource("79_c3j45")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Arene/Mira/death_pannel"]
+[node name="MarginContainer2" type="MarginContainer" parent="Mira/death_pannel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -9692,14 +9615,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackGroundClockImage" type="TextureRect" parent="Arene/Mira/death_pannel/MarginContainer2"]
+[node name="BackGroundClockImage" type="TextureRect" parent="Mira/death_pannel/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("76_b02tm")
+texture = ExtResource("76_eemje")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Panel" type="Panel" parent="Arene/Mira/death_pannel"]
+[node name="Panel" type="Panel" parent="Mira/death_pannel"]
 modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -9712,7 +9635,7 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons_container" type="VBoxContainer" parent="Arene/Mira/death_pannel"]
+[node name="Buttons_container" type="VBoxContainer" parent="Mira/death_pannel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -9728,44 +9651,44 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Reload" type="Button" parent="Arene/Mira/death_pannel/Buttons_container"]
+[node name="Reload" type="Button" parent="Mira/death_pannel/Buttons_container"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../Main menu")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Try again"
 
-[node name="Main menu" type="Button" parent="Arene/Mira/death_pannel/Buttons_container"]
+[node name="Main menu" type="Button" parent="Mira/death_pannel/Buttons_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Reload")
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Main menu"
 
-[node name="Quit game" type="Button" parent="Arene/Mira/death_pannel/Buttons_container"]
+[node name="Quit game" type="Button" parent="Mira/death_pannel/Buttons_container"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 56
 text = "Quit game"
 
-[node name="MarginContainer" type="MarginContainer" parent="Arene/Mira/death_pannel"]
+[node name="MarginContainer" type="MarginContainer" parent="Mira/death_pannel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 132.0
 grow_horizontal = 2
 
-[node name="Pause text" type="Label" parent="Arene/Mira/death_pannel/MarginContainer"]
+[node name="Pause text" type="Label" parent="Mira/death_pannel/MarginContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 96
 text = "Game over"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ReloadConfirmationPannel" type="PanelContainer" parent="Arene/Mira/death_pannel"]
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="Mira/death_pannel"]
 visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 1
@@ -9781,21 +9704,21 @@ offset_bottom = 131.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Arene/Mira/death_pannel/ReloadConfirmationPannel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Mira/death_pannel/ReloadConfirmationPannel"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer"]
+[node name="ConfirmationText" type="Label" parent="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 40
 text = "Are you sure that you want to reload this level? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9803,19 +9726,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 185
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="Arene/Mira/death_pannel"]
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="Mira/death_pannel"]
 visible = false
 custom_minimum_size = Vector2(548.33, 300)
 layout_mode = 1
@@ -9831,16 +9754,16 @@ offset_bottom = 102.205
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/death_pannel/MainMenuConfirmationPannel"]
+[node name="ConfirmationText" type="Label" parent="Mira/death_pannel/MainMenuConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure you want to go back to the main menu? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/death_pannel/MainMenuConfirmationPannel"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/death_pannel/MainMenuConfirmationPannel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9848,19 +9771,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 210
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="QuitConfirmationPannel" type="PanelContainer" parent="Arene/Mira/death_pannel"]
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="Mira/death_pannel"]
 visible = false
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 1
@@ -9876,16 +9799,16 @@ offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationText" type="Label" parent="Arene/Mira/death_pannel/QuitConfirmationPannel"]
+[node name="ConfirmationText" type="Label" parent="Mira/death_pannel/QuitConfirmationPannel"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 30
 text = "Are you sure that you want to quit? "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Arene/Mira/death_pannel/QuitConfirmationPannel"]
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="Mira/death_pannel/QuitConfirmationPannel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -9893,19 +9816,19 @@ size_flags_stretch_ratio = 20.0
 theme_override_constants/separation = 215
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Arene/Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+[node name="YesButton" type="Button" parent="Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="Arene/Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+[node name="NoButton" type="Button" parent="Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
 layout_mode = 2
-theme = ExtResource("77_es6mq")
+theme = ExtResource("77_5x4sf")
 theme_override_font_sizes/font_size = 30
 text = "No"
 
-[node name="NotReadyLabel" type="Label" parent="Arene/Mira/death_pannel"]
+[node name="NotReadyLabel" type="Label" parent="Mira/death_pannel"]
 visible = false
 layout_mode = 1
 anchors_preset = 2
@@ -9916,36 +9839,36 @@ offset_top = -46.0
 offset_right = 211.0
 offset_bottom = -18.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("78_nf1fl")
+theme_override_fonts/font = ExtResource("78_6t51r")
 theme_override_font_sizes/font_size = 45
 text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="area_entered" from="Arene/Mira/Animation_exportTest_/LightAttackSystemArea3D" to="Arene/Mira/AttackComponent" method="_on_attack_system_area_3d_area_entered"]
-[connection signal="area_entered" from="Arene/Mira/Animation_exportTest_/ChargedAttackSystemArea3D" to="Arene/Mira/AttackComponent" method="_on_charged_attack_system_area_3d_area_entered"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/Buttons_container/Resume" to="Arene/Mira/Pause_pannel" method="_on_resume_button_down"]
-[connection signal="pressed" from="Arene/Mira/Pause_pannel/Buttons_container/Resume" to="Arene/Mira/Pause_pannel" method="_on_resume_pressed"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/Buttons_container/Reload" to="Arene/Mira/Pause_pannel" method="_on_reload_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/Buttons_container/Main menu" to="Arene/Mira/Pause_pannel" method="_on_main_menu_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/Buttons_container/Settings" to="Arene/Mira/Pause_pannel" method="_on_settings_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/Buttons_container/Quit game" to="Arene/Mira/Pause_pannel" method="_on_quit_game_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="Arene/Mira/Pause_pannel" method="_on_reload_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="Arene/Mira/Pause_pannel" method="_on_reload_no_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Arene/Mira/Pause_pannel" method="_on_main_menu_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Arene/Mira/Pause_pannel" method="_on_main_menu_no_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Arene/Mira/Pause_pannel" method="_on_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Arene/Mira/Pause_pannel" method="_on_no_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/Buttons_container/Reload" to="Arene/Mira/death_pannel" method="_on_reload_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/Buttons_container/Main menu" to="Arene/Mira/death_pannel" method="_on_main_menu_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/Buttons_container/Quit game" to="Arene/Mira/death_pannel" method="_on_quit_game_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="Arene/Mira/death_pannel" method="_on_reload_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="Arene/Mira/death_pannel" method="_on_reload_no_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Arene/Mira/death_pannel" method="_on_main_menu_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Arene/Mira/death_pannel" method="_on_main_menu_no_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Arene/Mira/death_pannel" method="_on_yes_button_button_down"]
-[connection signal="button_down" from="Arene/Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Arene/Mira/death_pannel" method="_on_no_button_button_down"]
+[connection signal="area_entered" from="Mira/Animation_exportTest_/LightAttackSystemArea3D" to="Mira/AttackComponent" method="_on_attack_system_area_3d_area_entered"]
+[connection signal="area_entered" from="Mira/Animation_exportTest_/ChargedAttackSystemArea3D" to="Mira/AttackComponent" method="_on_charged_attack_system_area_3d_area_entered"]
+[connection signal="button_down" from="Mira/Pause_pannel/Buttons_container/Resume" to="Mira/Pause_pannel" method="_on_resume_button_down"]
+[connection signal="pressed" from="Mira/Pause_pannel/Buttons_container/Resume" to="Mira/Pause_pannel" method="_on_resume_pressed"]
+[connection signal="button_down" from="Mira/Pause_pannel/Buttons_container/Reload" to="Mira/Pause_pannel" method="_on_reload_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/Buttons_container/Main menu" to="Mira/Pause_pannel" method="_on_main_menu_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/Buttons_container/Settings" to="Mira/Pause_pannel" method="_on_settings_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/Buttons_container/Quit game" to="Mira/Pause_pannel" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="Mira/Pause_pannel" method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="Mira/Pause_pannel" method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Mira/Pause_pannel" method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Mira/Pause_pannel" method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Mira/Pause_pannel" method="_on_yes_button_button_down"]
+[connection signal="button_down" from="Mira/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Mira/Pause_pannel" method="_on_no_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/Buttons_container/Reload" to="Mira/death_pannel" method="_on_reload_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/Buttons_container/Main menu" to="Mira/death_pannel" method="_on_main_menu_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/Buttons_container/Quit game" to="Mira/death_pannel" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="Mira/death_pannel" method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="Mira/death_pannel" method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Mira/death_pannel" method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Mira/death_pannel" method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="Mira/death_pannel" method="_on_yes_button_button_down"]
+[connection signal="button_down" from="Mira/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="Mira/death_pannel" method="_on_no_button_button_down"]
 
-[editable path="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
-[editable path="Arene/Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
-[editable path="Arene/Mira/VFX/Attack_Charge"]
+[editable path="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
+[editable path="Mira/Animation_exportTest_/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
+[editable path="Mira/VFX/Attack_Charge"]
