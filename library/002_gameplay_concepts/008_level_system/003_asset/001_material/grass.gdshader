@@ -1,6 +1,7 @@
 shader_type spatial;
 
-render_mode cull_disabled , diffuse_toon, unshaded;
+render_mode cull_disabled , diffuse_toon, specular_toon, unshaded;
+uniform sampler2D gradient;
 uniform vec3 light_color : source_color;
 uniform vec3 base_color : source_color;
 uniform sampler2D noise;
@@ -26,8 +27,8 @@ void vertex() {
 
 void fragment() {
 	float vertical_factor = clamp(UV.y, 0.0, 1.0);
-	vec3 noise_texture =  texture(noise, UV).xyz;
-	ALBEDO= mix(light_color,base_color,UV.y) * mix(light_color,base_color,noise_texture);
+	vec3 gradient_texture =  texture(gradient, UV).xyz;
+	ALBEDO= mix(light_color,base_color,UV.y) * mix(light_color,base_color,gradient_texture);
 	
 	
 	if(!FRONT_FACING){
