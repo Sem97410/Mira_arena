@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=9 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="Material" uid="uid://oyiattye6pjb" path="res://000_temp/arene/mat_arene_3d.tres" id="1_emac6"]
+[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="2_1ot1i"]
+[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="3_ebr1h"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1ot1i"]
+vertices = PackedVector3Array(-7.18, 0.509997, 28.04, -2.18, 0.509997, 29.54, 1.57, 0.509997, 30.04, -19.68, 0.509997, 17.79, -16.43, 0.509997, 21.79, -12.18, 0.509997, 25.29, 30.32, 0.509997, 12.79, 31.82, 0.509997, 7.79, 32.32, 0.509997, 4.04, 20.07, 0.509997, 25.29, 24.07, 0.509997, 22.04, 27.57, 0.509997, 17.79, 15.07, 0.509997, -24.71, 10.07, 0.509997, -26.21, 6.32, 0.509997, -26.71, -22.43, 0.509997, -9.46, -23.93, 0.509997, -4.46, -24.43, 0.509997, -0.710001, 20.07, 0.509997, -21.96, 32.07, 0.509997, -3.21, 27.57, 0.509997, -14.46, -19.68, 0.509997, -14.46, -0.93, 0.509997, -26.46, -12.18, 0.509997, -21.96, 24.32, 0.509997, -18.46, -16.18, 0.509997, -18.71, -24.18, 0.509997, 6.54, -22.43, 0.509997, 12.79, 8.82, 0.509997, 29.79, 15.07, 0.509997, 28.04, 30.32, 0.509997, -9.46, -7.18, 0.509997, -24.71)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 5), PackedInt32Array(2, 5, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 11), PackedInt32Array(8, 11, 10), PackedInt32Array(8, 10, 9), PackedInt32Array(12, 14, 13), PackedInt32Array(15, 17, 16), PackedInt32Array(12, 18, 14), PackedInt32Array(14, 18, 20), PackedInt32Array(14, 20, 19), PackedInt32Array(14, 19, 8), PackedInt32Array(15, 21, 17), PackedInt32Array(17, 21, 23), PackedInt32Array(17, 23, 22), PackedInt32Array(17, 22, 14), PackedInt32Array(18, 24, 20), PackedInt32Array(21, 25, 23), PackedInt32Array(27, 26, 3), PackedInt32Array(3, 26, 17), PackedInt32Array(29, 28, 9), PackedInt32Array(9, 28, 2), PackedInt32Array(20, 30, 19), PackedInt32Array(23, 31, 22), PackedInt32Array(9, 2, 8), PackedInt32Array(8, 2, 3), PackedInt32Array(8, 3, 17), PackedInt32Array(8, 17, 14)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qo3ip"]
 resource_name = "arene_ground_material"
@@ -48,15 +54,24 @@ data = PackedVector3Array(-0.0169, 0.1438, 0.0006, -0.071, 0.1438, 0.0006, -0.07
 
 [node name="level_001" type="Node3D"]
 
-[node name="Arene" type="Node3D" parent="."]
+[node name="Spawner" parent="." instance=ExtResource("2_1ot1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91849, 0.496246, 1.65974)
+wave_delay = 2.0
 
-[node name="Mesh_Arene" type="MeshInstance3D" parent="Arene"]
+[node name="Mira" parent="." instance=ExtResource("3_ebr1h")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_1ot1i")
+
+[node name="Arene" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Mesh_Arene" type="MeshInstance3D" parent="NavigationRegion3D/Arene"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w1c0u")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_emac6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Arene/Mesh_Arene"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Arene/Mesh_Arene"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arene/Mesh_Arene/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Arene/Mesh_Arene/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_i3vgs")

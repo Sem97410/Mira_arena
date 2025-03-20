@@ -65,5 +65,4 @@ event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
 [node name="NavigationAgent3D" parent="." index="6"]
-debug_enabled = true
 debug_path_custom_color = Color(0.936368, 0, 0.453734, 1)
