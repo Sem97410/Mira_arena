@@ -784,8 +784,9 @@ start_position = Vector3(1.56, 0.2, -0.825)
 end_position = Vector3(5.361, 1.434, -0.347)
 travel_cost = 0.0
 
-[node name="Wanderer" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("5_dbupr")]
+[node name="Wanderer" parent="." node_paths=PackedStringArray("slime_body", "target_entity") instance=ExtResource("5_dbupr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.7767, 0.10414, 0.352283)
+slime_body = NodePath("Mesh/Slime")
 target_entity = NodePath("../Mira")
 
 [editable path="LightAttackZone/IndicatorPanel"]

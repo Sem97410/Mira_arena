@@ -1,38 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtt42muf3ssyq"]
+[gd_scene load_steps=4 format=3 uid="uid://dtt42muf3ssyq"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_ip2ux"]
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_helmet.tres" id="2_0lcqb"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_r26yw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip2ux"]
-albedo_color = Color(0.479412, 0.163699, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r26yw"]
-albedo_color = Color(0.478431, 0.164706, 1, 1)
 
 [node name="Wanderer" instance=ExtResource("1_ip2ux")]
 dash_length = 5.0
 attack_cool_down = 3.0
 time_before_new_target = 10.0
-max_health_point = 1.0
+max_health_point = 51.0
 movement_speed = 7.0
 
-[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
-material_override = SubResource("StandardMaterial3D_ip2ux")
-
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
-material_override = SubResource("StandardMaterial3D_r26yw")
-
-[node name="StateChart_root_Random#ToIdle" type="Node" parent="." index="2"]
-script = ExtResource("2_r26yw")
-to = NodePath("../../Idle")
-event = &"IsIdle"
-delay_in_seconds = "0.0"
-
-[node name="StateChart_root_Random#ToPreAttack" type="Node" parent="." index="3"]
-script = ExtResource("2_r26yw")
-to = NodePath("../../PreAttack")
-event = &"IsPreAttack"
-delay_in_seconds = "0.0"
+surface_material_override/0 = ExtResource("2_0lcqb")
 
 [node name="ToPreAttack" type="Node" parent="StateChart/root/Idle" index="2"]
 script = ExtResource("2_r26yw")
@@ -64,5 +44,11 @@ to = NodePath("../../PreAttack")
 event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
-[node name="NavigationAgent3D" parent="." index="6"]
+[node name="ToIdle" type="Node" parent="StateChart/root/Wander" index="3"]
+script = ExtResource("2_r26yw")
+to = NodePath("../../Idle")
+event = &"IsIdle"
+delay_in_seconds = "0.0"
+
+[node name="NavigationAgent3D" parent="." index="4"]
 debug_path_custom_color = Color(0.936368, 0, 0.453734, 1)

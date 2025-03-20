@@ -2,7 +2,7 @@ extends Node3D
 
 @export var spawner_timer: Timer
 @export var initial_spawn_count: int = 2  # Nombre d'ennemis au départ
-@export var spawn_increase_percent: float = 15.0  # Augmentation en %
+@export var spawn_increase_percent: float = 15.0  # Augmentation en % par vague
 @export var spawn_range: float = 5.0  # Rayon autour du spawner
 @export var wave_delay: float = 20.0  # Temps d'attente entre deux vagues
 
@@ -17,7 +17,8 @@ extends Node3D
 func _on_spawner_timer_timeout() -> void:
 	# Vérifie si tous les ennemis de la vague ont été spawnés
 	if enemies_spawned >= enemies_to_spawn:
-		print("Vague terminée. Prochaine vague dans", wave_delay, "secondes.")
+		print("Vague terminée. Attente de", wave_delay, "secondes avant la prochaine vague.")
+		spawner_timer.stop()  # Stoppe le timer pour éviter le spam
 		get_tree().create_timer(wave_delay).timeout.connect(_restart_spawn_cycle, CONNECT_ONE_SHOT)
 		return
 	
@@ -64,7 +65,7 @@ func _restart_spawn_cycle():
 	# Augmente progressivement en conservant les décimales
 	max_enemies_spawned *= (1 + spawn_increase_percent / 100.0)
 	enemies_to_spawn = int(round(max_enemies_spawned))  # Arrondi proprement
-
 	enemies_spawned = 0  # Reset du compteur pour la nouvelle vague
+
 	print("Nouvelle vague !", enemies_to_spawn, "ennemis à spawn.")
-	spawner_timer.start()  # Redémarre le timer pour la prochaine vague
+	spawner_timer.start()  # Relance proprement le timer pour la prochaine vague

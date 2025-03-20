@@ -440,14 +440,14 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 #---
 func stop_dash():
 	start_time = 0
-	print("Stop dash")
+	#print("Stop dash")
 	state_chart.send_event("IsIdle")
 	disable_attack_area(attack_area)
 #endregion
 
 #region Items Region
 func drop_health_item(position : Vector3) -> void : 
-	print("I'm calling the function")
+	#print("I'm calling the function")
 	if not health_item_scene or not slime:
 		return
 
@@ -457,7 +457,7 @@ func drop_health_item(position : Vector3) -> void :
 		#return
 		
 	if randf() <= drop_chance :
-		print("Devrait faire apparaitre l'item")
+		#print("Devrait faire apparaitre l'item")
 		var health_item_instance = health_item_scene.instantiate()
 		
 		get_tree().current_scene.add_child(health_item_instance)
@@ -523,10 +523,10 @@ func generate_random_navmesh_point() -> void:
 		random_point_navmesh = NavigationServer3D.map_get_random_point(navigation_map, 1, false)
 		
 		# Vérifie que le point généré est bien valide
-		if random_point_navmesh != Vector3.ZERO:
-			print("Nouvelle target: ", random_point_navmesh)
-		else:
-			print("Échec de la génération du point, on garde l'ancien")
+		#if random_point_navmesh != Vector3.ZERO:
+			#print("Nouvelle target: ", random_point_navmesh)
+		#else:
+			#print("Échec de la génération du point, on garde l'ancien")
 	else:
 		# Sécurité si pas de NavMesh, on garde sa position actuelle
 		random_point_navmesh = slime.global_position
@@ -538,6 +538,6 @@ func _restart_target_timer():
 
 
 func _force_new_target():
-	print("Forçage d’un nouveau point après timeout!")
+	#print("Forçage d’un nouveau point après timeout!")
 	generate_random_navmesh_point()
 	_restart_target_timer()  # Relance le timer pour le prochain cycle

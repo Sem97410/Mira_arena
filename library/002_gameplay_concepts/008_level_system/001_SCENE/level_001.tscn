@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://m66xgkna1w2c"]
+[gd_scene load_steps=11 format=3 uid="uid://m66xgkna1w2c"]
 
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="1_0b4id"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_pe7yj"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="3_au60h"]
+[ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter.tscn" id="4_rsjeg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5dw0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,7 +19,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jnaax"]
-vertices = PackedVector3Array(-9.5, 0.04, -9.5, -9.5, 0.04, 9.5, 9.5, 0.04, 9.5, 9.5, 0.04, -9.5)
+vertices = PackedVector3Array(-9.5, 0.037498, -9.5, -9.5, 0.037498, 9.5, 9.5, 0.037498, 9.5, 9.5, 0.037498, -9.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.02
 agent_max_climb = 0.0
@@ -38,8 +39,9 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_28cr7")
 
-[node name="GameLogicMap" type="Node" parent="."]
+[node name="GameLogicMap" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 script = ExtResource("1_0b4id")
+player_body = NodePath("../Mira")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_jnaax")
@@ -58,4 +60,18 @@ shape = SubResource("BoxShape3D_pwt2s")
 
 [node name="Spawner" parent="." instance=ExtResource("3_au60h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12339, -5.13365)
-max_enemies = 10.0
+wave_delay = 2.0
+
+[node name="Spawner2" parent="." instance=ExtResource("3_au60h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12339, 5.42537)
+wave_delay = 2.0
+
+[node name="Spawner3" parent="." instance=ExtResource("3_au60h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53521, 1.12339, -0.0490756)
+wave_delay = 2.0
+
+[node name="Spawner4" parent="." instance=ExtResource("3_au60h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92397, 1.12339, -0.0490756)
+wave_delay = 2.0
+
+[node name="FPSCounter" parent="." instance=ExtResource("4_rsjeg")]
