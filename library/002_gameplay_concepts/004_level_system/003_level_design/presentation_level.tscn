@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=4 uid="uid://j4q4w5qgihlt"]
+[gd_scene load_steps=164 format=4 uid="uid://j4q4w5qgihlt"]
 
 [ext_resource type="Script" uid="uid://cflmj47i313qo" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/foot_step_manager.gd" id="1_m13e3"]
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="2_piipt"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="10_in1d2"]
 [ext_resource type="PackedScene" uid="uid://c1svhchjp0pba" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/stairs_long.fbx" id="11_m13e3"]
 [ext_resource type="PackedScene" uid="uid://d05bgnpjo0pxy" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/Bareer.fbx" id="11_piipt"]
+[ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter.tscn" id="12_piipt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -24,6 +25,7 @@ background_mode = 2
 sky = SubResource("Sky_kfjv8")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moe1q"]
 resource_name = "00_UV_Grid"
@@ -1967,28 +1969,34 @@ player = NodePath("../Mira")
 transform = Transform3D(-0.656836, 0, 0.754034, 0, 1, 0, -0.754034, 0, -0.656836, -29.0517, -1.59725, 25.3068)
 
 [node name="Spawner" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.66048, 2.17668, -19.5033)
-wave_delay = 0.2
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -18.5598, 2.17668, -10.4324)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
 
 [node name="Spawner2" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 17.1396, 2.17668, 11.1723)
-wave_delay = 0.2
+transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 10.0537, 2.17668, 17.2244)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
 
 [node name="Spawner3" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7.3253, 2.57878, -36.489)
-wave_delay = 0.2
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.0808, 2.57878, -32.9367)
+spawn_increase_percent = 10.0
+spawn_range = 2.0
 
 [node name="Spawner4" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.6647, 1.63599, -1.37818)
-wave_delay = 0.2
+transform = Transform3D(0.642025, 0, -0.766684, 0, 1, 0, 0.766684, 0, 0.642025, 30.0272, 1.63599, 0.277776)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
 
 [node name="Spawner5" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 11.552, 6.0001, -68.4698)
-wave_delay = 0.2
+transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 6.05735, 6.0001, -71.8696)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
 
 [node name="Spawner6" parent="." instance=ExtResource("10_in1d2")]
-transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 29.9055, 3.52363, -41.0053)
-wave_delay = 0.2
+transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 21.7693, 3.9304, -52.6143)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(-0.748423, 0, -0.663221, 0, 1, 0, 0.663221, 0, -0.748423, 0, 0, 0)
@@ -2422,6 +2430,14 @@ end_position = Vector3(11.625, 0, 0)
 transform = Transform3D(-0.786472, 0, -0.617626, 0, 1, 0, 0.617626, 0, -0.786472, 5.03426, 4.35377, -62.4056)
 end_position = Vector3(20.965, -2.76, 0)
 
+[node name="NavigationLink3D20" type="NavigationLink3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(0.69403, 0, -0.719946, 0, 1, 0, 0.719946, 0, 0.69403, -30.0028, 1.33599, -13.3512)
+end_position = Vector3(7.22, 0, 0)
+
+[node name="NavigationLink3D21" type="NavigationLink3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(0.352218, 0, 0.935918, 0, 1, 0, -0.935918, 0, 0.352218, -28.4896, 1.33599, -17.3095)
+end_position = Vector3(6.64, 0, 0)
+
 [node name="NavigationLink3D13" type="NavigationLink3D" parent="Map/NavigationRegion3D"]
 transform = Transform3D(-0.929133, 0, -0.369747, 0, 1, 0, 0.369747, 0, -0.929133, -15.969, 1.52926, -46.4042)
 end_position = Vector3(10.775, 0, 0)
@@ -2476,6 +2492,8 @@ end_position = Vector3(7.57, 0, 0)
 
 [node name="Bareer" parent="." instance=ExtResource("11_piipt")]
 transform = Transform3D(-0.766347, 0, -0.642426, 0, 1, 0, 0.642426, 0, -0.766347, 0, 0, 0)
+
+[node name="FPSCounter" parent="." instance=ExtResource("12_piipt")]
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
