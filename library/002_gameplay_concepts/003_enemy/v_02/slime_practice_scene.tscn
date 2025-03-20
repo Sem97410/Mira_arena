@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_ykcya"]
 [ext_resource type="Script" uid="uid://dlcfn8vrf7tdq" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/game_logic.gd" id="3_k41v4"]
-[ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_wanderer_slime/wanderer_slime.tscn" id="4_6c41i"]
+[ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="4_6c41i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
 albedo_color = Color(0.360784, 0.47451, 1, 1)
@@ -115,7 +115,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_io2ai")
 
 [node name="Mira" parent="Behavior1/NavigationRegion3D" instance=ExtResource("2_ykcya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47257, 1.35981, 3.84526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7693, 1.35981, 3.84526)
 collision_mask = 1
 
 [node name="Behavior2" type="Node3D" parent="."]
@@ -292,10 +292,6 @@ shape = SubResource("BoxShape3D_4kwbi")
 script = ExtResource("3_k41v4")
 player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
-[node name="RandomSlime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("4_6c41i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0816, 0.10414, -10.4069)
-target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
-
-[node name="RandomSlime2" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("4_6c41i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15602, 0.10414, -3.04525)
-target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+[node name="Spawner" parent="." instance=ExtResource("4_6c41i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7133, 0.0500011, -2.67472)
+wave_delay = 5.0

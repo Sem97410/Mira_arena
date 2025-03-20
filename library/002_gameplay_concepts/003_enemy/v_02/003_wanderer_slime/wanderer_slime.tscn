@@ -13,7 +13,7 @@ albedo_color = Color(0.478431, 0.164706, 1, 1)
 dash_length = 5.0
 attack_cool_down = 3.0
 time_before_new_target = 10.0
-max_health_point = 200.0
+max_health_point = 1.0
 movement_speed = 7.0
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
