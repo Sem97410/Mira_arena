@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://brcxx5w0nv5m3"]
 
-[ext_resource type="Material" uid="uid://bemdh35wkco57" path="res://library/002_gameplay_concepts/004_level_system/003_asset/001_material/mat_grass_two.tres" id="1_cbpw6"]
+[ext_resource type="Material" uid="uid://bemdh35wkco57" path="res://library/002_gameplay_concepts/008_level_system/003_asset/001_material/mat_grass_two.tres" id="1_cbpw6"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_th1y3"]
 _surfaces = [{

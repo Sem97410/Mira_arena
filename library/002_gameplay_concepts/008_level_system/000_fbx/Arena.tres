@@ -1,0 +1,46 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://cxi2ip7we0gif"]
+
+[ext_resource type="Texture2D" uid="uid://dmrolhyy688vi" path="res://library/002_gameplay_concepts/008_level_system/000_fbx/T_Arena_BaseColor.png" id="1_cjcbc"]
+[ext_resource type="Texture2D" uid="uid://d0sudqr30drqs" path="res://library/002_gameplay_concepts/008_level_system/000_fbx/T_Arena_Normal.png" id="2_8mjyn"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kbf5q"]
+texture = ExtResource("1_cjcbc")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7jxbx"]
+texture = ExtResource("2_8mjyn")
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	NORMAL = vec3(n_out3p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-187.337, 135.203)
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_kbf5q")
+nodes/fragment/2/position = Vector2(-312.726, 257.088)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_7jxbx")
+nodes/fragment/3/position = Vector2(-287.851, 719.052)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 8)

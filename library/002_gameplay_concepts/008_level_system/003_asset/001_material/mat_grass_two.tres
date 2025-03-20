@@ -1,23 +1,26 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bemdh35wkco57"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://bemdh35wkco57"]
 
 [ext_resource type="Shader" uid="uid://dt0cgd7bo0a35" path="res://library/002_gameplay_concepts/008_level_system/003_asset/001_material/grass.gdshader" id="1_uunh0"]
 
-[sub_resource type="Gradient" id="Gradient_2wgod"]
-colors = PackedColorArray(0.602365, 0.340933, 0.301434, 1, 0.991677, 0.818723, 0.614047, 1)
+[sub_resource type="Gradient" id="Gradient_w31m2"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_l5l6r"]
-frequency = 0.0599
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rpgu3"]
+gradient = SubResource("Gradient_w31m2")
+fill_from = Vector2(0.305882, 0.441176)
+fill_to = Vector2(0.388235, 0)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1iaa1"]
-color_ramp = SubResource("Gradient_2wgod")
-noise = SubResource("FastNoiseLite_l5l6r")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w31m2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rpgu3"]
+noise = SubResource("FastNoiseLite_w31m2")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_uunh0")
-shader_parameter/light_color = Color(0.988514, 0.785525, 0.541004, 1)
-shader_parameter/base_color = Color(0.914969, 0.383399, 0.225823, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_1iaa1")
-shader_parameter/x_mouvement_strength = 0.0
-shader_parameter/z_mouvement_strength = 0.0
-shader_parameter/wind_force = 0.0
+shader_parameter/gradient = SubResource("GradientTexture2D_rpgu3")
+shader_parameter/light_color = Color(0.919591, 0.56125, 0.417929, 1)
+shader_parameter/base_color = Color(0.856419, 0.788984, 0.765665, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_rpgu3")
+shader_parameter/x_mouvement_strength = 0.03
+shader_parameter/z_mouvement_strength = 0.03
+shader_parameter/wind_force = 0.03

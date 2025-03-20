@@ -116,7 +116,7 @@ draw_pass_1 = SubResource("SphereMesh_r4di4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Portal/GPUParticlesAttractorSphere3D"]
 libraries = {
-"": SubResource("AnimationLibrary_1j7s2")
+&"": SubResource("AnimationLibrary_1j7s2")
 }
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Portal"]
