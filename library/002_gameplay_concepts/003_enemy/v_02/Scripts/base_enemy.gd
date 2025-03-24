@@ -101,10 +101,18 @@ func death(entity : CharacterBody3D, death_animation_duration : float) :
 #----------------------------------------------
 ##Mesh functions
 
-func blink(entity_mesh : MeshInstance3D, blink_duration : float) -> void:
-	#Start the blink for "Entity"
-	await get_tree().create_timer(blink_duration).timeout
-	#Stop the blink for "entity"
+func blink(entity_mesh : Node3D, blink_duration : float) -> void:
+
+	var blink_interval := 0.1  # Durée entre chaque ON/OFF
+	var time_passed := 0.0
+
+	while time_passed < blink_duration:
+		entity_mesh.visible = false
+		await get_tree().create_timer(blink_interval).timeout
+		entity_mesh.visible = true
+		await get_tree().create_timer(blink_interval).timeout
+		time_passed += blink_interval * 2
+
 #---
 func hide_mesh(entity_mesh : MeshInstance3D) -> void : 
 	entity_mesh.visible = false
@@ -136,6 +144,20 @@ func make_damage(area : Area3D, damage : float) -> void :
 			#print("Il a la fonction take_damage")
 			break
 
+func make_zone_damages(attack_area : Area3D,damage : float) -> void : 
+	
+	for area in attack_area.get_overlapping_areas():
+		var parent = area.get_parent()
+		
+		## When Mira will have a new code, I'll wont have to use a difference between " child in parent" and just parents 
+		if parent.has_method("take_damage"):
+			parent.take_damage(damage)
+			
+		for child in parent.get_children():
+			if child.has_method("take_damage"):
+				child.take_damage(damage)
+				#print("Touch by explosion from area: ", area.name)
+				break  # Stop dès qu’un enfant a été touché
 #----------------------------------------------
 
 func move(target: Vector3, delta: float) -> void:

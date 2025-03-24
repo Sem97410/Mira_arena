@@ -14,22 +14,34 @@ movement_speed = 7.0
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 surface_material_override/0 = ExtResource("2_0lcqb")
 
-[node name="ToPreAttack" type="Node" parent="StateChart/root/Idle" index="2"]
+[node name="ToPreAttack" type="Node" parent="StateChart/root/Idle" index="1"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../PreAttack")
 event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
-[node name="ToWander" type="Node" parent="StateChart/root/Idle" index="3"]
+[node name="ToWander" type="Node" parent="StateChart/root/Idle" index="2"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../Wander")
 event = &"IsWander"
 delay_in_seconds = "0.0"
 
-[node name="ToAttack" type="Node" parent="StateChart/root/PreAttack" index="2"]
+[node name="ToDeath" type="Node" parent="StateChart/root/Idle" index="3"]
+script = ExtResource("2_r26yw")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
+[node name="ToAttack" type="Node" parent="StateChart/root/PreAttack" index="1"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../Attack")
 event = &"IsAttacking"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/PreAttack" index="2"]
+script = ExtResource("2_r26yw")
+to = NodePath("../../Death")
+event = &"IsDead"
 delay_in_seconds = "0.0"
 
 [node name="ToIdle" type="Node" parent="StateChart/root/Attack" index="0"]
@@ -38,16 +50,28 @@ to = NodePath("../../Idle")
 event = &"IsIdle"
 delay_in_seconds = "0.0"
 
-[node name="ToPreAttack" type="Node" parent="StateChart/root/Wander" index="2"]
+[node name="ToDeath" type="Node" parent="StateChart/root/HitReaction" index="1"]
+script = ExtResource("2_r26yw")
+to = NodePath("../../Death")
+event = &"IsDead"
+delay_in_seconds = "0.0"
+
+[node name="ToPreAttack" type="Node" parent="StateChart/root/Wander" index="1"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../PreAttack")
 event = &"IsPreAttack"
 delay_in_seconds = "0.0"
 
-[node name="ToIdle" type="Node" parent="StateChart/root/Wander" index="3"]
+[node name="ToIdle" type="Node" parent="StateChart/root/Wander" index="2"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../Idle")
 event = &"IsIdle"
+delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/root/Wander" index="3"]
+script = ExtResource("2_r26yw")
+to = NodePath("../../Death")
+event = &"IsDead"
 delay_in_seconds = "0.0"
 
 [node name="NavigationAgent3D" parent="." index="4"]

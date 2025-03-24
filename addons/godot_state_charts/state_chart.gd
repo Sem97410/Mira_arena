@@ -165,8 +165,8 @@ func send_event(event:StringName) -> void:
 		push_error("State chart has no root state. Ignoring call to `send_event`.")
 		return
 		
-	if warn_on_sending_unknown_events and event != "" and OS.is_debug_build() and not _valid_event_names.has(event):
-		push_warning("State chart does not have an event '", event , "' defined. Sending this event will do nothing.")
+	#if warn_on_sending_unknown_events and event != "" and OS.is_debug_build() and not _valid_event_names.has(event):
+		#push_warning("State chart does not have an event '", event , "' defined. Sending this event will do nothing.")
 	
 	_queued_events.append(event)
 	if _locked_down:

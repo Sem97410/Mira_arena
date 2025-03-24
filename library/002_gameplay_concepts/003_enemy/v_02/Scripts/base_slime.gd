@@ -41,7 +41,9 @@ var target_position : Vector3
 #Fight variables
 @export_category("Fight variables")
 @onready var attack_range : float = 3.0
-var distance_to_target : float 
+@onready var pre_explosion_attack_range = 6.0
+@onready var launch_explosion_range = 1.0
+var distance_to_target : float
 @export var pre_attack_duration : float = 2.0
 @export var dash_duration: float = 0.2 #In second
 @export var latence_between_dash : float = 3.0
@@ -51,7 +53,9 @@ var distance_to_target : float
 var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 var was_in_air = false  # Pour savoir si on était en l'air avant le dash
-@export var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur 
+@export var attack_cool_down :float = 0.0 # cool_down pour l'attack du joueur
+@export var explosion_area : Area3D
+@export var explosion_vfx : PackedScene
 
 @export var attack_area : Area3D
 @export var slime_attack_damage : float
@@ -125,35 +129,44 @@ func _process(delta: float) -> void:
 func check_distance_to_target(target : Node3D) -> float :
 	return global_position.distance_to(target.global_position)
 #---
-func send_event_state_chart(event_name : String)-> void : 
+func send_event_state_chart(event_name : String)-> void :
 	state_chart.send_event(event_name)
 #---
-func activate_hunt_mode() -> void : 
+func activate_hunt_mode() -> void :
 	distance_to_target = check_distance_to_target(player)
 	#print("Distance to target is : ", distance_to_target)
-	if distance_to_target > attack_range : 
+	if distance_to_target > attack_range :
 		#print("Move in hunting mode")
 		send_event_state_chart("IsHunting")
 #---
-func activate_wander_mode() -> void : 
+func activate_wander_mode() -> void :
 	distance_to_target = check_distance_to_target(player)
 	#print("Distance to target is : ", distance_to_target)
-	if distance_to_target > attack_range : 
+	if distance_to_target > attack_range :
 		#print("Move in hunting mode")
 		send_event_state_chart("IsWander")
 #---
-func activate_idle_mode() -> void : 
+func activate_idle_mode() -> void :
 	var distance_to_target = check_distance_to_target(player)
-	if distance_to_target <= attack_range : 
+	if distance_to_target <= attack_range :
 		#print("Move in Idle mode")
 		send_event_state_chart("IsIdle")
 #---
-func activate_pre_attack_mode() -> void : 
+func activate_pre_attack_mode() -> void :
+	
 	distance_to_target = check_distance_to_target(player)
-	if distance_to_target <= attack_range : 
+	if distance_to_target <= attack_range :
 		#print("Move in preattack mode")
 		send_event_state_chart("IsPreAttack")
 #---
+func activate_pre_explosion_mode() -> void :
+	distance_to_target = check_distance_to_target(player)
+	#print("distance to target is : ", distance_to_target)
+	
+	if distance_to_target <= pre_explosion_attack_range: 
+		send_event_state_chart("IsPreExplosing")
+		#print("Send event for pre explosing")
+	
 func _on_hunt_state_processing(delta: float) -> void:
 	get_random_point_around(3.0)  # Change la cible régulièrement
 	can_move = true
@@ -163,24 +176,27 @@ func _on_hunt_state_processing(delta: float) -> void:
 
 	distance_to_target = check_distance_to_target(player)
 	
-	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
+	if distance_to_target <= attack_range and attack_cool_down <= 0 :
 		#print("I'm able to go to pre attack")
 		#print("Move in Idle mode")
 		activate_pre_attack_mode()
-	elif attack_cool_down > 0 : 
+	elif attack_cool_down > 0 :
 		activate_idle_mode()
 
 	animation_player.play("Slime|Walk")
 #---
 func _on_idle_state_processing(delta: float) -> void:
 	can_move = false
+	#print("I'm in idle")
 
 	animation_player.play("Slime|idle")
 	
-	if distance_to_target <= attack_range and attack_cool_down <= 0 : 
+	if distance_to_target <= attack_range and attack_cool_down <= 0 :
 		activate_pre_attack_mode()
+		
 	activate_hunt_mode()
 	activate_wander_mode()
+	activate_pre_explosion_mode()
 	
 #---
 func _on_pre_attack_state_entered() -> void:
@@ -220,7 +236,7 @@ func _on_hit_reaction_state_entered() -> void:
 	#print("I'm in hit reaction!")
 	damage_stars.visible = true
 	check_if_dead()
-	knockback(player_position) 
+	knockback(player_position)
 	#can_move = false
 
 
@@ -232,8 +248,9 @@ func _on_hit_reaction_state_exited() -> void:
 	
 func check_if_dead()-> void:
 	
-	if current_health_point <= 0 : 
+	if current_health_point <= 0 :
 		state_chart.send_event("IsDead")
+		state_chart.send_event("IsSelfDestructing")
 
 	
 func _on_death_state_entered() -> void:
@@ -275,9 +292,9 @@ func create_random_point_around(target: Vector3, range: float) -> Vector3:
 	
 	return new_point
 	
-func create_attack_cooldown() -> void : 
+func create_attack_cooldown() -> void :
 	if attack_cool_down > 0: #si le cooldown est supérieur a zero
-		attack_cool_down -= get_process_delta_time()# le cooldown est soustrait a get_procces_delta_time() jusqu'a le ramené à zero 
+		attack_cool_down -= get_process_delta_time()# le cooldown est soustrait a get_procces_delta_time() jusqu'a le ramené à zero
 
 #---
 func get_random_point_around(range: float) -> void:
@@ -291,7 +308,7 @@ func get_random_point_around(range: float) -> void:
 #---
 #---
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
-	if not can_jump: 
+	if not can_jump:
 		#print("Je peux pas sauter")
 		#print("can jump devrait etre faux ici et il est  : ", can_jump)
 		return  # Bloque si un saut est déjà en cours
@@ -305,7 +322,7 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 #---
 #A DOCUMENTER
 func jump_to_target(start: Vector3, end: Vector3) -> void:
-	elapsed_time = 0.0  
+	elapsed_time = 0.0
 
 	while elapsed_time < duration:
 		# Vérifier si l'objet est toujours valide ET qu'il est dans l'arbre de scène
@@ -319,7 +336,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 		
 		# Vérifier encore avant d'accéder à global_transform
 		if not is_instance_valid(self) or not is_inside_tree():
-			return  
+			return
 
 		# Lerp entre A et B
 		var new_position = start.lerp(end, t)
@@ -329,13 +346,13 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 		
 		# Vérifier encore une fois avant de modifier la position
 		if not is_instance_valid(slime) or not slime.is_inside_tree():
-			return  
+			return
 
 		slime.global_transform.origin = new_position
 
 	# Vérifier avant d'attendre (évite une erreur si la scène a changé entre-temps)
 	if not is_instance_valid(self) or not is_inside_tree():
-		return  
+		return
 
 	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
 
@@ -446,7 +463,7 @@ func stop_dash():
 #endregion
 
 #region Items Region
-func drop_health_item(position : Vector3) -> void : 
+func drop_health_item(position : Vector3) -> void :
 	#print("I'm calling the function")
 	if not health_item_scene or not slime:
 		return
@@ -494,14 +511,16 @@ func _on_random_state_processing(delta: float) -> void:
 	if slime.global_position.distance_to(random_point_navmesh) < 0.5 or nav_agent.is_navigation_finished():
 		generate_random_navmesh_point()  # Génère un nouveau point sur le navmesh
 		_restart_target_timer()  # Redémarre le timer
-
+	activate_pre_explosion_mode()
 	# Déplacer vers le point généré via NavigationAgent3D
 	can_move = true
 	move(random_point_navmesh, delta)  # <-- Ça garde ton move() existant
 
-	# Rotation vers la direction du déplacement
-	if slime.velocity.length() > 0.1:
-		slime.look_at(slime.global_position + slime.velocity)
+	var horizontal_velocity = slime.velocity
+	horizontal_velocity.y = 0
+
+	if horizontal_velocity.length() > 0.01:
+		slime.look_at(slime.global_position + horizontal_velocity, Vector3.UP)
 
 	# Vérifie la distance avec la cible (le joueur)
 	distance_to_target = check_distance_to_target(player)
@@ -541,3 +560,53 @@ func _force_new_target():
 	#print("Forçage d’un nouveau point après timeout!")
 	generate_random_navmesh_point()
 	_restart_target_timer()  # Relance le timer pour le prochain cycle
+
+
+func _on_pre_explosion_state_physics_processing(delta: float) -> void:
+	can_move = true
+	movement_speed = 12
+	move(player.position,delta)
+	animation_player.play("Slime|Walk")
+	
+	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
+	pre_attack_indicator.visible = true
+	distance_to_target = check_distance_to_target(player)
+	
+	if distance_to_target <= 1 :
+		
+		send_event_state_chart("IsExplosing")
+	
+
+	#print("Je suis dans pre explosion")
+
+
+func _on_explosion_state_entered() -> void:
+	explosion()
+
+
+	
+
+
+func explosion() -> void : 
+	death(slime,1.5)
+	blink(slime_body, 1.5)
+
+	attack_indicator.visible = true
+	await get_tree().create_timer(1.5).timeout
+
+	explosion_area.visible = true
+	explosion_area.monitorable = true
+	explosion_area.monitoring = true
+
+	make_zone_damages(explosion_area, 20.0)
+	instantiate_vfx(slime.position, explosion_vfx)
+
+func _on_pre_explosion_state_exited() -> void:
+	pre_attack_indicator.visible = false
+
+
+func _on_death_explosion_state_entered() -> void:
+	print("death explosion state")
+	knockback(player_position)
+	explosion()
+	
