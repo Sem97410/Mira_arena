@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://5d8cecbr7v0a"]
+
+[ext_resource type="PackedScene" uid="uid://byxkegbwi24c0" path="res://library/002_gameplay_concepts/010_assets/spinetree.tscn" id="1_qrxf2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_skxuq"]
+
+[node name="AssetMep" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_skxuq")
+
+[node name="spinetree" parent="." instance=ExtResource("1_qrxf2")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 13.2483, 0)
