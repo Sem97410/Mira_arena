@@ -1,0 +1,235 @@
+[gd_scene load_steps=25 format=3 uid="uid://d3vpj2mvu11d4"]
+
+[ext_resource type="Shader" uid="uid://cpigeeyfypg0e" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Smoke_Bomb.tres" id="1_if1oo"]
+[ext_resource type="Shader" uid="uid://2kqb4uplbhec" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Sparkle_Bomb.tres" id="2_kkp6u"]
+[ext_resource type="Script" uid="uid://4224sacgiaay" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="3_rw4sg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
+render_priority = 0
+shader = ExtResource("1_if1oo")
+shader_parameter/Distance_Fade = 0.485
+shader_parameter/White = -15.49
+shader_parameter/Black = 5.75
+
+[sub_resource type="Curve" id="Curve_jjj7n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5k67n"]
+curve = SubResource("Curve_jjj7n")
+
+[sub_resource type="Gradient" id="Gradient_pcm55"]
+offsets = PackedFloat32Array(0.0909091, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mql51"]
+gradient = SubResource("Gradient_pcm55")
+
+[sub_resource type="Gradient" id="Gradient_ijqgj"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dgoyx"]
+gradient = SubResource("Gradient_ijqgj")
+
+[sub_resource type="Curve" id="Curve_4aa2c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.175824), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0fqr"]
+curve = SubResource("Curve_4aa2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06nvl"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = -180.0
+angle_max = 180.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_y0fqr")
+color = Color(4, 0.8, 0.2, 1)
+color_ramp = SubResource("GradientTexture1D_dgoyx")
+color_initial_ramp = SubResource("GradientTexture1D_mql51")
+alpha_curve = SubResource("CurveTexture_5k67n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4sx5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
+render_priority = 0
+shader = ExtResource("2_kkp6u")
+shader_parameter/ColorParameter = Color(4, 0.8, 0.2, 1)
+
+[sub_resource type="Curve" id="Curve_5xs7k"]
+_data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f4ilj"]
+texture_mode = 1
+curve = SubResource("Curve_5xs7k")
+
+[sub_resource type="Curve" id="Curve_wkg1h"]
+_data = [Vector2(0, 0.483516), 0.0, 1.38268, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a4ck6"]
+curve = SubResource("Curve_wkg1h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbw5v"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_a4ck6")
+alpha_curve = SubResource("CurveTexture_f4ilj")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_n5h3a"]
+size = Vector2(0.5, 2)
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Animation" id="Animation_pv2l6"]
+resource_name = "Puff_Enemy"
+length = 2.0
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puff:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [20.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VfxLogic")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.98),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_vfx"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8fnb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puff:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tq2y"]
+_data = {
+&"Puff_Enemy": SubResource("Animation_pv2l6"),
+&"RESET": SubResource("Animation_8fnb7")
+}
+
+[node name="ExplosionVFX" type="Node3D"]
+
+[node name="Puff" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_t2d3j")
+amount = 5
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_06nvl")
+draw_pass_1 = SubResource("SphereMesh_g4sx5")
+
+[node name="Sparkle" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.217064, 0)
+material_override = SubResource("ShaderMaterial_gr6lm")
+amount = 2
+lifetime = 0.4
+explosiveness = 0.9
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_fbw5v")
+draw_pass_1 = SubResource("QuadMesh_n5h3a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4tq2y")
+}
+autoplay = "Puff_Enemy"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0680073, 0)
+light_color = Color(0.824677, 0.399226, 1, 1)
+light_energy = 20.0
+
+[node name="VfxLogic" type="Node" parent="." node_paths=PackedStringArray("animation_player", "vfx")]
+script = ExtResource("3_rw4sg")
+animation_player = NodePath("../AnimationPlayer")
+vfx = NodePath("..")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://ck634gxyhffr"]
+[gd_scene load_steps=29 format=4 uid="uid://ck634gxyhffr"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/damage_stars.tscn" id="2_baove"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="2_m7hht"]
@@ -270,9 +270,6 @@ radius = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_jf0rl"]
 radius = 0.785
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_sgnkw"]
-radius = 4.0
-
 [node name="BaseSlime" type="CharacterBody3D" node_paths=PackedStringArray("damage_stars", "slime_body", "explosion_area", "attack_area", "pre_attack_indicator", "attack_indicator", "slime", "nav_agent", "state_chart", "animation_player") groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("4_13pv3")
@@ -299,7 +296,7 @@ volume_db = -15.0
 bus = &"slime_step"
 
 [node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.85, 0, -1.28346e-07, 0, 0.85, 0, 1.28346e-07, 0, -0.85, 0, 0, 0)
 
 [node name="Slime" type="Node3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
@@ -415,9 +412,9 @@ script = ExtResource("5_m7hht")
 [node name="DeathExplosion" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
-[node name="HealthArea3D" type="Area3D" parent="." groups=["enemy"]]
+[node name="HitArea3D" type="Area3D" parent="." groups=["enemy"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405009, 0)
 shape = SubResource("SphereShape3D_baove")
 debug_color = Color(0, 0.494, 0.196, 0.696)
@@ -465,9 +462,6 @@ texture = ExtResource("11_8eyjs")
 monitoring = false
 monitorable = false
 
-[node name="ExplosionCollisionShape" type="CollisionShape3D" parent="ExplosionArea3D"]
-shape = SubResource("SphereShape3D_sgnkw")
-
 [connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
 [connection signal="state_entered" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_entered"]
 [connection signal="state_exited" from="StateChart/root/PreAttack" to="." method="_on_pre_attack_state_exited"]
@@ -478,6 +472,7 @@ shape = SubResource("SphereShape3D_sgnkw")
 [connection signal="state_entered" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_entered"]
 [connection signal="state_exited" from="StateChart/root/HitReaction" to="." method="_on_hit_reaction_state_exited"]
 [connection signal="state_entered" from="StateChart/root/Death" to="." method="_on_death_state_entered"]
+[connection signal="state_exited" from="StateChart/root/Hunt" to="." method="_on_hunt_state_exited"]
 [connection signal="state_processing" from="StateChart/root/Hunt" to="." method="_on_hunt_state_processing"]
 [connection signal="state_processing" from="StateChart/root/Wander" to="." method="_on_random_state_processing"]
 [connection signal="state_physics_processing" from="StateChart/root/PreExplosion" to="." method="_on_pre_explosion_state_physics_processing"]

@@ -197,7 +197,7 @@ _data = {
 &"RESET": SubResource("Animation_8fnb7")
 }
 
-[node name="Death_Enemy" type="Node3D"]
+[node name="ExplosionVFX" type="Node3D"]
 
 [node name="Puff" type="GPUParticles3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

@@ -17,14 +17,14 @@ extends Node3D
 func _on_spawner_timer_timeout() -> void:
 	# Vérifie si tous les ennemis de la vague ont été spawnés
 	if enemies_spawned >= enemies_to_spawn:
-		print("Vague terminée. Attente de", wave_delay, "secondes avant la prochaine vague.")
+		#print("Vague terminée. Attente de", wave_delay, "secondes avant la prochaine vague.")
 		spawner_timer.stop()  # Stoppe le timer pour éviter le spam
 		get_tree().create_timer(wave_delay).timeout.connect(_restart_spawn_cycle, CONNECT_ONE_SHOT)
 		return
 	
 	# Vérifie la configuration des ennemis
 	if enemy_types.is_empty() or spawn_chances.is_empty() or enemy_types.size() != spawn_chances.size():
-		print("Erreur : Types d'ennemis et probabilités mal configurés.")
+		#print("Erreur : Types d'ennemis et probabilités mal configurés.")
 		return
 
 	# Sélectionne un ennemi aléatoire en fonction des probabilités
@@ -45,7 +45,7 @@ func _on_spawner_timer_timeout() -> void:
 
 		# Incrémentation du compteur d'ennemis de la vague
 		enemies_spawned += 1
-		print("Spawned enemy at:", new_enemy.global_position, " | Progression de la vague :", enemies_spawned, "/", enemies_to_spawn)
+		#print("Spawned enemy at:", new_enemy.global_position, " | Progression de la vague :", enemies_spawned, "/", enemies_to_spawn)
 
 # Sélectionne un type d'ennemi en fonction des probabilités
 func _choose_enemy_type() -> PackedScene:
@@ -67,5 +67,5 @@ func _restart_spawn_cycle():
 	enemies_to_spawn = int(round(max_enemies_spawned))  # Arrondi proprement
 	enemies_spawned = 0  # Reset du compteur pour la nouvelle vague
 
-	print("Nouvelle vague !", enemies_to_spawn, "ennemis à spawn.")
+	#print("Nouvelle vague !", enemies_to_spawn, "ennemis à spawn.")
 	spawner_timer.start()  # Relance proprement le timer pour la prochaine vague

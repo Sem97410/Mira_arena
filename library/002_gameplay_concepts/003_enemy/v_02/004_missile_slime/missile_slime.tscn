@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddtoebj46ohx5"]
+
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_wfjqi"]
+[ext_resource type="PackedScene" uid="uid://d3vpj2mvu11d4" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/LittleExplosionVfx.tscn" id="2_26ubh"]
+[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_c4xbk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26ubh"]
+albedo_color = Color(0.583815, 0, 0.0710893, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_luiaf"]
+albedo_color = Color(0.583815, 0, 0.0710893, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c4xbk"]
+radius = 1.5
+
+[node name="MissileSlime" instance=ExtResource("1_wfjqi")]
+explosion_vfx = ExtResource("2_26ubh")
+pre_explosion_duration = 0.5
+explosion_damage = 5.0
+max_health_point = 1.0
+movement_speed = 9.0
+
+[node name="Mesh" parent="." index="1"]
+transform = Transform3D(-0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.75, 0, 0, 0)
+
+[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_26ubh")
+
+[node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_luiaf")
+
+[node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="1"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../Hunt")
+event = &"IsHunting"
+delay_in_seconds = "0.0"
+
+[node name="ToDeathExplosion" type="Node" parent="StateChart/root/Idle" index="2"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../DeathExplosion")
+event = &"IsSelfDestructing"
+delay_in_seconds = "0.0"
+
+[node name="ToPreExplosion" type="Node" parent="StateChart/root/Idle" index="3"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../PreExplosion")
+event = &"IsPreExplosing"
+delay_in_seconds = "0.0"
+
+[node name="ToDeathExplosion" type="Node" parent="StateChart/root/HitReaction" index="1"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../DeathExplosion")
+event = &"IsSelfDestructing"
+delay_in_seconds = "0.0"
+
+[node name="ToPreExplosion" type="Node" parent="StateChart/root/Hunt" index="1"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../PreExplosion")
+event = &"IsPreExplosing"
+delay_in_seconds = "0.0"
+
+[node name="ToDeathExplosion" type="Node" parent="StateChart/root/Hunt" index="2"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../DeathExplosion")
+event = &"IsSelfDestructing"
+delay_in_seconds = "0.0"
+
+[node name="ToDeathExplosion" type="Node" parent="StateChart/root/PreExplosion" index="0"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../DeathExplosion")
+event = &"IsSelfDestructing"
+delay_in_seconds = "0.0"
+
+[node name="ToExplosion" type="Node" parent="StateChart/root/PreExplosion" index="1"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../Explosion")
+event = &"IsExplosing"
+delay_in_seconds = "0.0"
+
+[node name="ToHit" type="Node" parent="StateChart/root/PreExplosion" index="2"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToHit" type="Node" parent="StateChart/root/Explosion" index="0"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToHit" type="Node" parent="StateChart/root/DeathExplosion" index="0"]
+script = ExtResource("2_c4xbk")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ExplosionArea3D" parent="." index="9"]
+monitoring = true
+
+[node name="ExplosionCollisionShape" type="CollisionShape3D" parent="ExplosionArea3D" index="0"]
+shape = SubResource("SphereShape3D_c4xbk")

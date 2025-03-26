@@ -145,17 +145,20 @@ func make_damage(area : Area3D, damage : float) -> void :
 			break
 
 func make_zone_damages(attack_area : Area3D,damage : float) -> void : 
-	
+	print("Je suis dans make damage")
 	for area in attack_area.get_overlapping_areas():
 		var parent = area.get_parent()
+		print("Suppose to make damage")
 		
 		## When Mira will have a new code, I'll wont have to use a difference between " child in parent" and just parents 
 		if parent.has_method("take_damage"):
 			parent.take_damage(damage)
+			print("Parent take damage")
 			
 		for child in parent.get_children():
 			if child.has_method("take_damage"):
 				child.take_damage(damage)
+				print("Child take damaage")
 				#print("Touch by explosion from area: ", area.name)
 				break  # Stop dès qu’un enfant a été touché
 #----------------------------------------------

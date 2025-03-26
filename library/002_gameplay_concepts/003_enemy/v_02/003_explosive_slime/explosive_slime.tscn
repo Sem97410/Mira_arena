@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0if4rs0pypox"]
+[gd_scene load_steps=7 format=3 uid="uid://d0if4rs0pypox"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_x408e"]
-[ext_resource type="PackedScene" uid="uid://drm6h3uwsfblb" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/enemy_Bomb.tscn" id="2_el4uy"]
+[ext_resource type="PackedScene" uid="uid://drm6h3uwsfblb" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/ExplosionVfx.tscn" id="2_el4uy"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_qp0ti"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_el4uy"]
@@ -10,8 +10,13 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp0ti"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_el4uy"]
+radius = 4.0
+
 [node name="Explosive_slime" instance=ExtResource("1_x408e")]
 explosion_vfx = ExtResource("2_el4uy")
+pre_explosion_duration = 1.5
+explosion_damage = 20.0
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_el4uy")
@@ -73,7 +78,22 @@ to = NodePath("../../DeathExplosion")
 event = &"IsSelfDestructing"
 delay_in_seconds = "0.0"
 
+[node name="ToHit" type="Node" parent="StateChart/root/Explosion" index="0"]
+script = ExtResource("2_qp0ti")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
+[node name="ToHit" type="Node" parent="StateChart/root/DeathExplosion" index="0"]
+script = ExtResource("2_qp0ti")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
 [node name="ExplosionArea3D" parent="." index="9"]
 monitoring = true
+
+[node name="ExplosionCollisionShape" type="CollisionShape3D" parent="ExplosionArea3D" index="0"]
+shape = SubResource("SphereShape3D_el4uy")
 
 [connection signal="state_exited" from="StateChart/root/PreExplosion" to="." method="_on_pre_explosion_state_exited"]

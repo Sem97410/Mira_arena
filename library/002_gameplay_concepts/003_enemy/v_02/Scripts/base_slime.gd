@@ -62,6 +62,9 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 
 @export var pre_attack_indicator : Sprite3D
 @export var attack_indicator : Sprite3D
+
+@export var pre_explosion_duration : float
+@export var explosion_damage : float
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
@@ -138,6 +141,7 @@ func activate_hunt_mode() -> void :
 	if distance_to_target > attack_range :
 		#print("Move in hunting mode")
 		send_event_state_chart("IsHunting")
+
 #---
 func activate_wander_mode() -> void :
 	distance_to_target = check_distance_to_target(player)
@@ -173,6 +177,8 @@ func _on_hunt_state_processing(delta: float) -> void:
 	move(random_point_around_target, delta)
 	entity_rotation()
 	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
+	
+	print("Je suis dans hunt")
 
 	distance_to_target = check_distance_to_target(player)
 	
@@ -180,6 +186,7 @@ func _on_hunt_state_processing(delta: float) -> void:
 		#print("I'm able to go to pre attack")
 		#print("Move in Idle mode")
 		activate_pre_attack_mode()
+		activate_pre_explosion_mode()
 	elif attack_cool_down > 0 :
 		activate_idle_mode()
 
@@ -193,10 +200,11 @@ func _on_idle_state_processing(delta: float) -> void:
 	
 	if distance_to_target <= attack_range and attack_cool_down <= 0 :
 		activate_pre_attack_mode()
+		activate_pre_explosion_mode()
 		
 	activate_hunt_mode()
 	activate_wander_mode()
-	activate_pre_explosion_mode()
+	
 	
 #---
 func _on_pre_attack_state_entered() -> void:
@@ -581,6 +589,7 @@ func _on_pre_explosion_state_physics_processing(delta: float) -> void:
 
 
 func _on_explosion_state_entered() -> void:
+	print("Je suis dans explosion")
 	explosion()
 
 
@@ -588,17 +597,18 @@ func _on_explosion_state_entered() -> void:
 
 
 func explosion() -> void : 
-	death(slime,1.5)
-	blink(slime_body, 1.5)
-
+	death(slime,pre_explosion_duration)
+	blink(slime_body, pre_explosion_duration)
+	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(pre_explosion_duration).timeout
 
 	explosion_area.visible = true
 	explosion_area.monitorable = true
 	explosion_area.monitoring = true
 
-	make_zone_damages(explosion_area, 20.0)
+	make_zone_damages(explosion_area, explosion_damage)
+	
 	instantiate_vfx(slime.position, explosion_vfx)
 
 func _on_pre_explosion_state_exited() -> void:
@@ -606,7 +616,11 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	print("death explosion state")
+	print("Je suis dans death explosion")
 	knockback(player_position)
 	explosion()
 	
+
+
+func _on_hunt_state_exited() -> void:
+	pre_attack_indicator.visible = false

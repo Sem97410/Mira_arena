@@ -294,8 +294,22 @@ shape = SubResource("BoxShape3D_4kwbi")
 script = ExtResource("3_k41v4")
 player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
+[node name="Explosive_slime" parent="." node_paths=PackedStringArray("target_entity") instance=ExtResource("5_c30ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3298, 0.10414, -7.66331)
+pre_attack_duration = 2.0
+dash_duration = 0.2
+latence_between_dash = 3.0
+dash_length = 0.0
+attack_cool_down = 0.0
+time_before_new_target = 5.0
+death_animation_duration = 0.0
+target_entity = NodePath("../Behavior1/NavigationRegion3D/Mira")
+max_health_point = 1.0
+movement_speed = 5.0
+max_fall_speed = 100.0
+
 [node name="Spawner" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -3)
 wave_delay = 3.0
 enemy_types = Array[PackedScene]([ExtResource("5_c30ce"), ExtResource("6_76nq8")])
-spawn_chances = Array[int]([25, 75])
+spawn_chances = Array[int]([50, 50])
