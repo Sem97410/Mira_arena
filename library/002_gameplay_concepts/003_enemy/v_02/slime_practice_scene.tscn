@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=27 format=3 uid="uid://cmjq7a7f07m5l"]
 
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_ykcya"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="5_76nq8"]
 [ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="5_c30ce"]
 [ext_resource type="PackedScene" uid="uid://ddtoebj46ohx5" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_missile_slime/missile_slime.tscn" id="6_76nq8"]
+[ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/mortar_slime.tscn" id="7_eiupe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
 albedo_color = Color(0.360784, 0.47451, 1, 1)
@@ -117,7 +118,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_io2ai")
 
 [node name="Mira" parent="Behavior1/NavigationRegion3D" instance=ExtResource("2_ykcya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7693, 1.35981, 3.84526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7693, 0.35981, 3.84526)
 collision_mask = 1
 
 [node name="Behavior2" type="Node3D" parent="."]
@@ -296,6 +297,55 @@ player_body = NodePath("../Behavior1/NavigationRegion3D/Mira")
 
 [node name="Spawner" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -3)
+initial_spawn_count = 5
 wave_delay = 3.0
 enemy_types = Array[PackedScene]([ExtResource("5_c30ce"), ExtResource("6_76nq8")])
-spawn_chances = Array[int]([25, 75])
+spawn_chances = Array[int]([50, 50])
+
+[node name="MortarSlime" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2932, 0.096019, 7.29277)
+max_health_point = 100.0
+
+[node name="MortarSlime2" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2932, 0.096019, 0.0443006)
+max_health_point = 100.0
+
+[node name="MortarSlime3" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0863, 0.096019, 0.0443006)
+max_health_point = 100.0
+
+[node name="MortarSlime4" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0863, 0.096019, 5.14087)
+max_health_point = 100.0
+
+[node name="MortarSlime5" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1092, 0.096019, 5.14087)
+max_health_point = 100.0
+
+[node name="MortarSlime6" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1092, 0.096019, 5.14087)
+max_health_point = 100.0
+
+[node name="MortarSlime7" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4333, 0.096019, 7.29277)
+max_health_point = 100.0
+
+[node name="MortarSlime8" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4333, 0.096019, 0.0443006)
+max_health_point = 100.0
+
+[node name="MortarSlime9" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2264, 0.096019, 0.0443006)
+max_health_point = 100.0
+
+[node name="MortarSlime10" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2264, 0.096019, 5.14087)
+max_health_point = 100.0
+
+[node name="MortarSlime11" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24927, 0.096019, 5.14087)
+max_health_point = 100.0
+
+[node name="MortarSlime12" parent="." instance=ExtResource("7_eiupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24927, 0.096019, 5.14087)
+max_health_point = 100.0

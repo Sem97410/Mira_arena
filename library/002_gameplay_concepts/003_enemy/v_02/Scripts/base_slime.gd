@@ -65,6 +65,10 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 
 @export var pre_explosion_duration : float
 @export var explosion_damage : float
+
+@onready var can_shoot = true
+@export var mortar_projectile : PackedScene
+@export var mortar_target : PackedScene
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
@@ -156,6 +160,9 @@ func activate_idle_mode() -> void :
 		#print("Move in Idle mode")
 		send_event_state_chart("IsIdle")
 #---
+func activate_stationary_mode()-> void : 
+	send_event_state_chart("IsStationary")
+#---
 func activate_pre_attack_mode() -> void :
 	
 	distance_to_target = check_distance_to_target(player)
@@ -197,6 +204,8 @@ func _on_idle_state_processing(delta: float) -> void:
 	#print("I'm in idle")
 
 	animation_player.play("Slime|idle")
+	#activate_stationary_mode()
+	state_chart.send_event("IsStationary")
 	
 	if distance_to_target <= attack_range and attack_cool_down <= 0 :
 		activate_pre_attack_mode()
@@ -204,6 +213,7 @@ func _on_idle_state_processing(delta: float) -> void:
 		
 	activate_hunt_mode()
 	activate_wander_mode()
+	
 	
 	
 #---
@@ -624,3 +634,46 @@ func _on_death_explosion_state_entered() -> void:
 
 func _on_hunt_state_exited() -> void:
 	pre_attack_indicator.visible = false
+
+
+func _on_stationary_state_processing(delta: float) -> void:
+	#print("Je suis dans Stationary")
+	pass
+
+func _on_stationary_state_entered() -> void:
+	#print("Je viens d'entrer dans Stationary")
+	await  get_tree().create_timer(3.0).timeout
+	can_shoot = true
+	in_a_stationary_mode()
+
+func _on_shoot_state_entered() -> void:
+	#print("Je suis dans on_shoot")
+	shoot_mortar_projectile()
+
+func in_a_stationary_mode() -> void : 
+	animation_player.play("Slime|idle")
+	await get_tree().create_timer(3.0).timeout
+	
+	state_chart.send_event("IsShooting")
+
+func shoot_mortar_projectile() -> void : 
+	if can_shoot:
+		can_shoot = false
+		animation_player.play("Slime|Charge")
+		instantiate_mortar_projectile()
+		state_chart.send_event("IsStationary")
+
+
+func instantiate_mortar_projectile() -> void:
+	#print("Charge projectile impacte")
+	pass
+	
+
+	var player_current_position = create_random_point_around(player.global_position, 6.0)
+	instantiate_vfx(player_current_position, mortar_target)
+
+	var delay = randf_range(0.5, 2.0)
+	await get_tree().create_timer(delay).timeout
+
+	#print("Spawn a projectile on the player")
+	instantiate_vfx(player_current_position, mortar_projectile)
