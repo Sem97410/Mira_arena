@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dih30d47ynsi3"]
+
+[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_kxous"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxous"]
+albedo_color = Color(0.161508, 0.154023, 0.586908, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1x6pu"]
+albedo_color = Color(0.161508, 0.154023, 0.586908, 1)
+
+[node name="MortarSlime" instance=ExtResource("1_kxous")]
+
+[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_kxous")
+
+[node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_1x6pu")

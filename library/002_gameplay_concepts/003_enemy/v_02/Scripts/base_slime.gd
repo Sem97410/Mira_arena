@@ -178,7 +178,7 @@ func _on_hunt_state_processing(delta: float) -> void:
 	entity_rotation()
 	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
 	
-	print("Je suis dans hunt")
+	#print("Je suis dans hunt")
 
 	distance_to_target = check_distance_to_target(player)
 	
@@ -277,7 +277,7 @@ func _on_death_state_entered() -> void:
 ##Fight functions
 func _on_attack_area_3d_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_in_group("player"):
-		print("Contact with player")
+		#print("Contact with player")
 		make_damage(area, slime_attack_damage)
 
 
@@ -589,7 +589,7 @@ func _on_pre_explosion_state_physics_processing(delta: float) -> void:
 
 
 func _on_explosion_state_entered() -> void:
-	print("Je suis dans explosion")
+	#print("Je suis dans explosion")
 	explosion()
 
 
@@ -616,7 +616,7 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	print("Je suis dans death explosion")
+	#print("Je suis dans death explosion")
 	knockback(player_position)
 	explosion()
 	

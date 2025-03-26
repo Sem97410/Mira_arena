@@ -412,6 +412,12 @@ script = ExtResource("5_m7hht")
 [node name="DeathExplosion" type="Node" parent="StateChart/root"]
 script = ExtResource("5_m7hht")
 
+[node name="Stationary" type="Node" parent="StateChart/root"]
+script = ExtResource("5_m7hht")
+
+[node name="Shoot" type="Node" parent="StateChart/root"]
+script = ExtResource("5_m7hht")
+
 [node name="HitArea3D" type="Area3D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
