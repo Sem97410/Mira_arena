@@ -1,58 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://vw7e5f8cq5iu"]
+[gd_scene load_steps=2 format=3 uid="uid://dbdpessbqraxd"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_hwajv"]
+[ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/tree.tscn" id="1_ajgtk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajgtk"]
-albedo_color = Color(0.742872, 0.172529, 0.470466, 1)
+[node name="Node3D" type="Node3D"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwajv"]
-albedo_color = Color(0.441611, 0.892024, 0.479434, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_n43jt"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_n43jt"]
-
-[sub_resource type="VisualShader" id="VisualShader_fwekn"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-
-
-"
-nodes/fragment/0/position = Vector2(680, 40)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwajv"]
-render_priority = 0
-shader = SubResource("VisualShader_fwekn")
-
-[node name="ShaderLabs" type="Node3D"]
-
-[node name="cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94542, 0.434875, 0)
-mesh = SubResource("BoxMesh_hwajv")
-skeleton = NodePath("../ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_ajgtk")
-
-[node name="cube2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92331, 0.434875, -13.5979)
-mesh = SubResource("BoxMesh_hwajv")
-skeleton = NodePath("../ground")
-
-[node name="cube3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.517509, 0.434875, 2.70744)
-mesh = SubResource("BoxMesh_hwajv")
-skeleton = NodePath("../ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_hwajv")
-
-[node name="ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_n43jt")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.982861, 0.184346, 0, -0.184346, 0.982861, 0.803878, 0.654345, 4.25911)
-
-[node name="little_quad" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.98286, -0.184346, 0, 0.184346, 0.98286, -0.233528, 0.0135425, -0.794405)
-mesh = SubResource("QuadMesh_n43jt")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_hwajv")
+[node name="tree" parent="." instance=ExtResource("1_ajgtk")]
