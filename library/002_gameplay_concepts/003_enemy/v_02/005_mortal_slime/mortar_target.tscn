@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="1_l1syl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd6kq"]
-albedo_color = Color(0.748279, 0.303508, 0.781565, 1)
+transparency = 1
+albedo_color = Color(0.748, 0.304, 0.782, 0.066)
 emission_enabled = true
 emission = Color(0.748279, 0.303508, 0.781565, 1)
 emission_energy_multiplier = 2.51
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nd6kq"]
-top_radius = 0.7
-bottom_radius = 0.7
+top_radius = 1.0
+bottom_radius = 1.0
 height = 0.05
 
 [node name="MortarTarget" type="Node3D"]
@@ -22,4 +23,4 @@ mesh = SubResource("CylinderMesh_nd6kq")
 [node name="DestroyVfx" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
 script = ExtResource("1_l1syl")
 current_vfx = NodePath("..")
-delay_before_queue_free = 1.5
+delay_before_queue_free = 2.0

@@ -67,8 +67,13 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @export var explosion_damage : float
 
 @onready var can_shoot = true
-@export var mortar_projectile : PackedScene
+
 @export var mortar_target : PackedScene
+@export var mortar_attack_cooldown : float = 3.0
+@export var min_mortar_delay_before_impact : float = 0.5
+@export var max_mortar_delay_before_impact : float = 2.0
+@export var bomb_radius_around_player : float = 6.0
+@export var mortar_projectil : PackedScene
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
@@ -642,7 +647,7 @@ func _on_stationary_state_processing(delta: float) -> void:
 
 func _on_stationary_state_entered() -> void:
 	#print("Je viens d'entrer dans Stationary")
-	await  get_tree().create_timer(3.0).timeout
+	await  get_tree().create_timer(mortar_attack_cooldown).timeout
 	can_shoot = true
 	in_a_stationary_mode()
 
@@ -652,7 +657,7 @@ func _on_shoot_state_entered() -> void:
 
 func in_a_stationary_mode() -> void : 
 	animation_player.play("Slime|idle")
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(mortar_attack_cooldown).timeout
 	
 	state_chart.send_event("IsShooting")
 
@@ -666,14 +671,13 @@ func shoot_mortar_projectile() -> void :
 
 func instantiate_mortar_projectile() -> void:
 	#print("Charge projectile impacte")
-	pass
-	
 
-	var player_current_position = create_random_point_around(player.global_position, 6.0)
+
+	var player_current_position = create_random_point_around(player.global_position, bomb_radius_around_player)
 	instantiate_vfx(player_current_position, mortar_target)
 
-	var delay = randf_range(0.5, 2.0)
+	var delay = randf_range(min_mortar_delay_before_impact, max_mortar_delay_before_impact)
 	await get_tree().create_timer(delay).timeout
 
 	#print("Spawn a projectile on the player")
-	instantiate_vfx(player_current_position, mortar_projectile)
+	instantiate_vfx(player_current_position, mortar_projectil)
