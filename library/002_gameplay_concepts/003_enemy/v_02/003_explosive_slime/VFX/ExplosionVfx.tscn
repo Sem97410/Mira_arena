@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
 render_priority = 0
 shader = ExtResource("1_e00fo")
-shader_parameter/Distance_Fade = 0.485
+shader_parameter/Distance_Fade = 0.74
 shader_parameter/White = -15.49
 shader_parameter/Black = 5.75
 
@@ -37,6 +37,7 @@ point_count = 2
 curve = SubResource("Curve_4aa2c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06nvl"]
+lifetime_randomness = 0.1
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0

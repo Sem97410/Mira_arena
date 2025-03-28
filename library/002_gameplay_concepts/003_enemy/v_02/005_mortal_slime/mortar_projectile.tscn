@@ -98,29 +98,36 @@ radius = 0.2
 height = 0.6
 
 [node name="Mortar_projectile" type="Node3D" node_paths=PackedStringArray("animation_player", "mesh_projectil", "projectil_explosion_area")]
+process_mode = 1
 script = ExtResource("1_27nmc")
 animation_player = NodePath("AnimationPlayer")
 mesh_projectil = NodePath("ProjectileGroup/MeshInstance3D")
 projectil_explosion_area = NodePath("ProjectileGroup/Area3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 1
 libraries = {
 &"": SubResource("AnimationLibrary_27nmc")
 }
 
 [node name="InstantiateVFX" type="Node" parent="." node_paths=PackedStringArray("projectil")]
+process_mode = 1
 script = ExtResource("1_757mg")
 projectil = NodePath("../ProjectileGroup/MeshInstance3D")
 
 [node name="ProjectileGroup" type="Node3D" parent="."]
+process_mode = 1
 
 [node name="Area3D" type="Area3D" parent="ProjectileGroup"]
+process_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileGroup/Area3D"]
+process_mode = 1
 shape = SubResource("SphereShape3D_1uvfy")
 debug_color = Color(0.532, 0, 0.156, 0.712)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ProjectileGroup"]
+process_mode = 1
 material_override = SubResource("StandardMaterial3D_1uvfy")
 mesh = SubResource("SphereMesh_757mg")
 skeleton = NodePath("../..")

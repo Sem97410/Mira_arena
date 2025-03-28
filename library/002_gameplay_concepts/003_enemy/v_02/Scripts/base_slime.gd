@@ -233,7 +233,7 @@ func _on_pre_attack_state_processing(delta: float) -> void:
 	
 	can_move = false
 	animation_player.play("Slime|pre_charge")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false,true).timeout
 	state_chart.send_event("IsAttacking")
 
 #---
@@ -325,7 +325,7 @@ func get_random_point_around(range: float) -> void:
 		return  # Empêche de relancer la fonction si elle est déjà en cours
 	
 	is_generating_random_point = true  # Marque comme en cours
-	await get_tree().create_timer(random_point_interval).timeout
+	await get_tree().create_timer(random_point_interval,false,true).timeout
 	random_point_around_target = create_random_point_around(player_position, range)
 	is_generating_random_point = false  # Marque comme terminé
 #---
@@ -377,7 +377,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 	if not is_instance_valid(self) or not is_inside_tree():
 		return
 
-	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
+	await get_tree().create_timer(0.2, false,true).timeout  # Petit délai pour éviter un double trigger
 
 	# Vérifier avant de réactiver le saut
 	if is_instance_valid(self) and is_inside_tree():
@@ -616,7 +616,7 @@ func explosion() -> void :
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-	await get_tree().create_timer(pre_explosion_duration).timeout
+	await get_tree().create_timer(pre_explosion_duration,false,true).timeout
 
 	explosion_area.visible = true
 	explosion_area.monitorable = true
@@ -647,7 +647,7 @@ func _on_stationary_state_processing(delta: float) -> void:
 
 func _on_stationary_state_entered() -> void:
 	#print("Je viens d'entrer dans Stationary")
-	await  get_tree().create_timer(mortar_attack_cooldown).timeout
+	await  get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
 	can_shoot = true
 	in_a_stationary_mode()
 
@@ -657,7 +657,7 @@ func _on_shoot_state_entered() -> void:
 
 func in_a_stationary_mode() -> void : 
 	animation_player.play("Slime|idle")
-	await get_tree().create_timer(mortar_attack_cooldown).timeout
+	await get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
 	
 	state_chart.send_event("IsShooting")
 
@@ -677,7 +677,7 @@ func instantiate_mortar_projectile() -> void:
 	instantiate_vfx(player_current_position, mortar_target)
 
 	var delay = randf_range(min_mortar_delay_before_impact, max_mortar_delay_before_impact)
-	await get_tree().create_timer(delay).timeout
+	await get_tree().create_timer(delay, false,true).timeout
 
 	#print("Spawn a projectile on the player")
 	instantiate_vfx(player_current_position, mortar_projectil)
