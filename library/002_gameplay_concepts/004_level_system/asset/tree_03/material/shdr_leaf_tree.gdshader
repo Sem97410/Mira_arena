@@ -3,6 +3,13 @@ render_mode cull_disabled;
 
 // Paramètres du Toon Shading
 
+uniform float amplitude : hint_range(0.0, 1.0) = 0.1;
+uniform float frequency : hint_range(0.0, 10.0) = 2.0;
+uniform float speed : hint_range(0.0, 10.0) = 1.0;
+
+
+
+
 uniform sampler2D albedo_texture ;
 uniform vec4 shadow_color : source_color = vec4(0.1, 0.1, 0.1, 1.0);
 uniform vec4 light_color : source_color = vec4(1.0, 0.9, 0.8, 1.0);
@@ -28,4 +35,15 @@ void light() {
 
     // Application de la lumière diffuse
     DIFFUSE_LIGHT += final_color * ATTENUATION;
-}
+
+
+
+
+void vertex() {
+    // crée une vague sinusoïdale basée sur la position en X et Z
+    float wave = sin((VERTEX.x + VERTEX.z + TIME * speed) * frequency);
+
+
+	// applique le vent uniquement sur Y
+    VERTEX.y += wave * amplitude;
+	}
