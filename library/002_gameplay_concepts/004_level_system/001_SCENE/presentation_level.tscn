@@ -1972,6 +1972,7 @@ transform = Transform3D(-0.656836, 0, 0.754034, 0, 1, 0, -0.754034, 0, -0.656836
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -18.5598, 2.17668, -10.4324)
 spawn_increase_percent = 10.0
 spawn_range = 3.0
+wave_delay = 20.0
 
 [node name="Spawner2" parent="." instance=ExtResource("9_n17l2")]
 transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 10.0537, 2.17668, 17.2244)

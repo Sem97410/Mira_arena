@@ -65,6 +65,15 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 
 @export var pre_explosion_duration : float
 @export var explosion_damage : float
+
+@onready var can_shoot = true
+
+@export var mortar_target : PackedScene
+@export var mortar_attack_cooldown : float = 3.0
+@export var min_mortar_delay_before_impact : float = 0.5
+@export var max_mortar_delay_before_impact : float = 2.0
+@export var bomb_radius_around_player : float = 6.0
+@export var mortar_projectil : PackedScene
 #----------------------
 #Movement variables
 @onready var can_jump : bool = true
@@ -156,6 +165,9 @@ func activate_idle_mode() -> void :
 		#print("Move in Idle mode")
 		send_event_state_chart("IsIdle")
 #---
+func activate_stationary_mode()-> void : 
+	send_event_state_chart("IsStationary")
+#---
 func activate_pre_attack_mode() -> void :
 	
 	distance_to_target = check_distance_to_target(player)
@@ -178,7 +190,7 @@ func _on_hunt_state_processing(delta: float) -> void:
 	entity_rotation()
 	look_at_target_or_movement(slime, player, slime.velocity, 10.0)
 	
-	print("Je suis dans hunt")
+	#print("Je suis dans hunt")
 
 	distance_to_target = check_distance_to_target(player)
 	
@@ -197,6 +209,8 @@ func _on_idle_state_processing(delta: float) -> void:
 	#print("I'm in idle")
 
 	animation_player.play("Slime|idle")
+	#activate_stationary_mode()
+	state_chart.send_event("IsStationary")
 	
 	if distance_to_target <= attack_range and attack_cool_down <= 0 :
 		activate_pre_attack_mode()
@@ -204,6 +218,7 @@ func _on_idle_state_processing(delta: float) -> void:
 		
 	activate_hunt_mode()
 	activate_wander_mode()
+	
 	
 	
 #---
@@ -218,7 +233,7 @@ func _on_pre_attack_state_processing(delta: float) -> void:
 	
 	can_move = false
 	animation_player.play("Slime|pre_charge")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false,true).timeout
 	state_chart.send_event("IsAttacking")
 
 #---
@@ -277,7 +292,7 @@ func _on_death_state_entered() -> void:
 ##Fight functions
 func _on_attack_area_3d_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_in_group("player"):
-		print("Contact with player")
+		#print("Contact with player")
 		make_damage(area, slime_attack_damage)
 
 
@@ -310,7 +325,7 @@ func get_random_point_around(range: float) -> void:
 		return  # Empêche de relancer la fonction si elle est déjà en cours
 	
 	is_generating_random_point = true  # Marque comme en cours
-	await get_tree().create_timer(random_point_interval).timeout
+	await get_tree().create_timer(random_point_interval,false,true).timeout
 	random_point_around_target = create_random_point_around(player_position, range)
 	is_generating_random_point = false  # Marque comme terminé
 #---
@@ -362,7 +377,7 @@ func jump_to_target(start: Vector3, end: Vector3) -> void:
 	if not is_instance_valid(self) or not is_inside_tree():
 		return
 
-	await get_tree().create_timer(0.2).timeout  # Petit délai pour éviter un double trigger
+	await get_tree().create_timer(0.2, false,true).timeout  # Petit délai pour éviter un double trigger
 
 	# Vérifier avant de réactiver le saut
 	if is_instance_valid(self) and is_inside_tree():
@@ -589,7 +604,7 @@ func _on_pre_explosion_state_physics_processing(delta: float) -> void:
 
 
 func _on_explosion_state_entered() -> void:
-	print("Je suis dans explosion")
+	#print("Je suis dans explosion")
 	explosion()
 
 
@@ -601,7 +616,7 @@ func explosion() -> void :
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-	await get_tree().create_timer(pre_explosion_duration).timeout
+	await get_tree().create_timer(pre_explosion_duration,false,true).timeout
 
 	explosion_area.visible = true
 	explosion_area.monitorable = true
@@ -616,7 +631,7 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	print("Je suis dans death explosion")
+	#print("Je suis dans death explosion")
 	knockback(player_position)
 	explosion()
 	
@@ -624,3 +639,45 @@ func _on_death_explosion_state_entered() -> void:
 
 func _on_hunt_state_exited() -> void:
 	pre_attack_indicator.visible = false
+
+
+func _on_stationary_state_processing(delta: float) -> void:
+	#print("Je suis dans Stationary")
+	pass
+
+func _on_stationary_state_entered() -> void:
+	#print("Je viens d'entrer dans Stationary")
+	await  get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
+	can_shoot = true
+	in_a_stationary_mode()
+
+func _on_shoot_state_entered() -> void:
+	#print("Je suis dans on_shoot")
+	shoot_mortar_projectile()
+
+func in_a_stationary_mode() -> void : 
+	animation_player.play("Slime|idle")
+	await get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
+	
+	state_chart.send_event("IsShooting")
+
+func shoot_mortar_projectile() -> void : 
+	if can_shoot:
+		can_shoot = false
+		animation_player.play("Slime|Charge")
+		instantiate_mortar_projectile()
+		state_chart.send_event("IsStationary")
+
+
+func instantiate_mortar_projectile() -> void:
+	#print("Charge projectile impacte")
+
+
+	var player_current_position = create_random_point_around(player.global_position, bomb_radius_around_player)
+	instantiate_vfx(player_current_position, mortar_target)
+
+	var delay = randf_range(min_mortar_delay_before_impact, max_mortar_delay_before_impact)
+	await get_tree().create_timer(delay, false,true).timeout
+
+	#print("Spawn a projectile on the player")
+	instantiate_vfx(player_current_position, mortar_projectil)

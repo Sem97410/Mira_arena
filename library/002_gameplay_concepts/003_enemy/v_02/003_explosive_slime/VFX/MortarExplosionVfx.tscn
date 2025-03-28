@@ -1,15 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://drm6h3uwsfblb"]
+[gd_scene load_steps=25 format=3 uid="uid://6bqt8je5v34i"]
 
-[ext_resource type="Shader" uid="uid://cpigeeyfypg0e" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Smoke_Bomb.tres" id="1_e00fo"]
-[ext_resource type="Shader" uid="uid://2kqb4uplbhec" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Sparkle_Bomb.tres" id="2_l240h"]
-[ext_resource type="Script" uid="uid://4224sacgiaay" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="4_ve0ga"]
+[ext_resource type="Shader" uid="uid://2kqb4uplbhec" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Sparkle_Bomb.tres" id="2_qs68i"]
+[ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="3_pdbln"]
+[ext_resource type="Script" uid="uid://4224sacgiaay" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="3_qik3b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2d3j"]
-render_priority = 0
-shader = ExtResource("1_e00fo")
-shader_parameter/Distance_Fade = 0.74
-shader_parameter/White = -15.49
-shader_parameter/Black = 5.75
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xdhu"]
+transparency = 1
+albedo_color = Color(0.743945, 0.471892, 0.960423, 1)
+emission_enabled = true
+emission = Color(0.743945, 0.471892, 0.960423, 1)
 
 [sub_resource type="Curve" id="Curve_jjj7n"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -37,7 +36,6 @@ point_count = 2
 curve = SubResource("Curve_4aa2c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06nvl"]
-lifetime_randomness = 0.1
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0
@@ -61,8 +59,8 @@ alpha_curve = SubResource("CurveTexture_5k67n")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
 render_priority = 0
-shader = ExtResource("2_l240h")
-shader_parameter/ColorParameter = Color(4, 0.8, 0.2, 1)
+shader = ExtResource("2_qs68i")
+shader_parameter/ColorParameter = Color(0.748279, 0.303508, 0.781565, 1)
 
 [sub_resource type="Curve" id="Curve_5xs7k"]
 _data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
@@ -201,9 +199,9 @@ _data = {
 [node name="ExplosionVFX" type="Node3D"]
 
 [node name="Puff" type="GPUParticles3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_t2d3j")
-amount = 50
+transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5xdhu")
+amount = 10
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_06nvl")
 draw_pass_1 = SubResource("SphereMesh_g4sx5")
@@ -231,6 +229,11 @@ light_color = Color(0.824677, 0.399226, 1, 1)
 light_energy = 20.0
 
 [node name="VfxLogic" type="Node" parent="." node_paths=PackedStringArray("animation_player", "vfx")]
-script = ExtResource("4_ve0ga")
+script = ExtResource("3_qik3b")
 animation_player = NodePath("../AnimationPlayer")
 vfx = NodePath("..")
+
+[node name="DestroyVfx" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("3_pdbln")
+current_vfx = NodePath("..")
+delay_before_queue_free = 1.5

@@ -7,5 +7,5 @@ func _ready() -> void:
 	destroy_attack_vfx(current_vfx, delay_before_queue_free)
 
 func destroy_attack_vfx(vfx : Node3D, _delay : float) -> void : 
-	await get_tree().create_timer(delay_before_queue_free).timeout
+	await get_tree().create_timer(delay_before_queue_free, false,true).timeout
 	vfx.queue_free()

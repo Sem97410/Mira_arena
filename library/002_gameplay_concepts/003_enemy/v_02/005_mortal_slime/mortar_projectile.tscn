@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://1kt1m4w0yjsl"]
+
+[ext_resource type="Script" uid="uid://dref523wasnmk" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/mortar_projectile.gd" id="1_27nmc"]
+[ext_resource type="Script" uid="uid://cf7tcqtkksewy" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/instantiate_vfx.gd" id="1_757mg"]
+[ext_resource type="PackedScene" uid="uid://6bqt8je5v34i" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/MortarExplosionVfx.tscn" id="1_j7wsn"]
+
+[sub_resource type="Animation" id="Animation_757mg"]
+resource_name = "impact"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InstantiateVFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("1_j7wsn")],
+"method": &"instantiate_vfx"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProjectileGroup:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 20, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide_projectile"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_projectil"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j7wsn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectileGroup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_27nmc"]
+_data = {
+&"RESET": SubResource("Animation_j7wsn"),
+&"impact": SubResource("Animation_757mg")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1uvfy"]
+radius = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uvfy"]
+transparency = 1
+albedo_color = Color(0.636, 0, 0.257, 0.077)
+emission_enabled = true
+emission = Color(0.619367, 0, 0.221321, 1)
+emission_energy_multiplier = 8.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_757mg"]
+radius = 0.2
+height = 0.6
+
+[node name="Mortar_projectile" type="Node3D" node_paths=PackedStringArray("animation_player", "mesh_projectil", "projectil_explosion_area")]
+process_mode = 1
+script = ExtResource("1_27nmc")
+animation_player = NodePath("AnimationPlayer")
+mesh_projectil = NodePath("ProjectileGroup/MeshInstance3D")
+projectil_explosion_area = NodePath("ProjectileGroup/Area3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_27nmc")
+}
+
+[node name="InstantiateVFX" type="Node" parent="." node_paths=PackedStringArray("projectil")]
+process_mode = 1
+script = ExtResource("1_757mg")
+projectil = NodePath("../ProjectileGroup/MeshInstance3D")
+
+[node name="ProjectileGroup" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="Area3D" type="Area3D" parent="ProjectileGroup"]
+process_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileGroup/Area3D"]
+process_mode = 1
+shape = SubResource("SphereShape3D_1uvfy")
+debug_color = Color(0.532, 0, 0.156, 0.712)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ProjectileGroup"]
+process_mode = 1
+material_override = SubResource("StandardMaterial3D_1uvfy")
+mesh = SubResource("SphereMesh_757mg")
+skeleton = NodePath("../..")
+
+[connection signal="area_entered" from="ProjectileGroup/Area3D" to="." method="_on_area_3d_area_entered"]
