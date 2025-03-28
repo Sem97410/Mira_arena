@@ -124,11 +124,11 @@ func _on_flugdrasil_button_focus_exited() -> void:
 
 
 func _on_slimageddon_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://000_temp/slimageddon.tscn") 
+	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/004_level_system/001_SCENE/slimageddon.tscn") 
 
 
 func _on_flugdrasil_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/004_level_system/003_level_design/presentation_level.tscn")
+	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/004_level_system/001_SCENE/presentation_level.tscn")
 
 
 func _on_go_to_main_menu_button_pressed() -> void:

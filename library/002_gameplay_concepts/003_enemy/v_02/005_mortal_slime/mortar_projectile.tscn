@@ -4,6 +4,21 @@
 [ext_resource type="Script" uid="uid://cf7tcqtkksewy" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/instantiate_vfx.gd" id="1_757mg"]
 [ext_resource type="PackedScene" uid="uid://6bqt8je5v34i" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/MortarExplosionVfx.tscn" id="1_j7wsn"]
 
+[sub_resource type="Animation" id="Animation_j7wsn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectileGroup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_757mg"]
 resource_name = "impact"
 length = 0.4
@@ -60,21 +75,6 @@ tracks/3/keys = {
 "args": [],
 "method": &"destroy_projectil"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_j7wsn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ProjectileGroup:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_27nmc"]
