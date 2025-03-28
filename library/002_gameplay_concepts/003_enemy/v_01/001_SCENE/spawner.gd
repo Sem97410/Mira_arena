@@ -15,37 +15,44 @@ extends Node3D
 @export var spawn_chances: Array[int] = []  
 
 func _on_spawner_timer_timeout() -> void:
-	# Vérifie si tous les ennemis de la vague ont été spawnés
 	if enemies_spawned >= enemies_to_spawn:
-		#print("Vague terminée. Attente de", wave_delay, "secondes avant la prochaine vague.")
-		spawner_timer.stop()  # Stoppe le timer pour éviter le spam
+		spawner_timer.stop()
 		get_tree().create_timer(wave_delay).timeout.connect(_restart_spawn_cycle, CONNECT_ONE_SHOT)
 		return
 	
-	# Vérifie la configuration des ennemis
 	if enemy_types.is_empty() or spawn_chances.is_empty() or enemy_types.size() != spawn_chances.size():
-		#print("Erreur : Types d'ennemis et probabilités mal configurés.")
 		return
 
-	# Sélectionne un ennemi aléatoire en fonction des probabilités
 	var selected_enemy = _choose_enemy_type()
-
-	# Instancie et place l'ennemi dans la scène
 	if selected_enemy:
 		var new_enemy = selected_enemy.instantiate()
 		get_parent().add_child(new_enemy)
 
-		# Position aléatoire autour du spawner
-		var random_offset = Vector3(
-			randf_range(-spawn_range, spawn_range), 
-			0, 
-			randf_range(-spawn_range, spawn_range)
-		)
-		new_enemy.global_position = global_position + random_offset
+		# 💡 Vérifie si l'ennemi doit spawn sur le NavMesh
+		if new_enemy.is_in_group("spawn_on_navmesh"):
+			var nav_map: RID = get_world_3d().navigation_map
+			if nav_map.is_valid():
+				var spawn_position = NavigationServer3D.map_get_random_point(nav_map, 1, false)
+				new_enemy.global_position = spawn_position
+				print("Mortar spawn at:", spawn_position)
+			else:
+				print("Erreur : nav_map non valide, fallback au spawn normal.")
+				# fallback classique
+				new_enemy.global_position = global_position + _random_offset()
+		else:
+			# Spawn classique autour du spawner
+			new_enemy.global_position = global_position + _random_offset()
 
-		# Incrémentation du compteur d'ennemis de la vague
 		enemies_spawned += 1
-		#print("Spawned enemy at:", new_enemy.global_position, " | Progression de la vague :", enemies_spawned, "/", enemies_to_spawn)
+
+# Petite fonction utilitaire pour un offset classique
+func _random_offset() -> Vector3:
+	return Vector3(
+		randf_range(-spawn_range, spawn_range),
+		0,
+		randf_range(-spawn_range, spawn_range)
+	)
+
 
 # Sélectionne un type d'ennemi en fonction des probabilités
 func _choose_enemy_type() -> PackedScene:

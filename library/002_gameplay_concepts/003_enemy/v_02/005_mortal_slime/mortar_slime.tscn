@@ -13,7 +13,7 @@ albedo_color = Color(0.161508, 0.154023, 0.586908, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1x6pu"]
 
-[node name="MortarSlime" instance=ExtResource("1_kxous")]
+[node name="MortarSlime" groups=["spawn_on_navmesh"] instance=ExtResource("1_kxous")]
 mortar_target = ExtResource("3_a2qnp")
 mortar_projectil = ExtResource("4_nbs1o")
 
