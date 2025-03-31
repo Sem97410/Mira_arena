@@ -1,0 +1,27 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=5 format=3 uid="uid://cv6paopk17fdd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr7s2"]
+animation = &"Combo_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_65jqx"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_f3ne1"]
+filter_enabled = true
+filters = ["Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_m8pfj"]
+filter_enabled = true
+
+[resource]
+graph_offset = Vector2(-612.834, -68.9391)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_65jqx")
+nodes/Animation/position = Vector2(-640, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_kr7s2")
+"nodes/Animation 2/position" = Vector2(-620, 420)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_f3ne1")
+nodes/Blend2/position = Vector2(20, 20)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_m8pfj")
+nodes/OneShot/position = Vector2(-320, 260)
+nodes/output/position = Vector2(320, 0)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"OneShot", &"OneShot", 0, &"Animation 2", &"output", 0, &"Blend2"]
