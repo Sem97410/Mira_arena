@@ -55,7 +55,7 @@
 [ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="16_xm038"]
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="17_63pyl"]
 [ext_resource type="Script" uid="uid://85taxqbbt6tr" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_tracks_methodes.gd" id="18_37gov"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/Scripts/Resources/web_system_tree_structure.tres" id="19_ixfn3"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/web_system_tree_structure.tres" id="19_ixfn3"]
 [ext_resource type="Script" uid="uid://bdfqwphlrip12" path="res://library/002_gameplay_concepts/001_player/Scripts/health_system.gd" id="19_k4xww"]
 [ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_L.tscn" id="19_l670n"]
 [ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="21_m4tvw"]
