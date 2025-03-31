@@ -1,0 +1,106 @@
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://p8dgpvdvf8fs"]
+
+[ext_resource type="Texture2D" uid="uid://di22b3gooeimw" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/leaf_texture_03.png" id="1_3usvf"]
+[ext_resource type="Texture2D" uid="uid://cryisfqlc674" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/leaf_alpha_03.png" id="2_c2c8v"]
+[ext_resource type="Texture2D" uid="uid://bv4w337ogyd30" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/Plane.109_Bake1_PBR_Normal.png" id="3_hpj6i"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ub7uh"]
+texture = ExtResource("1_3usvf")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_b28mp"]
+texture = ExtResource("2_c2c8v")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_cvq5k"]
+texture = ExtResource("3_hpj6i")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qw3qn"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_yq20o"]
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_6f0or"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 1.62]
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_3usvf"]
+output_port_for_preview = 0
+operator = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_4;
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0 = VERTEX;
+
+
+// VectorDecompose:3
+	float n_out3p0 = n_out2p0.x;
+	float n_out3p1 = n_out2p0.y;
+	float n_out3p2 = n_out2p0.z;
+
+
+// TransformVectorMult:5
+	mat4 n_in5p0 = mat4(vec4(1.00000, 0.00000, 0.00000, 0.0), vec4(0.00000, 1.00000, 0.00000, 0.0), vec4(0.00000, 0.00000, 1.00000, 0.0), vec4(0.00000, 0.00000, 0.00000, 1.0));
+	vec3 n_out5p0 = (vec4(vec3(n_out3p1), 1.0) * n_in5p0).xyz;
+
+
+// SmoothStep:4
+	float n_in4p1 = 1.00000;
+	float n_in4p2 = 1.62000;
+	float n_out4p0 = smoothstep(n_out5p0.x, n_in4p1, n_in4p2);
+
+
+// Output:0
+	NORMAL = vec3(n_out4p0);
+
+
+}
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out3p0.x;
+	NORMAL_MAP = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(109.645, 80.0536)
+modes/cull = 2
+nodes/vertex/0/position = Vector2(840, 220)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_qw3qn")
+nodes/vertex/2/position = Vector2(-920, 340)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorDecompose_yq20o")
+nodes/vertex/3/position = Vector2(-480, 280)
+nodes/vertex/4/node = SubResource("VisualShaderNodeSmoothStep_6f0or")
+nodes/vertex/4/position = Vector2(300, 240)
+nodes/vertex/5/node = SubResource("VisualShaderNodeTransformVecMult_3usvf")
+nodes/vertex/5/position = Vector2(-224.619, 375.947)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 0, 1, 3, 1, 5, 1, 5, 0, 4, 0)
+nodes/fragment/0/position = Vector2(840, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_ub7uh")
+nodes/fragment/2/position = Vector2(-660, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_b28mp")
+nodes/fragment/3/position = Vector2(-480, 440)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_cvq5k")
+nodes/fragment/4/position = Vector2(91.9609, 704.815)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1, 4, 0, 0, 9)
