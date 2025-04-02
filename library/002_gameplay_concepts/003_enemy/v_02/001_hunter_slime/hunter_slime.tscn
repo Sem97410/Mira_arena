@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1wnqq3rpkhir"]
+[gd_scene load_steps=6 format=3 uid="uid://c1wnqq3rpkhir"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_8hofu"]
 [ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_eyes.tres" id="2_ee5k3"]
 [ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_helmet.tres" id="3_ttjhj"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="4_2pd0x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hofu"]
+transparency = 1
+blend_mode = 3
+albedo_color = Color(0.65834, 0.65834, 0.65834, 1)
+roughness = 0.4
+backlight = Color(0.741284, 0.350009, 0.377756, 1)
+refraction_enabled = true
+refraction_scale = 1.0
 
 [node name="Hunter" instance=ExtResource("1_8hofu")]
 collision_mask = 5
@@ -19,6 +28,7 @@ bones/0/scale = Vector3(1.2, 0.8, 1.2)
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_ee5k3")
+surface_material_override/1 = SubResource("StandardMaterial3D_8hofu")
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 surface_material_override/0 = ExtResource("3_ttjhj")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://duemt8ucqnrw1"]
+[gd_scene load_steps=11 format=4 uid="uid://duemt8ucqnrw1"]
 
-[ext_resource type="Texture2D" uid="uid://di22b3gooeimw" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/leaf_texture_03.png" id="1_3r2pr"]
+[ext_resource type="Shader" uid="uid://dwd6qf51ubnh5" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/material/shdr_trunk_tree_04.gdshader" id="1_5mm1i"]
+[ext_resource type="Material" uid="uid://ctneeub86l74h" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_04/material/mat_leaf_tree_04.tres" id="2_erp1v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ka7r6"]
 resource_name = "Tronc"
@@ -42,6 +43,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bsmjh")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kuo2"]
+render_priority = 0
+shader = ExtResource("1_5mm1i")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_teb2l"]
 resource_name = "Material.001"
 vertex_color_use_as_albedo = true
@@ -82,17 +87,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ievhe")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mm1i"]
-transparency = 1
-cull_mode = 2
-albedo_texture = ExtResource("1_3r2pr")
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_n7g75"]
 
 [node name="tree_04" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.704976, -0.673598, 0.221982, 0.704365, -0.628357, 0.330208, -0.0829434, 0.389145, 0.917435, 0, 7.50164, 0)
+transform = Transform3D(-0.574783, -0.439944, 0.689982, 0.0183749, 0.836032, 0.548374, -0.8181, 0.327873, -0.472452, 0, 7.50164, 0)
 shadow_enabled = true
 
 [node name="tree_04" type="Node3D" parent="."]
@@ -101,11 +101,12 @@ shadow_enabled = true
 transform = Transform3D(0.841945, 0, 0, 0, 0.841945, 0, 0, 0, 0.841945, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5s5ak")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_4kuo2")
 
 [node name="leaf" type="MeshInstance3D" parent="tree_04/Tree_004"]
 mesh = SubResource("ArrayMesh_ds186")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_5mm1i")
+surface_material_override/0 = ExtResource("2_erp1v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
