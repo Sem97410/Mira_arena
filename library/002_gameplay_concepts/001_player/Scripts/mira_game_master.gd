@@ -8,6 +8,7 @@ class_name MiraGameMaster
 @export var charged_attack_logic : ChargedAttackLogic
 @export var dash_logic : DashLogic
 @export var health_logic : HealthSystem
+@export var animation_player : AnimationPlayer
 
 #----------------------------------
 ## Nodes
@@ -53,3 +54,5 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		
 		player_use_jump.emit()
+	if Input.is_action_just_pressed("Debug_2"): 
+		animation_player.play("Combo_1")
