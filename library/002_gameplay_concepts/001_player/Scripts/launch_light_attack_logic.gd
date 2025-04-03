@@ -28,7 +28,7 @@ class_name LightAttackAnimationScript
 #----------------------------------
 #Latence max between two attack
 
-@onready var base_combo_window_length : float = 1.0
+@onready var base_combo_window_length : float = 1.5
 @onready var current_combo_windo_length : float = 0
 
 #----------------------------------
@@ -54,5 +54,5 @@ func launch_light_attack() -> void :
 	#print("LightAttack index is : ", current_index)
 
 	base_state_machine.travel("Combo" + str(current_index)+"BlendTree")
-	print("Combo" + str(current_index),"BlendTree")
+	#print("Combo" + str(current_index),"BlendTree")
 	

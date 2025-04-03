@@ -179,14 +179,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4xpb"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_06qta"]
-xfade_time = 0.2
 advance_condition = &"is_alive"
 advance_expression = "if player_current_hp > 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_posq3"]
 xfade_time = 0.2
 switch_mode = 2
-advance_mode = 2
 advance_condition = &"can_transition"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_002hf"]
@@ -195,11 +193,9 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f558f"]
 xfade_time = 0.1
 switch_mode = 2
-advance_mode = 2
 advance_condition = &"can_transition"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kbksy"]
-xfade_time = 0.2
 advance_condition = &"is_alive"
 advance_expression = "if player_current_hp > 0"
 
@@ -207,14 +203,12 @@ advance_expression = "if player_current_hp > 0"
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qol2f"]
-xfade_time = 0.2
 advance_condition = &"is_alive"
 advance_expression = "if player_current_hp > 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82mkx"]
 xfade_time = 0.2
 switch_mode = 2
-advance_mode = 2
 advance_condition = &"can_transition"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m1xga"]
@@ -244,7 +238,7 @@ states/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_m8pfj")
 states/MovementBlendSpace/position = Vector2(429, -143)
 states/Start/position = Vector2(-78, 160)
 transitions = ["Start", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_l54qh"), "MovementBlendSpace", "Hit", SubResource("AnimationNodeStateMachineTransition_kults"), "Hit", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_feaa0"), "MovementBlendSpace", "Death", SubResource("AnimationNodeStateMachineTransition_og7hn"), "MovementBlendSpace", "Dash", SubResource("AnimationNodeStateMachineTransition_1c0u2"), "Dash", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_13naf"), "MovementBlendSpace", "Attack_Charge", SubResource("AnimationNodeStateMachineTransition_hav0a"), "Attack_Charge", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_sswwe"), "MovementBlendSpace", "Fly", SubResource("AnimationNodeStateMachineTransition_h5lqm"), "Fly", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_nqpy8"), "Dash", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_h4xpb"), "MovementBlendSpace", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_06qta"), "Combo1BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_posq3"), "Combo1BlendTree", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_002hf"), "Combo2BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_f558f"), "MovementBlendSpace", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_kbksy"), "Combo2BlendTree", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_ajh4k"), "MovementBlendSpace", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_qol2f"), "Combo3BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_82mkx"), "Combo3BlendTree", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_m1xga")]
-graph_offset = Vector2(-112, -566)
+graph_offset = Vector2(-107, -510)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v5u4k"]
 
