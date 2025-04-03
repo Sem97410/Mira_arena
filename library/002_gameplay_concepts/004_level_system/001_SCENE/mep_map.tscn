@@ -30,6 +30,7 @@ background_mode = 2
 sky = SubResource("Sky_kfjv8")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.719635, 0.432773, 0.440192, 1)
 fog_light_energy = 0.74
@@ -2594,7 +2595,6 @@ end_position = Vector3(7.57, 0, 0)
 
 [node name="map_deco" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6878, 1.0332, -0.588098)
-visible = false
 
 [node name="Map2" type="Node3D" parent="map_deco"]
 transform = Transform3D(0.991542, 0, -0.948763, 0, 1.37234, 0, 0.948763, 0, 0.991542, -93.6786, -102.073, -60.1549)
