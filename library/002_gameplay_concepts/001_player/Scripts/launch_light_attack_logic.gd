@@ -53,5 +53,6 @@ func launch_light_attack() -> void :
 	index_animation_script.launch_countdown()
 	#print("LightAttack index is : ", current_index)
 
-	base_state_machine.travel("Combo_" + str(current_index))
+	base_state_machine.travel("Combo" + str(current_index)+"BlendTree")
+	print("Combo" + str(current_index),"BlendTree")
 	

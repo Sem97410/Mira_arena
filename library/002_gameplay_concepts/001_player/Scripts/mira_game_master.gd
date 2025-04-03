@@ -4,7 +4,7 @@ class_name MiraGameMaster
 #----------------------------------
 ## REFERENCES
 #Scripts
-@export var light_attack_logic : LightAttackAnimationScript
+#@export var light_attack_logic : LightAttackAnimationScript
 @export var charged_attack_logic : ChargedAttackLogic
 @export var dash_logic : DashLogic
 @export var health_logic : HealthSystem

@@ -9,6 +9,9 @@ extends Node
 func _physics_process(_delta: float) -> void:
 
 	animation_tree.set("parameters/MiraAnimations/MovementBlendSpace/blend_position", player.velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo1BlendTree/MovementBlendSpace/blend_position", player.velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", player.velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position", player.velocity.length())
 
 	
 

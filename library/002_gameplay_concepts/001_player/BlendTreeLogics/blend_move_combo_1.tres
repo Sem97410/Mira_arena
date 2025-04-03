@@ -14,14 +14,14 @@ filters = ["Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSyste
 filter_enabled = true
 
 [resource]
-graph_offset = Vector2(-531.356, -165.766)
+graph_offset = Vector2(-481.616, -5.25455)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_65jqx")
 nodes/Animation/position = Vector2(-640, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_kr7s2")
 "nodes/Animation 2/position" = Vector2(-640, 300)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_f3ne1")
-nodes/Blend2/position = Vector2(20, 20)
+nodes/BlendAttackMovement/node = SubResource("AnimationNodeBlend2_f3ne1")
+nodes/BlendAttackMovement/position = Vector2(20, 20)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_m8pfj")
 nodes/OneShot/position = Vector2(-320, 260)
 nodes/output/position = Vector2(320, 0)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"OneShot", &"OneShot", 0, &"Animation 2", &"output", 0, &"Blend2"]
+node_connections = [&"BlendAttackMovement", 0, &"Animation", &"BlendAttackMovement", 1, &"OneShot", &"OneShot", 0, &"Animation 2", &"output", 0, &"BlendAttackMovement"]
