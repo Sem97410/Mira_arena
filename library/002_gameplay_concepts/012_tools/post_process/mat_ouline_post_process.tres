@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://db3jvv5lmjjjl"]
+
+[ext_resource type="Shader" uid="uid://csma8hljiafaq" path="res://library/002_gameplay_concepts/012_tools/post_process/shdr_outline_post_process.gdshader" id="1_vrt5t"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vrt5t")
+shader_parameter/outline_thickness = 0.001
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/depth_sensitivity = 0.002
+shader_parameter/normal_sensitivity = 0.3

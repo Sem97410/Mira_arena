@@ -4,15 +4,17 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7we5"]
 cull_mode = 1
+albedo_color = Color(0.447315, 0.591649, 0.134866, 1)
+emission_enabled = true
+emission_energy_multiplier = 7.29
 rim_enabled = true
-rim = 0.36
 grow = true
 grow_amount = 0.02
 
 [sub_resource type="Gradient" id="Gradient_ptakm"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.386364, 0.846591)
-colors = PackedColorArray(0.659742, 0.9066, 0.241149, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.0214135, 0.0430299, 0.00295697, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_c7we5"]
 noise_type = 0
