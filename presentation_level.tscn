@@ -61,7 +61,7 @@
 [ext_resource type="Script" uid="uid://xnqx3tinlkwe" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_transition_between_attack_and_movement.gd" id="62_4lf3w"]
 [ext_resource type="Script" uid="uid://doabclk4yyj6p" path="res://library/002_gameplay_concepts/001_player/Scripts/launch_charge_attack_logic.gd" id="63_kw5ua"]
 [ext_resource type="Script" uid="uid://85taxqbbt6tr" path="res://library/002_gameplay_concepts/001_player/Scripts/charged_attack_tracks_methodes.gd" id="64_mpxqh"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/Scripts/Resources/web_system_tree_structure.tres" id="65_7um0i"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://f0l2sxhu434v" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/web_system_tree_structure.tres" id="65_7um0i"]
 [ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="66_2527q"]
 [ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="67_7nt4s"]
 [ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="68_awhi2"]

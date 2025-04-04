@@ -290,7 +290,7 @@ player_body = NodePath("../Mira2")
 
 [node name="Spawner" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8968, 0, 0)
-initial_spawn_count = 10
+initial_spawn_count = 0
 spawn_chances = Array[int]([40, 40, 20, 40, 80])
 
 [node name="Mira2" parent="." instance=ExtResource("4_6c41i")]

@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c30l81sqhlqad" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/death_zone.tscn" id="5_ll27w"]
 [ext_resource type="Texture2D" uid="uid://d2hxvbn0s14fd" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_01/TRONC_BaseColor.png" id="6_5lwxp"]
 [ext_resource type="Texture2D" uid="uid://c0cm070nwjo1d" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_01/Feuille_BaseColor.png" id="7_lhdv3"]
-[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/old_grass/grass_3.tres" id="11_vlq57"]
-[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="26_4a31k"]
+[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/grass_3.tres" id="11_vlq57"]
+[ext_resource type="PackedScene" uid="uid://c2a7y5k8qbe0y" path="res://library/002_gameplay_concepts/001_player/MiraV2.tscn" id="22_vlq57"]
 [ext_resource type="Texture2D" uid="uid://2qg2mlj01a40" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/texture/DefaultMaterial_Base_color.png" id="87_hjnve"]
 [ext_resource type="Texture2D" uid="uid://dalp7aaworjrb" path="res://library/002_gameplay_concepts/004_level_system/asset/paver/material/pave02_low_DefaultMaterial_BaseColor.png" id="89_1kvqu"]
 [ext_resource type="Texture2D" uid="uid://do0kngu363be2" path="res://library/002_gameplay_concepts/004_level_system/asset/paver/material/pave02_low_DefaultMaterial_Normal.png" id="90_12h50"]
@@ -659,10 +659,7 @@ shape = SubResource("ConcavePolygonShape3D_ics6s")
 
 [node name="death_zone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ll27w")]
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, -34.907, -7, 30.407)
-player = NodePath("../Mira")
-
-[node name="Mira" parent="." instance=ExtResource("26_4a31k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.76287, -2.11532, -7.93241)
+player = NodePath("../Mira2")
 
 [node name="Spawner" parent="." instance=ExtResource("1_7l8ov")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4068, -2.51815, 0)
@@ -675,3 +672,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.530518, -2.51815, -21.2259)
 
 [node name="Spawner4" parent="." instance=ExtResource("1_7l8ov")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.530518, -2.51815, 22.6039)
+
+[node name="Mira2" parent="." instance=ExtResource("22_vlq57")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.78778, 0)
