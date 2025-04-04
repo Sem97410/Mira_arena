@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://bttfccmukebki" path="res://library/002_gameplay_concepts/004_level_system/002_Script/owl_sound_area.gd" id="5_otx3r"]
 [ext_resource type="AudioStream" uid="uid://d2h7pcow535dm" path="res://library/002_gameplay_concepts/009_SFX/night_with_owl.wav" id="6_a4nr5"]
 [ext_resource type="PackedScene" uid="uid://b1vgthbcyvaio" path="res://library/002_gameplay_concepts/011_death_zone/death_zone.tscn" id="7_l7r25"]
-[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="8_d56gv"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="9_n17l2"]
 [ext_resource type="PackedScene" uid="uid://c1svhchjp0pba" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/stairs_long.fbx" id="10_hhfcc"]
 [ext_resource type="PackedScene" uid="uid://d05bgnpjo0pxy" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/Bareer.fbx" id="11_a1va1"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="12_durer"]
+[ext_resource type="PackedScene" uid="uid://c2a7y5k8qbe0y" path="res://library/002_gameplay_concepts/001_player/MiraV2.tscn" id="12_erwvh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1947,26 +1947,23 @@ shape = SubResource("BoxShape3D_yuej8")
 
 [node name="death_zone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_l7r25")]
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -7, 0)
-player = NodePath("../Mira")
+player = NodePath("../Mira2")
 
 [node name="death_zone2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_l7r25")]
 transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, -46.2476, -7, -53.0913)
-player = NodePath("../Mira")
+player = NodePath("../Mira2")
 
 [node name="death_zone3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_l7r25")]
 transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, 48.8128, -7, 53.887)
-player = NodePath("../Mira")
+player = NodePath("../Mira2")
 
 [node name="death_zone4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_l7r25")]
 transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, 86.2736, -7, -114.548)
-player = NodePath("../Mira")
+player = NodePath("../Mira2")
 
 [node name="death_zone5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_l7r25")]
 transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, -54.7803, -7, 8.50123)
-player = NodePath("../Mira")
-
-[node name="Mira" parent="." instance=ExtResource("8_d56gv")]
-transform = Transform3D(-0.656836, 0, 0.754034, 0, 1, 0, -0.754034, 0, -0.656836, -29.0517, -1.59725, 25.3068)
+player = NodePath("../Mira2")
 
 [node name="Spawner" parent="." instance=ExtResource("9_n17l2")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -18.5598, 2.17668, -10.4324)
@@ -2495,6 +2492,9 @@ end_position = Vector3(7.57, 0, 0)
 transform = Transform3D(-0.766347, 0, -0.642426, 0, 1, 0, 0.642426, 0, -0.766347, 0, 0, 0)
 
 [node name="FPSCounter" parent="." instance=ExtResource("12_durer")]
+
+[node name="Mira2" parent="." instance=ExtResource("12_erwvh")]
+transform = Transform3D(-0.743413, 0, 0.668832, 0, 1, 0, -0.668832, 0, -0.743413, -29.4118, -1.3746, 25.4845)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
