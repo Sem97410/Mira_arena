@@ -14,7 +14,7 @@ filters = ["Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSyste
 filter_enabled = true
 
 [resource]
-graph_offset = Vector2(-481.616, -5.25455)
+graph_offset = Vector2(-532.616, -66.2545)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_65jqx")
 nodes/Animation/position = Vector2(-640, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_kr7s2")

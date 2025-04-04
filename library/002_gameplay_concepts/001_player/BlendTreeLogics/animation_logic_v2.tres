@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=42 format=3 uid="uid://mig0o6j6cs6i"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=54 format=3 uid="uid://mig0o6j6cs6i"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1c0u2"]
 animation = &"Attack_Charge"
@@ -6,47 +6,110 @@ animation = &"Attack_Charge"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_06qta"]
 animation = &"Combo_1"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h5lqm"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_posq3"]
 filter_enabled = true
-filters = ["", "../AttackComponent", "../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes", "../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation", "../AttackComponent/LightAttackComponent/LightAttackTracksMethodes", "../DashComponent/LaunchDash", "../MovementComponent/MovementTracksMethodes", "../VFX/Attack_Charge/ActivateAttackChargeVfx", "../VFX/ChargedAttackImpactVFXLogic", "Group/DeformationSystem/Skeleton3D:Ankle_L", "Group/DeformationSystem/Skeleton3D:Ankle_R", "Group/DeformationSystem/Skeleton3D:HipPart1_L", "Group/DeformationSystem/Skeleton3D:HipPart1_R", "Group/DeformationSystem/Skeleton3D:HipPart2_L", "Group/DeformationSystem/Skeleton3D:HipPart2_R", "Group/DeformationSystem/Skeleton3D:Hip_L", "Group/DeformationSystem/Skeleton3D:Hip_R", "Group/DeformationSystem/Skeleton3D:Knee_L", "Group/DeformationSystem/Skeleton3D:Knee_L_Slide50", "Group/DeformationSystem/Skeleton3D:Knee_L_endSlider0", "Group/DeformationSystem/Skeleton3D:Knee_L_endSlider2", "Group/DeformationSystem/Skeleton3D:Knee_L_middleSlider0", "Group/DeformationSystem/Skeleton3D:Knee_L_middleSlider2", "Group/DeformationSystem/Skeleton3D:Knee_L_startSlider0", "Group/DeformationSystem/Skeleton3D:Knee_L_startSlider2", "Group/DeformationSystem/Skeleton3D:Knee_R", "Group/DeformationSystem/Skeleton3D:Knee_R_Slide50", "Group/DeformationSystem/Skeleton3D:Knee_R_endSlider0", "Group/DeformationSystem/Skeleton3D:Knee_R_endSlider2", "Group/DeformationSystem/Skeleton3D:Knee_R_middleSlider0", "Group/DeformationSystem/Skeleton3D:Knee_R_middleSlider2", "Group/DeformationSystem/Skeleton3D:Knee_R_startSlider0", "Group/DeformationSystem/Skeleton3D:Knee_R_startSlider2", "Group/DeformationSystem/Skeleton3D:Root_M", "Group/DeformationSystem/Skeleton3D:Toes_L", "Group/DeformationSystem/Skeleton3D:Toes_R", "Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge/ActivateCharge"]
+filters = ["../AttackComponent", "../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes", "../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation", "../AttackComponent/LightAttackComponent/LightAttackTracksMethodes", "../DashComponent/LaunchDash", "../MovementComponent/MovementTracksMethodes", "../VFX/Attack_Charge/ActivateAttackChargeVfx", "../VFX/ChargedAttackImpactVFXLogic", "Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1xga"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qe1ta"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hav0a"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_sswwe"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_m1xga")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_qe1ta")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_hav0a")
+blend_point_2/pos = 6.0
+max_space = 6.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sswwe"]
-graph_offset = Vector2(-487.824, -131.3)
-nodes/Combo_1/node = SubResource("AnimationNodeAnimation_06qta")
-nodes/Combo_1/position = Vector2(-540, 100)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_h5lqm")
-nodes/OneShot/position = Vector2(-140, 60)
-node_connections = [&"OneShot", 0, &"Combo_1", &"output", 0, &"OneShot"]
+graph_offset = Vector2(-430.781, -167.052)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_06qta")
+nodes/Animation/position = Vector2(-380, 140)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_posq3")
+nodes/Blend2/position = Vector2(40, -120)
+nodes/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_sswwe")
+nodes/MovementBlendSpace/position = Vector2(-420, -100)
+nodes/output/position = Vector2(320, -120)
+node_connections = [&"Blend2", 0, &"MovementBlendSpace", &"Blend2", 1, &"Animation", &"output", 0, &"Blend2"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqpy8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_posq3"]
 animation = &"Combo_2"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1c0u2"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_m1xga"]
 filter_enabled = true
-filters = ["Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+filters = ["../AttackComponent", "../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes", "../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation", "../AttackComponent/LightAttackComponent/LightAttackTracksMethodes", "../DashComponent/LaunchDash", "../MovementComponent/MovementTracksMethodes", "../VFX/Attack_Charge/ActivateAttackChargeVfx", "../VFX/ChargedAttackImpactVFXLogic", "Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sswwe"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_002hf"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqpy8"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_h4xpb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sswwe")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_002hf")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_nqpy8")
+blend_point_2/pos = 6.0
+max_space = 6.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_h4xpb"]
-graph_offset = Vector2(-467, -78)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_nqpy8")
-nodes/Animation/position = Vector2(-500, 100)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_1c0u2")
-nodes/OneShot/position = Vector2(-137.093, 169.037)
-node_connections = [&"OneShot", 0, &"Animation", &"output", 0, &"OneShot"]
+graph_offset = Vector2(-466, -81)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_posq3")
+nodes/Animation/position = Vector2(-640, 360)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_m1xga")
+nodes/Blend2/position = Vector2(-40, 200)
+nodes/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_h4xpb")
+nodes/MovementBlendSpace/position = Vector2(-640, 60)
+nodes/output/position = Vector2(320, 300)
+node_connections = [&"Blend2", 0, &"MovementBlendSpace", &"Blend2", 1, &"Animation", &"output", 0, &"Blend2"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4xpb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f558f"]
 animation = &"Combo_3"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_13naf"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_h5lqm"]
 filter_enabled = true
-filters = ["Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+filters = ["../AttackComponent", "../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes", "../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation", "../AttackComponent/LightAttackComponent/LightAttackTracksMethodes", "../DashComponent/LaunchDash", "../MovementComponent/MovementTracksMethodes", "../VFX/Attack_Charge/ActivateAttackChargeVfx", "../VFX/ChargedAttackImpactVFXLogic", "Group/DeformationSystem/Skeleton3D:Chest_M", "Group/DeformationSystem/Skeleton3D:Cup_L", "Group/DeformationSystem/Skeleton3D:Cup_R", "Group/DeformationSystem/Skeleton3D:ElbowPart1_L", "Group/DeformationSystem/Skeleton3D:ElbowPart1_R", "Group/DeformationSystem/Skeleton3D:ElbowPart2_L", "Group/DeformationSystem/Skeleton3D:ElbowPart2_R", "Group/DeformationSystem/Skeleton3D:Elbow_L", "Group/DeformationSystem/Skeleton3D:Elbow_R", "Group/DeformationSystem/Skeleton3D:IndexFinger1_L", "Group/DeformationSystem/Skeleton3D:IndexFinger1_R", "Group/DeformationSystem/Skeleton3D:IndexFinger2_L", "Group/DeformationSystem/Skeleton3D:IndexFinger2_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger1_R", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_L", "Group/DeformationSystem/Skeleton3D:MiddleFinger2_R", "Group/DeformationSystem/Skeleton3D:NeckPart1_M", "Group/DeformationSystem/Skeleton3D:NeckPart2_M", "Group/DeformationSystem/Skeleton3D:Neck_M", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger1_R", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_L", "Group/DeformationSystem/Skeleton3D:PinkyFinger2_R", "Group/DeformationSystem/Skeleton3D:RingFinger1_L", "Group/DeformationSystem/Skeleton3D:RingFinger1_R", "Group/DeformationSystem/Skeleton3D:RingFinger2_L", "Group/DeformationSystem/Skeleton3D:RingFinger2_R", "Group/DeformationSystem/Skeleton3D:RootPart1_M", "Group/DeformationSystem/Skeleton3D:RootPart2_M", "Group/DeformationSystem/Skeleton3D:Scapula_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart1_R", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_L", "Group/DeformationSystem/Skeleton3D:ShoulderPart2_R", "Group/DeformationSystem/Skeleton3D:Shoulder_L", "Group/DeformationSystem/Skeleton3D:Shoulder_R", "Group/DeformationSystem/Skeleton3D:Spine1Part1_M", "Group/DeformationSystem/Skeleton3D:Spine1Part2_M", "Group/DeformationSystem/Skeleton3D:Spine1_M", "Group/DeformationSystem/Skeleton3D:ThumbFinger1_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger2_R", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_L", "Group/DeformationSystem/Skeleton3D:ThumbFinger3_R", "Group/DeformationSystem/Skeleton3D:Wrist_L", "Group/DeformationSystem/Skeleton3D:Wrist_R", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint1", "Rig_Vorace_DONTTOUCH/Skeleton3D:Rig_Vorace_joint2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbksy"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tib5r"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ajv8p"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ompxm"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_kbksy")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_tib5r")
+blend_point_1/pos = 6.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_ajv8p")
+blend_point_2/pos = 2.0
+max_space = 6.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tywrc"]
-graph_offset = Vector2(-318, 71)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_h4xpb")
-nodes/Animation/position = Vector2(-240, 400)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_13naf")
-nodes/OneShot/position = Vector2(59.895, 342.067)
-node_connections = [&"OneShot", 0, &"Animation", &"output", 0, &"OneShot"]
+graph_offset = Vector2(-288.7, 1)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_f558f")
+nodes/Animation/position = Vector2(-240, 440)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_h5lqm")
+nodes/Blend2/position = Vector2(113.219, 257.682)
+nodes/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_ompxm")
+nodes/MovementBlendSpace/position = Vector2(-244.475, 186.014)
+nodes/output/position = Vector2(420, 260)
+node_connections = [&"Blend2", 0, &"MovementBlendSpace", &"Blend2", 1, &"Animation", &"output", 0, &"Blend2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v5u4k"]
 animation = &"Combo_3"
@@ -158,7 +221,7 @@ switch_mode = 2
 states/Attack_Charge/node = SubResource("AnimationNodeAnimation_1c0u2")
 states/Attack_Charge/position = Vector2(1082, -99)
 states/Combo1BlendTree/node = SubResource("AnimationNodeBlendTree_sswwe")
-states/Combo1BlendTree/position = Vector2(74, -351)
+states/Combo1BlendTree/position = Vector2(71, -349)
 states/Combo2BlendTree/node = SubResource("AnimationNodeBlendTree_h4xpb")
 states/Combo2BlendTree/position = Vector2(435, -502)
 states/Combo3BlendTree/node = SubResource("AnimationNodeBlendTree_tywrc")
@@ -178,12 +241,12 @@ states/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_m8pfj")
 states/MovementBlendSpace/position = Vector2(429, -143)
 states/Start/position = Vector2(-78, 160)
 transitions = ["Start", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_l54qh"), "MovementBlendSpace", "Hit", SubResource("AnimationNodeStateMachineTransition_kults"), "Hit", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_feaa0"), "MovementBlendSpace", "Death", SubResource("AnimationNodeStateMachineTransition_og7hn"), "MovementBlendSpace", "Dash", SubResource("AnimationNodeStateMachineTransition_1c0u2"), "Dash", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_13naf"), "MovementBlendSpace", "Attack_Charge", SubResource("AnimationNodeStateMachineTransition_hav0a"), "Attack_Charge", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_sswwe"), "MovementBlendSpace", "Fly", SubResource("AnimationNodeStateMachineTransition_h5lqm"), "Fly", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_nqpy8"), "Dash", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_h4xpb"), "MovementBlendSpace", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_06qta"), "Combo1BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_posq3"), "Combo1BlendTree", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_002hf"), "Combo2BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_f558f"), "MovementBlendSpace", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_kbksy"), "Combo2BlendTree", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_ajh4k"), "MovementBlendSpace", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_qol2f"), "Combo3BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_82mkx"), "Combo3BlendTree", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_m1xga")]
-graph_offset = Vector2(-164, -506)
+graph_offset = Vector2(-272, -526)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v5u4k"]
 
 [resource]
-graph_offset = Vector2(-439, -37.1765)
+graph_offset = Vector2(-527.462, -12.6529)
 nodes/MiraAnimations/node = SubResource("AnimationNodeStateMachine_50pt5")
 nodes/MiraAnimations/position = Vector2(-420, 180)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_v5u4k")
