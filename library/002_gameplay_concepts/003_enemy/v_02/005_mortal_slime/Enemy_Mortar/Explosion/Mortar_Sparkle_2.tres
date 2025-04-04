@@ -1,0 +1,42 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://dragyvb8qnyho"]
+
+[ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Noise/T_VFX_Point.png" id="1_4nuh4"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_avdpj"]
+texture = ExtResource("1_4nuh4")
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_dmr4e"]
+parameter_name = "ColorParameter"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ColorParameter : source_color;
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorParameter:3
+	vec4 n_out3p0 = ColorParameter;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out2p0.x;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_avdpj")
+nodes/fragment/2/position = Vector2(-20, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_dmr4e")
+nodes/fragment/3/position = Vector2(40, -20)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1, 3, 0, 0, 0)

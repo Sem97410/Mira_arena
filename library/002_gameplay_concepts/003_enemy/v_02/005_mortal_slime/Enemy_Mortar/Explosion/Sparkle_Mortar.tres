@@ -1,0 +1,135 @@
+[gd_resource type="VisualShader" load_steps=15 format=3 uid="uid://s3my3eajqv5g"]
+
+[ext_resource type="Texture2D" uid="uid://dfdaoo8dbpfxd" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/T_PerlinNoise_Tiled11_inv.png" id="1_pi2hc"]
+[ext_resource type="Texture2D" uid="uid://dtp8ul4dsj8lv" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/T_4_streaks.png" id="2_odih8"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_phnm4"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ye7j3"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="Curve" id="Curve_37bul"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253821, 0), 0.0, 0.0, 0, 0, Vector2(0.253831, 0.247229), 0.0, 0.0, 0, 0, Vector2(0.484815, 0.269495), 0.0, 0.0, 0, 0, Vector2(0.49292, 0.514413), 0.0, 0.0, 0, 0, Vector2(0.736071, 0.514413), 0.0, 0.0, 0, 0, Vector2(0.748229, 0.803862), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_ta060"]
+curve = SubResource("Curve_37bul")
+
+[sub_resource type="VisualShaderNodeCurveTexture" id="VisualShaderNodeCurveTexture_47onu"]
+texture = SubResource("CurveTexture_ta060")
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_qqrqi"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_yupjf"]
+parameter_name = "Streaks_Color"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_j1m70"]
+expanded_output_ports = [0]
+texture = ExtResource("1_pi2hc")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_2j0kb"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_virq6"]
+expanded_output_ports = [0]
+texture = ExtResource("2_odih8")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pmx6n"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_tor7v"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0.25, 1), 2, Vector2(0.5, 0)]
+op_type = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 Streaks_Color : source_color;
+uniform sampler2D curve_frg_15 : repeat_disable;
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_18 : source_color;
+
+
+
+void fragment() {
+// ColorParameter:17
+	vec4 n_out17p0 = Streaks_Color;
+
+
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// Input:14
+	vec4 n_out14p0 = COLOR;
+	float n_out14p1 = n_out14p0.r;
+	float n_out14p4 = n_out14p0.a;
+
+
+// CurveTexture:15
+	float n_out15p0 = texture(curve_frg_15, vec2(n_out14p1)).r;
+
+
+// VectorCompose:16
+	float n_in16p1 = 0.00000;
+	vec2 n_out16p0 = vec2(n_out15p0, n_in16p1);
+
+
+// MultiplyAdd:4
+	vec2 n_in4p1 = vec2(0.25000, 1.00000);
+	vec2 n_out4p0 = fma(n_out3p0, n_in4p1, n_out16p0);
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out4p0);
+
+
+// Texture2D:18
+	vec4 n_out18p0 = texture(tex_frg_18, UV);
+	float n_out18p1 = n_out18p0.r;
+
+
+// SmoothStep:19
+	float n_in19p1 = 1.00000;
+	float n_out19p0 = smoothstep(n_out14p4, n_in19p1, n_out18p1);
+
+
+// FloatOp:12
+	float n_out12p0 = n_out2p0.x * n_out19p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out17p0.xyz);
+	ALPHA = n_out12p0;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(840, 220)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_virq6")
+nodes/fragment/2/position = Vector2(-140, 260)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_pmx6n")
+nodes/fragment/3/position = Vector2(-780, 260)
+nodes/fragment/4/node = SubResource("VisualShaderNodeMultiplyAdd_tor7v")
+nodes/fragment/4/position = Vector2(-440, 320)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_phnm4")
+nodes/fragment/12/position = Vector2(140, 560)
+nodes/fragment/14/node = SubResource("VisualShaderNodeInput_ye7j3")
+nodes/fragment/14/position = Vector2(-1600, 540)
+nodes/fragment/15/node = SubResource("VisualShaderNodeCurveTexture_47onu")
+nodes/fragment/15/position = Vector2(-1260, 560)
+nodes/fragment/16/node = SubResource("VisualShaderNodeVectorCompose_qqrqi")
+nodes/fragment/16/position = Vector2(-860, 640)
+nodes/fragment/17/node = SubResource("VisualShaderNodeColorParameter_yupjf")
+nodes/fragment/17/position = Vector2(240, 120)
+nodes/fragment/18/node = SubResource("VisualShaderNodeTexture_j1m70")
+nodes/fragment/18/position = Vector2(-820, 1140)
+nodes/fragment/19/node = SubResource("VisualShaderNodeSmoothStep_2j0kb")
+nodes/fragment/19/position = Vector2(-320, 1080)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 2, 0, 2, 0, 12, 0, 14, 1, 15, 0, 15, 0, 16, 0, 16, 0, 4, 2, 17, 0, 0, 0, 18, 1, 19, 2, 19, 0, 12, 1, 12, 0, 0, 1, 14, 4, 19, 0)

@@ -18,8 +18,8 @@ mortar_target = ExtResource("3_a2qnp")
 mortar_projectil = ExtResource("4_nbs1o")
 
 [node name="Skeleton3D" parent="Mesh/Slime" index="0"]
-bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1, 1, 1)
+bones/0/rotation = Quaternion(0.656004, 0, 0, 0.754757)
+bones/0/scale = Vector3(1.2, 0.8, 1.2)
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_kxous")

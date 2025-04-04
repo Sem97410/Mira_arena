@@ -1,26 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsq3yrilq0h84"]
+[gd_scene load_steps=3 format=3 uid="uid://dsq3yrilq0h84"]
 
 [ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="1_l1syl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd6kq"]
-transparency = 1
-albedo_color = Color(0.748, 0.304, 0.782, 0.066)
-emission_enabled = true
-emission = Color(0.748279, 0.303508, 0.781565, 1)
-emission_energy_multiplier = 2.51
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_nd6kq"]
-top_radius = 1.0
-bottom_radius = 1.0
-height = 0.05
+[ext_resource type="PackedScene" uid="uid://b2agppf3xfnmx" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/cible_sol.tscn" id="2_k4nu8"]
 
 [node name="MortarTarget" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_nd6kq")
-mesh = SubResource("CylinderMesh_nd6kq")
-
 [node name="DestroyVfx" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
 script = ExtResource("1_l1syl")
-current_vfx = NodePath("..")
+current_vfx = NodePath("../Cible_Sol")
 delay_before_queue_free = 2.0
+
+[node name="Cible_Sol" parent="." instance=ExtResource("2_k4nu8")]
