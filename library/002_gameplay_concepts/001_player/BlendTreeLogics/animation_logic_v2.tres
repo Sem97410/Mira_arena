@@ -29,7 +29,7 @@ blend_point_2/pos = 6.0
 max_space = 6.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sswwe"]
-graph_offset = Vector2(-430.781, -167.052)
+graph_offset = Vector2(-496.781, -131.052)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_06qta")
 nodes/Animation/position = Vector2(-380, 140)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_posq3")
@@ -121,7 +121,7 @@ animation = &"Death"
 animation = &"Hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13naf"]
-animation = &"Dash"
+animation = &"Jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr7s2"]
 animation = &"Idle"
@@ -159,8 +159,6 @@ advance_condition = &"is_alive"
 advance_expression = "if player_current_hp > 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_13naf"]
-switch_mode = 2
-advance_mode = 2
 advance_condition = &"can_transition"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hav0a"]
@@ -171,10 +169,6 @@ advance_condition = &"is_alive"
 xfade_time = 0.1
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5lqm"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqpy8"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4xpb"]
 
@@ -214,6 +208,10 @@ advance_condition = &"can_transition"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m1xga"]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qe1ta"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqpy8"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_50pt5"]
 states/Attack_Charge/node = SubResource("AnimationNodeAnimation_1c0u2")
 states/Attack_Charge/position = Vector2(840, -165)
@@ -230,18 +228,18 @@ states/Death/position = Vector2(457, 69)
 states/End/position = Vector2(1259, 100)
 states/Hit/node = SubResource("AnimationNodeAnimation_3ky2x")
 states/Hit/position = Vector2(248, 77)
-states/InTheAir/node = SubResource("AnimationNodeAnimation_13naf")
-states/InTheAir/position = Vector2(615, -13)
+states/Jump/node = SubResource("AnimationNodeAnimation_13naf")
+states/Jump/position = Vector2(586.168, -33)
 states/MovementBlendSpace/node = SubResource("AnimationNodeBlendSpace1D_m8pfj")
 states/MovementBlendSpace/position = Vector2(413, -160)
 states/Start/position = Vector2(15, -33)
-transitions = ["Start", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_l54qh"), "MovementBlendSpace", "Hit", SubResource("AnimationNodeStateMachineTransition_kults"), "Hit", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_feaa0"), "MovementBlendSpace", "Death", SubResource("AnimationNodeStateMachineTransition_og7hn"), "MovementBlendSpace", "Dash", SubResource("AnimationNodeStateMachineTransition_1c0u2"), "Dash", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_13naf"), "MovementBlendSpace", "Attack_Charge", SubResource("AnimationNodeStateMachineTransition_hav0a"), "Attack_Charge", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_sswwe"), "MovementBlendSpace", "InTheAir", SubResource("AnimationNodeStateMachineTransition_h5lqm"), "InTheAir", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_nqpy8"), "Dash", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_h4xpb"), "MovementBlendSpace", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_06qta"), "Combo1BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_posq3"), "Combo1BlendTree", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_002hf"), "Combo2BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_f558f"), "MovementBlendSpace", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_kbksy"), "Combo2BlendTree", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_ajh4k"), "MovementBlendSpace", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_qol2f"), "Combo3BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_82mkx"), "Combo3BlendTree", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_m1xga")]
-graph_offset = Vector2(104.168, -237)
+transitions = ["Start", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_l54qh"), "MovementBlendSpace", "Hit", SubResource("AnimationNodeStateMachineTransition_kults"), "Hit", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_feaa0"), "MovementBlendSpace", "Death", SubResource("AnimationNodeStateMachineTransition_og7hn"), "MovementBlendSpace", "Dash", SubResource("AnimationNodeStateMachineTransition_1c0u2"), "Dash", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_13naf"), "MovementBlendSpace", "Attack_Charge", SubResource("AnimationNodeStateMachineTransition_hav0a"), "Attack_Charge", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_sswwe"), "Dash", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_h4xpb"), "MovementBlendSpace", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_06qta"), "Combo1BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_posq3"), "Combo1BlendTree", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_002hf"), "Combo2BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_f558f"), "MovementBlendSpace", "Combo2BlendTree", SubResource("AnimationNodeStateMachineTransition_kbksy"), "Combo2BlendTree", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_ajh4k"), "MovementBlendSpace", "Combo3BlendTree", SubResource("AnimationNodeStateMachineTransition_qol2f"), "Combo3BlendTree", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_82mkx"), "Combo3BlendTree", "Combo1BlendTree", SubResource("AnimationNodeStateMachineTransition_m1xga"), "MovementBlendSpace", "Jump", SubResource("AnimationNodeStateMachineTransition_qe1ta"), "Jump", "MovementBlendSpace", SubResource("AnimationNodeStateMachineTransition_nqpy8")]
+graph_offset = Vector2(-6.832, -175)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v5u4k"]
 
 [resource]
-graph_offset = Vector2(-816.8, 270.6)
+graph_offset = Vector2(-605.8, 170.6)
 nodes/MiraAnimations/node = SubResource("AnimationNodeStateMachine_50pt5")
 nodes/MiraAnimations/position = Vector2(-420, 180)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_v5u4k")

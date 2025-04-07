@@ -30,6 +30,8 @@ extends CharacterBody3D
 @export var aura_mesh : MeshInstance3D
 
 var direction_vector_input: Vector2
+var _previous_position: Vector3
+
 @onready var can_move : bool = true
 @onready var charge_attack_mode : bool = false
 
@@ -48,6 +50,10 @@ var direction_vector_input: Vector2
 #Movement variables
 @export_group("Movement variables")
 @export var player_speed : float = 6.0
+var _idle_timer := 0.0
+var _input_strength := 0.0
+var _real_speed := 0.0
+
 
 #---
 
@@ -72,7 +78,17 @@ var direction_vector_input: Vector2
 var start_position : Vector3 #Begining of the dash
 var destination_target : Vector3 #End of the dash
 
+@export_subgroup("FOV")
+@onready var base_FOV : float = 75.0
+@onready var dash_FOV : float = 90.0
+
+@export_subgroup("Action line")
+@export var action_line_sprites : AnimatedSprite2D
+
 var was_in_air = false  # Pour savoir si on était en l'air avant le dash
+
+var dash_cooldown_after_stop := 0.0
+
 
 #---
 
@@ -108,11 +124,6 @@ var last_rotation_angle : float = 0.0
 
 #---
 
-# ----------------
-
-#Animations
-
-
 
 
 
@@ -122,12 +133,17 @@ var last_rotation_angle : float = 0.0
 
 # --------------------------------------------------------------------------
 
+func _ready():
+	_previous_position = global_position
+	
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
-	#assign_movement_blend_position()  #Create a blend between idle walk and run
-	#move_the_character()
-	#charge_attack_movement_mode()
-	#launch_in_the_air_animation()
+	decrease_dash_countdown(delta)
+	update_movement_tracking(delta)
+	
+	if dash_cooldown_after_stop > 0:
+		dash_cooldown_after_stop -= delta
+
 	
 
 # --------------------------------------------------------------------------
@@ -141,36 +157,58 @@ func _on_idle_state_entered() -> void:
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	#print("Je viens d'entrer dans le state idle")
 
-#---
 
 func _on_idle_state_processing(delta: float) -> void:
 	move_the_character()
 	activate_movement_state()
 	activate_in_the_air_state()
+	activate_dash_state()
 
 #---
 
-func _on_movement_state_entered() -> void:
-	print("Je viens d'entrer dans le state movement")
+#func _on_movement_state_entered() -> void:
+	#print("Je viens d'entrer dans le state movement")
 
-#---
 func _on_movement_state_processing(delta: float) -> void:
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	activate_idle_state()
 	activate_in_the_air_state()
+	activate_dash_state()
 
 #---
-
+func _on_in_the_air_state_entered() -> void:
+	print("I'm in the state In the air")
+	
+	
 func _on_in_the_air_state_processing(delta: float) -> void:
 	move_the_character()
 	is_in_the_air()
+	activate_dash_state()
 	
 	if is_on_floor():
 		activate_idle_state()
 		activate_movement_state()
- 
+
+#---
+
+func _on_dash_state_entered() -> void:
+	#print("Je suis entré dans le state dash")
+	initiate_dash()
+	start_dash()
+
+
+
+func _on_dash_state_physics_processing(delta: float) -> void:
+	execute_dash() #Launch the dash if all conditions are met
+
+
+func _on_dash_state_exited() -> void:
+	assign_movement_blend_position()
+
+#---
+
 # --------------------------------------------------------------------------
 
 # STATES ACTIVATIONS FUNCTIONS
@@ -183,25 +221,36 @@ func send_event_state_chart(event_name : String)-> void :
 #---
 
 func activate_idle_state()-> void : 
-	if velocity.length() <= 0 :
+	if _idle_timer >= 0.3:
 		send_event_state_chart("IsIdle")
 
 #---
 
 func activate_movement_state()-> void : 
-	if velocity.length() > 0 :
+	if _input_strength > 0.1 and _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
 
 #---
 
 func activate_in_the_air_state() -> void : 
+	if start_time > 0 or dash_cooldown_after_stop > 0:
+		return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
+
 	if not is_on_floor() or Input.is_action_just_pressed("jump"):
 		send_event_state_chart("IsInTheAir")
 
 #---
 
+func activate_dash_state() -> void : 
+	if Input.is_action_just_pressed("dash"):
+		send_event_state_chart("IsDashing")
+
+#---
+
 func is_in_the_air() -> void : 
-	base_state_machine.travel("InTheAir")
+	base_state_machine.travel("Jump")
+
+#---
 
 # --------------------------------------------------------------------------
 
@@ -297,6 +346,24 @@ func assign_movement_blend_position() -> void :
 
 #---
 
+func update_movement_tracking(delta: float) -> void:
+	# Input du joueur
+	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	_input_strength = input_vector.length()
+
+	# Vitesse réelle
+	var displacement = global_position - _previous_position
+	_real_speed = displacement.length() / delta
+	_previous_position = global_position
+
+	# Timer Idle
+	if _input_strength == 0 and _real_speed < 0.05:
+		_idle_timer += delta
+	else:
+		_idle_timer = 0.0
+		
+#---
+
 func enable_movement() -> void : 
 	can_move = true
 
@@ -332,3 +399,115 @@ func play_random_footstep() -> void:
 	mira_step.play()
 
 #---
+
+func initiate_dash() -> void : 
+
+	launch_dash_animation()
+	dash_countdown = latence_between_dash
+	
+
+func decrease_dash_countdown(delta : float ) -> void : 
+	if dash_countdown > 0:
+		dash_countdown -= delta
+
+func start_dash():
+
+	##Destination target = A position in front of the player 
+	
+	start_position = position
+	start_time = Time.get_ticks_msec()
+	destination_target = position + transform.basis.z * dash_length
+
+	# Vérifie si le joueur était en l'air avant de dasher
+	was_in_air = not is_on_floor()
+# -----------------
+#Dash physical movement
+
+func execute_dash():
+	if start_time > 0:
+		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0
+		var t = elapsed_time / dash_duration
+
+		if t >= 1:
+			stop_dash()
+			return
+
+		# Interpolation entre le point de départ et la destination
+		var target_position = start_position.lerp(destination_target, t)
+		var dash_direction = (destination_target - start_position).normalized()
+
+		# ⚠️ NE PAS AJUSTER LA HAUTEUR SI ON DASH DANS LES AIRS ⚠️
+		if not was_in_air:
+			if dash_direction.y >= 0:
+				target_position = adjust_height_to_ground(target_position)
+			# Si on dash vers le bas, on laisse la physique gérer et on ajuste plus tard
+
+		# Déplacement avec collision
+		var step = target_position - global_transform.origin
+		var coll = move_and_collide(step)
+
+		if coll:
+			stop_dash()
+
+func adjust_height_to_ground(target_position: Vector3) -> Vector3:
+	var space_state = get_world_3d().direct_space_state
+
+	# Raycast vers le bas (pour coller au sol si nécessaire)
+	var ray_down_origin = target_position + Vector3(0, 1, 0)
+	var ray_down_end = target_position + Vector3(0, -3, 0)
+	var query_down = PhysicsRayQueryParameters3D.create(ray_down_origin, ray_down_end)
+	var result_down = space_state.intersect_ray(query_down)
+
+	# Raycast vers l'avant et vers le bas pour détecter les montées
+	var ray_forward_origin = target_position + Vector3(0, 1, 0)
+	var ray_forward_end = target_position + transform.basis.z * 2 + Vector3(0, -3, 0)
+	var query_forward = PhysicsRayQueryParameters3D.create(ray_forward_origin, ray_forward_end)
+	var result_forward = space_state.intersect_ray(query_forward)
+
+	# Si le sol est détecté et qu'on ne dash pas vers le bas, ajuster la hauteur
+	if result_down:
+		target_position.y = result_down.position.y + 0.1  
+	elif result_forward:
+		target_position.y = result_forward.position.y + 0.1  
+
+	return target_position
+
+
+func stop_dash():
+	start_time = 0
+	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
+	send_event_state_chart("IsMoving")
+	
+#----------------------------------
+## DASH FOV
+func modify_fov_with_tween() -> void : 
+	if Input.is_action_just_pressed("dash"):
+		#print("Modification of the FOV")
+		var tween = create_tween()
+
+		tween.tween_property(camera, "fov", dash_FOV, 0.1)
+	
+		await get_tree().create_timer(0.3).timeout
+		
+		var tween_back = get_tree().create_tween()
+		tween_back.tween_property(camera, "fov", base_FOV, 0.1)
+		
+
+
+#----------------------------------
+## DASH ACTION LINES
+
+func launch_action_line() -> void : 
+	
+	action_line_sprites.play("Action lines")
+	action_line_sprites.visible = true
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	action_line_sprites.visible = false
+	action_line_sprites.stop()
+
+#----------------------------------
+## DASH ANIMATIONS
+func launch_dash_animation() -> void : 
+	base_state_machine.travel("Dash")

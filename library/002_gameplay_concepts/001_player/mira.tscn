@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=4 uid="uid://bg5vsni1jl6bu"]
+[gd_scene load_steps=159 format=4 uid="uid://bg5vsni1jl6bu"]
 
 [ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="1_466c2"]
 [ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="1_ko5lv"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://bdnpuax8gfmyy" path="res://library/002_gameplay_concepts/001_player/Scripts/PlayerMovementResource.gd" id="5_vj4om"]
 [ext_resource type="Script" uid="uid://5i103oxysh75" path="res://library/002_gameplay_concepts/001_player/Scripts/assign_blend_position.gd" id="6_cnqdl"]
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="6_g5wb5"]
-[ext_resource type="PackedScene" uid="uid://diukxqj0llno8" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Trail.tscn" id="6_jwfrc"]
 [ext_resource type="Material" uid="uid://dm0342xb6ckek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_rubban_hat.tres" id="6_sxsut"]
 [ext_resource type="Script" uid="uid://duy4574tj6hem" path="res://library/002_gameplay_concepts/006_VFX/Trail/Rotation.gd" id="7_1u85m"]
 [ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="7_3hlb5"]
@@ -9102,7 +9101,7 @@ footstep_sounds = Array[AudioStream]([ExtResource("45_q35nl"), ExtResource("46_w
 
 [node name="DashComponent" type="Node" parent="." groups=["player"]]
 
-[node name="LaunchDash" type="Node" parent="DashComponent" node_paths=PackedStringArray("player", "camera", "animation_tree", "mira_game_master", "action_line_sprites", "player_mesh")]
+[node name="LaunchDash" type="Node" parent="DashComponent" node_paths=PackedStringArray("player", "camera", "animation_tree", "mira_game_master", "action_line_sprites")]
 script = ExtResource("8_ggy1u")
 SUMMARY = "- Launch a travel towards the dash animation node contained in the AnimationTree"
 player = NodePath("../..")
@@ -9112,8 +9111,6 @@ mira_game_master = NodePath("../../MiraGameMaster")
 latence_between_dash = 0.5
 dash_length = 5.0
 action_line_sprites = NodePath("../Control/ActionLineSprites")
-dash_vfx = ExtResource("6_jwfrc")
-player_mesh = NodePath("../../Animation_exportTest_/Group")
 
 [node name="Control" type="CanvasLayer" parent="DashComponent"]
 
