@@ -1,4 +1,4 @@
-extends Node
+extends CharacterBody3D
 
 # --------------------------------------------------
 ## SUMMARY
@@ -9,17 +9,30 @@ extends Node
 ## REFERENCES
 
 #Nodes
-@export var player : CharacterBody3D
+#@export var player : CharacterBody3D
 @export var animation_tree : AnimationTree
 @export var aura_mesh : MeshInstance3D
 var direction_vector_input: Vector2
 @onready var can_move : bool = true
 @onready var charge_attack_mode : bool = false
+@export var state_chart : StateChart
 
 # ----------------
 
 #Movement
 @export var gravity_strength : float = 2.0
+
+
+# ----------------
+
+#VFX
+@export var foot_step_vfx : PackedScene
+@export var movement_vfx_storage : Node
+# ----------------
+
+#SFX
+@export var mira_step : AudioStreamPlayer3D
+@export var footstep_sounds : Array[AudioStream]
 
 # ----------------
 
@@ -39,46 +52,129 @@ var direction_vector_input: Vector2
 @export var jump_strength : float = 7.5
 
 var last_rotation_angle : float = 0.0
-# -------------------------------------
+
+
+
+# --------------------------------------------------------------------------
+
+# BASE FUNCTIONS
+
+# --------------------------------------------------------------------------
 
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
-	move_the_character()
-	charge_attack_movement_mode()
-	launch_in_the_air_animation()
-
-		
-func add_gravity(delta : float) -> void : 
-	if not player.is_on_floor():
-		player.velocity += player.get_gravity() * delta * gravity_strength
-
-func move_the_character() -> void: 
+	#assign_movement_blend_position()  #Create a blend between idle walk and run
+	#move_the_character()
+	#charge_attack_movement_mode()
+	#launch_in_the_air_animation()
 	
-	if can_move and not charge_attack_mode :
+
+# --------------------------------------------------------------------------
+
+# STATES FUNCTIONS
+
+# --------------------------------------------------------------------------
+
+func _on_idle_state_entered() -> void:
+	base_state_machine.travel("MovementBlendSpace")
+	assign_movement_blend_position()  #Create a blend between idle walk and run
+	print("Je viens d'entrer dans le state idle")
+
+func _on_movement_state_processing(delta: float) -> void:
+	base_state_machine.travel("MovementBlendSpace")
+	assign_movement_blend_position()  #Create a blend between idle walk and run
+	move_the_character()
+	activate_idle_state()
+	activate_in_the_air_state()
+
+
+func _on_idle_state_processing(delta: float) -> void:
+	move_the_character()
+	activate_movement_state()
+	activate_in_the_air_state()
+
+
+func _on_movement_state_entered() -> void:
+	print("Je viens d'entrer dans le state movement")
+
+
+func _on_in_the_air_state_processing(delta: float) -> void:
+	move_the_character()
+	is_in_the_air()
+	
+	if is_on_floor():
+		activate_idle_state()
+		activate_movement_state()
+ 
+# --------------------------------------------------------------------------
+
+# STATES ACTIVATIONS FUNCTIONS
+
+# --------------------------------------------------------------------------
+
+func send_event_state_chart(event_name : String)-> void :
+	state_chart.send_event(event_name)
+	
+#---
+
+func activate_idle_state()-> void : 
+	if velocity.length() <= 0 :
+		send_event_state_chart("IsIdle")
+
+#---
+
+func activate_movement_state()-> void : 
+	if velocity.length() > 0 :
+		send_event_state_chart("IsMoving")
+
+#---
+
+func activate_in_the_air_state() -> void : 
+	if not is_on_floor() or Input.is_action_just_pressed("jump"):
+		send_event_state_chart("IsInTheAir")
+
+#---
+
+func is_in_the_air() -> void : 
+	base_state_machine.travel("InTheAir")
+
+# --------------------------------------------------------------------------
+
+## MOVEMENT
+
+func add_gravity(delta : float) -> void : 
+	if not is_on_floor():
+		velocity += get_gravity() * delta * gravity_strength
+
+#---
+
+func move_the_character() -> void:
+	if can_move and not charge_attack_mode:
 		# Get inputs controle
-		direction_vector_input= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+		direction_vector_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
-		var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
-		
+		var input_strength: float = direction_vector_input.length()
 
+		# Apply horizontal movement
 		if direction_vector_input.length() > 0.2:
-			# Apply movement
-			player.velocity.x = player_movement_direction.x * player_speed * input_strength  #Square length ( a regarder)
-			player.velocity.z = player_movement_direction.z * player_speed * input_strength
+			velocity.x = player_movement_direction.x * player_speed * input_strength
+			velocity.z = player_movement_direction.z * player_speed * input_strength
 
-			# Rotation of the character in the direction of the movement
+			# Rotation of the character
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			player.rotation.y = player_rotation_angle
+			rotation.y = player_rotation_angle
 		else:
-			# Arrêter immédiatement le joueur si aucune touche n'est pressée
-			player.velocity.x = 0
-			player.velocity.z = 0
+			velocity.x = 0
+			velocity.z = 0
 
-	# Appliquer le mouvement au joueur
+		# Jump logic (Y axis)
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			jump_the_character()
 
-		player.move_and_slide()
+	# Apply movement
+	move_and_slide()
 
-
+#---
 
 func charge_attack_movement_mode() -> void : 
 	
@@ -95,19 +191,85 @@ func charge_attack_movement_mode() -> void :
 		 # Mise à jour de la rotation uniquement si il y a une entrée significative
 		if input_strength > 0.001:  # Utiliser un petit seuil plutôt que zéro
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			player.rotation.y = player_rotation_angle
+			rotation.y = player_rotation_angle
 			last_rotation_angle = player_rotation_angle
 		else:
 			# Maintenir la dernière orientation connue
-			player.rotation.y = last_rotation_angle
+			rotation.y = last_rotation_angle
+
+#---
 
 func jump_the_character() -> void : 
-	player.velocity.y = jump_strength
-	
+	velocity.y = jump_strength
+
+#---
+
 func launch_in_the_air_animation() -> void : 
-	if not player.is_on_floor():
+	if not is_on_floor():
 		base_state_machine.travel("Fly")
 		aura_mesh.visible = false
-	elif player.is_on_floor() :
+	elif is_on_floor() :
 		base_state_machine.travel("MovementBlendSpace")
 		aura_mesh.visible = true
+
+#---
+
+func modify_animation_time_scale() -> void : 
+	
+	if velocity.length() >= 0.1 && velocity.length() <= 2:
+		animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/TimeScale/scale", 1.5)
+		
+	else :
+		animation_tree.set("parameters/MiraAnimation/MovementStateMachine/MovementBlendTree/TimeScale/scale", 1)
+
+#---
+
+func assign_movement_blend_position() -> void : 
+	animation_tree.set("parameters/MiraAnimations/MovementBlendSpace/blend_position", velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo1BlendTree/MovementBlendSpace/blend_position",velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", velocity.length())
+	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
+
+#---
+
+func enable_movement() -> void : 
+	can_move = true
+
+#---
+
+func disable_movement() -> void : 
+	can_move = false
+
+#---
+
+
+
+
+
+# --------------------------------------------------------------------------
+
+## VFX
+func instantiate_foot_step_vfx() -> void : 
+	var vfx_instance = foot_step_vfx.instantiate()  # Crée une instance du VFX
+	movement_vfx_storage.add_child(vfx_instance)  # Ajoute le VFX dans la scène (même parent que le joueur)
+	vfx_instance.global_transform = global_transform  # Place le VFX exactement où est le joueur
+	play_random_footstep()
+
+#---
+
+
+
+# --------------------------------------------------------------------------
+
+## SFX
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		print("Aucun son de pas assigné !")
+		return
+	
+	var random_index = randi() % footstep_sounds.size()  # Choisir un son aléatoire
+	mira_step.stream = footstep_sounds[random_index]
+	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
+	mira_step.play()
+
+#---

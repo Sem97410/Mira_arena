@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=4 uid="uid://bg5vsni1jl6bu"]
+[gd_scene load_steps=160 format=4 uid="uid://bg5vsni1jl6bu"]
 
 [ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="1_466c2"]
 [ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="1_ko5lv"]
@@ -48,7 +48,6 @@
 [ext_resource type="Script" uid="uid://xnqx3tinlkwe" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_transition_between_attack_and_movement.gd" id="14_jw3mf"]
 [ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="14_rgsws"]
 [ext_resource type="Script" uid="uid://cm0yhdkvlkx7a" path="res://library/002_gameplay_concepts/001_player/Scripts/attack_system.gd" id="14_u4q72"]
-[ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="15_an27v"]
 [ext_resource type="Shader" uid="uid://boohe7x88snjo" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Portal.tres" id="15_ef51g"]
 [ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="15_ws6qf"]
 [ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="16_gipgx"]
@@ -9039,10 +9038,9 @@ shape = SubResource("CapsuleShape3D_qjoqe")
 
 [node name="CameraComponent" type="Node" parent="." groups=["player"]]
 
-[node name="MakeCameraFollowPlayer" type="Node" parent="CameraComponent" node_paths=PackedStringArray("camera_controller", "player", "target_in_front_player")]
+[node name="MakeCameraFollowPlayer" type="Node" parent="CameraComponent" node_paths=PackedStringArray("camera_controller", "target_in_front_player")]
 script = ExtResource("16_gipgx")
 camera_controller = NodePath("../CameraController")
-player = NodePath("../..")
 target_in_front_player = NodePath("../../target_in_front_player")
 
 [node name="CameraController" type="Node3D" parent="CameraComponent"]
@@ -9095,7 +9093,6 @@ script = ExtResource("8_jd5f2")
 mira_step = NodePath("mira_step")
 player = NodePath("../..")
 movement_script = NodePath("../MovePlayer")
-vfx_scene = ExtResource("15_an27v")
 movement_vfx_storage = NodePath("../MovementVFXStorage")
 footstep_sounds = Array[AudioStream]([ExtResource("45_q35nl"), ExtResource("46_wxh66"), ExtResource("47_2hmkl"), ExtResource("48_i8uun")])
 

@@ -1,8 +1,8 @@
 [gd_resource type="VisualShader" load_steps=43 format=3 uid="uid://d3c4gxtyic8bk"]
 
 [ext_resource type="Texture2D" uid="uid://wjwq1wsuv7ow" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Noise/T_VFX_Noise_44xainv (1).png" id="1_6xxdw"]
-[ext_resource type="Texture2D" uid="uid://dxviocf0ijadd" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/T_cloudy_noise_211c (1).png" id="2_u3dju"]
-[ext_resource type="Texture2D" uid="uid://cy7x5pe0s1x31" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/T_PerlinNoise_46_inv (1).png" id="3_slxa8"]
+[ext_resource type="Texture2D" uid="uid://dxviocf0ijadd" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Noise/T_cloudy_noise_211c (1).png" id="2_u3dju"]
+[ext_resource type="Texture2D" uid="uid://cy7x5pe0s1x31" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Noise/T_PerlinNoise_46_inv (1).png" id="3_slxa8"]
 
 [sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_2rj7v"]
 linked_parent_graph_frame = 15

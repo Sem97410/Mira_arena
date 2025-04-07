@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=19 format=3 uid="uid://dp8qapka33nt1"]
 
-[ext_resource type="Texture2D" uid="uid://dommsms7jd0do" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/Test_1.png" id="1_1kya1"]
+[ext_resource type="Texture2D" uid="uid://dommsms7jd0do" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Noise/Test_1.png" id="1_1kya1"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_tyif8"]
 input_name = "uv"

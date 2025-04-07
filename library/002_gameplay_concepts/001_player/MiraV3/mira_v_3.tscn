@@ -1,8 +1,10 @@
-[gd_scene load_steps=93 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=100 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
+[ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
 [ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="2_oc1db"]
 [ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="3_mwgca"]
+[ext_resource type="AudioStream" uid="uid://b46rqog643ldk" path="res://library/002_gameplay_concepts/009_SFX/footstep/01-footstep.ogg" id="3_viusc"]
 [ext_resource type="Material" uid="uid://cr06kcu4nsnyw" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_base.tres" id="4_gcd3x"]
 [ext_resource type="Material" uid="uid://dm0342xb6ckek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_rubban_hat.tres" id="5_32fnu"]
 [ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="6_ga88h"]
@@ -32,6 +34,10 @@
 [ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="30_dv1vs"]
 [ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="31_1yggv"]
 [ext_resource type="Script" uid="uid://bhh3yfykspmlg" path="res://library/002_gameplay_concepts/001_player/MiraV3/Scripts/mira_behavior.gd" id="32_1yggv"]
+[ext_resource type="Script" uid="uid://cw27nttbyw2yh" path="res://addons/godot_state_charts/state_chart.gd" id="35_71p4a"]
+[ext_resource type="Script" uid="uid://0q415e2thjsw" path="res://addons/godot_state_charts/compound_state.gd" id="36_uvhkw"]
+[ext_resource type="Script" uid="uid://d0n7iegy28s7u" path="res://addons/godot_state_charts/atomic_state.gd" id="37_bupnr"]
+[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="38_uvhkw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -7332,11 +7338,11 @@ tracks/78/keys = PackedFloat32Array(6.35783e-07, 1, 0.00780269, 0.173241, -0.066
 tracks/79/type = "method"
 tracks/79/imported = false
 tracks/79/enabled = true
-tracks/79/path = NodePath("../MovementComponent/MovementTracksMethodes")
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0.2667, 0.566667),
+"times": PackedFloat32Array(0.266667, 0.493102),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -7344,6 +7350,23 @@ tracks/79/keys = {
 }, {
 "args": [],
 "method": &"instantiate_foot_step_vfx"
+}]
+}
+tracks/80/type = "method"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0.266667, 0.493102),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_random_footstep"
+}, {
+"args": [],
+"method": &"play_random_footstep"
 }]
 }
 
@@ -7903,6 +7926,52 @@ tracks/78/path = NodePath("Group/DeformationSystem/Skeleton3D:RingFinger2_L")
 tracks/78/interp = 1
 tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(0, 1, 0.00731058, 0.165934, -0.0662491, 0.983882)
+tracks/79/type = "method"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("..")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"instantiate_foot_step_vfx"
+}, {
+"args": [],
+"method": &"instantiate_foot_step_vfx"
+}, {
+"args": [],
+"method": &"instantiate_foot_step_vfx"
+}, {
+"args": [],
+"method": &"instantiate_foot_step_vfx"
+}]
+}
+tracks/80/type = "method"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_random_footstep"
+}, {
+"args": [],
+"method": &"play_random_footstep"
+}, {
+"args": [],
+"method": &"play_random_footstep"
+}, {
+"args": [],
+"method": &"play_random_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_65jqx"]
 resource_name = "animation_mask"
@@ -7942,7 +8011,19 @@ radius = 2.5
 radius = 0.35
 height = 1.7
 
-[node name="MiraV3" type="CharacterBody3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_1yggv"]
+radius = 0.1
+height = 0.2
+
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "aura_mesh", "state_chart", "movement_vfx_storage", "mira_step")]
+script = ExtResource("32_1yggv")
+animation_tree = NodePath("AnimationTree")
+aura_mesh = NodePath("Meshes/Group/Aura")
+state_chart = NodePath("StateChart")
+foot_step_vfx = ExtResource("2_5lelo")
+movement_vfx_storage = NodePath("FootStepVfxStorage")
+mira_step = NodePath("mira_step")
+footstep_sounds = Array[AudioStream]([ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc")])
 
 [node name="UI" type="Node" parent="."]
 
@@ -7953,7 +8034,7 @@ offset_right = 579.0
 offset_bottom = 163.0
 scale = Vector2(0.706707, 1.19661)
 
-[node name="Pause_pannel" type="Control" parent="UI" node_paths=PackedStringArray("health_script")]
+[node name="Pause_pannel" type="Control" parent="UI"]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -7964,7 +8045,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("25_dfj4j")
-health_script = NodePath("")
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/Pause_pannel"]
 layout_mode = 1
@@ -9335,8 +9415,8 @@ parameters/TimeScale/scale = 1.0
 [node name="MakeCameraFollowPlayer" type="Node" parent="CameraComponent" node_paths=PackedStringArray("camera_controller", "player", "target_in_front_player")]
 script = ExtResource("30_dv1vs")
 camera_controller = NodePath("../CameraController")
-player = NodePath("")
-target_in_front_player = NodePath("")
+player = NodePath("../..")
+target_in_front_player = NodePath("../../target_in_front_player")
 
 [node name="CameraController" type="Node3D" parent="CameraComponent"]
 
@@ -9350,14 +9430,83 @@ transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0,
 script = ExtResource("31_1yggv")
 camera_position = NodePath("../CameraController/CameraTarget/Camera3D")
 
-[node name="target_in_front_player" type="Node3D" parent="CameraComponent"]
+[node name="target_in_front_player" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.61197)
 
-[node name="MiraBehavior" type="Node" parent="." node_paths=PackedStringArray("player", "animation_tree", "aura_mesh")]
-script = ExtResource("32_1yggv")
-player = NodePath("..")
-animation_tree = NodePath("../AnimationTree")
-aura_mesh = NodePath("../Meshes/Group/Aura")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="target_in_front_player"]
+mesh = SubResource("SphereMesh_1yggv")
+
+[node name="mira_step" type="AudioStreamPlayer3D" parent="."]
+
+[node name="FootStepVfxStorage" type="Node" parent="."]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("35_71p4a")
+metadata/_custom_type_script = "uid://cw27nttbyw2yh"
+
+[node name="root" type="Node" parent="StateChart"]
+script = ExtResource("36_uvhkw")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="ToMovement" type="Node" parent="StateChart/root/Idle"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Movement")
+event = &"IsMoving"
+delay_in_seconds = "0.0"
+
+[node name="ToInTheAir" type="Node" parent="StateChart/root/Idle"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../InTheAir")
+event = &"IsInTheAir"
+delay_in_seconds = "0.0"
+
+[node name="Movement" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="ToIdle" type="Node" parent="StateChart/root/Movement"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Idle")
+event = &"IsIdle"
+delay_in_seconds = "0.0"
+
+[node name="ToInTheAir" type="Node" parent="StateChart/root/Movement"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../InTheAir")
+event = &"IsInTheAir"
+delay_in_seconds = "0.0"
+
+[node name="InTheAir" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="ToIdle" type="Node" parent="StateChart/root/InTheAir"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Idle")
+event = &"IsIdle"
+delay_in_seconds = "0.0"
+
+[node name="ToMovement" type="Node" parent="StateChart/root/InTheAir"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Movement")
+event = &"IsMoving"
+delay_in_seconds = "0.0"
+
+[node name="Dash" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="LightAttack" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="ChargedAttack" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="Hit" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="Death" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
@@ -9380,6 +9529,11 @@ aura_mesh = NodePath("../Meshes/Group/Aura")
 [connection signal="button_down" from="UI/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/death_pannel" method="_on_yes_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_no_button_button_down"]
+[connection signal="state_entered" from="StateChart/root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
+[connection signal="state_entered" from="StateChart/root/Movement" to="." method="_on_movement_state_entered"]
+[connection signal="state_processing" from="StateChart/root/Movement" to="." method="_on_movement_state_processing"]
+[connection signal="state_processing" from="StateChart/root/InTheAir" to="." method="_on_in_the_air_state_processing"]
 
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]

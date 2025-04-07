@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://c74ekewhynlhy"]
 
-[ext_resource type="Texture2D" uid="uid://by4jitbrhaxdc" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Noise/T_marbre_02.png" id="1_4ohc4"]
+[ext_resource type="Texture2D" uid="uid://by4jitbrhaxdc" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_marbre_02.png" id="1_4ohc4"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_cfvaf"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
