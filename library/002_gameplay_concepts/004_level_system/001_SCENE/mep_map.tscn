@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=346 format=4 uid="uid://dhy5jkwytt5l"]
+=======
+[gd_scene load_steps=183 format=4 uid="uid://dhy5jkwytt5l"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://cflmj47i313qo" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/foot_step_manager.gd" id="1_e41i4"]
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="2_6bowh"]
@@ -22,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://byxkegbwi24c0" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_02/spinetree.tscn" id="15_epxg3"]
 [ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/tree.tscn" id="16_bc6sc"]
 [ext_resource type="PackedScene" uid="uid://4yichd2ptcx0" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/cemetery_fence_complete.tscn" id="18_0a8fi"]
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="22_yqwvj"]
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="23_1u4qp"]
 [ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="24_p63q8"]
@@ -100,6 +105,15 @@
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="97_1p7gy"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="98_xh41j"]
 [ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="99_0ttgy"]
+=======
+[ext_resource type="PackedScene" uid="uid://xq2rdkw0j0pd" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_01/dalle_01.tscn" id="19_4h6kt"]
+[ext_resource type="PackedScene" uid="uid://uybglvwn00n7" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_02/dalle_02.tscn" id="20_p40xx"]
+[ext_resource type="PackedScene" uid="uid://doer8uov0k3bc" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_03/dalle_03.tscn" id="21_0gqwf"]
+[ext_resource type="PackedScene" uid="uid://dtbqkjo1e3v04" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_04/dalle_04.tscn" id="22_evcui"]
+[ext_resource type="PackedScene" uid="uid://103e8vwjbklb" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_05/dalle_05.tscn" id="23_ebmwg"]
+[ext_resource type="PackedScene" uid="uid://den6v5fh5vmff" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_01/rock_01.tscn" id="24_0gqwf"]
+[ext_resource type="PackedScene" uid="uid://dn1uvtse0psco" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_04/rock_04.tscn" id="25_evcui"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -10727,6 +10741,9 @@ end_position = Vector3(7.57, 0, 0)
 transform = Transform3D(0.737183, 0, 0.675693, 0, 1, 0, -0.675693, 0, 0.737183, 39.1738, 1.42315, 27.8084)
 end_position = Vector3(7.57, 0, 0)
 
+[node name="rock_04" parent="Map" instance=ExtResource("25_evcui")]
+transform = Transform3D(-0.748424, 0, 0.663222, 0, 1, 0, -0.663222, 0, -0.748424, 16.9303, 1.3769, -13.3144)
+
 [node name="map_deco" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6878, 1.0332, -0.588098)
 
@@ -13479,6 +13496,83 @@ transform = Transform3D(0.658532, 0, -0.752553, 0, 1, 0, 0.752553, 0, 0.658532, 
 
 [node name="cemetery_fence_complete2" parent="." instance=ExtResource("18_0a8fi")]
 transform = Transform3D(0.658532, 0, -0.752553, 0, 1, 0, 0.752553, 0, 0.658532, -6.21268, 0.9475, 18.6034)
+
+[node name="dalles" type="Node3D" parent="."]
+
+[node name="dalle_01" parent="dalles" instance=ExtResource("19_4h6kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0039, 0.965524, 31.5418)
+
+[node name="dalle_02" parent="dalles" instance=ExtResource("20_p40xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57745, 0.965524, 30.7492)
+
+[node name="dalle_03" parent="dalles" instance=ExtResource("21_0gqwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2504, 0.965524, 32.5736)
+
+[node name="dalle_04" parent="dalles" instance=ExtResource("22_evcui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22705, 0.965524, 30.8735)
+
+[node name="dalle_05" parent="dalles" instance=ExtResource("23_ebmwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.38557, 0.965524, 32.3017)
+
+[node name="dalles2" type="Node3D" parent="."]
+transform = Transform3D(0.708919, 0, 0.70529, 0, 1, 0, -0.70529, 0, 0.708919, -36.1136, 0.0576286, -13.3447)
+
+[node name="dalle_01" parent="dalles2" instance=ExtResource("19_4h6kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0039, 0.965524, 31.5418)
+
+[node name="dalle_02" parent="dalles2" instance=ExtResource("20_p40xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57745, 0.965524, 30.7492)
+
+[node name="dalle_03" parent="dalles2" instance=ExtResource("21_0gqwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2504, 0.965524, 32.5736)
+
+[node name="dalle_04" parent="dalles2" instance=ExtResource("22_evcui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22705, 0.965524, 30.8735)
+
+[node name="dalle_05" parent="dalles2" instance=ExtResource("23_ebmwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.38557, 0.965524, 32.3017)
+
+[node name="dalles3" type="Node3D" parent="."]
+transform = Transform3D(0.708919, 0, 0.70529, 0, 1, 0, -0.70529, 0, 0.708919, -33.3384, 0.0576286, -11.6104)
+
+[node name="dalle_01" parent="dalles3" instance=ExtResource("19_4h6kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0039, 0.965524, 31.5418)
+
+[node name="dalle_02" parent="dalles3" instance=ExtResource("20_p40xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57745, 0.965524, 30.7492)
+
+[node name="dalle_03" parent="dalles3" instance=ExtResource("21_0gqwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2504, 0.965524, 32.5736)
+
+[node name="dalle_04" parent="dalles3" instance=ExtResource("22_evcui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22705, 0.965524, 30.8735)
+
+[node name="dalle_05" parent="dalles3" instance=ExtResource("23_ebmwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.38557, 0.965524, 32.3017)
+
+[node name="dalles4" type="Node3D" parent="."]
+transform = Transform3D(0.708919, 0, 0.70529, 0, 1, 0, -0.70529, 0, 0.708919, -31.7879, 0.0576286, -9.03605)
+
+[node name="dalle_01" parent="dalles4" instance=ExtResource("19_4h6kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0039, 0.965524, 31.5418)
+
+[node name="dalle_02" parent="dalles4" instance=ExtResource("20_p40xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57745, 0.965524, 30.7492)
+
+[node name="dalle_03" parent="dalles4" instance=ExtResource("21_0gqwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2504, 0.965524, 32.5736)
+
+[node name="dalle_04" parent="dalles4" instance=ExtResource("22_evcui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22705, 0.965524, 30.8735)
+
+[node name="dalle_05" parent="dalles4" instance=ExtResource("23_ebmwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.38557, 0.965524, 32.3017)
+
+[node name="rock_01" parent="." instance=ExtResource("24_0gqwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05874, 1.33534, 36.9398)
+
+[node name="rock_04" parent="." instance=ExtResource("25_evcui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2345, 1.86989, 42.8108)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

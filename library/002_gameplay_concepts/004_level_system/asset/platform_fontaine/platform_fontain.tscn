@@ -1,9 +1,32 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=7 format=3 uid="uid://1k85e3k4r7tw"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://1k85e3k4r7tw"]
+>>>>>>> Stashed changes
 
 [ext_resource type="ArrayMesh" uid="uid://cmlnedd7axggp" path="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Island_Water.obj" id="1_558jv"]
 [ext_resource type="Texture2D" uid="uid://dkpdgiv4qjea4" path="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_BaseColor.png" id="2_brkm1"]
 [ext_resource type="Texture2D" uid="uid://bctb73rifx6p2" path="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_Roughness.png" id="3_uvir6"]
 [ext_resource type="Texture2D" uid="uid://b1oftwplokoer" path="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_Normal.png" id="4_c0v3a"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="5_toxln"]
+[ext_resource type="PackedScene" uid="uid://den6v5fh5vmff" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_01/rock_01.tscn" id="6_brkm1"]
+[ext_resource type="PackedScene" uid="uid://dn1uvtse0psco" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_04/rock_04.tscn" id="7_uvir6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_unfp0"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ysjy2"]
+sky_material = SubResource("ProceduralSkyMaterial_unfp0")
+
+[sub_resource type="Environment" id="Environment_krse4"]
+background_mode = 2
+sky = SubResource("Sky_ysjy2")
+tonemap_mode = 2
+glow_enabled = true
+>>>>>>> Stashed changes
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fvat"]
 albedo_texture = ExtResource("2_brkm1")
@@ -26,3 +49,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1fvat")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IslandWater/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x370j")
+<<<<<<< Updated upstream
+=======
+
+[node name="Mira" parent="." instance=ExtResource("5_toxln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.429488, 2.50009)
+
+[node name="rock_01" parent="." instance=ExtResource("6_brkm1")]
+transform = Transform3D(-0.999059, 0, -0.0433754, 0, 1, 0, 0.0433754, 0, -0.999059, 3.92686, -0.601609, 4.74786)
+
+[node name="rock_04" parent="." instance=ExtResource("7_uvir6")]
+transform = Transform3D(0.266669, 0.547261, -0.793343, -0.898955, 0.438042, -2.98023e-08, 0.347517, 0.713179, 0.608775, -4.15952, -0.518972, -10.0413)
+>>>>>>> Stashed changes
