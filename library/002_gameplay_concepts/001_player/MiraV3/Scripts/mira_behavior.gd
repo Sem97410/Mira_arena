@@ -311,13 +311,16 @@ func charge_attack_movement_mode() -> void :
 			# Maintenir la dernière orientation connue
 			rotation.y = last_rotation_angle
 
-#---
+# --------------------------------------------------------------------------
+
+## JUMP
 
 func jump_the_character() -> void : 
 	velocity.y = jump_strength
 
-#---
+# --------------------------------------------------------------------------
 
+## IN THE AIR
 func launch_in_the_air_animation() -> void : 
 	if not is_on_floor():
 		base_state_machine.travel("Fly")
@@ -326,7 +329,9 @@ func launch_in_the_air_animation() -> void :
 		base_state_machine.travel("MovementBlendSpace")
 		aura_mesh.visible = true
 
-#---
+# --------------------------------------------------------------------------
+
+## ANIMATION
 
 func modify_animation_time_scale() -> void : 
 	
@@ -345,9 +350,10 @@ func assign_movement_blend_position() -> void :
 	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
 
 #---
+# Updates input, speed, and idle timer to track player movement state.
 
 func update_movement_tracking(delta: float) -> void:
-	# Input du joueur
+	# Player input
 	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	_input_strength = input_vector.length()
 
@@ -361,7 +367,7 @@ func update_movement_tracking(delta: float) -> void:
 		_idle_timer += delta
 	else:
 		_idle_timer = 0.0
-		
+
 #---
 
 func enable_movement() -> void : 
@@ -372,43 +378,22 @@ func enable_movement() -> void :
 func disable_movement() -> void : 
 	can_move = false
 
-#---
-
 # --------------------------------------------------------------------------
 
-## VFX
-func instantiate_foot_step_vfx() -> void : 
-	var vfx_instance = foot_step_vfx.instantiate()  # Crée une instance du VFX
-	movement_vfx_storage.add_child(vfx_instance)  # Ajoute le VFX dans la scène (même parent que le joueur)
-	vfx_instance.global_transform = global_transform  # Place le VFX exactement où est le joueur
-	play_random_footstep()
-
-#---
-
-# --------------------------------------------------------------------------
-
-## SFX
-func play_random_footstep() -> void:
-	if footstep_sounds.is_empty():
-		print("Aucun son de pas assigné !")
-		return
-	
-	var random_index = randi() % footstep_sounds.size()  # Choisir un son aléatoire
-	mira_step.stream = footstep_sounds[random_index]
-	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
-	mira_step.play()
-
-#---
+## DASH
 
 func initiate_dash() -> void : 
 
 	launch_dash_animation()
 	dash_countdown = latence_between_dash
-	
+
+#---
 
 func decrease_dash_countdown(delta : float ) -> void : 
 	if dash_countdown > 0:
 		dash_countdown -= delta
+
+#---
 
 func start_dash():
 
@@ -420,8 +405,8 @@ func start_dash():
 
 	# Vérifie si le joueur était en l'air avant de dasher
 	was_in_air = not is_on_floor()
-# -----------------
-#Dash physical movement
+	
+#---
 
 func execute_dash():
 	if start_time > 0:
@@ -449,6 +434,8 @@ func execute_dash():
 		if coll:
 			stop_dash()
 
+#---
+
 func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 	var space_state = get_world_3d().direct_space_state
 
@@ -472,14 +459,15 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 
 	return target_position
 
+#---
 
 func stop_dash():
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
 	send_event_state_chart("IsMoving")
 	
-#----------------------------------
-## DASH FOV
+#---
+
 func modify_fov_with_tween() -> void : 
 	if Input.is_action_just_pressed("dash"):
 		#print("Modification of the FOV")
@@ -491,11 +479,7 @@ func modify_fov_with_tween() -> void :
 		
 		var tween_back = get_tree().create_tween()
 		tween_back.tween_property(camera, "fov", base_FOV, 0.1)
-		
-
-
-#----------------------------------
-## DASH ACTION LINES
+#---
 
 func launch_action_line() -> void : 
 	
@@ -507,7 +491,32 @@ func launch_action_line() -> void :
 	action_line_sprites.visible = false
 	action_line_sprites.stop()
 
-#----------------------------------
-## DASH ANIMATIONS
+#---
+
 func launch_dash_animation() -> void : 
 	base_state_machine.travel("Dash")
+
+
+# --------------------------------------------------------------------------
+
+## VFX
+func instantiate_foot_step_vfx() -> void : 
+	var vfx_instance = foot_step_vfx.instantiate()  # Crée une instance du VFX
+	movement_vfx_storage.add_child(vfx_instance)  # Ajoute le VFX dans la scène (même parent que le joueur)
+	vfx_instance.global_transform = global_transform  # Place le VFX exactement où est le joueur
+	play_random_footstep()
+
+#---
+
+# --------------------------------------------------------------------------
+
+## SFX
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		print("Aucun son de pas assigné !")
+		return
+	
+	var random_index = randi() % footstep_sounds.size()  # Choisir un son aléatoire
+	mira_step.stream = footstep_sounds[random_index]
+	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
+	mira_step.play()
