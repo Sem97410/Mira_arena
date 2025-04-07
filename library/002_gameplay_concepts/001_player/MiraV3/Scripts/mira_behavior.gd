@@ -8,50 +8,111 @@ extends CharacterBody3D
 # -------------------------------------
 ## REFERENCES
 
-#Nodes
-#@export var player : CharacterBody3D
+#NODES
+
+@export_category("General")
+
+#Animations variables
+@export_group("Animation variables")
 @export var animation_tree : AnimationTree
+@onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
+
+#---
+
+#States variables
+@export_group("States variables")
+@export var state_chart : StateChart
+
+#---
+
+#Meshes variables
+@export_group("Meshes variables")
 @export var aura_mesh : MeshInstance3D
+
 var direction_vector_input: Vector2
 @onready var can_move : bool = true
 @onready var charge_attack_mode : bool = false
-@export var state_chart : StateChart
+
+#---
+
+#Camera variables
+@export_group("Camera")
+@export var camera : Camera3D
+
 
 # ----------------
 
-#Movement
-@export var gravity_strength : float = 2.0
+# MOVEMENT
+@export_category("Movement ")
 
+#Movement variables
+@export_group("Movement variables")
+@export var player_speed : float = 6.0
+
+#---
+
+#Jump variables
+@export_group("Jump variables")
+@export var jump_strength : float = 7.5
+
+#---
+
+#Dash variables
+@export_group("Dash variables")
+@export_subgroup("Dash general values")
+@export var dash_duration: float = 0.2 #In second
+@export var latence_between_dash : float = 3.0
+
+@export_subgroup("Dash movement values")
+@export var dash_length : float
+@onready var start_time : int = 0 #When the dash start
+@onready var dash_countdown : float = 0.0
+
+@export_subgroup("Player position")
+var start_position : Vector3 #Begining of the dash
+var destination_target : Vector3 #End of the dash
+
+var was_in_air = false  # Pour savoir si on était en l'air avant le dash
+
+#---
+
+#Gravity variables
+@export_group("Gravity variables")
+@export var gravity_strength : float = 2.0
+#---
+var last_rotation_angle : float = 0.0
 
 # ----------------
 
 #VFX
+@export_category("VFX")
+
+#Foot step variables
+@export_group("Foot step VFX")
 @export var foot_step_vfx : PackedScene
+@export_subgroup("Storage")
 @export var movement_vfx_storage : Node
+
+#---
+
 # ----------------
 
 #SFX
+@export_category("SFX")
+
+#Foot step variables
+@export_group("Foot step SFX")
 @export var mira_step : AudioStreamPlayer3D
+@export_subgroup("Foot step type")
 @export var footstep_sounds : Array[AudioStream]
+
+#---
 
 # ----------------
 
 #Animations
-@onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
 
-
-# -----------------
-#State
-
-
-
-# -----------------
-#Values
-@export var player_speed : float = 6
-@export var jump_strength : float = 7.5
-
-var last_rotation_angle : float = 0.0
 
 
 
@@ -78,8 +139,21 @@ func _physics_process(delta: float) -> void:
 func _on_idle_state_entered() -> void:
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
-	print("Je viens d'entrer dans le state idle")
+	#print("Je viens d'entrer dans le state idle")
 
+#---
+
+func _on_idle_state_processing(delta: float) -> void:
+	move_the_character()
+	activate_movement_state()
+	activate_in_the_air_state()
+
+#---
+
+func _on_movement_state_entered() -> void:
+	print("Je viens d'entrer dans le state movement")
+
+#---
 func _on_movement_state_processing(delta: float) -> void:
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
@@ -87,16 +161,7 @@ func _on_movement_state_processing(delta: float) -> void:
 	activate_idle_state()
 	activate_in_the_air_state()
 
-
-func _on_idle_state_processing(delta: float) -> void:
-	move_the_character()
-	activate_movement_state()
-	activate_in_the_air_state()
-
-
-func _on_movement_state_entered() -> void:
-	print("Je viens d'entrer dans le state movement")
-
+#---
 
 func _on_in_the_air_state_processing(delta: float) -> void:
 	move_the_character()
@@ -242,10 +307,6 @@ func disable_movement() -> void :
 
 #---
 
-
-
-
-
 # --------------------------------------------------------------------------
 
 ## VFX
@@ -256,8 +317,6 @@ func instantiate_foot_step_vfx() -> void :
 	play_random_footstep()
 
 #---
-
-
 
 # --------------------------------------------------------------------------
 

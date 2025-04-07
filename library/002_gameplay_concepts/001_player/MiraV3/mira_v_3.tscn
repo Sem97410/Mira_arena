@@ -8015,11 +8015,12 @@ height = 1.7
 radius = 0.1
 height = 0.2
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "aura_mesh", "state_chart", "movement_vfx_storage", "mira_step")]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "movement_vfx_storage", "mira_step")]
 script = ExtResource("32_1yggv")
 animation_tree = NodePath("AnimationTree")
-aura_mesh = NodePath("Meshes/Group/Aura")
 state_chart = NodePath("StateChart")
+aura_mesh = NodePath("Meshes/Group/Aura")
+camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 foot_step_vfx = ExtResource("2_5lelo")
 movement_vfx_storage = NodePath("FootStepVfxStorage")
 mira_step = NodePath("mira_step")
