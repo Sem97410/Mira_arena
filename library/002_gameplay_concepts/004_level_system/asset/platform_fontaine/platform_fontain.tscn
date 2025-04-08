@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [gd_scene load_steps=7 format=3 uid="uid://1k85e3k4r7tw"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://1k85e3k4r7tw"]
+>>>>>>> Stashed changes
 =======
 [gd_scene load_steps=13 format=3 uid="uid://1k85e3k4r7tw"]
 >>>>>>> Stashed changes
@@ -60,4 +64,7 @@ transform = Transform3D(-0.999059, 0, -0.0433754, 0, 1, 0, 0.0433754, 0, -0.9990
 
 [node name="rock_04" parent="." instance=ExtResource("7_uvir6")]
 transform = Transform3D(0.266669, 0.547261, -0.793343, -0.898955, 0.438042, -2.98023e-08, 0.347517, 0.713179, 0.608775, -4.15952, -0.518972, -10.0413)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

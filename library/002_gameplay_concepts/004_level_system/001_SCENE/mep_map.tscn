@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [gd_scene load_steps=346 format=4 uid="uid://dhy5jkwytt5l"]
+=======
+[gd_scene load_steps=183 format=4 uid="uid://dhy5jkwytt5l"]
+>>>>>>> Stashed changes
 =======
 [gd_scene load_steps=183 format=4 uid="uid://dhy5jkwytt5l"]
 >>>>>>> Stashed changes
@@ -26,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://byxkegbwi24c0" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_02/spinetree.tscn" id="15_epxg3"]
 [ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/tree.tscn" id="16_bc6sc"]
 [ext_resource type="PackedScene" uid="uid://4yichd2ptcx0" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/cemetery_fence_complete.tscn" id="18_0a8fi"]
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://b0e8iiom6brrn" path="res://library/002_gameplay_concepts/001_player/Scripts/mira_game_master.gd" id="22_yqwvj"]
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="23_1u4qp"]
@@ -106,6 +111,8 @@
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="98_xh41j"]
 [ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="99_0ttgy"]
 =======
+=======
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://xq2rdkw0j0pd" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_01/dalle_01.tscn" id="19_4h6kt"]
 [ext_resource type="PackedScene" uid="uid://uybglvwn00n7" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_02/dalle_02.tscn" id="20_p40xx"]
 [ext_resource type="PackedScene" uid="uid://doer8uov0k3bc" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_03/dalle_03.tscn" id="21_0gqwf"]
@@ -113,6 +120,9 @@
 [ext_resource type="PackedScene" uid="uid://103e8vwjbklb" path="res://library/002_gameplay_concepts/004_level_system/asset/dalle_05/dalle_05.tscn" id="23_ebmwg"]
 [ext_resource type="PackedScene" uid="uid://den6v5fh5vmff" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_01/rock_01.tscn" id="24_0gqwf"]
 [ext_resource type="PackedScene" uid="uid://dn1uvtse0psco" path="res://library/002_gameplay_concepts/004_level_system/asset/rock_04/rock_04.tscn" id="25_evcui"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nu1ct"]
