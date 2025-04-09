@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dtwt18t01dm8h"]
+
+[ext_resource type="Texture2D" uid="uid://b6fbksx6uygjy" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_04/materials/txt_tomb_04_BaseColor.png" id="1_jam3p"]
+[ext_resource type="Texture2D" uid="uid://dbsf1rop58mph" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_04/materials/txt_tomb_04_ambient_occlusion.png" id="2_hudv4"]
+[ext_resource type="Texture2D" uid="uid://wh4eks6qb77r" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_04/materials/txt_tomb_04_Normal.png" id="3_qp1dp"]
+[ext_resource type="Texture2D" uid="uid://cw66idj4c5lqx" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_04/materials/txt_tomb_04_Roughness.png" id="4_084id"]
+
+[resource]
+albedo_texture = ExtResource("1_jam3p")
+roughness_texture = ExtResource("4_084id")
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = ExtResource("3_qp1dp")
+ao_enabled = true
+ao_texture = ExtResource("2_hudv4")
