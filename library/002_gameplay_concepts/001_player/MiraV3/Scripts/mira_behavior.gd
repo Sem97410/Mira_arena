@@ -105,7 +105,19 @@ var last_rotation_angle : float = 0.0
 #Light attack
 
 #---
+
+#Animation combo
 @onready var animation_combo_index : int = 1
+
+#---
+
+#Buffer
+@onready var combo_window_is_active : bool = false
+@onready var light_attack_input_was_pressed : bool = false
+@onready var post_attack_windows_duration : float = 0.2
+@onready var post_attack_windows_timer : float = 0.0
+@onready var is_in_post_attack_phase : bool = false
+
 # ----------------
 
 #VFX
@@ -151,7 +163,16 @@ func _physics_process(delta: float) -> void:
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta	
 	
-	print("Index combo is :", animation_combo_index)
+	print("Light attack input was pressed is : ", light_attack_input_was_pressed)
+	
+	if post_attack_windows_timer > 0 :
+		is_in_post_attack_phase = true
+	else :
+		is_in_post_attack_phase = false
+		
+	if is_in_post_attack_phase :
+		post_attack_windows_timer-= delta
+	#print("Index combo is :", animation_combo_index)
 
 # --------------------------------------------------------------------------
 
@@ -174,8 +195,8 @@ func _on_idle_state_processing(delta: float) -> void:
 
 #---
 
-func _on_movement_state_entered() -> void:
-	print("Je viens d'entrer dans le state movement")
+#func _on_movement_state_entered() -> void:
+	#print("Je viens d'entrer dans le state movement")
 
 func _on_movement_state_processing(delta: float) -> void:
 	base_state_machine.travel("MovementBlendSpace")
@@ -187,8 +208,8 @@ func _on_movement_state_processing(delta: float) -> void:
 	activate_light_attack_state()
 
 #---
-func _on_in_the_air_state_entered() -> void:
-	print("I'm in the state In the air")
+#func _on_in_the_air_state_entered() -> void:
+	#print("I'm in the state In the air")
 	
 	
 func _on_in_the_air_state_processing(delta: float) -> void:
@@ -224,14 +245,22 @@ func _on_dash_state_exited() -> void:
 
 
 func _on_light_attack_state_entered() -> void:
-	print("Enter LightAttack state")
+	#print("Enter LightAttack state")
 	launch_light_attack()
 
 func _on_light_attack_state_processing(delta: float) -> void:
+	#print("I'm in light attack state processing")
 	move_the_character()
-	activate_idle_state()
-	activate_movement_state()
-	
+	#activate_idle_state()
+	#activate_movement_state()
+	if Input.is_action_just_pressed("light_attack"):
+		print("Light attack input was pressed")
+		light_attack_input_was_pressed = true
+
+#func _on_light_attack_state_physics_processing(delta: float) -> void:
+	##print("I'm in light attack physical state")
+
+
 #---
 
 # --------------------------------------------------------------------------
@@ -246,16 +275,16 @@ func send_event_state_chart(event_name : String)-> void :
 #---
 
 func activate_idle_state()-> void : 
-	if _idle_timer >= 0.3:
+	if _input_strength <= 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3:
 		send_event_state_chart("IsIdle")
-		print("Enter in idle state")
+		#print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void : 
 	if _input_strength > 0.1 and _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
-		print("Enter in movement state")
+		#print("Enter in movement state")
 
 
 #---
@@ -535,22 +564,37 @@ func launch_dash_animation() -> void :
 #Light attack
 
 func launch_light_attack() -> void:
-	
+	#print("Launch light attack here")
+	light_attack_input_was_pressed = false
+	combo_window_is_active = false
 	var target_state = "Combo" + str(animation_combo_index) + "BlendTree"
-	print("Lance animation :", target_state)
+	#print("Lance animation :", target_state)
 	base_state_machine.travel(target_state)
+	
 	
 #---
 
 func set_animation_index_values(index_values : int) -> void: 
 	animation_combo_index = index_values
 
+
 func reset_animation_index():
 	print(" RESET combo depuis handle_reset_animation_combo_index()")
 	animation_combo_index = 1
 
-func debug_function_increment_animation_combo() -> void : 
-	animation_combo_index += 1
+func toggle_combo_windows(status : bool) -> void : 
+	combo_window_is_active = status
+	
+func activate_combo_if_clicked_during_combo_window() -> void : 
+	if light_attack_input_was_pressed and combo_window_is_active :
+		print("I'm inside the windows")
+		launch_light_attack()
+	else:
+		launch_countdown_for_combo_windows()
+
+func launch_countdown_for_combo_windows() -> void : 
+	print("Start of the countdown")
+	post_attack_windows_timer = post_attack_windows_duration
 # --------------------------------------------------------------------------
 
 ## VFX
