@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://d3y3sd1p7t8rx"]
+[gd_scene load_steps=6 format=4 uid="uid://d3y3sd1p7t8rx"]
 
 [ext_resource type="Material" uid="uid://68lglf81kdxm" path="res://library/002_gameplay_concepts/004_level_system/asset/candlle_01/material/mat_candle_01.tres" id="1_uhaan"]
 
@@ -45,6 +45,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7ab84")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhaan"]
+size = Vector3(0.109497, 0.195557, 0.104767)
+
 [node name="candlle_01" type="Node3D"]
 
 [node name="Candle_001_mesh" type="MeshInstance3D" parent="."]
@@ -55,3 +58,10 @@ surface_material_override/0 = ExtResource("1_uhaan")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379806, 0)
 light_color = Color(0.872745, 0.316115, 0.260071, 1)
+light_energy = 9.899
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00909424, 0.109985, -0.000747681)
+shape = SubResource("BoxShape3D_uhaan")

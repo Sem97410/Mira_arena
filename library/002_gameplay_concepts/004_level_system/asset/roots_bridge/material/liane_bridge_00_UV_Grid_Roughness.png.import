@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e28yq44706m6"
-path.s3tc="res://.godot/imported/liane_bridge_00_UV_Grid_Roughness.png-609651fdad9aa92924836a52b7a94d1c.s3tc.ctex"
+path.s3tc="res://.godot/imported/liane_bridge_00_UV_Grid_Roughness.png-de5c14e63a9ef67f13b121217f3eaa00.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/arene/texture/liane_bridge_00_UV_Grid_Roughness.png"
-dest_files=["res://.godot/imported/liane_bridge_00_UV_Grid_Roughness.png-609651fdad9aa92924836a52b7a94d1c.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/asset/roots_bridge/material/liane_bridge_00_UV_Grid_Roughness.png"
+dest_files=["res://.godot/imported/liane_bridge_00_UV_Grid_Roughness.png-de5c14e63a9ef67f13b121217f3eaa00.s3tc.ctex"]
 
 [params]
 

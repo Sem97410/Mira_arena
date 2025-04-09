@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://c3sx17ws2fjkd"]
+[gd_scene load_steps=6 format=4 uid="uid://c3sx17ws2fjkd"]
 
 [ext_resource type="Material" uid="uid://lbpkciy78lln" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_monument/material/mat_tomb_monument.tres" id="1_ws3q7"]
 
@@ -42,9 +42,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_62don")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ws3q7"]
+size = Vector3(1.9834, 4.59848, 1)
+
 [node name="tomb_monument" type="Node3D"]
 
 [node name="tomb_monument_mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_jg235")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_ws3q7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tomb_monument_mesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tomb_monument_mesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050293, 2.28364, 0)
+shape = SubResource("BoxShape3D_ws3q7")

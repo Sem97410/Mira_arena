@@ -54,6 +54,10 @@ surface_material_override/0 = ExtResource("1_4bidm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27286, 0.390217, -0.251434)
+light_color = Color(0.778858, 0.235275, 0.197425, 1)
+light_energy = 2.415
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.467687, 0.457151)
+light_color = Color(0.884466, 0.565987, 0.284318, 1)
+light_energy = 2.704

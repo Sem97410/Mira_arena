@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bctb73rifx6p2"
-path.s3tc="res://.godot/imported/Water_island_Roughness.png-a40b192af2d51b5ed3af3ae88dddbbb4.s3tc.ctex"
+uid="uid://b000j4u4opohk"
+path.s3tc="res://.godot/imported/txt_Platform_P_BaseColor.png-65441b6163cb4678d379d0d4d4ea50e2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_Roughness.png"
-dest_files=["res://.godot/imported/Water_island_Roughness.png-a40b192af2d51b5ed3af3ae88dddbbb4.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_u/material/txt_Platform_P_BaseColor.png"
+dest_files=["res://.godot/imported/txt_Platform_P_BaseColor.png-65441b6163cb4678d379d0d4d4ea50e2.s3tc.ctex"]
 
 [params]
 

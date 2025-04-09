@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1oftwplokoer"
-path.s3tc="res://.godot/imported/Water_island_Normal.png-f3ecade96909a733643bde8416e5517f.s3tc.ctex"
+uid="uid://c54bt73ivk008"
+path.s3tc="res://.godot/imported/liane_bridge_00_UV_Grid_Normal.png-255a5b02cec2d56630d33186e0061d9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_Normal.png"
-dest_files=["res://.godot/imported/Water_island_Normal.png-f3ecade96909a733643bde8416e5517f.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/asset/roots_bridge/material/liane_bridge_00_UV_Grid_Normal.png"
+dest_files=["res://.godot/imported/liane_bridge_00_UV_Grid_Normal.png-255a5b02cec2d56630d33186e0061d9f.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://library/002_gameplay_concepts/004_level_system/asset/platform_fontaine/Water_island_Normal.png"
+roughness/src_normal="res://000_temp/arene/texture/liane_bridge_00_UV_Grid_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

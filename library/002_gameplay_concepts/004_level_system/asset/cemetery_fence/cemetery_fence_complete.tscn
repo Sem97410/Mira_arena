@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://4yichd2ptcx0"]
+[gd_scene load_steps=14 format=4 uid="uid://4yichd2ptcx0"]
 
 [ext_resource type="Material" uid="uid://bv2djqyywj0y6" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/material/mat_concrete_block.tres" id="1_1byht"]
 [ext_resource type="Texture2D" uid="uid://vcsocpdthjkb" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/material/txt_pique_01_BaseColor.png" id="2_crckm"]
@@ -117,6 +117,9 @@ normal_enabled = true
 normal_scale = 0.45
 normal_texture = ExtResource("4_d3boc")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1byht"]
+size = Vector3(4.64307, 4.87582, 0.878418)
+
 [node name="cemetery_fence_complete" type="Node3D"]
 
 [node name="concret_block" type="MeshInstance3D" parent="."]
@@ -125,3 +128,9 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_1byht")
 surface_material_override/1 = SubResource("StandardMaterial3D_mum6s")
 surface_material_override/2 = ExtResource("6_5embi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="concret_block"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="concret_block/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134277, 2.5594, -0.0119629)
+shape = SubResource("BoxShape3D_1byht")

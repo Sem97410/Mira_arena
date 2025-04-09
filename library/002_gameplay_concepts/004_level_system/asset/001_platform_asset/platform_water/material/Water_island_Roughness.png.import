@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5e5ej0fu5l7s"
-path.s3tc="res://.godot/imported/liane_bridge_00_UV_Grid_BaseColor.png-ae476bd44d590bb88bec7e766c6ac950.s3tc.ctex"
+uid="uid://bctb73rifx6p2"
+path.s3tc="res://.godot/imported/Water_island_Roughness.png-a423c6d2944faa2700084dafc9905d54.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://000_temp/arene/texture/liane_bridge_00_UV_Grid_BaseColor.png"
-dest_files=["res://.godot/imported/liane_bridge_00_UV_Grid_BaseColor.png-ae476bd44d590bb88bec7e766c6ac950.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_water/material/Water_island_Roughness.png"
+dest_files=["res://.godot/imported/Water_island_Roughness.png-a423c6d2944faa2700084dafc9905d54.s3tc.ctex"]
 
 [params]
 
