@@ -177,6 +177,9 @@ func _physics_process(delta: float) -> void:
 			combo_window_is_active = false
 			reset_animation_index()
 			is_in_post_attack_phase = false
+			
+			activate_idle_state()
+			activate_movement_state()
 	#print("Index combo is :", animation_combo_index)
 	
 	print("Combo index is  : ", animation_combo_index)
@@ -321,6 +324,10 @@ func is_in_the_air_state() -> void :
 func activate_light_attack_state() -> void : 
 	if Input.is_action_just_pressed("light_attack"): 
 		send_event_state_chart("IsLightAttacking")
+		is_in_post_attack_phase = false
+		combo_window_is_active = false
+		light_attack_input_was_pressed = false
+		
 
 # --------------------------------------------------------------------------
 
