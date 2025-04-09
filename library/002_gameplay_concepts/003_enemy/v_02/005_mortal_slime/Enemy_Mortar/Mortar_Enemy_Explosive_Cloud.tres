@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2ujkj8ij2n0h"]
+
+[ext_resource type="Shader" uid="uid://d3c4gxtyic8bk" path="res://library/002_gameplay_concepts/006_VFX/Enemy_Mortar/Explosion/Mortar_FireBall.tres" id="1_iq5c2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_iq5c2")
+shader_parameter/Cloud_Speed = Vector2(0.34, 0.8)
+shader_parameter/Cload_Intensity = 0.2
+shader_parameter/Explosion_Color = Color(0, 5, 0, 1)

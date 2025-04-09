@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dref523wasnmk" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/mortar_projectile.gd" id="1_27nmc"]
 [ext_resource type="Script" uid="uid://cf7tcqtkksewy" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/instantiate_vfx.gd" id="1_757mg"]
-[ext_resource type="PackedScene" uid="uid://6bqt8je5v34i" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/MortarExplosionVfx.tscn" id="1_j7wsn"]
+[ext_resource type="PackedScene" uid="uid://eoh3er86dlaj" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Mortar_Enemy.tscn" id="2_27nmc"]
 
 [sub_resource type="Animation" id="Animation_j7wsn"]
 length = 0.001
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.233333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("1_j7wsn")],
+"args": [ExtResource("2_27nmc")],
 "method": &"instantiate_vfx"
 }]
 }
