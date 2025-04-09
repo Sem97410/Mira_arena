@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=106 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -40,6 +40,9 @@
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="38_uvhkw"]
 [ext_resource type="Texture2D" uid="uid://b7giv6sy8xd0e" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_1.png" id="39_v240w"]
 [ext_resource type="Texture2D" uid="uid://col0iffowx2jb" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_2.png" id="40_a8wav"]
+[ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="41_7fune"]
+[ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="42_5lhpq"]
+[ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Attack_charge.tscn" id="43_uw203"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -9813,13 +9816,35 @@ delay_in_seconds = "0.0"
 [node name="Death" type="Node" parent="StateChart/root"]
 script = ExtResource("37_bupnr")
 
-[node name="VFX" type="Node" parent="."]
-
-[node name="FootStepVfxStorage" type="Node" parent="VFX"]
-
 [node name="SFX" type="Node" parent="."]
 
 [node name="mira_step" type="AudioStreamPlayer3D" parent="SFX"]
+
+[node name="VFX" type="Node3D" parent="."]
+
+[node name="SlashPosition" type="Node3D" parent="VFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588622, 1.06759, 0.911223)
+
+[node name="ChargeAttackImpactPosition" type="Node3D" parent="VFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.984142, -0.0078817, 7.60665)
+
+[node name="ChargedAttackImpactVFXLogic" type="Node" parent="VFX" node_paths=PackedStringArray("charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position")]
+script = ExtResource("41_7fune")
+charged_attack_impact_vfx = ExtResource("42_5lhpq")
+charged_attack_impact_vfx_storage = NodePath("../ChargeAttackImpactPosition")
+charged_attack_impact_vfx_spawn_position = NodePath("../ChargeAttackImpactPosition")
+
+[node name="Attack_Charge" parent="VFX" instance=ExtResource("43_uw203")]
+transform = Transform3D(0.999507, -8.73796e-08, 0.0314107, -8.74228e-08, -1, 0, 0.0314107, -2.74601e-09, -0.999507, -1.349, 0.931, 3.238)
+visible = false
+
+[node name="AttackCharge" parent="VFX/Attack_Charge" index="0"]
+skeleton = NodePath("../../../Animation_exportTest_/Group")
+
+[node name="AnimationPlayer" parent="VFX/Attack_Charge/AttackCharge" index="0"]
+speed_scale = 10.0
+
+[node name="FootStepVfxStorage" type="Node" parent="VFX"]
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
@@ -9857,3 +9882,4 @@ script = ExtResource("37_bupnr")
 
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
+[editable path="VFX/Attack_Charge"]
