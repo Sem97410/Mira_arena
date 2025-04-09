@@ -41,7 +41,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_y0fqr")
-color = Color(0.590082, 0.448302, 0.829107, 1)
+color = Color(0.215902, 0.215902, 0.215902, 1)
 alpha_curve = SubResource("CurveTexture_5k67n")
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4sx5"]
@@ -49,7 +49,7 @@ alpha_curve = SubResource("CurveTexture_5k67n")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
 render_priority = 0
 shader = ExtResource("2_fh5fs")
-shader_parameter/ColorParameter = Color(2, 1, 3, 1)
+shader_parameter/ColorParameter = Color(1.5, 3, 1, 1)
 
 [sub_resource type="Curve" id="Curve_5xs7k"]
 _data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
@@ -146,7 +146,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.4, 2.03),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(2, 1, 3, 1), Color(0, 0, 0, 0)]
+"values": [Color(0.5, 1, 0.1, 1), Color(0, 0, 0, 0)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false

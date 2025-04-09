@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://boghuf3g47a7v"]
+
+[ext_resource type="Shader" uid="uid://wg8grk3pmufd" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/hunter_slime.gdshader" id="1_c7we5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7we5"]
+cull_mode = 1
+albedo_color = Color(0.447315, 0.591649, 0.134866, 1)
+emission_enabled = true
+emission_energy_multiplier = 7.29
+rim_enabled = true
+grow = true
+grow_amount = 0.02
+
+[sub_resource type="Gradient" id="Gradient_ptakm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.386364, 0.846591)
+colors = PackedColorArray(0.0214135, 0.0430299, 0.00295697, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c7we5"]
+noise_type = 0
+frequency = 0.0167
+offset = Vector3(93.75, 0, 0)
+fractal_lacunarity = 1.48
+fractal_gain = 0.0
+domain_warp_enabled = true
+domain_warp_amplitude = 27.285
+domain_warp_frequency = 0.075
+domain_warp_fractal_octaves = 10
+domain_warp_fractal_gain = 0.375
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ptakm"]
+color_ramp = SubResource("Gradient_ptakm")
+noise = SubResource("FastNoiseLite_c7we5")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_c7we5")
+shader = ExtResource("1_c7we5")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ptakm")
+shader_parameter/speed_texture = 0.055
+shader_parameter/emission_strength = 0.1
