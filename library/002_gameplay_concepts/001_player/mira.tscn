@@ -9285,7 +9285,7 @@ offset_right = 579.0
 offset_bottom = 163.0
 scale = Vector2(0.706707, 1.19661)
 
-[node name="Pause_pannel" type="Control" parent="." node_paths=PackedStringArray("health_script")]
+[node name="Pause_pannel" type="Control" parent="."]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -9296,7 +9296,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("51_qb6we")
-health_script = NodePath("../HealthComponent")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Pause_pannel"]
 layout_mode = 1

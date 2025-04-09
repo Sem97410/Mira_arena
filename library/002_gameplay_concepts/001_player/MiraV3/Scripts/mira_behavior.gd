@@ -100,6 +100,14 @@ var last_rotation_angle : float = 0.0
 
 # ----------------
 
+#ATTACK
+
+#Light attack
+
+#---
+@onready var animation_combo_index : int = 1
+# ----------------
+
 #VFX
 @export_category("VFX")
 
@@ -126,7 +134,6 @@ var last_rotation_angle : float = 0.0
 
 
 
-
 # --------------------------------------------------------------------------
 
 # BASE FUNCTIONS
@@ -142,9 +149,9 @@ func _physics_process(delta: float) -> void:
 	update_movement_tracking(delta)
 	
 	if dash_cooldown_after_stop > 0:
-		dash_cooldown_after_stop -= delta
-
+		dash_cooldown_after_stop -= delta	
 	
+	print("Index combo is :", animation_combo_index)
 
 # --------------------------------------------------------------------------
 
@@ -163,11 +170,12 @@ func _on_idle_state_processing(delta: float) -> void:
 	activate_movement_state()
 	activate_in_the_air_state()
 	activate_dash_state()
+	activate_light_attack_state()
 
 #---
 
-#func _on_movement_state_entered() -> void:
-	#print("Je viens d'entrer dans le state movement")
+func _on_movement_state_entered() -> void:
+	print("Je viens d'entrer dans le state movement")
 
 func _on_movement_state_processing(delta: float) -> void:
 	base_state_machine.travel("MovementBlendSpace")
@@ -176,6 +184,7 @@ func _on_movement_state_processing(delta: float) -> void:
 	activate_idle_state()
 	activate_in_the_air_state()
 	activate_dash_state()
+	activate_light_attack_state()
 
 #---
 func _on_in_the_air_state_entered() -> void:
@@ -184,8 +193,9 @@ func _on_in_the_air_state_entered() -> void:
 	
 func _on_in_the_air_state_processing(delta: float) -> void:
 	move_the_character()
-	is_in_the_air()
+	activate_in_the_air_state()
 	activate_dash_state()
+
 	
 	if is_on_floor():
 		activate_idle_state()
@@ -200,13 +210,28 @@ func _on_dash_state_entered() -> void:
 
 
 
+
 func _on_dash_state_physics_processing(delta: float) -> void:
 	execute_dash() #Launch the dash if all conditions are met
+	activate_light_attack_state()
+	
 
 
 func _on_dash_state_exited() -> void:
 	assign_movement_blend_position()
 
+#---
+
+
+func _on_light_attack_state_entered() -> void:
+	print("Enter LightAttack state")
+	launch_light_attack()
+
+func _on_light_attack_state_processing(delta: float) -> void:
+	move_the_character()
+	activate_idle_state()
+	activate_movement_state()
+	
 #---
 
 # --------------------------------------------------------------------------
@@ -223,12 +248,15 @@ func send_event_state_chart(event_name : String)-> void :
 func activate_idle_state()-> void : 
 	if _idle_timer >= 0.3:
 		send_event_state_chart("IsIdle")
+		print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void : 
 	if _input_strength > 0.1 and _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
+		print("Enter in movement state")
+
 
 #---
 
@@ -247,10 +275,14 @@ func activate_dash_state() -> void :
 
 #---
 
-func is_in_the_air() -> void : 
+func is_in_the_air_state() -> void : 
 	base_state_machine.travel("Jump")
 
 #---
+
+func activate_light_attack_state() -> void : 
+	if Input.is_action_just_pressed("light_attack"): 
+		send_event_state_chart("IsLightAttacking")
 
 # --------------------------------------------------------------------------
 
@@ -496,7 +528,29 @@ func launch_action_line() -> void :
 func launch_dash_animation() -> void : 
 	base_state_machine.travel("Dash")
 
+# --------------------------------------------------------------------------
 
+## ATTACK
+
+#Light attack
+
+func launch_light_attack() -> void:
+	
+	var target_state = "Combo" + str(animation_combo_index) + "BlendTree"
+	print("Lance animation :", target_state)
+	base_state_machine.travel(target_state)
+	
+#---
+
+func set_animation_index_values(index_values : int) -> void: 
+	animation_combo_index = index_values
+
+func reset_animation_index():
+	print(" RESET combo depuis handle_reset_animation_combo_index()")
+	animation_combo_index = 1
+
+func debug_function_increment_animation_combo() -> void : 
+	animation_combo_index += 1
 # --------------------------------------------------------------------------
 
 ## VFX
