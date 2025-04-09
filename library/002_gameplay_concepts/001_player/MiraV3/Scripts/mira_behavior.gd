@@ -114,7 +114,7 @@ var last_rotation_angle : float = 0.0
 #Buffer
 @onready var combo_window_is_active : bool = false
 @onready var light_attack_input_was_pressed : bool = false
-@onready var post_attack_windows_duration : float = 0.2
+@onready var post_attack_windows_duration : float = 2.0
 @onready var post_attack_windows_timer : float = 0.0
 @onready var is_in_post_attack_phase : bool = false
 
@@ -163,7 +163,7 @@ func _physics_process(delta: float) -> void:
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta	
 	
-	print("Light attack input was pressed is : ", light_attack_input_was_pressed)
+	#print("Light attack input was pressed is : ", light_attack_input_was_pressed)
 	
 	if post_attack_windows_timer > 0 :
 		is_in_post_attack_phase = true
@@ -172,7 +172,14 @@ func _physics_process(delta: float) -> void:
 		
 	if is_in_post_attack_phase :
 		post_attack_windows_timer-= delta
+		
+		if post_attack_windows_timer <= 0:
+			combo_window_is_active = false
+			reset_animation_index()
+			is_in_post_attack_phase = false
 	#print("Index combo is :", animation_combo_index)
+	
+	print("Combo index is  : ", animation_combo_index)
 
 # --------------------------------------------------------------------------
 
@@ -254,7 +261,7 @@ func _on_light_attack_state_processing(delta: float) -> void:
 	#activate_idle_state()
 	#activate_movement_state()
 	if Input.is_action_just_pressed("light_attack"):
-		print("Light attack input was pressed")
+		#print("Light attack input was pressed")
 		light_attack_input_was_pressed = true
 
 #func _on_light_attack_state_physics_processing(delta: float) -> void:
