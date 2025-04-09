@@ -189,11 +189,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_idle_state_entered() -> void:
 	base_state_machine.travel("MovementBlendSpace")
-	assign_movement_blend_position()  #Create a blend between idle walk and run
+	
 	#print("Je viens d'entrer dans le state idle")
 
 
 func _on_idle_state_processing(delta: float) -> void:
+	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	activate_movement_state()
 	activate_in_the_air_state()
@@ -257,6 +258,7 @@ func _on_light_attack_state_entered() -> void:
 
 func _on_light_attack_state_processing(delta: float) -> void:
 	#print("I'm in light attack state processing")
+	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	#activate_idle_state()
 	#activate_movement_state()
