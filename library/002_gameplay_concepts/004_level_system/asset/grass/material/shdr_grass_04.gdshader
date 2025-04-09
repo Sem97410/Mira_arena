@@ -16,8 +16,8 @@ void vertex() {
 	float wind_weight = clamp(axe_y /2.0 ,0.0,1.0); // Le poids du vent, selon la hauteur
 	float wind_strength = sin(TIME + world_pos.x * wind_speed);
 	VERTEX.x += wind_strength * wind_weight * wind_intensity;
-	
-	
+
+
 		// On récupère la position verticale du vertex
 	height_blend = clamp((VERTEX.y - min_height) / (max_height - min_height), 0.0, 1.0);// affecter les couleur de fragment au vertex
 }
