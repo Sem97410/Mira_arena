@@ -103,7 +103,8 @@ var last_rotation_angle : float = 0.0
 #ATTACK
 
 #Light attack
-@export_category("Light attack")
+@export_category("Attacks")
+@export_subgroup("Light attack")
 var current_damage : float
 
 @export var light_attack_damage : float
@@ -115,14 +116,28 @@ var current_damage : float
 @export var long_range_collision_shape : CollisionShape3D
 @export var short_range_collision_shape : CollisionShape3D
 
-@export var charged_attack_area : Area3D
-@export var charged_attack_collision : CollisionShape3D
-@export var charged_attack_impact_collision : CollisionShape3D
+
 
 @onready var light_damage : float 
 @onready var charged_damage: float 
 
 #---
+
+#Charged  attack
+@export_subgroup("Charged attack")
+
+@export var charge_attack_charging : Node3D
+@export var charge_attack_lock_mesh : Node3D
+@export var charged_attack_area : Area3D
+@export var charged_attack_collision : CollisionShape3D
+@export var charged_attack_impact_collision : CollisionShape3D
+
+@export var charged_attack_impact_vfx : PackedScene
+@export var charged_attack_impact_vfx_storage : Node3D
+@export var charged_attack_impact_vfx_spawn_position : Node3D
+@onready var vfx_spawned : bool = false
+
+
 
 #Animation combo
 @onready var animation_combo_index : int = 1
@@ -173,11 +188,17 @@ var current_vfx : MeshInstance3D
 @export var footstep_sounds : Array[AudioStream]
 
 #---
-@export_group("Attack SFX")
+
+@export_group("Light attack SFX")
 @export var attack_1_sound : AudioStreamPlayer
 @export var attack_2_sound : AudioStreamPlayer
 @export var attack_3_sound : AudioStreamPlayer
 
+#---
+
+#Charged attack
+@export_group("Charged attack SFX")
+@export var charged_attack_sound : AudioStreamPlayer
 # ----------------
 
 #CAMERA
@@ -207,6 +228,8 @@ func trigger_shake() -> void:
 	shake_strength = current_shake
 
 func _process(delta: float) -> void:
+	#print("Charge attack mode is : ", charge_attack_mode)
+	charge_attack_movement_mode()
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		camera_position.transform.origin = original_position + Vector3(
@@ -214,6 +237,7 @@ func _process(delta: float) -> void:
 			randf_range(-shake_strength, shake_strength),
 			0
 		)
+	launch_in_the_air_animation()
 
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
@@ -251,6 +275,7 @@ func _physics_process(delta: float) -> void:
 # --------------------------------------------------------------------------
 
 func _on_idle_state_entered() -> void:
+	
 	base_state_machine.travel("MovementBlendSpace")
 	
 	#print("Je viens d'entrer dans le state idle")
@@ -259,10 +284,8 @@ func _on_idle_state_entered() -> void:
 func _on_idle_state_processing(delta: float) -> void:
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
-	activate_movement_state()
-	activate_in_the_air_state()
-	activate_dash_state()
-	activate_light_attack_state()
+	
+	listen_to_other_states()
 
 #---
 
@@ -270,13 +293,12 @@ func _on_idle_state_processing(delta: float) -> void:
 	#print("Je viens d'entrer dans le state movement")
 
 func _on_movement_state_processing(delta: float) -> void:
+	print('Je suis entré dans le movement state')
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
-	activate_idle_state()
-	activate_in_the_air_state()
-	activate_dash_state()
-	activate_light_attack_state()
+	
+	listen_to_other_states()
 
 #---
 #func _on_in_the_air_state_entered() -> void:
@@ -300,20 +322,14 @@ func _on_dash_state_entered() -> void:
 	initiate_dash()
 	start_dash()
 
-
-
-
 func _on_dash_state_physics_processing(delta: float) -> void:
 	execute_dash() #Launch the dash if all conditions are met
 	activate_light_attack_state()
-	
-
 
 func _on_dash_state_exited() -> void:
 	assign_movement_blend_position()
 
 #---
-
 
 func _on_light_attack_state_entered() -> void:
 	#print("Enter LightAttack state")
@@ -329,11 +345,20 @@ func _on_light_attack_state_processing(delta: float) -> void:
 		#print("Light attack input was pressed")
 		light_attack_input_was_pressed = true
 
-#func _on_light_attack_state_physics_processing(delta: float) -> void:
-	##print("I'm in light attack physical state")
 
+func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	make_damage(area , light_attack_damage)
+	#print("Make_damage was used")
 
 #---
+
+func _on_charged_attack_state_entered() -> void:
+	print("I'm inside the charged_attack_state")
+	base_state_machine.travel("ChargedAttack")
+
+
+#func _on_charged_attack_state_physics_processing(delta: float) -> void:
+	#listen_to_other_states()
 
 # --------------------------------------------------------------------------
 
@@ -346,7 +371,17 @@ func send_event_state_chart(event_name : String)-> void :
 	
 #---
 
+func listen_to_other_states() -> void : 
+	activate_idle_state()
+	activate_movement_state()
+	activate_in_the_air_state()
+	activate_dash_state()
+	activate_light_attack_state()
+	activate_charged_attack_state()
+#---
+
 func activate_idle_state()-> void : 
+	#print("Launch of the idle state")
 	if _input_strength <= 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3:
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
@@ -354,6 +389,7 @@ func activate_idle_state()-> void :
 #---
 
 func activate_movement_state()-> void : 
+	#print("Launch of the Movement state")
 	if _input_strength > 0.1 and _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
 		#print("Enter in movement state")
@@ -387,7 +423,12 @@ func activate_light_attack_state() -> void :
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
-		
+
+#---
+
+func activate_charged_attack_state() -> void : 
+	if Input.is_action_just_pressed("charge_attack"):
+		send_event_state_chart("IsChargedAttacking")
 
 # --------------------------------------------------------------------------
 
@@ -460,7 +501,8 @@ func jump_the_character() -> void :
 ## IN THE AIR
 func launch_in_the_air_animation() -> void : 
 	if not is_on_floor():
-		base_state_machine.travel("Fly")
+		print("Not in the floor")
+		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
 	elif is_on_floor() :
 		base_state_machine.travel("MovementBlendSpace")
@@ -801,6 +843,55 @@ func set_light_attack_camera_shake_value() -> void :
 
 func set_charged_attack_camera_shake_value() -> void : 
 	current_shake = charged_attack_shake
+
+func charged_attack_sfx() -> void : 
+	charged_attack_sound.play()
+
+func enable_charge_attack_charging_vfx() -> void : 
+	charge_attack_charging. visible = true
+
+func disable_charge_attack_charging_vfx() -> void : 
+	charge_attack_charging. visible = false
+
+func enable_charge_attack_mode() -> void : 
+	#print("Test")
+	can_move = false
+	charge_attack_mode = true
+	
+func disable_charge_attack_mode() -> void : 
+	can_move = true
+	charge_attack_mode = false
+
+func enable_charge_attack_lock_mesh() -> void : 
+	charge_attack_lock_mesh.visible = true
+
+func disable_charge_attack_lock_mesh() -> void : 
+	charge_attack_lock_mesh.visible = false
+	
+func instantiate_charged_attack_impact_vfx() -> void : 
+	#print("Je suis dans instantiate_charged attack")
+	if vfx_spawned:
+		return
+	
+	vfx_spawned = true
+	var charged_attack_impact_vfx_instance = charged_attack_impact_vfx.instantiate()
+
+	charged_attack_impact_vfx_storage.add_child(charged_attack_impact_vfx_instance)
+	
+	# 1. Positionne le VFX à l'emplacement de spawn
+	charged_attack_impact_vfx_instance.global_transform = charged_attack_impact_vfx_spawn_position.global_transform
+	
+	# 2. Sauvegarde la position actuelle (après le spawn)
+	var current_position = charged_attack_impact_vfx_instance.global_transform.origin
+	
+		# 3. Applique le scale et la rotation en gardant la même position
+	var new_basis = charged_attack_impact_vfx_instance.global_transform.basis
+	#new_basis = new_basis.rotated(Vector3(0, 0, 1), -PI)  # Rotation de -180° sur l'axe Z
+	new_basis = new_basis.scaled(Vector3(2.5, 1, 2.5))
+	charged_attack_impact_vfx_instance.global_transform = Transform3D(new_basis, current_position)
+	vfx_spawned = false
+	
+
 # --------------------------------------------------------------------------
 
 ## VFX
@@ -829,8 +920,3 @@ func play_random_footstep() -> void:
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
-
-
-func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	make_damage(area , light_attack_damage)
-	print("Make_damage was used")
