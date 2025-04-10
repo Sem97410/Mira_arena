@@ -274,7 +274,7 @@ skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AttackCharge"]
 libraries = {
-"": SubResource("AnimationLibrary_ngapu")
+&"": SubResource("AnimationLibrary_ngapu")
 }
 autoplay = "Attack_Charge"
 speed_scale = 4.0

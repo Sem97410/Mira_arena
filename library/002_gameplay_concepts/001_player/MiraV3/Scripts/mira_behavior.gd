@@ -103,6 +103,24 @@ var last_rotation_angle : float = 0.0
 #ATTACK
 
 #Light attack
+@export_category("Light attack")
+var current_damage : float
+
+@export var light_attack_damage : float
+
+@export var charged_attack_damage : float 
+
+
+@export var light_attack_area : Area3D
+@export var long_range_collision_shape : CollisionShape3D
+@export var short_range_collision_shape : CollisionShape3D
+
+@export var charged_attack_area : Area3D
+@export var charged_attack_collision : CollisionShape3D
+@export var charged_attack_impact_collision : CollisionShape3D
+
+@onready var light_damage : float 
+@onready var charged_damage: float 
 
 #---
 
@@ -160,7 +178,19 @@ var current_vfx : MeshInstance3D
 @export var attack_2_sound : AudioStreamPlayer
 @export var attack_3_sound : AudioStreamPlayer
 
+# ----------------
 
+#CAMERA
+@export_category("Camera")
+@export var shake_fade: float = 10.0
+
+var current_shake: float
+@export var light_attack_shake: float = 0.1
+@export var charged_attack_shake: float = 0.3
+@export var death_shake: float = 0.3
+@export var camera_position: Camera3D
+var shake_strength: float = 0.0
+var original_position: Vector3  # Stocke la position d'origine
 
 # --------------------------------------------------------------------------
 
@@ -170,7 +200,21 @@ var current_vfx : MeshInstance3D
 
 func _ready():
 	_previous_position = global_position
-	
+	original_position = camera_position.transform.origin  # Sauvegarde la position de base
+
+
+func trigger_shake() -> void:
+	shake_strength = current_shake
+
+func _process(delta: float) -> void:
+	if shake_strength > 0:
+		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
+		camera_position.transform.origin = original_position + Vector3(
+			randf_range(-shake_strength, shake_strength),
+			randf_range(-shake_strength, shake_strength),
+			0
+		)
+
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
 	decrease_dash_countdown(delta)
@@ -198,7 +242,7 @@ func _physics_process(delta: float) -> void:
 			activate_movement_state()
 	#print("Index combo is :", animation_combo_index)
 	
-	print("Combo index is  : ", animation_combo_index)
+	#print("Combo index is  : ", animation_combo_index)
 
 # --------------------------------------------------------------------------
 
@@ -612,7 +656,7 @@ func set_animation_index_values(index_values : int) -> void:
 #---
 
 func reset_animation_index():
-	print(" RESET combo depuis handle_reset_animation_combo_index()")
+	#print(" RESET combo depuis handle_reset_animation_combo_index()")
 	animation_combo_index = 1
 
 #---
@@ -624,7 +668,7 @@ func toggle_combo_windows(status : bool) -> void :
 
 func activate_combo_if_clicked_during_combo_window() -> void : 
 	if light_attack_input_was_pressed and combo_window_is_active :
-		print("I'm inside the windows")
+		#print("I'm inside the windows")
 		launch_light_attack()
 	else:
 		launch_countdown_for_combo_windows()
@@ -632,7 +676,7 @@ func activate_combo_if_clicked_during_combo_window() -> void :
 #---
 
 func launch_countdown_for_combo_windows() -> void : 
-	print("Start of the countdown")
+	#print("Start of the countdown")
 	post_attack_windows_timer = post_attack_windows_duration
 
 #---
@@ -709,9 +753,54 @@ func launch_combo_3_vfx_animation() -> void :
 	combo_3_animation_player.play("Attack_Charge")
 	#print("Launch animation 3 ")
 
-
 #---
 
+func make_damage(area : Area3D, damage : float) -> void : 
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
+	#print("Je suis dans l'Area")
+	if parent.has_method("take_damage"):
+		parent.take_damage(damage)
+		trigger_shake()
+		return
+
+func enable_light_attack_area() -> void :
+	light_attack_area.monitoring = true
+
+func disable_light_attack_area() -> void :
+	light_attack_area.monitoring = false
+
+func enable_long_range_collision() -> void : 
+	long_range_collision_shape.disabled = false
+	
+func disable_long_range_collision() -> void : 
+	long_range_collision_shape.disabled = true
+	
+func enable_short_range_collision() -> void : 
+	short_range_collision_shape.disabled = false
+	
+func disable_short_range_collision() -> void : 
+	short_range_collision_shape.disabled = true
+	
+func enable_charged_attack_area() -> void : 
+	charged_attack_area.monitoring = true
+	
+func disable_charged_attack_area() -> void : 
+	charged_attack_area.monitoring = false
+
+func enable_charged_attack_collision() -> void : 
+	charged_attack_collision.disabled = false
+	charged_attack_impact_collision.disabled = false
+
+func disable_charged_attack_collision() -> void : 
+	charged_attack_collision.disabled = true
+	charged_attack_impact_collision.disabled = true
+	
+func set_light_attack_camera_shake_value() -> void : 
+	current_shake = light_attack_shake
+
+func set_charged_attack_camera_shake_value() -> void : 
+	current_shake = charged_attack_shake
 # --------------------------------------------------------------------------
 
 ## VFX
@@ -733,10 +822,15 @@ func freeze_frame() -> void :
 ## SFX
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
-		print("Aucun son de pas assigné !")
+		#print("Aucun son de pas assigné !")
 		return
 	
 	var random_index = randi() % footstep_sounds.size()  # Choisir un son aléatoire
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
+
+
+func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	make_damage(area , light_attack_damage)
+	print("Make_damage was used")
