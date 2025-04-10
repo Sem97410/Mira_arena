@@ -234,7 +234,7 @@ var current_damage : float
 #Buffer
 @onready var combo_window_is_active : bool = false
 @onready var light_attack_input_was_pressed : bool = false
-@onready var post_attack_windows_duration : float = 2.0
+@onready var post_attack_windows_duration : float = 1.0
 @onready var post_attack_windows_timer : float = 0.0
 @onready var is_in_post_attack_phase : bool = false
 

@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddtoebj46ohx5"]
+[gd_scene load_steps=9 format=3 uid="uid://ddtoebj46ohx5"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_wfjqi"]
 [ext_resource type="PackedScene" uid="uid://d3vpj2mvu11d4" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/LittleExplosionVfx.tscn" id="2_26ubh"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_c4xbk"]
+[ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="3_luiaf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26ubh"]
 albedo_color = Color(0.583815, 0, 0.0710893, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_luiaf"]
 albedo_color = Color(0.583815, 0, 0.0710893, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7d4g3"]
+render_priority = 0
+shader = ExtResource("3_luiaf")
+shader_parameter/ColorParameter = Color(0.985811, 0.210448, 0.15667, 1)
+shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c4xbk"]
 radius = 1.5
@@ -28,6 +35,9 @@ material_override = SubResource("StandardMaterial3D_26ubh")
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_luiaf")
+
+[node name="Aura" parent="Mesh" index="2"]
+material_override = SubResource("ShaderMaterial_7d4g3")
 
 [node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="1"]
 script = ExtResource("2_c4xbk")

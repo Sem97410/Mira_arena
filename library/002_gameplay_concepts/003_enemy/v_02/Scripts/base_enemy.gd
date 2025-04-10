@@ -37,7 +37,7 @@ var is_invincible : bool
 
 var is_knockback_active : bool = false  # Knockback en cours ?
 var knockback_velocity : Vector3 = Vector3.ZERO  # Stocke la force actuelle du knockback
-var knockback_force : float = 15.0  # Intensité du knockback
+var knockback_force : float = 25.0  # Intensité du knockback
 var knockback_vertical_boost : float = 5.0  # Hauteur de l'effet "en cloche"
 var knockback_decay : float = 5.0  # Vitesse de réduction du knockback
 var knockback_duration : float = 0.5  # Durée totale du knockback
