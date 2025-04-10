@@ -1,11 +1,13 @@
-[gd_scene load_steps=106 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=112 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
 [ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="2_oc1db"]
 [ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="3_mwgca"]
+[ext_resource type="PackedScene" uid="uid://bygamagnp07n4" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_R.tscn" id="3_uw203"]
 [ext_resource type="AudioStream" uid="uid://b46rqog643ldk" path="res://library/002_gameplay_concepts/009_SFX/footstep/01-footstep.ogg" id="3_viusc"]
 [ext_resource type="Material" uid="uid://cr06kcu4nsnyw" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_base.tres" id="4_gcd3x"]
+[ext_resource type="PackedScene" uid="uid://cxqke11cu6fda" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Slash_L.tscn" id="4_h1fgh"]
 [ext_resource type="Material" uid="uid://dm0342xb6ckek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_rubban_hat.tres" id="5_32fnu"]
 [ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="6_ga88h"]
 [ext_resource type="Material" uid="uid://cobr0f5nrq8k4" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_body_skin.tres" id="7_1xevk"]
@@ -43,6 +45,10 @@
 [ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="41_7fune"]
 [ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="42_5lhpq"]
 [ext_resource type="PackedScene" uid="uid://d0h43o4dilcir" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Attack_charge.tscn" id="43_uw203"]
+[ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="46_8bksx"]
+[ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="47_qq7u7"]
+[ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="48_7kj1n"]
+[ext_resource type="AudioStream" uid="uid://b8x3f23pogxay" path="res://library/002_gameplay_concepts/001_player/SFX/Charged attack.wav" id="49_irfkd"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -1882,41 +1888,10 @@ tracks/87/keys = {
 tracks/88/type = "method"
 tracks/88/imported = false
 tracks/88/enabled = true
-tracks/88/path = NodePath("../VFX/Attack_Charge/ActivateAttackChargeVfx")
+tracks/88/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
 tracks/88/interp = 1
 tracks/88/loop_wrap = true
 tracks/88/keys = {
-"times": PackedFloat32Array(2.8, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"eneable_charge_vfx"
-}, {
-"args": [],
-"method": &"disable_charge_vfx"
-}]
-}
-tracks/89/type = "method"
-tracks/89/imported = false
-tracks/89/enabled = true
-tracks/89/path = NodePath("../VFX/Attack_Charge/ActivateAttackChargeVfx")
-tracks/89/interp = 1
-tracks/89/loop_wrap = true
-tracks/89/keys = {
-"times": PackedFloat32Array(2.76667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"launch_charged_attack_charge_vfx_animation"
-}]
-}
-tracks/90/type = "method"
-tracks/90/imported = false
-tracks/90/enabled = true
-tracks/90/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
-tracks/90/interp = 1
-tracks/90/loop_wrap = true
-tracks/90/keys = {
 "times": PackedFloat32Array(0, 2.9),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1927,13 +1902,13 @@ tracks/90/keys = {
 "method": &"disable_charge_attack_mode"
 }]
 }
-tracks/91/type = "method"
-tracks/91/imported = false
-tracks/91/enabled = true
-tracks/91/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
-tracks/91/interp = 1
-tracks/91/loop_wrap = true
-tracks/91/keys = {
+tracks/89/type = "method"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = {
 "times": PackedFloat32Array(0.0333333, 2.9),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1942,6 +1917,34 @@ tracks/91/keys = {
 }, {
 "args": [],
 "method": &"disable_charge_attack_lock_mesh"
+}]
+}
+tracks/90/type = "method"
+tracks/90/imported = false
+tracks/90/enabled = true
+tracks/90/path = NodePath("..")
+tracks/90/interp = 1
+tracks/90/loop_wrap = true
+tracks/90/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"instantiate_combo_2_vfx"
+}]
+}
+tracks/91/type = "method"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("..")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"player_attack_2_sfx"
 }]
 }
 
@@ -2520,7 +2523,7 @@ tracks/79/keys = {
 }
 tracks/80/type = "method"
 tracks/80/imported = false
-tracks/80/enabled = true
+tracks/80/enabled = false
 tracks/80/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
@@ -2534,7 +2537,7 @@ tracks/80/keys = {
 }
 tracks/81/type = "method"
 tracks/81/imported = false
-tracks/81/enabled = true
+tracks/81/enabled = false
 tracks/81/path = NodePath("../AttackComponent")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
@@ -2551,7 +2554,7 @@ tracks/81/keys = {
 }
 tracks/82/type = "method"
 tracks/82/imported = false
-tracks/82/enabled = true
+tracks/82/enabled = false
 tracks/82/path = NodePath("../AttackComponent")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
@@ -2568,7 +2571,7 @@ tracks/82/keys = {
 }
 tracks/83/type = "method"
 tracks/83/imported = false
-tracks/83/enabled = true
+tracks/83/enabled = false
 tracks/83/path = NodePath("../AttackComponent")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
@@ -2582,7 +2585,7 @@ tracks/83/keys = {
 }
 tracks/84/type = "method"
 tracks/84/imported = false
-tracks/84/enabled = true
+tracks/84/enabled = false
 tracks/84/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
@@ -2596,7 +2599,7 @@ tracks/84/keys = {
 }
 tracks/85/type = "method"
 tracks/85/imported = false
-tracks/85/enabled = true
+tracks/85/enabled = false
 tracks/85/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
@@ -2676,6 +2679,34 @@ tracks/90/keys = {
 "values": [{
 "args": [true],
 "method": &"toggle_combo_windows"
+}]
+}
+tracks/91/type = "method"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("..")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"instantiate_combo_1_vfx"
+}]
+}
+tracks/92/type = "method"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("..")
+tracks/92/interp = 1
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"player_attack_1_sfx"
 }]
 }
 
@@ -3254,7 +3285,7 @@ tracks/79/keys = {
 }
 tracks/80/type = "method"
 tracks/80/imported = false
-tracks/80/enabled = true
+tracks/80/enabled = false
 tracks/80/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
@@ -3268,7 +3299,7 @@ tracks/80/keys = {
 }
 tracks/81/type = "method"
 tracks/81/imported = false
-tracks/81/enabled = true
+tracks/81/enabled = false
 tracks/81/path = NodePath("../AttackComponent")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
@@ -3285,7 +3316,7 @@ tracks/81/keys = {
 }
 tracks/82/type = "method"
 tracks/82/imported = false
-tracks/82/enabled = true
+tracks/82/enabled = false
 tracks/82/path = NodePath("../AttackComponent")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
@@ -3302,7 +3333,7 @@ tracks/82/keys = {
 }
 tracks/83/type = "method"
 tracks/83/imported = false
-tracks/83/enabled = true
+tracks/83/enabled = false
 tracks/83/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
@@ -3316,7 +3347,7 @@ tracks/83/keys = {
 }
 tracks/84/type = "method"
 tracks/84/imported = false
-tracks/84/enabled = true
+tracks/84/enabled = false
 tracks/84/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
@@ -3396,6 +3427,34 @@ tracks/89/keys = {
 "values": [{
 "args": [],
 "method": &"activate_combo_if_clicked_during_combo_window"
+}]
+}
+tracks/90/type = "method"
+tracks/90/imported = false
+tracks/90/enabled = true
+tracks/90/path = NodePath("..")
+tracks/90/interp = 1
+tracks/90/loop_wrap = true
+tracks/90/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"instantiate_combo_2_vfx"
+}]
+}
+tracks/91/type = "method"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("..")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"player_attack_2_sfx"
 }]
 }
 
@@ -4005,7 +4064,7 @@ tracks/81/keys = {
 }
 tracks/82/type = "method"
 tracks/82/imported = false
-tracks/82/enabled = true
+tracks/82/enabled = false
 tracks/82/path = NodePath("../AttackComponent")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
@@ -4022,7 +4081,7 @@ tracks/82/keys = {
 }
 tracks/83/type = "method"
 tracks/83/imported = false
-tracks/83/enabled = true
+tracks/83/enabled = false
 tracks/83/path = NodePath("../AttackComponent")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
@@ -4039,7 +4098,7 @@ tracks/83/keys = {
 }
 tracks/84/type = "method"
 tracks/84/imported = false
-tracks/84/enabled = true
+tracks/84/enabled = false
 tracks/84/path = NodePath("../AttackComponent")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
@@ -4053,7 +4112,7 @@ tracks/84/keys = {
 }
 tracks/85/type = "method"
 tracks/85/imported = false
-tracks/85/enabled = true
+tracks/85/enabled = false
 tracks/85/path = NodePath("../AttackComponent")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
@@ -4112,7 +4171,7 @@ tracks/88/keys = {
 }
 tracks/89/type = "method"
 tracks/89/imported = false
-tracks/89/enabled = true
+tracks/89/enabled = false
 tracks/89/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
 tracks/89/interp = 1
 tracks/89/loop_wrap = true
@@ -4192,6 +4251,65 @@ tracks/94/keys = {
 "values": [{
 "args": [],
 "method": &"activate_combo_if_clicked_during_combo_window"
+}]
+}
+tracks/95/type = "method"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("..")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(0.4, 1.03333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_combo_3_vfx"
+}, {
+"args": [],
+"method": &"disable_combo_3_vfx"
+}]
+}
+tracks/96/type = "method"
+tracks/96/imported = false
+tracks/96/enabled = true
+tracks/96/path = NodePath("..")
+tracks/96/interp = 1
+tracks/96/loop_wrap = true
+tracks/96/keys = {
+"times": PackedFloat32Array(0.766667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"freeze_frame"
+}]
+}
+tracks/97/type = "method"
+tracks/97/imported = false
+tracks/97/enabled = true
+tracks/97/path = NodePath("..")
+tracks/97/interp = 1
+tracks/97/loop_wrap = true
+tracks/97/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"player_attack_3_sfx"
+}]
+}
+tracks/98/type = "method"
+tracks/98/imported = false
+tracks/98/enabled = true
+tracks/98/path = NodePath("..")
+tracks/98/interp = 1
+tracks/98/loop_wrap = true
+tracks/98/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_combo_3_vfx_animation"
 }]
 }
 
@@ -8244,7 +8362,7 @@ height = 1.7
 radius = 0.1
 height = 0.2
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "action_line_sprites", "movement_vfx_storage", "mira_step")]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "action_line_sprites", "light_attack_vfx_storage", "movement_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "mira_step", "attack_1_sound", "attack_2_sound", "attack_3_sound")]
 script = ExtResource("32_1yggv")
 animation_tree = NodePath("AnimationTree")
 state_chart = NodePath("StateChart")
@@ -8252,10 +8370,19 @@ aura_mesh = NodePath("Meshes/Group/Aura")
 camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 dash_length = 5.0
 action_line_sprites = NodePath("UI/ActionLineSprites")
+light_attack_vfx_storage = NodePath("VFX/LightVfxStorage")
 foot_step_vfx = ExtResource("2_5lelo")
 movement_vfx_storage = NodePath("VFX/FootStepVfxStorage")
+combo_1_vfx_scene = ExtResource("3_uw203")
+combo_2_vfx_scene = ExtResource("4_h1fgh")
+base_combo_position = NodePath("VFX/SlashPosition")
+combo_3_animation_player = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack/AnimationPlayer")
+combo_3_vfx = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack")
 mira_step = NodePath("SFX/mira_step")
 footstep_sounds = Array[AudioStream]([ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc")])
+attack_1_sound = NodePath("Sounds/LightAttack1")
+attack_2_sound = NodePath("Sounds/LightAttack3V2")
+attack_3_sound = NodePath("VFX/Sounds/LightAttack3V2")
 
 [node name="UI" type="Node" parent="."]
 
@@ -9845,6 +9972,46 @@ skeleton = NodePath("../../../Animation_exportTest_/Group")
 speed_scale = 10.0
 
 [node name="FootStepVfxStorage" type="Node" parent="VFX"]
+
+[node name="Sounds" type="Node" parent="VFX" groups=["player"]]
+
+[node name="LightAttack3V2" type="AudioStreamPlayer" parent="VFX/Sounds"]
+stream = ExtResource("46_8bksx")
+pitch_scale = 1.12
+
+[node name="LightAttack1" type="AudioStreamPlayer" parent="VFX/Sounds"]
+stream = ExtResource("47_qq7u7")
+volume_db = -10.0
+
+[node name="LightAttack2" type="AudioStreamPlayer" parent="VFX/Sounds"]
+stream = ExtResource("48_7kj1n")
+volume_db = -10.0
+
+[node name="ChargedAttack" type="AudioStreamPlayer" parent="VFX/Sounds"]
+stream = ExtResource("49_irfkd")
+volume_db = -10.0
+pitch_scale = 2.15
+
+[node name="LightVfxStorage" type="Node" parent="VFX"]
+
+[node name="Sounds" type="Node" parent="." groups=["player"]]
+
+[node name="LightAttack3V2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("46_8bksx")
+pitch_scale = 1.12
+
+[node name="LightAttack1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("47_qq7u7")
+volume_db = -10.0
+
+[node name="LightAttack2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("48_7kj1n")
+volume_db = -10.0
+
+[node name="ChargedAttack" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("49_irfkd")
+volume_db = -10.0
+pitch_scale = 2.15
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]

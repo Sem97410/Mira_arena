@@ -123,11 +123,23 @@ var last_rotation_angle : float = 0.0
 #VFX
 @export_category("VFX")
 
+@export var light_attack_vfx_storage : Node
+
 #Foot step variables
 @export_group("Foot step VFX")
 @export var foot_step_vfx : PackedScene
 @export_subgroup("Storage")
 @export var movement_vfx_storage : Node
+
+#---
+
+@export_group("Attack VFX")
+var current_vfx : MeshInstance3D
+@export var combo_1_vfx_scene : PackedScene
+@export var combo_2_vfx_scene: PackedScene
+@export var base_combo_position : Node3D
+@export var combo_3_animation_player : AnimationPlayer
+@export var combo_3_vfx : Node3D
 
 #---
 
@@ -143,6 +155,10 @@ var last_rotation_angle : float = 0.0
 @export var footstep_sounds : Array[AudioStream]
 
 #---
+@export_group("Attack SFX")
+@export var attack_1_sound : AudioStreamPlayer
+@export var attack_2_sound : AudioStreamPlayer
+@export var attack_3_sound : AudioStreamPlayer
 
 
 
@@ -593,14 +609,19 @@ func launch_light_attack() -> void:
 func set_animation_index_values(index_values : int) -> void: 
 	animation_combo_index = index_values
 
+#---
 
 func reset_animation_index():
 	print(" RESET combo depuis handle_reset_animation_combo_index()")
 	animation_combo_index = 1
 
+#---
+
 func toggle_combo_windows(status : bool) -> void : 
 	combo_window_is_active = status
-	
+
+#---
+
 func activate_combo_if_clicked_during_combo_window() -> void : 
 	if light_attack_input_was_pressed and combo_window_is_active :
 		print("I'm inside the windows")
@@ -608,9 +629,89 @@ func activate_combo_if_clicked_during_combo_window() -> void :
 	else:
 		launch_countdown_for_combo_windows()
 
+#---
+
 func launch_countdown_for_combo_windows() -> void : 
 	print("Start of the countdown")
 	post_attack_windows_timer = post_attack_windows_duration
+
+#---
+	
+func player_attack_1_sfx() -> void : 
+	attack_1_sound.play()
+
+#---
+
+func player_attack_2_sfx() -> void : 
+	attack_2_sound.play()
+
+#---
+
+func player_attack_3_sfx() -> void : 
+	attack_3_sound.play()
+
+#---
+func instantiate_combo_1_vfx() -> void : 
+	var combo_1_vfx_instance = combo_1_vfx_scene.instantiate()
+	current_vfx = combo_1_vfx_instance
+	light_attack_vfx_storage.add_child(combo_1_vfx_instance)
+	
+	# 1. Positionne le VFX à l'emplacement de spawn
+	combo_1_vfx_instance.global_transform = base_combo_position.global_transform
+	
+	# 2. Sauvegarde la position actuelle (après le spawn)
+	var current_position = combo_1_vfx_instance.global_transform.origin
+	
+	# 3. Applique le scale en gardant la même position
+	combo_1_vfx_instance.global_transform = Transform3D(
+		Basis(combo_1_vfx_instance.global_transform.basis.scaled(Vector3(1.5, 1, 1.5))),
+		current_position
+	)
+	
+func destroy_light_attack_vfx() -> void : 
+	await get_tree().create_timer(0.5).timeout
+	current_vfx.queue_free()
+
+	
+func instantiate_combo_2_vfx() -> void : 
+	
+	var combo_2_vfx_instance = combo_2_vfx_scene.instantiate()
+	current_vfx = combo_2_vfx_instance
+	light_attack_vfx_storage.add_child(combo_2_vfx_instance)
+	
+	# 1. Positionne le VFX à l'emplacement de spawn
+	combo_2_vfx_instance.global_transform = base_combo_position.global_transform
+	
+	# 2. Sauvegarde la position actuelle (après le spawn)
+	var current_position = combo_2_vfx_instance.global_transform.origin
+	
+	# 3. Applique le scale en gardant la même position
+	combo_2_vfx_instance.global_transform = Transform3D(
+		Basis(combo_2_vfx_instance.global_transform.basis.scaled(Vector3(1.5, 1, 1.5))),
+		current_position
+	)
+
+
+#---
+
+func enable_combo_3_vfx() -> void : 
+	combo_3_vfx.visible = true
+
+
+#---
+
+func disable_combo_3_vfx() -> void : 
+	combo_3_vfx.visible = false
+
+#---
+
+func launch_combo_3_vfx_animation() -> void : 
+	combo_3_animation_player.play("Attack_Charge")
+	#print("Launch animation 3 ")
+
+
+#---
+
 # --------------------------------------------------------------------------
 
 ## VFX
@@ -622,6 +723,11 @@ func instantiate_foot_step_vfx() -> void :
 
 #---
 
+func freeze_frame() -> void : 
+	Engine.time_scale = 0.1
+	await get_tree().create_timer(0.03).timeout
+	Engine.time_scale = 1.0
+	
 # --------------------------------------------------------------------------
 
 ## SFX
