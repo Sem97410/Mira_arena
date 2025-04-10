@@ -109,7 +109,7 @@ var current_damage : float
 
 @export var light_attack_damage : float
 
-@export var charged_attack_damage : float 
+
 
 
 @export var light_attack_area : Area3D
@@ -125,7 +125,7 @@ var current_damage : float
 
 #Charged  attack
 @export_subgroup("Charged attack")
-
+@export var charged_attack_damage : float 
 @export var charge_attack_charging : Node3D
 @export var charge_attack_lock_mesh : Node3D
 @export var charged_attack_area : Area3D
@@ -356,6 +356,15 @@ func _on_charged_attack_state_entered() -> void:
 	print("I'm inside the charged_attack_state")
 	base_state_machine.travel("ChargedAttack")
 
+
+func _on_charged_recovery_state_entered() -> void:
+	print("Je suis entré dans recovery")
+	listen_to_other_states()
+	
+
+
+func _on_charged_recovery_state_processing(delta: float) -> void:
+	listen_to_other_states()
 
 #func _on_charged_attack_state_physics_processing(delta: float) -> void:
 	#listen_to_other_states()
@@ -892,6 +901,10 @@ func instantiate_charged_attack_impact_vfx() -> void :
 	vfx_spawned = false
 	
 
+func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	make_damage(area, charged_attack_damage)
+	print("Charged attack a touché quelqu'un")
+
 # --------------------------------------------------------------------------
 
 ## VFX
@@ -920,13 +933,3 @@ func play_random_footstep() -> void:
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
-
-
-func _on_charged_recovery_state_entered() -> void:
-	print("Je suis entré dans recovery")
-	listen_to_other_states()
-	
-
-
-func _on_charged_recovery_state_processing(delta: float) -> void:
-	listen_to_other_states()

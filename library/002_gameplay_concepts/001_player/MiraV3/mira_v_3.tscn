@@ -10316,6 +10316,7 @@ debug_color = Color(0.532, 0, 0.156, 0.712)
 [connection signal="button_down" from="UI/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/death_pannel" method="_on_yes_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_no_button_button_down"]
+[connection signal="area_entered" from="Meshes/ChargedAttackSystemArea3D" to="." method="_on_charged_attack_system_area_3d_area_entered"]
 [connection signal="state_entered" from="StateChart/root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_processing"]
 [connection signal="state_entered" from="StateChart/root/Movement" to="." method="_on_movement_state_entered"]
