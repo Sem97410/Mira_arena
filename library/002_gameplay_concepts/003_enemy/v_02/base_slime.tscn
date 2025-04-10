@@ -400,6 +400,13 @@ delay_in_seconds = "0.0
 
 "
 
+[node name="ToHit" type="Node" parent="StateChart/root/HitReaction"]
+process_mode = 1
+script = ExtResource("5_vshtb")
+to = NodePath("../../HitReaction")
+event = &"IsHit"
+delay_in_seconds = "0.0"
+
 [node name="Death" type="Node" parent="StateChart/root"]
 process_mode = 1
 script = ExtResource("5_m7hht")
