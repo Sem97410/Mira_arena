@@ -899,7 +899,7 @@ func make_damage(area : Area3D, damage : float) -> void :
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
 	#print("Je suis dans l'Area")
-	if parent.has_method("take_damage"):
+	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
 		trigger_shake()
 		return
