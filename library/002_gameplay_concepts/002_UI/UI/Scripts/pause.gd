@@ -10,7 +10,7 @@ extends Control
 
 @onready var not_ready_label : Label = $NotReadyLabel
 
-@export var health_script : HealthSystem
+#@export var health_script : HealthSystem
 
 #------------------------------
 
@@ -41,7 +41,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause_game") and  health_script.is_alive:
+	if Input.is_action_just_pressed("pause_game"): # and  health_script.is_alive:
 		print("Pause game was clicked")
 		toggle_pause_pannel()
 

@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1wnqq3rpkhir"]
+[gd_scene load_steps=3 format=3 uid="uid://c1wnqq3rpkhir"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_8hofu"]
-[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_eyes.tres" id="2_ee5k3"]
-[ext_resource type="Material" uid="uid://boghuf3g47a7v" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/mat_slime_hunter.tres" id="3_ee5k3"]
-[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_helmet.tres" id="3_ttjhj"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="4_2pd0x"]
 
 [node name="Hunter" instance=ExtResource("1_8hofu")]
@@ -17,13 +14,6 @@ movement_interpolate_strength = 10.0
 [node name="Skeleton3D" parent="Mesh/Slime" index="0"]
 bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
 bones/0/scale = Vector3(1.2, 0.8, 1.2)
-
-[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("2_ee5k3")
-surface_material_override/1 = ExtResource("3_ee5k3")
-
-[node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
-surface_material_override/0 = ExtResource("3_ttjhj")
 
 [node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="0"]
 script = ExtResource("4_2pd0x")

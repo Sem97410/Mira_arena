@@ -2,12 +2,9 @@ extends Node
 
 @export var charged_attack_sound : AudioStreamPlayer
 
-#@export var charge_attack_broom_dash_vfx : Node3D
 @export var charge_attack_charging : Node3D
-#@export var charge_attack_impact : Node3D
-#@export var charge_attack_impact_animation_player : AnimationPlayer
 
-#@export var game_master : MiraGameMaster
+
 @export var charge_attack_lock_mesh : Node3D
 @export var movement_script : PlayerMovementScript
 

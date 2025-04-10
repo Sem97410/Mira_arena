@@ -37,7 +37,7 @@ var is_invincible : bool
 
 var is_knockback_active : bool = false  # Knockback en cours ?
 var knockback_velocity : Vector3 = Vector3.ZERO  # Stocke la force actuelle du knockback
-var knockback_force : float = 15.0  # Intensité du knockback
+var knockback_force : float = 25.0  # Intensité du knockback
 var knockback_vertical_boost : float = 5.0  # Hauteur de l'effet "en cloche"
 var knockback_decay : float = 5.0  # Vitesse de réduction du knockback
 var knockback_duration : float = 0.5  # Durée totale du knockback
@@ -132,17 +132,17 @@ func disable_attack_area(area : Area3D) -> void :
 	area.monitoring = false
 
 func make_damage(area : Area3D, damage : float) -> void : 
-	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
-	#print("Make damage")
-	
-	# Trouver le nœud avec la fonction take_damage parmi les frères
-	for sibling in parent.get_children():
+	if parent.has_method("take_damage"):
+		parent.take_damage(damage)
+		print("Parent take damage")
 		
-		if sibling.is_in_group("player") and sibling.has_method("take_damage"):
-			sibling.take_damage(damage)
-			#print("Il a la fonction take_damage")
-			break
+	for child in parent.get_children():
+		if child.has_method("take_damage"):
+			child.take_damage(damage)
+			print("Child take damaage")
+			#print("Touch by explosion from area: ", area.name)
+			break  # Stop dès qu’un enfant a été touché
 
 func make_zone_damages(attack_area : Area3D,damage : float) -> void : 
 	print("Je suis dans make damage")
