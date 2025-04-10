@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7frm4cdr4dd0"]
 
 [ext_resource type="Material" uid="uid://cj5162ptkc14u" path="res://library/002_gameplay_concepts/004_level_system/asset/floor/mat_base_floor.tres" id="1_hrpeg"]
-[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/grass_04.tres" id="2_vadfo"]
+[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/base_grass.tres" id="2_vadfo"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="3_nlxlu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cv5ch"]

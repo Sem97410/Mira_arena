@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://b7sv3efluv010"]
+[gd_scene load_steps=5 format=4 uid="uid://b7sv3efluv010"]
+
+[ext_resource type="Material" uid="uid://bv2djqyywj0y6" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/material/mat_concrete_block.tres" id="1_rb31t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np2ks"]
 resource_name = "standardSurface1.005"
@@ -45,3 +47,4 @@ shadow_mesh = SubResource("ArrayMesh_220rg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.396565, -0.405056, -0.227903)
 mesh = SubResource("ArrayMesh_mx0es")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_rb31t")
