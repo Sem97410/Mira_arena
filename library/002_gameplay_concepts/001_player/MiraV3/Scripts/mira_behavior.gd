@@ -41,7 +41,94 @@ var _previous_position: Vector3
 @export_group("Camera")
 @export var camera : Camera3D
 
+# ----------------
 
+# HEALTH
+@export_group("Health")
+@export_subgroup("General health values")
+@export var player_max_hp : float = 100
+@onready var player_current_hp : float = player_max_hp
+@export var animation_player : AnimationPlayer
+@export var player : CharacterBody3D
+@export var player_mesh : Node3D
+@onready var is_alive : bool = true
+
+@export_subgroup("Invincibility values")
+@onready var blink_interval : float = 0.2
+@onready var after_hit_invicibility : bool = false
+@export var invicibility_duration : float = 5.0 #base on the number of blink
+
+
+
+
+@export_subgroup("HealthBar")
+@export var health_bar : ProgressBar
+@export var death_pannel : Control
+@export var death_pannel_first_button : Button
+
+
+
+
+# ---------------- 
+
+# HEALTH
+
+func take_damage(damage : float) -> void :
+	if not after_hit_invicibility :
+		player_current_hp -= damage
+		#print("Being hit")
+		check_if_dead()
+		launch_hit_logic()
+		health_bar.health = player_current_hp
+		
+
+
+func launch_hit_logic() -> void :
+	if player_current_hp <= 0 :
+		return
+		
+	#print("Hit logic")
+	base_state_machine.travel("Hit")	#Animation
+	player_is_blinking()				#Blink
+
+	
+	
+
+func check_if_dead() -> void :
+	if player_current_hp <= 0 :
+		#print("Player is dead")
+		death()
+		
+
+func death() -> void :
+
+	base_state_machine.travel("Death")
+	is_alive = false
+
+	death_pannel.visible = true
+
+	can_move = false
+	
+	death_pannel_first_button.grab_focus()
+	
+	await get_tree().create_timer(0.5).timeout
+	Engine.time_scale = 0.0
+	
+	
+	
+func player_is_blinking():
+	if  after_hit_invicibility:
+		return # Exit if blinking is already in progress
+
+	after_hit_invicibility = true # Lock blinking
+	
+	for i in range(invicibility_duration):
+		player_mesh.visible = not player_mesh.visible
+		await get_tree().create_timer(blink_interval).timeout
+	
+	# Restore visibility and re-enable blinking
+	player_mesh.visible = true
+	after_hit_invicibility = false
 # ----------------
 
 # MOVEMENT
@@ -222,6 +309,8 @@ var original_position: Vector3  # Stocke la position d'origine
 func _ready():
 	_previous_position = global_position
 	original_position = camera_position.transform.origin  # Sauvegarde la position de base
+	health_bar.init_health(player_max_hp)
+	Engine.time_scale = 1.0
 
 
 func trigger_shake() -> void:
@@ -293,7 +382,7 @@ func _on_idle_state_processing(delta: float) -> void:
 	#print("Je viens d'entrer dans le state movement")
 
 func _on_movement_state_processing(delta: float) -> void:
-	print('Je suis entré dans le movement state')
+	#print('Je suis entré dans le movement state')
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
@@ -353,12 +442,12 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 #---
 
 func _on_charged_attack_state_entered() -> void:
-	print("I'm inside the charged_attack_state")
+	#print("I'm inside the charged_attack_state")
 	base_state_machine.travel("ChargedAttack")
 
 
 func _on_charged_recovery_state_entered() -> void:
-	print("Je suis entré dans recovery")
+	#print("Je suis entré dans recovery")
 	listen_to_other_states()
 	
 
@@ -510,7 +599,7 @@ func jump_the_character() -> void :
 ## IN THE AIR
 func launch_in_the_air_animation() -> void : 
 	if not is_on_floor():
-		print("Not in the floor")
+		#print("Not in the floor")
 		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
 	#elif is_on_floor() :
@@ -903,7 +992,7 @@ func instantiate_charged_attack_impact_vfx() -> void :
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, charged_attack_damage)
-	print("Charged attack a touché quelqu'un")
+	#print("Charged attack a touché quelqu'un")
 
 # --------------------------------------------------------------------------
 

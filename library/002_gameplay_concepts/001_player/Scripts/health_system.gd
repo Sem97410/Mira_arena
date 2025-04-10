@@ -69,21 +69,13 @@ func check_if_dead() -> void :
 		
 
 func death() -> void :
-	#print("Block movement")
-	#print("Death logics")
-	
+
 	base_state_machine.travel("Death")
 	is_alive = false
-	#for action in InputMap.get_actions():
-		#InputMap.action_erase_events(action)
+
 	death_pannel.visible = true
-	#test_button.grab_focus()
+
 	movement_script.can_move = false
-	
-	#await get_tree().create_timer(0.1).timeout
-	
-	#animation_tree.active = false
-	#animation_player.play("Death")
 	
 	death_pannel_first_button.grab_focus()
 	
@@ -97,8 +89,6 @@ func player_is_blinking():
 		return # Exit if blinking is already in progress
 
 	after_hit_invicibility = true # Lock blinking
-	
-	 #int(player.i_frame_duration / blink_interval)
 	
 	for i in range(invicibility_duration):
 		player_mesh.visible = not player_mesh.visible

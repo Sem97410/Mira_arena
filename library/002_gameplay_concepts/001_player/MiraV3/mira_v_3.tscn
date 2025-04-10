@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=113 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -8619,12 +8619,20 @@ radius = 1.3
 height = 5.846
 radius = 0.7
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "charge_attack_charging", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "light_attack_vfx_storage", "movement_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "mira_step", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charged_attack_sound", "camera_position")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
+
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "animation_player", "player", "player_mesh", "health_bar", "death_pannel", "death_pannel_first_button", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "charge_attack_charging", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "light_attack_vfx_storage", "movement_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "mira_step", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charged_attack_sound", "camera_position")]
 script = ExtResource("32_1yggv")
 animation_tree = NodePath("AnimationTree")
 state_chart = NodePath("StateChart")
 aura_mesh = NodePath("Meshes/Group/Aura")
 camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
+animation_player = NodePath("Meshes/AnimationPlayer")
+player = NodePath(".")
+player_mesh = NodePath("Meshes/Group/DeformationSystem")
+health_bar = NodePath("UI/HealthBar")
+death_pannel = NodePath("UI/death_pannel")
+death_pannel_first_button = NodePath("UI/death_pannel/Buttons_container/Reload")
 dash_length = 5.0
 action_line_sprites = NodePath("UI/ActionLineSprites")
 light_attack_area = NodePath("LightAttackSystemArea3D")
@@ -10294,6 +10302,13 @@ transform = Transform3D(1, 0, 0, 0, 0.290619, 0.956839, 0, -0.956839, 0.290619, 
 shape = SubResource("CylinderShape3D_qq7u7")
 disabled = true
 debug_color = Color(0.532, 0, 0.156, 0.712)
+
+[node name="HealthArea" type="Area3D" parent="." groups=["player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthArea" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840333, 0)
+shape = SubResource("CapsuleShape3D_8bksx")
+debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
