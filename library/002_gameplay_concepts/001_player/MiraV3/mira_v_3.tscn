@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=114 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -40,6 +40,7 @@
 [ext_resource type="Script" uid="uid://0q415e2thjsw" path="res://addons/godot_state_charts/compound_state.gd" id="36_uvhkw"]
 [ext_resource type="Script" uid="uid://d0n7iegy28s7u" path="res://addons/godot_state_charts/atomic_state.gd" id="37_bupnr"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="38_uvhkw"]
+[ext_resource type="PackedScene" uid="uid://c4pl5aut7eugc" path="res://library/002_gameplay_concepts/012_tools/post_process/post_process.tscn" id="39_qq7u7"]
 [ext_resource type="Texture2D" uid="uid://b7giv6sy8xd0e" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_1.png" id="39_v240w"]
 [ext_resource type="Texture2D" uid="uid://col0iffowx2jb" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_2.png" id="40_a8wav"]
 [ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="41_7fune"]
@@ -10056,6 +10057,8 @@ transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent/CameraController/CameraTarget"]
 transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0, 3.71616, 3.5845)
+
+[node name="post_process" parent="CameraComponent/CameraController/CameraTarget/Camera3D" instance=ExtResource("39_qq7u7")]
 
 [node name="MakeCameraShake" type="Node" parent="CameraComponent" node_paths=PackedStringArray("camera_position")]
 script = ExtResource("31_1yggv")

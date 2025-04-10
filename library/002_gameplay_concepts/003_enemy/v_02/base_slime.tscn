@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ck634gxyhffr"]
+[gd_scene load_steps=40 format=4 uid="uid://ck634gxyhffr"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/damage_stars.tscn" id="2_baove"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="2_m7hht"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://cw27nttbyw2yh" path="res://addons/godot_state_charts/state_chart.gd" id="3_vshtb"]
 [ext_resource type="Script" uid="uid://d3eyv3bwjgt31" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/base_slime.gd" id="4_13pv3"]
 [ext_resource type="Script" uid="uid://0q415e2thjsw" path="res://addons/godot_state_charts/compound_state.gd" id="4_baove"]
+[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_eyes.tres" id="5_irgbf"]
 [ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="5_k64ta"]
 [ext_resource type="Script" uid="uid://d0n7iegy28s7u" path="res://addons/godot_state_charts/atomic_state.gd" id="5_m7hht"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="5_vshtb"]
+[ext_resource type="Material" uid="uid://boghuf3g47a7v" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/mat_slime_hunter.tres" id="6_4tn48"]
 [ext_resource type="ArrayMesh" uid="uid://bb7xvu32irgkb" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Aura.obj" id="6_xy22r"]
 [ext_resource type="Shader" uid="uid://cqx7o3keptnwj" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_particle.tres" id="7_l8g3y"]
 [ext_resource type="Texture2D" uid="uid://dh0rixjfldln2" path="res://library/002_gameplay_concepts/003_enemy/v_02/Assets2D/angry.png" id="10_jf0rl"]
@@ -422,6 +424,8 @@ bones/2/scale = Vector3(1, 1, 1)
 process_mode = 1
 mesh = SubResource("ArrayMesh_5tdee")
 skin = SubResource("Skin_0jhcs")
+surface_material_override/0 = ExtResource("5_irgbf")
+surface_material_override/1 = ExtResource("6_4tn48")
 
 [node name="helmet" type="MeshInstance3D" parent="Mesh/Slime/Skeleton3D"]
 process_mode = 1
