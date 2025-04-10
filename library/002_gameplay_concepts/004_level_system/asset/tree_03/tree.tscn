@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://x5m1p4oujc4n"]
+[gd_scene load_steps=8 format=4 uid="uid://x5m1p4oujc4n"]
 
 [ext_resource type="Material" uid="uid://ddp05utpjxpol" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/material/mat_shdr_trunk_tree_3d.tres" id="1_d1cwp"]
 [ext_resource type="Material" uid="uid://djsf8ra5yxmj1" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/material/mat_shdr_leaf_tree.tres" id="3_ito0q"]
@@ -73,6 +73,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_07qnc")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1cwp"]
+size = Vector3(1.08545, 2.06445, 1)
+
 [node name="tree" type="Node3D"]
 
 [node name="Mesh_Tree" type="Node3D" parent="."]
@@ -82,3 +85,9 @@ mesh = SubResource("ArrayMesh_2dxk7")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_d1cwp")
 surface_material_override/1 = ExtResource("3_ito0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh_Tree"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh_Tree/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0576415, 0.992491, 0)
+shape = SubResource("BoxShape3D_d1cwp")

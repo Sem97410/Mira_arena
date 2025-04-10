@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bhaywyfab5uml"]
+
+[ext_resource type="Texture2D" uid="uid://carh0y3gwdqwo" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Stone/txt_Stone_BaseColor.png" id="1_tcdc4"]
+[ext_resource type="Texture2D" uid="uid://bamlxpia72ly3" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Stone/txt_Stone_Roughness.png" id="3_tf0j2"]
+
+[resource]
+albedo_texture = ExtResource("1_tcdc4")
+roughness_texture = ExtResource("3_tf0j2")
+normal_enabled = true

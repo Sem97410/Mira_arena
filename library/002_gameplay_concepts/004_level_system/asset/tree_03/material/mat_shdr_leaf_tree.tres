@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_uoaqm")
 shader_parameter/amplitude = 0.04
-shader_parameter/frequency = 0.707
+shader_parameter/frequency = 1.525
 shader_parameter/speed = 1.689
 shader_parameter/albedo_texture = ExtResource("2_mvjf6")
 shader_parameter/shadow_color = Color(0.0142752, 0.0142752, 0.0142752, 1)

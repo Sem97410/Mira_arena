@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b2f6r1lq7i3dv"]
+
+[ext_resource type="Texture2D" uid="uid://b000j4u4opohk" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_u/material/txt_Platform_P_BaseColor.png" id="1_5512i"]
+
+[resource]
+albedo_texture = ExtResource("1_5512i")
+uv1_triplanar_sharpness = 1.18921
+uv1_world_triplanar = true

@@ -48,7 +48,3 @@ void light() {
     // Application de la lumière diffuse
     DIFFUSE_LIGHT += final_color * ATTENUATION;
 	 }
-
-
-
-

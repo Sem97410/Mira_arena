@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://chwlelpj2gqcx"
+path="res://.godot/imported/Platform_L_5.obj-cb295b13745e6ea7d6d45118b3162730.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Platform_L_5.obj-cb295b13745e6ea7d6d45118b3162730.mesh"]
+
+source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_L_5.obj"
+dest_files=["res://.godot/imported/Platform_L_5.obj-cb295b13745e6ea7d6d45118b3162730.mesh", "res://.godot/imported/Platform_L_5.obj-cb295b13745e6ea7d6d45118b3162730.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

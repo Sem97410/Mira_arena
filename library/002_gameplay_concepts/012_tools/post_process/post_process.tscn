@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://c4pl5aut7eugc"]
+[gd_scene load_steps=3 format=3 uid="uid://c4pl5aut7eugc"]
+
+[ext_resource type="Material" uid="uid://db3jvv5lmjjjl" path="res://library/002_gameplay_concepts/012_tools/post_process/mat_ouline_post_process.tres" id="1_du8k4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1egbq"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [node name="post_process" type="MeshInstance3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_1egbq")
+surface_material_override/0 = ExtResource("1_du8k4")
