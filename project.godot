@@ -22,7 +22,6 @@ SlimeAutoload="*res://library/002_gameplay_concepts/003_enemy/v_01/002_Script/sl
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="viewport"

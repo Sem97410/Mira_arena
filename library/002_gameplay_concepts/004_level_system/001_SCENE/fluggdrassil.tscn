@@ -1,4 +1,4 @@
-[gd_scene load_steps=712 format=4 uid="uid://dhn8ua4j1ihnh"]
+[gd_scene load_steps=717 format=4 uid="uid://dhn8ua4j1ihnh"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_suwol"]
 [ext_resource type="PackedScene" uid="uid://cnjlrlsfprl5c" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/platform_start.tscn" id="2_3jmiu"]
@@ -19,12 +19,17 @@
 [ext_resource type="PackedScene" uid="uid://c1svhchjp0pba" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/old_fbx/stairs_long.fbx" id="9_fypdp"]
 [ext_resource type="PackedScene" uid="uid://dnik8t6w5acpl" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_r_6/platform_r_6.tscn" id="10_rljgt"]
 [ext_resource type="Material" uid="uid://c7regs7rtceqd" path="res://library/002_gameplay_concepts/004_level_system/asset/border_block/material/mat_border_block.tres" id="11_h4e75"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter_slime.tscn" id="11_igl5f"]
 [ext_resource type="PackedScene" uid="uid://d3r68xxg2flw" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_1/platform_l_1.tscn" id="11_lhsma"]
 [ext_resource type="PackedScene" uid="uid://bvqorcy01odnv" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_2/platform_l_2.tscn" id="12_irq77"]
+[ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/wanderer_slime.tscn" id="12_rj2n2"]
+[ext_resource type="PackedScene" uid="uid://ddtoebj46ohx5" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_missile_slime/missile_slime.tscn" id="13_8lplo"]
 [ext_resource type="PackedScene" uid="uid://cbrx0f64ju6nn" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_3/platform_l_3.tscn" id="13_p04nf"]
 [ext_resource type="PackedScene" uid="uid://4yichd2ptcx0" path="res://library/002_gameplay_concepts/004_level_system/asset/cemetery_fence/cemetery_fence_complete.tscn" id="13_snqrk"]
 [ext_resource type="PackedScene" uid="uid://de4vjpdukdbd0" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_4/platform_l_4.tscn" id="14_7tla6"]
+[ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="14_jmmeb"]
 [ext_resource type="PackedScene" uid="uid://dufctajw2lafq" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_5/platform_l_5.tscn" id="15_88enq"]
+[ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/mortar_slime.tscn" id="15_rj2n2"]
 [ext_resource type="PackedScene" uid="uid://c0s036wlnwllu" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_6/platform_l_6.tscn" id="16_j88io"]
 [ext_resource type="PackedScene" uid="uid://ymxiltcuhgt7" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_7/platform_l_7.tscn" id="17_rljgt"]
 [ext_resource type="PackedScene" uid="uid://dybb3y20jputa" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_l_8/platform_l_8.tscn" id="18_lhsma"]
@@ -38,7 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://6so8382dg6rf" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_end_m/platform_end_m.tscn" id="24_8avdb"]
 [ext_resource type="PackedScene" uid="uid://l1ah0nnokfd2" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_end_r/platform_end_r.tscn" id="25_suwol"]
 [ext_resource type="PackedScene" uid="uid://byywr82522ndy" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_arena/platform_arena.tscn" id="34_5hds3"]
-[ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="35_00rte"]
 [ext_resource type="PackedScene" uid="uid://bygq5w71y71ya" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_01/evan_spine_tree.tscn" id="36_m4avl"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="36_uf05y"]
 [ext_resource type="Material" uid="uid://ckfk866b6mnnr" path="res://library/002_gameplay_concepts/004_level_system/asset/roots_bridge/material/mat_root_bridge.tres" id="37_ee2vu"]
@@ -69,6 +73,7 @@
 [ext_resource type="Material" uid="uid://bhaywyfab5uml" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Stone/stone_border_start.tres" id="66_dxb4p"]
 [ext_resource type="Material" uid="uid://bdhsj7qovqvki" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Pillar/mat_pillar_start.tres" id="67_voux2"]
 [ext_resource type="PackedScene" uid="uid://id5vnuy8rwsp" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_edge/platform_edge.tscn" id="68_dxb4p"]
+[ext_resource type="PackedScene" uid="uid://c6x03tnfna0py" path="res://library/002_gameplay_concepts/001_player/MiraV3/mira_v_3.tscn" id="69_voux2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yuej8"]
 size = Vector3(7.33899, 3.896, 6.13184)
@@ -598,7 +603,7 @@ extent = 128.0
 bounds = AABB(-319, -169, -319, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 1
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_0iv3h"]
@@ -616,7 +621,7 @@ extent = 128.0
 bounds = AABB(-319, -169, -63, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_16ddi"]
@@ -634,7 +639,7 @@ extent = 128.0
 bounds = AABB(-319, 87, -319, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xtlcr"]
@@ -652,7 +657,7 @@ extent = 128.0
 bounds = AABB(-319, 87, -63, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_idwnl"]
@@ -778,7 +783,7 @@ extent = 32.0
 bounds = AABB(-63, 23, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_4kq6q"]
@@ -1210,7 +1215,7 @@ extent = 8.0
 bounds = AABB(1, 7, -79, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_8qps7"]
@@ -1858,7 +1863,7 @@ extent = 8.0
 bounds = AABB(17, 7, -79, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_mfwe8"]
@@ -1876,7 +1881,7 @@ extent = 16.0
 bounds = AABB(1, -9, -95, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_bkhg8"]
@@ -1966,7 +1971,7 @@ extent = 32.0
 bounds = AABB(1, -41, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_kxbh6"]
@@ -2002,7 +2007,7 @@ extent = 32.0
 bounds = AABB(1, 23, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_eby0l"]
@@ -2020,7 +2025,7 @@ extent = 64.0
 bounds = AABB(-63, -41, -191, 128, 128, 128)
 max_bounds_to_center_dist = 110.851
 min_bounds_to_center_dist = 64.0
-active_LOD_index = 1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_t0u2o"]
@@ -2110,7 +2115,7 @@ extent = 128.0
 bounds = AABB(-63, -169, -319, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ws32j"]
@@ -2218,7 +2223,7 @@ extent = 8.0
 bounds = AABB(-63, -9, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_e628e"]
@@ -2254,7 +2259,7 @@ extent = 8.0
 bounds = AABB(-63, 7, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_igl5f"]
@@ -2272,7 +2277,7 @@ extent = 8.0
 bounds = AABB(-63, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_rj2n2"]
@@ -4234,7 +4239,7 @@ extent = 8.0
 bounds = AABB(-15, -9, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hprqm"]
@@ -4252,7 +4257,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -63, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_o851d"]
@@ -4270,7 +4275,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_khrbj"]
@@ -4792,7 +4797,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_g0b7u"]
@@ -4810,7 +4815,7 @@ extent = 8.0
 bounds = AABB(-15, -9, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_46knk"]
@@ -5134,7 +5139,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ygf06"]
@@ -5152,7 +5157,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_vpkgx"]
@@ -5782,7 +5787,7 @@ extent = 8.0
 bounds = AABB(-31, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_jkba1"]
@@ -6430,7 +6435,7 @@ extent = 8.0
 bounds = AABB(-15, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34nua"]
@@ -6466,7 +6471,7 @@ extent = 16.0
 bounds = AABB(-31, -9, 1, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_rm4dl"]
@@ -7078,7 +7083,7 @@ extent = 32.0
 bounds = AABB(-63, -41, 1, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_u5ilq"]
@@ -7132,7 +7137,7 @@ extent = 32.0
 bounds = AABB(1, -41, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_dcwr0"]
@@ -7510,7 +7515,7 @@ extent = 8.0
 bounds = AABB(1, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_52xeb"]
@@ -8050,7 +8055,7 @@ extent = 16.0
 bounds = AABB(1, -9, 1, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_i2q7y"]
@@ -9742,7 +9747,7 @@ extent = 32.0
 bounds = AABB(1, -41, 1, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_oolfx"]
@@ -9760,7 +9765,7 @@ extent = 32.0
 bounds = AABB(1, 23, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_biek8"]
@@ -9778,7 +9783,7 @@ extent = 32.0
 bounds = AABB(1, 23, 1, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_3kmsf"]
@@ -11158,54 +11163,103 @@ transform = Transform3D(0.718102, 0, 0.695938, 0, 1, 0, -0.695938, 0, 0.718102, 
 
 [node name="death_zone" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -7, 0)
-player = NodePath("../../Mira")
+player = NodePath("../../MiraV3")
 
 [node name="death_zone2" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, -46.2476, -7, -53.0913)
-player = NodePath("../../Mira")
+player = NodePath("../../MiraV3")
 
 [node name="death_zone3" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, 48.8128, -7, 53.887)
-player = NodePath("../../Mira")
+player = NodePath("../../MiraV3")
 
 [node name="death_zone4" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, 86.2736, -7, -114.548)
-player = NodePath("../../Mira")
+player = NodePath("../../MiraV3")
 
 [node name="death_zone5" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.657375, 0.753563, -3.29393e-08, 0, -4.37114e-08, -1, -0.753564, -0.657375, 2.87348e-08, -54.7803, -7, 8.50123)
-player = NodePath("../../Mira")
+player = NodePath("../../MiraV3")
 
 [node name="Spawner2" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -18.5598, 2.17668, -10.4324)
-spawn_increase_percent = 10.0
+spawn_increase_percent = 7.5
 spawn_range = 3.0
 wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
 
 [node name="Spawner3" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.649461, 0, -0.760395, 0, 1, 0, 0.760395, 0, 0.649461, 10.0537, 2.17668, 17.2244)
-spawn_increase_percent = 10.0
+spawn_increase_percent = 7.5
 spawn_range = 3.0
+wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
 
 [node name="Spawner4" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.0808, 2.57878, -32.9367)
-spawn_increase_percent = 10.0
+spawn_increase_percent = 7.5
 spawn_range = 2.0
+wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
 
 [node name="Spawner5" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.642025, 0, -0.766684, 0, 1, 0, 0.766684, 0, 0.642025, 30.0272, 1.63599, 0.277776)
-spawn_increase_percent = 10.0
+spawn_increase_percent = 7.5
 spawn_range = 3.0
+wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
 
 [node name="Spawner6" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.653421, 0, -0.756995, 0, 1, 0, 0.756995, 0, 0.653421, 6.05735, 6.0001, -71.8696)
-spawn_increase_percent = 10.0
+spawn_increase_percent = 7.5
 spawn_range = 3.0
+wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
 
 [node name="Spawner7" parent="." instance=ExtResource("8_7uowv")]
 transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 21.7693, 3.9304, -52.6143)
+spawn_increase_percent = 7.5
+spawn_range = 3.0
+wave_delay = 20.0
+enemy_types = Array[PackedScene]([ExtResource("11_igl5f"), ExtResource("12_rj2n2")])
+spawn_chances = Array[int]([40, 60])
+
+[node name="ESpawner8" parent="." instance=ExtResource("8_7uowv")]
+transform = Transform3D(0.669675, 0, -0.742654, 0, 1, 0, 0.742654, 0, 0.669675, 21.7693, 3.9304, -52.6143)
 spawn_increase_percent = 10.0
 spawn_range = 3.0
+wave_delay = 40.0
+enemy_types = Array[PackedScene]([ExtResource("13_8lplo"), ExtResource("14_jmmeb")])
+spawn_chances = Array[int]([75, 25])
+
+[node name="ESpawner9" parent="." instance=ExtResource("8_7uowv")]
+transform = Transform3D(0.669595, -0.015463, -0.742565, 0.0103552, 0.99988, -0.0114837, 0.742654, 2.77556e-17, 0.669675, 28.6672, 2.16198, -1.76365)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
+wave_delay = 40.0
+enemy_types = Array[PackedScene]([ExtResource("13_8lplo"), ExtResource("14_jmmeb")])
+spawn_chances = Array[int]([75, 25])
+
+[node name="ESpawner10" parent="." instance=ExtResource("8_7uowv")]
+transform = Transform3D(0.669595, -0.015463, -0.742565, 0.0103552, 0.99988, -0.0114837, 0.742654, 2.77556e-17, 0.669675, 62.5188, 2.16198, -56.7663)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
+wave_delay = 40.0
+enemy_types = Array[PackedScene]([ExtResource("13_8lplo"), ExtResource("14_jmmeb")])
+spawn_chances = Array[int]([75, 25])
+
+[node name="MSpawner11" parent="." instance=ExtResource("8_7uowv")]
+transform = Transform3D(0.669595, -0.015463, -0.742565, 0.0103552, 0.99988, -0.0114837, 0.742654, 2.77556e-17, 0.669675, 62.5188, 2.16198, -56.7663)
+spawn_increase_percent = 10.0
+spawn_range = 3.0
+wave_delay = 70.0
+enemy_types = Array[PackedScene]([ExtResource("15_rj2n2")])
+spawn_chances = Array[int]([100])
 
 [node name="Spawner" type="Node" parent="."]
 
@@ -11546,9 +11600,6 @@ transform = Transform3D(-0.689253, 0, -0.724521, 0, 1, 0, 0.724521, 0, -0.689253
 
 [node name="tomb_04" parent="wood_roots" instance=ExtResource("38_2ws3r")]
 transform = Transform3D(-0.689253, 0, -0.724521, 0, 1, 0, 0.724521, 0, -0.689253, 19.2396, 1.1676, 22.2169)
-
-[node name="Mira" parent="." instance=ExtResource("35_00rte")]
-transform = Transform3D(-0.634461, 0, 0.772955, 0, 1, 0, -0.772955, 0, -0.634461, -28.0755, -1.27098, 23.0451)
 
 [node name="FPSCounter" parent="." instance=ExtResource("36_uf05y")]
 
@@ -12669,6 +12720,9 @@ end_position = Vector3(14.435, 0.37, 0)
 [node name="NavigationLink3D18" type="NavigationLink3D" parent="."]
 transform = Transform3D(-0.0560131, 0, -0.99843, 0, 1, 0, 0.99843, 0, -0.0560131, 74.6749, 1.56144, -12.4021)
 end_position = Vector3(11.305, 0.005, 0)
+
+[node name="MiraV3" parent="." instance=ExtResource("69_voux2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0732, -0.577457, 24.4828)
 
 [connection signal="body_entered" from="Audio_System/hululement_zone" to="Audio_System/hululement_zone" method="_on_body_entered"]
 [connection signal="body_exited" from="Audio_System/hululement_zone" to="Audio_System/hululement_zone" method="_on_body_exited"]
