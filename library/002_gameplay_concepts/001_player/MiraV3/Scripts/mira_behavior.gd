@@ -372,8 +372,8 @@ func send_event_state_chart(event_name : String)-> void :
 #---
 
 func listen_to_other_states() -> void : 
-	activate_idle_state()
 	activate_movement_state()
+	activate_idle_state()
 	activate_in_the_air_state()
 	activate_dash_state()
 	activate_light_attack_state()
@@ -390,7 +390,7 @@ func activate_idle_state()-> void :
 
 func activate_movement_state()-> void : 
 	#print("Launch of the Movement state")
-	if _input_strength > 0.1 and _real_speed > 0.1:
+	if _input_strength > 0.1 or _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
 		#print("Enter in movement state")
 
@@ -504,9 +504,9 @@ func launch_in_the_air_animation() -> void :
 		print("Not in the floor")
 		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
-	elif is_on_floor() :
-		base_state_machine.travel("MovementBlendSpace")
-		aura_mesh.visible = true
+	#elif is_on_floor() :
+		#base_state_machine.travel("MovementBlendSpace")
+		#aura_mesh.visible = true
 
 # --------------------------------------------------------------------------
 
@@ -920,3 +920,13 @@ func play_random_footstep() -> void:
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
+
+
+func _on_charged_recovery_state_entered() -> void:
+	print("Je suis entré dans recovery")
+	listen_to_other_states()
+	
+
+
+func _on_charged_recovery_state_processing(delta: float) -> void:
+	listen_to_other_states()

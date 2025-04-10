@@ -2067,25 +2067,11 @@ tracks/99/path = NodePath("..")
 tracks/99/interp = 1
 tracks/99/loop_wrap = true
 tracks/99/keys = {
-"times": PackedFloat32Array(2.9),
+"times": PackedFloat32Array(2.86667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"activate_idle_state"
-}]
-}
-tracks/100/type = "method"
-tracks/100/imported = false
-tracks/100/enabled = false
-tracks/100/path = NodePath("..")
-tracks/100/interp = 1
-tracks/100/loop_wrap = true
-tracks/100/keys = {
-"times": PackedFloat32Array(2.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_movement_state"
+"args": ["IsFinishingTheChargedAttack"],
+"method": &"send_event_state_chart"
 }]
 }
 
@@ -10211,22 +10197,31 @@ delay_in_seconds = "0.0"
 [node name="ChargedAttack" type="Node" parent="StateChart/root"]
 script = ExtResource("37_bupnr")
 
-[node name="ToDash" type="Node" parent="StateChart/root/ChargedAttack"]
+[node name="ToChargedRicovery" type="Node" parent="StateChart/root/ChargedAttack"]
 script = ExtResource("38_uvhkw")
-to = NodePath("../../Dash")
-event = &"IsDashing"
+to = NodePath("../../ChargedRecovery")
+event = &"IsFinishingTheChargedAttack"
 delay_in_seconds = "0.0"
 
-[node name="ToMovement" type="Node" parent="StateChart/root/ChargedAttack"]
+[node name="ChargedRecovery" type="Node" parent="StateChart/root"]
+script = ExtResource("37_bupnr")
+
+[node name="ToMovement" type="Node" parent="StateChart/root/ChargedRecovery"]
 script = ExtResource("38_uvhkw")
 to = NodePath("../../Movement")
 event = &"IsMoving"
 delay_in_seconds = "0.0"
 
-[node name="ToIdle" type="Node" parent="StateChart/root/ChargedAttack"]
+[node name="ToIdle" type="Node" parent="StateChart/root/ChargedRecovery"]
 script = ExtResource("38_uvhkw")
 to = NodePath("../../Idle")
 event = &"IsIdle"
+delay_in_seconds = "0.0"
+
+[node name="ToDash" type="Node" parent="StateChart/root/ChargedRecovery"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Dash")
+event = &"IsDashing"
 delay_in_seconds = "0.0"
 
 [node name="Hit" type="Node" parent="StateChart/root"]
@@ -10335,6 +10330,8 @@ debug_color = Color(0.532, 0, 0.156, 0.712)
 [connection signal="state_processing" from="StateChart/root/LightAttack" to="." method="_on_light_attack_state_processing"]
 [connection signal="state_entered" from="StateChart/root/ChargedAttack" to="." method="_on_charged_attack_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/root/ChargedAttack" to="." method="_on_charged_attack_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/root/ChargedRecovery" to="." method="_on_charged_recovery_state_entered"]
+[connection signal="state_processing" from="StateChart/root/ChargedRecovery" to="." method="_on_charged_recovery_state_processing"]
 [connection signal="area_entered" from="LightAttackSystemArea3D" to="." method="_on_light_attack_system_area_3d_area_entered"]
 
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
