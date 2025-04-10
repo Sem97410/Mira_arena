@@ -30,6 +30,7 @@ func _save_player_position(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	#print("🚀 Collision détectée avec:", body.name, "| Groupes:", body.get_groups())
 	if body.is_in_group("player"):
+		print("player is touching")
 		#print("Respawn du joueur à :", respawn_position)
 		body.global_position = respawn_position
 

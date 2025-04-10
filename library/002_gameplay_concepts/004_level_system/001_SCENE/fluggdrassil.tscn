@@ -1,4 +1,4 @@
-[gd_scene load_steps=717 format=4 uid="uid://dhn8ua4j1ihnh"]
+[gd_scene load_steps=719 format=4 uid="uid://dhn8ua4j1ihnh"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_suwol"]
 [ext_resource type="PackedScene" uid="uid://cnjlrlsfprl5c" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/platform_start.tscn" id="2_3jmiu"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="8_7uowv"]
 [ext_resource type="PackedScene" uid="uid://co1sbk07ypjnp" path="res://library/002_gameplay_concepts/004_level_system/asset/candlle_02/candlle_02.tscn" id="8_w8tny"]
 [ext_resource type="PackedScene" uid="uid://dwpv86m2s0dek" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_r_5/platform_r_5.tscn" id="9_5oob5"]
+[ext_resource type="Script" uid="uid://iadvelev2t2" path="res://library/002_gameplay_concepts/004_level_system/002_Script/death_zone.gd" id="9_8lplo"]
 [ext_resource type="PackedScene" uid="uid://c1svhchjp0pba" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/old_fbx/stairs_long.fbx" id="9_fypdp"]
 [ext_resource type="PackedScene" uid="uid://dnik8t6w5acpl" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_r_6/platform_r_6.tscn" id="10_rljgt"]
 [ext_resource type="Material" uid="uid://c7regs7rtceqd" path="res://library/002_gameplay_concepts/004_level_system/asset/border_block/material/mat_border_block.tres" id="11_h4e75"]
@@ -108,6 +109,9 @@ volumetric_fog_density = 0.0444
 volumetric_fog_albedo = Color(0.72061, 0.673048, 0.773086, 1)
 volumetric_fog_anisotropy = -0.06
 volumetric_fog_length = 30.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_imo7s"]
+size = Vector3(190.23, 1, 145.304)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uf05y"]
 vertices = PackedVector3Array(-22.7919, 2.3232, 6.96106, -22.5419, 2.3232, -0.288936, -24.2919, 2.3232, -0.538936, -38.5419, 2.3232, 6.96106, -24.2919, 2.3232, -8.53894, -38.5419, 2.3232, -8.53894, -77.2919, -0.426795, -7.53894, -77.2919, -0.426795, 3.21106, -72.0419, -0.426795, 3.21106, -72.0419, -0.426795, -7.53894, -2.54192, 0.823205, -5.53894, -2.54192, 0.823205, 5.46106, 2.70808, 0.823205, 5.46106, 2.70808, 0.823205, -5.53894, 7.70808, 0.073205, -1.78894, 7.70808, 0.073205, 5.46106, 12.9581, 0.073205, 5.46106, 12.9581, 0.073205, -1.78894, -64.0419, -0.426795, 6.21106, -55.7919, -0.426795, 6.21106, -55.7919, -0.426795, -1.03894, -64.2919, -0.426795, -1.03894, -9.54192, 2.3232, 0.461064, -9.54192, 2.3232, -1.03894, -10.0419, 2.3232, -0.288936, -9.54192, 2.3232, 5.46106, -7.79192, 2.3232, 5.21106, -7.79192, 2.3232, 0.711064, -9.54192, 2.3232, 6.96106, -8.54192, 3.0732, -1.03894, -8.54192, 3.0732, -0.288936, -7.79192, 3.0732, -0.288936, -7.79192, 3.0732, -1.03894, -8.54192, 3.0732, 6.21106, -8.54192, 3.0732, 6.96106, -7.79192, 3.0732, 6.96106, -7.79192, 3.0732, 6.21106, 7.95808, -1.9268, 13.2111, 8.95808, -2.1768, 8.46106, 5.20808, -2.1768, 7.71106, -0.541924, -2.1768, 7.96106, -0.541924, -1.9268, 12.9611, -6.54192, -2.1768, 8.96106, -5.29192, -1.9268, 13.9611, -12.5419, -1.9268, 11.7111, -10.0419, -1.6768, 16.2111, -87.0419, -0.426795, 8.71106, -87.0419, -0.426795, 13.9611, -75.7919, -0.426795, 13.9611, -75.7919, -0.426795, 8.71106, 13.4581, -1.1768, 12.9611, 13.4581, -1.1768, 13.9611, 17.2081, -1.1768, 14.9611, 18.9581, -1.4268, 10.9611, 18.7081, -1.4268, 9.96106, 14.2081, -1.4268, 8.71106, -94.7919, -0.426795, 8.96106, -97.5419, -0.426795, 8.96106, -96.7919, -0.426795, 10.4611, -96.7919, -0.426795, 11.7111, -94.7919, -0.426795, 14.4611, -90.7919, -0.426795, 18.4611, -90.7919, -0.426795, 14.7111, -98.5419, -0.426795, 13.4611, -100.042, -0.426795, 13.4611, -100.042, -0.426795, 18.4611, -30.7919, 1.3232, 37.7111, -29.0419, 1.5732, 37.7111, -29.0419, 1.3232, 34.2111, -36.7919, 1.3232, 37.9611, -36.7919, 1.5732, 39.4611, -31.0419, 1.5732, 39.4611, -38.5419, 1.5732, 37.4611, -26.5419, 1.3232, 28.2111, -23.5419, 1.3232, 27.9611, -23.5419, 1.3232, 15.4611, -38.2919, 1.3232, 15.4611, -20.2919, -0.676795, 59.2111, -20.5419, -0.676795, 60.2111, -20.0419, -0.676795, 60.2111, 31.2081, -0.676795, 33.4611, 31.4581, -0.676795, 32.4611, 30.9581, -0.676795, 32.4611, 30.7081, -0.676795, 31.2111, 30.2081, -0.676795, 31.2111, 26.9581, -0.676795, 26.9611, 29.7081, -0.926795, 61.9611, 30.7081, -0.926795, 61.2111, 31.2081, -1.1768, 58.7111, 31.9581, -1.4268, 58.2111, 32.9581, -1.4268, 55.4611, 33.9581, -0.676795, 49.4611, 32.7795, -0.676795, 53.4254, 31.6009, -1.4268, 57.3896, 33.5581, -0.676795, 51.8611, 13.2081, -0.676795, 18.7111, 12.7081, -0.676795, 17.7111, 9.95808, -0.676795, 16.9611, 2.20808, -0.676795, 16.9611, -20.0419, -0.676795, 61.2111, -18.2919, -0.926795, 64.2111, -17.2919, -0.676795, 64.4611, 2.20808, -0.676795, 74.9611, 2.45808, -0.676795, 75.4611, 7.20808, -1.1768, 75.4611, 23.2081, -0.676795, 23.4611, -7.04192, -0.676795, 19.4611, 24.4581, -0.676795, 23.9611, 29.4581, -0.676795, 28.9611, 34.7081, -0.676795, 48.9611, 34.4581, -0.676795, 42.4611, -13.7919, -0.676795, 68.4611, -5.54192, -0.676795, 73.2111, 4.70808, -0.676795, 73.9838, 27.4581, -0.676795, 65.7111, 21.7081, -0.676795, 21.9611, 15.9581, -0.676795, 19.2111, -22.5419, -0.676795, 36.7111, -23.7919, -0.676795, 41.7111, -24.0419, -0.676795, 45.7111, -10.2919, -0.676795, 70.9611, 33.2081, -0.676795, 37.9611, -2.29192, -0.676795, 17.7111, 24.4626, -1.1768, 64.4378, 22.977, -0.676795, 61.4775, 25.9476, -1.1768, 64.4488, 13.9384, -0.676795, 70.452, 25.947, -0.676795, 61.4495, 24.4679, -1.1768, 65.9405, 18.9581, -0.676795, 71.7111, 23.9581, -0.676795, 68.9611, -23.5419, -0.676795, 52.4611, 17.9581, -0.676795, 72.9611, -17.0419, -0.676795, 26.9611, -20.7919, -0.676795, 32.7111, -12.5419, -0.676795, 22.7111, -58.5419, -0.926795, 18.4611, -58.5419, -0.926795, 22.4611, -56.2919, -0.926795, 22.4611, -54.7919, -0.926795, 18.2111, -49.0419, -0.926795, 23.7111, -49.5419, -0.926795, 23.7111, -53.7919, -0.926795, 24.9611, -53.7919, -0.926795, 29.7111, -49.0419, -0.926795, 30.9611, -63.5419, -0.926795, 29.7111, -67.7919, -0.926795, 31.2111, -62.7919, -0.926795, 36.4611, -61.0419, -0.926795, 32.2111, -54.5419, -0.926795, 36.4611, -56.2919, -0.926795, 32.2111, -61.0419, -0.926795, 22.4611, -63.0419, -0.926795, 18.4611, -63.5419, -0.926795, 24.9611, -67.5419, -0.926795, 23.4611, -69.0419, -0.926795, 23.7111, -69.5419, -0.926795, 31.4611, -69.5419, -0.926795, 23.2111, -73.7919, -0.676795, 23.4611, -76.5419, -0.926795, 23.4611, -76.7919, -0.926795, 24.7111, -73.7919, -0.676795, 30.7111, -91.5419, -0.926795, 30.7111, -91.5419, -0.926795, 24.7111, -62.5419, 0.323205, 25.4611, -62.2919, 0.323205, 25.7111, -60.5419, 0.323205, 23.9611, -60.5419, 0.323205, 23.4611, -55.0419, 0.323205, 28.9611, -57.0419, 0.323205, 30.9611, -56.7919, 0.323205, 31.2111, -54.7919, 0.323205, 29.2111, -62.2919, 0.323205, 28.9611, -62.5419, 0.323205, 29.2111, -57.0419, 0.323205, 23.9611, -56.7919, 0.323205, 23.4611, -60.2919, 0.323205, 30.9611, -60.5419, 0.323205, 31.2111, -55.0419, 0.323205, 25.7111, -54.7919, 0.323205, 25.4611, -93.5419, -0.926795, 24.7111, -94.5419, -0.926795, 30.7111, -105.792, -0.926795, 30.2111, -105.792, -0.926795, 37.2111, -99.2919, -0.926795, 35.2111, -100.292, -0.926795, 23.7111, -98.5419, -0.926795, 34.9611, -99.2919, -0.926795, 37.2111, -93.7919, -0.926795, 23.7111, -60.0419, -0.426795, 24.9611, -61.2919, -0.426795, 26.2111, -59.5419, -0.426795, 26.9611, -58.2919, -0.426795, 26.7111, -57.5419, -0.426795, 24.9611, -59.2919, -0.426795, 28.2111, -61.2919, -0.426795, 28.4611, -59.7919, -0.426795, 29.9611, -57.5419, -0.426795, 29.9611, -56.0419, -0.426795, 28.4611, -58.0419, -0.426795, 27.9611, -56.0419, -0.426795, 26.2111, -59.0419, 4.5732, 27.2111, -59.0419, 4.5732, 27.7111, -58.5419, 4.5732, 27.7111, -58.5419, 4.5732, 27.2111, -105.792, -0.926795, 41.2111, -105.042, -0.926795, 41.4611, -99.2919, -0.926795, 46.2111, -105.292, -0.926795, 45.9611, -38.7919, 2.3232, 38.7111, -38.7919, 2.3232, 39.4611, -37.7919, 2.3232, 39.4611, -37.7919, 2.3232, 38.7111, -30.0419, 2.3232, 38.7111, -30.0419, 2.3232, 39.4611, -29.0419, 2.3232, 39.4611, -29.0419, 2.3232, 38.7111, -80.7919, 0.073205, 38.9611, -80.7919, 0.073205, 39.7111, -80.2919, 0.073205, 39.7111, -80.2919, 0.073205, 38.9611, -78.7919, -0.676795, 55.4611, -78.7919, -0.676795, 56.9611, -74.5419, -0.676795, 56.9611, -74.5419, -0.676795, 55.4611, -73.2919, -0.676795, 40.7111, -74.7919, -0.676795, 40.4611, -79.2919, -0.676795, 40.4611, -74.7919, -0.676795, 38.9611, -79.2919, -0.676795, 38.9611, -80.2919, -0.676795, 55.2111, -73.0419, -0.676795, 55.2111, -80.7919, -0.676795, 40.7111, -73.7919, 0.073205, 38.9611, -73.7919, 0.073205, 39.7111, -73.2919, 0.073205, 39.7111, -73.2919, 0.073205, 38.9611, -107.042, 3.5732, 42.9611, -107.042, 3.5732, 44.4611, -106.292, 3.5732, 44.4611, -106.292, 3.5732, 42.9611, -118.042, -3.4268, 44.9611, -118.042, -3.1768, 43.4611, -118.542, -3.1768, 43.4611, -120.792, -3.1768, 44.4611, -120.292, -3.1768, 50.4611, -118.042, -3.1768, 50.9611, -118.042, -3.4268, 49.4611, -122.042, -3.1768, 46.4611, -122.042, -3.4268, 48.2111, -117.542, -3.4268, 49.2111, -117.542, -3.4268, 45.2111, -121.292, -3.1768, 49.7111, -114.792, -2.4268, 44.2111, -115.292, -2.6768, 43.9611, -115.042, -2.9268, 45.2111, -114.792, -2.9268, 45.2111, -113.792, -2.6768, 45.2111, -113.792, -2.1768, 44.2111, -114.042, -2.4268, 44.2111, -114.042, -2.6768, 45.2111, -108.042, -1.1768, 48.7111, -106.542, -0.926795, 48.7111, -106.542, -0.926795, 45.9611, -108.042, -1.1768, 45.9611, -108.292, -1.1768, 49.2111, -112.042, -2.1768, 45.2111, -112.042, -1.9268, 44.2111, -111.792, -1.6768, 44.2111, -108.292, -0.676795, 43.9611, -111.792, -2.1768, 45.2111, -108.292, -1.1768, 45.2111, -39.5419, 1.3232, 44.9611, -39.5419, 1.3232, 45.7111, -39.0419, 1.3232, 45.7111, -39.0419, 1.3232, 44.9611, -38.0419, 0.573205, 46.4611, -39.5419, 0.573205, 46.7111, -39.0419, 0.573205, 47.9611, -31.7919, 0.573205, 48.2111, -31.7919, 0.573205, 46.7111, -33.2919, 0.573205, 46.4611, -35.2919, 0.573205, 48.2111, -39.0419, -1.1768, 57.2111, -35.2919, -1.1768, 57.2111, -35.2919, -0.926795, 54.6396, -35.2919, 0.573205, 50.7825, -39.0419, 0.573205, 51.9254, -39.0419, -0.926795, 54.5682, -33.2919, 0.573205, 44.9611, -38.0419, 0.573205, 44.9611, -32.2919, 1.3232, 44.9611, -32.2919, 1.3232, 45.7111, -31.7919, 1.3232, 45.7111, -31.7919, 1.3232, 44.9611, -105.042, -0.926795, 48.9611, -99.2919, -0.926795, 50.2111, -105.042, -0.926795, 50.4611, -115.042, -2.4268, 50.9611, -114.292, -2.4268, 50.9611, -114.292, -2.4268, 50.4611, -115.542, -2.6768, 50.2111, -108.292, -0.676795, 50.4611, -98.5419, -0.926795, 57.7111, -98.5419, -0.926795, 55.2111, -99.2919, -0.926795, 54.9611, -104.542, -0.926795, 57.7111, -104.542, -0.926795, 50.9611, -107.042, 3.5732, 51.2111, -107.042, 3.5732, 51.7111, -106.292, 3.5732, 51.7111, -106.292, 3.5732, 50.4611, -106.792, 3.5732, 50.4611, -80.2919, 0.073205, 56.2111, -80.2919, 0.073205, 56.9611, -79.7919, 0.073205, 56.9611, -79.7919, 0.073205, 56.2111, -73.5419, 0.073205, 56.2111, -73.5419, 0.073205, 56.9611, -73.0419, 0.073205, 56.9611, -73.0419, 0.073205, 56.2111, -98.5419, -0.926795, 59.7111, -96.7919, -0.926795, 70.9611, -94.0419, -0.926795, 70.9611, -94.0419, -0.926795, 63.9611, -104.542, -0.926795, 64.7111, -105.042, -0.926795, 64.9611, -64.5419, -0.676795, 62.9611, -65.2919, -0.426795, 63.4611, -65.2919, -0.676795, 64.9611, -65.2919, -0.676795, 70.2111, -65.2919, -0.426795, 71.7111, -64.5419, -0.426795, 72.2111, -67.0419, -0.426795, 65.2111, -67.0419, -0.426795, 69.9611, -63.2919, -0.676795, 75.2111, -54.0419, -0.676795, 75.2111, -54.0419, -0.676795, 70.4611, -63.2919, -0.676795, 59.9611, -52.0419, -0.676795, 70.2111, -52.0419, -0.676795, 64.9611, -54.0419, -0.676795, 64.7111, -54.0419, -0.676795, 59.9611, -29.5419, -0.676795, 71.9611, -29.5419, -0.676795, 67.9611, -30.2919, -0.676795, 67.7111, -39.0419, -0.676795, 65.7111, -40.2919, -0.676795, 65.9611, -40.2919, -0.676795, 70.2111, -38.7919, -0.676795, 70.4611, -32.7919, -0.676795, 63.9611, -38.7919, -0.676795, 71.9611, -32.7919, -0.676795, 61.2111, -39.0419, -0.676795, 61.2111, -71.2919, -0.676795, 70.9611, -71.2919, -0.676795, 63.4611, -67.0419, 0.323205, 63.4611, -67.0419, 0.323205, 64.2111, -66.2919, 0.323205, 64.2111, -66.2919, 0.323205, 63.4611, -45.5419, -0.676795, 70.4611, -45.5419, -0.676795, 64.7111, -110.792, -0.926795, 71.4611, -111.542, -0.926795, 72.4611, -111.292, -0.926795, 72.9611, -109.792, -0.926795, 73.9611, -109.292, -0.926795, 73.2111, -109.042, -0.926795, 71.4611, -106.042, -0.926795, 64.9611, -107.542, -0.926795, 66.9611, -107.292, -0.926795, 68.9611, -108.042, -0.926795, 73.2111, -102.792, -0.926795, 77.2111, -100.792, -0.926795, 74.4611, -99.2919, -0.926795, 74.4611, -29.0419, -0.676795, 67.9611, -28.7919, -0.676795, 67.2111, -22.2919, -0.676795, 71.7111, -24.0419, -0.676795, 67.2111, -67.0419, 0.323205, 70.9611, -67.0419, 0.323205, 71.7111, -66.2919, 0.323205, 71.7111, -66.2919, 0.323205, 70.9611, -95.0419, -0.426795, 75.9611, -98.0419, -0.426795, 82.7111, -98.0419, -0.426795, 83.2111, -87.7919, -0.426795, 83.2111, -87.7919, -0.426795, 75.9611, -103.042, -0.926795, 78.4611, -103.042, -0.926795, 78.9611, -102.542, -0.926795, 78.7111, -102.542, -0.926795, 78.2111, -21.7919, -0.426795, 86.7111, -16.7919, -0.426795, 91.7111, -16.2919, -0.426795, 91.7111, -8.54192, -0.426795, 83.4611, -10.7919, -0.426795, 81.9611, -15.5419, -0.426795, 79.9611, -94.2919, -0.426795, 88.9611, -94.2919, -0.426795, 101.211, -87.0419, -0.426795, 101.211, -87.0419, -0.426795, 88.9611, -64.7919, -0.426795, 93.4611, -64.7919, -0.426795, 102.461, -62.2919, -0.426795, 100.461, -57.7919, -0.426795, 93.2111, -58.0419, -0.426795, 99.9611, -55.7919, -0.426795, 100.211, -53.0419, -0.426795, 102.211, -52.7919, -0.426795, 100.461, -41.0419, -0.426795, 98.9611, -39.2919, -0.426795, 98.9611, -39.2919, -0.426795, 94.7111, -41.0419, -0.426795, 94.7111, -41.2919, -0.426795, 100.461, -41.2919, -0.426795, 93.2111, -40.2919, 0.323205, 93.2111, -40.2919, 0.323205, 93.7111, -39.5419, 0.323205, 93.7111, -39.5419, 0.323205, 93.2111, -24.0419, -0.426795, 100.461, -24.0419, -0.426795, 95.2111, -26.0419, -0.426795, 93.2111, -31.2919, -0.426795, 93.2111, -31.2919, -0.426795, 100.461, -82.2919, -0.426795, 93.4611, -82.2919, -0.426795, 100.711, -70.0419, -0.426795, 100.711, -70.0419, -0.426795, 93.4611, -40.2919, 0.323205, 99.9611, -40.2919, 0.323205, 100.461, -39.5419, 0.323205, 100.461, -39.5419, 0.323205, 99.9611, -62.2919, -0.426795, 102.211, -64.0419, -0.426795, 103.961, -64.7919, -0.426795, 105.711, -57.5419, -0.426795, 101.211, -60.0419, -0.426795, 101.211, -53.0419, -0.426795, 104.461, -54.7919, -0.426795, 102.461, -64.7919, -0.426795, 108.461, -53.0419, -0.426795, 108.211, -59.7919, 5.8232, 102.961, -61.2919, 5.8232, 103.461, -62.7919, 5.8232, 104.711, -63.0419, 6.0732, 106.461, -61.4169, 6.3232, 104.711, -56.2919, 5.8232, 111.711, -54.7919, 5.8232, 110.211, -54.0419, 5.8232, 107.961, -54.7919, 6.0732, 109.211, -56.7919, 5.8232, 102.961, -60.0419, 5.8232, 111.961, -54.7294, 6.3232, 106.711, -56.1044, 6.3232, 104.211, -58.7919, 6.0732, 102.961, -61.2419, 6.5732, 109.761, -58.7919, 6.0732, 111.878, -58.0368, 7.3232, 107.974, -59.5669, 7.0732, 104.936, -61.0569, 7.0732, 107.952, -56.5419, 7.0732, 106.441, -56.5468, 6.8232, 109.468, -59.5668, 7.0732, 109.446, -61.0469, 7.0732, 106.458, -54.5419, 5.8232, 105.211, -62.7919, 5.8232, 110.211, -60.9586, 6.0732, 111.378)
@@ -621,7 +625,7 @@ extent = 128.0
 bounds = AABB(-319, -169, -63, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_16ddi"]
@@ -747,7 +751,7 @@ extent = 32.0
 bounds = AABB(-63, -41, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_egxv6"]
@@ -783,7 +787,7 @@ extent = 32.0
 bounds = AABB(-63, 23, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_4kq6q"]
@@ -1215,7 +1219,7 @@ extent = 8.0
 bounds = AABB(1, 7, -79, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_8qps7"]
@@ -1863,7 +1867,7 @@ extent = 8.0
 bounds = AABB(17, 7, -79, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_mfwe8"]
@@ -1881,7 +1885,7 @@ extent = 16.0
 bounds = AABB(1, -9, -95, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_bkhg8"]
@@ -1971,7 +1975,7 @@ extent = 32.0
 bounds = AABB(1, -41, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_kxbh6"]
@@ -2007,7 +2011,7 @@ extent = 32.0
 bounds = AABB(1, 23, -127, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_eby0l"]
@@ -2025,7 +2029,7 @@ extent = 64.0
 bounds = AABB(-63, -41, -191, 128, 128, 128)
 max_bounds_to_center_dist = 110.851
 min_bounds_to_center_dist = 64.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_t0u2o"]
@@ -2115,7 +2119,7 @@ extent = 128.0
 bounds = AABB(-63, -169, -319, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ws32j"]
@@ -2205,7 +2209,7 @@ extent = 16.0
 bounds = AABB(-63, -9, -63, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_w522v"]
@@ -3195,7 +3199,7 @@ extent = 8.0
 bounds = AABB(-47, 7, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_y0usy"]
@@ -3213,7 +3217,7 @@ extent = 8.0
 bounds = AABB(-47, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_3as73"]
@@ -3231,7 +3235,7 @@ extent = 16.0
 bounds = AABB(-63, -9, -31, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_cy3xb"]
@@ -4185,7 +4189,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -63, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_f1syp"]
@@ -4203,7 +4207,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_aq6ry"]
@@ -4239,7 +4243,7 @@ extent = 8.0
 bounds = AABB(-15, -9, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hprqm"]
@@ -4257,7 +4261,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -63, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_o851d"]
@@ -4275,7 +4279,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_khrbj"]
@@ -4293,7 +4297,7 @@ extent = 16.0
 bounds = AABB(-31, -9, -63, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hhw0q"]
@@ -4779,7 +4783,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_64i07"]
@@ -4797,7 +4801,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_g0b7u"]
@@ -4815,7 +4819,7 @@ extent = 8.0
 bounds = AABB(-15, -9, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_46knk"]
@@ -5139,7 +5143,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -31, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ygf06"]
@@ -5157,7 +5161,7 @@ extent = 8.0
 bounds = AABB(-15, 7, -15, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_vpkgx"]
@@ -5175,7 +5179,7 @@ extent = 16.0
 bounds = AABB(-31, -9, -31, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_dxb4p"]
@@ -5193,7 +5197,7 @@ extent = 32.0
 bounds = AABB(-63, -41, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hmdvm"]
@@ -5265,7 +5269,7 @@ extent = 16.0
 bounds = AABB(-63, -9, 33, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_n0jbo"]
@@ -5787,7 +5791,7 @@ extent = 8.0
 bounds = AABB(-31, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_jkba1"]
@@ -6435,7 +6439,7 @@ extent = 8.0
 bounds = AABB(-15, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34nua"]
@@ -6471,7 +6475,7 @@ extent = 16.0
 bounds = AABB(-31, -9, 1, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_rm4dl"]
@@ -6543,7 +6547,7 @@ extent = 8.0
 bounds = AABB(-31, 7, 49, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_qi3g0"]
@@ -7047,7 +7051,7 @@ extent = 8.0
 bounds = AABB(-15, 7, 49, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xalai"]
@@ -7065,7 +7069,7 @@ extent = 16.0
 bounds = AABB(-31, -9, 33, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = -1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_vpvo5"]
@@ -7101,7 +7105,7 @@ extent = 32.0
 bounds = AABB(-63, 23, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hiqs8"]
@@ -7137,7 +7141,7 @@ extent = 32.0
 bounds = AABB(1, -41, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_dcwr0"]
@@ -7515,7 +7519,7 @@ extent = 8.0
 bounds = AABB(1, 7, 1, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_52xeb"]
@@ -8055,7 +8059,7 @@ extent = 16.0
 bounds = AABB(1, -9, 1, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_i2q7y"]
@@ -9747,7 +9751,7 @@ extent = 32.0
 bounds = AABB(1, -41, 1, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_oolfx"]
@@ -9765,7 +9769,7 @@ extent = 32.0
 bounds = AABB(1, 23, -63, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_biek8"]
@@ -9801,7 +9805,7 @@ extent = 64.0
 bounds = AABB(-63, -41, -63, 128, 128, 128)
 max_bounds_to_center_dist = 110.851
 min_bounds_to_center_dist = 64.0
-active_LOD_index = 0
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_pi0uq"]
@@ -9819,7 +9823,7 @@ extent = 64.0
 bounds = AABB(-63, -41, 65, 128, 128, 128)
 max_bounds_to_center_dist = 110.851
 min_bounds_to_center_dist = 64.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_m03s1"]
@@ -10791,7 +10795,7 @@ extent = 128.0
 bounds = AABB(-63, 87, -319, 256, 256, 256)
 max_bounds_to_center_dist = 221.703
 min_bounds_to_center_dist = 128.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xe8vj"]
@@ -11161,9 +11165,16 @@ transform = Transform3D(0.718102, 0, 0.695938, 0, 1, 0, -0.695938, 0, 0.718102, 
 
 [node name="Death_Zone" type="Node" parent="."]
 
-[node name="death_zone" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
+[node name="death_zone" type="Area3D" parent="Death_Zone" node_paths=PackedStringArray("player")]
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, 0, -7, 0)
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("9_8lplo")
 player = NodePath("../../MiraV3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Death_Zone/death_zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.5359, -3.18026, -6.10387)
+shape = SubResource("BoxShape3D_imo7s")
 
 [node name="death_zone2" parent="Death_Zone" node_paths=PackedStringArray("player") instance=ExtResource("7_o1jom")]
 transform = Transform3D(-0.753564, -0.657375, 2.87348e-08, 0, -4.37114e-08, -1, 0.657376, -0.753563, 3.29393e-08, -46.2476, -7, -53.0913)
@@ -12726,3 +12737,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0732, -0.577457, 24.4828)
 
 [connection signal="body_entered" from="Audio_System/hululement_zone" to="Audio_System/hululement_zone" method="_on_body_entered"]
 [connection signal="body_exited" from="Audio_System/hululement_zone" to="Audio_System/hululement_zone" method="_on_body_exited"]
+[connection signal="body_entered" from="Death_Zone/death_zone" to="Death_Zone/death_zone" method="_on_body_entered"]
