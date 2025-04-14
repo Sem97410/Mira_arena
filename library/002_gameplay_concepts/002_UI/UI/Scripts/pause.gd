@@ -42,7 +42,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause_game"): # and  health_script.is_alive:
-		print("Pause game was clicked")
+		#print("Pause game was clicked")
 		toggle_pause_pannel()
 
 #------------------------------
@@ -51,19 +51,19 @@ func _process(_delta: float) -> void:
 func toggle_pause_pannel():
 	
 	is_pause_panel_activated = not is_pause_panel_activated
-	print("I'm in toggle pause pannel")
+	#print("I'm in toggle pause pannel")
 	manage_pause_pannel()
 	
 func manage_pause_pannel():
 	if is_pause_panel_activated :
-		print("Should activate the menu")
+		#print("Should activate the menu")
 		self.visible = true
 		get_tree().paused = true
 		first_button.grab_focus()
 	else :
 		self.visible = false
 		get_tree().paused = false
-		print("Should desactivate the menu")
+		#print("Should desactivate the menu")
 		quit_confirmations_container.visible = false
 		reload_confirmation_container.visible = false
 		main_menu_confirmation_container.visible = false
@@ -77,12 +77,12 @@ func manage_pause_pannel():
 #Resume
 func _on_resume_button_down() -> void:
 	toggle_pause_pannel()
-	print("Resume button was presed")
+	#print("Resume button was presed")
 
 #-----------------
 #Reload
 func _on_reload_button_down() -> void:
-	print("Reload button was pressed")
+	#print("Reload button was pressed")
 	pause_buttons_container.visible = false
 	reload_confirmation_container.visible = true
 	reload_confirmation_first_button.grab_focus()
@@ -101,7 +101,7 @@ func _on_reload_no_button_button_down() -> void:
 
 #Main Menu
 func _on_main_menu_button_down() -> void:
-	print("Main menu button was pressed") # Replace with function body.
+	#print("Main menu button was pressed") # Replace with function body.
 	pause_buttons_container.visible = false
 	main_menu_confirmation_container.visible = true
 	main_menu_confirmation_first_button.grab_focus()
@@ -122,19 +122,19 @@ func _on_main_menu_no_button_button_down() -> void:
 #Settings
 func _on_settings_button_down() -> void:
 	not_ready_label.visible = true
-	print("first part")
+	#print("first part")
 	
 	await get_tree().create_timer(1.0).timeout
-	print("second part")
+	#print("second part")
 	not_ready_label.visible = false
-	print("Settings button was pressed")
+	#print("Settings button was pressed")
 #------------------------------
 #Settings pannel
 #-----------------
 
 #Quit
 func _on_quit_game_button_down() -> void:
-	print("Quit game button was pressed")
+	#print("Quit game button was pressed")
 	pause_buttons_container.visible = false
 	quit_confirmations_container.visible = true
 	quit_confirmation_first_button.grab_focus()

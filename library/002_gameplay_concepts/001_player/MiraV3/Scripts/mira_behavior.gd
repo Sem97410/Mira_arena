@@ -76,7 +76,6 @@ var _previous_position: Vector3
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :
 		player_current_hp -= damage
-		#print("Being hit")
 		check_if_dead()
 		launch_hit_logic()
 		health_bar.health = player_current_hp
@@ -87,7 +86,6 @@ func launch_hit_logic() -> void :
 	if player_current_hp <= 0 :
 		return
 		
-	#print("Hit logic")
 	base_state_machine.travel("Hit")	#Animation
 	player_is_blinking()				#Blink
 
@@ -96,7 +94,6 @@ func launch_hit_logic() -> void :
 
 func check_if_dead() -> void :
 	if player_current_hp <= 0 :
-		#print("Player is dead")
 		death()
 		
 
@@ -317,7 +314,6 @@ func trigger_shake() -> void:
 	shake_strength = current_shake
 
 func _process(delta: float) -> void:
-	#print("Charge attack mode is : ", charge_attack_mode)
 	charge_attack_movement_mode()
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
@@ -336,7 +332,6 @@ func _physics_process(delta: float) -> void:
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta	
 	
-	#print("Light attack input was pressed is : ", light_attack_input_was_pressed)
 	
 	if post_attack_windows_timer > 0 :
 		is_in_post_attack_phase = true
@@ -353,9 +348,6 @@ func _physics_process(delta: float) -> void:
 			
 			activate_idle_state()
 			activate_movement_state()
-	#print("Index combo is :", animation_combo_index)
-	
-	#print("Combo index is  : ", animation_combo_index)
 
 # --------------------------------------------------------------------------
 
@@ -364,34 +356,43 @@ func _physics_process(delta: float) -> void:
 # --------------------------------------------------------------------------
 
 func _on_idle_state_entered() -> void:
-	
+	print("Idle : ON")
 	base_state_machine.travel("MovementBlendSpace")
 	
-	#print("Je viens d'entrer dans le state idle")
 
 
 func _on_idle_state_processing(delta: float) -> void:
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
-	listen_to_other_states()
+	activate_movement_state()
+	activate_charged_attack_state()
+	activate_light_attack_state()
+	activate_dash_state()
+	
+	#listen_to_other_states()
 
 #---
 
-#func _on_movement_state_entered() -> void:
-	#print("Je viens d'entrer dans le state movement")
+func _on_movement_state_entered() -> void:
+	print("Movement : ON")
 
 func _on_movement_state_processing(delta: float) -> void:
-	#print('Je suis entré dans le movement state')
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
-	listen_to_other_states()
+	activate_idle_state()
+	activate_charged_attack_state()
+	activate_light_attack_state()
+	activate_dash_state()
+	activate_in_the_air_state()
+	
+	#listen_to_other_states()
 
 #---
-#func _on_in_the_air_state_entered() -> void:
-	#print("I'm in the state In the air")
+func _on_in_the_air_state_entered() -> void:
+	print("In the air : ON")
 	
 	
 func _on_in_the_air_state_processing(delta: float) -> void:
@@ -407,7 +408,7 @@ func _on_in_the_air_state_processing(delta: float) -> void:
 #---
 
 func _on_dash_state_entered() -> void:
-	#print("Je suis entré dans le state dash")
+	print("Dash : ON")
 	initiate_dash()
 	start_dash()
 
@@ -416,44 +417,52 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 	activate_light_attack_state()
 
 func _on_dash_state_exited() -> void:
+	print("Dash : off")
 	assign_movement_blend_position()
 
 #---
 
 func _on_light_attack_state_entered() -> void:
-	#print("Enter LightAttack state")
+	print("Light Attack : ON")
 	launch_light_attack()
 
 func _on_light_attack_state_processing(delta: float) -> void:
-	#print("I'm in light attack state processing")
+
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	#activate_idle_state()
 	#activate_movement_state()
 	if Input.is_action_just_pressed("light_attack"):
-		#print("Light attack input was pressed")
 		light_attack_input_was_pressed = true
 
 
 func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area , light_attack_damage)
-	#print("Make_damage was used")
+
 
 #---
 
 func _on_charged_attack_state_entered() -> void:
-	#print("I'm inside the charged_attack_state")
+	print("Charged : ON")
 	base_state_machine.travel("ChargedAttack")
+	await get_tree().create_timer(3.0).timeout
+	print("End of the animation")
+	send_event_state_chart("IsFinishingTheChargedAttack")
 
 
 func _on_charged_recovery_state_entered() -> void:
-	#print("Je suis entré dans recovery")
-	listen_to_other_states()
+	print("Recovery : ON")
 	
 
+	#activate_dash_state()
+	#activate_light_attack_state()
+	
+	#listen_to_other_states()
+	
 
-func _on_charged_recovery_state_processing(delta: float) -> void:
-	listen_to_other_states()
+#
+#func _on_charged_recovery_state_processing(delta: float) -> void:
+	#listen_to_other_states()
 
 #func _on_charged_attack_state_physics_processing(delta: float) -> void:
 	#listen_to_other_states()
@@ -469,28 +478,25 @@ func send_event_state_chart(event_name : String)-> void :
 	
 #---
 
-func listen_to_other_states() -> void : 
-	activate_movement_state()
-	activate_idle_state()
-	activate_in_the_air_state()
-	activate_dash_state()
-	activate_light_attack_state()
-	activate_charged_attack_state()
+#func listen_to_other_states() -> void : 
+	#activate_movement_state()
+	#activate_idle_state()
+	#activate_in_the_air_state()
+	#activate_dash_state()
+	#activate_light_attack_state()
+	#activate_charged_attack_state()
 #---
 
 func activate_idle_state()-> void : 
-	#print("Launch of the idle state")
-	if _input_strength <= 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3:
+	if _input_strength <= 0.1 or _real_speed < 0.05 and _idle_timer >= 0.3:
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void : 
-	#print("Launch of the Movement state")
 	if _input_strength > 0.1 or _real_speed > 0.1:
 		send_event_state_chart("IsMoving")
-		#print("Enter in movement state")
 
 
 #---
@@ -599,7 +605,7 @@ func jump_the_character() -> void :
 ## IN THE AIR
 func launch_in_the_air_animation() -> void : 
 	if not is_on_floor():
-		#print("Not in the floor")
+
 		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
 	#elif is_on_floor() :
@@ -747,7 +753,6 @@ func stop_dash():
 
 func modify_fov_with_tween() -> void : 
 	if Input.is_action_just_pressed("dash"):
-		#print("Modification of the FOV")
 		var tween = create_tween()
 
 		tween.tween_property(camera, "fov", dash_FOV, 0.1)
@@ -780,11 +785,10 @@ func launch_dash_animation() -> void :
 #Light attack
 
 func launch_light_attack() -> void:
-	#print("Launch light attack here")
+
 	light_attack_input_was_pressed = false
 	combo_window_is_active = false
 	var target_state = "Combo" + str(animation_combo_index) + "BlendTree"
-	#print("Lance animation :", target_state)
 	base_state_machine.travel(target_state)
 	
 	
@@ -796,7 +800,6 @@ func set_animation_index_values(index_values : int) -> void:
 #---
 
 func reset_animation_index():
-	#print(" RESET combo depuis handle_reset_animation_combo_index()")
 	animation_combo_index = 1
 
 #---
@@ -808,7 +811,6 @@ func toggle_combo_windows(status : bool) -> void :
 
 func activate_combo_if_clicked_during_combo_window() -> void : 
 	if light_attack_input_was_pressed and combo_window_is_active :
-		#print("I'm inside the windows")
 		launch_light_attack()
 	else:
 		launch_countdown_for_combo_windows()
@@ -816,7 +818,6 @@ func activate_combo_if_clicked_during_combo_window() -> void :
 #---
 
 func launch_countdown_for_combo_windows() -> void : 
-	#print("Start of the countdown")
 	post_attack_windows_timer = post_attack_windows_duration
 
 #---
@@ -891,14 +892,12 @@ func disable_combo_3_vfx() -> void :
 
 func launch_combo_3_vfx_animation() -> void : 
 	combo_3_animation_player.play("Attack_Charge")
-	#print("Launch animation 3 ")
 
 #---
 
 func make_damage(area : Area3D, damage : float) -> void : 
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
-	#print("Je suis dans l'Area")
 	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
 		trigger_shake()
@@ -952,7 +951,6 @@ func disable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging. visible = false
 
 func enable_charge_attack_mode() -> void : 
-	#print("Test")
 	can_move = false
 	charge_attack_mode = true
 	
@@ -967,7 +965,6 @@ func disable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = false
 	
 func instantiate_charged_attack_impact_vfx() -> void : 
-	#print("Je suis dans instantiate_charged attack")
 	if vfx_spawned:
 		return
 	
@@ -992,7 +989,6 @@ func instantiate_charged_attack_impact_vfx() -> void :
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, charged_attack_damage)
-	#print("Charged attack a touché quelqu'un")
 
 # --------------------------------------------------------------------------
 
@@ -1015,10 +1011,42 @@ func freeze_frame() -> void :
 ## SFX
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
-		#print("Aucun son de pas assigné !")
 		return
 	
 	var random_index = randi() % footstep_sounds.size()  # Choisir un son aléatoire
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
+
+
+func _on_idle_state_exited() -> void:
+	print("Idle : OFF")
+
+
+func _on_movement_state_exited() -> void:
+	print("Movement : OFF")
+
+
+func _on_in_the_air_state_exited() -> void:
+	print("In the air : OFF")
+
+
+func _on_light_attack_state_exited() -> void:
+	print("Light attack : OFF")
+
+
+func _on_charged_attack_state_exited() -> void:
+	print("Charged attack : OFF")
+
+
+func _on_charged_recovery_state_exited() -> void:
+	print("Recovery : OFF")
+
+
+func _on_hit_state_exited() -> void:
+	print("Hit : OFF")
+
+
+func _on_charged_recovery_state_processing(delta: float) -> void:
+	activate_idle_state()
+	activate_movement_state()

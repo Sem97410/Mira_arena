@@ -30,6 +30,8 @@ bones/0/scale = Vector3(1.2, 0.8, 1.2)
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_kxous")
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_1x6pu")

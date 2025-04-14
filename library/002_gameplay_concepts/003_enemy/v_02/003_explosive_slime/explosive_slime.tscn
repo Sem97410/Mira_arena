@@ -27,6 +27,8 @@ explosion_damage = 20.0
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_el4uy")
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_qp0ti")
