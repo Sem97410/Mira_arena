@@ -61,9 +61,6 @@ var _previous_position: Vector3
 @onready var after_hit_invicibility : bool = false
 @export var invicibility_duration : float = 5.0 #base on the number of blink
 
-
-
-
 @export_subgroup("HealthBar")
 @export var health_bar : ProgressBar
 @export var death_pannel : Control
@@ -74,13 +71,9 @@ var _previous_position: Vector3
 #DEBUG VARIABLES
 var debug_chrono : float 
 
-
-
 # ---------------- 
 
 # HEALTH
-
-
 
 func _on_death_state_entered() -> void:
 	death()
@@ -234,8 +227,6 @@ var current_damage : float
 @export var charged_attack_impact_vfx_spawn_position : Node3D
 @onready var vfx_spawned : bool = false
 
-
-
 #Animation combo
 @onready var animation_combo_index : int = 1
 
@@ -270,8 +261,6 @@ var current_vfx : MeshInstance3D
 @export var base_combo_position : Node3D
 @export var combo_3_animation_player : AnimationPlayer
 @export var combo_3_vfx : Node3D
-
-#---
 
 # ----------------
 
@@ -913,7 +902,6 @@ func instantiate_combo_2_vfx() -> void :
 		Basis(combo_2_vfx_instance.global_transform.basis.scaled(Vector3(1.5, 1, 1.5))),
 		current_position
 	)
-
 
 #---
 
