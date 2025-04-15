@@ -17,11 +17,13 @@ extends CharacterBody3D
 @export var animation_tree : AnimationTree
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
 
+
 #---
 
 #States variables
 @export_group("States variables")
 @export var state_chart : StateChart
+@onready var allow_state_transition : bool = true
 
 #---
 
@@ -40,6 +42,7 @@ var _previous_position: Vector3
 #Camera variables
 @export_group("Camera")
 @export var camera : Camera3D
+@export var camera_behavior_script : CameraBehavior
 
 # ----------------
 
@@ -66,12 +69,21 @@ var _previous_position: Vector3
 @export var death_pannel : Control
 @export var death_pannel_first_button : Button
 
+# ----------------
+
+#DEBUG VARIABLES
+var debug_chrono : float 
 
 
 
 # ---------------- 
 
 # HEALTH
+
+
+
+func _on_death_state_entered() -> void:
+	death()
 
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :
@@ -94,21 +106,22 @@ func launch_hit_logic() -> void :
 
 func check_if_dead() -> void :
 	if player_current_hp <= 0 :
-		death()
+		send_event_state_chart("IsDead")
 		
 
 func death() -> void :
 
 	base_state_machine.travel("Death")
 	is_alive = false
-
-	death_pannel.visible = true
-
 	can_move = false
+	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
 	
+	await get_tree().create_timer(1.5).timeout
+	
+	death_pannel.visible = true
 	death_pannel_first_button.grab_focus()
 	
-	await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout
 	Engine.time_scale = 0.0
 	
 	
@@ -356,15 +369,19 @@ func _physics_process(delta: float) -> void:
 # --------------------------------------------------------------------------
 
 func _on_idle_state_entered() -> void:
+	debug_chrono = 0
 	print("Idle : ON")
 	base_state_machine.travel("MovementBlendSpace")
 	
 
 
 func _on_idle_state_processing(delta: float) -> void:
+	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
+	activate_in_the_air_state()
+
 	activate_movement_state()
 	activate_charged_attack_state()
 	activate_light_attack_state()
@@ -375,9 +392,11 @@ func _on_idle_state_processing(delta: float) -> void:
 #---
 
 func _on_movement_state_entered() -> void:
+	debug_chrono = 0
 	print("Movement : ON")
 
 func _on_movement_state_processing(delta: float) -> void:
+	debug_chrono += delta
 	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
@@ -392,12 +411,14 @@ func _on_movement_state_processing(delta: float) -> void:
 
 #---
 func _on_in_the_air_state_entered() -> void:
+	debug_chrono = 0
 	print("In the air : ON")
 	
 	
 func _on_in_the_air_state_processing(delta: float) -> void:
+	debug_chrono += delta
 	move_the_character()
-	activate_in_the_air_state()
+	#activate_in_the_air_state()
 	activate_dash_state()
 
 	
@@ -408,26 +429,33 @@ func _on_in_the_air_state_processing(delta: float) -> void:
 #---
 
 func _on_dash_state_entered() -> void:
+	debug_chrono = 0
 	print("Dash : ON")
 	initiate_dash()
 	start_dash()
 
 func _on_dash_state_physics_processing(delta: float) -> void:
+	
 	execute_dash() #Launch the dash if all conditions are met
 	activate_light_attack_state()
 
+func _on_dash_state_processing(delta: float) -> void:
+	debug_chrono += delta
+	
 func _on_dash_state_exited() -> void:
 	print("Dash : off")
+	print("Dash state duration : ", debug_chrono)
 	assign_movement_blend_position()
 
 #---
 
 func _on_light_attack_state_entered() -> void:
+	debug_chrono = 0
 	print("Light Attack : ON")
 	launch_light_attack()
 
 func _on_light_attack_state_processing(delta: float) -> void:
-
+	debug_chrono =+ delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	#activate_idle_state()
@@ -443,6 +471,7 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 #---
 
 func _on_charged_attack_state_entered() -> void:
+	debug_chrono = 0
 	print("Charged : ON")
 	base_state_machine.travel("ChargedAttack")
 	await get_tree().create_timer(3.0).timeout
@@ -451,6 +480,7 @@ func _on_charged_attack_state_entered() -> void:
 
 
 func _on_charged_recovery_state_entered() -> void:
+	debug_chrono = 0
 	print("Recovery : ON")
 	
 
@@ -488,14 +518,14 @@ func send_event_state_chart(event_name : String)-> void :
 #---
 
 func activate_idle_state()-> void : 
-	if _input_strength <= 0.1 or _real_speed < 0.05 and _idle_timer >= 0.3:
+	if _input_strength <= 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor():
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void : 
-	if _input_strength > 0.1 or _real_speed > 0.1:
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor():
 		send_event_state_chart("IsMoving")
 
 
@@ -503,6 +533,7 @@ func activate_movement_state()-> void :
 
 func activate_in_the_air_state() -> void : 
 	if start_time > 0 or dash_cooldown_after_stop > 0:
+		print("Le state s'est pas activé")
 		return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
 	if not is_on_floor() or Input.is_action_just_pressed("jump"):
@@ -511,6 +542,9 @@ func activate_in_the_air_state() -> void :
 #---
 
 func activate_dash_state() -> void : 
+	if not allow_state_transition:
+		return
+		
 	if Input.is_action_just_pressed("dash"):
 		send_event_state_chart("IsDashing")
 
@@ -522,6 +556,10 @@ func is_in_the_air_state() -> void :
 #---
 
 func activate_light_attack_state() -> void : 
+	
+	if not allow_state_transition :
+		return
+		
 	if Input.is_action_just_pressed("light_attack"): 
 		send_event_state_chart("IsLightAttacking")
 		is_in_post_attack_phase = false
@@ -637,7 +675,7 @@ func assign_movement_blend_position() -> void :
 
 func update_movement_tracking(delta: float) -> void:
 	# Player input
-	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_backward", 0.2)
 	_input_strength = input_vector.length()
 
 	# Vitesse réelle
@@ -1021,32 +1059,39 @@ func play_random_footstep() -> void:
 
 func _on_idle_state_exited() -> void:
 	print("Idle : OFF")
+	print("Idle state duration : ", debug_chrono)
 
 
 func _on_movement_state_exited() -> void:
 	print("Movement : OFF")
+	print("Movement state duration : ", debug_chrono)
 
 
 func _on_in_the_air_state_exited() -> void:
 	print("In the air : OFF")
+	print("In the air state duration : ", debug_chrono)
 
 
 func _on_light_attack_state_exited() -> void:
 	print("Light attack : OFF")
-
+	print("L.A. state duration : ", debug_chrono)
 
 func _on_charged_attack_state_exited() -> void:
 	print("Charged attack : OFF")
-
+	print("C.A. state duration : ", debug_chrono)
 
 func _on_charged_recovery_state_exited() -> void:
 	print("Recovery : OFF")
+	print("Recovery state duration : ", debug_chrono)
 
 
 func _on_hit_state_exited() -> void:
 	print("Hit : OFF")
+	print("Hit state duration : ", debug_chrono)
 
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
+	debug_chrono =+ delta
 	activate_idle_state()
 	activate_movement_state()
+	debug_chrono += delta

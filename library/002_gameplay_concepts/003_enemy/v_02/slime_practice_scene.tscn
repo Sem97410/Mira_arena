@@ -285,7 +285,8 @@ shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="Spawner" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8968, 0, 0)
-initial_spawn_count = 0
+initial_spawn_count = 30
 spawn_chances = Array[int]([100, 100, 100, 100, 100])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
+player_max_hp = 1.0
