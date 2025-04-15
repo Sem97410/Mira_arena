@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://6so8382dg6rf"]
 
 [ext_resource type="ArrayMesh" uid="uid://o83ypncyu5lu" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_End_M.obj" id="1_4kyil"]
-[ext_resource type="Material" uid="uid://rbe8nmuhvd5i" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/mat_platform_temp.tres" id="2_ovgw6"]
+[ext_resource type="Material" uid="uid://dhnney0h6438h" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_end_r/material/mat_concrete_platform.tres" id="2_ovgw6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kyil"]
 size = Vector3(5.33447, 0.465332, 3.50476)
