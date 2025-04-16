@@ -70,14 +70,12 @@ var _previous_position: Vector3
 # ----------------
 
 #DEBUG VARIABLES
+
 var debug_chrono : float
 
 # ----------------
 
 # HEALTH
-
-func _on_death_state_entered() -> void:
-	death()
 
 func take_damage(damage : float) -> void :
 	if not after_hit_invicibility :
@@ -86,7 +84,12 @@ func take_damage(damage : float) -> void :
 		launch_hit_logic()
 		health_bar.health = player_current_hp
 
+#---
 
+func _on_death_state_entered() -> void:
+	death()
+
+#---
 
 func launch_hit_logic() -> void :
 	if player_current_hp <= 0 :
@@ -95,13 +98,13 @@ func launch_hit_logic() -> void :
 	base_state_machine.travel("Hit")	#Animation
 	player_is_blinking()				#Blink
 
-
-
+#---
 
 func check_if_dead() -> void :
 	if player_current_hp <= 0 :
 		send_event_state_chart("IsDead")
 
+#---
 
 func death() -> void :
 
@@ -118,7 +121,7 @@ func death() -> void :
 	#await get_tree().create_timer(0.5).timeout
 	Engine.time_scale = 0.0
 
-
+#---
 
 func player_is_blinking():
 	if  after_hit_invicibility:
@@ -133,6 +136,7 @@ func player_is_blinking():
 	# Restore visibility and re-enable blinking
 	player_mesh.visible = true
 	after_hit_invicibility = false
+
 # ----------------
 
 # MOVEMENT
@@ -144,7 +148,6 @@ func player_is_blinking():
 var _idle_timer := 0.0
 var _input_strength := 0.0
 var _real_speed := 0.0
-
 
 #---
 
@@ -421,16 +424,17 @@ func _on_in_the_air_state_processing(delta: float) -> void:
 func _on_dash_state_entered() -> void:
 	debug_chrono = 0
 	print("Dash : ON")
+	disable_can_transition()
 	initiate_dash()
 	start_dash()
 
 func _on_dash_state_physics_processing(delta: float) -> void:
 
 	execute_dash() #Launch the dash if all conditions are met
-	activate_light_attack_state()
 
 func _on_dash_state_processing(delta: float) -> void:
 	debug_chrono += delta
+	activate_light_attack_state()
 
 func _on_dash_state_exited() -> void:
 	print("Dash : off")
@@ -442,16 +446,19 @@ func _on_dash_state_exited() -> void:
 func _on_light_attack_state_entered() -> void:
 	debug_chrono = 0
 	print("Light Attack : ON")
+	#print("Passe par la en premier : 1")
 	launch_light_attack()
 
 func _on_light_attack_state_processing(delta: float) -> void:
 	debug_chrono += delta
+	#print("Puis reste bloqué ici : 3")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	#activate_idle_state()
 	#activate_movement_state()
 	if Input.is_action_just_pressed("light_attack"):
 		light_attack_input_was_pressed = true
+		print("A un moment il va la ? 4")
 
 
 func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
@@ -462,6 +469,7 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 
 func _on_charged_attack_state_entered() -> void:
 	debug_chrono = 0
+	disable_can_transition()
 	print("Charged : ON")
 	base_state_machine.travel("ChargedAttack")
 	await get_tree().create_timer(2.0).timeout
@@ -554,18 +562,24 @@ func is_in_the_air_state() -> void :
 #---
 
 func activate_light_attack_state() -> void :
+	print("can_transition = ", can_transition, " | Input = ", Input.is_action_just_pressed("light_attack"))
 
 	if Input.is_action_just_pressed("light_attack") and can_transition:
 		send_event_state_chart("IsLightAttacking")
+		#print("Ensuite passe par la : 2 ")
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
+	else:
+		print("Condition not good for light attack")
 
 #---
 
 func activate_charged_attack_state() -> void  :
 	if Input.is_action_just_pressed("charge_attack") and can_transition:
 		send_event_state_chart("IsChargedAttacking")
+	else:
+		print("Condition not good for charged attack")
 
 # --------------------------------------------------------------------------
 
@@ -780,6 +794,7 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 func stop_dash():
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
+	enable_can_transition()
 	send_event_state_chart("IsMoving")
 
 #---
