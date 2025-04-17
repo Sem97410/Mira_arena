@@ -418,6 +418,7 @@ func _on_movement_state_processing(delta: float) -> void:
 func _on_in_the_air_state_entered() -> void:
 	debug_chrono = 0
 	print("In the air : ON")
+	is_in_the_air = true
 
 
 func _on_in_the_air_state_processing(delta: float) -> void:
@@ -1132,6 +1133,7 @@ func _on_movement_state_exited() -> void:
 func _on_in_the_air_state_exited() -> void:
 	print("In the air : OFF")
 	print("In the air state duration : ", debug_chrono)
+	is_in_the_air = false
 
 
 func _on_light_attack_state_exited() -> void:
