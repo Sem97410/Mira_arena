@@ -24,7 +24,14 @@ extends CharacterBody3D
 @export_group("States variables")
 @export var state_chart : StateChart
 @onready var can_transition : bool = true
+
+@onready var is_idle : bool = false 
+@onready var is_movement : bool = false
+@onready var is_in_the_air : bool = false
 @onready var is_dashing : bool = false
+@onready var is_light_attacking : bool = false
+@onready var is_charged_attacking : bool = false
+@onready var is_recovering : bool = false
 
 #---
 
@@ -321,6 +328,7 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	charge_attack_movement_mode()
+	#print("can transition is : ", can_transition)
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		camera_position.transform.origin = original_position + Vector3(
@@ -364,7 +372,8 @@ func _physics_process(delta: float) -> void:
 func _on_idle_state_entered() -> void:
 	debug_chrono = 0
 	print("Idle : ON")
-	base_state_machine.travel("MovementBlendSpace")
+	is_idle = true
+
 
 
 
@@ -372,6 +381,7 @@ func _on_idle_state_processing(delta: float) -> void:
 	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
+	enable_can_transition()
 
 	activate_in_the_air_state()
 
@@ -387,13 +397,12 @@ func _on_idle_state_processing(delta: float) -> void:
 func _on_movement_state_entered() -> void:
 	debug_chrono = 0
 	print("Movement : ON")
+	
 
 func _on_movement_state_processing(delta: float) -> void:
 	debug_chrono += delta
-	base_state_machine.travel("MovementBlendSpace")
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
-
 	activate_idle_state()
 	activate_charged_attack_state()
 	activate_light_attack_state()
@@ -427,6 +436,7 @@ func _on_dash_state_entered() -> void:
 	disable_can_transition()
 	initiate_dash()
 	start_dash()
+	launch_dash_animation()
 
 func _on_dash_state_physics_processing(delta: float) -> void:
 
@@ -447,7 +457,9 @@ func _on_light_attack_state_entered() -> void:
 	debug_chrono = 0
 	print("Light Attack : ON")
 	#print("Passe par la en premier : 1")
-	launch_light_attack()
+
+	
+
 
 func _on_light_attack_state_processing(delta: float) -> void:
 	debug_chrono += delta
@@ -468,16 +480,18 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 #---
 
 func _on_charged_attack_state_entered() -> void:
+	is_charged_attacking = true
 	debug_chrono = 0
 	disable_can_transition()
 	print("Charged : ON")
-	base_state_machine.travel("ChargedAttack")
+
 	await get_tree().create_timer(2.0).timeout
 	print("End of the animation")
 	send_event_state_chart("IsFinishingTheChargedAttack")
 
 
 func _on_charged_recovery_state_entered() -> void:
+	is_recovering = true
 	debug_chrono = 0
 	print("Recovery : ON")
 
@@ -526,21 +540,23 @@ func disable_can_transition() -> void :
 #---
 
 func activate_idle_state()-> void :
-	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor():
+	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor() and !is_idle:
 		send_event_state_chart("IsIdle")
+		base_state_machine.travel("MovementBlendSpace")
 		#print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void :
-	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor():
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and ! is_movement:
 		send_event_state_chart("IsMoving")
+		base_state_machine.travel("MovementBlendSpace")
 
 
 #---
 
 func activate_in_the_air_state() -> void :
-	if start_time > 0 or dash_cooldown_after_stop > 0 or is_dashing:
+	if start_time > 0 or dash_cooldown_after_stop > 0 or is_dashing and !is_in_the_air:
 		#print("Le state s'est pas activé")
 		return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
@@ -551,7 +567,7 @@ func activate_in_the_air_state() -> void :
 
 func activate_dash_state() -> void :
 
-	if Input.is_action_just_pressed("dash") or is_dashing and can_transition:
+	if Input.is_action_just_pressed("dash") or is_dashing and can_transition and !is_dashing:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -562,24 +578,26 @@ func is_in_the_air_state() -> void :
 #---
 
 func activate_light_attack_state() -> void :
-	print("can_transition = ", can_transition, " | Input = ", Input.is_action_just_pressed("light_attack"))
+	#print("can_transition = ", can_transition, " | Input = ", Input.is_action_just_pressed("light_attack"))
 
-	if Input.is_action_just_pressed("light_attack") and can_transition:
+	if Input.is_action_just_pressed("light_attack") and can_transition and !is_light_attacking:
 		send_event_state_chart("IsLightAttacking")
+		launch_light_attack()
 		#print("Ensuite passe par la : 2 ")
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
-	else:
-		print("Condition not good for light attack")
+	#else:
+		#print("Condition not good for light attack")
 
 #---
 
 func activate_charged_attack_state() -> void  :
-	if Input.is_action_just_pressed("charge_attack") and can_transition:
+	if Input.is_action_just_pressed("charge_attack") and can_transition and !is_charged_attacking:
 		send_event_state_chart("IsChargedAttacking")
-	else:
-		print("Condition not good for charged attack")
+		base_state_machine.travel("ChargedAttack")
+	#else:
+		#print("Condition not good for charged attack")
 
 # --------------------------------------------------------------------------
 
@@ -714,7 +732,7 @@ func disable_movement() -> void :
 
 func initiate_dash() -> void :
 
-	launch_dash_animation()
+	
 	dash_countdown = latence_between_dash
 
 #---
@@ -792,6 +810,7 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 #---
 
 func stop_dash():
+	print("Stop time was launch")
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
 	enable_can_transition()
@@ -837,7 +856,25 @@ func launch_light_attack() -> void:
 	light_attack_input_was_pressed = false
 	combo_window_is_active = false
 	var target_state = "Combo" + str(animation_combo_index) + "BlendTree"
+	base_state_machine.stop()
+	await get_tree().process_frame
 	base_state_machine.travel(target_state)
+	print("Launch light attack")
+	
+	if animation_combo_index == 1 : 
+		await get_tree().create_timer(0.45).timeout
+		activate_idle_state()
+		activate_movement_state()
+	elif animation_combo_index == 2 : 
+		await get_tree().create_timer(0.26).timeout
+		activate_idle_state()
+		activate_movement_state()
+	elif animation_combo_index == 3 : 
+		await get_tree().create_timer(2.10).timeout
+		activate_idle_state()
+		activate_movement_state()
+
+	#base_state_machine.travel(target_state)
 
 
 #---
@@ -1067,6 +1104,7 @@ func play_random_footstep() -> void:
 
 
 func _on_idle_state_exited() -> void:
+	is_idle = false
 	print("Idle : OFF")
 	print("Idle state duration : ", debug_chrono)
 
@@ -1086,11 +1124,13 @@ func _on_light_attack_state_exited() -> void:
 	print("L.A. state duration : ", debug_chrono)
 
 func _on_charged_attack_state_exited() -> void:
+	is_charged_attacking = false
 	print("Charged attack : OFF")
 	print("C.A. state duration : ", debug_chrono)
 	print("can_transition is : ", can_transition)
 
 func _on_charged_recovery_state_exited() -> void:
+	is_recovering = false
 	print("Recovery : OFF")
 	print("Recovery state duration : ", debug_chrono)
 
