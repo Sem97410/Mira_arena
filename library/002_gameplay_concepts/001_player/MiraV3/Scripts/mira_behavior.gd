@@ -602,6 +602,7 @@ func activate_light_attack_state() -> void :
 func activate_charged_attack_state() -> void  :
 	if Input.is_action_just_pressed("charge_attack") and can_transition and !is_charged_attacking:
 		send_event_state_chart("IsChargedAttacking")
+		base_state_machine.stop()
 		base_state_machine.travel("ChargedAttack")
 	#else:
 		#print("Condition not good for charged attack")
