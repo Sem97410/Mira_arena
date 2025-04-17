@@ -13,7 +13,7 @@ void fragment() {
 	vec3 noise = texture(noise_texture, uv).rgb;
 	ALBEDO = noise;
 	EMISSION = noise * emission_strength;
-	
+
 	// Called for every pixel the material is visible on.
 }
 

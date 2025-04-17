@@ -9,5 +9,5 @@ shader_parameter/color_one = Color(0.787016, 0.359363, 0.0129664, 1)
 shader_parameter/color_two = Color(0.959502, 0.654019, 0.334216, 1)
 shader_parameter/min_height = 1.85
 shader_parameter/max_height = 0.84
-shader_parameter/wind_speed = 0.16
-shader_parameter/wind_intensity = 0.645
+shader_parameter/wind_speed = 0.02
+shader_parameter/wind_intensity = 0.1

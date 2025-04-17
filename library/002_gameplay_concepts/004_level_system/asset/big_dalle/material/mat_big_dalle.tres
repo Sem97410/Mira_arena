@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bp64cbnlh8m77"]
+
+[ext_resource type="Texture2D" uid="uid://kdu3cpkvabs" path="res://library/002_gameplay_concepts/004_level_system/asset/big_dalle/material/txt_big_dalle_BaseColor.png" id="1_0dvpi"]
+[ext_resource type="Texture2D" uid="uid://8m00lvl4j2sk" path="res://library/002_gameplay_concepts/004_level_system/asset/big_dalle/material/txt_big_dalle_Normal.png" id="2_h4njn"]
+[ext_resource type="Texture2D" uid="uid://oi4612slvxk1" path="res://library/002_gameplay_concepts/004_level_system/asset/big_dalle/material/txt_big_dalle_Roughness.png" id="3_gwqge"]
+
+[resource]
+albedo_texture = ExtResource("1_0dvpi")
+roughness_texture = ExtResource("3_gwqge")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_h4njn")

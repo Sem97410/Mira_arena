@@ -10056,6 +10056,7 @@ transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 
 transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0, 3.71616, 3.5845)
 
 [node name="post_process" parent="CameraComponent/CameraController/CameraTarget/Camera3D" instance=ExtResource("39_qq7u7")]
+visible = false
 
 [node name="MakeCameraShake" type="Node" parent="CameraComponent" node_paths=PackedStringArray("camera_position")]
 script = ExtResource("31_1yggv")
