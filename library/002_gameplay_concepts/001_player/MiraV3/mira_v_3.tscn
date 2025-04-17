@@ -5748,20 +5748,31 @@ tracks/79/path = NodePath("../DashComponent/LaunchDash")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.02, 0.03),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.02, 0.03),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"modify_fov_with_tween"
+}, {
+"args": [],
+"method": &"launch_action_line"
+}]
+}
+tracks/80/type = "method"
+tracks/80/imported = false
+tracks/80/enabled = false
+tracks/80/path = NodePath("..")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"start_dash"
 }, {
 "args": [],
 "method": &"execute_dash"
-}, {
-"args": [],
-"method": &"modify_fov_with_tween"
-}, {
-"args": [],
-"method": &"launch_action_line"
 }]
 }
 
@@ -10094,7 +10105,7 @@ parameters/MiraAnimations/Combo2BlendTree/Blend2/blend_amount = 1.0
 parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position = 0
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 1.0
 parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position = 0
-parameters/MiraAnimations/MovementBlendSpace/blend_position = 0
+parameters/MiraAnimations/MovementBlendSpace/blend_position = -0.000984192
 parameters/TimeScale/scale = 1.75
 
 [node name="CameraComponent" type="Node" parent="." groups=["player"]]

@@ -26,7 +26,7 @@ extends CharacterBody3D
 @onready var can_transition : bool = true
 
 @onready var is_idle : bool = false 
-@onready var is_movement : bool = false
+@onready var is_moving : bool = false
 @onready var is_in_the_air : bool = false
 @onready var is_dashing : bool = false
 @onready var is_light_attacking : bool = false
@@ -328,6 +328,7 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	charge_attack_movement_mode()
+	print("is_moving is :", is_moving)
 	#print("can transition is : ", can_transition)
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
@@ -395,6 +396,8 @@ func _on_idle_state_processing(delta: float) -> void:
 #---
 
 func _on_movement_state_entered() -> void:
+	#base_state_machine.travel("MovementBlendSpace")
+	is_moving = true
 	debug_chrono = 0
 	print("Movement : ON")
 	
@@ -541,16 +544,19 @@ func disable_can_transition() -> void :
 
 func activate_idle_state()-> void :
 	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor() and !is_idle:
-		send_event_state_chart("IsIdle")
 		base_state_machine.travel("MovementBlendSpace")
+		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
 
 #---
 
 func activate_movement_state()-> void :
-	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and ! is_movement:
-		send_event_state_chart("IsMoving")
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_moving:
+		#print("J'ai passé le teste pour activer le mouvement")
 		base_state_machine.travel("MovementBlendSpace")
+		send_event_state_chart("IsMoving")
+	#else : 
+		#print("Une des conditions pour passer le mouvement est fausse")
 
 
 #---
@@ -567,7 +573,7 @@ func activate_in_the_air_state() -> void :
 
 func activate_dash_state() -> void :
 
-	if Input.is_action_just_pressed("dash") or is_dashing and can_transition and !is_dashing:
+	if Input.is_action_just_pressed("dash") or is_dashing and can_transition:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -669,7 +675,7 @@ func jump_the_character() -> void :
 
 ## IN THE AIR
 func launch_in_the_air_animation() -> void :
-	if not is_on_floor():
+	if not is_on_floor() and is_in_the_air:
 
 		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
@@ -814,7 +820,14 @@ func stop_dash():
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
 	enable_can_transition()
-	send_event_state_chart("IsMoving")
+	activate_movement_state()
+	activate_idle_state()
+	print("Dash terminé, travel vers MovementBlendSpace")
+	print("State actuel :", base_state_machine.get_current_node())
+	print("State actuel :", base_state_machine.get_current_node())
+
+
+	#send_event_state_chart("IsMoving")
 
 #---
 
@@ -844,6 +857,7 @@ func launch_action_line() -> void :
 
 func launch_dash_animation() -> void :
 	base_state_machine.travel("Dash")
+	print("Lauch dash animation")
 
 # --------------------------------------------------------------------------
 
@@ -1110,6 +1124,7 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_movement_state_exited() -> void:
+	is_moving = false
 	print("Movement : OFF")
 	print("Movement state duration : ", debug_chrono)
 
