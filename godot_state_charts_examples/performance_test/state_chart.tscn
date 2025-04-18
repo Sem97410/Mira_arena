@@ -22,7 +22,7 @@ script = ExtResource("3_qtc2o")
 [node name="To B" type="Node" parent="StateChart/Root/A"]
 script = ExtResource("4_ue85n")
 to = NodePath("../../B")
-delay_seconds = 10.0
+delay_in_seconds = "10.0"
 
 [node name="B" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_qtc2o")
@@ -30,7 +30,7 @@ script = ExtResource("3_qtc2o")
 [node name="To A" type="Node" parent="StateChart/Root/B"]
 script = ExtResource("4_ue85n")
 to = NodePath("../../A")
-delay_seconds = 20.0
+delay_in_seconds = "20.0"
 
 [connection signal="state_processing" from="StateChart/Root/A" to="." method="_on_a_state_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/B" to="." method="_on_b_state_physics_processing"]
