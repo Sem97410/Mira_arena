@@ -10,7 +10,7 @@ extends Node3D
 #
 #func _ready() -> void:
 	#make_item_blink()
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.global_position.y <= 7.0 :
 		#print("Trop bas donc sup")
 		self.queue_free()

@@ -163,7 +163,7 @@ func make_zone_damages(attack_area : Area3D,damage : float) -> void :
 				break  # Stop dès qu’un enfant a été touché
 #----------------------------------------------
 
-func move(target: Vector3, delta: float) -> void:
+func move(target: Vector3, _delta: float) -> void:
 	if not can_move:
 		return
 
@@ -327,7 +327,7 @@ func play_animation(base_state_machne : AnimationNodeStateMachinePlayback, anima
 #----------------------------------------------
 ##Vfx functions
 
-func instantiate_vfx(position: Vector3, vfx: PackedScene) -> void:
+func instantiate_vfx(vfx_position: Vector3, vfx: PackedScene) -> void:
 	if vfx == null:
 		#print("❌ Erreur : Le VFX est nul, impossible d'instancier.")
 		return
@@ -341,7 +341,7 @@ func instantiate_vfx(position: Vector3, vfx: PackedScene) -> void:
 	get_tree().current_scene.add_child(vfx_instance)
 
 	# Maintenant, on peut modifier sa position
-	vfx_instance.global_position = position
+	vfx_instance.global_position = vfx_position
 #----------------------------------------------
 ##Sfx functions
 

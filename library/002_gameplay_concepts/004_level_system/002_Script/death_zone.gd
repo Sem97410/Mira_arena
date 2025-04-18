@@ -7,7 +7,7 @@ var time_on_ground: float = 0.0  # Temps accumulé sur le sol
 const SAFE_TIME: float = 0.5  # Temps avant de sauvegarder
 const SAFETY_OFFSET: float = 1.0  # Distance de recul pour éviter le bord
 @export var player_damage : float =20.0
-var enemy_damage
+
 
 
 func _ready() -> void:
