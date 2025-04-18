@@ -1927,14 +1927,11 @@ tracks/90/path = NodePath("..")
 tracks/90/interp = 1
 tracks/90/loop_wrap = true
 tracks/90/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"disable_movement"
-}, {
-"args": [],
-"method": &"enable_movement"
+"method": &"charged_attack_sfx"
 }]
 }
 tracks/91/type = "method"
@@ -1944,11 +1941,14 @@ tracks/91/path = NodePath("..")
 tracks/91/interp = 1
 tracks/91/loop_wrap = true
 tracks/91/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"charged_attack_sfx"
+"method": &"enable_charge_attack_mode"
+}, {
+"args": [],
+"method": &"disable_charge_attack_mode"
 }]
 }
 tracks/92/type = "method"
@@ -1962,10 +1962,10 @@ tracks/92/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"enable_charge_attack_mode"
+"method": &"enable_charge_attack_lock_mesh"
 }, {
 "args": [],
-"method": &"disable_charge_attack_mode"
+"method": &"disable_charge_attack_lock_mesh"
 }]
 }
 tracks/93/type = "method"
@@ -1975,14 +1975,14 @@ tracks/93/path = NodePath("..")
 tracks/93/interp = 1
 tracks/93/loop_wrap = true
 tracks/93/keys = {
-"times": PackedFloat32Array(0, 2.9),
+"times": PackedFloat32Array(2.73333, 2.83333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"enable_charge_attack_lock_mesh"
+"method": &"enable_charged_attack_area"
 }, {
 "args": [],
-"method": &"disable_charge_attack_lock_mesh"
+"method": &"disable_charged_attack_area"
 }]
 }
 tracks/94/type = "method"
@@ -1996,10 +1996,10 @@ tracks/94/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"enable_charged_attack_area"
+"method": &"enable_charged_attack_collision"
 }, {
 "args": [],
-"method": &"disable_charged_attack_area"
+"method": &"disable_charged_attack_collision"
 }]
 }
 tracks/95/type = "method"
@@ -2009,14 +2009,11 @@ tracks/95/path = NodePath("..")
 tracks/95/interp = 1
 tracks/95/loop_wrap = true
 tracks/95/keys = {
-"times": PackedFloat32Array(2.73333, 2.83333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(2.86667),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"enable_charged_attack_collision"
-}, {
-"args": [],
-"method": &"disable_charged_attack_collision"
+"method": &"freeze_frame"
 }]
 }
 tracks/96/type = "method"
@@ -2026,11 +2023,11 @@ tracks/96/path = NodePath("..")
 tracks/96/interp = 1
 tracks/96/loop_wrap = true
 tracks/96/keys = {
-"times": PackedFloat32Array(2.86667),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"freeze_frame"
+"method": &"set_charged_attack_camera_shake_value"
 }]
 }
 tracks/97/type = "method"
@@ -2040,56 +2037,11 @@ tracks/97/path = NodePath("..")
 tracks/97/interp = 1
 tracks/97/loop_wrap = true
 tracks/97/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"set_charged_attack_camera_shake_value"
-}]
-}
-tracks/98/type = "method"
-tracks/98/imported = false
-tracks/98/enabled = true
-tracks/98/path = NodePath("..")
-tracks/98/interp = 1
-tracks/98/loop_wrap = true
-tracks/98/keys = {
 "times": PackedFloat32Array(2.73333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"instantiate_charged_attack_impact_vfx"
-}]
-}
-tracks/99/type = "method"
-tracks/99/imported = false
-tracks/99/enabled = true
-tracks/99/path = NodePath("..")
-tracks/99/interp = 1
-tracks/99/loop_wrap = true
-tracks/99/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"disable_can_transition"
-}, {
-"args": [],
-"method": &"enable_can_transition"
-}]
-}
-tracks/100/type = "method"
-tracks/100/imported = false
-tracks/100/enabled = false
-tracks/100/path = NodePath("..")
-tracks/100/interp = 1
-tracks/100/loop_wrap = true
-tracks/100/keys = {
-"times": PackedFloat32Array(2.86667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["IsFinishingTheChargedAttack"],
-"method": &"send_event_state_chart"
 }]
 }
 
@@ -8686,27 +8638,35 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "state_chart", "aura_mesh", "camera", "camera_behavior_script", "animation_player", "player", "player_mesh", "health_bar", "death_pannel", "death_pannel_first_button", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "charge_attack_charging", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "light_attack_vfx_storage", "movement_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "mira_step", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charged_attack_sound", "camera_position") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "health_bar", "death_pannel", "death_pannel_first_button", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_charging", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_collision", "charged_attack_impact_collision", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
-animation_tree = NodePath("AnimationTree")
-state_chart = NodePath("StateChart")
+Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
+player = NodePath(".")
 aura_mesh = NodePath("Meshes/Group/Aura")
+player_mesh = NodePath("Meshes/Group/DeformationSystem")
+animation_tree = NodePath("AnimationTree")
+animation_player = NodePath("Meshes/AnimationPlayer")
+state_chart = NodePath("StateChart")
 camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 camera_behavior_script = NodePath("CameraComponent/MakeCameraFollowPlayer")
-animation_player = NodePath("Meshes/AnimationPlayer")
-player = NodePath(".")
-player_mesh = NodePath("Meshes/Group/DeformationSystem")
+camera_position = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 health_bar = NodePath("UI/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
 death_pannel_first_button = NodePath("UI/death_pannel/Buttons_container/Reload")
-dash_length = 5.0
 action_line_sprites = NodePath("UI/ActionLineSprites")
-light_attack_damage = 50.0
 light_attack_area = NodePath("LightAttackSystemArea3D")
 long_range_collision_shape = NodePath("LightAttackSystemArea3D/DistanceCollisionShape3D")
 short_range_collision_shape = NodePath("LightAttackSystemArea3D/ContactCollisionShape3D")
-charged_attack_damage = 100.0
+light_attack_vfx_storage = NodePath("VFX/LightVfxStorage")
+combo_1_vfx_scene = ExtResource("3_uw203")
+combo_2_vfx_scene = ExtResource("4_h1fgh")
+base_combo_position = NodePath("VFX/SlashPosition")
+combo_3_animation_player = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack/AnimationPlayer")
+combo_3_vfx = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack")
+attack_1_sound = NodePath("SFX/LightAttack1")
+attack_2_sound = NodePath("SFX/LightAttack2")
+attack_3_sound = NodePath("SFX/LightAttack3V2")
 charge_attack_charging = NodePath("VFX/Attack_Charge")
 charge_attack_lock_mesh = NodePath("Meshes/Lock")
 charged_attack_area = NodePath("Meshes/ChargedAttackSystemArea3D")
@@ -8715,21 +8675,14 @@ charged_attack_impact_collision = NodePath("Meshes/ChargedAttackSystemArea3D/Cha
 charged_attack_impact_vfx = ExtResource("42_5lhpq")
 charged_attack_impact_vfx_storage = NodePath("VFX/ChargeAttackImpactPosition")
 charged_attack_impact_vfx_spawn_position = NodePath("VFX/ChargeAttackImpactPosition")
-light_attack_vfx_storage = NodePath("VFX/LightVfxStorage")
+charged_attack_sound = NodePath("SFX/ChargedAttack")
 foot_step_vfx = ExtResource("2_5lelo")
 movement_vfx_storage = NodePath("VFX/FootStepVfxStorage")
-combo_1_vfx_scene = ExtResource("3_uw203")
-combo_2_vfx_scene = ExtResource("4_h1fgh")
-base_combo_position = NodePath("VFX/SlashPosition")
-combo_3_animation_player = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack/AnimationPlayer")
-combo_3_vfx = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack")
 mira_step = NodePath("SFX/mira_step")
 footstep_sounds = Array[AudioStream]([ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc")])
-attack_1_sound = NodePath("SFX/LightAttack1")
-attack_2_sound = NodePath("SFX/LightAttack2")
-attack_3_sound = NodePath("SFX/LightAttack3V2")
-charged_attack_sound = NodePath("SFX/ChargedAttack")
-camera_position = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
+dash_length = 5.0
+light_attack_damage = 50.0
+charged_attack_damage = 100.0
 
 [node name="UI" type="Node" parent="."]
 

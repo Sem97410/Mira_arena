@@ -4,27 +4,110 @@ extends CharacterBody3D
 ## SUMMARY
 #This script will handle every aspect of Mira's behavior
 # --------------------------------------------------
-
+@export_multiline var Summary : String
 # -------------------------------------
 ## REFERENCES
 
 #NODES
 
-@export_category("General")
+@export_category("Important")
+
+#---
+
+#Player variable
+@export_group("❗Required References❗ ⚠️")
+@export_subgroup("Player")
+@export var player : CharacterBody3D
+@export var aura_mesh : MeshInstance3D #The colored circle effect around the player
+@export var player_mesh : Node3D
+
+#---
 
 #Animations variables
-@export_group("Animation variables")
+@export_subgroup("Animation variables")
 @export var animation_tree : AnimationTree
+@export var animation_player : AnimationPlayer
 @onready var base_state_machine : AnimationNodeStateMachinePlayback = animation_tree["parameters/MiraAnimations/playback"]
+
+#---
+
+@export_subgroup("Behavior")
+@export var state_chart : StateChart 
+
+#---
+
+@export_subgroup("Camera")
+@export var camera : Camera3D
+@export var camera_behavior_script : CameraBehavior
+@export var camera_position: Camera3D
+
+#---
+
+@export_subgroup("HealthBar")
+@export var health_bar : ProgressBar
+@export var death_pannel : Control
+@export var death_pannel_first_button : Button
+
+#---
+
+@export_subgroup("Dash action line")
+@export var action_line_sprites : AnimatedSprite2D
+
+#---
+
+@export_subgroup("Light attack")
+@export var light_attack_area : Area3D
+@export var long_range_collision_shape : CollisionShape3D
+@export var short_range_collision_shape : CollisionShape3D
+@export var light_attack_vfx_storage : Node
+
+#---
+
+@export_subgroup("Light attack VFX")
+@export var combo_1_vfx_scene : PackedScene
+@export var combo_2_vfx_scene: PackedScene
+@export var base_combo_position : Node3D
+@export var combo_3_animation_player : AnimationPlayer
+@export var combo_3_vfx : Node3D
+
+#---
+
+@export_subgroup("Light attack SFX")
+@export var attack_1_sound : AudioStreamPlayer
+@export var attack_2_sound : AudioStreamPlayer
+@export var attack_3_sound : AudioStreamPlayer
+
+#---
+
+@export_subgroup("Charged attack")
+@export var charge_attack_charging : Node3D
+@export var charge_attack_lock_mesh : Node3D
+@export var charged_attack_area : Area3D
+@export var charged_attack_collision : CollisionShape3D
+@export var charged_attack_impact_collision : CollisionShape3D
+@export var charged_attack_impact_vfx : PackedScene
+@export var charged_attack_impact_vfx_storage : Node3D
+@export var charged_attack_impact_vfx_spawn_position : Node3D
+
+@export_subgroup("Charged attack SFX")
+@export var charged_attack_sound : AudioStreamPlayer
+
+#Foot step variables
+@export_subgroup("Foot step VFX")
+@export var foot_step_vfx : PackedScene
+@export var movement_vfx_storage : Node
+
+@export_subgroup("Foot step SFX")
+@export var mira_step : AudioStreamPlayer3D
+@export var footstep_sounds : Array[AudioStream]
+
+# ----------------
 
 
 #---
 
 #States variables
-@export_group("States variables")
-@export var state_chart : StateChart
-@onready var can_transition : bool = true
-
+@export_group("States variables") #Bool that determine if player is in a state or not. 
 @onready var is_idle : bool = false 
 @onready var is_moving : bool = false
 @onready var is_in_the_air : bool = false
@@ -33,35 +116,23 @@ extends CharacterBody3D
 @onready var is_charged_attacking : bool = false
 @onready var is_recovering : bool = false
 
-#---
-
-#Meshes variables
-@export_group("Meshes variables")
-@export var aura_mesh : MeshInstance3D
-
-var direction_vector_input: Vector2
-var _previous_position: Vector3
-
-@onready var can_move : bool = true
-@onready var charge_attack_mode : bool = false
+@onready var can_transition : bool = true#Allow or not a transition during an animation
+@onready var can_move : bool = true #Disable/eneable movement
+@onready var charge_attack_mode : bool = false #Disables movement and changes left joystick behavior during a charged attack.
 
 #---
 
-#Camera variables
-@export_group("Camera")
-@export var camera : Camera3D
-@export var camera_behavior_script : CameraBehavior
+#Movement variables
+var direction_vector_input: Vector2 #Used to handle the player's movement in move_the_character()
+var _previous_position: Vector3 # used to calculate the real player's speed in update_movement_tracking()
 
 # ----------------
 
 # HEALTH
-@export_group("Health")
+@export_category("Health")
 @export_subgroup("General health values")
 @export var player_max_hp : float = 100
 @onready var player_current_hp : float = player_max_hp
-@export var animation_player : AnimationPlayer
-@export var player : CharacterBody3D
-@export var player_mesh : Node3D
 @onready var is_alive : bool = true
 
 @export_subgroup("Invincibility values")
@@ -69,82 +140,11 @@ var _previous_position: Vector3
 @onready var after_hit_invicibility : bool = false
 @export var invicibility_duration : float = 5.0 #base on the number of blink
 
-@export_subgroup("HealthBar")
-@export var health_bar : ProgressBar
-@export var death_pannel : Control
-@export var death_pannel_first_button : Button
-
 # ----------------
 
 #DEBUG VARIABLES
 
 var debug_chrono : float
-
-# ----------------
-
-# HEALTH
-
-func take_damage(damage : float) -> void :
-	if not after_hit_invicibility :
-		player_current_hp -= damage
-		check_if_dead()
-		launch_hit_logic()
-		health_bar.health = player_current_hp
-
-#---
-
-func _on_death_state_entered() -> void:
-	death()
-
-#---
-
-func launch_hit_logic() -> void :
-	if player_current_hp <= 0 :
-		return
-
-	base_state_machine.travel("Hit")	#Animation
-	player_is_blinking()				#Blink
-
-#---
-
-func check_if_dead() -> void :
-	if player_current_hp <= 0 :
-		send_event_state_chart("IsDead")
-
-#---
-
-func death() -> void :
-
-	base_state_machine.travel("Death")
-	is_alive = false
-	can_move = false
-	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
-
-	await get_tree().create_timer(1.5).timeout
-
-	death_pannel.visible = true
-	death_pannel_first_button.grab_focus()
-
-	#await get_tree().create_timer(0.5).timeout
-	Engine.time_scale = 0.0
-
-#---
-
-func player_is_blinking():
-	if  after_hit_invicibility:
-		return # Exit if blinking is already in progress
-
-	after_hit_invicibility = true # Lock blinking
-
-	for i in range(invicibility_duration):
-		player_mesh.visible = not player_mesh.visible
-		await get_tree().create_timer(blink_interval).timeout
-
-	# Restore visibility and re-enable blinking
-	player_mesh.visible = true
-	after_hit_invicibility = false
-
-# ----------------
 
 # MOVEMENT
 @export_category("Movement ")
@@ -163,17 +163,19 @@ var _real_speed := 0.0
 @export var jump_strength : float = 7.5
 
 #---
-
 #Dash variables
+
+#Controls dash values as well as various variables used to manage it.
 @export_group("Dash variables")
 @export_subgroup("Dash general values")
 @export var dash_duration: float = 0.2 #In second
 @export var latence_between_dash : float = 3.0
-
-@export_subgroup("Dash movement values")
 @export var dash_length : float
+
+
 @onready var start_time : int = 0 #When the dash start
 @onready var dash_countdown : float = 0.0
+var dash_cooldown_after_stop := 0.0
 
 @export_subgroup("Player position")
 var start_position : Vector3 #Begining of the dash
@@ -183,13 +185,7 @@ var destination_target : Vector3 #End of the dash
 @onready var base_FOV : float = 75.0
 @onready var dash_FOV : float = 90.0
 
-@export_subgroup("Action line")
-@export var action_line_sprites : AnimatedSprite2D
-
-var was_in_air = false  # Pour savoir si on était en l'air avant le dash
-
-var dash_cooldown_after_stop := 0.0
-
+var was_in_air = false  # Stores whether the player was in the air before dashing
 
 #---
 
@@ -209,16 +205,6 @@ var last_rotation_angle : float = 0.0
 var current_damage : float
 
 @export var light_attack_damage : float
-
-
-
-
-@export var light_attack_area : Area3D
-@export var long_range_collision_shape : CollisionShape3D
-@export var short_range_collision_shape : CollisionShape3D
-
-
-
 @onready var light_damage : float
 @onready var charged_damage: float
 
@@ -227,15 +213,6 @@ var current_damage : float
 #Charged  attack
 @export_subgroup("Charged attack")
 @export var charged_attack_damage : float
-@export var charge_attack_charging : Node3D
-@export var charge_attack_lock_mesh : Node3D
-@export var charged_attack_area : Area3D
-@export var charged_attack_collision : CollisionShape3D
-@export var charged_attack_impact_collision : CollisionShape3D
-
-@export var charged_attack_impact_vfx : PackedScene
-@export var charged_attack_impact_vfx_storage : Node3D
-@export var charged_attack_impact_vfx_spawn_position : Node3D
 @onready var vfx_spawned : bool = false
 
 #Animation combo
@@ -252,50 +229,9 @@ var current_damage : float
 
 # ----------------
 
-#VFX
-@export_category("VFX")
-
-@export var light_attack_vfx_storage : Node
-
-#Foot step variables
-@export_group("Foot step VFX")
-@export var foot_step_vfx : PackedScene
-@export_subgroup("Storage")
-@export var movement_vfx_storage : Node
-
-#---
-
 @export_group("Attack VFX")
 var current_vfx : MeshInstance3D
-@export var combo_1_vfx_scene : PackedScene
-@export var combo_2_vfx_scene: PackedScene
-@export var base_combo_position : Node3D
-@export var combo_3_animation_player : AnimationPlayer
-@export var combo_3_vfx : Node3D
 
-# ----------------
-
-#SFX
-@export_category("SFX")
-
-#Foot step variables
-@export_group("Foot step SFX")
-@export var mira_step : AudioStreamPlayer3D
-@export_subgroup("Foot step type")
-@export var footstep_sounds : Array[AudioStream]
-
-#---
-
-@export_group("Light attack SFX")
-@export var attack_1_sound : AudioStreamPlayer
-@export var attack_2_sound : AudioStreamPlayer
-@export var attack_3_sound : AudioStreamPlayer
-
-#---
-
-#Charged attack
-@export_group("Charged attack SFX")
-@export var charged_attack_sound : AudioStreamPlayer
 # ----------------
 
 #CAMERA
@@ -306,7 +242,6 @@ var current_shake: float
 @export var light_attack_shake: float = 0.1
 @export var charged_attack_shake: float = 0.3
 @export var death_shake: float = 0.3
-@export var camera_position: Camera3D
 var shake_strength: float = 0.0
 var original_position: Vector3  # Stocke la position d'origine
 
@@ -375,9 +310,6 @@ func _on_idle_state_entered() -> void:
 	print("Idle : ON")
 	is_idle = true
 
-
-
-
 func _on_idle_state_processing(delta: float) -> void:
 	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
@@ -391,8 +323,11 @@ func _on_idle_state_processing(delta: float) -> void:
 	activate_light_attack_state()
 	activate_dash_state()
 
-	#listen_to_other_states()
-
+func _on_idle_state_exited() -> void:
+	is_idle = false
+	print("Idle : OFF")
+	print("Idle state duration : ", debug_chrono)
+	
 #---
 
 func _on_movement_state_entered() -> void:
@@ -412,8 +347,11 @@ func _on_movement_state_processing(delta: float) -> void:
 	activate_dash_state()
 	activate_in_the_air_state()
 
-	#listen_to_other_states()
-
+func _on_movement_state_exited() -> void:
+	is_moving = false
+	print("Movement : OFF")
+	print("Movement state duration : ", debug_chrono)
+	
 #---
 func _on_in_the_air_state_entered() -> void:
 	debug_chrono = 0
@@ -431,6 +369,13 @@ func _on_in_the_air_state_processing(delta: float) -> void:
 	if is_on_floor():
 		activate_idle_state()
 		activate_movement_state()
+
+
+func _on_in_the_air_state_exited() -> void:
+	print("In the air : OFF")
+	print("In the air state duration : ", debug_chrono)
+	is_in_the_air = false
+
 
 #---
 
@@ -462,7 +407,9 @@ func _on_light_attack_state_entered() -> void:
 	print("Light Attack : ON")
 	#print("Passe par la en premier : 1")
 
-	
+func _on_light_attack_state_exited() -> void:
+	print("Light attack : OFF")
+	print("L.A. state duration : ", debug_chrono)
 
 
 func _on_light_attack_state_processing(delta: float) -> void:
@@ -480,7 +427,6 @@ func _on_light_attack_state_processing(delta: float) -> void:
 func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area , light_attack_damage)
 
-
 #---
 
 func _on_charged_attack_state_entered() -> void:
@@ -493,25 +439,40 @@ func _on_charged_attack_state_entered() -> void:
 	print("End of the animation")
 	send_event_state_chart("IsFinishingTheChargedAttack")
 
+func _on_charged_attack_state_exited() -> void:
+	is_charged_attacking = false
+	print("Charged attack : OFF")
+	print("C.A. state duration : ", debug_chrono)
+	print("can_transition is : ", can_transition)
+
+#---
 
 func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
 	debug_chrono = 0
 	print("Recovery : ON")
 
+func _on_charged_recovery_state_processing(delta: float) -> void:
+	debug_chrono += delta
+	activate_idle_state()
+	activate_movement_state()
+	
+func _on_charged_attack_state_physics_processing(delta: float) -> void:
+	debug_chrono += delta
 
-	#activate_dash_state()
-	#activate_light_attack_state()
+#---
 
-	#listen_to_other_states()
+func _on_charged_recovery_state_exited() -> void:
+	is_recovering = false
+	print("Recovery : OFF")
+	print("Recovery state duration : ", debug_chrono)
+
+#---
+
+func _on_death_state_entered() -> void:
+	death()
 
 
-#
-#func _on_charged_recovery_state_processing(delta: float) -> void:
-	#listen_to_other_states()
-
-#func _on_charged_attack_state_physics_processing(delta: float) -> void:
-	#listen_to_other_states()
 
 # --------------------------------------------------------------------------
 
@@ -606,6 +567,71 @@ func activate_charged_attack_state() -> void  :
 		base_state_machine.travel("ChargedAttack")
 	#else:
 		#print("Condition not good for charged attack")
+
+
+# --------------------------------------------------------------------------
+
+## HEALTH
+
+func take_damage(damage : float) -> void :
+	if not after_hit_invicibility :
+		player_current_hp -= damage
+		check_if_dead()
+		launch_hit_logic()
+		health_bar.health = player_current_hp
+
+#---
+
+
+#---
+
+func launch_hit_logic() -> void :
+	if player_current_hp <= 0 :
+		return
+
+	base_state_machine.travel("Hit")	#Animation
+	player_is_blinking()				#Blink
+
+#---
+
+func check_if_dead() -> void :
+	if player_current_hp <= 0 :
+		send_event_state_chart("IsDead")
+
+#---
+
+func death() -> void :
+
+	base_state_machine.travel("Death")
+	is_alive = false
+	can_move = false
+	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
+
+	await get_tree().create_timer(1.5).timeout
+
+	death_pannel.visible = true
+	death_pannel_first_button.grab_focus()
+
+	#await get_tree().create_timer(0.5).timeout
+	Engine.time_scale = 0.0
+
+#---
+
+func player_is_blinking():
+	if  after_hit_invicibility:
+		return # Exit if blinking is already in progress
+
+	after_hit_invicibility = true # Lock blinking
+
+	for i in range(invicibility_duration):
+		player_mesh.visible = not player_mesh.visible
+		await get_tree().create_timer(blink_interval).timeout
+
+	# Restore visibility and re-enable blinking
+	player_mesh.visible = true
+	after_hit_invicibility = false
+
+# ----------------
 
 # --------------------------------------------------------------------------
 
@@ -713,7 +739,7 @@ func update_movement_tracking(delta: float) -> void:
 	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_backward", 0.2)
 	_input_strength = input_vector.length()
 
-	# Vitesse réelle
+	# Real speed
 	var displacement = global_position - _previous_position
 	_real_speed = displacement.length() / delta
 	_previous_position = global_position
@@ -1117,52 +1143,3 @@ func play_random_footstep() -> void:
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
-
-
-func _on_idle_state_exited() -> void:
-	is_idle = false
-	print("Idle : OFF")
-	print("Idle state duration : ", debug_chrono)
-
-
-func _on_movement_state_exited() -> void:
-	is_moving = false
-	print("Movement : OFF")
-	print("Movement state duration : ", debug_chrono)
-
-
-func _on_in_the_air_state_exited() -> void:
-	print("In the air : OFF")
-	print("In the air state duration : ", debug_chrono)
-	is_in_the_air = false
-
-
-func _on_light_attack_state_exited() -> void:
-	print("Light attack : OFF")
-	print("L.A. state duration : ", debug_chrono)
-
-func _on_charged_attack_state_exited() -> void:
-	is_charged_attacking = false
-	print("Charged attack : OFF")
-	print("C.A. state duration : ", debug_chrono)
-	print("can_transition is : ", can_transition)
-
-func _on_charged_recovery_state_exited() -> void:
-	is_recovering = false
-	print("Recovery : OFF")
-	print("Recovery state duration : ", debug_chrono)
-
-
-func _on_hit_state_exited() -> void:
-	print("Hit : OFF")
-	print("Hit state duration : ", debug_chrono)
-
-
-func _on_charged_recovery_state_processing(delta: float) -> void:
-	debug_chrono += delta
-	activate_idle_state()
-	activate_movement_state()
-
-
-func _on_charged_attack_state_physics_processing(delta: float) -> void:
-	debug_chrono += delta
