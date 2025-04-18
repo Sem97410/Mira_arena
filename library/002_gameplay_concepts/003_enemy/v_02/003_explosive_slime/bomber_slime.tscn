@@ -173,32 +173,6 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 1.2, 0.8, 1.2, 0.0416667, 1, 1.01852, 0.981481, 1.01852, 0.0833333, 1, 0.681481, 1.31852, 0.681481, 0.125, 1, 0.5, 1.5, 0.5, 0.166667, 1, 1.2, 0.8, 1.2, 0.208333, 1, 0.8, 1.2, 0.8, 0.291667, 1, 1.2, 0.8, 1.2)
 
-[sub_resource type="Animation" id="Animation_hmya5"]
-resource_name = "hit"
-length = 1.08333
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.000645729, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 0.0416667, 1, 0.594391, 0, 0, 0.804176, 0.0833333, 1, 0.4741, 0, 0, 0.880471, 0.125, 1, 0.487528, 0, 0, 0.873107, 0.166667, 1, 0.522139, 0, 0, 0.85286, 0.208333, 1, 0.569126, 0, 0, 0.822251, 0.25, 1, 0.619312, 0, 0, 0.785145, 0.291667, 1, 0.663878, 0, 0, 0.747841, 0.333333, 1, 0.69526, 0, 0, 0.718758, 0.375, 1, 0.707107, 0, 0, 0.707107, 1.08333, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "scale_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0416667, 1, 1.25, 1.25, 0.5, 0.0833333, 1, 1.3, 1.3, 0.4, 0.166667, 1, 1.3, 1.3, 0.4, 0.208333, 1, 1.25, 1.25, 0.5, 0.291667, 1, 1.2, 1.2, 0.6, 0.375, 1, 1, 1, 1, 0.541667, 1, 1.2, 1.2, 0.6, 0.75, 1, 1, 1, 1, 1.08333, 1, 1.2, 1.2, 0.6)
-
 [sub_resource type="Animation" id="Animation_tnr7i"]
 resource_name = "Walk"
 length = 0.625
@@ -225,32 +199,6 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 1.0446, 0.868206, 1, 0.0416667, 1, 1.0223, 0.919518, 1, 0.0833333, 1, 1, 1, 1, 0.125, 1, 1, 1.0532, 1, 0.166667, 1, 1, 1.09675, 1, 0.208333, 1, 1, 1.13163, 1, 0.25, 1, 1, 1.15879, 1, 0.291667, 1, 1, 1.1792, 1, 0.333333, 1, 1, 1.19382, 1, 0.375, 1, 1, 1.20363, 1, 0.416667, 1, 1, 1.20957, 1, 0.458333, 1, 1, 1.21263, 1, 0.541667, 1, 1, 1.21391, 1, 0.625, 1, 1.0446, 0.868206, 1)
 
-[sub_resource type="Animation" id="Animation_oh0v0"]
-resource_name = "idle"
-length = 0.791667
-loop_mode = 2
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.000645729, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "scale_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Slime/Skeleton3D:slime_body")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0416667, 1, 0.997904, 0.997904, 0.997904, 0.0833333, 1, 0.992664, 0.992664, 0.992664, 0.166667, 1, 0.979039, 0.979039, 0.979039, 0.208333, 1, 0.973799, 0.973799, 0.973799, 0.25, 1, 0.971703, 0.971703, 0.971703, 0.333333, 1, 0.973506, 0.973506, 0.973506, 0.375, 1, 0.975528, 0.975528, 0.975528, 0.416667, 1, 0.978092, 0.978092, 0.978092, 0.458333, 1, 0.981041, 0.981041, 0.981041, 0.5, 1, 0.984222, 0.984222, 0.984222, 0.541667, 1, 0.987481, 0.987481, 0.987481, 0.583333, 1, 0.990662, 0.990662, 0.990662, 0.625, 1, 0.993612, 0.993612, 0.993612, 0.666667, 1, 0.996175, 0.996175, 0.996175, 0.708333, 1, 0.998197, 0.998197, 0.998197, 0.791667, 1, 1, 1, 1)
-
 [sub_resource type="Animation" id="Animation_vxbo5"]
 resource_name = "death_001"
 length = 0.625
@@ -276,6 +224,58 @@ tracks/2/path = NodePath("Slime/Skeleton3D:slime_body")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0416667, 1, 0.953183, 0.953183, 0.953183, 0.0833333, 1, 0.906976, 0.906976, 0.906976, 0.125, 1, 0.862102, 0.862102, 0.862102, 0.166667, 1, 0.81863, 0.81863, 0.81863, 0.208333, 1, 0.776644, 0.776644, 0.776644, 0.25, 1, 0.736261, 0.736261, 0.736261, 0.291667, 1, 0.697634, 0.697634, 0.697634, 0.333333, 1, 0.660966, 0.660966, 0.660966, 0.375, 1, 0.626519, 0.626519, 0.626519, 0.416667, 1, 0.594637, 0.594637, 0.594637, 0.458333, 1, 0.565789, 0.565789, 0.565789, 0.5, 1, 0.540626, 0.540626, 0.540626, 0.541667, 1, 0.520102, 0.520102, 0.520102, 0.583333, 1, 0.505705, 0.505705, 0.505705, 0.625, 1, 0.5, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_hmya5"]
+resource_name = "hit"
+length = 1.08333
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.000645729, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 0.0416667, 1, 0.594391, 0, 0, 0.804176, 0.0833333, 1, 0.4741, 0, 0, 0.880471, 0.125, 1, 0.487528, 0, 0, 0.873107, 0.166667, 1, 0.522139, 0, 0, 0.85286, 0.208333, 1, 0.569126, 0, 0, 0.822251, 0.25, 1, 0.619312, 0, 0, 0.785145, 0.291667, 1, 0.663878, 0, 0, 0.747841, 0.333333, 1, 0.69526, 0, 0, 0.718758, 0.375, 1, 0.707107, 0, 0, 0.707107, 1.08333, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "scale_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0416667, 1, 1.25, 1.25, 0.5, 0.0833333, 1, 1.3, 1.3, 0.4, 0.166667, 1, 1.3, 1.3, 0.4, 0.208333, 1, 1.25, 1.25, 0.5, 0.291667, 1, 1.2, 1.2, 0.6, 0.375, 1, 1, 1, 1, 0.541667, 1, 1.2, 1.2, 0.6, 0.75, 1, 1, 1, 1, 1.08333, 1, 1.2, 1.2, 0.6)
+
+[sub_resource type="Animation" id="Animation_oh0v0"]
+resource_name = "idle"
+length = 0.791667
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.000645729, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "scale_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slime/Skeleton3D:slime_body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0416667, 1, 0.997904, 0.997904, 0.997904, 0.0833333, 1, 0.992664, 0.992664, 0.992664, 0.166667, 1, 0.979039, 0.979039, 0.979039, 0.208333, 1, 0.973799, 0.973799, 0.973799, 0.25, 1, 0.971703, 0.971703, 0.971703, 0.333333, 1, 0.973506, 0.973506, 0.973506, 0.375, 1, 0.975528, 0.975528, 0.975528, 0.416667, 1, 0.978092, 0.978092, 0.978092, 0.458333, 1, 0.981041, 0.981041, 0.981041, 0.5, 1, 0.984222, 0.984222, 0.984222, 0.541667, 1, 0.987481, 0.987481, 0.987481, 0.583333, 1, 0.990662, 0.990662, 0.990662, 0.625, 1, 0.993612, 0.993612, 0.993612, 0.666667, 1, 0.996175, 0.996175, 0.996175, 0.708333, 1, 0.998197, 0.998197, 0.998197, 0.791667, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5v8"]
 _data = {
@@ -359,7 +359,7 @@ mesh = SubResource("ArrayMesh_eue1r")
 skin = SubResource("Skin_1tgwp")
 
 [node name="Jigglebone" type="Node3D" parent="bomber_slime/Slime/Skeleton3D"]
-transform = Transform3D(1, 1.13514e-05, -1.56702e-05, 6.04791e-06, 0.769337, 0.775628, 1.71601e-05, -0.932648, 0.639813, -0.0102271, -0.199909, -0.151184)
+transform = Transform3D(1.00713, 8.50388e-10, -2.27101e-09, 1.27039e-09, 0.741764, 0.769641, 2.03123e-09, -0.885564, 0.644665, -0.0103201, -0.256918, -0.106729)
 top_level = true
 script = ExtResource("1_16q2v")
 bone_name = "meche_bones_01"
@@ -368,7 +368,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone2" type="Node3D" parent="bomber_slime/Slime/Skeleton3D"]
-transform = Transform3D(1, 2.21279e-05, -2.28024e-05, 1.52966e-05, 0.399316, 0.950731, 2.47851e-05, -1.13924, 0.333242, -0.0102198, -0.143018, -0.215036)
+transform = Transform3D(1.00713, -5.03525e-08, 1.15711e-07, -9.5613e-08, 0.371184, 0.951966, -7.8896e-08, -1.0926, 0.323408, -0.0103201, -0.206824, -0.166534)
 top_level = true
 script = ExtResource("1_16q2v")
 bone_name = "meche_bones_02"
@@ -376,7 +376,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone3" type="Node3D" parent="bomber_slime/Slime/Skeleton3D"]
-transform = Transform3D(1, 2.82703e-05, -2.92613e-05, 2.44849e-05, 0.211501, 0.992032, 2.81524e-05, -1.18814, 0.176593, -0.0102108, -0.109503, -0.297483)
+transform = Transform3D(1.00713, -5.79817e-08, 5.36356e-08, -4.49125e-08, 0.184958, 0.992539, -5.8568e-08, -1.13888, 0.161191, -0.0103201, -0.18017, -0.244992)
 top_level = true
 script = ExtResource("1_16q2v")
 bone_name = "meche_bones_03"
@@ -384,7 +384,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone4" type="Node3D" parent="bomber_slime/Slime/Skeleton3D"]
-transform = Transform3D(1, 3.11315e-05, -3.4355e-05, 3.15915e-05, 0.110181, 1.00354, 2.88105e-05, -1.20138, 0.0920372, -0.0102044, -0.0889148, -0.387908)
+transform = Transform3D(1.00713, -5.42462e-08, 2.32539e-08, -1.97071e-08, 0.0856842, 1.00286, -4.89528e-08, -1.15053, 0.0746871, -0.0103201, -0.166219, -0.330895)
 top_level = true
 script = ExtResource("1_16q2v")
 bone_name = "meche_bones_04"
@@ -392,7 +392,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone5" type="Node3D" parent="bomber_slime/Slime/Skeleton3D"]
-transform = Transform3D(1, 3.17609e-05, -3.66441e-05, 3.52686e-05, 0.0482331, 1.00725, 2.77729e-05, -1.20484, 0.0403228, -0.0102025, -0.0762975, -0.478914)
+transform = Transform3D(1.00713, -4.34418e-08, 8.99128e-09, -8.16664e-09, 0.0253553, 1.00563, -3.81176e-08, -1.15324, 0.02211, -0.0103201, -0.159764, -0.417563)
 top_level = true
 script = ExtResource("1_16q2v")
 bone_name = "meche_bones_05"

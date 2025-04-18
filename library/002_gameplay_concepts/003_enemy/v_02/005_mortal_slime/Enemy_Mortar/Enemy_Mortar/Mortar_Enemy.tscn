@@ -1,5 +1,6 @@
-[gd_scene load_steps=69 format=3 uid="uid://eoh3er86dlaj"]
+[gd_scene load_steps=70 format=3 uid="uid://eoh3er86dlaj"]
 
+[ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="1_qxeoj"]
 [ext_resource type="Material" uid="uid://d2ujkj8ij2n0h" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Mortar_Enemy_Explosive_Cloud.tres" id="6_f1pax"]
 [ext_resource type="Shader" uid="uid://s3my3eajqv5g" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Sparkle_Mortar.tres" id="7_e3xi6"]
 [ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_VFX_Point.png" id="7_l35jg"]
@@ -627,7 +628,10 @@ _data = {
 &"Sol_Mortar": SubResource("Animation_d2i4y")
 }
 
-[node name="MortarEnemy" type="Node3D"]
+[node name="MortarEnemy" type="Node3D" node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("1_qxeoj")
+current_vfx = NodePath(".")
+delay_before_queue_free = 2.0
 
 [node name="Explosion_Mortar" type="Node3D" parent="."]
 
