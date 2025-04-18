@@ -32,6 +32,8 @@ transform = Transform3D(-0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.7
 
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_26ubh")
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="helmet" parent="Mesh/Slime/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_luiaf")

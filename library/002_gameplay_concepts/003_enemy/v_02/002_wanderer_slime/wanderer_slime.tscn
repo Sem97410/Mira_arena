@@ -10,6 +10,10 @@ time_before_new_target = 10.0
 max_health_point = 50.0
 movement_speed = 7.0
 
+[node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
 [node name="ToPreAttack" type="Node" parent="StateChart/root/Idle" index="1"]
 script = ExtResource("2_r26yw")
 to = NodePath("../../PreAttack")
