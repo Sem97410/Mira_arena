@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brwh4wcs7ypv0"]
+
+[ext_resource type="Texture2D" uid="uid://clqeuxf1v1fbf" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/material/txt_chaudron_eyes_mortar_slime_BaseColor_.png" id="1_qiejc"]
+
+[resource]
+albedo_texture = ExtResource("1_qiejc")
