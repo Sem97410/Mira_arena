@@ -656,7 +656,7 @@ func _on_shoot_state_entered() -> void:
 	shoot_mortar_projectile()
 
 func in_a_stationary_mode() -> void : 
-	animation_player.play("Slime|idle")
+	#animation_player.play("Slime|idle")
 	await get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
 	
 	state_chart.send_event("IsShooting")
@@ -664,7 +664,7 @@ func in_a_stationary_mode() -> void :
 func shoot_mortar_projectile() -> void : 
 	if can_shoot:
 		can_shoot = false
-		animation_player.play("Slime|Charge")
+		animation_player.play("mortar_shoot")
 		instantiate_mortar_projectile()
 		state_chart.send_event("IsStationary")
 
