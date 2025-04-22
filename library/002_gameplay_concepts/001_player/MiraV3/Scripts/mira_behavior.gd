@@ -338,7 +338,6 @@ func _on_idle_state_exited() -> void:
 #---
 
 func _on_movement_state_entered() -> void:
-	#base_state_machine.travel("MovementBlendSpace")
 	is_moving = true
 	debug_chrono = 0
 	#print("Movement : ON")
@@ -411,6 +410,12 @@ func _on_dash_state_exited() -> void:
 
 func _on_light_attack_state_entered() -> void:
 	debug_chrono = 0
+	is_recovering = false
+	is_charged_attacking = false
+	enable_movement()
+	can_transition = true
+	disable_charge_attack_lock_mesh()
+	disable_charge_attack_mode()
 	#print("Light Attack : ON")
 	#print("Passe par la en premier : 1")
 
@@ -447,11 +452,11 @@ func _on_charged_attack_state_entered() -> void:
 	#print("End of the animation")
 	send_event_state_chart("IsFinishingTheChargedAttack")
 
-func _on_charged_attack_state_exited() -> void:
-	#print("Charged attack : OFF")
-	#print("C.A. state duration : ", debug_chrono)
-	#print("can_transition is : ", can_transition)
-	is_charged_attacking = false
+#func _on_charged_attack_state_exited() -> void:
+	##print("Charged attack : OFF")
+	##print("C.A. state duration : ", debug_chrono)
+	##print("can_transition is : ", can_transition)
+	#
 
 #---
 
@@ -473,8 +478,12 @@ func _on_charged_attack_state_physics_processing(delta: float) -> void:
 func _on_charged_recovery_state_exited() -> void:
 	
 	is_recovering = false
+	is_charged_attacking = false
 	enable_movement()
 	can_transition = true
+	disable_charge_attack_lock_mesh()
+	disable_charge_attack_mode()
+	
 	#print("Recovery : OFF")
 	#print("Recovery state duration : ", debug_chrono)
 
@@ -516,7 +525,7 @@ func disable_can_transition() -> void :
 #---
 
 func activate_idle_state()-> void :
-	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor() and !is_idle:
+	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor() and !is_idle and !is_charged_attacking:
 		base_state_machine.travel("MovementBlendSpace")
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
@@ -524,10 +533,14 @@ func activate_idle_state()-> void :
 #---
 
 func activate_movement_state()-> void :
-	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_moving:
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_moving and !is_charged_attacking:
 		#print("J'ai passé le teste pour activer le mouvement")
+	
 		base_state_machine.travel("MovementBlendSpace")
+		print("Je viens de lancer le mouvement depuis activate movement state")
+		print("Charged attack variable is : ", is_charged_attacking)
 		send_event_state_chart("IsMoving")
+
 	#else : 
 		#print("Une des conditions pour passer le mouvement est fausse")
 
@@ -559,7 +572,7 @@ func is_in_the_air_state() -> void :
 func activate_light_attack_state() -> void :
 	#print("can_transition = ", can_transition, " | Input = ", Input.is_action_just_pressed("light_attack"))
 
-	if Input.is_action_just_pressed("light_attack") and can_transition and !is_light_attacking:
+	if Input.is_action_just_pressed("light_attack") and can_transition and !is_light_attacking and !is_charged_attacking:
 		send_event_state_chart("IsLightAttacking")
 		launch_light_attack()
 		#print("Ensuite passe par la : 2 ")
@@ -718,9 +731,7 @@ func launch_in_the_air_animation() -> void :
 
 		base_state_machine.travel("Jump")
 		aura_mesh.visible = false
-	#elif is_on_floor() :
-		#base_state_machine.travel("MovementBlendSpace")
-		#aura_mesh.visible = true
+
 
 # --------------------------------------------------------------------------
 
@@ -765,6 +776,7 @@ func update_movement_tracking(delta: float) -> void:
 
 func enable_movement() -> void :
 	can_move = true
+	print("enable movement is active")
 
 #---
 
