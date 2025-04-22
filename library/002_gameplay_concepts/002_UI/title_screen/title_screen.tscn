@@ -6165,5 +6165,5 @@ gardening/gardening_collision_mask = 1.0
 arborist = SubResource("Resource_r5v84")
 plugin_version = "1.4.1"
 storage_version = 4
-metadata/_custom_type_script = "uid://bc7pailucq83t"
 metadata/class = "Gardener"
+metadata/_custom_type_script = "uid://bc7pailucq83t"
