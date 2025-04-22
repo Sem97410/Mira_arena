@@ -11,10 +11,6 @@ max_health_point = 21.0
 movement_speed = 5.0
 movement_interpolate_strength = 10.0
 
-[node name="Skeleton3D" parent="Mesh/Slime" index="0"]
-bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/0/scale = Vector3(1.2, 0.8, 1.2)
-
 [node name="body" parent="Mesh/Slime/Skeleton3D" index="0"]
 surface_material_override/0 = null
 surface_material_override/1 = null
