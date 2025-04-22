@@ -230,7 +230,6 @@ graph_offset = Vector2(-93.832, -499)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v5u4k"]
 
 [resource]
-graph_offset = Vector2(-510, -39)
 nodes/MiraAnimations/node = SubResource("AnimationNodeStateMachine_50pt5")
 nodes/MiraAnimations/position = Vector2(-420, 180)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_v5u4k")

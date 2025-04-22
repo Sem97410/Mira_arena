@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://btpcba0l0ekl"]
 
-[ext_resource type="Texture2D" uid="uid://db4sdywrc6q4p" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shirt_texture/shirt_BaseColor.png" id="1_32vnx"]
-[ext_resource type="Texture2D" uid="uid://4pr50vmngkp2" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shirt_texture/shirt_Roughness.png" id="2_vyxmo"]
+[ext_resource type="Texture2D" uid="uid://bra0r4lo61gyx" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shirt_texture/shirt_BaseColor.png" id="1_32vnx"]
+[ext_resource type="Texture2D" uid="uid://bl43sfkvy8phh" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shirt_texture/shirt_Roughness.png" id="2_vyxmo"]
 
 [resource]
 diffuse_mode = 3
@@ -9,3 +9,5 @@ specular_mode = 1
 albedo_texture = ExtResource("1_32vnx")
 roughness = 0.0
 roughness_texture = ExtResource("2_vyxmo")
+uv1_scale = Vector3(-0.8, -0.8, -0.8)
+uv1_offset = Vector3(0.235, -0.055, 0)
