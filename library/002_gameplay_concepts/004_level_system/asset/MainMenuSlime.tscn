@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://bkr2ep0sa3vlo"]
 
-[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_helmet.tres" id="1_dsbk5"]
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/000_material/mat_slime_helmet.tres" id="1_dsbk5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4btua"]
 resource_name = "mat_eyes_slime"

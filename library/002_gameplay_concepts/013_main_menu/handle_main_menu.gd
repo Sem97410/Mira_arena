@@ -9,10 +9,7 @@ extends Node
 func _ready() -> void:
 	get_tree().paused = false
 	animation_player.play("StartAnimation")
-	#await get_tree().create_timer(2.0).timeout
-	#pre_menu_pannel.visible = true
-	#is_in_main_menu = true
-	#print("Je viens de lancer le main menu")
+
 
 func _process(delta: float) -> void:
 	launch_transition_animation()
