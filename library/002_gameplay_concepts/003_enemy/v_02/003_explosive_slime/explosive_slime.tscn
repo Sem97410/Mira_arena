@@ -1,12 +1,13 @@
-[gd_scene load_steps=28 format=4 uid="uid://d0if4rs0pypox"]
+[gd_scene load_steps=25 format=4 uid="uid://d0if4rs0pypox"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_x408e"]
 [ext_resource type="PackedScene" uid="uid://drm6h3uwsfblb" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/ExplosionVfx.tscn" id="2_el4uy"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_qp0ti"]
 [ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="3_e8fmy"]
-[ext_resource type="Shader" uid="uid://dojbrg1o8q6h" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/shdr_bomber_slime.gdshader" id="3_ijxtn"]
-[ext_resource type="Shader" uid="uid://dj8ycfnaibkgg" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/shdr_bomber_slime_eyes.gdshader" id="4_f8p61"]
+[ext_resource type="Material" uid="uid://c14lwn88wu02w" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/mat_bomber_body.tres" id="3_f8p61"]
+[ext_resource type="Material" uid="uid://buvcrenj5dmxu" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/mat_bomber_eyes.tres" id="4_3as70"]
 [ext_resource type="Script" uid="uid://c2ev6x44pdrr8" path="res://addons/jigglebones/jigglebone.gd" id="5_3as70"]
+[ext_resource type="Material" uid="uid://c2vknmrhehrtc" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/mat_bomber_helmet.tres" id="5_g6ygn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkdu"]
 resource_name = "helem.001"
@@ -64,26 +65,6 @@ bind_count = 1
 bind/0/name = &"slime_body"
 bind/0/bone = -1
 bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.000645729)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_tkr1g"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lrh5l"]
-noise = SubResource("FastNoiseLite_tkr1g")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yweo"]
-render_priority = 0
-shader = ExtResource("3_ijxtn")
-shader_parameter/slime_color = Color(0.706374, 1, 0.715744, 0.5)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_lrh5l")
-shader_parameter/wobble_strength = 0.0
-shader_parameter/wobble_speed = 0.495
-shader_parameter/fresnel_power = 1.19
-shader_parameter/emission_strength = 1.385
-shader_parameter/min_fresnel = 0.725
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m16t5"]
-render_priority = 0
-shader = ExtResource("4_f8p61")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wavtc"]
 resource_name = "helem"
@@ -365,19 +346,21 @@ bones/6/scale = Vector3(1, 1, 1)
 [node name="body" type="MeshInstance3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_byru7")
 skin = SubResource("Skin_s2ku8")
-surface_material_override/0 = SubResource("ShaderMaterial_1yweo")
-surface_material_override/1 = SubResource("ShaderMaterial_m16t5")
+surface_material_override/0 = ExtResource("3_f8p61")
+surface_material_override/1 = ExtResource("4_3as70")
 
 [node name="bomber_helmet" type="MeshInstance3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="1"]
 mesh = SubResource("ArrayMesh_d7o4v")
 skin = SubResource("Skin_s2ku8")
+surface_material_override/0 = ExtResource("5_g6ygn")
 
 [node name="meche" type="MeshInstance3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="2"]
 mesh = SubResource("ArrayMesh_eue1r")
 skin = SubResource("Skin_1tgwp")
+surface_material_override/0 = ExtResource("5_g6ygn")
 
 [node name="Jigglebone" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="3"]
-transform = Transform3D(-1.02, 8.68242e-08, -8.24229e-08, 7.74536e-10, 0.377288, 0.848381, 1.52857e-07, 0.577457, -0.554298, 0.010452, -0.647835, 0.0407816)
+transform = Transform3D(-1.02, 8.68344e-08, -8.25211e-08, 7.00016e-10, 0.377288, 0.848381, 1.52924e-07, 0.577457, -0.554298, 0.010452, -0.647835, 0.0407816)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_01"
@@ -386,7 +369,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone2" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="4"]
-transform = Transform3D(-1.02, 1.48377e-07, -1.67438e-07, -1.26982e-07, 0.124504, 0.994561, 2.45079e-07, 0.682045, -0.181552, 0.010452, -0.622355, 0.0797793)
+transform = Transform3D(-1.02, 1.48415e-07, -1.67268e-07, -1.26804e-07, 0.124504, 0.994562, 2.45103e-07, 0.682045, -0.181552, 0.010452, -0.622355, 0.0797793)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_02"
@@ -394,7 +377,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone3" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="5"]
-transform = Transform3D(-1.02, 1.56826e-07, -8.85987e-08, -7.6387e-08, 0.0387491, 1.00918, 2.35241e-07, 0.692577, -0.0564628, 0.010452, -0.613415, 0.128756)
+transform = Transform3D(-1.02, 1.5689e-07, -8.98052e-08, -7.75972e-08, 0.0387492, 1.00918, 2.35403e-07, 0.692577, -0.056463, 0.010452, -0.613415, 0.128756)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_03"
@@ -402,7 +385,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone4" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="6"]
-transform = Transform3D(-1.02, 1.56681e-07, -4.80945e-08, -4.67228e-08, 0.00547732, 1.01056, 2.30688e-07, 0.693883, -0.00797709, 0.010452, -0.610492, 0.180996)
+transform = Transform3D(-1.02, 1.56774e-07, -4.66758e-08, -4.52898e-08, 0.00547744, 1.01056, 2.30814e-07, 0.693883, -0.00797726, 0.010452, -0.610492, 0.180996)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_04"
@@ -410,7 +393,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone5" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="7"]
-transform = Transform3D(-1.02, 1.53554e-07, -2.17974e-08, -2.63702e-08, -0.0134427, 1.01002, 2.25065e-07, 0.694338, 0.0195544, 0.010452, -0.61008, 0.233265)
+transform = Transform3D(-1.02, 1.53612e-07, -2.13324e-08, -2.59026e-08, -0.013443, 1.01002, 2.25159e-07, 0.694338, 0.0195549, 0.010452, -0.61008, 0.233265)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_05"

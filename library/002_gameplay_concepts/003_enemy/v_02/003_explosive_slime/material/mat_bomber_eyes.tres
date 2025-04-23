@@ -1,3 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://buvcrenj5dmxu"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://buvcrenj5dmxu"]
+
+[ext_resource type="Texture2D" uid="uid://b4h0as756rx51" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/txt_eyes_bomber_slime_BaseColor_.png" id="1_7mj57"]
 
 [resource]
+albedo_color = Color(0.87306, 0.583893, 0.226592, 1)
+albedo_texture = ExtResource("1_7mj57")
