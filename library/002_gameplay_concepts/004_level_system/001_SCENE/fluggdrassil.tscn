@@ -1,4 +1,4 @@
-[gd_scene load_steps=773 format=4 uid="uid://dhn8ua4j1ihnh"]
+[gd_scene load_steps=779 format=4 uid="uid://dhn8ua4j1ihnh"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_suwol"]
 [ext_resource type="Script" uid="uid://jjvv8q486nnj" path="res://library/002_gameplay_concepts/012_tools/find_non_uniform_object.gd" id="1_yv25p"]
@@ -11986,10 +11986,85 @@ script = ExtResource("63_x0p28")
 root_octree_node = SubResource("Resource_a5oir")
 metadata/class = "MMIOctreeManager"
 
+[sub_resource type="Resource" id="Resource_824fx"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeNode"
+script = ExtResource("62_b0pn7")
+member_placeforms = []
+child_nodes = []
+max_members = 75
+min_leaf_extent = 1.0
+octant = -1
+is_leaf = true
+center_pos = Vector3(0, 0, 0)
+extent = 1.0
+bounds = AABB(-1, -1, -1, 2, 2, 2)
+max_bounds_to_center_dist = 1.73205
+min_bounds_to_center_dist = 1.0
+active_LOD_index = 1
+metadata/class = "MMIOctreeNode"
+
+[sub_resource type="Resource" id="Resource_2elgf"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeManager"
+script = ExtResource("63_x0p28")
+root_octree_node = SubResource("Resource_824fx")
+metadata/class = "MMIOctreeManager"
+
+[sub_resource type="Resource" id="Resource_e7frs"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeNode"
+script = ExtResource("62_b0pn7")
+member_placeforms = []
+child_nodes = []
+max_members = 75
+min_leaf_extent = 1.0
+octant = -1
+is_leaf = true
+center_pos = Vector3(0, 0, 0)
+extent = 1.0
+bounds = AABB(-1, -1, -1, 2, 2, 2)
+max_bounds_to_center_dist = 1.73205
+min_bounds_to_center_dist = 1.0
+active_LOD_index = 0
+metadata/class = "MMIOctreeNode"
+
+[sub_resource type="Resource" id="Resource_gv0md"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeManager"
+script = ExtResource("63_x0p28")
+root_octree_node = SubResource("Resource_e7frs")
+metadata/class = "MMIOctreeManager"
+
+[sub_resource type="Resource" id="Resource_lu72d"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeNode"
+script = ExtResource("62_b0pn7")
+member_placeforms = []
+child_nodes = []
+max_members = 75
+min_leaf_extent = 1.0
+octant = -1
+is_leaf = true
+center_pos = Vector3(0, 0, 0)
+extent = 1.0
+bounds = AABB(-1, -1, -1, 2, 2, 2)
+max_bounds_to_center_dist = 1.73205
+min_bounds_to_center_dist = 1.0
+active_LOD_index = 0
+metadata/class = "MMIOctreeNode"
+
+[sub_resource type="Resource" id="Resource_e7qwl"]
+resource_local_to_scene = true
+resource_name = "MMIOctreeManager"
+script = ExtResource("63_x0p28")
+root_octree_node = SubResource("Resource_lu72d")
+metadata/class = "MMIOctreeManager"
+
 [sub_resource type="Resource" id="Resource_g4ibt"]
 resource_local_to_scene = true
 script = ExtResource("64_w522v")
-octree_managers = [SubResource("Resource_voux2")]
+octree_managers = [SubResource("Resource_voux2"), SubResource("Resource_2elgf"), SubResource("Resource_gv0md"), SubResource("Resource_e7qwl")]
 metadata/class = "Arborist"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl1cs"]
