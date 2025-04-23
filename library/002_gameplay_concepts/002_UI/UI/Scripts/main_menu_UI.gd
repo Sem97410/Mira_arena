@@ -33,10 +33,11 @@ extends Control
 
 
 
-# Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
+ #Called when the node enters the scene tree for the first time.
+func _ready() -> void:
 	#first_main_button.grab_focus()
-	#get_tree().paused = false
+	get_tree().paused = false
+	Engine.time_scale = 1
 
 
 #------------------------------

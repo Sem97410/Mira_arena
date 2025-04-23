@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=114 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -50,6 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://cjo8khl4oqcdn" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 1.wav" id="47_qq7u7"]
 [ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="48_7kj1n"]
 [ext_resource type="AudioStream" uid="uid://b8x3f23pogxay" path="res://library/002_gameplay_concepts/001_player/SFX/Charged attack.wav" id="49_irfkd"]
+[ext_resource type="PackedScene" uid="uid://dm2ruywilprq3" path="res://end_game_pannel.tscn" id="51_7kj1n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -9749,6 +9750,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840333, 0)
 shape = SubResource("CapsuleShape3D_8bksx")
 debug_color = Color(0, 0.494, 0.196, 0.696)
 
+[node name="EndGamePannel" parent="." node_paths=PackedStringArray("end_game_panel", "pause_panel", "death_panel", "health_bar") instance=ExtResource("51_7kj1n")]
+end_game_panel = NodePath("Control")
+pause_panel = NodePath("../UI/Pause_pannel")
+death_panel = NodePath("../UI/death_pannel")
+health_bar = NodePath("../UI/HealthBar")
+
+[node name="Control" parent="EndGamePannel" index="0"]
+visible = false
+
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Reload" to="UI/Pause_pannel" method="_on_reload_button_down"]
@@ -9799,3 +9809,4 @@ debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
+[editable path="EndGamePannel"]
