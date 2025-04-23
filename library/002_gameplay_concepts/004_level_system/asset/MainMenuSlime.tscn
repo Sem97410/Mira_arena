@@ -1,4 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://bkr2ep0sa3vlo"]
+[gd_scene load_steps=15 format=4 uid="uid://bkr2ep0sa3vlo"]
+
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/000_material/mat_slime_helmet.tres" id="1_dsbk5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4btua"]
 resource_name = "mat_eyes_slime"
@@ -287,6 +289,7 @@ skin = SubResource("Skin_o54co")
 [node name="helmet" type="MeshInstance3D" parent="slime/Slime/Skeleton3D"]
 mesh = SubResource("ArrayMesh_st6cd")
 skin = SubResource("Skin_o54co")
+surface_material_override/0 = ExtResource("1_dsbk5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="slime"]
 libraries = {
