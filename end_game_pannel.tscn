@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm2ruywilprq3"]
+
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_xvbep"]
+[ext_resource type="Script" uid="uid://bjqd7grcmp0a1" path="res://library/002_gameplay_concepts/002_UI/end_game_pannel.gd" id="1_ynyt2"]
+[ext_resource type="Texture2D" uid="uid://d1likswtbndqq" path="res://library/002_gameplay_concepts/002_UI/UI/HP_icons.png" id="2_oqdb4"]
+[ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="3_ynyt2"]
+[ext_resource type="Texture2D" uid="uid://dlprsr56g7dw6" path="res://library/002_gameplay_concepts/002_UI/UI/MiraHeadSF.png" id="5_uh4nl"]
+
+[sub_resource type="Gradient" id="Gradient_qr3y0"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tmk8l"]
+gradient = SubResource("Gradient_qr3y0")
+
+[node name="EndGamePannel" type="Node3D" node_paths=PackedStringArray("first_button")]
+script = ExtResource("1_ynyt2")
+first_button = NodePath("Control/MarginContainer/VBoxContainer/MarginContainer/MainMenuButton")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_tmk8l")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 146.0
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = -95
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 350
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xvbep")
+theme_override_font_sizes/font_size = 100
+text = "End of the Demonstration"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = -240
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xvbep")
+theme_override_font_sizes/font_size = 60
+text = "We truly appreciate you taking the time to explore our demo. Thanks for being part of this journey with us."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_oqdb4")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_oqdb4")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_oqdb4")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("2_oqdb4")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("2_oqdb4")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 100
+
+[node name="MainMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_ynyt2")
+text = "Main menu"
+icon_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -357.0
+offset_top = -283.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("5_uh4nl")
+expand_mode = 2
+
+[connection signal="button_down" from="Control/MarginContainer/VBoxContainer/MarginContainer/MainMenuButton" to="." method="_on_main_menu_button_button_down"]
