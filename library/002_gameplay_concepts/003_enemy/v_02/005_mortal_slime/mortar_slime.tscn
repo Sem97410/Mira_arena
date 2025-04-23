@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dih30d47ynsi3"]
+[gd_scene load_steps=21 format=4 uid="uid://dih30d47ynsi3"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_kxous"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_1x6pu"]
@@ -103,6 +103,19 @@ bind/3/pose = Transform3D(-0.107869, -0.993948, 0.0207702, -0.978545, 0.102462, 
 bind/4/name = &"Root_M"
 bind/4/bone = -1
 bind/4/pose = Transform3D(-1.70483e-09, 0.0390021, 0.999239, -6.65409e-11, -0.999239, 0.0390021, 1, 1.85576e-15, 1.70613e-09, 0.0119929, 0.255603, 3.74539e-11)
+
+[sub_resource type="Gradient" id="Gradient_uenso"]
+offsets = PackedFloat32Array(0.164773, 0.556818)
+colors = PackedColorArray(0.906064, 0.948001, 0.609352, 1, 0.864682, 0.937394, 0.425498, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ur3xc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hbuu5"]
+color_ramp = SubResource("Gradient_uenso")
+noise = SubResource("FastNoiseLite_ur3xc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x1dn"]
+albedo_texture = SubResource("NoiseTexture2D_hbuu5")
 
 [sub_resource type="Animation" id="Animation_716ep"]
 resource_name = "mortar_shoot"
@@ -324,9 +337,11 @@ bones/9/rotation = Quaternion(0, 0, 0, 1)
 bones/9/scale = Vector3(1, 1, 1)
 
 [node name="Chaudron" type="MeshInstance3D" parent="Mesh/Slime/Node3D/mortar_slime/Group/DeformationSystem/Skeleton3D" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_kxx83")
 skin = SubResource("Skin_s10s3")
 surface_material_override/0 = ExtResource("4_uenso")
+surface_material_override/1 = SubResource("StandardMaterial3D_3x1dn")
 surface_material_override/2 = ExtResource("5_ur3xc")
 
 [node name="Geometry" type="Node3D" parent="Mesh/Slime/Node3D/mortar_slime/Group" index="1"]

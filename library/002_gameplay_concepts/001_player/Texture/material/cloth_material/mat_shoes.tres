@@ -1,6 +1,14 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxbmnk70bggae"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dxbmnk70bggae"]
 
-[ext_resource type="Texture2D" uid="uid://cd1dm5nutacrf" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shoes_texture/shoes_BaseColor.png" id="1_g6m2l"]
+[ext_resource type="Texture2D" uid="uid://ciymkvb3wivdi" path="res://library/002_gameplay_concepts/001_player/Texture/mira_shoes_texture/shoes_BaseColor.png" id="1_g6m2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re364"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+rim_enabled = true
+grow = true
+grow_amount = 0.005
 
 [resource]
+next_pass = SubResource("StandardMaterial3D_re364")
 albedo_texture = ExtResource("1_g6m2l")

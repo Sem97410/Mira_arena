@@ -1,3 +1,19 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c14lwn88wu02w"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c14lwn88wu02w"]
+
+[ext_resource type="Texture2D" uid="uid://bgkm8fnnlo21d" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/txt_body_bomber_slime_BaseColor_.png" id="1_c4yg1"]
+[ext_resource type="Texture2D" uid="uid://lu25sk0hxmjp" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/txt_body_bomber_slime_Metallic.png" id="2_3mpar"]
+[ext_resource type="Texture2D" uid="uid://cvfrhmauinuhm" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/material/txt_body_bomber_slime_Roughness.png" id="3_nhs21"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4yg1"]
+cull_mode = 1
+rim_enabled = true
+grow = true
+grow_amount = 0.01
 
 [resource]
+next_pass = SubResource("StandardMaterial3D_c4yg1")
+albedo_color = Color(0.424782, 0.0821921, 0.165476, 1)
+albedo_texture = ExtResource("1_c4yg1")
+metallic = 1.0
+metallic_texture = ExtResource("2_3mpar")
+roughness_texture = ExtResource("3_nhs21")

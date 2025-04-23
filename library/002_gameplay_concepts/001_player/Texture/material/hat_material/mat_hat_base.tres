@@ -1,10 +1,18 @@
-[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cr06kcu4nsnyw"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cr06kcu4nsnyw"]
 
 [ext_resource type="Texture2D" uid="uid://mx0afr4hf88i" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_base_texture/hat_base_BaseColor.png" id="1_lqcu4"]
 [ext_resource type="Texture2D" uid="uid://cisys6odr2ews" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_base_texture/hat_base_Metallic.png" id="2_4a1kr"]
 [ext_resource type="Texture2D" uid="uid://0dwbn64sfnle" path="res://library/002_gameplay_concepts/001_player/Texture/mira_hat_base_texture/hat_base_Roughness.png" id="3_qdj5h"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3k58"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+rim_enabled = true
+grow = true
+grow_amount = 0.01
+
 [resource]
+next_pass = SubResource("StandardMaterial3D_b3k58")
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_lqcu4")
