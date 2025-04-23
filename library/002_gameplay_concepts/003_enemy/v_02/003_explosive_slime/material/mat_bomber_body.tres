@@ -12,7 +12,7 @@ grow_amount = 0.01
 
 [resource]
 next_pass = SubResource("StandardMaterial3D_c4yg1")
-albedo_color = Color(0.424782, 0.0821921, 0.165476, 1)
+albedo_color = Color(0.954267, 0.465791, 0.539698, 1)
 albedo_texture = ExtResource("1_c4yg1")
 metallic = 1.0
 metallic_texture = ExtResource("2_3mpar")
