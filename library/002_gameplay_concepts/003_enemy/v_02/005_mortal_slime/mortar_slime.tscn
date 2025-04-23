@@ -251,9 +251,6 @@ mortar_target = ExtResource("3_a2qnp")
 mortar_projectil = ExtResource("4_nbs1o")
 animation_player = NodePath("Mesh/Slime/Node3D/mortar_slime/AnimationPlayer")
 
-[node name="Mesh" parent="." index="1"]
-transform = Transform3D(-0.85, 0, -1.28346e-07, 0, 0.85, 0, 1.28346e-07, 0, -0.85, 0, -0.50855, 0)
-
 [node name="Node3D" type="Node3D" parent="Mesh/Slime" index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
@@ -413,6 +410,15 @@ script = ExtResource("2_1x6pu")
 to = NodePath("../../Stationary")
 event = &"IsStationary"
 delay_in_seconds = "0.0"
+
+[node name="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.522575, 0)
+
+[node name="AttackArea3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.486998, 0)
+
+[node name="ExplosionArea3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436908, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea3D" index="0"]
 shape = SubResource("SphereShape3D_1x6pu")

@@ -7091,7 +7091,7 @@ autoplay = "idle_01"
 transform = Transform3D(-0.00235607, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, -0.00235607, 6.646, 3.92661, -6.42039)
 
 [node name="SlimePresentation2" parent="." instance=ExtResource("31_qu1ls")]
-transform = Transform3D(-0.00674538, 0, -0.499955, 0, 0.5, 0, 0.499955, 0, -0.00674538, 2.8253, 1.96833, 5.55699)
+transform = Transform3D(-0.00674538, 0, -0.499955, 0, 0.5, 0, 0.499955, 0, -0.00674538, 2.92374, 1.98615, 5.55699)
 
 [node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_pannel", "pre_menu_pannel", "first_main_button")]
 script = ExtResource("32_qu1ls")
@@ -7131,6 +7131,6 @@ vertical_alignment = 1
 transform = Transform3D(-0.674521, 0, -0.738255, 0, 1, 0, 0.738255, 0, -0.674521, 1.93665, 1.20409, 5.59821)
 
 [node name="candlle_05" parent="." instance=ExtResource("33_u2tiu")]
-transform = Transform3D(-0.994228, 0, 0.107288, 0, 1, 0, -0.107288, 0, -0.994228, 2.56645, 1.4025, 4.82443)
+transform = Transform3D(-0.994228, 0, 0.107288, -0.035363, 0.944118, -0.327706, -0.101292, -0.329608, -0.938668, 2.56645, 1.32824, 4.82443)
 
 [editable path="MainMenu"]
