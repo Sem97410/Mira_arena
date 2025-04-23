@@ -59,6 +59,7 @@ offset_right = 1920.0
 offset_bottom = 1075.0
 
 [node name="BackGroundImage" type="TextureRect" parent="MainMenuControl/MarginContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("5_6yoec")
 expand_mode = 1
