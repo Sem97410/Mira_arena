@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://cxq0ujumi5p2f"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://dwpe07qtf5a5v"]
 
 [ext_resource type="Script" uid="uid://bfhkwdyxi414f" path="res://addons/dreadpon.spatial_gardener/toolshed/toolshed_brush.gd" id="1_nbp1u"]
 [ext_resource type="Script" uid="uid://y06d0rwxy11x" path="res://addons/dreadpon.spatial_gardener/toolshed/toolshed.gd" id="2_5pbys"]
@@ -7,7 +7,7 @@
 resource_name = "Toolshed_Brush"
 script = ExtResource("1_nbp1u")
 behavior/behavior_brush_type = 0
-shape/shape_volume_size = 6.06
+shape/shape_volume_size = 0.5
 shape/shape_projection_size = 1.0
 behavior/behavior_strength = 1.0
 behavior/behavior_passthrough = false
@@ -22,7 +22,7 @@ metadata/class = "Toolshed_Brush"
 resource_name = "Toolshed_Brush"
 script = ExtResource("1_nbp1u")
 behavior/behavior_brush_type = 1
-shape/shape_volume_size = 6.06
+shape/shape_volume_size = 10.0
 shape/shape_projection_size = 100.0
 behavior/behavior_strength = 1.0
 behavior/behavior_passthrough = false
