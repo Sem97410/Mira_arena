@@ -81,6 +81,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_qu1ls"]
 resource_name = "new_animation"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,10 +89,10 @@ tracks/0/path = NodePath("Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-5.68478, 9.50925, -8.00756), Vector3(-1.62874, 7.60816, -8.00756)]
+"values": [Vector3(-5.68478, 9.50925, -8.00756), Vector3(-1.62874, 7.60816, -7.75532)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -100,10 +101,35 @@ tracks/1/path = NodePath("Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.966667),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.450585, -1.72918, 0.0483673), Vector3(-0.450585, -1.72918, 0.0483673)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HandleMainMenu")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_pre_menu"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HandleMainMenu")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_u2tiu"]
@@ -118,7 +144,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-1.62874, 7.60816, -8.00756), Vector3(-0.41124, 3.6347, -6.00686)]
+"values": [Vector3(-1.62874, 7.60816, -7.75532), Vector3(-0.41124, 3.6347, -6.00686)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -131,6 +157,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.450585, -1.72918, 0.0483673), Vector3(-0.211011, -3.10841, 0.0096496)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HandleMainMenu")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_main_menu"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2tiu"]
@@ -5908,7 +5948,7 @@ environment = SubResource("Environment_34jtm")
 [node name="CameraComponent" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent"]
-transform = Transform3D(-0.999336, 0.0165919, -0.0324373, 0.00943542, 0.977774, 0.209448, 0.0351915, 0.209003, -0.977282, -0.41124, 3.6347, -6.00686)
+transform = Transform3D(-0.999336, 0.0165926, -0.0324408, 0.00943542, 0.977774, 0.209449, 0.0351951, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
 fov = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraComponent/Camera3D"]
@@ -5921,6 +5961,8 @@ libraries = {
 transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109981, -0.572549, 0.0333695, -1.38603, 2.89504, 1.0544, 5.2783)
 
 [node name="MainMenu" parent="." instance=ExtResource("22_xo36d")]
+
+[node name="MainMenuControl" parent="MainMenu" index="0"]
 visible = false
 
 [node name="Environnement" type="Node3D" parent="."]
@@ -7048,20 +7090,40 @@ libraries = {
 autoplay = "idle_01"
 
 [node name="SlimePresentation" parent="." instance=ExtResource("31_qu1ls")]
-transform = Transform3D(0.108663, 0, -0.48805, 0, 0.5, 0, 0.48805, 0, 0.108663, 6.646, 3.92661, -6.42039)
+transform = Transform3D(-0.00235607, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, -0.00235607, 6.646, 3.92661, -6.42039)
 
-[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_pannel", "pre_menu_pannel")]
+[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_pannel", "pre_menu_pannel", "first_main_button")]
 script = ExtResource("32_qu1ls")
 animation_player = NodePath("../CameraComponent/Camera3D/AnimationPlayer")
-main_menu_pannel = NodePath("../MainMenu")
-pre_menu_pannel = NodePath("../PremenuPannel")
+main_menu_pannel = NodePath("../MainMenu/MainMenuControl")
+pre_menu_pannel = NodePath("../PremenuPannel/VBoxContainer")
+first_main_button = NodePath("../MainMenu/MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
 
 [node name="PremenuPannel" type="Node3D" parent="."]
-visible = false
 
-[node name="Label" type="Label" parent="PremenuPannel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PremenuPannel"]
 visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-text = "PRE MENU TEXT"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PremenuPannel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 700
+theme_override_constants/margin_top = 980
+theme_override_constants/margin_right = 700
+
+[node name="Panel" type="Panel" parent="PremenuPannel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PremenuPannel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 50
+text = "... Press Start ..."
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[editable path="MainMenu"]
