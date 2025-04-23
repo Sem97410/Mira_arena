@@ -292,7 +292,7 @@ func apply_knockback_movement(delta: float) -> void:
 			is_knockback_active = false
 			can_move = true  # 🔥 Réautoriser le mouvement normal
 			
-			animation_player.play("Slime|hit")
+			#animation_player.play("Slime|hit")
 			await get_tree().create_timer(1.4).timeout
 			# 🔥 Revenir à Idle SEULEMENT si le slime touche bien le sol
 			state_chart.send_event("IsIdle")

@@ -1750,28 +1750,11 @@ tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(1.27157e-06, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726)
 tracks/79/type = "method"
 tracks/79/imported = false
-tracks/79/enabled = false
-tracks/79/path = NodePath("../MovementComponent/MovementTracksMethodes")
+tracks/79/enabled = true
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"disable_movement"
-}, {
-"args": [],
-"method": &"enable_movement"
-}]
-}
-tracks/80/type = "method"
-tracks/80/imported = false
-tracks/80/enabled = false
-tracks/80/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
-tracks/80/interp = 1
-tracks/80/loop_wrap = true
-tracks/80/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1779,27 +1762,44 @@ tracks/80/keys = {
 "method": &"charged_attack_sfx"
 }]
 }
-tracks/81/type = "method"
-tracks/81/imported = false
-tracks/81/enabled = false
-tracks/81/path = NodePath("../AttackComponent")
-tracks/81/interp = 1
-tracks/81/loop_wrap = true
-tracks/81/keys = {
-"times": PackedFloat32Array(2.73333, 2.83333),
+tracks/80/type = "method"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0, 2.9),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"enable_charged_attack_area"
+"method": &"enable_charge_attack_mode"
 }, {
 "args": [],
-"method": &"disable_charged_attack_area"
+"method": &"disable_charge_attack_mode"
+}]
+}
+tracks/81/type = "method"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("..")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_charge_attack_lock_mesh"
+}, {
+"args": [],
+"method": &"disable_charge_attack_lock_mesh"
 }]
 }
 tracks/82/type = "method"
 tracks/82/imported = false
-tracks/82/enabled = false
-tracks/82/path = NodePath("../AttackComponent")
+tracks/82/enabled = true
+tracks/82/path = NodePath("..")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
 tracks/82/keys = {
@@ -1807,191 +1807,19 @@ tracks/82/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"enable_charged_attack_collision"
-}, {
-"args": [],
-"method": &"disable_charged_attack_collision"
-}]
-}
-tracks/83/type = "method"
-tracks/83/imported = false
-tracks/83/enabled = false
-tracks/83/path = NodePath("../AttackComponent")
-tracks/83/interp = 1
-tracks/83/loop_wrap = true
-tracks/83/keys = {
-"times": PackedFloat32Array(2.86667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"freeze_frame"
-}]
-}
-tracks/84/type = "method"
-tracks/84/imported = false
-tracks/84/enabled = false
-tracks/84/path = NodePath("../AttackComponent")
-tracks/84/interp = 1
-tracks/84/loop_wrap = true
-tracks/84/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"set_charged_attack_camera_shake_value"
-}]
-}
-tracks/85/type = "method"
-tracks/85/imported = false
-tracks/85/enabled = false
-tracks/85/path = NodePath("../VFX/ChargedAttackImpactVFXLogic")
-tracks/85/interp = 1
-tracks/85/loop_wrap = true
-tracks/85/keys = {
-"times": PackedFloat32Array(2.73333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"instantiate_charged_attack_impact_vfx"
-}]
-}
-tracks/86/type = "method"
-tracks/86/imported = false
-tracks/86/enabled = true
-tracks/86/path = NodePath("Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge/ActivateCharge")
-tracks/86/interp = 1
-tracks/86/loop_wrap = true
-tracks/86/keys = {
-"times": PackedFloat32Array(0.266667, 2.7),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"eneable_charge_vfx"
-}, {
-"args": [],
-"method": &"disable_charge_vfx"
-}]
-}
-tracks/87/type = "method"
-tracks/87/imported = false
-tracks/87/enabled = true
-tracks/87/path = NodePath("Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge/ActivateCharge")
-tracks/87/interp = 1
-tracks/87/loop_wrap = true
-tracks/87/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"launch_charged_attack_charge_vfx_animation"
-}]
-}
-tracks/88/type = "method"
-tracks/88/imported = false
-tracks/88/enabled = false
-tracks/88/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
-tracks/88/interp = 1
-tracks/88/loop_wrap = true
-tracks/88/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_charge_attack_mode"
-}, {
-"args": [],
-"method": &"disable_charge_attack_mode"
-}]
-}
-tracks/89/type = "method"
-tracks/89/imported = false
-tracks/89/enabled = false
-tracks/89/path = NodePath("../AttackComponent/ChargeAttackComponent/ChargedAttackTracksMethodes")
-tracks/89/interp = 1
-tracks/89/loop_wrap = true
-tracks/89/keys = {
-"times": PackedFloat32Array(0.0333333, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_charge_attack_lock_mesh"
-}, {
-"args": [],
-"method": &"disable_charge_attack_lock_mesh"
-}]
-}
-tracks/90/type = "method"
-tracks/90/imported = false
-tracks/90/enabled = true
-tracks/90/path = NodePath("..")
-tracks/90/interp = 1
-tracks/90/loop_wrap = true
-tracks/90/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"charged_attack_sfx"
-}]
-}
-tracks/91/type = "method"
-tracks/91/imported = false
-tracks/91/enabled = true
-tracks/91/path = NodePath("..")
-tracks/91/interp = 1
-tracks/91/loop_wrap = true
-tracks/91/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_charge_attack_mode"
-}, {
-"args": [],
-"method": &"disable_charge_attack_mode"
-}]
-}
-tracks/92/type = "method"
-tracks/92/imported = false
-tracks/92/enabled = true
-tracks/92/path = NodePath("..")
-tracks/92/interp = 1
-tracks/92/loop_wrap = true
-tracks/92/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_charge_attack_lock_mesh"
-}, {
-"args": [],
-"method": &"disable_charge_attack_lock_mesh"
-}]
-}
-tracks/93/type = "method"
-tracks/93/imported = false
-tracks/93/enabled = true
-tracks/93/path = NodePath("..")
-tracks/93/interp = 1
-tracks/93/loop_wrap = true
-tracks/93/keys = {
-"times": PackedFloat32Array(2.73333, 2.83333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
 "method": &"enable_charged_attack_area"
 }, {
 "args": [],
 "method": &"disable_charged_attack_area"
 }]
 }
-tracks/94/type = "method"
-tracks/94/imported = false
-tracks/94/enabled = true
-tracks/94/path = NodePath("..")
-tracks/94/interp = 1
-tracks/94/loop_wrap = true
-tracks/94/keys = {
+tracks/83/type = "method"
+tracks/83/imported = false
+tracks/83/enabled = true
+tracks/83/path = NodePath("..")
+tracks/83/interp = 1
+tracks/83/loop_wrap = true
+tracks/83/keys = {
 "times": PackedFloat32Array(2.73333, 2.83333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -2002,13 +1830,13 @@ tracks/94/keys = {
 "method": &"disable_charged_attack_collision"
 }]
 }
-tracks/95/type = "method"
-tracks/95/imported = false
-tracks/95/enabled = true
-tracks/95/path = NodePath("..")
-tracks/95/interp = 1
-tracks/95/loop_wrap = true
-tracks/95/keys = {
+tracks/84/type = "method"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("..")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = {
 "times": PackedFloat32Array(2.86667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2016,13 +1844,13 @@ tracks/95/keys = {
 "method": &"freeze_frame"
 }]
 }
-tracks/96/type = "method"
-tracks/96/imported = false
-tracks/96/enabled = true
-tracks/96/path = NodePath("..")
-tracks/96/interp = 1
-tracks/96/loop_wrap = true
-tracks/96/keys = {
+tracks/85/type = "method"
+tracks/85/imported = false
+tracks/85/enabled = true
+tracks/85/path = NodePath("..")
+tracks/85/interp = 1
+tracks/85/loop_wrap = true
+tracks/85/keys = {
 "times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2030,13 +1858,13 @@ tracks/96/keys = {
 "method": &"set_charged_attack_camera_shake_value"
 }]
 }
-tracks/97/type = "method"
-tracks/97/imported = false
-tracks/97/enabled = true
-tracks/97/path = NodePath("..")
-tracks/97/interp = 1
-tracks/97/loop_wrap = true
-tracks/97/keys = {
+tracks/86/type = "method"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("..")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
 "times": PackedFloat32Array(2.73333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2603,87 +2431,78 @@ tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(1.27157e-06, 1, 0.0344126, 0.563148, -0.0570803, 0.823663, 0.0166677, 1, 0.0335299, 0.550403, -0.0576032, 0.832234, 0.0416654, 1, 0.0308649, 0.511831, -0.0590741, 0.856497, 0.0833333, 1, 0.0268979, 0.454174, -0.0609827, 0.888416, 0.125001, 1, 0.0225741, 0.391032, -0.062712, 0.917961, 0.166665, 1, 0.00872785, 0.186969, -0.0660773, 0.980102, 0.183332, 1, 0.00267992, 0.097024, -0.0665974, 0.993048, 0.208333, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726, 0.500001, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726)
 tracks/79/type = "method"
 tracks/79/imported = false
-tracks/79/enabled = false
-tracks/79/path = NodePath("../MovementComponent/MovementTracksMethodes")
+tracks/79/enabled = true
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"disable_movement"
-}, {
-"args": [],
-"method": &"enable_movement"
+"args": [2],
+"method": &"set_animation_index_values"
 }]
 }
 tracks/80/type = "method"
 tracks/80/imported = false
-tracks/80/enabled = false
-tracks/80/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
 tracks/80/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.466667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"player_attack_1_sfx"
+"method": &"activate_combo_if_clicked_during_combo_window"
 }]
 }
 tracks/81/type = "method"
 tracks/81/imported = false
 tracks/81/enabled = false
-tracks/81/path = NodePath("../AttackComponent")
+tracks/81/path = NodePath("..")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
 tracks/81/keys = {
-"times": PackedFloat32Array(0.133333, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"enable_light_attack_area"
-}, {
-"args": [],
-"method": &"disable_light_attack_area"
+"method": &"activate_movement_state"
 }]
 }
 tracks/82/type = "method"
 tracks/82/imported = false
 tracks/82/enabled = false
-tracks/82/path = NodePath("../AttackComponent")
+tracks/82/path = NodePath("..")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
 tracks/82/keys = {
-"times": PackedFloat32Array(0.133333, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"enable_short_range_collision"
-}, {
-"args": [],
-"method": &"disable_short_range_collision"
+"method": &"activate_idle_state"
 }]
 }
 tracks/83/type = "method"
 tracks/83/imported = false
-tracks/83/enabled = false
-tracks/83/path = NodePath("../AttackComponent")
+tracks/83/enabled = true
+tracks/83/path = NodePath("..")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
 tracks/83/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.266667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"set_light_attack_camera_shake_value"
+"args": [true],
+"method": &"toggle_combo_windows"
 }]
 }
 tracks/84/type = "method"
 tracks/84/imported = false
-tracks/84/enabled = false
-tracks/84/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
+tracks/84/enabled = true
+tracks/84/path = NodePath("..")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
 tracks/84/keys = {
@@ -2696,16 +2515,16 @@ tracks/84/keys = {
 }
 tracks/85/type = "method"
 tracks/85/imported = false
-tracks/85/enabled = false
-tracks/85/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
+tracks/85/enabled = true
+tracks/85/path = NodePath("..")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
 tracks/85/keys = {
-"times": PackedFloat32Array(0.466667),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"confirm_combo_done"
+"method": &"player_attack_1_sfx"
 }]
 }
 tracks/86/type = "method"
@@ -2715,104 +2534,6 @@ tracks/86/path = NodePath("..")
 tracks/86/interp = 1
 tracks/86/loop_wrap = true
 tracks/86/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [2],
-"method": &"set_animation_index_values"
-}]
-}
-tracks/87/type = "method"
-tracks/87/imported = false
-tracks/87/enabled = true
-tracks/87/path = NodePath("..")
-tracks/87/interp = 1
-tracks/87/loop_wrap = true
-tracks/87/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_combo_if_clicked_during_combo_window"
-}]
-}
-tracks/88/type = "method"
-tracks/88/imported = false
-tracks/88/enabled = false
-tracks/88/path = NodePath("..")
-tracks/88/interp = 1
-tracks/88/loop_wrap = true
-tracks/88/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_movement_state"
-}]
-}
-tracks/89/type = "method"
-tracks/89/imported = false
-tracks/89/enabled = false
-tracks/89/path = NodePath("..")
-tracks/89/interp = 1
-tracks/89/loop_wrap = true
-tracks/89/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_idle_state"
-}]
-}
-tracks/90/type = "method"
-tracks/90/imported = false
-tracks/90/enabled = true
-tracks/90/path = NodePath("..")
-tracks/90/interp = 1
-tracks/90/loop_wrap = true
-tracks/90/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"toggle_combo_windows"
-}]
-}
-tracks/91/type = "method"
-tracks/91/imported = false
-tracks/91/enabled = true
-tracks/91/path = NodePath("..")
-tracks/91/interp = 1
-tracks/91/loop_wrap = true
-tracks/91/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"instantiate_combo_1_vfx"
-}]
-}
-tracks/92/type = "method"
-tracks/92/imported = false
-tracks/92/enabled = true
-tracks/92/path = NodePath("..")
-tracks/92/interp = 1
-tracks/92/loop_wrap = true
-tracks/92/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"player_attack_1_sfx"
-}]
-}
-tracks/93/type = "method"
-tracks/93/imported = false
-tracks/93/enabled = true
-tracks/93/path = NodePath("..")
-tracks/93/interp = 1
-tracks/93/loop_wrap = true
-tracks/93/keys = {
 "times": PackedFloat32Array(0.133333, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -2823,13 +2544,13 @@ tracks/93/keys = {
 "method": &"disable_light_attack_area"
 }]
 }
-tracks/94/type = "method"
-tracks/94/imported = false
-tracks/94/enabled = true
-tracks/94/path = NodePath("..")
-tracks/94/interp = 1
-tracks/94/loop_wrap = true
-tracks/94/keys = {
+tracks/87/type = "method"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("..")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = {
 "times": PackedFloat32Array(0.133333, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -2840,13 +2561,13 @@ tracks/94/keys = {
 "method": &"disable_short_range_collision"
 }]
 }
-tracks/95/type = "method"
-tracks/95/imported = false
-tracks/95/enabled = true
-tracks/95/path = NodePath("..")
-tracks/95/interp = 1
-tracks/95/loop_wrap = true
-tracks/95/keys = {
+tracks/88/type = "method"
+tracks/88/imported = false
+tracks/88/enabled = true
+tracks/88/path = NodePath("..")
+tracks/88/interp = 1
+tracks/88/loop_wrap = true
+tracks/88/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2854,13 +2575,13 @@ tracks/95/keys = {
 "method": &"set_light_attack_camera_shake_value"
 }]
 }
-tracks/96/type = "method"
-tracks/96/imported = false
-tracks/96/enabled = true
-tracks/96/path = NodePath("..")
-tracks/96/interp = 1
-tracks/96/loop_wrap = true
-tracks/96/keys = {
+tracks/89/type = "method"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("..")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -3430,95 +3151,86 @@ tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(1.27157e-06, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726)
 tracks/79/type = "method"
 tracks/79/imported = false
-tracks/79/enabled = false
-tracks/79/path = NodePath("../MovementComponent/MovementTracksMethodes")
+tracks/79/enabled = true
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0, 0.29),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"disable_movement"
-}, {
-"args": [],
-"method": &"enable_movement"
+"args": [3],
+"method": &"set_animation_index_values"
 }]
 }
 tracks/80/type = "method"
 tracks/80/imported = false
-tracks/80/enabled = false
-tracks/80/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
 tracks/80/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.166667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"player_attack_2_sfx"
+"args": [true],
+"method": &"toggle_combo_windows"
 }]
 }
 tracks/81/type = "method"
 tracks/81/imported = false
 tracks/81/enabled = false
-tracks/81/path = NodePath("../AttackComponent")
+tracks/81/path = NodePath("..")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
 tracks/81/keys = {
-"times": PackedFloat32Array(0.2, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"enable_light_attack_area"
-}, {
-"args": [],
-"method": &"disable_light_attack_area"
+"method": &"activate_idle_state"
 }]
 }
 tracks/82/type = "method"
 tracks/82/imported = false
 tracks/82/enabled = false
-tracks/82/path = NodePath("../AttackComponent")
+tracks/82/path = NodePath("..")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
 tracks/82/keys = {
-"times": PackedFloat32Array(0.2, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"enable_short_range_collision"
-}, {
-"args": [],
-"method": &"disable_short_range_collision"
+"method": &"activate_movement_state"
 }]
 }
 tracks/83/type = "method"
 tracks/83/imported = false
 tracks/83/enabled = false
-tracks/83/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
+tracks/83/path = NodePath("..")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
 tracks/83/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_combo_if_clicked_during_combo_window"
+}]
+}
+tracks/84/type = "method"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("..")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"instantiate_combo_2_vfx"
-}]
-}
-tracks/84/type = "method"
-tracks/84/imported = false
-tracks/84/enabled = false
-tracks/84/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
-tracks/84/interp = 1
-tracks/84/loop_wrap = true
-tracks/84/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"confirm_combo_done"
 }]
 }
 tracks/85/type = "method"
@@ -3528,90 +3240,6 @@ tracks/85/path = NodePath("..")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
 tracks/85/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [3],
-"method": &"set_animation_index_values"
-}]
-}
-tracks/86/type = "method"
-tracks/86/imported = false
-tracks/86/enabled = true
-tracks/86/path = NodePath("..")
-tracks/86/interp = 1
-tracks/86/loop_wrap = true
-tracks/86/keys = {
-"times": PackedFloat32Array(0.166667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"toggle_combo_windows"
-}]
-}
-tracks/87/type = "method"
-tracks/87/imported = false
-tracks/87/enabled = false
-tracks/87/path = NodePath("..")
-tracks/87/interp = 1
-tracks/87/loop_wrap = true
-tracks/87/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_idle_state"
-}]
-}
-tracks/88/type = "method"
-tracks/88/imported = false
-tracks/88/enabled = false
-tracks/88/path = NodePath("..")
-tracks/88/interp = 1
-tracks/88/loop_wrap = true
-tracks/88/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_movement_state"
-}]
-}
-tracks/89/type = "method"
-tracks/89/imported = false
-tracks/89/enabled = false
-tracks/89/path = NodePath("..")
-tracks/89/interp = 1
-tracks/89/loop_wrap = true
-tracks/89/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_combo_if_clicked_during_combo_window"
-}]
-}
-tracks/90/type = "method"
-tracks/90/imported = false
-tracks/90/enabled = true
-tracks/90/path = NodePath("..")
-tracks/90/interp = 1
-tracks/90/loop_wrap = true
-tracks/90/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"instantiate_combo_2_vfx"
-}]
-}
-tracks/91/type = "method"
-tracks/91/imported = false
-tracks/91/enabled = true
-tracks/91/path = NodePath("..")
-tracks/91/interp = 1
-tracks/91/loop_wrap = true
-tracks/91/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
@@ -3625,13 +3253,13 @@ tracks/91/keys = {
 "method": &"disable_light_attack_area"
 }]
 }
-tracks/92/type = "method"
-tracks/92/imported = false
-tracks/92/enabled = true
-tracks/92/path = NodePath("..")
-tracks/92/interp = 1
-tracks/92/loop_wrap = true
-tracks/92/keys = {
+tracks/86/type = "method"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("..")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
 "times": PackedFloat32Array(0.2, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -3642,13 +3270,13 @@ tracks/92/keys = {
 "method": &"disable_short_range_collision"
 }]
 }
-tracks/93/type = "method"
-tracks/93/imported = false
-tracks/93/enabled = true
-tracks/93/path = NodePath("..")
-tracks/93/interp = 1
-tracks/93/loop_wrap = true
-tracks/93/keys = {
+tracks/87/type = "method"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("..")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = {
 "times": PackedFloat32Array(0, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -4218,180 +3846,11 @@ tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(-1.27157e-06, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726)
 tracks/79/type = "method"
 tracks/79/imported = false
-tracks/79/enabled = false
-tracks/79/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
+tracks/79/enabled = true
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0.26, 1.43),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"disable_collision_shape"
-}, {
-"args": [],
-"method": &"enable_collision_shape"
-}]
-}
-tracks/80/type = "method"
-tracks/80/imported = false
-tracks/80/enabled = false
-tracks/80/path = NodePath("../MovementComponent/MovementTracksMethodes")
-tracks/80/interp = 1
-tracks/80/loop_wrap = true
-tracks/80/keys = {
-"times": PackedFloat32Array(0, 2.1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"disable_movement"
-}, {
-"args": [],
-"method": &"enable_movement"
-}]
-}
-tracks/81/type = "method"
-tracks/81/imported = false
-tracks/81/enabled = false
-tracks/81/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
-tracks/81/interp = 1
-tracks/81/loop_wrap = true
-tracks/81/keys = {
-"times": PackedFloat32Array(0.233333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"player_attack_3_sfx"
-}]
-}
-tracks/82/type = "method"
-tracks/82/imported = false
-tracks/82/enabled = false
-tracks/82/path = NodePath("../AttackComponent")
-tracks/82/interp = 1
-tracks/82/loop_wrap = true
-tracks/82/keys = {
-"times": PackedFloat32Array(0.633333, 0.833333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_long_range_collision"
-}, {
-"args": [],
-"method": &"disable_long_range_collision"
-}]
-}
-tracks/83/type = "method"
-tracks/83/imported = false
-tracks/83/enabled = false
-tracks/83/path = NodePath("../AttackComponent")
-tracks/83/interp = 1
-tracks/83/loop_wrap = true
-tracks/83/keys = {
-"times": PackedFloat32Array(0.633333, 0.833333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_light_attack_area"
-}, {
-"args": [],
-"method": &"disable_light_attack_area"
-}]
-}
-tracks/84/type = "method"
-tracks/84/imported = false
-tracks/84/enabled = false
-tracks/84/path = NodePath("../AttackComponent")
-tracks/84/interp = 1
-tracks/84/loop_wrap = true
-tracks/84/keys = {
-"times": PackedFloat32Array(0.633333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"disable_short_range_collision"
-}]
-}
-tracks/85/type = "method"
-tracks/85/imported = false
-tracks/85/enabled = false
-tracks/85/path = NodePath("../AttackComponent")
-tracks/85/interp = 1
-tracks/85/loop_wrap = true
-tracks/85/keys = {
-"times": PackedFloat32Array(0.766667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"freeze_frame"
-}]
-}
-tracks/86/type = "method"
-tracks/86/imported = false
-tracks/86/enabled = false
-tracks/86/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
-tracks/86/interp = 1
-tracks/86/loop_wrap = true
-tracks/86/keys = {
-"times": PackedFloat32Array(0.4, 1.03333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"enable_combo_3_vfx"
-}, {
-"args": [],
-"method": &"disable_combo_3_vfx"
-}]
-}
-tracks/87/type = "method"
-tracks/87/imported = false
-tracks/87/enabled = false
-tracks/87/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
-tracks/87/interp = 1
-tracks/87/loop_wrap = true
-tracks/87/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"launch_combo_3_vfx_animation"
-}]
-}
-tracks/88/type = "method"
-tracks/88/imported = false
-tracks/88/enabled = false
-tracks/88/path = NodePath("../AttackComponent/LightAttackComponent/LightAttackTracksMethodes")
-tracks/88/interp = 1
-tracks/88/loop_wrap = true
-tracks/88/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"launch_combo_3_vfx_animation"
-}]
-}
-tracks/89/type = "method"
-tracks/89/imported = false
-tracks/89/enabled = false
-tracks/89/path = NodePath("../AttackComponent/LightAttackComponent/HandleLightAttackIndexAnimation")
-tracks/89/interp = 1
-tracks/89/loop_wrap = true
-tracks/89/keys = {
-"times": PackedFloat32Array(2.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"confirm_combo_done"
-}]
-}
-tracks/90/type = "method"
-tracks/90/imported = false
-tracks/90/enabled = true
-tracks/90/path = NodePath("..")
-tracks/90/interp = 1
-tracks/90/loop_wrap = true
-tracks/90/keys = {
 "times": PackedFloat32Array(2.03333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4399,13 +3858,13 @@ tracks/90/keys = {
 "method": &"set_animation_index_values"
 }]
 }
-tracks/91/type = "method"
-tracks/91/imported = false
-tracks/91/enabled = true
-tracks/91/path = NodePath("..")
-tracks/91/interp = 1
-tracks/91/loop_wrap = true
-tracks/91/keys = {
+tracks/80/type = "method"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("..")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
 "times": PackedFloat32Array(1.06667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4413,41 +3872,13 @@ tracks/91/keys = {
 "method": &"toggle_combo_windows"
 }]
 }
-tracks/92/type = "method"
-tracks/92/imported = false
-tracks/92/enabled = false
-tracks/92/path = NodePath("..")
-tracks/92/interp = 1
-tracks/92/loop_wrap = true
-tracks/92/keys = {
-"times": PackedFloat32Array(2.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_idle_state"
-}]
-}
-tracks/93/type = "method"
-tracks/93/imported = false
-tracks/93/enabled = false
-tracks/93/path = NodePath("..")
-tracks/93/interp = 1
-tracks/93/loop_wrap = true
-tracks/93/keys = {
-"times": PackedFloat32Array(2.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_movement_state"
-}]
-}
-tracks/94/type = "method"
-tracks/94/imported = false
-tracks/94/enabled = true
-tracks/94/path = NodePath("..")
-tracks/94/interp = 1
-tracks/94/loop_wrap = true
-tracks/94/keys = {
+tracks/81/type = "method"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("..")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = {
 "times": PackedFloat32Array(2.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4455,13 +3886,13 @@ tracks/94/keys = {
 "method": &"activate_combo_if_clicked_during_combo_window"
 }]
 }
-tracks/95/type = "method"
-tracks/95/imported = false
-tracks/95/enabled = true
-tracks/95/path = NodePath("..")
-tracks/95/interp = 1
-tracks/95/loop_wrap = true
-tracks/95/keys = {
+tracks/82/type = "method"
+tracks/82/imported = false
+tracks/82/enabled = true
+tracks/82/path = NodePath("..")
+tracks/82/interp = 1
+tracks/82/loop_wrap = true
+tracks/82/keys = {
 "times": PackedFloat32Array(0.4, 1.03333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -4472,13 +3903,13 @@ tracks/95/keys = {
 "method": &"disable_combo_3_vfx"
 }]
 }
-tracks/96/type = "method"
-tracks/96/imported = false
-tracks/96/enabled = true
-tracks/96/path = NodePath("..")
-tracks/96/interp = 1
-tracks/96/loop_wrap = true
-tracks/96/keys = {
+tracks/83/type = "method"
+tracks/83/imported = false
+tracks/83/enabled = true
+tracks/83/path = NodePath("..")
+tracks/83/interp = 1
+tracks/83/loop_wrap = true
+tracks/83/keys = {
 "times": PackedFloat32Array(0.766667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4486,13 +3917,13 @@ tracks/96/keys = {
 "method": &"freeze_frame"
 }]
 }
-tracks/97/type = "method"
-tracks/97/imported = false
-tracks/97/enabled = true
-tracks/97/path = NodePath("..")
-tracks/97/interp = 1
-tracks/97/loop_wrap = true
-tracks/97/keys = {
+tracks/84/type = "method"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("..")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = {
 "times": PackedFloat32Array(0.233333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4500,13 +3931,13 @@ tracks/97/keys = {
 "method": &"player_attack_3_sfx"
 }]
 }
-tracks/98/type = "method"
-tracks/98/imported = false
-tracks/98/enabled = true
-tracks/98/path = NodePath("..")
-tracks/98/interp = 1
-tracks/98/loop_wrap = true
-tracks/98/keys = {
+tracks/85/type = "method"
+tracks/85/imported = false
+tracks/85/enabled = true
+tracks/85/path = NodePath("..")
+tracks/85/interp = 1
+tracks/85/loop_wrap = true
+tracks/85/keys = {
 "times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4514,13 +3945,13 @@ tracks/98/keys = {
 "method": &"launch_combo_3_vfx_animation"
 }]
 }
-tracks/99/type = "method"
-tracks/99/imported = false
-tracks/99/enabled = true
-tracks/99/path = NodePath("..")
-tracks/99/interp = 1
-tracks/99/loop_wrap = true
-tracks/99/keys = {
+tracks/86/type = "method"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("..")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
 "times": PackedFloat32Array(0.633333, 0.833333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -4531,13 +3962,13 @@ tracks/99/keys = {
 "method": &"disable_long_range_collision"
 }]
 }
-tracks/100/type = "method"
-tracks/100/imported = false
-tracks/100/enabled = true
-tracks/100/path = NodePath("..")
-tracks/100/interp = 1
-tracks/100/loop_wrap = true
-tracks/100/keys = {
+tracks/87/type = "method"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("..")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = {
 "times": PackedFloat32Array(0.633333, 0.833333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -4548,13 +3979,13 @@ tracks/100/keys = {
 "method": &"disable_light_attack_area"
 }]
 }
-tracks/101/type = "method"
-tracks/101/imported = false
-tracks/101/enabled = true
-tracks/101/path = NodePath("..")
-tracks/101/interp = 1
-tracks/101/loop_wrap = true
-tracks/101/keys = {
+tracks/88/type = "method"
+tracks/88/imported = false
+tracks/88/enabled = true
+tracks/88/path = NodePath("..")
+tracks/88/interp = 1
+tracks/88/loop_wrap = true
+tracks/88/keys = {
 "times": PackedFloat32Array(0.633333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -4562,13 +3993,13 @@ tracks/101/keys = {
 "method": &"disable_short_range_collision"
 }]
 }
-tracks/102/type = "method"
-tracks/102/imported = false
-tracks/102/enabled = true
-tracks/102/path = NodePath("..")
-tracks/102/interp = 1
-tracks/102/loop_wrap = true
-tracks/102/keys = {
+tracks/89/type = "method"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("..")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = {
 "times": PackedFloat32Array(0, 2.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -5695,28 +5126,11 @@ tracks/78/loop_wrap = true
 tracks/78/keys = PackedFloat32Array(0, 1, -0.00314307, 0.00997826, -0.0665771, 0.997726)
 tracks/79/type = "method"
 tracks/79/imported = false
-tracks/79/enabled = true
-tracks/79/path = NodePath("../DashComponent/LaunchDash")
+tracks/79/enabled = false
+tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0.02, 0.03),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"modify_fov_with_tween"
-}, {
-"args": [],
-"method": &"launch_action_line"
-}]
-}
-tracks/80/type = "method"
-tracks/80/imported = false
-tracks/80/enabled = false
-tracks/80/path = NodePath("..")
-tracks/80/interp = 1
-tracks/80/loop_wrap = true
-tracks/80/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{

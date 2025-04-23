@@ -342,6 +342,9 @@ libraries = {
 transform = Transform3D(-1.25, 1.43052e-20, -1.88745e-07, 0, 1.25, 9.4739e-14, 1.88745e-07, 9.4739e-14, -1.25, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_uenso")
 
+[node name="root" parent="StateChart" index="0"]
+initial_state = NodePath("Stationary")
+
 [node name="ToDeath" type="Node" parent="StateChart/root/Idle" index="1"]
 script = ExtResource("2_1x6pu")
 to = NodePath("../../Death")

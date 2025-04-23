@@ -393,7 +393,7 @@ func _on_dash_state_entered() -> void:
 	start_dash()
 	launch_dash_animation()
 
-func _on_dash_state_physics_processing(delta: float) -> void:
+func _on_dash_state_physics_processing(_delta: float) -> void:
 
 	execute_dash() #Launch the dash if all conditions are met
 
