@@ -1,7 +1,8 @@
-[gd_scene load_steps=308 format=4 uid="uid://h5ki6o7xpk76"]
+[gd_scene load_steps=310 format=4 uid="uid://h5ki6o7xpk76"]
 
 [ext_resource type="ArrayMesh" uid="uid://pyan2uxq2utm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_Arene.obj" id="1_ekj8a"]
 [ext_resource type="Material" uid="uid://ct7o1r828htgm" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_arena/material/mat_arene.tres" id="2_hpyr5"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique2.ogv" id="3_1w1ml"]
 [ext_resource type="Material" uid="uid://bpwi1hpn7v1nu" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_hair.tres" id="3_x1pjj"]
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="4_xo36d"]
 [ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="5_34jtm"]
@@ -33,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://ddrsg5e1h5653" path="res://library/002_gameplay_concepts/004_level_system/asset/tomb_04/tomb_04.tscn" id="31_wfy38"]
 [ext_resource type="Script" uid="uid://b5s5igcnjreoh" path="res://library/002_gameplay_concepts/013_main_menu/handle_main_menu.gd" id="32_qu1ls"]
 [ext_resource type="PackedScene" uid="uid://d3y3sd1p7t8rx" path="res://library/002_gameplay_concepts/004_level_system/asset/candlle_01/candlle_01.tscn" id="33_u2tiu"]
+[ext_resource type="Texture2D" uid="uid://byvhucmeq8o7q" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/logoTeamSF.png" id="34_0uvq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x1pjj"]
 sky_top_color = Color(0.23392, 0.000271842, 0.67535, 1)
@@ -459,7 +461,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -5965,6 +5967,23 @@ transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109
 
 [node name="MainMenuControl" parent="MainMenu" index="0"]
 visible = false
+video_length = 67.5
+
+[node name="MarginContainer" parent="MainMenu/MainMenuControl" index="0"]
+visible = false
+
+[node name="VideoContainer" parent="MainMenu/VideoControl" index="0"]
+theme_override_constants/margin_right = 0
+
+[node name="VideoStreamPlayer" parent="MainMenu/VideoControl/VideoContainer/AspectRatioContainer" index="0"]
+stream = ExtResource("3_1w1ml")
+
+[node name="SkipButtonContainer" parent="MainMenu/VideoControl/VideoContainer" index="1"]
+theme_override_constants/margin_right = 155
+theme_override_constants/margin_bottom = 190
+
+[node name="SkipVideoButton" parent="MainMenu/VideoControl/VideoContainer/SkipButtonContainer" index="0"]
+text = "Skip the video"
 
 [node name="Environnement" type="Node3D" parent="."]
 
@@ -7109,6 +7128,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -790
+
+[node name="MarginContainer2" type="MarginContainer" parent="PremenuPannel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 600)
+layout_mode = 2
+theme_override_constants/margin_top = 555
+theme_override_constants/margin_bottom = -175
+
+[node name="TextureRect" type="TextureRect" parent="PremenuPannel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("34_0uvq1")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="PremenuPannel/VBoxContainer"]
 layout_mode = 2

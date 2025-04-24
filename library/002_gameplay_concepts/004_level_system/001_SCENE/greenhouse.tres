@@ -260,5 +260,5 @@ metadata/class = "Greenhouse_PlantState"
 resource_name = "Greenhouse"
 script = ExtResource("1_1ub7t")
 plant_types/greenhouse_plant_states = [SubResource("Resource_o54yf"), SubResource("Resource_cr43p"), SubResource("Resource_2aor4"), SubResource("Resource_66ln2"), SubResource("Resource_r3xev")]
-plant_types/selected_for_edit_resource = SubResource("Resource_2aor4")
+plant_types/selected_for_edit_resource = SubResource("Resource_o54yf")
 metadata/class = "Greenhouse"

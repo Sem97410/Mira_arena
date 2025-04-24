@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=119 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -51,6 +51,11 @@
 [ext_resource type="AudioStream" uid="uid://c62ehf8f0ib0e" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 2.wav" id="48_7kj1n"]
 [ext_resource type="AudioStream" uid="uid://b8x3f23pogxay" path="res://library/002_gameplay_concepts/001_player/SFX/Charged attack.wav" id="49_irfkd"]
 [ext_resource type="PackedScene" uid="uid://dm2ruywilprq3" path="res://end_game_pannel.tscn" id="51_7kj1n"]
+[ext_resource type="Texture2D" uid="uid://dpr61f5oq3w20" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Aby.png" id="52_74klt"]
+[ext_resource type="Texture2D" uid="uid://bytw5ruc78w01" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Evan.png" id="53_dqrel"]
+[ext_resource type="Texture2D" uid="uid://deebyl22tdiuj" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_jean.png" id="54_ka47b"]
+[ext_resource type="Texture2D" uid="uid://76xc3617gy84" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Tony.png" id="55_rs7t3"]
+[ext_resource type="Texture2D" uid="uid://bppyxdft8t4t8" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Damien.png" id="56_iwvjk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -7382,7 +7387,7 @@ tracks/79/path = NodePath("..")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
-"times": PackedFloat32Array(0.266667, 0.493102),
+"times": PackedFloat32Array(0.266667, 0.633333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -7399,7 +7404,7 @@ tracks/80/path = NodePath("..")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
 tracks/80/keys = {
-"times": PackedFloat32Array(0.266667, 0.493102),
+"times": PackedFloat32Array(0.266667, 0.633333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -9758,6 +9763,21 @@ health_bar = NodePath("../UI/HealthBar")
 
 [node name="Control" parent="EndGamePannel" index="0"]
 visible = false
+
+[node name="TextureRect" parent="EndGamePannel/Control/MarginContainer/VBoxContainer/HBoxContainer2" index="0"]
+texture = ExtResource("52_74klt")
+
+[node name="TextureRect2" parent="EndGamePannel/Control/MarginContainer/VBoxContainer/HBoxContainer2" index="1"]
+texture = ExtResource("53_dqrel")
+
+[node name="TextureRect3" parent="EndGamePannel/Control/MarginContainer/VBoxContainer/HBoxContainer2" index="2"]
+texture = ExtResource("54_ka47b")
+
+[node name="TextureRect" parent="EndGamePannel/Control/MarginContainer/VBoxContainer/HBoxContainer3" index="0"]
+texture = ExtResource("55_rs7t3")
+
+[node name="TextureRect2" parent="EndGamePannel/Control/MarginContainer/VBoxContainer/HBoxContainer3" index="1"]
+texture = ExtResource("56_iwvjk")
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
