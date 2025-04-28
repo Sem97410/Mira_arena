@@ -402,3 +402,4 @@ activation_input = "launch_mortar"
 [editable path="MiraV3"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
+[editable path="MiraV3/EndGamePannel"]
