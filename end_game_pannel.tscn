@@ -1,14 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm2ruywilprq3"]
+[gd_scene load_steps=12 format=3 uid="uid://dm2ruywilprq3"]
 
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_xvbep"]
 [ext_resource type="Script" uid="uid://bjqd7grcmp0a1" path="res://library/002_gameplay_concepts/002_UI/end_game_pannel.gd" id="1_ynyt2"]
-[ext_resource type="Texture2D" uid="uid://d1likswtbndqq" path="res://library/002_gameplay_concepts/002_UI/UI/HP_icons.png" id="2_oqdb4"]
+[ext_resource type="Texture2D" uid="uid://dpr61f5oq3w20" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Aby.png" id="3_3kwn5"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="3_ynyt2"]
+[ext_resource type="Texture2D" uid="uid://76xc3617gy84" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Tony.png" id="4_w533p"]
+[ext_resource type="Texture2D" uid="uid://deebyl22tdiuj" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_jean.png" id="5_qslst"]
 [ext_resource type="Texture2D" uid="uid://dlprsr56g7dw6" path="res://library/002_gameplay_concepts/002_UI/UI/MiraHeadSF.png" id="5_uh4nl"]
+[ext_resource type="Texture2D" uid="uid://bytw5ruc78w01" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Evan.png" id="6_yese5"]
+[ext_resource type="Texture2D" uid="uid://bppyxdft8t4t8" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Damien.png" id="7_h7ubs"]
 
 [sub_resource type="Gradient" id="Gradient_qr3y0"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
+colors = PackedColorArray(0, 0.399889, 0.374679, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tmk8l"]
 gradient = SubResource("Gradient_qr3y0")
@@ -83,19 +87,19 @@ alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("2_oqdb4")
+texture = ExtResource("3_3kwn5")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("2_oqdb4")
+texture = ExtResource("4_w533p")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="TextureRect3" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("2_oqdb4")
+texture = ExtResource("5_qslst")
 expand_mode = 2
 stretch_mode = 4
 
@@ -107,13 +111,13 @@ alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("2_oqdb4")
+texture = ExtResource("6_yese5")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("2_oqdb4")
+texture = ExtResource("7_h7ubs")
 expand_mode = 2
 stretch_mode = 4
 

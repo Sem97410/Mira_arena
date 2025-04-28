@@ -420,7 +420,7 @@ func _on_light_attack_state_entered() -> void:
 	#print("Passe par la en premier : 1")
 
 #func _on_light_attack_state_exited() -> void:
-	##print("Light attack : OFF")
+	#print("Light attack : OFF")
 	##print("L.A. state duration : ", debug_chrono)
 
 
@@ -453,7 +453,7 @@ func _on_charged_attack_state_entered() -> void:
 	send_event_state_chart("IsFinishingTheChargedAttack")
 
 #func _on_charged_attack_state_exited() -> void:
-	##print("Charged attack : OFF")
+	#print("Charged attack : OFF")
 	##print("C.A. state duration : ", debug_chrono)
 	##print("can_transition is : ", can_transition)
 	#
@@ -537,8 +537,8 @@ func activate_movement_state()-> void :
 		#print("J'ai passé le teste pour activer le mouvement")
 	
 		base_state_machine.travel("MovementBlendSpace")
-		print("Je viens de lancer le mouvement depuis activate movement state")
-		print("Charged attack variable is : ", is_charged_attacking)
+		#print("Je viens de lancer le mouvement depuis activate movement state")
+		#print("Charged attack variable is : ", is_charged_attacking)
 		send_event_state_chart("IsMoving")
 
 	#else : 
@@ -776,7 +776,7 @@ func update_movement_tracking(delta: float) -> void:
 
 func enable_movement() -> void :
 	can_move = true
-	print("enable movement is active")
+	#print("enable movement is active")
 
 #---
 
