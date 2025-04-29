@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc7idb5401adi"
-path.s3tc="res://.godot/imported/slim_helmet_metallic.png-2eea0b13d7f9c733fdf11c862968cacc.s3tc.ctex"
+uid="uid://22nlba4omdyh"
+path.s3tc="res://.godot/imported/slim_helmet_baseColor.png-271121c537913ee9e5e2016e0a1b0296.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/003_enemy/v_01/004_assets/001_texture/slim_helmet_metallic.png"
-dest_files=["res://.godot/imported/slim_helmet_metallic.png-2eea0b13d7f9c733fdf11c862968cacc.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/slim_helmet_baseColor.png"
+dest_files=["res://.godot/imported/slim_helmet_baseColor.png-271121c537913ee9e5e2016e0a1b0296.s3tc.ctex"]
 
 [params]
 

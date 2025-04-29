@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_ip2ux"]
 [ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_r26yw"]
-[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/000_material/mat_slime_eyes.tres" id="2_vqhhd"]
-[ext_resource type="Material" uid="uid://oreftx4ips5f" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/000_material/mat_slime_body.tres" id="3_dkpk6"]
-[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/000_material/mat_slime_helmet.tres" id="4_qp3fn"]
+[ext_resource type="Material" uid="uid://covuwccimfea7" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/mat_slime_eyes.tres" id="2_vqhhd"]
+[ext_resource type="Material" uid="uid://oreftx4ips5f" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/mat_slime_body.tres" id="3_dkpk6"]
+[ext_resource type="Material" uid="uid://bm2kt08bcd7ag" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/material/mat_slime_helmet.tres" id="4_qp3fn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4btua"]
 resource_name = "mat_eyes_slime"

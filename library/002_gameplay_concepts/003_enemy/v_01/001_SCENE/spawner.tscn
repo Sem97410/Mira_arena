@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b1glnsyk34yb7"]
 
-[ext_resource type="Script" uid="uid://bbw7w7ddra01e" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.gd" id="1_e07w3"]
+[ext_resource type="Script" uid="uid://bbw7w7ddra01e" path="res://library/002_gameplay_concepts/003_enemy/v_01/002_Script/spawner.gd" id="1_e07w3"]
 [ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter_slime.tscn" id="2_wy07m"]
 [ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/wanderer_slime.tscn" id="3_jgwnf"]
 [ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="4_jgwnf"]
