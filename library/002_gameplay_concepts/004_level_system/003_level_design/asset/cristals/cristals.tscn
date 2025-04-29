@@ -1,0 +1,208 @@
+[gd_scene load_steps=9 format=4 uid="uid://bw3luwcrwoa78"]
+
+[ext_resource type="Material" uid="uid://h26iokga10hh" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/cristals/base_cristal_material.tres" id="1_wjvob"]
+[ext_resource type="Material" uid="uid://b7b26j3cnphti" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/cristals/little_cristal.tres" id="2_1s60c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4opl"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6wxpq"]
+_surfaces = [{
+"aabb": AABB(-0.01, -0.01, -0.0185634, 0.02, 0.02, 0.0371268),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAACAAQAAgADAAQABQABAAAAAQAFAAMAAAAEAAUABAADAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("uB5JNrgeSbY7Epg8CtcjPArXI7wAAAAACtcjvArXI7wAAAAAuB5JNrgeSbY7Epi8CtcjvArXIzwAAAAACtcjPArXIzwAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_26fjh"]
+resource_name = "Plane"
+_surfaces = [{
+"aabb": AABB(-0.01, -0.01, -0.0185634, 0.02, 0.02, 0.0371268),
+"attribute_data": PackedByteArray("0gkAP9IJAD8AAIA/AACAPwAAAAAAAIA/AACAPwAAAAAAAIA/AACAP9IJAD/SCQA/0gkAP9IJAD8AAAAAAAAAAAAAgD8AAAAA0gkAP9IJAD8AAAAAAACAPwAAAAAAAAAAAACAPwAAgD/SCQA/0gkAPwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAANIJAD/SCQA/AAAAAAAAAADSCQA/0gkAPwAAgD8AAAAAAAAAAAAAgD/SCQA/0gkAPwAAAAAAAAAA"),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_s4opl"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("uB5JNrgeSbY7Epg8CtcjPArXI7wAAAAACtcjvArXI7wAAAAACtcjPArXIzwAAAAACtcjPArXI7wAAAAAuB5JNrgeSbY7Epg8uB5JNrgeSbY7Epg8CtcjvArXIzwAAAAACtcjPArXIzwAAAAAuB5JNrgeSbY7Epg8CtcjvArXI7wAAAAACtcjvArXIzwAAAAACtcjPArXI7wAAAAAuB5JNrgeSbY7Epi8CtcjvArXI7wAAAAACtcjPArXI7wAAAAACtcjPArXIzwAAAAAuB5JNrgeSbY7Epi8CtcjvArXIzwAAAAAuB5JNrgeSbY7Epi8CtcjPArXIzwAAAAACtcjvArXI7wAAAAAuB5JNrgeSbY7Epi8CtcjvArXIzwAAAAA/3/NLP///7//f80s////v/9/zSz///+/MdP/f///mOkx0/9///+Y6THT/3///5jp/38s0////7//fyzT////v/9/LNP///+/0iz/f9Gs/7/SLP9/0az/v9Is/3/RrP+/zawAAP///z/NrAAA////P82sAAD///8////NrM2s/z///82szaz/P///zazNrP8/0az//////z/RrP//////P9Gs//////8/AADRrP//aRYAANGs//9pFgAA0az//2kW")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6wxpq")
+
+[sub_resource type="Animation" id="Animation_wjvob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigCristal:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6302f"]
+resource_name = "base_cristal_animation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigCristal:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1s60c"]
+_data = {
+&"RESET": SubResource("Animation_wjvob"),
+&"base_cristal_animation": SubResource("Animation_6302f")
+}
+
+[node name="Cristals" type="Node3D"]
+
+[node name="FullCristals" type="Node3D" parent="."]
+
+[node name="BigCristal" type="Node3D" parent="FullCristals"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)
+
+[node name="cristal" type="Node3D" parent="FullCristals/BigCristal"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.27289, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/BigCristal/cristal"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("1_wjvob")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal2" type="Node3D" parent="FullCristals/BigCristal"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/BigCristal/cristal2"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal3" type="Node3D" parent="FullCristals/BigCristal"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 2.04408, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/BigCristal/cristal3"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="LittleCristalBellow" type="Node3D" parent="FullCristals"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.25, 0)
+
+[node name="cristal" type="Node3D" parent="FullCristals/LittleCristalBellow"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.27289, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalBellow/cristal"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("1_wjvob")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal2" type="Node3D" parent="FullCristals/LittleCristalBellow"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalBellow/cristal2"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal3" type="Node3D" parent="FullCristals/LittleCristalBellow"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 2.04408, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalBellow/cristal3"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="LittleCristalAbove" type="Node3D" parent="FullCristals"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.778, 0)
+
+[node name="cristal" type="Node3D" parent="FullCristals/LittleCristalAbove"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.622169, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalAbove/cristal"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("1_wjvob")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal2" type="Node3D" parent="FullCristals/LittleCristalAbove"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalAbove/cristal2"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="cristal3" type="Node3D" parent="FullCristals/LittleCristalAbove"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 2.04408, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="FullCristals/LittleCristalAbove/cristal3"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_1s60c")
+mesh = SubResource("ArrayMesh_26fjh")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullCristals"]
+libraries = {
+&"": SubResource("AnimationLibrary_1s60c")
+}
+autoplay = "base_cristal_animation"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="FullCristals"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.53291, 0)
+light_color = Color(1.34766e-06, 0.944609, 0.887526, 1)
+light_energy = 4.5
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="FullCristals"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.293332, 0)
+light_color = Color(1.34766e-06, 0.944609, 0.887526, 1)
+light_energy = 4.5

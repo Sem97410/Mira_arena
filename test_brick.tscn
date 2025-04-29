@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=4 uid="uid://ds7jbb7gejc3m"]
 
-[ext_resource type="Texture2D" uid="uid://dalp7aaworjrb" path="res://library/002_gameplay_concepts/004_level_system/asset/paver/material/pave02_low_DefaultMaterial_BaseColor.png" id="1_yph2j"]
-[ext_resource type="Texture2D" uid="uid://do0kngu363be2" path="res://library/002_gameplay_concepts/004_level_system/asset/paver/material/pave02_low_DefaultMaterial_Normal.png" id="2_ulns4"]
-[ext_resource type="Texture2D" uid="uid://c1k5vwejkdvck" path="res://library/002_gameplay_concepts/004_level_system/asset/paver/material/pave02_low_DefaultMaterial_Roughness.png" id="3_n1evt"]
+[ext_resource type="Texture2D" uid="uid://dalp7aaworjrb" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/paver/material/pave02_low_DefaultMaterial_BaseColor.png" id="1_yph2j"]
+[ext_resource type="Texture2D" uid="uid://do0kngu363be2" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/paver/material/pave02_low_DefaultMaterial_Normal.png" id="2_ulns4"]
+[ext_resource type="Texture2D" uid="uid://c1k5vwejkdvck" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/paver/material/pave02_low_DefaultMaterial_Roughness.png" id="3_n1evt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq5qu"]
 

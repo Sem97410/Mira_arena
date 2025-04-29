@@ -1,0 +1,33 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://cu8ylhy6ah5xh"]
+
+[ext_resource type="Material" uid="uid://ckw5e2pu44vw5" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/grass/material/mat_shdr_grass_04.tres" id="1_ca2we"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qfrp7"]
+_surfaces = [{
+"aabb": AABB(-0.149155, -0.0308582, -0.130829, 0.350122, 1.42605, 0.396414),
+"format": 34359742465,
+"index_count": 9,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("+rsYvimNjD99n4q9OlipvUTUdz8g+AW+1ikdvGXg0rw/JJG7UeVcPUXK/LwinJU9ccpNPgVqLT//Zng+RkALPmKOTz/H+oc+t4WXvbP6oj9mKQ2766OhOrSVsj+DEBS7rt4JPWFmtLwRAJ48")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "grass_001"
+_surfaces = [{
+"aabb": AABB(-0.149155, -0.0308582, -0.130829, 0.350122, 1.42605, 0.396414),
+"attribute_data": PackedByteArray("oZncPgAAAAAAAIA/AAAAAMUO6z6h9X4/YRViPhsOgD8AAAAAAAnpu5KMXD8A7XE712QUMwBnhburZxI/AAAAADkvMz+N7n8/"),
+"format": 34359742487,
+"index_count": 9,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgA"),
+"material": ExtResource("1_ca2we"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("+rsYvimNjD99n4q9OlipvUTUdz8g+AW+1ikdvGXg0rw/JJG7UeVcPUXK/LwinJU9ccpNPgVqLT//Zng+RkALPmKOTz/H+oc+t4WXvbP6oj9mKQ2766OhOrSVsj+DEBS7rt4JPWFmtLwRAJ48IcQyi+i/YpAhxDKL6L9ikCHEMovov2KQpuqi9pZcXOem6qL2llxc56bqovaWXFznO33PgXivUeg7fc+BeK9R6Dt9z4F4r1Ho")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qfrp7")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=28 format=4 uid="uid://b41brc2tqx1tg"]
 
 [ext_resource type="Script" uid="uid://jjvv8q486nnj" path="res://library/002_gameplay_concepts/012_tools/find_non_uniform_object.gd" id="1_h8q7l"]
-[ext_resource type="Material" uid="uid://7jsbwnqwwehj" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Start/mat_stone_start.tres" id="2_fpc5b"]
-[ext_resource type="Material" uid="uid://bhaywyfab5uml" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Stone/stone_border_start.tres" id="3_cuw74"]
-[ext_resource type="Material" uid="uid://bdhsj7qovqvki" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Pillar/mat_pillar_start.tres" id="4_0q2ok"]
-[ext_resource type="Material" uid="uid://cd0ckvl2ha4oo" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_start/material/Arche/mat_arche.tres" id="5_ejvi1"]
+[ext_resource type="Material" uid="uid://7jsbwnqwwehj" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_start/material/Start/mat_stone_start.tres" id="2_fpc5b"]
+[ext_resource type="Material" uid="uid://bhaywyfab5uml" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_start/material/Stone/stone_border_start.tres" id="3_cuw74"]
+[ext_resource type="Material" uid="uid://bdhsj7qovqvki" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_start/material/Pillar/mat_pillar_start.tres" id="4_0q2ok"]
+[ext_resource type="Material" uid="uid://cd0ckvl2ha4oo" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_start/material/Arche/mat_arche.tres" id="5_ejvi1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl1cs"]
 resource_name = "Start"

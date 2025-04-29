@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ddp05utpjxpol"]
+
+[ext_resource type="Shader" uid="uid://bwdquriyk3k3h" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_02/material/spinetree_trunk.gdshader" id="1_wbkco"]
+[ext_resource type="Texture2D" uid="uid://c51he5nplopir" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_03/material/txt_trunk_tree_basecolor.png" id="2_nlunf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wbkco")
+shader_parameter/albedo_texture = ExtResource("2_nlunf")
+shader_parameter/shadow_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/light_color = Color(1, 0.9, 0.8, 1)
+shader_parameter/shadow_threshold = 0.414
+shader_parameter/shadow_smoothness = 0.0
+shader_parameter/outline_thickness = 0.005
+shader_parameter/outline_color = Color(0, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=4 uid="uid://j4q4w5qgihlt"]
+[gd_scene load_steps=164 format=4 uid="uid://dfggc480tamm8"]
 
 [ext_resource type="Script" uid="uid://cflmj47i313qo" path="res://library/002_gameplay_concepts/003_enemy/v_02/Scripts/foot_step_manager.gd" id="1_erwvh"]
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="2_0xdbd"]

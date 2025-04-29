@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/wanderer_slime.tscn" id="3_jgwnf"]
 [ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="4_jgwnf"]
 [ext_resource type="PackedScene" uid="uid://ddtoebj46ohx5" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_missile_slime/missile_slime.tscn" id="5_y34sy"]
-[ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/mortar_slime.tscn" id="6_8i53i"]
+[ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/scene/mortar_slime.tscn" id="6_8i53i"]
 
 [node name="Spawner" type="Node3D" node_paths=PackedStringArray("spawner_timer")]
 script = ExtResource("1_e07w3")

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://68lglf81kdxm"]
+
+[ext_resource type="Texture2D" uid="uid://c6ibkmqtp1jrj" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/candlle_01/material/txt_candlle_01_BaseColor.png" id="1_743aq"]
+[ext_resource type="Texture2D" uid="uid://dv8x7qfi7ba4p" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/candlle_01/material/txt_candlle_01_Roughness.png" id="2_bvkso"]
+
+[resource]
+albedo_texture = ExtResource("1_743aq")
+roughness_texture = ExtResource("2_bvkso")

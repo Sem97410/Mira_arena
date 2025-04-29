@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnciqtibhx57o"]
+
+[ext_resource type="ArrayMesh" uid="uid://et2lx2ga4e0f" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_R_2.obj" id="1_pts8k"]
+[ext_resource type="Material" uid="uid://8dcqdnbshhmq" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_r_1/material/mat_platform_r.tres" id="2_s0xgx"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pts8k"]
+data = PackedVector3Array(3.9999, 0.5, 6.5, 3.9999, -0.5, 6.5, -4, 0.5, 6.5, -4, 0.5, 6.5, 3.9999, -0.5, 6.5, -4, -0.5, 6.5, -4, 0.5, 6.5, -4, -0.5, 6.5, -4, 0.5, -6.5, -4, 0.5, -6.5, -4, -0.5, 6.5, -4, -0.5, -6.5, -4, 0.5, -6.5, -4, -0.5, -6.5, 4, 0.5, -6.5, 4, 0.5, -6.5, -4, -0.5, -6.5, 4, -0.5, -6.5, 4, 0.5, -6.5, 4, -0.5, -6.5, 3.9999, 0.5, 6.5, 3.9999, 0.5, 6.5, 4, -0.5, -6.5, 3.9999, -0.5, 6.5, -4, 0.5, 6.5, -4, 0.5, -6.5, 3.9999, 0.5, 6.5, 3.9999, 0.5, 6.5, -4, 0.5, -6.5, 4, 0.5, -6.5)
+
+[node name="Platform_R_2" type="Node3D"]
+
+[node name="PlatformR2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pts8k")
+surface_material_override/0 = ExtResource("2_s0xgx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PlatformR2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlatformR2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_pts8k")

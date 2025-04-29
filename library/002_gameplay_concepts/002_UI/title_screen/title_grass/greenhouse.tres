@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=13 format=3 uid="uid://b3bcl5moqkr4h"]
 
-[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/base_grass.tres" id="1_opgyv"]
+[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/grass/base_grass.tres" id="1_opgyv"]
 [ext_resource type="Script" uid="uid://cjsirac1827tg" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse.gd" id="1_uj3mx"]
 [ext_resource type="Script" uid="uid://c6btkf1v8d8pn" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_LOD_variant.gd" id="2_5ruq6"]
 [ext_resource type="Script" uid="uid://bnsd2fyntembv" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant.gd" id="3_kmiep"]
 [ext_resource type="Script" uid="uid://ckg16wf0ebcts" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant_state.gd" id="4_d0iy6"]
-[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/old_grass/grass_3.tres" id="5_5ruq6"]
+[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/grass/old_grass/grass_3.tres" id="5_5ruq6"]
 
 [sub_resource type="Resource" id="Resource_5ruq6"]
 resource_name = "Greenhouse_LODVariant"

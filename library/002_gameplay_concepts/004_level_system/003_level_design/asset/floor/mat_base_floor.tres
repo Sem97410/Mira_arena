@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cj5162ptkc14u"]
+
+[ext_resource type="Shader" uid="uid://bnjf474xk330c" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/floor/floor_shader.gdshader" id="1_rlyim"]
+
+[sub_resource type="Gradient" id="Gradient_io1gj"]
+offsets = PackedFloat32Array(0.136364, 0.755682)
+colors = PackedColorArray(0.774805, 0.536045, 0.126361, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_epxg3"]
+frequency = 0.0215
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bc6sc"]
+color_ramp = SubResource("Gradient_io1gj")
+noise = SubResource("FastNoiseLite_epxg3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rlyim")
+shader_parameter/color_one = Color(0.387644, 0.200811, 0.0132378, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bc6sc")
+shader_parameter/roughness_intensity = 1.0
+shader_parameter/player_position = Vector3(0, 0, 0)

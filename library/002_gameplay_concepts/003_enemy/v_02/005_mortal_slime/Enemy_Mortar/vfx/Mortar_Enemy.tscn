@@ -1,0 +1,744 @@
+[gd_scene load_steps=70 format=3 uid="uid://eoh3er86dlaj"]
+
+[ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="1_epjs2"]
+[ext_resource type="Material" uid="uid://d2ujkj8ij2n0h" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Mortar_Enemy_Explosive_Cloud.tres" id="2_bgc8c"]
+[ext_resource type="Shader" uid="uid://s3my3eajqv5g" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Sparkle_Mortar.tres" id="3_r7qlm"]
+[ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_VFX_Point.png" id="4_jw8q5"]
+[ext_resource type="Texture2D" uid="uid://bimy7bs8ofgma" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque.png" id="5_aojhn"]
+[ext_resource type="Texture2D" uid="uid://dgk7bw2cxesld" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque_E.png" id="6_4de80"]
+[ext_resource type="Shader" uid="uid://dragyvb8qnyho" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Sparkle_2.tres" id="7_rre5e"]
+[ext_resource type="Shader" uid="uid://cl76tpilq8bxa" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Wave.tres" id="8_qxovl"]
+[ext_resource type="ArrayMesh" uid="uid://rdee0dyucfo7" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Wave.obj" id="9_4fh0r"]
+[ext_resource type="Shader" uid="uid://dp8qapka33nt1" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Wave_2.tres" id="10_1ujse"]
+[ext_resource type="ArrayMesh" uid="uid://dbvdox2cy041n" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Wave_3.obj" id="11_x05pk"]
+[ext_resource type="Shader" uid="uid://c74ekewhynlhy" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Lock/Mortar_Sol.tres" id="12_sqoyg"]
+[ext_resource type="ArrayMesh" uid="uid://d0cldgt6llo7c" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Lock/Mortar_Sol_5.mtl.obj" id="13_4bqi6"]
+[ext_resource type="Shader" uid="uid://vein4pltlive" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Lock/Mortar_SolInterior.tres" id="14_q6kq6"]
+[ext_resource type="Shader" uid="uid://vi3nukj80v5e" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Lock/Mortar_Sol_Edge.tres" id="15_yq240"]
+[ext_resource type="Shader" uid="uid://cf00bqyai3jiw" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Lock/Particles_Sol.tres" id="16_da71p"]
+
+[sub_resource type="Curve" id="Curve_yxbfi"]
+_data = [Vector2(0, 0.0337079), 0.0, 0.712265, 0, 0, Vector2(0.640816, 0.337079), 0.0, 0.0, 0, 0, Vector2(0.938775, 1), 4.12922, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_axq6a"]
+texture_mode = 1
+curve = SubResource("Curve_yxbfi")
+
+[sub_resource type="Gradient" id="Gradient_e3xi6"]
+offsets = PackedFloat32Array(0.182648, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_03jau"]
+gradient = SubResource("Gradient_e3xi6")
+
+[sub_resource type="Curve" id="Curve_1kaos"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.310204, 0.359551), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_isu0h"]
+curve = SubResource("Curve_1kaos")
+
+[sub_resource type="Curve" id="Curve_2pnts"]
+_data = [Vector2(0, 0.303371), 0.0, 3.11187, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4qlcn"]
+curve = SubResource("Curve_2pnts")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d2i4y"]
+radial_velocity_min = -1.00002
+radial_velocity_max = 4.99998
+radial_velocity_curve = SubResource("CurveTexture_isu0h")
+gravity = Vector3(0, 3, 0)
+scale_min = 1.7
+scale_max = 1.8
+scale_curve = SubResource("CurveTexture_4qlcn")
+color_ramp = SubResource("GradientTexture1D_03jau")
+alpha_curve = SubResource("CurveTexture_axq6a")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ylvck"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isu0h"]
+render_priority = 0
+shader = ExtResource("3_r7qlm")
+shader_parameter/Streaks_Color = Color(0, 4, 1, 1)
+
+[sub_resource type="Curve" id="Curve_4qlcn"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d2i4y"]
+texture_mode = 1
+curve = SubResource("Curve_4qlcn")
+
+[sub_resource type="Curve" id="Curve_ylvck"]
+_data = [Vector2(0, 0.494382), 0.0, 1.48507, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l35jg"]
+curve = SubResource("Curve_ylvck")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4lwew"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_l35jg")
+alpha_curve = SubResource("CurveTexture_d2i4y")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bykfh"]
+size = Vector2(0.25, 1)
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Animation" id="Animation_rcjbu"]
+resource_name = "Mortar_Enemy"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sparkle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:one_shot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [10.0, 0.0, 0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decal:emission_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.65, 1.0003, 1.2, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [11.3362, 11.3362, 0.13, 0.0, 0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Decal:albedo_mix")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sparkle_2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wave2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Flash:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wave3:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1vxg0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sparkle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:one_shot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decal:emission_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [11.3362]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Decal:albedo_mix")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sparkle_2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wave2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Flash:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wave3:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipvxm"]
+_data = {
+&"Mortar_Enemy": SubResource("Animation_rcjbu"),
+&"RESET": SubResource("Animation_1vxg0")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvl80"]
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1.105, 8.8, 2.7, 1)
+albedo_texture = ExtResource("4_jw8q5")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_q14pe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hy4b4"]
+curve = SubResource("Curve_q14pe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmhjd"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_hy4b4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_5cdte"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy4b4"]
+render_priority = 0
+shader = ExtResource("7_rre5e")
+shader_parameter/ColorParameter = Color(0, 4.972, 1.658, 1)
+
+[sub_resource type="Curve" id="Curve_kmhjd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5cdte"]
+curve = SubResource("Curve_kmhjd")
+
+[sub_resource type="Curve" id="Curve_tglfl"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 5.39326), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yhrvv"]
+curve = SubResource("Curve_tglfl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnyxd"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+direction = Vector3(0, 1, 0)
+spread = 39.417
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, -1, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_yhrvv")
+color = Color(1, 1, 21.547, 1)
+alpha_curve = SubResource("CurveTexture_5cdte")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pvtu8"]
+size = Vector2(0.01, 0.02)
+center_offset = Vector3(0, 0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l35jg"]
+render_priority = 0
+shader = ExtResource("8_qxovl")
+shader_parameter/ColorParameter = Color(0.14, 5, 3, 1)
+shader_parameter/Vector2Parameter = Vector2(0.1, 0)
+shader_parameter/Vector2Parameter2 = Vector2(0, 0)
+
+[sub_resource type="Curve" id="Curve_4lwew"]
+_data = [Vector2(0, 0.101124), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bykfh"]
+texture_mode = 1
+curve = SubResource("Curve_4lwew")
+
+[sub_resource type="Curve" id="Curve_l35jg"]
+_data = [Vector2(0, 0.146068), 0.0, 2.43518, 0, 0, Vector2(0.212245, 0.685393), 0.971579, 0.971579, 0, 0, Vector2(0.995918, 0.988764), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4lwew"]
+curve = SubResource("Curve_l35jg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bykfh"]
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_4lwew")
+alpha_curve = SubResource("CurveTexture_bykfh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmhjd"]
+render_priority = 0
+shader = ExtResource("10_1ujse")
+shader_parameter/ColorParameter = Color(0.14, 2, 0.5, 1)
+shader_parameter/Vector2Parameter = Vector2(0.1, 0)
+shader_parameter/Vector2Parameter2 = Vector2(0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tglfl"]
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_4lwew")
+alpha_curve = SubResource("CurveTexture_bykfh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcjbu"]
+render_priority = 0
+shader = ExtResource("12_sqoyg")
+shader_parameter/ColorParameter = Color(3, 3, 3, 1)
+shader_parameter/Vector2Parameter = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vxg0"]
+render_priority = 0
+shader = ExtResource("14_q6kq6")
+shader_parameter/ColorParameter = Color(3, 5, 3, 1)
+shader_parameter/Vector2Parameter = Vector2(-0.1, -0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipvxm"]
+render_priority = 0
+shader = ExtResource("15_yq240")
+shader_parameter/ColorParameter = Color(0.4, 4, 0.4, 1)
+shader_parameter/Vector2Parameter = Vector2(-0.1, -0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvl80"]
+render_priority = 0
+shader = ExtResource("16_da71p")
+shader_parameter/Vector2Parameter = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_hy4b4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kmhjd"]
+texture_mode = 1
+curve = SubResource("Curve_hy4b4")
+
+[sub_resource type="Curve" id="Curve_rcjbu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vxg0"]
+curve = SubResource("Curve_rcjbu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5cdte"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_1vxg0")
+color = Color(0, 4, 1, 1)
+alpha_curve = SubResource("CurveTexture_kmhjd")
+
+[sub_resource type="SphereMesh" id="SphereMesh_l35jg"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_ylvck"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Cible_Sol/Mortar_Detail:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 2, 2), Vector3(2, 2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Cible_Sol/MortarSol_Interior:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(2, 2, 2), Vector3(2, 2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Cible_Sol/Mortar_SolEdge:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 2, 2), Vector3(2, 2, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Cible_Sol/Particle:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_d2i4y"]
+resource_name = "Sol_Mortar"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Cible_Sol/Mortar_Detail:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Cible_Sol/MortarSol_Interior:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.5, 0.5, 0.5), Vector3(2, 2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Cible_Sol/Mortar_SolEdge:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 2, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Cible_Sol/Particle:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l35jg"]
+_data = {
+&"RESET": SubResource("Animation_ylvck"),
+&"Sol_Mortar": SubResource("Animation_d2i4y")
+}
+
+[node name="MortarEnemy" type="Node3D" node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("1_epjs2")
+current_vfx = NodePath(".")
+delay_before_queue_free = 2.0
+
+[node name="Explosion_Mortar" type="Node3D" parent="."]
+
+[node name="Smoke" type="GPUParticles3D" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.318521, 0)
+material_override = ExtResource("2_bgc8c")
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_d2i4y")
+draw_pass_1 = SubResource("SphereMesh_ylvck")
+
+[node name="Sparkle" type="GPUParticles3D" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424051, 0, 0)
+material_override = SubResource("ShaderMaterial_isu0h")
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_4lwew")
+draw_pass_1 = SubResource("QuadMesh_bykfh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Explosion_Mortar"]
+light_color = Color(1, 4, 1, 1)
+light_energy = 10.0
+omni_range = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explosion_Mortar"]
+libraries = {
+&"": SubResource("AnimationLibrary_ipvxm")
+}
+autoplay = "Mortar_Enemy"
+
+[node name="Flash" type="GPUParticles3D" parent="Explosion_Mortar"]
+material_override = SubResource("StandardMaterial3D_nvl80")
+amount = 1
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kmhjd")
+draw_pass_1 = SubResource("QuadMesh_5cdte")
+
+[node name="Decal" type="Decal" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00104517, 0)
+size = Vector3(2, 0.5, 2)
+texture_albedo = ExtResource("5_aojhn")
+texture_emission = ExtResource("6_4de80")
+emission_energy = 11.3362
+modulate = Color(0.1, 2, 0.7, 1)
+
+[node name="Sparkle_2" type="GPUParticles3D" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563113, 0)
+material_override = SubResource("ShaderMaterial_hy4b4")
+amount = 80
+lifetime = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_lnyxd")
+draw_pass_1 = SubResource("QuadMesh_pvtu8")
+
+[node name="Wave2" type="GPUParticles3D" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0703429, -0.00284314)
+material_override = SubResource("ShaderMaterial_l35jg")
+amount = 1
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bykfh")
+draw_pass_1 = ExtResource("9_4fh0r")
+
+[node name="Wave3" type="GPUParticles3D" parent="Explosion_Mortar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0439835, 0.00856829)
+material_override = SubResource("ShaderMaterial_kmhjd")
+amount = 1
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_tglfl")
+draw_pass_1 = ExtResource("11_x05pk")
+
+[node name="Cible_Sol" type="Node3D" parent="."]
+
+[node name="Mortar_Detail" type="MeshInstance3D" parent="Cible_Sol"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0236987, 5.96046e-08, 0.000555903)
+material_override = SubResource("ShaderMaterial_rcjbu")
+mesh = ExtResource("13_4bqi6")
+
+[node name="MortarSol_Interior" type="MeshInstance3D" parent="Cible_Sol"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00305271, 1.19209e-07, -0.00132051)
+material_override = SubResource("ShaderMaterial_1vxg0")
+mesh = ExtResource("13_4bqi6")
+skeleton = NodePath("../..")
+
+[node name="Mortar_SolEdge" type="MeshInstance3D" parent="Cible_Sol"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.00475836, 0, 0.00267333)
+material_override = SubResource("ShaderMaterial_ipvxm")
+mesh = ExtResource("13_4bqi6")
+skeleton = NodePath("../..")
+
+[node name="Particle" type="GPUParticles3D" parent="Cible_Sol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535035, 0)
+material_override = SubResource("ShaderMaterial_nvl80")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_5cdte")
+draw_pass_1 = SubResource("SphereMesh_l35jg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cible_Sol"]
+root_node = NodePath("../../Explosion_Mortar/AnimationPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_l35jg")
+}

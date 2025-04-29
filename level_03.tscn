@@ -1,7 +1,7 @@
 [gd_scene load_steps=279 format=4 uid="uid://dqncxhdr5f2rt"]
 
-[ext_resource type="PackedScene" uid="uid://c30l81sqhlqad" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/death_zone.tscn" id="1_lama8"]
-[ext_resource type="Material" uid="uid://gp4od1fjmugj" path="res://000_temp/material_level_03.tres" id="1_xo60c"]
+[ext_resource type="PackedScene" uid="uid://c30l81sqhlqad" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/death_zone.tscn" id="1_lama8"]
+[ext_resource type="Material" path="res://000_temp/material_level_03.tres" id="1_xo60c"]
 [ext_resource type="PackedScene" uid="uid://bg5vsni1jl6bu" path="res://library/002_gameplay_concepts/001_player/mira.tscn" id="2_xo60c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_abimu"]

@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://liiano5vafim"]
 
-[ext_resource type="Material" uid="uid://bohon8annp716" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_02/material/mat_shdr_spinetree_leaf.tres" id="1_1d6gg"]
+[ext_resource type="Material" uid="uid://bohon8annp716" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_02/material/mat_shdr_spinetree_leaf.tres" id="1_1d6gg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkabs"]
 resource_name = "Tronc"

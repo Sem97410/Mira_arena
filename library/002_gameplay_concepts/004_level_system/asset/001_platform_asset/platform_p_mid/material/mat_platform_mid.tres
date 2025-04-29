@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://jtdagif1tmrt"]
-
-[ext_resource type="Texture2D" uid="uid://brd4eksbss7gk" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_p_mid/material/txt_Platform_P_BaseColor.png" id="1_oyd8x"]
-[ext_resource type="Texture2D" uid="uid://f1dqypph0ib" path="res://library/002_gameplay_concepts/004_level_system/asset/001_platform_asset/platform_p_mid/material/txt_Platform_P_Roughness.png" id="3_488hi"]
-
-[resource]
-albedo_texture = ExtResource("1_oyd8x")
-roughness_texture = ExtResource("3_488hi")
-normal_enabled = true

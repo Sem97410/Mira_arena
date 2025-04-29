@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cjsirac1827tg" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse.gd" id="1_1ub7t"]
 [ext_resource type="Script" uid="uid://c6btkf1v8d8pn" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_LOD_variant.gd" id="1_vropk"]
-[ext_resource type="PackedScene" uid="uid://byxkegbwi24c0" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_02/spinetree.tscn" id="2_xaetv"]
+[ext_resource type="PackedScene" uid="uid://byxkegbwi24c0" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_02/spinetree.tscn" id="2_xaetv"]
 [ext_resource type="Script" uid="uid://bnsd2fyntembv" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant.gd" id="3_qf7bq"]
 [ext_resource type="Script" uid="uid://ckg16wf0ebcts" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse_plant_state.gd" id="4_r3xev"]
-[ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/asset/tree_03/tree.tscn" id="5_rgnmb"]
-[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/base_grass.tres" id="6_qf7bq"]
-[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/asset/grass/old_grass/grass_3.tres" id="7_r3xev"]
+[ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_03/tree.tscn" id="5_rgnmb"]
+[ext_resource type="ArrayMesh" uid="uid://bol8vy8lbkh7j" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/grass/base_grass.tres" id="6_qf7bq"]
+[ext_resource type="ArrayMesh" uid="uid://b5mgbuhu28x6u" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/grass/old_grass/grass_3.tres" id="7_r3xev"]
 
 [sub_resource type="Resource" id="Resource_is6f7"]
 resource_name = "Greenhouse_LODVariant"
