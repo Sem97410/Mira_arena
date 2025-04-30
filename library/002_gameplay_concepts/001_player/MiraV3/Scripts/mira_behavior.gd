@@ -152,7 +152,7 @@ var debug_chrono : float
 #Movement variables
 @export_group("Movement variables")
 @export var player_speed : float = 6.0
-var _idle_timer := 0.0
+#var _idle_timer := 0.0
 var _input_strength := 0.0
 var _real_speed := 0.0
 
@@ -373,11 +373,14 @@ func _on_in_the_air_state_entered() -> void:
 func _on_in_the_air_state_processing(delta: float) -> void:
 	debug_chrono += delta
 	move_the_character()
+
 	#activate_in_the_air_state()
 	activate_dash_state()
 
 
 	if is_on_floor():
+		print("Im on the floor avec in the air")
+		
 		activate_idle_state()
 		activate_movement_state()
 
@@ -392,23 +395,27 @@ func _on_in_the_air_state_exited() -> void:
 
 func _on_dash_state_entered() -> void:
 	debug_chrono = 0
+	print("Im in dash state")
 	#print("Dash : ON")
+	is_dashing = true
 	disable_can_transition()
 	initiate_dash()
 	start_dash()
 	launch_dash_animation()
 
 func _on_dash_state_physics_processing(_delta: float) -> void:
-
+	print("I'm in dash state physics processing")
 	execute_dash() #Launch the dash if all conditions are met
 
 func _on_dash_state_processing(delta: float) -> void:
 	debug_chrono += delta
-	activate_light_attack_state()
+	print("I'm in dash state physics processing")
+	#activate_light_attack_state()
 
 func _on_dash_state_exited() -> void:
 	#print("Dash : off")
 	#print("Dash state duration : ", debug_chrono)
+	print("I'm out of the dash state")
 	assign_movement_blend_position()
 
 #---
@@ -468,6 +475,7 @@ func _on_charged_attack_state_entered() -> void:
 func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
 	debug_chrono = 0
+	enable_can_transition()
 	#print("Recovery : ON")
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
@@ -477,6 +485,7 @@ func _on_charged_recovery_state_processing(delta: float) -> void:
 	
 func _on_charged_attack_state_physics_processing(delta: float) -> void:
 	debug_chrono += delta
+	
 
 #---
 
@@ -529,16 +538,20 @@ func disable_can_transition() -> void :
 	#activate_charged_attack_state()
 #---
 
+#If player don't move (inputs and real movement), is on floor, is not in charged attack and he is allowed to transition
+#launch idle state
 func activate_idle_state()-> void :
-	if _input_strength < 0.1 and _real_speed < 0.05  and _idle_timer >= 0.3 and is_on_floor() and !is_idle and !is_charged_attacking:
+	if _input_strength < 0.1 or _real_speed < 0.05 and is_on_floor() and !is_charged_attacking and can_transition:
 		base_state_machine.travel("MovementBlendSpace")
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
 
 #---
 
+#If player is moving (inputs and real movement), is on floor, is not dashing and is allowed to transition
+#launch movement state
 func activate_movement_state()-> void :
-	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor()  and !is_moving and !is_charged_attacking:
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_dashing and can_transition:
 		#print("J'ai passé le teste pour activer le mouvement")
 	
 		base_state_machine.travel("MovementBlendSpace")
@@ -552,19 +565,22 @@ func activate_movement_state()-> void :
 
 #---
 
+#If player is not on floor, is not dashing and is allowed to transition
+#launch in the air state
 func activate_in_the_air_state() -> void :
-	if start_time > 0 or dash_cooldown_after_stop > 0  or is_dashing and !is_in_the_air:
-		#print("Le state s'est pas activé")
-		return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
+	#if  is_on_floor() and is_dashing and can_transition:
+		##print("Le state s'est pas activé")
+		#return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
 	if not is_on_floor() or Input.is_action_just_pressed("jump") and can_transition:
 		send_event_state_chart("IsInTheAir")
 
 #---
 
+#If the player presses the dash action and a state transition is allowed
+#launch the dash state
 func activate_dash_state() -> void :
-
-	if Input.is_action_just_pressed("dash") or is_dashing  and can_transition:
+	if Input.is_action_just_pressed("dash") and can_transition:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -574,23 +590,26 @@ func is_in_the_air_state() -> void :
 
 #---
 
+#If player pressed the input light attack, is on ground and can transition
+#launch light attack state
 func activate_light_attack_state() -> void :
-	#print("can_transition = ", can_transition, " | Input = ", Input.is_action_just_pressed("light_attack"))
 
-	if Input.is_action_just_pressed("light_attack") and can_transition and !is_light_attacking and !is_charged_attacking:
+
+	if Input.is_action_just_pressed("light_attack") and is_on_floor() and can_transition :
 		send_event_state_chart("IsLightAttacking")
 		launch_light_attack()
 		#print("Ensuite passe par la : 2 ")
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
-	#else:
-		#print("Condition not good for light attack")
+
 
 #---
 
+#If charged attack input was pressed , is on ground is not dashing, charged attacking already and can transition
+#launch charged attack state
 func activate_charged_attack_state() -> void  :
-	if Input.is_action_just_pressed("charge_attack") and can_transition and !is_charged_attacking:
+	if Input.is_action_just_pressed("charge_attack") and is_on_floor() and !is_dashing and !is_charged_attacking and can_transition:
 		send_event_state_chart("IsChargedAttacking")
 		base_state_machine.stop()
 		base_state_machine.travel("ChargedAttack")
@@ -771,11 +790,11 @@ func update_movement_tracking(delta: float) -> void:
 	_real_speed = displacement.length() / delta
 	_previous_position = global_position
 
-	# Timer Idle
-	if _input_strength == 0 and _real_speed < 0.05:
-		_idle_timer += delta
-	else:
-		_idle_timer = 0.0
+	## Timer Idle
+	#if _input_strength == 0 and _real_speed < 0.05:
+		#_idle_timer += delta
+	#else:
+		#_idle_timer = 0.0
 
 #---
 
@@ -819,11 +838,14 @@ func start_dash():
 #---
 
 func execute_dash():
+	#print("Execute dash")
 	if start_time > 0:
+		#print("I'm in start time")
 		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0
 		var t = elapsed_time / dash_duration
 
 		if t >= 1:
+			#print("t >= 1 so stop dash")
 			stop_dash()
 			return
 
@@ -842,6 +864,7 @@ func execute_dash():
 		var coll = move_and_collide(step)
 
 		if coll:
+			print("There is a collision so stop dash")
 			stop_dash()
 
 #---
@@ -872,12 +895,13 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 #---
 
 func stop_dash():
-	#print("Stop time was launch")
+	print("Stop dash was launch")
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
 	enable_can_transition()
 	activate_movement_state()
 	activate_idle_state()
+	activate_in_the_air_state()
 	#print("Dash terminé, travel vers MovementBlendSpace")
 	#print("State actuel :", base_state_machine.get_current_node())
 	#print("State actuel :", base_state_machine.get_current_node())
