@@ -265,8 +265,13 @@ func trigger_shake() -> void:
 func _process(delta: float) -> void:
 	
 	var current_state = base_state_machine.get_current_node()
-	print("Current animation state is: ", current_state)
-
+	#print("Current animation state is: ", current_state)
+	#print("Is idle is : ", is_idle)
+	#print("Is in the iar is : ", is_in_the_air)
+	#print("is_dashing is :", is_dashing)
+	#print("is_light attacking is : ", is_light_attacking)
+	#print("Is charged attacking is :", is_charged_attacking)
+	#print("Is recovering is :", is_recovering)
 
 
 	charge_attack_movement_mode()
@@ -525,7 +530,7 @@ func disable_can_transition() -> void :
 #---
 
 func activate_idle_state()-> void :
-	if _input_strength < 0.1 and _real_speed < 0.05 and _idle_timer >= 0.3 and is_on_floor() and !is_idle and !is_charged_attacking:
+	if _input_strength < 0.1 and _real_speed < 0.05  and _idle_timer >= 0.3 and is_on_floor() and !is_idle and !is_charged_attacking:
 		base_state_machine.travel("MovementBlendSpace")
 		send_event_state_chart("IsIdle")
 		#print("Enter in idle state")
@@ -533,7 +538,7 @@ func activate_idle_state()-> void :
 #---
 
 func activate_movement_state()-> void :
-	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_moving and !is_charged_attacking:
+	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor()  and !is_moving and !is_charged_attacking:
 		#print("J'ai passé le teste pour activer le mouvement")
 	
 		base_state_machine.travel("MovementBlendSpace")
@@ -548,7 +553,7 @@ func activate_movement_state()-> void :
 #---
 
 func activate_in_the_air_state() -> void :
-	if start_time > 0 or dash_cooldown_after_stop > 0 or is_dashing and !is_in_the_air:
+	if start_time > 0 or dash_cooldown_after_stop > 0  or is_dashing and !is_in_the_air:
 		#print("Le state s'est pas activé")
 		return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
@@ -559,7 +564,7 @@ func activate_in_the_air_state() -> void :
 
 func activate_dash_state() -> void :
 
-	if Input.is_action_just_pressed("dash") or is_dashing and can_transition:
+	if Input.is_action_just_pressed("dash") or is_dashing  and can_transition:
 		send_event_state_chart("IsDashing")
 
 #---
