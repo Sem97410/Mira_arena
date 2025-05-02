@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://g3j0bsd2wj4c"]
+
+[ext_resource type="Shader" uid="uid://dwonamfslpwku" path="res://library/002_gameplay_concepts/003_enemy/slime_deformation.gdshader" id="1_vi35c"]
+[ext_resource type="Shader" uid="uid://b5revd72ffs56" path="res://chat_gpt_slimeshader.gdshader" id="2_6s8wm"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qohnh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icx7b"]
+render_priority = 0
+shader = ExtResource("1_vi35c")
+shader_parameter/intensity_move = 0.15
+shader_parameter/speed = 0.62
+shader_parameter/noise_scale = 3.93
+
+[sub_resource type="SphereMesh" id="SphereMesh_pce7g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ay0y"]
+render_priority = 0
+shader = ExtResource("2_6s8wm")
+shader_parameter/intensity_move = 0.095
+shader_parameter/speed = 1.515
+shader_parameter/noise_scale = 20.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="my_sphere" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_qohnh")
+surface_material_override/0 = SubResource("ShaderMaterial_icx7b")
+
+[node name="sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02725, 0, 0)
+mesh = SubResource("SphereMesh_pce7g")
+surface_material_override/0 = SubResource("ShaderMaterial_0ay0y")
