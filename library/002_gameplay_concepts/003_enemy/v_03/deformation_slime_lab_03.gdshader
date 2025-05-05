@@ -1,9 +1,13 @@
 shader_type spatial;
-render_mode blend_mix,cull_back, depth_prepass_alpha, unshaded;
-
+render_mode unshaded;
+uniform vec3 top_color: source_color; 
+uniform vec3 base_color: source_color; 
+uniform float intensity_alpha :hint_range(0.0, 1.0, 0.1);
 uniform float  intensity_move;// definis l'intensité du mouvement un peu comme un radius
 uniform float speed; // definis le speed du mouvment  
 uniform float noise_scale; // vas servir comme donné pour crée les déplacemnt des points
+uniform float height_min;
+uniform float height_max;
 //uniform sampler2D noise_texture;
 //uniform float edge_01 : hint_range(0.0, 1.0, 0.1);
 //uniform float edge_02 : hint_range(0.0, 1.0, 0.1);
@@ -40,6 +44,12 @@ void vertex() {
 }
 
 void fragment() {
+	float axe_y = VERTEX.y;
+	float axe_y_clamp =clamp((axe_y + height_min)/(height_min - height_max),0.0,1.0);
+	vec3 couleur = mix(top_color,base_color,axe_y_clamp);
+	ALBEDO =  couleur;
+	ALPHA = intensity_alpha;
+	SPECULAR = 1.0;
 	// Called for every pixel the material is visible on.
 }
 
