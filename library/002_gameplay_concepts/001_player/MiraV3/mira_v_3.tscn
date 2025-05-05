@@ -9492,6 +9492,12 @@ to = NodePath("../../InTheAir")
 event = &"IsInTheAir"
 delay_in_seconds = "0.0"
 
+[node name="ToIdle" type="Node" parent="StateChart/root/Dash"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Idle")
+event = &"IsIdle"
+delay_in_seconds = "0.0"
+
 [node name="LightAttack" type="Node" parent="StateChart/root"]
 script = ExtResource("37_bupnr")
 

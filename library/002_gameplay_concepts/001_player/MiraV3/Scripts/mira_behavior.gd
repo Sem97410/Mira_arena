@@ -264,6 +264,7 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	
+	print("Can transition is : ", can_transition)
 	var current_state = base_state_machine.get_current_node()
 	#print("Current animation state is: ", current_state)
 	#print("Is idle is : ", is_idle)
@@ -290,6 +291,7 @@ func _physics_process(delta: float) -> void:
 	add_gravity(delta)
 	decrease_dash_countdown(delta)
 	update_movement_tracking(delta)
+	
 
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta
@@ -398,6 +400,7 @@ func _on_dash_state_entered() -> void:
 	print("Im in dash state")
 	#print("Dash : ON")
 	is_dashing = true
+	can_transition = false
 	disable_can_transition()
 	initiate_dash()
 	start_dash()
@@ -417,6 +420,8 @@ func _on_dash_state_exited() -> void:
 	#print("Dash state duration : ", debug_chrono)
 	print("I'm out of the dash state")
 	assign_movement_blend_position()
+	is_dashing = false
+	can_transition = true
 
 #---
 
@@ -425,7 +430,7 @@ func _on_light_attack_state_entered() -> void:
 	is_recovering = false
 	is_charged_attacking = false
 	enable_movement()
-	can_transition = true
+	can_transition = false
 	disable_charge_attack_lock_mesh()
 	disable_charge_attack_mode()
 	#print("Light Attack : ON")
@@ -446,6 +451,10 @@ func _on_light_attack_state_processing(delta: float) -> void:
 	if Input.is_action_just_pressed("light_attack"):
 		light_attack_input_was_pressed = true
 		#print("A un moment il va la ? 4")
+
+func _on_light_attack_state_exited() -> void:
+	print("Exit from light attack")
+	can_transition = true
 
 
 func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
@@ -902,12 +911,7 @@ func stop_dash():
 	activate_movement_state()
 	activate_idle_state()
 	activate_in_the_air_state()
-	#print("Dash terminé, travel vers MovementBlendSpace")
-	#print("State actuel :", base_state_machine.get_current_node())
-	#print("State actuel :", base_state_machine.get_current_node())
-
-
-	#send_event_state_chart("IsMoving")
+	
 
 #---
 
