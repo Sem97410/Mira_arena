@@ -32,7 +32,7 @@ extends CharacterBody3D
 #---
 
 @export_subgroup("Behavior")
-@export var state_chart : StateChart 
+@export var state_chart : StateChart
 
 #---
 
@@ -60,6 +60,11 @@ extends CharacterBody3D
 @export var long_range_collision_shape : CollisionShape3D
 @export var short_range_collision_shape : CollisionShape3D
 @export var light_attack_vfx_storage : Node
+@export var light_attack_combo_1_duration : float
+@export var light_attack_combo_2_duration : float
+@export var light_attack_combo_3_duration : float
+@export var light_attack_combo_4_duration : float
+@export var light_attack_combo_5_duration : float
 
 #---
 
@@ -107,8 +112,8 @@ extends CharacterBody3D
 #---
 
 #States variables
-@export_group("States variables") #Bool that determine if player is in a state or not. 
-@onready var is_idle : bool = false 
+@export_group("States variables") #Bool that determine if player is in a state or not.
+@onready var is_idle : bool = false
 @onready var is_moving : bool = false
 @onready var is_in_the_air : bool = false
 @onready var is_dashing : bool = false
@@ -264,20 +269,9 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	
-	#print("Can transition is : ", can_transition)
 	var current_state = base_state_machine.get_current_node()
-	#print("Current animation state is: ", current_state)
-	#print("Is idle is : ", is_idle)
-	#print("Is in the iar is : ", is_in_the_air)
-	#print("is_dashing is :", is_dashing)
-	#print("is_light attacking is : ", is_light_attacking)
-	#print("Is charged attacking is :", is_charged_attacking)
-	#print("Is recovering is :", is_recovering)
-
-
 	charge_attack_movement_mode()
-	#print("is_moving is :", is_moving)
-	#print("can transition is : ", can_transition)
+
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		camera_position.transform.origin = original_position + Vector3(
@@ -397,7 +391,7 @@ func _on_in_the_air_state_exited() -> void:
 
 func _on_dash_state_entered() -> void:
 	debug_chrono = 0
-	print("Im in dash state")
+	#print("Im in dash state")
 	#print("Dash : ON")
 	is_dashing = true
 	can_transition = false
@@ -407,43 +401,42 @@ func _on_dash_state_entered() -> void:
 	launch_dash_animation()
 
 func _on_dash_state_physics_processing(_delta: float) -> void:
-	print("I'm in dash state physics processing")
+	#print("I'm in dash state physics processing")
 	execute_dash() #Launch the dash if all conditions are met
 
 func _on_dash_state_processing(delta: float) -> void:
 	debug_chrono += delta
-	print("I'm in dash state physics processing")
+	#print("I'm in dash state physics processing")
 	#activate_light_attack_state()
 
 func _on_dash_state_exited() -> void:
 	#print("Dash : off")
 	#print("Dash state duration : ", debug_chrono)
-	print("I'm out of the dash state")
+	#print("I'm out of the dash state")
 	assign_movement_blend_position()
 	is_dashing = false
 	can_transition = true
 
 #---
 
+#When we are in light attack mode, first we disable the other states consequences
+#mainly charged_attack mesh and bools. Then we declare that we are in a light attack
 func _on_light_attack_state_entered() -> void:
 	debug_chrono = 0
 	is_recovering = false
 	is_charged_attacking = false
 	enable_movement()
-	can_transition = false
+	disable_can_transition()
 	disable_charge_attack_lock_mesh()
 	disable_charge_attack_mode()
-	#print("Light Attack : ON")
-	#print("Passe par la en premier : 1")
-
-#func _on_light_attack_state_exited() -> void:
-	##print("Light attack : OFF")
-	##print("L.A. state duration : ", debug_chrono)
+	is_light_attacking
 
 
+#During the light attack  we allow the character to move normaly and if et pressed the input
+#we save this information in a bool
 func _on_light_attack_state_processing(delta: float) -> void:
 	debug_chrono += delta
-	#assign_movement_blend_position()  #Create a blend between idle walk and run
+	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
 	if Input.is_action_just_pressed("light_attack"):
@@ -453,6 +446,7 @@ func _on_light_attack_state_processing(delta: float) -> void:
 func _on_light_attack_state_exited() -> void:
 	print("Exit from light attack")
 	can_transition = true
+	is_light_attacking = false
 
 
 func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
@@ -949,16 +943,16 @@ func launch_light_attack() -> void:
 	base_state_machine.travel(target_state)
 	#print("Launch light attack")
 	
-	if animation_combo_index == 1 : 
-		await get_tree().create_timer(0.45).timeout
+	if animation_combo_index == 1 :
+		await get_tree().create_timer(light_attack_combo_1_duration).timeout #Duration of the animation : 0.5. Timescale : 1.75 so : 0.5/1.75 = 0,288s
 		activate_idle_state()
 		activate_movement_state()
-	elif animation_combo_index == 2 : 
-		await get_tree().create_timer(0.26).timeout
+	elif animation_combo_index == 2 :
+		await get_tree().create_timer(light_attack_combo_2_duration).timeout #Duration of the animation : 0.2917. Timescale : 1.75 so : 0.2917/1.75 = 0,167s
 		activate_idle_state()
 		activate_movement_state()
-	elif animation_combo_index == 3 : 
-		await get_tree().create_timer(2.10).timeout
+	elif animation_combo_index == 3 :
+		await get_tree().create_timer(light_attack_combo_3_duration).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
 		activate_idle_state()
 		activate_movement_state()
 
