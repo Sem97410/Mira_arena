@@ -91,10 +91,11 @@ shader_parameter/highlitght_color = Color(0.786575, 0.791487, 0.968159, 1)
 shader_parameter/intensity_move = 0.09
 shader_parameter/speed = 0.895
 shader_parameter/noise_scale = 6.78
-shader_parameter/fresnel_power = 6.413
-shader_parameter/fresnel_strength = 1.621
-shader_parameter/emissive = 0.0
-shader_parameter/emission_color = Color(0.691473, 0.782442, 0.987723, 1)
+shader_parameter/fresnel_power = 2.145
+shader_parameter/fresnel_strength = 0.241
+shader_parameter/emissive = 0.5
+shader_parameter/emission_color = Color(0.938121, 0.956751, 0.997294, 1)
+shader_parameter/min_fresnel = 0.462
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4jcj"]
 

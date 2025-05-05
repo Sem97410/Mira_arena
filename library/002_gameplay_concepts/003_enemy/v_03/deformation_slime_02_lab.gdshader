@@ -10,6 +10,7 @@ uniform float fresnel_power : hint_range(1.0, 10.00) =3.0;
 uniform float fresnel_strength : hint_range(0.0, 2.0)=1.0;
 uniform float emissive : hint_range(0.0, 1.0, 0.1);
 uniform vec3 emission_color : source_color;
+uniform float min_fresnel : hint_range(0.0, 1.0) = 0.1;
 //uniform sampler2D noise_texture;
 //uniform float edge_01 : hint_range(0.0, 1.0, 0.1);
 //uniform float edge_02 : hint_range(0.0, 1.0, 0.1);
@@ -46,15 +47,14 @@ void vertex() {
 }
 
 void fragment() {
-	float fresnel = pow(1.0 - dot(NORMAL,VIEW),fresnel_power);
-	vec3 fresne_color = highlitght_color;
-	vec3 highlight = fresne_color * fresnel * fresnel_strength;
-	ALBEDO = base_couleur + highlight;
-	ALPHA = 0.2
-	;
-	EMISSION = emission_color *fresnel *emissive;
-	
-	// Called for every pixel the material is visible on.
+    vec3 view_dir = normalize(-VIEW);
+    float fresnel_raw = 1.0 - dot(NORMAL, view_dir);
+    float fresnel = max(min_fresnel, pow(smoothstep(0.0, 1.0, fresnel_raw), fresnel_power));
+
+    vec3 highlight = highlitght_color * fresnel * fresnel_strength;
+    ALBEDO = base_couleur + highlight;
+    ALPHA = 0.2;
+    EMISSION = emission_color * fresnel * emissive;
 }
 
 //void light() {

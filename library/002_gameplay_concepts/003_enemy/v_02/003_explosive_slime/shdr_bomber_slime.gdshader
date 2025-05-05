@@ -2,15 +2,22 @@
 // Features: Transparency, Glow, Wobble, Fresnel
 
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, unshaded;
+render_mode blend_mix,  cull_back, unshaded;
 
 // Uniforms
-uniform vec4 slime_color : source_color = vec4(0.3, 1.0, 0.4, 0.5); // Base color with alpha
+uniform vec3 base_couleur :source_color;
+uniform vec3 highlitght_color : source_color;
+uniform float  intensity_move;// definis l'intensité du mouvement un peu comme un radius
+uniform float speed; // definis le speed du mouvment  
+uniform float noise_scale; // vas servir comme donné pour crée les déplacemnt des point
+uniform float fresnel_power : hint_range(1.0, 10.00) =3.0;
+uniform float fresnel_strength : hint_range(0.0, 2.0)=1.0;
+uniform float emissive : hint_range(0.0, 1.0, 0.1);
+uniform vec3 emission_color : source_color;
 uniform sampler2D normal_texture : hint_normal;
 uniform sampler2D noise_texture;
 uniform float wobble_strength : hint_range(0.0, 0.5) = 0.1;
 uniform float wobble_speed = 2.0;
-uniform float fresnel_power = 4.0;
 uniform float emission_strength : hint_range(0.0, 5.0) = 1.5;
 uniform float min_fresnel : hint_range(0.0, 1.0) = 0.1;
 
@@ -30,21 +37,10 @@ void fragment() {
     float fresnel_raw = 1.0 - dot(NORMAL, view_dir);
     float fresnel = max(min_fresnel, pow(smoothstep(0.0, 1.0, fresnel_raw), fresnel_power));
 
-    // Base Color with Fresnel
-    vec3 base_color = slime_color.rgb + fresnel * 0.2;
-    ALBEDO = base_color;
-    ALPHA = slime_color.a;
-
-    // Optional emission (glow)
-    if (emission_strength > 0.0) {
-        EMISSION = base_color * fresnel * emission_strength;
-    } else {
-        EMISSION = vec3(0.0);
-    }
-
-    // Simple fake refraction (optional):
-    // vec2 screen_uv = SCREEN_UV + NORMAL.xy * 0.05;
-    // ALBEDO = textureLod(SCREEN_TEXTURE, screen_uv, 0.0).rgb;
+    vec3 highlight = highlitght_color * fresnel * fresnel_strength;
+    ALBEDO = base_couleur + highlight;
+    ALPHA = 0.2;
+    EMISSION = emission_color * fresnel * emissive;
 }
 
 
