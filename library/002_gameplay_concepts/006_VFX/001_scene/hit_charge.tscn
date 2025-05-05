@@ -824,4 +824,4 @@ modulate = Color(0.603528, 0.384946, 0.889849, 1)
 [node name="DestroyVFX" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
 script = ExtResource("11_i23s1")
 current_vfx = NodePath("..")
-delay_before_queue_free = 1.5
+delay_before_queue_free = 1.9
