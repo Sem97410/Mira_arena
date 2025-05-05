@@ -264,7 +264,7 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	
-	print("Can transition is : ", can_transition)
+	#print("Can transition is : ", can_transition)
 	var current_state = base_state_machine.get_current_node()
 	#print("Current animation state is: ", current_state)
 	#print("Is idle is : ", is_idle)
@@ -443,14 +443,12 @@ func _on_light_attack_state_entered() -> void:
 
 func _on_light_attack_state_processing(delta: float) -> void:
 	debug_chrono += delta
-	#print("Puis reste bloqué ici : 3")
-	assign_movement_blend_position()  #Create a blend between idle walk and run
+	#assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
-	#activate_idle_state()
-	#activate_movement_state()
+	
 	if Input.is_action_just_pressed("light_attack"):
 		light_attack_input_was_pressed = true
-		#print("A un moment il va la ? 4")
+	
 
 func _on_light_attack_state_exited() -> void:
 	print("Exit from light attack")
@@ -485,10 +483,11 @@ func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
 	debug_chrono = 0
 	enable_can_transition()
-	#print("Recovery : ON")
+	print("Recovery : ON")
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
 	debug_chrono += delta
+	print("Start to check if can change the state")
 	activate_idle_state()
 	activate_movement_state()
 	
@@ -536,15 +535,6 @@ func enable_can_transition() -> void :
 func disable_can_transition() -> void :
 	can_transition = false
 
-#---
-
-#func listen_to_other_states() -> void :
-	#activate_movement_state()
-	#activate_idle_state()
-	#activate_in_the_air_state()
-	#activate_dash_state()
-	#activate_light_attack_state()
-	#activate_charged_attack_state()
 #---
 
 #If player don't move (inputs and real movement), is on floor, is not in charged attack and he is allowed to transition
@@ -1127,10 +1117,10 @@ func charged_attack_sfx() -> void :
 	charged_attack_sound.play()
 
 func enable_charge_attack_charging_vfx() -> void :
-	charge_attack_charging. visible = true
+	charge_attack_charging.visible = true
 
 func disable_charge_attack_charging_vfx() -> void :
-	charge_attack_charging. visible = false
+	charge_attack_charging.visible = false
 
 func enable_charge_attack_mode() -> void :
 	can_move = false
