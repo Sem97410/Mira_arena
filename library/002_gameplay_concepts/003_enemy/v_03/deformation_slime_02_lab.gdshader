@@ -1,16 +1,20 @@
 shader_type spatial;
-render_mode blend_mix,cull_back, depth_draw_opaque,unshaded;
+render_mode blend_mix,cull_back, depth_draw_opaque,unshaded,specular_toon;
+uniform float roughness : hint_range(0.0, 1.0, 0.1);
 
 uniform vec3 base_couleur :source_color;
-uniform vec3 highlitght_color : source_color;
+uniform vec3 highlitgh_color : source_color;
+uniform float highlight_largeur : hint_range(0.0, 1.0) = 0.2;
+uniform float highlight_douceur : hint_range(0.0, 1.0) = 0.2;
+uniform vec3 emission_color : source_color;
+uniform float alpha :hint_range(0.0, 1.0, 0.1);
+uniform float emissive : hint_range(0.0, 1.0, 0.1);
 uniform float  intensity_move;// definis l'intensité du mouvement un peu comme un radius
 uniform float speed; // definis le speed du mouvment  
 uniform float noise_scale; // vas servir comme donné pour crée les déplacemnt des point
-uniform float fresnel_power : hint_range(1.0, 10.00) =3.0;
-uniform float fresnel_strength : hint_range(0.0, 2.0)=1.0;
-uniform float emissive : hint_range(0.0, 1.0, 0.1);
-uniform vec3 emission_color : source_color;
-uniform float min_fresnel : hint_range(0.0, 1.0) = 0.1;
+//uniform float fresnel_power : hint_range(1.0, 10.00) =3.0;
+//uniform float fresnel_strength : hint_range(0.0, 2.0)=1.0;
+
 //uniform sampler2D noise_texture;
 //uniform float edge_01 : hint_range(0.0, 1.0, 0.1);
 //uniform float edge_02 : hint_range(0.0, 1.0, 0.1);
@@ -49,12 +53,13 @@ void vertex() {
 void fragment() {
     vec3 view_dir = normalize(-VIEW);
     float fresnel_raw = 1.0 - dot(NORMAL, view_dir);
-    float fresnel = max(min_fresnel, pow(smoothstep(0.0, 1.0, fresnel_raw), fresnel_power));
 
-    vec3 highlight = highlitght_color * fresnel * fresnel_strength;
-    ALBEDO = base_couleur + highlight;
-    ALPHA = 0.2;
-    EMISSION = emission_color * fresnel * emissive;
+
+    float rim = smoothstep(highlight_largeur - highlight_douceur,highlight_largeur,fresnel_raw);
+	vec3 couleur = mix(base_couleur,highlitgh_color,rim);
+    ALBEDO = couleur;
+    ALPHA = alpha;
+    EMISSION = emission_color * rim * emissive;
 }
 
 //void light() {

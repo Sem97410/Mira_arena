@@ -1,7 +1,16 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode specular_toon,unshaded;
 uniform vec3 top_color: source_color; 
-uniform vec3 base_color: source_color; 
+uniform vec3 base_color: source_color;
+uniform float roughness : hint_range(0.0, 1.0, 0.1);
+
+// Texture animée pour effet de flamme
+uniform sampler2D flame_tex;
+uniform float flame_speed = 0.5;
+uniform float flame_scale = 1.0;
+uniform float flame_influence = 0.5;
+
+ 
 uniform float intensity_alpha :hint_range(0.0, 1.0, 0.1);
 uniform float  intensity_move;// definis l'intensité du mouvement un peu comme un radius
 uniform float speed; // definis le speed du mouvment  
@@ -44,12 +53,27 @@ void vertex() {
 }
 
 void fragment() {
+	
+	// gradient vertical
 	float axe_y = VERTEX.y;
 	float axe_y_clamp =clamp((axe_y + height_min)/(height_min - height_max),0.0,1.0);
 	vec3 couleur = mix(top_color,base_color,axe_y_clamp);
-	ALBEDO =  couleur;
+	
+	
+		//texture animé
+	vec2 uv_anim = UV;
+	uv_anim.y += TIME * flame_speed;
+	vec3 flamme_mask = texture(flame_tex,uv_anim,flame_scale).xyz;
+	
+	vec3 final_color = mix(couleur,vec3(1.0),flamme_mask.r * flame_influence);
+	
+	ALBEDO =  final_color;
 	ALPHA = intensity_alpha;
 	SPECULAR = 1.0;
+	
+
+	
+	
 	// Called for every pixel the material is visible on.
 }
 

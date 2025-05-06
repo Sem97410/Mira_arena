@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://7305n8xsyb6a"]
+
+[ext_resource type="Shader" uid="uid://buk88ga2t1llq" path="res://library/002_gameplay_concepts/003_enemy/v_03/deformation_slime_lab_03.gdshader" id="1_vjit5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vjit5"]
+frequency = 0.0039
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ntsmj"]
+noise = SubResource("FastNoiseLite_vjit5")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vjit5")
+shader_parameter/top_color = Color(0.1137, 0.171164, 0.459191, 1)
+shader_parameter/base_color = Color(0.422404, 0.60263, 0.945857, 1)
+shader_parameter/roughness = 0.0
+shader_parameter/flame_tex = SubResource("NoiseTexture2D_ntsmj")
+shader_parameter/flame_speed = 0.1
+shader_parameter/flame_scale = 1.0
+shader_parameter/flame_influence = -0.075
+shader_parameter/intensity_alpha = 0.6
+shader_parameter/intensity_move = 0.04
+shader_parameter/speed = 2.91
+shader_parameter/noise_scale = 2.93
+shader_parameter/height_min = 0.61
+shader_parameter/height_max = -0.265
