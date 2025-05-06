@@ -452,6 +452,7 @@ func _on_charged_attack_state_entered() -> void:
 
 func _on_charged_attack_state_processing(delta: float) -> void:
 	move_the_character()
+	assign_movement_blend_position()
 
 
 #func _on_charged_attack_state_exited() -> void:
@@ -468,10 +469,10 @@ func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
 	enable_can_transition()
-	print("Recovery : ON")
+	#print("Recovery : ON")
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
-	print("Start to check if can change the state")
+	#print("Start to check if can change the state")
 	activate_idle_state()
 	activate_movement_state()
 
@@ -538,18 +539,12 @@ func activate_movement_state()-> void :
 		#print("Charged attack variable is : ", is_charged_attacking)
 		send_event_state_chart("IsMoving")
 
-	#else : 
-		#print("Une des conditions pour passer le mouvement est fausse")
-
 
 #---
 
 #If player is not on floor, is not dashing and is allowed to transition
 #launch in the air state
 func activate_in_the_air_state() -> void :
-	#if  is_on_floor() and is_dashing and can_transition:
-		##print("Le state s'est pas activé")
-		#return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
 	if not is_on_floor() or Input.is_action_just_pressed("jump") and can_transition:
 		send_event_state_chart("IsInTheAir")
@@ -573,7 +568,6 @@ func is_in_the_air_state() -> void :
 #launch light attack state
 func activate_light_attack_state() -> void :
 
-
 	if Input.is_action_just_pressed("light_attack") and is_on_floor() and can_transition :
 		send_event_state_chart("IsLightAttacking")
 		launch_light_attack()
@@ -590,10 +584,10 @@ func activate_light_attack_state() -> void :
 func activate_charged_attack_state() -> void  :
 	if Input.is_action_just_pressed("charge_attack") and is_on_floor() and !is_dashing and !is_charged_attacking and can_transition:
 		send_event_state_chart("IsChargedAttacking")
-		base_state_machine.stop()
-		base_state_machine.travel("ChargedAttack")
-	#else:
-		#print("Condition not good for charged attack")
+		#base_state_machine.stop()
+		base_state_machine.travel("ChargedAttackBlendTree")
+		print(base_state_machine.get_current_node())
+
 
 
 # --------------------------------------------------------------------------
@@ -763,6 +757,8 @@ func assign_movement_blend_position() -> void :
 	animation_tree.set("parameters/MiraAnimations/Combo1BlendTree/MovementBlendSpace/blend_position",velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
+	animation_tree.set("parameters/MiraAnimations/ChargedAttackBlendTree/MovementBlendSpace/blend_position",velocity.length())
+
 
 #---
 # Updates input, speed, and idle timer to track player movement state.

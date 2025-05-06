@@ -8,7 +8,6 @@ extends Node
 
 	
 func instantiate_charged_attack_impact_vfx() -> void : 
-	print("Je suis dans instantiate_charged attack")
 	if vfx_spawned:
 		return
 	
