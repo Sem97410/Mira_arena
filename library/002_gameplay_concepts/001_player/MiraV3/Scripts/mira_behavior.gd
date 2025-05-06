@@ -147,16 +147,14 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 
 # ----------------
 
-#DEBUG VARIABLES
-
-var debug_chrono : float
-
 # MOVEMENT
 @export_category("Movement ")
 
 #Movement variables
 @export_group("Movement variables")
-@export var player_speed : float = 6.0
+var player_current_speed : float
+@export var player_normal_speed : float = 6.0
+@export var player_charged_attack_speed : float = 2.0
 #var _idle_timer := 0.0
 var _input_strength := 0.0
 var _real_speed := 0.0
@@ -314,12 +312,10 @@ func _physics_process(delta: float) -> void:
 # --------------------------------------------------------------------------
 
 func _on_idle_state_entered() -> void:
-	debug_chrono = 0
 	#print("Idle : ON")
 	is_idle = true
 
 func _on_idle_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	enable_can_transition()
@@ -340,12 +336,10 @@ func _on_idle_state_exited() -> void:
 
 func _on_movement_state_entered() -> void:
 	is_moving = true
-	debug_chrono = 0
 	#print("Movement : ON")
 	
 
 func _on_movement_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	activate_idle_state()
@@ -361,13 +355,11 @@ func _on_movement_state_exited() -> void:
 	
 #---
 func _on_in_the_air_state_entered() -> void:
-	debug_chrono = 0
 	#print("In the air : ON")
 	is_in_the_air = true
 
 
 func _on_in_the_air_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	move_the_character()
 
 	#activate_in_the_air_state()
@@ -390,7 +382,6 @@ func _on_in_the_air_state_exited() -> void:
 #---
 
 func _on_dash_state_entered() -> void:
-	debug_chrono = 0
 	#print("Im in dash state")
 	#print("Dash : ON")
 	is_dashing = true
@@ -403,11 +394,6 @@ func _on_dash_state_entered() -> void:
 func _on_dash_state_physics_processing(_delta: float) -> void:
 	#print("I'm in dash state physics processing")
 	execute_dash() #Launch the dash if all conditions are met
-
-func _on_dash_state_processing(delta: float) -> void:
-	debug_chrono += delta
-	#print("I'm in dash state physics processing")
-	#activate_light_attack_state()
 
 func _on_dash_state_exited() -> void:
 	#print("Dash : off")
@@ -422,7 +408,7 @@ func _on_dash_state_exited() -> void:
 #When we are in light attack mode, first we disable the other states consequences
 #mainly charged_attack mesh and bools. Then we declare that we are in a light attack
 func _on_light_attack_state_entered() -> void:
-	debug_chrono = 0
+
 	is_recovering = false
 	is_charged_attacking = false
 	enable_movement()
@@ -435,7 +421,6 @@ func _on_light_attack_state_entered() -> void:
 #During the light attack  we allow the character to move normaly and if et pressed the input
 #we save this information in a bool
 func _on_light_attack_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
@@ -457,13 +442,17 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 func _on_charged_attack_state_entered() -> void:
 	is_charged_attacking = true
 	disable_can_transition()
-	disable_movement()
-	debug_chrono = 0
+	move_the_character()
 	#print("Charged : ON")
 
 	await get_tree().create_timer(2.0).timeout
 	#print("End of the animation")
 	send_event_state_chart("IsFinishingTheChargedAttack")
+
+
+func _on_charged_attack_state_processing(delta: float) -> void:
+	move_the_character()
+
 
 #func _on_charged_attack_state_exited() -> void:
 	##print("Charged attack : OFF")
@@ -471,23 +460,20 @@ func _on_charged_attack_state_entered() -> void:
 	##print("can_transition is : ", can_transition)
 	#
 
+func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	make_damage(area, charged_attack_damage)
+
 #---
 
 func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
-	debug_chrono = 0
 	enable_can_transition()
 	print("Recovery : ON")
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	print("Start to check if can change the state")
 	activate_idle_state()
 	activate_movement_state()
-	
-func _on_charged_attack_state_physics_processing(delta: float) -> void:
-	debug_chrono += delta
-	
 
 #---
 
@@ -685,7 +671,7 @@ func add_gravity(delta : float) -> void :
 #---
 
 func move_the_character() -> void:
-	if can_move and not charge_attack_mode:
+	if can_move :# and not charge_attack_mode:
 		# Get inputs controle
 		direction_vector_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
@@ -693,18 +679,19 @@ func move_the_character() -> void:
 
 		# Apply horizontal movement
 		if direction_vector_input.length() > 0.2:
-			velocity.x = player_movement_direction.x * player_speed * input_strength
-			velocity.z = player_movement_direction.z * player_speed * input_strength
+			velocity.x = player_movement_direction.x * player_current_speed * input_strength
+			velocity.z = player_movement_direction.z * player_current_speed * input_strength
 
 			# Rotation of the character
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			rotation.y = player_rotation_angle
+			if  not charge_attack_mode:
+				rotation.y = player_rotation_angle
 		else:
 			velocity.x = 0
 			velocity.z = 0
 
 		# Jump logic (Y axis)
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		if Input.is_action_just_pressed("jump") and is_on_floor() and  not charge_attack_mode:
 			jump_the_character()
 
 	# Apply movement
@@ -715,23 +702,30 @@ func move_the_character() -> void:
 func charge_attack_movement_mode() -> void :
 
 	if charge_attack_mode:
-
-		direction_vector_input= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+		#Slow down the player during the charged attack mode
+		player_current_speed = player_charged_attack_speed
+		
+		#Use the right joystick input in order to calculate a directional vector
+		direction_vector_input= Input.get_vector("aim_left", "aim_right", "aim_forward", "aim_backward")
+		#Get the 2D vector from the right joystick, transform it into a Vector3 on the axis X and Z and normalized it to get a constant vector
 		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
+		#Use the input length to get the magnetude
 		var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
 
-		#
 		## Rotation of the character in the direction of the movement
-		#var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-		#player.rotation.y = player_rotation_angle
 		 # Mise à jour de la rotation uniquement si il y a une entrée significative
-		if input_strength > 0.001:  # Utiliser un petit seuil plutôt que zéro
+		if input_strength > 0.001:  # If there is a movement of the joystick
+			#Calculate the player rotation angle with the function atan2
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
+			#Assign the rotation to the player
 			rotation.y = player_rotation_angle
+			#Save the rotation
 			last_rotation_angle = player_rotation_angle
-		else:
-			# Maintenir la dernière orientation connue
+		else: #If the player drop the joystick
+			# Let the player in the last rotation angle to not reset his orientation if he drop his joystick
 			rotation.y = last_rotation_angle
+	else : 
+		player_current_speed = player_normal_speed
 
 # --------------------------------------------------------------------------
 
@@ -1117,11 +1111,9 @@ func disable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging.visible = false
 
 func enable_charge_attack_mode() -> void :
-	can_move = false
 	charge_attack_mode = true
 
 func disable_charge_attack_mode() -> void :
-	can_move = true
 	charge_attack_mode = false
 
 func enable_charge_attack_lock_mesh() -> void :
@@ -1151,10 +1143,6 @@ func instantiate_charged_attack_impact_vfx() -> void :
 	new_basis = new_basis.scaled(Vector3(2.5, 1, 2.5))
 	charged_attack_impact_vfx_instance.global_transform = Transform3D(new_basis, current_position)
 	vfx_spawned = false
-
-
-func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	make_damage(area, charged_attack_damage)
 
 # --------------------------------------------------------------------------
 
