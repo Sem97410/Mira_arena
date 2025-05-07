@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="32_ptn7d"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="33_nsvjw"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="34_1j4wo"]
-[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/charged_attack_lock.tscn" id="35_v84o8"]
+[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/Meshes/charged_attack_lock.tscn" id="35_v84o8"]
 [ext_resource type="Script" uid="uid://bdfqwphlrip12" path="res://library/002_gameplay_concepts/001_player/Scripts/health_system.gd" id="36_col0g"]
 [ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="37_1wiru"]
 [ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="39_d3xec"]

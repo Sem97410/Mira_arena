@@ -300,6 +300,43 @@ spawn_chances = Array[int]([100, 100, 100, 100, 100])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
 
+[node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Hair1" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="1"]
+surface_material_override/0 = null
+
+[node name="Body" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/3 = null
+
+[node name="Jupe" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="3"]
+surface_material_override/0 = null
+
+[node name="Chaussures" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="4"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Belt" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="5"]
+surface_material_override/0 = null
+
+[node name="Sourcils" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="9"]
+surface_material_override/0 = null
+
+[node name="Attache" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="10"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
+surface_material_override/0 = null
+
+[node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
+surface_material_override/0 = null
+
 [node name="AnimationTree" parent="MiraV3" index="3"]
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 

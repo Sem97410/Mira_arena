@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="19_v240w"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="20_a8wav"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="21_0mfp3"]
-[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/charged_attack_lock.tscn" id="22_7fune"]
+[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/Meshes/charged_attack_lock.tscn" id="22_7fune"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://mig0o6j6cs6i" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/animation_logic_v2.tres" id="23_oc1db"]
 [ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="24_u6c34"]
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
@@ -1195,7 +1195,7 @@ roughness = 0.0
 normal_enabled = true
 normal_texture = ExtResource("19_v240w")
 
-[sub_resource type="Animation" id="Animation_exo7v"]
+[sub_resource type="Animation" id="Animation_x7cd8"]
 resource_name = "Attack_Charge"
 length = 2.91667
 tracks/0/type = "position_3d"
@@ -7896,7 +7896,7 @@ resource_name = "animation_mask"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2b7w0"]
 _data = {
-&"Attack_Charge": SubResource("Animation_exo7v"),
+&"Attack_Charge": SubResource("Animation_x7cd8"),
 &"Combo_1": SubResource("Animation_mplkd"),
 &"Combo_2": SubResource("Animation_esv8n"),
 &"Combo_3": SubResource("Animation_xqean"),
