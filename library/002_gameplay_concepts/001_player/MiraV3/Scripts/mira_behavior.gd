@@ -266,10 +266,11 @@ func trigger_shake() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	var current_state = base_state_machine.get_current_node()
 	charge_attack_movement_mode()
 
+	print(base_state_machine.get_current_node())
+	
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		camera_position.transform.origin = original_position + Vector3(
@@ -429,7 +430,7 @@ func _on_light_attack_state_processing(delta: float) -> void:
 	
 
 func _on_light_attack_state_exited() -> void:
-	print("Exit from light attack")
+
 	can_transition = true
 	is_light_attacking = false
 
@@ -586,7 +587,7 @@ func activate_charged_attack_state() -> void  :
 		send_event_state_chart("IsChargedAttacking")
 		#base_state_machine.stop()
 		base_state_machine.travel("ChargedAttackBlendTree")
-		print(base_state_machine.get_current_node())
+		
 
 
 
@@ -695,7 +696,7 @@ func move_the_character() -> void:
 
 func charge_attack_movement_mode() -> void :
 
-	if charge_attack_mode:
+	if is_charged_attacking:
 		#Slow down the player during the charged attack mode
 		player_current_speed = player_charged_attack_speed
 		
@@ -758,6 +759,8 @@ func assign_movement_blend_position() -> void :
 	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
 	animation_tree.set("parameters/MiraAnimations/ChargedAttackBlendTree/MovementBlendSpace/blend_position",velocity.length())
+	print("Blend amount (Combo3): ", animation_tree.get("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position"))
+
 
 
 #---
@@ -933,6 +936,7 @@ func launch_light_attack() -> void:
 	base_state_machine.travel(target_state)
 	#print("Launch light attack")
 	
+	print("Animation index is : ", animation_combo_index)
 	if animation_combo_index == 1 :
 		await get_tree().create_timer(light_attack_combo_1_duration).timeout #Duration of the animation : 0.5. Timescale : 1.75 so : 0.5/1.75 = 0,288s
 		activate_idle_state()
@@ -942,7 +946,9 @@ func launch_light_attack() -> void:
 		activate_idle_state()
 		activate_movement_state()
 	elif animation_combo_index == 3 :
-		await get_tree().create_timer(light_attack_combo_3_duration).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
+		await get_tree().create_timer(light_attack_combo_3_duration / 2).timeout
+		set_animation_index_values(1)
+		await get_tree().create_timer(light_attack_combo_3_duration / 2).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
 		activate_idle_state()
 		activate_movement_state()
 
