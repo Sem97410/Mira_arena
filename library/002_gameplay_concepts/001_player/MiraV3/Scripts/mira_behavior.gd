@@ -439,12 +439,12 @@ func _on_charged_attack_state_processing(delta: float) -> void:
 	move_the_character()
 	assign_movement_blend_position()
 	
+	#If player release the charged attack input stop it and all the effects
 	if not Input.is_action_pressed("charge_attack"): 
 		print("Je devrais arreter l'anime la ")
-		enable_can_transition()
-		disable_charge_attack_lock_mesh()
-		disable_charge_attack_mode()
-		is_charged_attacking = false
+		
+		cancel_charged_attack() #Cancel the lock mesh,the sound, the charged attack mode and is_charged_attacking = false
+		
 		activate_idle_state()
 		activate_movement_state()
 		
@@ -902,6 +902,15 @@ func launch_dash_animation() -> void :
 
 ## ATTACK
 
+
+func make_damage(area : Area3D, damage : float) -> void :
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
+	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
+		parent.take_damage(damage)
+		trigger_shake()
+		return
+		
 #Light attack
 
 func launch_light_attack() -> void:
@@ -927,7 +936,6 @@ func launch_light_attack() -> void:
 		await get_tree().create_timer(light_attack_combo_3_duration / 2).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
 		activate_idle_state()
 		activate_movement_state()
-
 
 #---
 
@@ -973,6 +981,7 @@ func player_attack_3_sfx() -> void :
 	attack_3_sound.play()
 
 #---
+
 func instantiate_combo_1_vfx() -> void :
 	var combo_1_vfx_instance = combo_1_vfx_scene.instantiate()
 	current_vfx = combo_1_vfx_instance
@@ -990,10 +999,13 @@ func instantiate_combo_1_vfx() -> void :
 		current_position
 	)
 
+#---
+
 func destroy_light_attack_vfx() -> void :
 	await get_tree().create_timer(0.5).timeout
 	current_vfx.queue_free()
 
+#---
 
 func instantiate_combo_2_vfx() -> void :
 
@@ -1018,7 +1030,6 @@ func instantiate_combo_2_vfx() -> void :
 func enable_combo_3_vfx() -> void :
 	combo_3_vfx.visible = true
 
-
 #---
 
 func disable_combo_3_vfx() -> void :
@@ -1031,72 +1042,108 @@ func launch_combo_3_vfx_animation() -> void :
 
 #---
 
-func make_damage(area : Area3D, damage : float) -> void :
-	# Récupérer le nœud parent de l'Area
-	var parent = area.get_parent()
-	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
-		parent.take_damage(damage)
-		trigger_shake()
-		return
-
 func enable_light_attack_area() -> void :
 	light_attack_area.monitoring = true
+
+#---
 
 func disable_light_attack_area() -> void :
 	light_attack_area.monitoring = false
 
+#---
+
 func enable_long_range_collision() -> void :
 	long_range_collision_shape.disabled = false
+
+#---
 
 func disable_long_range_collision() -> void :
 	long_range_collision_shape.disabled = true
 
+#---
+
 func enable_short_range_collision() -> void :
 	short_range_collision_shape.disabled = false
+
+#---
 
 func disable_short_range_collision() -> void :
 	short_range_collision_shape.disabled = true
 
+#---
+
 func enable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = true
 
+#---
+
 func disable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = false
+
+#---
 
 func enable_charged_attack_collision() -> void :
 	charged_attack_collision.disabled = false
 	charged_attack_impact_collision.disabled = false
 
-func disable_charged_attack_collision() -> void :
-	charged_attack_collision.disabled = true
-	charged_attack_impact_collision.disabled = true
+#---
 
 func set_light_attack_camera_shake_value() -> void :
 	current_shake = light_attack_shake
 
+
+# --------------------------------------------------------------------------
+
+#Charged attack
+
+func cancel_charged_attack() -> void : 
+	enable_can_transition()
+	disable_charge_attack_lock_mesh()
+	disable_charge_attack_mode()
+	charged_attack_sound.stop()
+	is_charged_attacking = false
+
+#---
+
 func set_charged_attack_camera_shake_value() -> void :
 	current_shake = charged_attack_shake
+
+#---
 
 func charged_attack_sfx() -> void :
 	charged_attack_sound.play()
 
+#---
+
 func enable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging.visible = true
+
+#---
 
 func disable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging.visible = false
 
+#---
+
 func enable_charge_attack_mode() -> void :
 	charge_attack_mode = true
+
+#---
 
 func disable_charge_attack_mode() -> void :
 	charge_attack_mode = false
 
+#---
+
 func enable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = true
 
+#---
+
 func disable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = false
+
+#---
 
 func instantiate_charged_attack_impact_vfx() -> void :
 	if vfx_spawned:
@@ -1119,6 +1166,12 @@ func instantiate_charged_attack_impact_vfx() -> void :
 	new_basis = new_basis.scaled(Vector3(2.5, 1, 2.5))
 	charged_attack_impact_vfx_instance.global_transform = Transform3D(new_basis, current_position)
 	vfx_spawned = false
+
+#---
+
+func disable_charged_attack_collision() -> void :
+	charged_attack_collision.disabled = true
+	charged_attack_impact_collision.disabled = true
 
 # --------------------------------------------------------------------------
 

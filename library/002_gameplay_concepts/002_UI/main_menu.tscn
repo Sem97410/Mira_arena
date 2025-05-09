@@ -30,7 +30,7 @@ modulate_color = Color(1, 1, 1, 0.733333)
 
 [node name="MainMenu" type="Node3D"]
 
-[node name="MainMenuControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information")]
+[node name="MainMenuControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "main_menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +52,7 @@ map_selection_container = NodePath("LevelSelectionMargin")
 map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton")
 map_1_information = NodePath("Map1Information")
 map_2_information = NodePath("Map2Information")
+main_menu_music = NodePath("TitleScreenSoundPlaceHolder")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenuControl"]
 layout_mode = 0
@@ -374,6 +375,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="TitleScreenSoundPlaceHolder" type="AudioStreamPlayer" parent="MainMenuControl"]
+stream = ExtResource("7_3rw7x")
+
 [node name="VideoControl" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -422,7 +426,7 @@ text = "Pass the video"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_3rw7x")
-volume_db = -6.0
+volume_db = -35.0
 bus = &"title_screen"
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]

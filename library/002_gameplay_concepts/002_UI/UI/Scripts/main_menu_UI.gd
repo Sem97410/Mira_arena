@@ -29,7 +29,9 @@ extends Control
 @export var map_selection_main_button : Button
 @export var map_1_information : MarginContainer
 @export var map_2_information : MarginContainer 
-
+#-----------------
+#MUSICS
+@export var main_menu_music : AudioStreamPlayer
 
 
 
@@ -38,6 +40,7 @@ func _ready() -> void:
 	#first_main_button.grab_focus()
 	get_tree().paused = false
 	Engine.time_scale = 1
+	main_menu_music.play()
 
 
 #------------------------------
@@ -79,7 +82,7 @@ func _on_story_mode_button_down() -> void:
 	#not_ready_pannel.visible = false
 	
 	self.visible = false
-	#main_menu_sounds.paused()
+	main_menu_music.stream_paused = true
 	video_player_container.visible = true
 	video_player.play()
 	skip_video_button.grab_focus()
@@ -99,6 +102,7 @@ func _on_skip_video_button_button_down() -> void:
 	
 func stop_video_player() -> void : 
 	video_player.stop()
+	main_menu_music.stream_paused = false
 	video_player_container.visible = false
 	self.visible = true
 	first_main_button.grab_focus()
