@@ -85,6 +85,7 @@ extends CharacterBody3D
 #---
 
 @export_subgroup("Charged attack")
+@export var charged_attack_vfx_duration : float = 0.5
 @export var charge_attack_charging : Node3D
 @export var charge_attack_lock_mesh : Node3D
 @export var charged_attack_area : Area3D
@@ -93,6 +94,15 @@ extends CharacterBody3D
 @export var charged_attack_impact_vfx : PackedScene
 @export var charged_attack_impact_vfx_storage : Node3D
 @export var charged_attack_impact_vfx_spawn_position : Node3D
+@onready var is_in_the_charge_stage : bool = false
+@onready var charged_attack_gauge : float  = 0.0
+@export var charged_attack_indicator : Node3D
+@export var charged_attack_hit_vfx : Node3D
+@export var slashes_group : Node3D
+@export var charged_attack_indicator_animation_player : AnimationPlayer
+@export var charged_attack_hit_circle_animation_player : AnimationPlayer
+@export var charged_attack_hit_slash_animation_player : AnimationPlayer
+
 
 @export_subgroup("Charged attack SFX")
 @export var charged_attack_sound : AudioStreamPlayer
@@ -267,10 +277,14 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
-	charge_attack_movement_mode()
 	
-	if Input.is_action_pressed("charge_attack"):
-		print("Le bouton est pressé")
+	charge_attack_movement_mode()
+
+	#if Input.is_action_just_pressed("await_test"):
+		#
+		#charged_attack_hit_vfx.visible = true
+		#charged_attack_hit_circle_animation_player.play("HitVFX")
+		#charged_attack_hit_slash_animation_player.play("RESET")
 		
 		
 	if shake_strength > 0:
@@ -287,6 +301,7 @@ func _physics_process(delta: float) -> void:
 	decrease_dash_countdown(delta)
 	update_movement_tracking(delta)
 	
+	print("Last node de merde is : ", base_state_machine.get_current_node())
 
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta
@@ -426,32 +441,62 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 #---
 
 func _on_charged_attack_state_entered() -> void:
-	is_charged_attacking = true
-	disable_can_transition()
-	move_the_character()
-
-	await get_tree().create_timer(2.0).timeout
 	
-	send_event_state_chart("IsFinishingTheChargedAttack")
+	if Input.is_action_pressed("charge_attack"):
+		is_charged_attacking = true
+		charged_attack_hit_vfx.visible = true
+		disable_can_transition()
+		move_the_character()
+		is_in_the_charge_stage = true
+		activate_charge_range_indicator()
+
+	#await get_tree().create_timer(1.5).timeout #Total of the charged attack sequence minus the duration of the attack itself
+	
+	#if is_in_the_charge_stage: #If player let the button down until the end of the animation
+		#is_in_the_charge_stage = false
+		#
+		#disable_charge_range_indicator()
+		#
+		#slashes_group.visible = true
+		#activate_charged_attack_swing()
+		#
+		#await get_tree().create_timer(charged_attack_vfx_duration).timeout
+		#
+		#reset_charged_attack_gauge()
+		#send_event_state_chart("IsFinishingTheChargedAttack")
+
 
 
 func _on_charged_attack_state_processing(delta: float) -> void:
 	move_the_character()
 	assign_movement_blend_position()
+	activate_charged_attack_gauge(delta)
+	scale_charge_attack_range_indicator()
+	
 	
 	#If player release the charged attack input stop it and all the effects
-	if not Input.is_action_pressed("charge_attack"): 
+	if not Input.is_action_pressed("charge_attack"): #if player release the button before the end of the animation
 		print("Je devrais arreter l'anime la ")
+		is_in_the_charge_stage = false
+		disable_charge_range_indicator()
+		slashes_group.visible = true
+		activate_charged_attack_swing()
 		
+		await get_tree().create_timer(0.5).timeout
+		
+		reset_charged_attack_gauge()
 		cancel_charged_attack() #Cancel the lock mesh,the sound, the charged attack mode and is_charged_attacking = false
-		
+		send_event_state_chart("IsFinishingTheChargedAttack")
 		activate_idle_state()
 		activate_movement_state()
-		
 
-#func _on_charged_attack_state_exited() -> void:
-	#pass
+#---
 
+func _on_charged_attack_state_exited() -> void:
+	charged_attack_hit_vfx.visible = false
+	slashes_group.visible = false
+
+#---
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
 	make_damage(area, charged_attack_damage)
@@ -686,25 +731,26 @@ func charge_attack_movement_mode() -> void :
 		#Slow down the player during the charged attack mode
 		player_current_speed = player_charged_attack_speed
 		
-		#Use the right joystick input in order to calculate a directional vector
-		direction_vector_input= Input.get_vector("aim_left", "aim_right", "aim_forward", "aim_backward")
-		#Get the 2D vector from the right joystick, transform it into a Vector3 on the axis X and Z and normalized it to get a constant vector
-		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
-		#Use the input length to get the magnetude
-		var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
+		##Use the right joystick input in order to calculate a directional vector
+		#direction_vector_input= Input.get_vector("aim_left", "aim_right", "aim_forward", "aim_backward")
+		##Get the 2D vector from the right joystick, transform it into a Vector3 on the axis X and Z and normalized it to get a constant vector
+		#var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
+		##Use the input length to get the magnetude
+		#var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
+#
+		### Rotation of the character in the direction of the movement
+		 ## Mise à jour de la rotation uniquement si il y a une entrée significative
+		#if input_strength > 0.001:  # If there is a movement of the joystick
+			##Calculate the player rotation angle with the function atan2
+			#var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
+			##Assign the rotation to the player
+			#rotation.y = player_rotation_angle
+			##Save the rotation
+			#last_rotation_angle = player_rotation_angle
+		#else: #If the player drop the joystick
+			## Let the player in the last rotation angle to not reset his orientation if he drop his joystick
+			#rotation.y = last_rotation_angle
 
-		## Rotation of the character in the direction of the movement
-		 # Mise à jour de la rotation uniquement si il y a une entrée significative
-		if input_strength > 0.001:  # If there is a movement of the joystick
-			#Calculate the player rotation angle with the function atan2
-			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			#Assign the rotation to the player
-			rotation.y = player_rotation_angle
-			#Save the rotation
-			last_rotation_angle = player_rotation_angle
-		else: #If the player drop the joystick
-			# Let the player in the last rotation angle to not reset his orientation if he drop his joystick
-			rotation.y = last_rotation_angle
 	else : 
 		player_current_speed = player_normal_speed
 
@@ -745,6 +791,7 @@ func assign_movement_blend_position() -> void :
 	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
 	animation_tree.set("parameters/MiraAnimations/ChargedAttackBlendTree/MovementBlendSpace/blend_position",velocity.length())
+	#animation_tree.set("parameters/MiraAnimations/ChargedAttackSwingBlendTree/MovementBlendSpace/blend_position",velocity.length())
 
 
 
@@ -1099,6 +1146,7 @@ func set_light_attack_camera_shake_value() -> void :
 func cancel_charged_attack() -> void : 
 	enable_can_transition()
 	disable_charge_attack_lock_mesh()
+	
 	disable_charge_attack_mode()
 	charged_attack_sound.stop()
 	is_charged_attacking = false
@@ -1142,6 +1190,7 @@ func enable_charge_attack_lock_mesh() -> void :
 
 func disable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = false
+	charged_attack_hit_vfx.visible = false
 
 #---
 
@@ -1172,6 +1221,61 @@ func instantiate_charged_attack_impact_vfx() -> void :
 func disable_charged_attack_collision() -> void :
 	charged_attack_collision.disabled = true
 	charged_attack_impact_collision.disabled = true
+
+#---
+
+func activate_charged_attack_gauge(delta : float) -> void : 
+	if is_in_the_charge_stage:
+		charged_attack_gauge += delta
+
+#---
+
+func reset_charged_attack_gauge() -> void : 
+	if not is_in_post_attack_phase:
+		charged_attack_gauge = 0.0
+
+#---
+
+func activate_charge_range_indicator() -> void : 
+	charged_attack_indicator.visible = true
+	charged_attack_indicator_animation_player.play("RESET")
+
+func disable_charge_range_indicator() -> void : 
+	charged_attack_indicator.visible = false
+
+func scale_charge_attack_range_indicator() -> void : 
+	var tween = create_tween()
+	tween.set_parallel(true)
+	
+	if charged_attack_gauge <= 1 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1),0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1),0.2)
+		
+		#charged_attack_indicator.scale = Vector3(1,1,1)
+		#charged_attack_hit_vfx.scale = Vector3(1,1,1)
+		
+	elif charged_attack_gauge > 1 and charged_attack_gauge < 2 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 2,0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 2 ,0.2)
+		
+		#charged_attack_indicator.scale = Vector3(1,1,1) * 2
+		#charged_attack_hit_vfx.scale = Vector3(1,1,1) * 2
+
+	elif charged_attack_gauge > 2 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 3,0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 3 ,0.2)
+		
+		#charged_attack_indicator.scale = Vector3(1,1,1) * 3
+		#charged_attack_hit_vfx.scale = Vector3(1,1,1) * 3
+		
+
+
+func activate_charged_attack_swing() -> void : 
+	charged_attack_hit_circle_animation_player.play("HitVFX")
+	charged_attack_hit_slash_animation_player.play("RESET")
+	#send_event_state_chart("IsSwinging")
+	#base_state_machine.travel("ChargedAttackSwingBlendTree")
+
 
 # --------------------------------------------------------------------------
 
