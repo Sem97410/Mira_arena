@@ -282,6 +282,7 @@ func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
 	
 	print("Current animation node is ", base_state_machine.get_current_node())
+	#print("Can transition is : ", can_transition)
 	charge_attack_movement_mode()
 
 	#if Input.is_action_just_pressed("await_test"):

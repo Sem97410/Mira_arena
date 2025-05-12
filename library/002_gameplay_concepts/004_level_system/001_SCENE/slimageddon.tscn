@@ -13623,9 +13623,56 @@ storage_version = 4
 metadata/class = "Gardener"
 metadata/_custom_type_script = "uid://bc7pailucq83t"
 
-[node name="MiraV3" parent="." instance=ExtResource("20_wnpcy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.00642, 13.0015)
-
 [node name="StateChartDebugger" parent="." instance=ExtResource("25_lbo7n")]
 offset_left = 1478.0
-initial_node_to_watch = NodePath("../MiraV3/StateChart")
+
+[node name="MiraV3" parent="." instance=ExtResource("20_wnpcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.14628, 10.4964)
+player_max_hp = 1.0
+player_dash_countdown = 0.5
+
+[node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Hair1" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="1"]
+surface_material_override/0 = null
+
+[node name="Body" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/3 = null
+
+[node name="Jupe" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="3"]
+surface_material_override/0 = null
+
+[node name="Chaussures" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="4"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Belt" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="5"]
+surface_material_override/0 = null
+
+[node name="Sourcils" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="9"]
+surface_material_override/0 = null
+
+[node name="Attache" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="10"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
+surface_material_override/0 = null
+
+[node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
+surface_material_override/0 = null
+
+[node name="AnimationTree" parent="MiraV3" index="3"]
+parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
+parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
+
+[editable path="MiraV3"]
+[editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
+[editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
+[editable path="MiraV3/EndGamePannel"]
