@@ -1,4 +1,4 @@
-[gd_scene load_steps=786 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=787 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://b1glnsyk34yb7" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/spawner.tscn" id="1_7l8ov"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/scene/mortar_slime.tscn" id="23_hh6v5"]
 [ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="24_xsf83"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="25_d6xic"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="25_lbo7n"]
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="26_83v5c"]
 [ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spwaner.tscn" id="26_xsf83"]
 [ext_resource type="PackedScene" uid="uid://ddtoebj46ohx5" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_missile_slime/missile_slime.tscn" id="27_d6xic"]
@@ -13578,9 +13579,6 @@ wave_delay = 1500.0
 enemy_types = Array[PackedScene]([ExtResource("23_hh6v5")])
 spawn_chances = Array[int]([100])
 
-[node name="MiraV3" parent="." instance=ExtResource("20_wnpcy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.60909, 0)
-
 [node name="Spwaner_wanderer_presentation" parent="." instance=ExtResource("26_xsf83")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622091, -3.13915, -0.282518)
 enemy_scene = ExtResource("21_w2xsd")
@@ -13624,3 +13622,10 @@ plugin_version = "1.4.1"
 storage_version = 4
 metadata/class = "Gardener"
 metadata/_custom_type_script = "uid://bc7pailucq83t"
+
+[node name="MiraV3" parent="." instance=ExtResource("20_wnpcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.00642, 13.0015)
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("25_lbo7n")]
+offset_left = 1478.0
+initial_node_to_watch = NodePath("../MiraV3/StateChart")

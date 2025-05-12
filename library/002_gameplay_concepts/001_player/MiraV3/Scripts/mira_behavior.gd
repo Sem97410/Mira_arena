@@ -281,6 +281,7 @@ func trigger_shake() -> void:
 func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
 	
+	print("Current animation node is ", base_state_machine.get_current_node())
 	charge_attack_movement_mode()
 
 	#if Input.is_action_just_pressed("await_test"):
@@ -300,7 +301,6 @@ func _process(delta: float) -> void:
 	launch_in_the_air_animation()
 	
 	launch_dash_countdown(delta)
-	print("Current dash_countdown is : ", current_dash_countdown)
 
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
