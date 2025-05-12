@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=4 uid="uid://c2c63v7qvpbqh"]
 
 [ext_resource type="Material" uid="uid://7305n8xsyb6a" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_fire_slime_interne.tres" id="1_qxg3c"]
-[ext_resource type="Material" uid="uid://jvj6lda1sps1" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_fire_slime_externe.tres" id="2_mh4sc"]
+[ext_resource type="Material" uid="uid://jvj6lda1sps1" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_externe.tres" id="2_mh4sc"]
 [ext_resource type="Material" uid="uid://c1l2ntb1tmsfk" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_flamme_slime_light_bublle.tres" id="3_tlxg8"]
 [ext_resource type="Material" uid="uid://nahnuwegiq7t" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_flamme_slime_eyes.tres" id="4_d6q3y"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="5_d6q3y"]

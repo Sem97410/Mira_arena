@@ -7,7 +7,7 @@ uniform vec3 highlitgh_color : source_color;
 uniform float highlight_largeur : hint_range(0.0, 1.0) = 0.2;
 uniform float highlight_douceur : hint_range(0.0, 1.0) = 0.2;
 uniform vec3 emission_color : source_color;
-uniform float alpha :hint_range(0.0, 1.0, 0.1);
+uniform float alpha;
 uniform float emissive : hint_range(0.0, 1.0, 0.1);
 uniform float  intensity_move;// definis l'intensité du mouvement un peu comme un radius
 uniform float speed; // definis le speed du mouvment  

@@ -177,10 +177,10 @@ angle_max = 360.0
 gravity = Vector3(0, 5, 0)
 damping_min = 2.0
 damping_max = 3.0
-scale_min = 4.95
-scale_max = 5.3
+scale_min = 0.6
+scale_max = 1.35
 scale_curve = SubResource("CurveTexture_bmgut")
-color = Color(1.658, 2.21, 4.972, 1)
+color = Color(0, 9.392, 22.652, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_p8utj"]
 
