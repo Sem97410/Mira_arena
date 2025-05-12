@@ -166,6 +166,8 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 var player_current_speed : float
 @export var player_normal_speed : float = 6.0
 @export var player_charged_attack_speed : float = 2.0
+@export var player_dash_countdown : float = 0.3
+@onready var current_dash_countdown : float = 0.0
 #var _idle_timer := 0.0
 var _input_strength := 0.0
 var _real_speed := 0.0
@@ -296,6 +298,9 @@ func _process(delta: float) -> void:
 			0
 		)
 	launch_in_the_air_animation()
+	
+	launch_dash_countdown(delta)
+	print("Current dash_countdown is : ", current_dash_countdown)
 
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
@@ -394,6 +399,8 @@ func _on_dash_state_entered() -> void:
 	initiate_dash()
 	start_dash()
 	launch_dash_animation()
+	
+	current_dash_countdown = player_dash_countdown #Begin the cooldown
 
 func _on_dash_state_physics_processing(_delta: float) -> void:
 	execute_dash() #Launch the dash if all conditions are met
@@ -601,7 +608,7 @@ func activate_in_the_air_state() -> void :
 #If the player presses the dash action and a state transition is allowed
 #launch the dash state
 func activate_dash_state() -> void :
-	if Input.is_action_just_pressed("dash") and can_transition:
+	if Input.is_action_just_pressed("dash") and can_transition and current_dash_countdown <= 0.0:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -1323,6 +1330,12 @@ func activate_charged_attack_swing_sound() -> void :
 
 # --------------------------------------------------------------------------
 
+## DASH
+
+func launch_dash_countdown(delta : float) -> void : 
+	if current_dash_countdown> 0 :
+		current_dash_countdown -= delta
+# --------------------------------------------------------------------------
 ## VFX
 func instantiate_foot_step_vfx() -> void :
 	var vfx_instance = foot_step_vfx.instantiate()  # Crée une instance du VFX
