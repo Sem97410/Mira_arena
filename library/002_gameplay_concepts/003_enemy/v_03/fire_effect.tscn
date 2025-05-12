@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://brifjyftuwirk"]
+[gd_scene load_steps=24 format=3 uid="uid://brifjyftuwirk"]
 
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="1_qudmx"]
 [ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Voronoi01.png" id="2_d0r4s"]
 [ext_resource type="Texture2D" uid="uid://mc2qw0se60q5" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame01.png" id="3_5apaq"]
+[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame02.png" id="4_d0r4s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8p7td"]
 render_priority = 0
 shader = ExtResource("1_qudmx")
 shader_parameter/main_texture = ExtResource("3_5apaq")
-shader_parameter/dissolvespeed = Vector2(-0.02, 0.2)
+shader_parameter/dissolve_tilling = Vector2(0.25, 0.2)
+shader_parameter/dissolvespeed = Vector2(0.075, 0.2)
 shader_parameter/dissolve_texture = ExtResource("2_d0r4s")
-shader_parameter/dissolveamount = 0.853
+shader_parameter/dissolveamount = 0.218
+shader_parameter/alpha_intensity = 0.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bmgut"]
 gravity = Vector3(0, 0, 0)
@@ -20,9 +23,171 @@ color = Color(4, 1.25, 0, 0.078)
 
 [sub_resource type="SphereMesh" id="SphereMesh_p8utj"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5apaq"]
+render_priority = 0
+shader = ExtResource("1_qudmx")
+shader_parameter/main_texture = ExtResource("4_d0r4s")
+shader_parameter/dissolve_tilling = Vector2(0.136, -0.136)
+shader_parameter/dissolvespeed = Vector2(0.1, 0.3)
+shader_parameter/dissolve_texture = ExtResource("2_d0r4s")
+shader_parameter/dissolveamount = 0.0
+shader_parameter/alpha_intensity = 0.0
+
+[sub_resource type="Curve" id="Curve_d0r4s"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8p7td"]
+curve = SubResource("Curve_d0r4s")
+
+[sub_resource type="Curve" id="Curve_bmgut"]
+_data = [Vector2(0, 0.0337079), 0.0, 16.7139, 0, 0, Vector2(0.143813, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.761907, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c8npu"]
+curve = SubResource("Curve_bmgut")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p8utj"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_8p7td")
+scale_min = 0.7
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_c8npu")
+scale_over_velocity_min = 0.5
+scale_over_velocity_max = 1.0
+color = Color(2.763, 0.553, 19.337, 0.193)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ejl4u"]
+
+[sub_resource type="Animation" id="Animation_iejl4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v5fs4"]
+resource_name = "animation_sphere"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.52, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.687886, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.52, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.52, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcck3"]
+_data = {
+&"RESET": SubResource("Animation_iejl4"),
+&"animation_sphere": SubResource("Animation_v5fs4")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0r4s"]
+render_priority = 0
+shader = ExtResource("1_qudmx")
+shader_parameter/main_texture = ExtResource("4_d0r4s")
+shader_parameter/dissolve_tilling = Vector2(0.136, -0.136)
+shader_parameter/dissolvespeed = Vector2(0.136, -0.136)
+shader_parameter/dissolve_texture = ExtResource("2_d0r4s")
+shader_parameter/dissolveamount = 0.0
+shader_parameter/alpha_intensity = 0.01
+
+[sub_resource type="Curve" id="Curve_5apaq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.163132, 1), 0.0, 0.0, 0, 0, Vector2(0.980424, 0), -1.38435, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bmgut"]
+curve = SubResource("Curve_5apaq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8npu"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+gravity = Vector3(0, 5, 0)
+damping_min = 2.0
+damping_max = 3.0
+scale_min = 0.6
+scale_max = 1.35
+scale_curve = SubResource("CurveTexture_bmgut")
+color = Color(0, 9.392, 22.652, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p8utj"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+visible = false
 material_override = SubResource("ShaderMaterial_8p7td")
 amount = 1
 lifetime = 5.0
@@ -30,6 +195,27 @@ process_material = SubResource("ParticleProcessMaterial_bmgut")
 draw_pass_1 = SubResource("QuadMesh_c8npu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.33035, 0, 0, 0, 0.33035, 0, 0, 0, 0.33035, 0, -0.247133, 0)
+transform = Transform3D(0.33035, 0, 0, 0, 0.33035, 0, 0, 0, 0.33035, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_p8utj")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(3.02709, 0, 0, 0, 3.02709, 0, 0, 0, 3.02709, -0.0501361, 0.00698912, 0)
+material_override = SubResource("ShaderMaterial_5apaq")
+emitting = false
+amount = 20
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_p8utj")
+draw_pass_1 = SubResource("QuadMesh_ejl4u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_vcck3")
+}
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_d0r4s")
+amount = 20
+lifetime = 0.85
+process_material = SubResource("ParticleProcessMaterial_c8npu")
+draw_pass_1 = SubResource("QuadMesh_p8utj")
