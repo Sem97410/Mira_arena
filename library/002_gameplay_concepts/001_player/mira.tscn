@@ -14,7 +14,7 @@
 [ext_resource type="Material" uid="uid://vqoauteyrtek" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_skull.tres" id="4_hgpvh"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="5_h24a5"]
 [ext_resource type="Material" uid="uid://cr06kcu4nsnyw" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_hat_base.tres" id="5_hfr1s"]
-[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/charged_attack_lock.tscn" id="5_imhg4"]
+[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/Meshes/charged_attack_lock.tscn" id="5_imhg4"]
 [ext_resource type="Script" uid="uid://bdnpuax8gfmyy" path="res://library/002_gameplay_concepts/001_player/Scripts/PlayerMovementResource.gd" id="5_vj4om"]
 [ext_resource type="Script" uid="uid://5i103oxysh75" path="res://library/002_gameplay_concepts/001_player/Scripts/assign_blend_position.gd" id="6_cnqdl"]
 [ext_resource type="Shader" uid="uid://fgk2cr3p67e7" path="res://library/002_gameplay_concepts/006_VFX/Trail/Stars.tres" id="6_g5wb5"]

@@ -295,10 +295,12 @@ shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="Spawner" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8968, 0, 0)
-initial_spawn_count = 0
-spawn_chances = Array[int]([100, 100, 100, 100, 100])
+initial_spawn_count = 5
+spawn_chances = Array[int]([100, 100, 100, 100, 0])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
+player_max_hp = 1.0
+player_dash_countdown = 0.5
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
 bones/1/position = Vector3(-0.099144, 0.431293, -0.188987)
@@ -378,6 +380,40 @@ bones/90/position = Vector3(-0.00325016, 0.0704046, -4.25891e-09)
 bones/91/position = Vector3(-0.0950574, -0.0581415, -3.912e-09)
 bones/92/position = Vector3(-0.0623259, 0.0581415, -3.76168e-09)
 
+[node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Hair1" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="1"]
+surface_material_override/0 = null
+
+[node name="Body" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/3 = null
+
+[node name="Jupe" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="3"]
+surface_material_override/0 = null
+
+[node name="Chaussures" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="4"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Belt" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="5"]
+surface_material_override/0 = null
+
+[node name="Sourcils" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="9"]
+surface_material_override/0 = null
+
+[node name="Attache" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="10"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
+surface_material_override/0 = null
+
 [node name="BoneAttachment3D2" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="12"]
 transform = Transform3D(0.0411021, -0.0635999, 0.997129, 0.984128, 0.175006, -0.0294038, -0.172633, 0.982511, 0.0697836, -0.0920972, 0.565419, -0.233163)
 
@@ -386,8 +422,15 @@ bones/0/position = Vector3(-0.972292, 0.7482, 6.03041)
 bones/0/rotation = Quaternion(0.721776, 2.57086e-14, 0.692127, 2.67009e-14)
 bones/1/position = Vector3(0.348244, 3.9258e-19, -0.00641132)
 
+[node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
+surface_material_override/0 = null
+
 [node name="BoneAttachment3D" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="1"]
 transform = Transform3D(0.0419211, 1.50948e-16, 0.999121, 7.40725e-14, -1, -2.95686e-15, 0.999121, 7.41313e-14, -0.0419213, -0.972292, 0.7482, 6.03041)
+
+[node name="AnimationTree" parent="MiraV3" index="3"]
+parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
+parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="Spwaner_wanderer_presentation" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)

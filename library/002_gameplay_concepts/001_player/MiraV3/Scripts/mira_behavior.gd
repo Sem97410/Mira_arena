@@ -85,6 +85,7 @@ extends CharacterBody3D
 #---
 
 @export_subgroup("Charged attack")
+@export var charged_attack_vfx_duration : float = 0.5
 @export var charge_attack_charging : Node3D
 @export var charge_attack_lock_mesh : Node3D
 @export var charged_attack_area : Area3D
@@ -93,9 +94,19 @@ extends CharacterBody3D
 @export var charged_attack_impact_vfx : PackedScene
 @export var charged_attack_impact_vfx_storage : Node3D
 @export var charged_attack_impact_vfx_spawn_position : Node3D
+@onready var is_in_the_charge_stage : bool = false
+@onready var charged_attack_gauge : float  = 0.0
+@export var charged_attack_indicator : Node3D
+@export var charged_attack_hit_vfx : Node3D
+@export var slashes_group : Node3D
+@export var charged_attack_indicator_animation_player : AnimationPlayer
+@export var charged_attack_hit_circle_animation_player : AnimationPlayer
+@export var charged_attack_hit_slash_animation_player : AnimationPlayer
+
 
 @export_subgroup("Charged attack SFX")
-@export var charged_attack_sound : AudioStreamPlayer
+@export var charged_attack_charge_sound : AudioStreamPlayer
+@export var charged_attack_swing_sound : AudioStreamPlayer
 
 #Foot step variables
 @export_subgroup("Foot step VFX")
@@ -147,16 +158,16 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 
 # ----------------
 
-#DEBUG VARIABLES
-
-var debug_chrono : float
-
 # MOVEMENT
 @export_category("Movement ")
 
 #Movement variables
 @export_group("Movement variables")
-@export var player_speed : float = 6.0
+var player_current_speed : float
+@export var player_normal_speed : float = 6.0
+@export var player_charged_attack_speed : float = 2.0
+@export var player_dash_countdown : float = 0.3
+@onready var current_dash_countdown : float = 0.0
 #var _idle_timer := 0.0
 var _input_strength := 0.0
 var _real_speed := 0.0
@@ -268,10 +279,17 @@ func trigger_shake() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	var current_state = base_state_machine.get_current_node()
+	
 	charge_attack_movement_mode()
 
+	#if Input.is_action_just_pressed("await_test"):
+		#
+		#charged_attack_hit_vfx.visible = true
+		#charged_attack_hit_circle_animation_player.play("HitVFX")
+		#charged_attack_hit_slash_animation_player.play("RESET")
+		
+		
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 		camera_position.transform.origin = original_position + Vector3(
@@ -280,12 +298,14 @@ func _process(delta: float) -> void:
 			0
 		)
 	launch_in_the_air_animation()
+	
+	launch_dash_countdown(delta)
+	print("Current dash_countdown is : ", current_dash_countdown)
 
 func _physics_process(delta: float) -> void:
 	add_gravity(delta)
 	decrease_dash_countdown(delta)
 	update_movement_tracking(delta)
-	
 
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta
@@ -314,12 +334,9 @@ func _physics_process(delta: float) -> void:
 # --------------------------------------------------------------------------
 
 func _on_idle_state_entered() -> void:
-	debug_chrono = 0
-	#print("Idle : ON")
 	is_idle = true
 
 func _on_idle_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	enable_can_transition()
@@ -333,19 +350,13 @@ func _on_idle_state_processing(delta: float) -> void:
 
 func _on_idle_state_exited() -> void:
 	is_idle = false
-	#print("Idle : OFF")
-	#print("Idle state duration : ", debug_chrono)
-	
 #---
 
 func _on_movement_state_entered() -> void:
 	is_moving = true
-	debug_chrono = 0
-	#print("Movement : ON")
 	
 
 func _on_movement_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	activate_idle_state()
@@ -356,18 +367,13 @@ func _on_movement_state_processing(delta: float) -> void:
 
 func _on_movement_state_exited() -> void:
 	is_moving = false
-	#print("Movement : OFF")
-	#print("Movement state duration : ", debug_chrono)
 	
 #---
 func _on_in_the_air_state_entered() -> void:
-	debug_chrono = 0
-	#print("In the air : ON")
 	is_in_the_air = true
 
 
 func _on_in_the_air_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	move_the_character()
 
 	#activate_in_the_air_state()
@@ -375,44 +381,31 @@ func _on_in_the_air_state_processing(delta: float) -> void:
 
 
 	if is_on_floor():
-		print("Im on the floor avec in the air")
 		
 		activate_idle_state()
 		activate_movement_state()
 
 
 func _on_in_the_air_state_exited() -> void:
-	#print("In the air : OFF")
-	#print("In the air state duration : ", debug_chrono)
 	is_in_the_air = false
 
 
 #---
 
 func _on_dash_state_entered() -> void:
-	debug_chrono = 0
-	#print("Im in dash state")
-	#print("Dash : ON")
 	is_dashing = true
 	can_transition = false
 	disable_can_transition()
 	initiate_dash()
 	start_dash()
 	launch_dash_animation()
+	
+	current_dash_countdown = player_dash_countdown #Begin the cooldown
 
 func _on_dash_state_physics_processing(_delta: float) -> void:
-	#print("I'm in dash state physics processing")
 	execute_dash() #Launch the dash if all conditions are met
 
-func _on_dash_state_processing(delta: float) -> void:
-	debug_chrono += delta
-	#print("I'm in dash state physics processing")
-	#activate_light_attack_state()
-
 func _on_dash_state_exited() -> void:
-	#print("Dash : off")
-	#print("Dash state duration : ", debug_chrono)
-	#print("I'm out of the dash state")
 	assign_movement_blend_position()
 	is_dashing = false
 	can_transition = true
@@ -422,7 +415,7 @@ func _on_dash_state_exited() -> void:
 #When we are in light attack mode, first we disable the other states consequences
 #mainly charged_attack mesh and bools. Then we declare that we are in a light attack
 func _on_light_attack_state_entered() -> void:
-	debug_chrono = 0
+
 	is_recovering = false
 	is_charged_attacking = false
 	enable_movement()
@@ -435,7 +428,6 @@ func _on_light_attack_state_entered() -> void:
 #During the light attack  we allow the character to move normaly and if et pressed the input
 #we save this information in a bool
 func _on_light_attack_state_processing(delta: float) -> void:
-	debug_chrono += delta
 	assign_movement_blend_position()  #Create a blend between idle walk and run
 	move_the_character()
 	
@@ -444,7 +436,7 @@ func _on_light_attack_state_processing(delta: float) -> void:
 	
 
 func _on_light_attack_state_exited() -> void:
-	print("Exit from light attack")
+
 	can_transition = true
 	is_light_attacking = false
 
@@ -455,39 +447,90 @@ func _on_light_attack_system_area_3d_area_entered(area: Area3D) -> void:
 #---
 
 func _on_charged_attack_state_entered() -> void:
-	is_charged_attacking = true
-	disable_can_transition()
-	disable_movement()
-	debug_chrono = 0
-	#print("Charged : ON")
+	
+	if Input.is_action_pressed("charge_attack"):
+		is_charged_attacking = true
+		charged_attack_hit_vfx.visible = true
+		disable_can_transition()
+		move_the_character()
+		is_in_the_charge_stage = true
+		activate_charge_range_indicator()
+		charged_attack_charge_sound.play()
 
-	await get_tree().create_timer(2.0).timeout
-	#print("End of the animation")
-	send_event_state_chart("IsFinishingTheChargedAttack")
+	#await get_tree().create_timer(1.5).timeout #Total of the charged attack sequence minus the duration of the attack itself
+	
+	#if is_in_the_charge_stage: #If player let the button down until the end of the animation
+		#is_in_the_charge_stage = false
+		#
+		#disable_charge_range_indicator()
+		#
+		#slashes_group.visible = true
+		#activate_charged_attack_swing()
+		#
+		#await get_tree().create_timer(charged_attack_vfx_duration).timeout
+		#
+		#reset_charged_attack_gauge()
+		#send_event_state_chart("IsFinishingTheChargedAttack")
 
-#func _on_charged_attack_state_exited() -> void:
-	##print("Charged attack : OFF")
-	##print("C.A. state duration : ", debug_chrono)
-	##print("can_transition is : ", can_transition)
-	#
+
+
+func _on_charged_attack_state_processing(delta: float) -> void:
+	move_the_character()
+	assign_movement_blend_position()
+	activate_charged_attack_gauge(delta)
+	scale_charge_attack_range_indicator()
+	#handle_charge_attack_sound_pitch()
+	
+	
+
+	#If player release the charged attack input stop it and all the effects
+	if not Input.is_action_pressed("charge_attack"): #if player release the button before the end of the animation
+		can_move = false
+		is_in_the_charge_stage = false
+		disable_charge_range_indicator()
+		slashes_group.visible = true
+		activate_charged_attack_swing()
+		enable_charged_attack_area()
+		send_event_state_chart("IsSwinging")
+		base_state_machine.travel("ChargedAttackSwingPhaseBlendTree")
+		#animation_tree.set("parameters/MiraAnimations/ChargedAttackBlendTree/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		
+		await get_tree().create_timer(0.5).timeout
+		enable_movement()
+		disable_charged_attack_area()
+		reset_charged_attack_gauge()
+		cancel_charged_attack() #Cancel the lock mesh,the sound, the charged attack mode and is_charged_attacking = false
+		send_event_state_chart("IsFinishingTheChargedAttack")
+		activate_idle_state()
+		activate_movement_state()
+
+#---
+
+func _on_charged_attack_state_exited() -> void:
+	charged_attack_hit_vfx.visible = false
+	slashes_group.visible = false
+
+#---
+
+func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	print("Something is inside the charged attack area")
+	make_damage(area, charged_attack_damage)
 
 #---
 
 func _on_charged_recovery_state_entered() -> void:
 	is_recovering = true
-	debug_chrono = 0
 	enable_can_transition()
-	print("Recovery : ON")
+
 
 func _on_charged_recovery_state_processing(delta: float) -> void:
-	debug_chrono += delta
-	print("Start to check if can change the state")
+	is_charged_attacking = false
+	enable_movement()
+	can_transition = true
+	disable_charge_attack_lock_mesh()
+	disable_charge_attack_mode()
 	activate_idle_state()
 	activate_movement_state()
-	
-func _on_charged_attack_state_physics_processing(delta: float) -> void:
-	debug_chrono += delta
-	
 
 #---
 
@@ -500,12 +543,16 @@ func _on_charged_recovery_state_exited() -> void:
 	disable_charge_attack_lock_mesh()
 	disable_charge_attack_mode()
 	
-	#print("Recovery : OFF")
-	#print("Recovery state duration : ", debug_chrono)
+	
+	
 
 #---
 
 func _on_death_state_entered() -> void:
+	charged_attack_swing_sound.stop()
+	charged_attack_charge_sound.stop()
+	is_charged_attacking = false
+	disable_charge_range_indicator()
 	death()
 
 
@@ -537,7 +584,6 @@ func activate_idle_state()-> void :
 	if _input_strength < 0.1 or _real_speed < 0.05 and is_on_floor() and !is_charged_attacking and can_transition:
 		base_state_machine.travel("MovementBlendSpace")
 		send_event_state_chart("IsIdle")
-		#print("Enter in idle state")
 
 #---
 
@@ -545,25 +591,14 @@ func activate_idle_state()-> void :
 #launch movement state
 func activate_movement_state()-> void :
 	if _input_strength >= 0.1 or _real_speed >= 0.05 and is_on_floor() and !is_dashing and can_transition:
-		#print("J'ai passé le teste pour activer le mouvement")
-	
 		base_state_machine.travel("MovementBlendSpace")
-		#print("Je viens de lancer le mouvement depuis activate movement state")
-		#print("Charged attack variable is : ", is_charged_attacking)
 		send_event_state_chart("IsMoving")
-
-	#else : 
-		#print("Une des conditions pour passer le mouvement est fausse")
-
 
 #---
 
 #If player is not on floor, is not dashing and is allowed to transition
 #launch in the air state
 func activate_in_the_air_state() -> void :
-	#if  is_on_floor() and is_dashing and can_transition:
-		##print("Le state s'est pas activé")
-		#return  # Ne pas activer le state "InTheAir" pendant ou juste après un dash
 
 	if not is_on_floor() or Input.is_action_just_pressed("jump") and can_transition:
 		send_event_state_chart("IsInTheAir")
@@ -573,7 +608,7 @@ func activate_in_the_air_state() -> void :
 #If the player presses the dash action and a state transition is allowed
 #launch the dash state
 func activate_dash_state() -> void :
-	if Input.is_action_just_pressed("dash") and can_transition:
+	if Input.is_action_just_pressed("dash") and can_transition and current_dash_countdown <= 0.0:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -587,11 +622,9 @@ func is_in_the_air_state() -> void :
 #launch light attack state
 func activate_light_attack_state() -> void :
 
-
 	if Input.is_action_just_pressed("light_attack") and is_on_floor() and can_transition :
 		send_event_state_chart("IsLightAttacking")
 		launch_light_attack()
-		#print("Ensuite passe par la : 2 ")
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
@@ -602,12 +635,12 @@ func activate_light_attack_state() -> void :
 #If charged attack input was pressed , is on ground is not dashing, charged attacking already and can transition
 #launch charged attack state
 func activate_charged_attack_state() -> void  :
-	if Input.is_action_just_pressed("charge_attack") and is_on_floor() and !is_dashing and !is_charged_attacking and can_transition:
+	if Input.is_action_pressed("charge_attack") and is_on_floor() and !is_dashing and !is_charged_attacking and can_transition:
 		send_event_state_chart("IsChargedAttacking")
-		base_state_machine.stop()
-		base_state_machine.travel("ChargedAttack")
-	#else:
-		#print("Condition not good for charged attack")
+		#base_state_machine.stop()
+		base_state_machine.travel("ChargedAttackChargePhaseBlendTree")
+		
+
 
 
 # --------------------------------------------------------------------------
@@ -685,7 +718,7 @@ func add_gravity(delta : float) -> void :
 #---
 
 func move_the_character() -> void:
-	if can_move and not charge_attack_mode:
+	if can_move :# and not charge_attack_mode:
 		# Get inputs controle
 		direction_vector_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
@@ -693,18 +726,19 @@ func move_the_character() -> void:
 
 		# Apply horizontal movement
 		if direction_vector_input.length() > 0.2:
-			velocity.x = player_movement_direction.x * player_speed * input_strength
-			velocity.z = player_movement_direction.z * player_speed * input_strength
+			velocity.x = player_movement_direction.x * player_current_speed * input_strength
+			velocity.z = player_movement_direction.z * player_current_speed * input_strength
 
 			# Rotation of the character
 			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			rotation.y = player_rotation_angle
+			if  not charge_attack_mode:
+				rotation.y = player_rotation_angle
 		else:
 			velocity.x = 0
 			velocity.z = 0
 
 		# Jump logic (Y axis)
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		if Input.is_action_just_pressed("jump") and is_on_floor() and  not charge_attack_mode:
 			jump_the_character()
 
 	# Apply movement
@@ -714,24 +748,32 @@ func move_the_character() -> void:
 
 func charge_attack_movement_mode() -> void :
 
-	if charge_attack_mode:
+	if is_charged_attacking:
+		#Slow down the player during the charged attack mode
+		player_current_speed = player_charged_attack_speed
+		
+		##Use the right joystick input in order to calculate a directional vector
+		#direction_vector_input= Input.get_vector("aim_left", "aim_right", "aim_forward", "aim_backward")
+		##Get the 2D vector from the right joystick, transform it into a Vector3 on the axis X and Z and normalized it to get a constant vector
+		#var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
+		##Use the input length to get the magnetude
+		#var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
+#
+		### Rotation of the character in the direction of the movement
+		 ## Mise à jour de la rotation uniquement si il y a une entrée significative
+		#if input_strength > 0.001:  # If there is a movement of the joystick
+			##Calculate the player rotation angle with the function atan2
+			#var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
+			##Assign the rotation to the player
+			#rotation.y = player_rotation_angle
+			##Save the rotation
+			#last_rotation_angle = player_rotation_angle
+		#else: #If the player drop the joystick
+			## Let the player in the last rotation angle to not reset his orientation if he drop his joystick
+			#rotation.y = last_rotation_angle
 
-		direction_vector_input= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-		var player_movement_direction: Vector3 = Vector3(direction_vector_input.x, 0, direction_vector_input.y).normalized()
-		var input_strength: float = direction_vector_input.length() #Input magnetude (from 0 to 1)
-
-		#
-		## Rotation of the character in the direction of the movement
-		#var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-		#player.rotation.y = player_rotation_angle
-		 # Mise à jour de la rotation uniquement si il y a une entrée significative
-		if input_strength > 0.001:  # Utiliser un petit seuil plutôt que zéro
-			var player_rotation_angle: float = atan2(player_movement_direction.x, player_movement_direction.z)
-			rotation.y = player_rotation_angle
-			last_rotation_angle = player_rotation_angle
-		else:
-			# Maintenir la dernière orientation connue
-			rotation.y = last_rotation_angle
+	else : 
+		player_current_speed = player_normal_speed
 
 # --------------------------------------------------------------------------
 
@@ -769,6 +811,10 @@ func assign_movement_blend_position() -> void :
 	animation_tree.set("parameters/MiraAnimations/Combo1BlendTree/MovementBlendSpace/blend_position",velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo2BlendTree/MovementBlendSpace/blend_position", velocity.length())
 	animation_tree.set("parameters/MiraAnimations/Combo3BlendTree/MovementBlendSpace/blend_position",velocity.length())
+	animation_tree.set("parameters/MiraAnimations/ChargedAttackChargePhaseBlendTree/MovementBlendSpace/blend_position",velocity.length())
+	#animation_tree.set("parameters/MiraAnimations/ChargedAttackSwingBlendTree/MovementBlendSpace/blend_position",velocity.length())
+	animation_tree.set("parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/BlendSpace1D/blend_position", velocity.length())
+
 
 #---
 # Updates input, speed, and idle timer to track player movement state.
@@ -793,7 +839,6 @@ func update_movement_tracking(delta: float) -> void:
 
 func enable_movement() -> void :
 	can_move = true
-	#print("enable movement is active")
 
 #---
 
@@ -831,14 +876,11 @@ func start_dash():
 #---
 
 func execute_dash():
-	#print("Execute dash")
 	if start_time > 0:
-		#print("I'm in start time")
 		var elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0
 		var t = elapsed_time / dash_duration
 
 		if t >= 1:
-			#print("t >= 1 so stop dash")
 			stop_dash()
 			return
 
@@ -857,7 +899,6 @@ func execute_dash():
 		var coll = move_and_collide(step)
 
 		if coll:
-			print("There is a collision so stop dash")
 			stop_dash()
 
 #---
@@ -888,7 +929,6 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 #---
 
 func stop_dash():
-	print("Stop dash was launch")
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
 	enable_can_transition()
@@ -925,12 +965,22 @@ func launch_action_line() -> void :
 
 func launch_dash_animation() -> void :
 	base_state_machine.travel("Dash")
-	#print("Lauch dash animation")
 
 # --------------------------------------------------------------------------
 
 ## ATTACK
 
+
+func make_damage(area : Area3D, damage : float) -> void :
+	
+	# Récupérer le nœud parent de l'Area
+	var parent = area.get_parent()
+	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
+		parent.take_damage(damage)
+		print("Suppose to make damage")
+		trigger_shake()
+		return
+		
 #Light attack
 
 func launch_light_attack() -> void:
@@ -941,7 +991,6 @@ func launch_light_attack() -> void:
 	base_state_machine.stop()
 	await get_tree().process_frame
 	base_state_machine.travel(target_state)
-	#print("Launch light attack")
 	
 	if animation_combo_index == 1 :
 		await get_tree().create_timer(light_attack_combo_1_duration).timeout #Duration of the animation : 0.5. Timescale : 1.75 so : 0.5/1.75 = 0,288s
@@ -952,12 +1001,11 @@ func launch_light_attack() -> void:
 		activate_idle_state()
 		activate_movement_state()
 	elif animation_combo_index == 3 :
-		await get_tree().create_timer(light_attack_combo_3_duration).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
+		await get_tree().create_timer(light_attack_combo_3_duration / 2).timeout
+		set_animation_index_values(1)
+		await get_tree().create_timer(light_attack_combo_3_duration / 2).timeout #Duration of the animation : 2.125. Timescale : 1.75 so : 2.125/1.75 = 1.214s
 		activate_idle_state()
 		activate_movement_state()
-
-	#base_state_machine.travel(target_state)
-
 
 #---
 
@@ -1003,6 +1051,7 @@ func player_attack_3_sfx() -> void :
 	attack_3_sound.play()
 
 #---
+
 func instantiate_combo_1_vfx() -> void :
 	var combo_1_vfx_instance = combo_1_vfx_scene.instantiate()
 	current_vfx = combo_1_vfx_instance
@@ -1020,10 +1069,13 @@ func instantiate_combo_1_vfx() -> void :
 		current_position
 	)
 
+#---
+
 func destroy_light_attack_vfx() -> void :
 	await get_tree().create_timer(0.5).timeout
 	current_vfx.queue_free()
 
+#---
 
 func instantiate_combo_2_vfx() -> void :
 
@@ -1048,7 +1100,6 @@ func instantiate_combo_2_vfx() -> void :
 func enable_combo_3_vfx() -> void :
 	combo_3_vfx.visible = true
 
-
 #---
 
 func disable_combo_3_vfx() -> void :
@@ -1061,74 +1112,111 @@ func launch_combo_3_vfx_animation() -> void :
 
 #---
 
-func make_damage(area : Area3D, damage : float) -> void :
-	# Récupérer le nœud parent de l'Area
-	var parent = area.get_parent()
-	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
-		parent.take_damage(damage)
-		trigger_shake()
-		return
-
 func enable_light_attack_area() -> void :
 	light_attack_area.monitoring = true
+
+#---
 
 func disable_light_attack_area() -> void :
 	light_attack_area.monitoring = false
 
+#---
+
 func enable_long_range_collision() -> void :
 	long_range_collision_shape.disabled = false
+
+#---
 
 func disable_long_range_collision() -> void :
 	long_range_collision_shape.disabled = true
 
+#---
+
 func enable_short_range_collision() -> void :
 	short_range_collision_shape.disabled = false
+
+#---
 
 func disable_short_range_collision() -> void :
 	short_range_collision_shape.disabled = true
 
+#---
+
 func enable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = true
 
+#---
+
 func disable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = false
+
+#---
 
 func enable_charged_attack_collision() -> void :
 	charged_attack_collision.disabled = false
 	charged_attack_impact_collision.disabled = false
 
-func disable_charged_attack_collision() -> void :
-	charged_attack_collision.disabled = true
-	charged_attack_impact_collision.disabled = true
+#---
 
 func set_light_attack_camera_shake_value() -> void :
 	current_shake = light_attack_shake
 
+
+# --------------------------------------------------------------------------
+
+#Charged attack
+
+func cancel_charged_attack() -> void : 
+	enable_can_transition()
+	disable_charge_attack_lock_mesh()
+	
+	disable_charge_attack_mode()
+	charged_attack_charge_sound.stop()
+	charged_attack_swing_sound.stop()
+	is_charged_attacking = false
+
+#---
+
 func set_charged_attack_camera_shake_value() -> void :
 	current_shake = charged_attack_shake
 
+#---
+
 func charged_attack_sfx() -> void :
-	charged_attack_sound.play()
+	charged_attack_charge_sound.play()
+
+#---
 
 func enable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging.visible = true
 
+#---
+
 func disable_charge_attack_charging_vfx() -> void :
 	charge_attack_charging.visible = false
 
+#---
+
 func enable_charge_attack_mode() -> void :
-	can_move = false
 	charge_attack_mode = true
 
+#---
+
 func disable_charge_attack_mode() -> void :
-	can_move = true
 	charge_attack_mode = false
+
+#---
 
 func enable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = true
 
+#---
+
 func disable_charge_attack_lock_mesh() -> void :
 	charge_attack_lock_mesh.visible = false
+	charged_attack_hit_vfx.visible = false
+
+#---
 
 func instantiate_charged_attack_impact_vfx() -> void :
 	if vfx_spawned:
@@ -1152,12 +1240,102 @@ func instantiate_charged_attack_impact_vfx() -> void :
 	charged_attack_impact_vfx_instance.global_transform = Transform3D(new_basis, current_position)
 	vfx_spawned = false
 
+#---
 
-func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	make_damage(area, charged_attack_damage)
+func disable_charged_attack_collision() -> void :
+	charged_attack_collision.disabled = true
+	charged_attack_impact_collision.disabled = true
+
+#---
+
+func activate_charged_attack_gauge(delta : float) -> void : 
+	if is_in_the_charge_stage:
+		charged_attack_gauge += delta
+
+#---
+
+func reset_charged_attack_gauge() -> void : 
+	if not is_in_post_attack_phase:
+		charged_attack_gauge = 0.0
+
+#---
+
+func activate_charge_range_indicator() -> void : 
+	charged_attack_indicator.visible = true
+	charged_attack_indicator_animation_player.play("RESET")
+
+#---
+
+func disable_charge_range_indicator() -> void : 
+	charged_attack_indicator.visible = false
+
+#---
+
+func scale_charge_attack_range_indicator() -> void : 
+	var tween = create_tween()
+	tween.set_parallel(true)
+	
+	if charged_attack_gauge <= 1 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1),0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1),0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1),0.2)
+		charged_attack_charge_sound.pitch_scale = 1.0
+		
+		
+
+		
+	elif charged_attack_gauge > 1 and charged_attack_gauge < 2 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 2, 0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 2 , 0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 2, 0.2)
+		charged_attack_charge_sound.pitch_scale = 1.2
+
+	elif charged_attack_gauge > 2 : 
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 3,0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 3 ,0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 3,0.2)
+		charged_attack_charge_sound.pitch_scale = 1.5
+
+#---
+
+func handle_charge_attack_sound_pitch() -> void : 
+	print("Gauge is : ", charged_attack_gauge)
+	if charged_attack_gauge <= 1 : 
+		print("Charge sound pitch in phase 1 is: ", charged_attack_charge_sound.pitch_scale)
+		charged_attack_charge_sound.pitch_scale = 1.0
+		
+	elif charged_attack_gauge == 1: 
+
+		charged_attack_charge_sound.pitch_scale = 1.5
+		print("Charge sound pitch in phase 2 is: ", charged_attack_charge_sound.pitch_scale)
+
+	elif charged_attack_gauge == 2 : 
+
+		charged_attack_charge_sound.pitch_scale = 2
+		print("Charge sound pitch in phase 3 is: ", charged_attack_charge_sound.pitch_scale)
+
+#---
+
+func activate_charged_attack_swing() -> void : 
+	charged_attack_hit_circle_animation_player.play("HitVFX")
+	charged_attack_hit_slash_animation_player.play("RESET")
+	#send_event_state_chart("IsSwinging")
+	#base_state_machine.travel("ChargedAttackSwingBlendTree")
+
+#---
+
+func activate_charged_attack_swing_sound() -> void : 
+	charged_attack_charge_sound.stop()
+	charged_attack_swing_sound.play()
 
 # --------------------------------------------------------------------------
 
+## DASH
+
+func launch_dash_countdown(delta : float) -> void : 
+	if current_dash_countdown> 0 :
+		current_dash_countdown -= delta
+# --------------------------------------------------------------------------
 ## VFX
 func instantiate_foot_step_vfx() -> void :
 	var vfx_instance = foot_step_vfx.instantiate()  # Crée une instance du VFX
@@ -1174,7 +1352,7 @@ func freeze_frame() -> void :
 
 # --------------------------------------------------------------------------
 
-## SFX
+## General SFX
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
 		return
