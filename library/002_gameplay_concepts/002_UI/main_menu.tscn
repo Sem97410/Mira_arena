@@ -377,6 +377,7 @@ autowrap_mode = 3
 
 [node name="TitleScreenSoundPlaceHolder" type="AudioStreamPlayer" parent="MainMenuControl"]
 stream = ExtResource("7_3rw7x")
+volume_db = -20.0
 
 [node name="VideoControl" type="Control" parent="."]
 visible = false
@@ -423,11 +424,6 @@ theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 20
 text = "Pass the video"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_3rw7x")
-volume_db = -35.0
-bus = &"title_screen"
 
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
 [connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuControl" method="_on_arena_mode_button_down"]
