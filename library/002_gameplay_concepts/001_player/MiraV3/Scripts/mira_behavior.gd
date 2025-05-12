@@ -472,10 +472,10 @@ func _on_charged_attack_state_processing(delta: float) -> void:
 	assign_movement_blend_position()
 	activate_charged_attack_gauge(delta)
 	scale_charge_attack_range_indicator()
-	handle_charged_attack_sfx()
+	#handle_charge_attack_sound_pitch()
 	
 	
-	
+
 	#If player release the charged attack input stop it and all the effects
 	if not Input.is_action_pressed("charge_attack"): #if player release the button before the end of the animation
 		can_move = false
@@ -484,8 +484,6 @@ func _on_charged_attack_state_processing(delta: float) -> void:
 		slashes_group.visible = true
 		activate_charged_attack_swing()
 		enable_charged_attack_area()
-		#charged_attack_charge_sound.stop()
-		charged_attack_swing_sound.play()
 		send_event_state_chart("IsSwinging")
 		base_state_machine.travel("ChargedAttackSwingPhaseBlendTree")
 		#animation_tree.set("parameters/MiraAnimations/ChargedAttackBlendTree/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -538,10 +536,16 @@ func _on_charged_recovery_state_exited() -> void:
 	disable_charge_attack_lock_mesh()
 	disable_charge_attack_mode()
 	
+	
+	
 
 #---
 
 func _on_death_state_entered() -> void:
+	charged_attack_swing_sound.stop()
+	charged_attack_charge_sound.stop()
+	is_charged_attacking = false
+	disable_charge_range_indicator()
 	death()
 
 
@@ -1134,7 +1138,6 @@ func disable_short_range_collision() -> void :
 func enable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = true
 
-
 #---
 
 func disable_charged_attack_area() -> void :
@@ -1254,8 +1257,12 @@ func activate_charge_range_indicator() -> void :
 	charged_attack_indicator.visible = true
 	charged_attack_indicator_animation_player.play("RESET")
 
+#---
+
 func disable_charge_range_indicator() -> void : 
 	charged_attack_indicator.visible = false
+
+#---
 
 func scale_charge_attack_range_indicator() -> void : 
 	var tween = create_tween()
@@ -1265,42 +1272,42 @@ func scale_charge_attack_range_indicator() -> void :
 		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1),0.2)
 		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1),0.2)
 		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1),0.2)
+		charged_attack_charge_sound.pitch_scale = 1.0
+		
 		
 
 		
 	elif charged_attack_gauge > 1 and charged_attack_gauge < 2 : 
-		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 2,0.2)
-		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 2 ,0.2)
-		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 2,0.2)
-	
-
-		
-		#charged_attack_indicator.scale = Vector3(1,1,1) * 2
-		#charged_attack_hit_vfx.scale = Vector3(1,1,1) * 2
+		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 2, 0.2)
+		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 2 , 0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 2, 0.2)
+		charged_attack_charge_sound.pitch_scale = 1.2
 
 	elif charged_attack_gauge > 2 : 
 		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 3,0.2)
 		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 3 ,0.2)
 		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 3,0.2)
-	
-		
-func handle_charged_attack_sfx() -> void : 
+		charged_attack_charge_sound.pitch_scale = 1.5
+
+#---
+
+func handle_charge_attack_sound_pitch() -> void : 
+	print("Gauge is : ", charged_attack_gauge)
 	if charged_attack_gauge <= 1 : 
-		
+		print("Charge sound pitch in phase 1 is: ", charged_attack_charge_sound.pitch_scale)
 		charged_attack_charge_sound.pitch_scale = 1.0
 		
 	elif charged_attack_gauge == 1: 
 
-		charged_attack_charge_sound.pitch_scale = 1.2
-		charged_attack_charge_sound.stop()
-		charged_attack_charge_sound.play()
-		
+		charged_attack_charge_sound.pitch_scale = 1.5
+		print("Charge sound pitch in phase 2 is: ", charged_attack_charge_sound.pitch_scale)
 
 	elif charged_attack_gauge == 2 : 
 
-		charged_attack_charge_sound.pitch_scale = 1.5
-		charged_attack_charge_sound.stop()
-		charged_attack_charge_sound.play()
+		charged_attack_charge_sound.pitch_scale = 2
+		print("Charge sound pitch in phase 3 is: ", charged_attack_charge_sound.pitch_scale)
+
+#---
 
 func activate_charged_attack_swing() -> void : 
 	charged_attack_hit_circle_animation_player.play("HitVFX")
@@ -1308,6 +1315,11 @@ func activate_charged_attack_swing() -> void :
 	#send_event_state_chart("IsSwinging")
 	#base_state_machine.travel("ChargedAttackSwingBlendTree")
 
+#---
+
+func activate_charged_attack_swing_sound() -> void : 
+	charged_attack_charge_sound.stop()
+	charged_attack_swing_sound.play()
 
 # --------------------------------------------------------------------------
 
@@ -1327,7 +1339,7 @@ func freeze_frame() -> void :
 
 # --------------------------------------------------------------------------
 
-## SFX
+## General SFX
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
 		return

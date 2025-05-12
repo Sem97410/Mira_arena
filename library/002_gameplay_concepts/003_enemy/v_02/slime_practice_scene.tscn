@@ -299,6 +299,7 @@ initial_spawn_count = 5
 spawn_chances = Array[int]([100, 100, 100, 100, 0])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
+player_max_hp = 1.0
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
 bones/1/position = Vector3(-0.099144, 0.431293, -0.188987)
