@@ -300,8 +300,6 @@ func _physics_process(delta: float) -> void:
 	add_gravity(delta)
 	decrease_dash_countdown(delta)
 	update_movement_tracking(delta)
-	
-	print("Last node de merde is : ", base_state_machine.get_current_node())
 
 	if dash_cooldown_after_stop > 0:
 		dash_cooldown_after_stop -= delta
@@ -474,16 +472,19 @@ func _on_charged_attack_state_processing(delta: float) -> void:
 	scale_charge_attack_range_indicator()
 	
 	
+	
 	#If player release the charged attack input stop it and all the effects
 	if not Input.is_action_pressed("charge_attack"): #if player release the button before the end of the animation
-		print("Je devrais arreter l'anime la ")
+
 		is_in_the_charge_stage = false
 		disable_charge_range_indicator()
 		slashes_group.visible = true
 		activate_charged_attack_swing()
+		enable_charged_attack_area()
 		
 		await get_tree().create_timer(0.5).timeout
 		
+		disable_charged_attack_area()
 		reset_charged_attack_gauge()
 		cancel_charged_attack() #Cancel the lock mesh,the sound, the charged attack mode and is_charged_attacking = false
 		send_event_state_chart("IsFinishingTheChargedAttack")
@@ -499,6 +500,7 @@ func _on_charged_attack_state_exited() -> void:
 #---
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
+	print("Something is inside the charged attack area")
 	make_damage(area, charged_attack_damage)
 
 #---
@@ -951,10 +953,12 @@ func launch_dash_animation() -> void :
 
 
 func make_damage(area : Area3D, damage : float) -> void :
+	
 	# Récupérer le nœud parent de l'Area
 	var parent = area.get_parent()
 	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
+		print("Suppose to make damage")
 		trigger_shake()
 		return
 		
@@ -1122,6 +1126,7 @@ func disable_short_range_collision() -> void :
 func enable_charged_attack_area() -> void :
 	charged_attack_area.monitoring = true
 
+
 #---
 
 func disable_charged_attack_area() -> void :
@@ -1250,6 +1255,7 @@ func scale_charge_attack_range_indicator() -> void :
 	if charged_attack_gauge <= 1 : 
 		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1),0.2)
 		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1),0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1),0.2)
 		
 		#charged_attack_indicator.scale = Vector3(1,1,1)
 		#charged_attack_hit_vfx.scale = Vector3(1,1,1)
@@ -1257,6 +1263,7 @@ func scale_charge_attack_range_indicator() -> void :
 	elif charged_attack_gauge > 1 and charged_attack_gauge < 2 : 
 		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 2,0.2)
 		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 2 ,0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 2,0.2)
 		
 		#charged_attack_indicator.scale = Vector3(1,1,1) * 2
 		#charged_attack_hit_vfx.scale = Vector3(1,1,1) * 2
@@ -1264,6 +1271,7 @@ func scale_charge_attack_range_indicator() -> void :
 	elif charged_attack_gauge > 2 : 
 		tween.tween_property(charged_attack_indicator,"scale",Vector3(1,1,1) * 3,0.2)
 		tween.tween_property(charged_attack_hit_vfx,"scale",Vector3(1,1,1) * 3 ,0.2)
+		tween.tween_property(charged_attack_area,"scale",Vector3(1,1,1) * 3,0.2)
 		
 		#charged_attack_indicator.scale = Vector3(1,1,1) * 3
 		#charged_attack_hit_vfx.scale = Vector3(1,1,1) * 3
