@@ -78,7 +78,7 @@ func _on_main_menu_button_down() -> void:
 #Main menu confirmation pannel
 
 func _on_main_menu_yes_button_button_down() -> void:
-	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/002_UI/main_menu.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/002_UI/title_screen/title_screen.tscn") # Replace with function body.
 
 func _on_main_menu_no_button_button_down() -> void:
 	main_menu_confirmation_container.visible = false

@@ -4872,7 +4872,7 @@ extent = 4.0
 bounds = AABB(-23, -1, -39, 8, 8, 8)
 max_bounds_to_center_dist = 6.9282
 min_bounds_to_center_dist = 4.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_suhi8"]
@@ -4890,7 +4890,7 @@ extent = 8.0
 bounds = AABB(-31, -9, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_p26g8"]
@@ -4926,7 +4926,7 @@ extent = 8.0
 bounds = AABB(-31, 7, -47, 16, 16, 16)
 max_bounds_to_center_dist = 13.8564
 min_bounds_to_center_dist = 8.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_aq6ry"]
@@ -5016,7 +5016,7 @@ extent = 16.0
 bounds = AABB(-31, -9, -63, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 2
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_hhw0q"]
@@ -7878,7 +7878,7 @@ extent = 16.0
 bounds = AABB(1, -41, 1, 32, 32, 32)
 max_bounds_to_center_dist = 27.7128
 min_bounds_to_center_dist = 16.0
-active_LOD_index = 1
+active_LOD_index = 2
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_evmh3"]
@@ -14647,7 +14647,6 @@ transform = Transform3D(0.968326, 0, -1.14558, 0, 1.5, 0, 1.14558, 0, 0.968326, 
 
 [node name="MiraV3" parent="." instance=ExtResource("69_voux2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.231, -0.868281, 24.6983)
-player_max_hp = 1.0
 player_dash_countdown = 0.5
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
