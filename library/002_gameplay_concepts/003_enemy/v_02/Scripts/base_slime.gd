@@ -31,6 +31,7 @@ var target_position : Vector3
 #Health variables
 
 
+
 #----------------------
 @export_category("Meshes variables")
 
@@ -67,7 +68,6 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @export var explosion_damage : float
 
 @onready var can_shoot = true
-
 @export var mortar_target : PackedScene
 @export var mortar_attack_cooldown : float = 3.0
 @export var min_mortar_delay_before_impact : float = 0.5
@@ -605,19 +605,24 @@ func _on_pre_explosion_state_physics_processing(delta: float) -> void:
 
 func _on_explosion_state_entered() -> void:
 	#print("Je suis dans explosion")
+	slime_body.visible = false
+	pre_attack_indicator.visible = false
+	attack_indicator.visible = false
 	explosion()
 
 
-	
-
-
 func explosion() -> void : 
-	death(slime,pre_explosion_duration)
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-	await get_tree().create_timer(pre_explosion_duration,false,true).timeout
 
+	death(slime,1.1)
+	#print("Step one")
+	
+	await get_tree().create_timer(1.0,false,true).timeout
+	
+	#print("Step two")
+	
 	explosion_area.visible = true
 	explosion_area.monitorable = true
 	explosion_area.monitoring = true
@@ -626,12 +631,13 @@ func explosion() -> void :
 	
 	instantiate_vfx(slime.position, explosion_vfx)
 
+
 func _on_pre_explosion_state_exited() -> void:
 	pre_attack_indicator.visible = false
 
 
 func _on_death_explosion_state_entered() -> void:
-	#print("Je suis dans death explosion")
+	print("Je suis dans death explosion")
 	knockback(player_position)
 	explosion()
 	

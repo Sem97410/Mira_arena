@@ -17,7 +17,6 @@ func destroy_projectil() -> void :
 
 
 func _on_area_3d_area_entered(_area: Area3D) -> void:
-	#print("Je suis dans make damage")
 	make_projectile_zone_damages(projectil_explosion_area, 25.0)
 	
 	
@@ -34,10 +33,8 @@ func make_projectile_zone_damages(attack_area : Area3D, damage : float) -> void:
 
 		if parent.has_method("take_damage"):
 			parent.take_damage(damage)
-			#print("Parent takes damage")
 
 		for child in parent.get_children():
 			if child.has_method("take_damage"):
 				child.take_damage(damage)
-				#print("Child takes damage")
 				break  # Stop dès qu’un enfant a été touché

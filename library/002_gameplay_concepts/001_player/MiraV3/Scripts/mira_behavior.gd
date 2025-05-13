@@ -281,8 +281,6 @@ func trigger_shake() -> void:
 func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
 	
-	print("Current animation node is ", base_state_machine.get_current_node())
-	#print("Can transition is : ", can_transition)
 	charge_attack_movement_mode()
 
 	#if Input.is_action_just_pressed("await_test"):
@@ -978,7 +976,7 @@ func make_damage(area : Area3D, damage : float) -> void :
 	var parent = area.get_parent()
 	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
-		print("Suppose to make damage")
+		#print("Suppose to make damage")
 		trigger_shake()
 		return
 		
