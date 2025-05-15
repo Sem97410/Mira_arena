@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://da14aowprjedb"]
+
+[ext_resource type="Script" uid="uid://ilq81kofajv5" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.gd" id="1_g61uo"]
+
+[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("current_wave_label", "number_of_enemies_in_wave_label", "enemies_killed_in_this_wave_label") groups=["wave_manager"]]
+script = ExtResource("1_g61uo")
+current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
+number_of_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
+enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/enemies_killed_in_this_wave_label")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 184.0
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current wave"
+
+[node name="NumberOfEnemiesInWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Number of enemies"
+
+[node name="enemies_killed_in_this_wave_label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemies killed in this wave label"

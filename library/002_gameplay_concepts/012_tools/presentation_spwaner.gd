@@ -5,6 +5,7 @@ extends Node3D
 @export var spawn_range: float = 5.0
 @export var initial_spawn_count: int = 3
 @export var activation_input: String  # Exemple : "launch_hunter"
+@onready var wave_manager : WaveManager
 
 var enemies_to_spawn: int
 var enemies_spawned: int = 0
@@ -12,6 +13,7 @@ var is_active := false
 
 func _ready():
 	spawner_timer.stop()
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
 
 func _process(_delta):
 	if not is_active and Input.is_action_just_pressed(activation_input):
@@ -45,5 +47,9 @@ func _on_timer_timeout() -> void:
 	get_parent().add_child(new_enemy)
 	new_enemy.global_position = global_position + _random_offset()
 	enemies_spawned += 1
+	
+	##Add an enemy in the wave manager enemies counter
+	wave_manager.current_number_of_enemies_in_wave += 1
+
 
 	#print("🧬 Spawned:", new_enemy.name, "@", new_enemy.global_position)

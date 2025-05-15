@@ -21,10 +21,7 @@ class_name BaseSlime
 #general variables
 var player_position : Vector3
 var target_position : Vector3
-
-
-
-
+@onready var wave_manager : WaveManager
 
 
 #----------------------
@@ -118,6 +115,7 @@ var random_point_navmesh: Vector3
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") #Assign the player
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
 	can_move = true
 	current_health_point = max_health_point
 
@@ -280,6 +278,9 @@ func _on_death_state_entered() -> void:
 	slime_body.visible = false
 	drop_health_item(slime.global_position)
 	instantiate_vfx(slime.global_position, death_vfx )
+	
+	decrease_current_enemies_number(wave_manager)
+	
 	death(slime, 1.5)
 #----------------------------------------------
 #endregion
@@ -637,7 +638,7 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	print("Je suis dans death explosion")
+	decrease_current_enemies_number(wave_manager)
 	knockback(player_position)
 	explosion()
 	
@@ -648,17 +649,14 @@ func _on_hunt_state_exited() -> void:
 
 
 func _on_stationary_state_processing(_delta: float) -> void:
-	#print("Je suis dans Stationary")
 	pass
 
 func _on_stationary_state_entered() -> void:
-	#print("Je viens d'entrer dans Stationary")
 	await  get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
 	can_shoot = true
 	in_a_stationary_mode()
 
 func _on_shoot_state_entered() -> void:
-	#print("Je suis dans on_shoot")
 	shoot_mortar_projectile()
 
 func in_a_stationary_mode() -> void : 
