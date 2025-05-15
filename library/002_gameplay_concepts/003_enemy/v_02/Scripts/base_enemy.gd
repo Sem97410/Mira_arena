@@ -89,7 +89,7 @@ func decrease_current_enemies_number(wave_manager : WaveManager) -> void:
 	wave_manager.enemies_killed_in_this_wave += 1
 	
 	if wave_manager.enemies_killed_in_this_wave == wave_manager.max_enemies_in_this_wave: 
-		wave_manager.can_change_wave = true ## CHANGE WAVE HERE
+		wave_manager.launch_pause_time_after_wave()
 
 #----------------------------------------------
 ##Health functions

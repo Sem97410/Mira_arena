@@ -413,34 +413,34 @@ parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)
 enemy_scene = ExtResource("6_eiupe")
 spawn_range = 10.0
-initial_spawn_count = 15
+initial_spawn_count = 1
 activation_input = "launch_wanderer"
 
 [node name="Spwaner_hunter_presentation" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)
 spawn_range = 10.0
-initial_spawn_count = 15
+initial_spawn_count = 1
 activation_input = "launch_hunter"
 
 [node name="Spwaner_bomber_presentation" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)
 enemy_scene = ExtResource("6_76nq8")
 spawn_range = 10.0
-initial_spawn_count = 15
+initial_spawn_count = 1
 activation_input = "launch_bomber"
 
 [node name="Spwaner_missile_presentation" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)
 enemy_scene = ExtResource("8_j8glw")
 spawn_range = 10.0
-initial_spawn_count = 15
+initial_spawn_count = 1
 activation_input = "launch_missile"
 
 [node name="Spwaner_mortar_presentation" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0081, 0, 0)
 enemy_scene = ExtResource("9_ykcya")
 spawn_range = 10.0
-initial_spawn_count = 5
+initial_spawn_count = 1
 activation_input = "launch_mortar"
 
 [node name="WaveManager" parent="." instance=ExtResource("10_k41v4")]

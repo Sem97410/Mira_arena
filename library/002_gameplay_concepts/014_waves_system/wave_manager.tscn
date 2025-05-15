@@ -1,12 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://da14aowprjedb"]
+[gd_scene load_steps=7 format=3 uid="uid://da14aowprjedb"]
 
 [ext_resource type="Script" uid="uid://ilq81kofajv5" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.gd" id="1_g61uo"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_cycfr"]
+[ext_resource type="Shader" uid="uid://buvi0yvw6naft" path="res://library/002_gameplay_concepts/014_waves_system/AnnounceColor.tres" id="2_wu8ph"]
 
-[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("current_wave_label", "number_of_enemies_in_wave_label", "enemies_killed_in_this_wave_label") groups=["wave_manager"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu8ph"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ig0bh"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.768627, 0.54902, 0.32549, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwori"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.909804, 0.741176, 0.47451, 1)
+shader_parameter/FloatParameter = 1.0
+
+[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("current_wave_label", "number_of_enemies_in_wave_label", "enemies_killed_in_this_wave_label", "announce_label", "announce_panel") groups=["wave_manager"]]
 script = ExtResource("1_g61uo")
 current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
 number_of_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
 enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/enemies_killed_in_this_wave_label")
+announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/AnounceText")
+announce_panel = NodePath("Control/MarginContainer2/PanelContainer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -34,12 +53,52 @@ alignment = 1
 
 [node name="CurrentWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Current wave"
 
 [node name="NumberOfEnemiesInWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Number of enemies"
 
 [node name="enemies_killed_in_this_wave_label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Enemies killed in this wave label"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_right = 350.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer2"]
+visible = false
+material = SubResource("ShaderMaterial_wu8ph")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer2/PanelContainer"]
+material = SubResource("ShaderMaterial_ig0bh")
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_xwori")
+layout_mode = 2
+
+[node name="AnounceText" type="Label" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("2_cycfr")
+theme_override_font_sizes/font_size = 70
+text = "This is an announce"
+horizontal_alignment = 1
+vertical_alignment = 1
