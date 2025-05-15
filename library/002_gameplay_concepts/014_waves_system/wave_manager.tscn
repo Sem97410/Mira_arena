@@ -19,11 +19,12 @@ shader = ExtResource("2_wu8ph")
 shader_parameter/ColorParameter = Color(0.909804, 0.741176, 0.47451, 1)
 shader_parameter/FloatParameter = 1.0
 
-[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("current_wave_label", "number_of_enemies_in_wave_label", "enemies_killed_in_this_wave_label", "announce_label", "announce_panel") groups=["wave_manager"]]
+[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("current_wave_label", "number_of_enemies_in_wave_label", "enemies_killed_in_this_wave_label", "max_number_of_enemies_in_this_wave", "announce_label", "announce_panel") groups=["wave_manager"]]
 script = ExtResource("1_g61uo")
 current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
 number_of_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
-enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/enemies_killed_in_this_wave_label")
+enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/EnemiesKilledInThisWaveLabel")
+max_number_of_enemies_in_this_wave = NodePath("Control/MarginContainer/VBoxContainer/MaxEnemiesInThisWaveLabel")
 announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/AnounceText")
 announce_panel = NodePath("Control/MarginContainer2/PanelContainer")
 
@@ -61,7 +62,12 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Number of enemies"
 
-[node name="enemies_killed_in_this_wave_label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+[node name="EnemiesKilledInThisWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Enemies killed in this wave label"
+
+[node name="MaxEnemiesInThisWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Enemies killed in this wave label"

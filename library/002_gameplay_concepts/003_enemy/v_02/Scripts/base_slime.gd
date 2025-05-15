@@ -638,7 +638,8 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	decrease_current_enemies_number(wave_manager)
+	#decrease_current_enemies_number(wave_manager)
+	
 	knockback(player_position)
 	explosion()
 	

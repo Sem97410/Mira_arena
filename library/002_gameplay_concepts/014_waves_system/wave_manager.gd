@@ -10,11 +10,13 @@ class_name WaveManager
 @onready var max_enemies_in_this_wave : int = 1
 @export var pause_after_wave_duration : float = 15.0
 @onready var visual_timer : float = 0.0
+@export var spawners : Array[Spawner]
 # --------------------------------------------------------------------------
 ## DEBUGS
 @export var current_wave_label : Label
 @export var number_of_enemies_in_wave_label : Label
 @export var enemies_killed_in_this_wave_label : Label
+@export var max_number_of_enemies_in_this_wave : Label
 @export var announce_label : Label
 @export var announce_panel : PanelContainer
 
@@ -40,11 +42,21 @@ func _process(delta: float) -> void:
 ## WAVES MANAGMENT
 
 func start_wave() -> void : 
-	
 	current_wave += 1
-	can_change_wave = false
+	can_change_wave = false 
 	wave_is_in_progress = true
-	enemies_killed_in_this_wave = 0
+	enemies_killed_in_this_wave = 0 #Reset number of enemies killed
+
+	# Exemple : calcul du nombre d'ennemis total pour cette vague
+	max_enemies_in_this_wave = 0
+
+	for spawner in spawners:
+		var spawn_count = 3 + current_wave  # ← Par exemple, vague 1 = 4, vague 2 = 5...
+		
+		max_enemies_in_this_wave += spawn_count
+		spawner.start_spawning(spawner.enemy_scene, spawn_count)
+
+		
 
 
 #---
@@ -59,22 +71,22 @@ func check_if_can_start_new_wave() -> void:
 		start_wave()
 	
 func launch_map_introduction() -> void : 
-	await get_tree().create_timer(cinematic_introduction_length).timeout
+	await get_tree().create_timer(cinematic_introduction_length, false).timeout
 	can_change_wave = true
 
 func launch_pause_time_after_wave() -> void : 
 	announce_panel.visible = true
 	announce_label.text = "Wawe " + str(current_wave) + " : Completed"
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 	visual_timer = pause_after_wave_duration
 	
-	await get_tree().create_timer(pause_after_wave_duration + 1.0).timeout
+	await get_tree().create_timer(pause_after_wave_duration + 1.0, false).timeout
 	announce_label.text = "The wave is starting"
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 	announce_label.text = "Good luck ..."
 	can_change_wave = true
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 	
 	announce_panel.visible = false
 
@@ -89,4 +101,5 @@ func actualise_anounce_visual_timer() -> void:
 func assign_debug_labels_text() -> void: 
 	current_wave_label.text = "Current wave : " + str(current_wave)
 	number_of_enemies_in_wave_label.text = "Number of enemies in the wave : " + str(current_number_of_enemies_in_wave)
-	enemies_killed_in_this_wave_label.text = "Enemies killed in this wave label : " + str(enemies_killed_in_this_wave)
+	enemies_killed_in_this_wave_label.text = "Enemies killed in this wave : " + str(enemies_killed_in_this_wave)
+	max_number_of_enemies_in_this_wave.text = "Number max of enemies in this wave : " + str(max_enemies_in_this_wave)

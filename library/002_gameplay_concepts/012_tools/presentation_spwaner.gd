@@ -1,4 +1,5 @@
 extends Node3D
+class_name Spawner
 
 @export var spawner_timer: Timer
 @export var enemy_scene: PackedScene
@@ -15,13 +16,13 @@ func _ready():
 	spawner_timer.stop()
 	wave_manager = get_tree().get_first_node_in_group("wave_manager")
 
-func _process(_delta):
-	if not is_active and Input.is_action_just_pressed(activation_input):
-		#print("✅ Spawner ACTIVATED by input:", activation_input)
-		is_active = true
-		enemies_spawned = 0
-		enemies_to_spawn = initial_spawn_count
-		spawner_timer.start()
+#func _process(_delta):
+	#if not is_active and Input.is_action_just_pressed(activation_input):
+		##print("✅ Spawner ACTIVATED by input:", activation_input)
+		#is_active = true
+		#enemies_spawned = 0
+		#enemies_to_spawn = initial_spawn_count
+		#spawner_timer.start()
 
 
 func _random_offset() -> Vector3:
@@ -53,3 +54,14 @@ func _on_timer_timeout() -> void:
 
 
 	#print("🧬 Spawned:", new_enemy.name, "@", new_enemy.global_position)
+
+func start_spawning(enemy_scene_to_use: PackedScene, number_to_spawn: int) -> void:
+	if not enemy_scene_to_use:
+		push_warning("❌ No enemy scene passed to spawner.")
+		return
+
+	enemy_scene = enemy_scene_to_use
+	enemies_spawned = 0
+	enemies_to_spawn = number_to_spawn
+	is_active = true
+	spawner_timer.start()
