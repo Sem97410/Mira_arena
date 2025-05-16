@@ -280,6 +280,7 @@ func _on_death_state_entered() -> void:
 	instantiate_vfx(slime.global_position, death_vfx )
 	
 	decrease_current_enemies_number(wave_manager)
+	print("Decrease current enemies number with death state")
 	
 	death(slime, 1.5)
 #----------------------------------------------
@@ -638,7 +639,9 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	#decrease_current_enemies_number(wave_manager)
+	decrease_current_enemies_number(wave_manager)
+	
+	print("Decrease current enemies number but with death explosion state")
 	
 	knockback(player_position)
 	explosion()

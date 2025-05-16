@@ -110,6 +110,10 @@ func death(entity : CharacterBody3D, death_animation_duration : float) :
 	freeze_movement()
 	
 	await get_tree().create_timer(death_animation_duration).timeout
+	# 🔻 Empêche le jiggle de continuer
+	for child in get_children():
+		if child is JiggleBone:
+			child.set_physics_process(false)
 	entity.queue_free()
 	
 #----------------------------------------------

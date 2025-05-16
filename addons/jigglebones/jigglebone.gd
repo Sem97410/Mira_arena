@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name JiggleBone
 enum Axis {
 	X_Plus, Y_Plus, Z_Plus, X_Minus, Y_Minus, Z_Minus
 }
@@ -116,8 +117,11 @@ func _physics_process(delta) -> void:
 	bone_rotate_axis = bone_rotate_axis.normalized()
 
 	# Bring the axis to object space, WITHOUT position (so only the BASIS is used) since vectors shouldn't be translated
+
 	var bone_rotate_axis_obj: Vector3 = (bone_transf_obj.basis * bone_rotate_axis).normalized()
 	var bone_new_transf_obj: Transform3D = Transform3D(bone_transf_obj.basis.rotated(bone_rotate_axis_obj, bone_rotate_angle), bone_transf_obj.origin)
+
+
 
 	skeleton.set_bone_global_pose_override(bone_id, bone_new_transf_obj, 0.5, true)
 
