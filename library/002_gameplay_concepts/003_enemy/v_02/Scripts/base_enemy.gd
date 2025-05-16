@@ -85,7 +85,7 @@ var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
 ##Waves functions
 
 func decrease_current_enemies_number(wave_manager : WaveManager) -> void: 
-	wave_manager.current_number_of_enemies_in_wave -= 1
+	wave_manager.enemies_alive_in_wave -= 1
 	wave_manager.enemies_killed_in_this_wave += 1
 	
 	if wave_manager.enemies_killed_in_this_wave == wave_manager.max_enemies_in_this_wave: 
@@ -110,10 +110,12 @@ func death(entity : CharacterBody3D, death_animation_duration : float) :
 	freeze_movement()
 	
 	await get_tree().create_timer(death_animation_duration).timeout
+	
 	# 🔻 Empêche le jiggle de continuer
 	for child in get_children():
 		if child is JiggleBone:
 			child.set_physics_process(false)
+			
 	entity.queue_free()
 	
 #----------------------------------------------

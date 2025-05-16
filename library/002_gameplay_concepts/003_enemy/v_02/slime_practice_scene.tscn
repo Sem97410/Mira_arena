@@ -18,8 +18,8 @@ albedo_color = Color(0.360784, 0.47451, 1, 1)
 size = Vector2(25, 10)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_knwbd"]
-vertices = PackedVector3Array(-17.0518, 0.45, 3.25, -10.0518, 0.45, 3.25, -9.55177, 0.45, 1.75, -7.80177, 0.45, 1, -7.80177, 0.45, -14.5, -17.0518, 0.45, -14.5, -6.80177, 0.45, 1.25, -5.80177, 0.45, 2.75, 6.94823, 0.45, 2.75, 6.94823, 0.45, -14.5, -7.05177, 0.45, 12.5, -8.30177, 0.45, 12.75, -8.30177, 0.45, 14.5, 6.94823, 0.45, 14.5, -6.05177, 0.45, 4.25, -7.05177, 0.45, 4.75, -9.80177, 0.45, 12.5, -17.0518, 0.45, 14.5, -9.80177, 0.45, 9, -10.3018, 0.45, 8.75, -10.3018, 0.45, 8, -9.80177, 0.45, 7.75, -8.05177, 1.7, 5.5, -8.55177, 1.7, 5.5, -8.80177, 1.7, 7.25, -8.80177, 1.7, 11.75, -8.05177, 1.7, 11.75)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(6, 8, 7), PackedInt32Array(6, 3, 8), PackedInt32Array(8, 3, 4), PackedInt32Array(8, 4, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(10, 15, 14), PackedInt32Array(14, 7, 10), PackedInt32Array(10, 7, 8), PackedInt32Array(10, 8, 13), PackedInt32Array(11, 12, 16), PackedInt32Array(16, 12, 17), PackedInt32Array(19, 18, 16), PackedInt32Array(21, 20, 1), PackedInt32Array(1, 20, 0), PackedInt32Array(0, 20, 19), PackedInt32Array(16, 17, 19), PackedInt32Array(19, 17, 0), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(25, 22, 26)]
+vertices = PackedVector3Array(-17.0518, 0.45, -14.5, -17.0518, 0.45, 14.5, 6.94823, 0.45, 14.5, 6.94823, 0.45, -14.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fgcc"]
 albedo_color = Color(0.361917, 0.475739, 1, 1)
@@ -300,7 +300,6 @@ initial_spawn_count = 0
 spawn_chances = Array[int]([100, 100, 100, 100, 0])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
-player_max_hp = 1.0
 player_dash_countdown = 0.5
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
@@ -444,7 +443,9 @@ initial_spawn_count = 1
 activation_input = "launch_mortar"
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
-spawners = [NodePath("../Spwaner_missile_presentation")]
+initial_number_of_enemies = 2
+pause_after_wave_duration = 3.0
+spawners = [NodePath("../Spwaner_missile_presentation"), NodePath("../Spwaner_wanderer_presentation"), NodePath("../Spwaner_hunter_presentation"), NodePath("../Spwaner_bomber_presentation")]
 
 [editable path="MiraV3"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]

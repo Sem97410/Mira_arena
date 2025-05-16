@@ -369,7 +369,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone2" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="4"]
-transform = Transform3D(-1.02, 1.48409e-07, -1.67482e-07, -1.27018e-07, 0.124504, 0.994562, 2.45132e-07, 0.682045, -0.181552, 0.010452, -0.622355, 0.0797793)
+transform = Transform3D(-1.02, 1.48409e-07, -1.67492e-07, -1.27028e-07, 0.124504, 0.994562, 2.45135e-07, 0.682045, -0.181552, 0.010452, -0.622355, 0.0797793)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_02"
@@ -377,7 +377,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone3" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="5"]
-transform = Transform3D(-1.02, 1.56894e-07, -8.99469e-08, -7.77397e-08, 0.0387492, 1.00918, 2.35417e-07, 0.692577, -0.056463, 0.010452, -0.613415, 0.128756)
+transform = Transform3D(-1.02, 1.56895e-07, -8.99571e-08, -7.77499e-08, 0.0387492, 1.00918, 2.35419e-07, 0.692577, -0.0564631, 0.010452, -0.613415, 0.128756)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_03"
@@ -385,7 +385,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone4" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="6"]
-transform = Transform3D(-1.02, 1.5678e-07, -4.67689e-08, -4.53837e-08, 0.00547743, 1.01056, 2.30823e-07, 0.693883, -0.00797725, 0.010452, -0.610492, 0.180996)
+transform = Transform3D(-1.02, 1.5678e-07, -4.6777e-08, -4.53918e-08, 0.00547745, 1.01056, 2.30823e-07, 0.693883, -0.00797727, 0.010452, -0.610492, 0.180996)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_04"
@@ -393,7 +393,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone5" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="7"]
-transform = Transform3D(-1.02, 1.53617e-07, -2.15349e-08, -2.61068e-08, -0.0134424, 1.01002, 2.25162e-07, 0.694338, 0.0195539, 0.010452, -0.61008, 0.233265)
+transform = Transform3D(-1.02, 1.53616e-07, -2.15597e-08, -2.61319e-08, -0.0134424, 1.01002, 2.25159e-07, 0.694338, 0.0195539, 0.010452, -0.61008, 0.233265)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_05"

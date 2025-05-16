@@ -1,24 +1,43 @@
 extends Node3D
 class_name WaveManager
 
-@onready var current_wave : int = 0
-@onready var current_number_of_enemies_in_wave : int = 0
-@onready var can_change_wave : bool = false
+# --------------------------------------------------------------------------
+## Required references
+@export_group("❗Required References❗ ⚠️")
+@export_subgroup("Manage waves")
 @export var cinematic_introduction_length : float = 2.0
+@export var initial_number_of_enemies : int
+
+@export_subgroup("Manage enemies")
+var max_enemies_in_this_wave : int
+@export var enemy_count_increase_percentage_per_wave : int = 60
+
+
+@onready var current_wave : int = 0
+@onready var enemies_alive_in_wave : int = 0
+@onready var can_change_wave : bool = false
 @onready var wave_is_in_progress : bool = false
 @onready var enemies_killed_in_this_wave : int = 0
-@onready var max_enemies_in_this_wave : int = 1
 @export var pause_after_wave_duration : float = 15.0
 @onready var visual_timer : float = 0.0
+var growth_factor : float = 1.0
 @export var spawners : Array[Spawner]
+@onready var cycle_wave_index = 0
+
 # --------------------------------------------------------------------------
 ## DEBUGS
-@export var current_wave_label : Label
-@export var number_of_enemies_in_wave_label : Label
-@export var enemies_killed_in_this_wave_label : Label
-@export var max_number_of_enemies_in_this_wave : Label
+
+@export_group("Labels")
+@export_subgroup("Wave announcement")
+@export var max_enemies_in_wave_label  : Label
 @export var announce_label : Label
 @export var announce_panel : PanelContainer
+
+@export_subgroup("Debugs")
+@export var current_wave_label : Label
+@export var enemies_alive_in_wave_label : Label
+@export var enemies_killed_in_this_wave_label : Label
+
 
 # --------------------------------------------------------------------------
 
@@ -26,6 +45,9 @@ class_name WaveManager
 
 func _ready() -> void:
 	launch_map_introduction()
+	reset_enemy_count_for_cycle()
+	calculate_growth_factor()
+	
 
 #---
 
@@ -37,24 +59,45 @@ func _process(delta: float) -> void:
 		visual_timer -= delta
 		
 	actualise_anounce_visual_timer()
+
 # --------------------------------------------------------------------------
 
 ## WAVES MANAGMENT
 
 func start_wave() -> void : 
 	current_wave += 1
+	cycle_wave_index += 1
+	print("We are in the wave : ", current_wave)
+	
+	check_if_reset_enemies_count()
 	can_change_wave = false 
 	wave_is_in_progress = true
-	enemies_killed_in_this_wave = 0 #Reset number of enemies killed
+	enemies_killed_in_this_wave = 0  # Reset number of enemies killed
 
-	# Exemple : calcul du nombre d'ennemis total pour cette vague
-	max_enemies_in_this_wave = 0
+	# Calculation of the number of enemies in this wave
+	max_enemies_in_this_wave = int(initial_number_of_enemies * pow(growth_factor, cycle_wave_index - 1))
+	print("In this wave, we are suppose to have ", max_enemies_in_this_wave, " enemies")	# 5 * pow(1.6 , 0) => 5
+																						#So in this calcule you say that the base number of 
+																						#enemies are 5, multiply by a growth factor of 60 % 
+																						#in the wave 0 so the result is 5
+																						#Same calcule but wave 2 : 
+																						# 5 * pow(1.6 , 1) = 8
 
-	for spawner in spawners:
-		var spawn_count = 3 + current_wave  # ← Par exemple, vague 1 = 4, vague 2 = 5...
-		
-		max_enemies_in_this_wave += spawn_count
-		spawner.start_spawning(spawner.enemy_scene, spawn_count)
+	# Equal distrubution between spawners
+	var base_count = int(max_enemies_in_this_wave / spawners.size())
+	print("Every spawner shound spawns ", base_count, "enemies")
+	# 5 / 4 spawners = 1.25 => int = 1
+	var rest = max_enemies_in_this_wave % spawners.size()
+	print("Rest after distributions is : ", rest)
+	# 5 % 4 = 1
+
+	for i in spawners.size():
+		var to_spawn = base_count
+		if i < rest:
+			to_spawn += 1  # Répartit le reste
+
+		spawners[i].start_spawning(spawners[i].enemy_scene, to_spawn)
+		#print("The real number that is suppose to spawn for each spawner is ", to_spawn)
 
 		
 
@@ -67,7 +110,7 @@ func end_wave() -> void :
 #---
 
 func check_if_can_start_new_wave() -> void: 
-	if can_change_wave and current_number_of_enemies_in_wave <= 0: 
+	if can_change_wave and enemies_alive_in_wave  <= 0: 
 		start_wave()
 	
 func launch_map_introduction() -> void : 
@@ -94,12 +137,25 @@ func actualise_anounce_visual_timer() -> void:
 	if visual_timer > 0:
 		announce_label.text = "Next wave will start in %.0f" % visual_timer
 
+
+func calculate_growth_factor() -> void : 
+	growth_factor =  1.0 +(enemy_count_increase_percentage_per_wave / 100.0) #1.6
+
+
+func reset_enemy_count_for_cycle() -> void :
+	
+	max_enemies_in_this_wave = initial_number_of_enemies 
+
+func check_if_reset_enemies_count() -> void : 
+	if cycle_wave_index == 1:
+		reset_enemy_count_for_cycle()
+		print("🔁 Reset enemy count for new cycle")
 # --------------------------------------------------------------------------
 
 ## DEBUGS
 
 func assign_debug_labels_text() -> void: 
 	current_wave_label.text = "Current wave : " + str(current_wave)
-	number_of_enemies_in_wave_label.text = "Number of enemies in the wave : " + str(current_number_of_enemies_in_wave)
+	enemies_alive_in_wave_label.text = "Number of enemies in the wave : " + str(enemies_alive_in_wave )
 	enemies_killed_in_this_wave_label.text = "Enemies killed in this wave : " + str(enemies_killed_in_this_wave)
-	max_number_of_enemies_in_this_wave.text = "Number max of enemies in this wave : " + str(max_enemies_in_this_wave)
+	max_enemies_in_wave_label .text = "Number max of enemies in this wave : " + str(max_enemies_in_this_wave)

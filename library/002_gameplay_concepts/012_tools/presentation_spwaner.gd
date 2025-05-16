@@ -50,7 +50,7 @@ func _on_timer_timeout() -> void:
 	enemies_spawned += 1
 	
 	##Add an enemy in the wave manager enemies counter
-	wave_manager.current_number_of_enemies_in_wave += 1
+	wave_manager.enemies_alive_in_wave += 1
 
 
 	#print("🧬 Spawned:", new_enemy.name, "@", new_enemy.global_position)

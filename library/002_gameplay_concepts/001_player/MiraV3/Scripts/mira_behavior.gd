@@ -512,7 +512,6 @@ func _on_charged_attack_state_exited() -> void:
 #---
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	print("Something is inside the charged attack area")
 	make_damage(area, charged_attack_damage)
 
 #---
