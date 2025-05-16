@@ -65,6 +65,7 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @export var explosion_damage : float
 
 @onready var can_shoot = true
+@onready var has_already_exploded : bool = false
 @export var mortar_target : PackedScene
 @export var mortar_attack_cooldown : float = 3.0
 @export var min_mortar_delay_before_impact : float = 0.5
@@ -619,11 +620,11 @@ func explosion() -> void :
 	attack_indicator.visible = true
 
 	death(slime,1.1)
-	#print("Step one")
+
 	
 	await get_tree().create_timer(1.0,false,true).timeout
 	
-	#print("Step two")
+
 	
 	explosion_area.visible = true
 	explosion_area.monitorable = true
@@ -639,6 +640,11 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
+	
+	if has_already_exploded:
+		return
+	has_already_exploded = true
+	
 	decrease_current_enemies_number(wave_manager)
 	
 	print("Decrease current enemies number but with death explosion state")

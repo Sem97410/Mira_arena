@@ -281,22 +281,9 @@ shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
 radius = 4.0
 
 [node name="Explosive_slime" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_x408e")]
-pre_attack_duration = null
-dash_duration = null
-latence_between_dash = null
-dash_length = null
-attack_cool_down = null
 explosion_vfx = ExtResource("2_el4uy")
 pre_explosion_duration = 1.5
 explosion_damage = 20.0
-mortar_attack_cooldown = null
-min_mortar_delay_before_impact = null
-max_mortar_delay_before_impact = null
-bomb_radius_around_player = null
-time_before_new_target = null
-death_animation_duration = null
-max_health_point = null
-max_fall_speed = null
 animation_player = NodePath("Mesh/Slime/Node3D/bomber_slime/AnimationPlayer")
 
 [node name="Node3D" type="Node3D" parent="Mesh/Slime" index="0"]
@@ -406,7 +393,7 @@ use_gravity = true
 metadata/_custom_type_script = "uid://c2ev6x44pdrr8"
 
 [node name="Jigglebone5" type="Node3D" parent="Mesh/Slime/Node3D/bomber_slime/Slime/Skeleton3D" index="7"]
-transform = Transform3D(-1.02, 1.53617e-07, -2.15349e-08, -2.61069e-08, -0.0134424, 1.01002, 2.25162e-07, 0.694338, 0.0195539, 0.010452, -0.61008, 0.233265)
+transform = Transform3D(-1.02, 1.53617e-07, -2.15349e-08, -2.61068e-08, -0.0134424, 1.01002, 2.25162e-07, 0.694338, 0.0195539, 0.010452, -0.61008, 0.233265)
 top_level = true
 script = ExtResource("5_3as70")
 bone_name = "meche_bones_05"

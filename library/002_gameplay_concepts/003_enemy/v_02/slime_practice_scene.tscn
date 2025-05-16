@@ -444,7 +444,7 @@ initial_spawn_count = 1
 activation_input = "launch_mortar"
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
-spawners = [NodePath("../Spwaner_bomber_presentation")]
+spawners = [NodePath("../Spwaner_missile_presentation")]
 
 [editable path="MiraV3"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
