@@ -300,6 +300,7 @@ initial_spawn_count = 0
 spawn_chances = Array[int]([100, 100, 100, 100, 0])
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
+player_max_hp = 10000.0
 player_dash_countdown = 0.5
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
@@ -443,9 +444,11 @@ initial_spawn_count = 1
 activation_input = "launch_mortar"
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
-initial_number_of_enemies = 2
-pause_after_wave_duration = 3.0
+initial_number_of_enemies = 1
+enemy_count_increase_percentage_per_wave = 100
+pause_after_wave_duration = 1.0
 spawners = [NodePath("../Spwaner_missile_presentation"), NodePath("../Spwaner_wanderer_presentation"), NodePath("../Spwaner_hunter_presentation"), NodePath("../Spwaner_bomber_presentation")]
+wave_cycle_length = 5
 
 [editable path="MiraV3"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]

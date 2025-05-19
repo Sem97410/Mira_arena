@@ -23,6 +23,7 @@ var max_enemies_in_this_wave : int
 var growth_factor : float = 1.0
 @export var spawners : Array[Spawner]
 @onready var cycle_wave_index = 0
+@export var wave_cycle_length : int
 
 # --------------------------------------------------------------------------
 ## DEBUGS
@@ -66,29 +67,29 @@ func _process(delta: float) -> void:
 
 func start_wave() -> void : 
 	current_wave += 1
+	check_if_reset_enemies_count()
 	cycle_wave_index += 1
 	print("We are in the wave : ", current_wave)
 	
-	check_if_reset_enemies_count()
 	can_change_wave = false 
 	wave_is_in_progress = true
 	enemies_killed_in_this_wave = 0  # Reset number of enemies killed
 
 	# Calculation of the number of enemies in this wave
 	max_enemies_in_this_wave = int(initial_number_of_enemies * pow(growth_factor, cycle_wave_index - 1))
-	print("In this wave, we are suppose to have ", max_enemies_in_this_wave, " enemies")	# 5 * pow(1.6 , 0) => 5
+	print("In this wave, we are suppose to have ", max_enemies_in_this_wave, " enemies")	# 20 * pow(2 , 0) =>20
 																						#So in this calcule you say that the base number of 
-																						#enemies are 5, multiply by a growth factor of 60 % 
-																						#in the wave 0 so the result is 5
+																						#enemies are 20, multiply by a growth factor of 100 % 
+																						#in the wave 0 so the result is 20
 																						#Same calcule but wave 2 : 
-																						# 5 * pow(1.6 , 1) = 8
+																						# 20 * pow(2 , 1) = 40
 
 	# Equal distrubution between spawners
 	var base_count = int(max_enemies_in_this_wave / spawners.size())
 	print("Every spawner shound spawns ", base_count, "enemies")
 	# 5 / 4 spawners = 1.25 => int = 1
 	var rest = max_enemies_in_this_wave % spawners.size()
-	print("Rest after distributions is : ", rest)
+	#print("Rest after distributions is : ", rest)
 	# 5 % 4 = 1
 
 	for i in spawners.size():
@@ -98,9 +99,6 @@ func start_wave() -> void :
 
 		spawners[i].start_spawning(spawners[i].enemy_scene, to_spawn)
 		#print("The real number that is suppose to spawn for each spawner is ", to_spawn)
-
-		
-
 
 #---
 
@@ -143,13 +141,14 @@ func calculate_growth_factor() -> void :
 
 
 func reset_enemy_count_for_cycle() -> void :
-	
 	max_enemies_in_this_wave = initial_number_of_enemies 
+	cycle_wave_index = 1
 
 func check_if_reset_enemies_count() -> void : 
-	if cycle_wave_index == 1:
+	if cycle_wave_index > wave_cycle_length:
 		reset_enemy_count_for_cycle()
 		print("🔁 Reset enemy count for new cycle")
+		
 # --------------------------------------------------------------------------
 
 ## DEBUGS
