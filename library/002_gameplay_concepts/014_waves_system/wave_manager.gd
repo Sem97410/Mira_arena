@@ -46,7 +46,7 @@ var growth_factor : float = 1.0
 
 func _ready() -> void:
 	launch_map_introduction()
-	reset_enemy_count_for_cycle()
+	#reset_enemy_count_for_cycle()
 	calculate_growth_factor()
 	
 
@@ -66,10 +66,11 @@ func _process(delta: float) -> void:
 ## WAVES MANAGMENT
 
 func start_wave() -> void : 
-	current_wave += 1
 	check_if_reset_enemies_count()
+	current_wave += 1
 	cycle_wave_index += 1
 	print("We are in the wave : ", current_wave)
+	print("Cycle wave index is : ", cycle_wave_index)
 	
 	can_change_wave = false 
 	wave_is_in_progress = true
@@ -142,10 +143,10 @@ func calculate_growth_factor() -> void :
 
 func reset_enemy_count_for_cycle() -> void :
 	max_enemies_in_this_wave = initial_number_of_enemies 
-	cycle_wave_index = 1
+	cycle_wave_index = 0
 
 func check_if_reset_enemies_count() -> void : 
-	if cycle_wave_index > wave_cycle_length:
+	if cycle_wave_index >= wave_cycle_length:  #cycle_wave_index = what wave in this cycle || wave_cycle_length = number of waves in a cycle
 		reset_enemy_count_for_cycle()
 		print("🔁 Reset enemy count for new cycle")
 		
