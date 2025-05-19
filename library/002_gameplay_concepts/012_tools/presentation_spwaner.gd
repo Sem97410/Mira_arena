@@ -45,9 +45,9 @@ func _on_timer_timeout() -> void:
 		return
 	
 	if wave_manager.enemies_alive_in_wave >= wave_manager.max_enemies_in_the_scene:
-		print("Trop d'ennemis dans la scene donc je bloque")
+
 		return
-	print("Ca va je peux spawn")
+
 	var new_enemy = enemy_scene.instantiate()
 	get_parent().add_child(new_enemy)
 	new_enemy.global_position = global_position + _random_offset()
