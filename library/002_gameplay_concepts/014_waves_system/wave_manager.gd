@@ -24,6 +24,7 @@ var growth_factor : float = 1.0
 @export var spawners : Array[Spawner]
 @onready var cycle_wave_index = 0
 @export var wave_cycle_length : int
+@export var max_enemies_in_the_scene : int
 
 # --------------------------------------------------------------------------
 ## DEBUGS

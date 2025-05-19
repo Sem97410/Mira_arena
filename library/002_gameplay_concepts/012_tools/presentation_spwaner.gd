@@ -4,9 +4,10 @@ class_name Spawner
 @export var spawner_timer: Timer
 @export var enemy_scene: PackedScene
 @export var spawn_range: float = 5.0
-@export var initial_spawn_count: int = 3
-@export var activation_input: String  # Exemple : "launch_hunter"
 @onready var wave_manager : WaveManager
+
+#@export var initial_spawn_count: int = 3
+#@export var activation_input: String  # Exemple : "launch_hunter"
 
 var enemies_to_spawn: int
 var enemies_spawned: int = 0
@@ -35,15 +36,18 @@ func _random_offset() -> Vector3:
 
 func _on_timer_timeout() -> void:
 	if enemies_spawned >= enemies_to_spawn:
-		#print("🛑 Spawner finished.")
+
 		spawner_timer.stop()
 		is_active = false  # ← Permet de relancer plus tard avec un autre clic
 		return
 
 	if not enemy_scene:
-		#print("⚠️ No enemy scene assigned!")
 		return
-
+	
+	if wave_manager.enemies_alive_in_wave >= wave_manager.max_enemies_in_the_scene:
+		print("Trop d'ennemis dans la scene donc je bloque")
+		return
+	print("Ca va je peux spawn")
 	var new_enemy = enemy_scene.instantiate()
 	get_parent().add_child(new_enemy)
 	new_enemy.global_position = global_position + _random_offset()
