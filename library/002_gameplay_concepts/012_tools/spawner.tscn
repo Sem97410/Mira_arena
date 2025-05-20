@@ -13,17 +13,17 @@ transparency = 1
 albedo_color = Color(0.133, 0.313, 0.36, 0.663)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jhric"]
-top_radius = 8.63
-bottom_radius = 8.63
+top_radius = 8.465
+bottom_radius = 8.465
 height = 0.1
 cap_bottom = false
 
 [node name="Spawner" type="Node3D" node_paths=PackedStringArray("spawner_timer", "spawner_placement_indicator", "spawner_range_indicator")]
 script = ExtResource("1_6cdk7")
 spawner_timer = NodePath("Timer")
-spawn_range = 8.465
 spawner_placement_indicator = NodePath("SpawnerPlacementIndicator")
 spawner_range_indicator = NodePath("SpawnRangeIndicator")
+spawn_range = 8.465
 spawner_visible_in_game = null
 
 [node name="Timer" type="Timer" parent="."]
