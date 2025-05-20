@@ -15,7 +15,7 @@ class_name Spawner
 #----------------------
 
 @export_subgroup("Enemies")
-@export var spawnable_enemies : Array[PackedScene]
+var spawnable_enemies : Array[PackedScene]
 var enemies_to_spawn: int
 var enemies_spawned: int = 0
 
@@ -48,7 +48,6 @@ func _ready():
 func _process(_delta):
 	if Engine.is_editor_hint(): #If we are in the editor
 		_update_spawn_indicator()
-		
 
 # --------------------------------------------------------------------------
 
@@ -107,7 +106,7 @@ func _random_offset() -> Vector3:
 		0,
 		randf_range(-spawn_range, spawn_range)
 	)
-
+	
 # --------------------------------------------------------------------------
 
 ## SPAWN TOOLS

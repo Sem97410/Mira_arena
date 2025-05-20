@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dneh46r3iv06o" path="res://library/002_gameplay_concepts/009_SFX/wind_whistle.wav" id="4_ctkkm"]
 [ext_resource type="PackedScene" uid="uid://c30l81sqhlqad" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/death_zone.tscn" id="5_ll27w"]
 [ext_resource type="Material" uid="uid://ct7o1r828htgm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/mat_arene.tres" id="6_w2xsd"]
-[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter_slime.tscn" id="20_vlq57"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/hunter_slime.tscn" id="20_vlq57"]
 [ext_resource type="PackedScene" uid="uid://c6x03tnfna0py" path="res://library/002_gameplay_concepts/001_player/MiraV3/mira_v_3.tscn" id="20_wnpcy"]
 [ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/wanderer_slime.tscn" id="21_w2xsd"]
 [ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="22_w2xsd"]

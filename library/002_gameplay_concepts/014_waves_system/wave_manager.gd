@@ -3,37 +3,49 @@ class_name WaveManager
 
 # --------------------------------------------------------------------------
 ## Required references
+
 @export_group("❗Required References❗ ⚠️")
-@export_subgroup("Manage waves")
-@export var cinematic_introduction_length : float = 2.0
-@export var initial_number_of_enemies : int
-
 @export_subgroup("Manage enemies")
+@export var all_enemy_types : Array[PackedScene] #Index 0 and 1 MUST be Wanderer and hunter slime
+@export var spawners : Array[Spawner]
+@export var initial_number_of_enemies : int
 var max_enemies_in_this_wave : int
+@export var max_enemies_in_the_scene : int
+
+#----------------------
+
+@export_subgroup("Waves behavior")
+@export var wave_cycle_length : int
 @export var enemy_count_increase_percentage_per_wave : int = 60
-
-
+var growth_factor : float = 1.0
+@onready var cycle_wave_index = 0
 @onready var current_wave : int = 0
 @onready var enemies_alive_in_wave : int = 0
 @onready var can_change_wave : bool = false
 @onready var wave_is_in_progress : bool = false
-@onready var enemies_killed_in_this_wave : int = 0
-@export var pause_after_wave_duration : float = 15.0
-@onready var visual_timer : float = 0.0
-var growth_factor : float = 1.0
-@export var spawners : Array[Spawner]
-@onready var cycle_wave_index = 0
-@export var wave_cycle_length : int
-@export var max_enemies_in_the_scene : int
 
-# --------------------------------------------------------------------------
-## DEBUGS
+#----------------------
+
+@export_subgroup("Introduction & break between waves")
+@export var cinematic_introduction_length : float = 2.0
+@export var pause_after_wave_duration : float = 15.0
+
+#----------------------
+
+@export_subgroup("Statistic")
+@onready var enemies_killed_in_this_wave : int = 0
+
+#----------------------
 
 @export_group("Labels")
 @export_subgroup("Wave announcement")
 @export var max_enemies_in_wave_label  : Label
 @export var announce_label : Label
 @export var announce_panel : PanelContainer
+@onready var visual_timer : float = 0.0
+
+# --------------------------------------------------------------------------
+## DEBUGS
 
 @export_subgroup("Debugs")
 @export var current_wave_label : Label
@@ -47,9 +59,7 @@ var growth_factor : float = 1.0
 
 func _ready() -> void:
 	launch_map_introduction()
-	#reset_enemy_count_for_cycle()
 	calculate_growth_factor()
-	
 
 #---
 
@@ -91,7 +101,6 @@ func start_wave() -> void :
 	print("Every spawner shound spawns ", base_count, "enemies")
 	# 5 / 4 spawners = 1.25 => int = 1
 	var rest = max_enemies_in_this_wave % spawners.size()
-	#print("Rest after distributions is : ", rest)
 	# 5 % 4 = 1
 
 	for i in spawners.size():
@@ -99,12 +108,11 @@ func start_wave() -> void :
 		if i < rest:
 			to_spawn += 1  # Répartit le reste
 
-		spawners[i].start_spawning(to_spawn)  #spawners[i].enemy_scene, <= parameters
-		#print("The real number that is suppose to spawn for each spawner is ", to_spawn)
+		spawners[i].start_spawning(to_spawn)  
 
 #---
 
-func end_wave() -> void : 
+func prepare_enemies_for_wave() -> void : 
 	pass
 
 #---
@@ -112,10 +120,14 @@ func end_wave() -> void :
 func check_if_can_start_new_wave() -> void: 
 	if can_change_wave and enemies_alive_in_wave  <= 0: 
 		start_wave()
-	
+
+#---
+
 func launch_map_introduction() -> void : 
 	await get_tree().create_timer(cinematic_introduction_length, false).timeout
 	can_change_wave = true
+
+#---
 
 func launch_pause_time_after_wave() -> void : 
 	announce_panel.visible = true
@@ -132,25 +144,32 @@ func launch_pause_time_after_wave() -> void :
 	await get_tree().create_timer(2.0, false).timeout
 	
 	announce_panel.visible = false
-
-func actualise_anounce_visual_timer() -> void:  
-	if visual_timer > 0:
-		announce_label.text = "Next wave will start in %.0f" % visual_timer
-
+	
+#---
 
 func calculate_growth_factor() -> void : 
-	growth_factor =  1.0 +(enemy_count_increase_percentage_per_wave / 100.0) #1.6
+	growth_factor =  1.0 +(enemy_count_increase_percentage_per_wave / 100.0) #1.6*
 
+#---
 
 func reset_enemy_count_for_cycle() -> void :
 	max_enemies_in_this_wave = initial_number_of_enemies 
 	cycle_wave_index = 0
 
+#---
+
 func check_if_reset_enemies_count() -> void : 
 	if cycle_wave_index >= wave_cycle_length:  #cycle_wave_index = what wave in this cycle || wave_cycle_length = number of waves in a cycle
 		reset_enemy_count_for_cycle()
-		print("🔁 Reset enemy count for new cycle")
-		
+
+# --------------------------------------------------------------------------
+
+## ANNOUNCEMENT
+
+func actualise_anounce_visual_timer() -> void:  
+	if visual_timer > 0:
+		announce_label.text = "Next wave will start in %.0f" % visual_timer
+
 # --------------------------------------------------------------------------
 
 ## DEBUGS

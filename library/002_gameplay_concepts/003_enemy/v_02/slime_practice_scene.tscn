@@ -1,11 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cmjq7a7f07m5l"]
+[gd_scene load_steps=25 format=3 uid="uid://cmjq7a7f07m5l"]
 
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="1_6c41i"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://c6x03tnfna0py" path="res://library/002_gameplay_concepts/001_player/MiraV3/mira_v_3.tscn" id="4_6c41i"]
 [ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spawner.tscn" id="5_c30ce"]
-[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/001_hunter_slime/hunter_slime.tscn" id="6_76nq8"]
-[ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="7_eiupe"]
 [ext_resource type="PackedScene" uid="uid://da14aowprjedb" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.tscn" id="10_k41v4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgcsp"]
@@ -402,16 +400,15 @@ parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount =
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
+spawners = [NodePath("../Spawner")]
 initial_number_of_enemies = 20
+max_enemies_in_the_scene = 10
+wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
 pause_after_wave_duration = 2.0
-spawners = [NodePath("../Spawner")]
-wave_cycle_length = 5
-max_enemies_in_the_scene = 10
 
 [node name="Spawner" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9043, 0, 0)
-spawnable_enemies = Array[PackedScene]([ExtResource("6_76nq8"), ExtResource("7_eiupe")])
 spawn_range = 8.63
 spawner_visible_in_game = false
 
