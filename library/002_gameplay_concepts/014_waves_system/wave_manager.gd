@@ -99,7 +99,7 @@ func start_wave() -> void :
 		if i < rest:
 			to_spawn += 1  # Répartit le reste
 
-		spawners[i].start_spawning(spawners[i].enemy_scene, to_spawn)
+		spawners[i].start_spawning(to_spawn)  #spawners[i].enemy_scene, <= parameters
 		#print("The real number that is suppose to spawn for each spawner is ", to_spawn)
 
 #---

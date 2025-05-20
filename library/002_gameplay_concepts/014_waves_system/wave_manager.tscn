@@ -21,12 +21,7 @@ shader_parameter/FloatParameter = 1.0
 
 [node name="WaveManager" type="Node3D" node_paths=PackedStringArray("max_enemies_in_wave_label", "announce_label", "announce_panel", "current_wave_label", "enemies_alive_in_wave_label", "enemies_killed_in_this_wave_label") groups=["wave_manager"]]
 script = ExtResource("1_g61uo")
-cinematic_introduction_length = null
 initial_number_of_enemies = 2
-enemy_count_increase_percentage_per_wave = null
-pause_after_wave_duration = null
-wave_cycle_length = null
-max_enemies_in_the_scene = null
 max_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/MaxEnemiesInThisWaveLabel")
 announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/AnounceText")
 announce_panel = NodePath("Control/MarginContainer2/PanelContainer")

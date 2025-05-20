@@ -80,7 +80,7 @@
 [ext_resource type="PackedScene" uid="uid://c2vxal26u5x21" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/dead_tree/dead_tree_01.tscn" id="76_jmmeb"]
 [ext_resource type="PackedScene" uid="uid://rqyofnjf25pg" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/banc/banc.tscn" id="77_b5o68"]
 [ext_resource type="PackedScene" uid="uid://bw3luwcrwoa78" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/cristals/cristals.tscn" id="80_7ar4u"]
-[ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spwaner.tscn" id="81_dqwje"]
+[ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spawner.tscn" id="81_dqwje"]
 [ext_resource type="Texture2D" uid="uid://cpwuvr3ibhwqr" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/Menhirs/Menhir_3_Game_0.png" id="82_kuxd3"]
 [ext_resource type="Texture2D" uid="uid://x4cpij3b6l3s" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/Menhirs/Menhir_3_Game_2.png" id="83_lano3"]
 [ext_resource type="Texture2D" uid="uid://bpu3qm0ncv7rr" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/Menhirs/Menhir_3_Game_1.png" id="84_ymjhv"]
