@@ -88,8 +88,8 @@ func _on_timer_timeout() -> void:
 		enemy_array_index = 0
 	
 	
-	var new_enemy = enemy_scene_to_spawn.instantiate()
-	get_parent().add_child(new_enemy)
+	var new_enemy = enemy_scene_to_spawn.instantiate() #Create an instance of enemy_scene_to_spawn
+	get_parent().add_child(new_enemy) #Add it in the scene
 	
 	#Spawn an enemy in a random range arround the spawner
 	new_enemy.global_position = global_position + _random_offset()

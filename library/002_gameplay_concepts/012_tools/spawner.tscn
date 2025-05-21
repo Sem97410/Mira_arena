@@ -13,8 +13,8 @@ transparency = 1
 albedo_color = Color(0.133, 0.313, 0.36, 0.663)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jhric"]
-top_radius = 8.465
-bottom_radius = 8.465
+top_radius = 8.63
+bottom_radius = 8.63
 height = 0.1
 cap_bottom = false
 
@@ -24,9 +24,9 @@ spawner_timer = NodePath("Timer")
 spawner_placement_indicator = NodePath("SpawnerPlacementIndicator")
 spawner_range_indicator = NodePath("SpawnRangeIndicator")
 spawn_range = 8.465
-spawner_visible_in_game = null
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="SpawnerPlacementIndicator" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_6cdk7")

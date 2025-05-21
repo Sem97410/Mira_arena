@@ -401,8 +401,7 @@ parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
 spawners = [NodePath("../Spawner")]
-initial_number_of_enemies = 20
-max_enemies_in_the_scene = 10
+max_enemies_in_the_scene = 100
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
 pause_after_wave_duration = 2.0
@@ -410,7 +409,6 @@ pause_after_wave_duration = 2.0
 [node name="Spawner" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9043, 0, 0)
 spawn_range = 8.63
-spawner_visible_in_game = false
 
 [editable path="MiraV3"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
