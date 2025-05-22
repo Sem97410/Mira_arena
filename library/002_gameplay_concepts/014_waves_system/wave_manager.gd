@@ -9,6 +9,15 @@ class_name WaveManager
 @export var all_enemy_types : Array[PackedScene] #Index 0 and 1 MUST be Wanderer and hunter slime
 var enemy_types_unlock : Array[PackedScene] #All enemies that can be select in order to be spawn
 
+#What percentage of every type of enemies are we allowed to have ( for exemple : 30% max of bomber in a wave)
+@export var enemy_spawn_limits : Dictionary = {
+	"hunter_slime" : 0.3,
+	"wanderer_slime" : 0.2,
+	"explosive_slime" : 0.25,
+	"missile_slime" : 0.15,
+	"mortar_slime" : 0.1
+}
+
 @export var spawners : Array[Spawner]
 @export var initial_number_of_enemies : int
 var max_enemies_in_this_wave : int
@@ -62,6 +71,8 @@ var growth_factor : float = 1.0
 func _ready() -> void:
 	launch_map_introduction()
 	calculate_growth_factor()
+	for i in 5 : 
+		print("Print un truc")
 
 #---
 
@@ -73,7 +84,8 @@ func _process(delta: float) -> void:
 		visual_timer -= delta
 		
 	actualise_anounce_visual_timer()
-
+	
+	
 # --------------------------------------------------------------------------
 
 ## WAVES MANAGMENT
@@ -108,8 +120,9 @@ func start_wave() -> void :
 	#----------------------		Still in start_wave function	----------------------#
 	
 	# Preparation of the type of enemies that we will have in this wave.
-	var enemies_for_this_wave: Array[PackedScene] = []
-	prepare_spawnable_enemy_types(enemies_for_this_wave) # Make a copy of the enemies in the enemy_types_unlock to enemies_for_this_wave in the spawners
+	var enemies_for_this_wave: Array[PackedScene] = generate_enemy_spawn_list(max_enemies_in_this_wave)
+
+
 	
 	#----------------------		Still in start_wave function	----------------------#
 	
@@ -127,7 +140,7 @@ func start_wave() -> void :
 			to_spawn += 1  # Répartit le reste
 
 		# 🔹 Donner la liste des ennemis valides au spawner
-		spawners[i].spawnable_enemies = enemies_for_this_wave.duplicate()
+		spawners[i].enemy_spawn_list = enemies_for_this_wave.duplicate()
 
 		spawners[i].start_spawning(to_spawn)  
 
@@ -229,7 +242,81 @@ func unlock_new_enemy_for_wave() -> void:
 	enemy_types_unlock.append(chosen_enemy)
 	print("🟢 Unlocked new enemy: ", chosen_enemy)
 
-# --------------------------------------------------------------------------
+#---
+#Generate a list of enemies that will be use for the spawner
+func generate_enemy_spawn_list(max_enemies: int) -> Array[PackedScene]:
+	
+	#The list that we will send to spawners that contains every slimes in the wave
+	var spawn_list: Array[PackedScene] = []
+	
+	#The total cumul of every ratio from every unlock enemies
+	var total_ratio := 0.0
+	
+	#Temp dictionary that associate every enemy with it max ratio that are define in enemy_spawn_limits
+	var type_ratios: Dictionary[PackedScene, float] = {}
+
+	# Step  1 : get the ratio of every unlock enemies
+	for enemy in enemy_types_unlock:
+		
+		#get the name of every enemies that are in enemy_types_unlock (exemple : wanderer_slime)
+		var name := enemy.resource_path.get_file().get_basename()
+		
+		#If in enemy_spawn_limits there is an entry called wanderer_slime (for exemple wanderer_slime)
+		if enemy_spawn_limits.has(name):
+			
+			#The ratio of this enemy is the ratio that is define for this name entry in enemy_spawn_limits
+			var ratio := float(enemy_spawn_limits[name])
+			
+			#In the temp dictionary type_ratios, you define that, for exemple
+			#for the first enemy of the loop that is the wanderer slime, the ratio is 0.3
+			type_ratios[enemy] = ratio
+			
+			#Incrementation of the total ratio of every enemies. We will use this in order to normalise
+			total_ratio += ratio
+
+	#Step 2 create a spawn list that respect ratios
+	var total_spawned := 0  # <- ✅ AJOUTÉ : pour suivre combien d'ennemis on a réellement ajoutés
+
+	for enemy in type_ratios.keys(): # Go through every key in the dictionary "type_ratios"
+		
+		 # Normalisation
+		var ratio = type_ratios[enemy] / total_ratio # Current ratio for that enemy = base ration of this type of enemy / total of all unlock enemies's ratios
+													 # Exemple : there is 3 types of enemies for this wave : Enemy A : 0.3 , Enemy B : 0.7 , Enemy C : 0.8 
+													 # So total ratio for this wave : 1.8 => must be 1.0 so normalisation : 
+													 # Enemy A final ratio : 0.3 / 1.8 = 0.16 , Enemy B final ratio : 0.7 / 1.8 = 0.38, Enemy C final ratio : 0.7 / 1.8 = 0.44
+													 # Total => 0.98 and we round it in order to have 1.0
+
+		#Now we multiply the ratio with the max number in order to have a good number of enemy of this type for this wave
+		var count = int(floor(ratio * max_enemies))  # used floor in order to never go beyond the number max of enemies
+
+		#Add the required number of this type of enemy in spawn_list
+		for i in range(count):  
+			spawn_list.append(enemy)
+
+		total_spawned += count 
+
+	# ✅ need to check if we are not missing some enemies
+	var missing = max_enemies - total_spawned
+	
+	if missing > 0:
+		
+		#We know that there is not enought enemies in this wave so we recover every enemies that are in type ration
+		var unlocked_enemies = type_ratios.keys()
+		
+		#For every enemy that are missing
+		for i in range(missing):
+			#Choose in unlocked_enemies un random number and modulo it with unlocked_enemies size that give me an index and then a random enemy to add
+			var random_enemy = unlocked_enemies[randi() % unlocked_enemies.size()]
+			#Add this random enemy in the list
+			spawn_list.append(random_enemy)
+
+	# Step 3 : use the shuffle function in order to mix every element of the enemy list
+	spawn_list.shuffle()
+	return spawn_list
+
+
+
+		# --------------------------------------------------------------------------
 
 ## ANNOUNCEMENT
 

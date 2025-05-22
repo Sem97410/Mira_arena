@@ -400,7 +400,15 @@ parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount =
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
+enemy_spawn_limits = {
+"explosive_slime": 0.25,
+"hunter_slime": 0.3,
+"missile_slime": 0.15,
+"mortar_slime": 0.1,
+"wanderer_slime": 0.2
+}
 spawners = [NodePath("../Spawner")]
+initial_number_of_enemies = 20
 max_enemies_in_the_scene = 100
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100

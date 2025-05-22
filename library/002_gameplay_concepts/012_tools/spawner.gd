@@ -16,6 +16,7 @@ class_name Spawner
 
 @export_subgroup("Enemies")
 var spawnable_enemies : Array[PackedScene]
+var enemy_spawn_list : Array[PackedScene] = [] #Creation of a list that contain every enemies that will spawn in a wave (and not the type of enemy that could spawn)
 var enemies_to_spawn: int
 var enemies_spawned: int = 0
 
@@ -24,7 +25,7 @@ var enemies_spawned: int = 0
 @export_subgroup("SpawnBehaviors")
 @export var spawn_range: float = 5.0  
 var is_active := false
-var enemy_array_index : int = 0
+
 
 #----------------------
 
@@ -73,19 +74,12 @@ func _on_timer_timeout() -> void:
 	if wave_manager.enemies_alive_in_wave >= wave_manager.max_enemies_in_the_scene: 
 		return
 	
-	#Security :  if we didn't set up spawner's ennemy
-	if spawnable_enemies.is_empty():  
+	#Security : if we finish the spawn of every element on enemy_spawn_list
+	if enemies_spawned >= enemy_spawn_list.size():
 		return
 
-	#Select an enemy in the array
-	var enemy_scene_to_spawn = spawnable_enemies[enemy_array_index] 
-	
-	#Prepare to select the next enemy of the array
-	enemy_array_index += 1 
-	
-	#Reset enemies array index in order to create a loop 
-	if enemy_array_index >= spawnable_enemies.size() :
-		enemy_array_index = 0
+	#Select an enemy in the list of enemy_spawn_list
+	var enemy_scene_to_spawn = enemy_spawn_list[enemies_spawned]
 	
 	
 	var new_enemy = enemy_scene_to_spawn.instantiate() #Create an instance of enemy_scene_to_spawn
