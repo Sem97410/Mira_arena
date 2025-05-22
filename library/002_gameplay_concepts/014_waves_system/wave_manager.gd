@@ -71,8 +71,6 @@ var growth_factor : float = 1.0
 func _ready() -> void:
 	launch_map_introduction()
 	calculate_growth_factor()
-	for i in 5 : 
-		print("Print un truc")
 
 #---
 
@@ -111,12 +109,13 @@ func start_wave() -> void :
 	# Calculation of the number of enemies in this wave
 	
 	max_enemies_in_this_wave = int(initial_number_of_enemies * pow(growth_factor, cycle_wave_index - 1))
-	print("In this wave, we are suppose to have ", max_enemies_in_this_wave, " enemies")	# 20 * pow(2 , 0) =>20
-																							#So in this calcule you say that the base number of 
-																							#enemies are 20, multiply by a growth factor of 100 % 
-																							#in the wave 0 so the result is 20
-																							#Same calcule but wave 2 : 
-																							# 20 * pow(2 , 1) = 40
+																										# 20 * pow(2 , 0) =>20
+																										#So in this calcule you say that the base number of 
+																										#enemies are 20, multiply by a growth factor of 100 % 
+																										#in the wave 0 so the result is 20
+																										#Same calcule but wave 2 : 
+																										# 20 * pow(2 , 1) = 40
+
 	#----------------------		Still in start_wave function	----------------------#
 	
 	# Preparation of the type of enemies that we will have in this wave.
@@ -128,7 +127,7 @@ func start_wave() -> void :
 	
 	# Equal distrubution between spawners
 	var base_count = int(max_enemies_in_this_wave / spawners.size())
-	print("Every spawner shound spawns ", base_count, "enemies")
+
 	# 5 / 4 spawners = 1.25 => int = 1
 	var rest = max_enemies_in_this_wave % spawners.size()
 	# 5 % 4 = 1
@@ -202,7 +201,7 @@ func check_if_reset_enemies_count() -> void :
 func add_base_enemies_into_waves() -> void : 
 	enemy_types_unlock.append(all_enemy_types[0])
 	enemy_types_unlock.append(all_enemy_types[1])
-	print("Add basic enemy")
+
 
 #---
 
@@ -216,11 +215,11 @@ func unlock_new_enemy_for_wave() -> void:
 	
 	# We only unlock new enemies starting from wave 2 (cycle_wave_index > 1)
 	if cycle_wave_index <= 1:
-		print("We didn't unlock new enemies")
+
 		add_base_enemies_into_waves()
 		return
 
-	print("We unlock new enemies")
+
 
 	# Step 1: Build a list of all the enemies that haven't been unlocked yet
 	var remaining_enemies : Array[PackedScene] = []
@@ -228,11 +227,11 @@ func unlock_new_enemy_for_wave() -> void:
 	for enemy in all_enemy_types :
 		if not enemy_types_unlock.has(enemy):
 			remaining_enemies.append(enemy)
-			print("Ennemies in remaining enemies are ", remaining_enemies)
+		
 
 	# Step 2: If there are no more enemies left to unlock, do nothing
 	if remaining_enemies.is_empty():
-		print("No more enemies left to unlock.")
+	
 		return
 
 	# Step 3: Pick one randomly and add it to the unlocked list
@@ -240,7 +239,7 @@ func unlock_new_enemy_for_wave() -> void:
 	var chosen_enemy = remaining_enemies[random_index]
 
 	enemy_types_unlock.append(chosen_enemy)
-	print("🟢 Unlocked new enemy: ", chosen_enemy)
+
 
 #---
 #Generate a list of enemies that will be use for the spawner
