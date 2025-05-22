@@ -705,6 +705,10 @@ func player_is_blinking():
 	player_mesh.visible = true
 	after_hit_invicibility = false
 
+#---
+
+func set_up_remaining_life_label() -> void : 
+	pass
 # ----------------
 
 # --------------------------------------------------------------------------

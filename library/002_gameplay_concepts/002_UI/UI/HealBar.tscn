@@ -69,4 +69,9 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxTexture_3qbu6")
 show_percentage = false
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -71,6 +71,7 @@ size = Vector3(0.5, 5, 100)
 [node name="SlimePracticeScene" type="Node3D"]
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("1_6c41i")]
+visible = false
 offset_left = 1478.0
 initial_node_to_watch = NodePath("../MiraV3/StateChart")
 
@@ -400,13 +401,6 @@ parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount =
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
-enemy_spawn_limits = {
-"explosive_slime": 0.25,
-"hunter_slime": 0.3,
-"missile_slime": 0.15,
-"mortar_slime": 0.1,
-"wanderer_slime": 0.2
-}
 spawners = [NodePath("../Spawner")]
 initial_number_of_enemies = 20
 max_enemies_in_the_scene = 100
@@ -419,6 +413,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9043, 0, 0)
 spawn_range = 8.63
 
 [editable path="MiraV3"]
+[editable path="MiraV3/UI/PlayerHUD"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]

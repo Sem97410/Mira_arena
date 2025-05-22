@@ -17,6 +17,7 @@
 [ext_resource type="Material" uid="uid://dxbmnk70bggae" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes.tres" id="11_1yggv"]
 [ext_resource type="Material" uid="uid://d5d8486vlnmc" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_belt.tres" id="12_rwcnu"]
 [ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="13_5lelo"]
+[ext_resource type="PackedScene" uid="uid://db65kgtyar2lg" path="res://library/002_gameplay_concepts/001_player/MiraV3/player_hud.tscn" id="14_1wmhn"]
 [ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="14_viusc"]
 [ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="15_6jfd8"]
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="16_71p4a"]
@@ -27,7 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="21_0mfp3"]
 [ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/Meshes/charged_attack_lock.tscn" id="22_7fune"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://mig0o6j6cs6i" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/animation_logic_v2.tres" id="23_oc1db"]
-[ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="24_u6c34"]
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="27_1yggv"]
@@ -10080,7 +10080,7 @@ state_chart = NodePath("StateChart")
 camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 camera_behavior_script = NodePath("CameraComponent/MakeCameraFollowPlayer")
 camera_position = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
-health_bar = NodePath("UI/HealthBar")
+health_bar = NodePath("UI/PlayerHUD/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
 death_pannel_first_button = NodePath("UI/death_pannel/Buttons_container/Reload")
 action_line_sprites = NodePath("UI/ActionLineSprites")
@@ -10121,13 +10121,6 @@ light_attack_damage = 50.0
 charged_attack_damage = 100.0
 
 [node name="UI" type="Node" parent="."]
-
-[node name="HealthBar" parent="UI" instance=ExtResource("24_u6c34")]
-offset_left = 135.0
-offset_top = 124.0
-offset_right = 579.0
-offset_bottom = 163.0
-scale = Vector2(0.706707, 1.19661)
 
 [node name="Pause_pannel" type="Control" parent="UI"]
 process_mode = 3
@@ -10659,6 +10652,11 @@ scale = Vector2(1.66099, 1.37333)
 sprite_frames = SubResource("SpriteFrames_0mfp3")
 animation = &"Action lines"
 frame_progress = 0.330083
+
+[node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
+
+[node name="HealthBar" parent="UI/PlayerHUD" index="0"]
+offset_bottom = 27.0
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
@@ -11906,11 +11904,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840333, 0)
 shape = SubResource("CapsuleShape3D_8bksx")
 debug_color = Color(0, 0.494, 0.196, 0.696)
 
-[node name="EndGamePannel" parent="." node_paths=PackedStringArray("end_game_panel", "pause_panel", "death_panel", "health_bar") instance=ExtResource("51_7kj1n")]
+[node name="EndGamePannel" parent="." node_paths=PackedStringArray("end_game_panel", "pause_panel", "death_panel") instance=ExtResource("51_7kj1n")]
 end_game_panel = NodePath("Control")
 pause_panel = NodePath("../UI/Pause_pannel")
 death_panel = NodePath("../UI/death_pannel")
-health_bar = NodePath("../UI/HealthBar")
 
 [node name="Control" parent="EndGamePannel" index="0"]
 visible = false
@@ -11970,6 +11967,7 @@ texture = ExtResource("55_rs7t3")
 [connection signal="state_entered" from="StateChart/root/Death" to="." method="_on_death_state_entered"]
 [connection signal="area_entered" from="LightAttackSystemArea3D" to="." method="_on_light_attack_system_area_3d_area_entered"]
 
+[editable path="UI/PlayerHUD"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="EndGamePannel"]
