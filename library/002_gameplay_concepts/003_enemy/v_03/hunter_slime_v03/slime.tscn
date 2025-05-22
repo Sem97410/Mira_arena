@@ -1,7 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c1wnqq3rpkhir"]
-
-[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_8hofu"]
-[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="4_2pd0x"]
+[gd_scene load_steps=17 format=4 uid="uid://btvaqwwehsp58"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7je1"]
 resource_name = "Cornes_mat"
@@ -492,26 +489,14 @@ _data = {
 &"Slime|pre_charge": SubResource("Animation_ta2y8")
 }
 
-[node name="Hunter" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_8hofu")]
-collision_mask = 5
-dash_length = 4.0
-attack_cool_down = 2.0
-max_health_point = 21.0
-movement_speed = 5.0
-movement_interpolate_strength = 10.0
-animation_player = NodePath("Mesh/Slime/Node3D/AnimationPlayer")
+[node name="hunter_slime" type="Node3D"]
 
-[node name="Slime" parent="Mesh" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Skeleton" type="Node3D" parent="."]
 
-[node name="Node3D" type="Node3D" parent="Mesh/Slime" index="0"]
-
-[node name="Skeleton" type="Node3D" parent="Mesh/Slime/Node3D" index="0"]
-
-[node name="Root1" type="Node3D" parent="Mesh/Slime/Node3D/Skeleton" index="0"]
+[node name="Root1" type="Node3D" parent="Skeleton"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.15544e-32, 1.42109e-16)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Mesh/Slime/Node3D/Skeleton/Root1" index="0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Skeleton/Root1"]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.00373983, -0.0271785, 0.999624, 0.990665, 0.136316, -2.98023e-08, -0.136264, 0.990293, 0.0274346, 0, 1.57772e-32, -1.42109e-16)
@@ -632,83 +617,18 @@ bones/16/position = Vector3(-0.308651, 0.000350876, -0.0461094)
 bones/16/rotation = Quaternion(7.45058e-09, 7.23783e-25, -8.27181e-25, 1)
 bones/16/scale = Vector3(1, 1, 1)
 
-[node name="Cornes" type="MeshInstance3D" parent="Mesh/Slime/Node3D/Skeleton/Root1/Skeleton3D" index="0"]
+[node name="Cornes" type="MeshInstance3D" parent="Skeleton/Root1/Skeleton3D"]
 mesh = SubResource("ArrayMesh_1pc1l")
 skin = SubResource("Skin_y3ymn")
 surface_material_override/0 = SubResource("StandardMaterial3D_4s2fv")
 
-[node name="Body" type="MeshInstance3D" parent="Mesh/Slime/Node3D/Skeleton/Root1/Skeleton3D" index="1"]
+[node name="Body" type="MeshInstance3D" parent="Skeleton/Root1/Skeleton3D"]
 mesh = SubResource("ArrayMesh_cy0at")
 skin = SubResource("Skin_h0xi5")
 surface_material_override/0 = SubResource("StandardMaterial3D_rk64t")
 surface_material_override/1 = SubResource("StandardMaterial3D_30w6p")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh/Slime/Node3D" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_nri18")
 }
-
-[node name="ToHunt" type="Node" parent="StateChart/root/Idle" index="0"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Hunt")
-event = &"IsHunting"
-delay_in_seconds = "0.0"
-
-[node name="ToPreAttack" type="Node" parent="StateChart/root/Idle" index="2"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../PreAttack")
-event = &"IsPreAttack"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/Idle" index="3"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToAttack" type="Node" parent="StateChart/root/PreAttack" index="1"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Attack")
-event = &"IsAttacking"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/PreAttack" index="2"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToIdle" type="Node" parent="StateChart/root/Attack" index="0"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Idle")
-event = &"IsIdle"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/HitReaction" index="1"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToIdle" type="Node" parent="StateChart/root/Hunt" index="0"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Idle")
-event = &"IsIdle"
-delay_in_seconds = "0.0"
-
-[node name="ToPreAttack" type="Node" parent="StateChart/root/Hunt" index="2"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../PreAttack")
-event = &"IsPreAttack"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/Hunt" index="3"]
-script = ExtResource("4_2pd0x")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="NavigationAgent3D" parent="." index="4"]
-debug_path_custom_color = Color(0.736468, 0.216054, 9.62615e-08, 1)
-
-[connection signal="state_physics_processing" from="StateChart/root/Idle" to="." method="_on_idle_state_physics_processing"]

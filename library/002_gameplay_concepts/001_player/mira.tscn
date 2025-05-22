@@ -43,7 +43,7 @@
 [ext_resource type="Script" uid="uid://b4i20wyx781lm" path="res://library/002_gameplay_concepts/001_player/Scripts/light_attack_tracks_methodes.gd" id="13_f8d26"]
 [ext_resource type="Material" uid="uid://d5d8486vlnmc" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_belt.tres" id="13_mig3m"]
 [ext_resource type="Script" uid="uid://5bmwcf60w64d" path="res://GPUTrail-main/GPUTrail3D.gd" id="13_q84xr"]
-[ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_particle_sprite_smoke.png" id="14_8b68b"]
+[ext_resource type="Texture2D" uid="uid://cchwrvb6p5hej" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/T_particle_sprite_smoke.png" id="14_8b68b"]
 [ext_resource type="Script" uid="uid://xnqx3tinlkwe" path="res://library/002_gameplay_concepts/001_player/Scripts/handle_transition_between_attack_and_movement.gd" id="14_jw3mf"]
 [ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="14_rgsws"]
 [ext_resource type="Script" uid="uid://cm0yhdkvlkx7a" path="res://library/002_gameplay_concepts/001_player/Scripts/attack_system.gd" id="14_u4q72"]

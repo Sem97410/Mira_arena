@@ -1,19 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://dih30d47ynsi3"]
+[gd_scene load_steps=11 format=4 uid="uid://cq7x0b8qr51kp"]
 
-[ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_kxous"]
-[ext_resource type="Script" uid="uid://db3xdx8c5l3c" path="res://addons/godot_state_charts/transition.gd" id="2_1x6pu"]
-[ext_resource type="PackedScene" uid="uid://dsq3yrilq0h84" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/scene/mortar_target.tscn" id="3_a2qnp"]
-[ext_resource type="PackedScene" uid="uid://1kt1m4w0yjsl" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/scene/mortar_projectile.tscn" id="4_nbs1o"]
-[ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="4_tovh4"]
-[ext_resource type="Texture2D" uid="uid://b4fwp016fg1yw" path="res://library/002_gameplay_concepts/003_enemy/v_03/mortar/mortar_v03_0.png" id="4_vrtjy"]
-[ext_resource type="Texture2D" uid="uid://ukm54fys58o3" path="res://library/002_gameplay_concepts/003_enemy/v_03/mortar/mortar_v03_2.png" id="5_o6u1a"]
+[ext_resource type="Texture2D" uid="uid://b4fwp016fg1yw" path="res://library/002_gameplay_concepts/003_enemy/v_03/mortar/mortar_v03_0.png" id="1_mleox"]
+[ext_resource type="Texture2D" uid="uid://ukm54fys58o3" path="res://library/002_gameplay_concepts/003_enemy/v_03/mortar/mortar_v03_2.png" id="2_roqfp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu4jq"]
 resource_name = "Chaudron_mat"
 vertex_color_use_as_albedo = true
 metallic = 1.0
-metallic_texture = ExtResource("4_vrtjy")
-roughness_texture = ExtResource("5_o6u1a")
+metallic_texture = ExtResource("1_mleox")
+roughness_texture = ExtResource("2_roqfp")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
@@ -384,30 +379,14 @@ _data = {
 &"mortar_shoot": SubResource("Animation_avtdb")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uenso"]
-render_priority = 0
-shader = ExtResource("4_tovh4")
-shader_parameter/ColorParameter = Color(1.8771e-06, 0.585468, 0.121076, 1)
-shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
+[node name="mortar_v03" type="Node3D"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1x6pu"]
+[node name="Skeleton" type="Node3D" parent="."]
 
-[node name="MortarSlime" node_paths=PackedStringArray("animation_player") groups=["spawn_on_navmesh"] instance=ExtResource("1_kxous")]
-mortar_target = ExtResource("3_a2qnp")
-mortar_projectil = ExtResource("4_nbs1o")
-animation_player = NodePath("Mesh/Slime/mortar_v03/AnimationPlayer")
-
-[node name="Slime" parent="Mesh" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="mortar_v03" type="Node3D" parent="Mesh/Slime" index="0"]
-
-[node name="Skeleton" type="Node3D" parent="Mesh/Slime/mortar_v03" index="0"]
-
-[node name="Root_control" type="Node3D" parent="Mesh/Slime/mortar_v03/Skeleton" index="0"]
+[node name="Root_control" type="Node3D" parent="Skeleton"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.63649e-10, -2.15438e-10)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Mesh/Slime/mortar_v03/Skeleton/Root_control" index="0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Skeleton/Root_control"]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-0.760042, -0.622959, -0.185088, 0.114186, 0.152363, -0.981706, 0.639763, -0.767273, -0.0446693, 0, 0.0838498, 0.01)
@@ -570,88 +549,11 @@ bones/22/position = Vector3(0.0706415, -0.0899522, -0.000317385)
 bones/22/rotation = Quaternion(0, 0, 0, 1)
 bones/22/scale = Vector3(1, 1, 1)
 
-[node name="Chaudron" type="MeshInstance3D" parent="Mesh/Slime/mortar_v03/Skeleton/Root_control/Skeleton3D" index="0"]
+[node name="Chaudron" type="MeshInstance3D" parent="Skeleton/Root_control/Skeleton3D"]
 mesh = SubResource("ArrayMesh_gdwfh")
 skin = SubResource("Skin_74p62")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh/Slime/mortar_v03" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gyf1b")
 }
-
-[node name="Aura" parent="Mesh" index="1"]
-transform = Transform3D(-1.25, 1.43052e-20, -1.88745e-07, 0, 1.25, 9.4739e-14, 1.88745e-07, 9.4739e-14, -1.25, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_uenso")
-
-[node name="root" parent="StateChart" index="0"]
-initial_state = NodePath("Stationary")
-
-[node name="ToDeath" type="Node" parent="StateChart/root/Idle" index="1"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToStationary" type="Node" parent="StateChart/root/Idle" index="2"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Stationary")
-event = &"IsStationary"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/HitReaction" index="1"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/Stationary" index="0"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToHit" type="Node" parent="StateChart/root/Stationary" index="1"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../HitReaction")
-event = &"IsHit"
-delay_in_seconds = "0.0"
-
-[node name="ToShoot" type="Node" parent="StateChart/root/Stationary" index="2"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Shoot")
-event = &"IsShooting"
-delay_in_seconds = "0.0"
-
-[node name="ToDeath" type="Node" parent="StateChart/root/Shoot" index="0"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Death")
-event = &"IsDead"
-delay_in_seconds = "0.0"
-
-[node name="ToHit" type="Node" parent="StateChart/root/Shoot" index="1"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../HitReaction")
-event = &"IsHit"
-delay_in_seconds = "0.0"
-
-[node name="ToStationary" type="Node" parent="StateChart/root/Shoot" index="2"]
-script = ExtResource("2_1x6pu")
-to = NodePath("../../Stationary")
-event = &"IsStationary"
-delay_in_seconds = "0.0"
-
-[node name="CollisionShape3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.522575, 0)
-
-[node name="AttackArea3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.486998, 0)
-
-[node name="ExplosionArea3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436908, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea3D" index="0"]
-shape = SubResource("SphereShape3D_1x6pu")
-
-[connection signal="state_entered" from="StateChart/root/Stationary" to="." method="_on_stationary_state_entered"]
-[connection signal="state_processing" from="StateChart/root/Stationary" to="." method="_on_stationary_state_processing"]
-[connection signal="state_entered" from="StateChart/root/Shoot" to="." method="_on_shoot_state_entered"]

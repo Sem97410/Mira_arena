@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://bbptxj4ug2277"]
 
-[ext_resource type="Texture2D" uid="uid://c1xht7a5v0mdq" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fire_2.png" id="1_2n1a7"]
+[ext_resource type="Texture2D" uid="uid://c1xht7a5v0mdq" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/T_Fire_2.png" id="1_2n1a7"]
 
 [sub_resource type="Gradient" id="Gradient_yckbv"]
 colors = PackedColorArray(1, 1, 1, 1, 0.0402299, 0.0402299, 0.0402299, 1)
