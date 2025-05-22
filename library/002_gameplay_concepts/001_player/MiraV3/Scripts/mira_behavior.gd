@@ -150,6 +150,8 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 @export var player_max_hp : float = 100
 @onready var player_current_hp : float = player_max_hp
 @onready var is_alive : bool = true
+@export var max_remaining_lives : int = 10 #Number of life that a player has in a session
+@onready var current_remaining_lives : int = max_remaining_lives
 
 @export_subgroup("Invincibility values")
 @onready var blink_interval : float = 0.2
