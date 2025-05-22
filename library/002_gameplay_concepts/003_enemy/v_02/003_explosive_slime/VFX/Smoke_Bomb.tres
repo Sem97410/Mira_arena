@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=30 format=3 uid="uid://cpigeeyfypg0e"]
 
-[ext_resource type="Texture2D" uid="uid://cm64v6su0g5jm" path="res://library/002_gameplay_concepts/006_VFX/Noise/Voronoi.png" id="1_dgkua"]
+[ext_resource type="Texture2D" uid="uid://cm64v6su0g5jm" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/Voronoi.png" id="1_dgkua"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_w5jh3"]
 operator = 2
