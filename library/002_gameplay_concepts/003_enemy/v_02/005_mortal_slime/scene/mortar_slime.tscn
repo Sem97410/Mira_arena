@@ -249,6 +249,7 @@ shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
 [node name="MortarSlime" node_paths=PackedStringArray("animation_player") groups=["spawn_on_navmesh"] instance=ExtResource("1_kxous")]
 mortar_target = ExtResource("3_a2qnp")
 mortar_projectil = ExtResource("4_nbs1o")
+max_health_point = 200.0
 animation_player = NodePath("Mesh/Slime/Node3D/mortar_slime/AnimationPlayer")
 
 [node name="Node3D" type="Node3D" parent="Mesh/Slime" index="0"]

@@ -43,10 +43,14 @@ extends CharacterBody3D
 
 #---
 
-@export_subgroup("HealthBar")
+@export_subgroup("HUD")
+@export var player_hud :Control
 @export var health_bar : ProgressBar
 @export var death_pannel : Control
 @export var death_pannel_first_button : Button
+@export var remaining_life_container : MarginContainer
+@export var remaining_life_title_text : Label
+@export var remaining_life_counter : Label
 
 #---
 

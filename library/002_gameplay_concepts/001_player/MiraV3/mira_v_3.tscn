@@ -10067,7 +10067,7 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "health_bar", "death_pannel", "death_pannel_first_button", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
 Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
@@ -10080,9 +10080,13 @@ state_chart = NodePath("StateChart")
 camera = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
 camera_behavior_script = NodePath("CameraComponent/MakeCameraFollowPlayer")
 camera_position = NodePath("CameraComponent/CameraController/CameraTarget/Camera3D")
+player_hud = NodePath("UI/PlayerHUD")
 health_bar = NodePath("UI/PlayerHUD/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
 death_pannel_first_button = NodePath("UI/death_pannel/Buttons_container/Reload")
+remaining_life_container = NodePath("UI/PlayerHUD/RemainingLifeContainer")
+remaining_life_title_text = NodePath("UI/PlayerHUD/RemainingLifeContainer/TextContainer/RemainingLifeTitleLabel")
+remaining_life_counter = NodePath("UI/PlayerHUD/RemainingLifeContainer/TextContainer/RemainingLifeCounterLabel")
 action_line_sprites = NodePath("UI/ActionLineSprites")
 light_attack_area = NodePath("LightAttackSystemArea3D")
 long_range_collision_shape = NodePath("LightAttackSystemArea3D/DistanceCollisionShape3D")
@@ -10654,9 +10658,6 @@ animation = &"Action lines"
 frame_progress = 0.330083
 
 [node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
-
-[node name="HealthBar" parent="UI/PlayerHUD" index="0"]
-offset_bottom = 27.0
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 

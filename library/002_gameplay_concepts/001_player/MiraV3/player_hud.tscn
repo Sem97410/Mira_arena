@@ -12,9 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HealthBar" parent="." instance=ExtResource("1_rqdei")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 116.0
+offset_top = 119.0
+offset_right = 395.0
+offset_bottom = 147.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="RemainingLifeContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -25,11 +29,11 @@ grow_horizontal = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="TextContainer" type="VBoxContainer" parent="RemainingLifeContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PlayerLifeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RemainingLifeTitleLabel" type="Label" parent="RemainingLifeContainer/TextContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ncej4")
 theme_override_font_sizes/font_size = 60
@@ -37,10 +41,15 @@ text = "Remaining life "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerLifeLabel2" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RemainingLifeCounterLabel" type="Label" parent="RemainingLifeContainer/TextContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ncej4")
 theme_override_font_sizes/font_size = 60
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
