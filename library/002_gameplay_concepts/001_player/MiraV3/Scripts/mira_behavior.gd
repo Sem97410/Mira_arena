@@ -20,6 +20,8 @@ extends CharacterBody3D
 @export var player : CharacterBody3D
 @export var aura_mesh : MeshInstance3D #The colored circle effect around the player
 @export var player_mesh : Node3D
+@export var health_area : Area3D
+var spawn_position : Vector3
 
 #---
 
@@ -51,6 +53,9 @@ extends CharacterBody3D
 @export var remaining_life_container : MarginContainer
 @export var remaining_life_title_text : Label
 @export var remaining_life_counter : Label
+@export var you_are_dead_panel : Control
+@export var you_have_x_lives_remaining_container : PanelContainer
+@export var you_have_x_lives_remaining_label : Label
 
 #---
 
@@ -156,6 +161,7 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 @onready var is_alive : bool = true
 @export var max_remaining_lives : int = 10 #Number of life that a player has in a session
 @onready var current_remaining_lives : int = max_remaining_lives
+@export var delay_before_respawn : float
 
 @export_subgroup("Invincibility values")
 @onready var blink_interval : float = 0.2
@@ -274,6 +280,7 @@ var original_position: Vector3  # Stocke la position d'origine
 # --------------------------------------------------------------------------
 
 func _ready():
+	spawn_position = player.global_position
 	_previous_position = global_position
 	original_position = camera_position.transform.origin  # Sauvegarde la position de base
 	health_bar.init_health(player_max_hp)
@@ -288,6 +295,11 @@ func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
 	
 	charge_attack_movement_mode()
+
+	set_up_remaining_life_label()
+	
+	if Input.is_action_just_pressed("Debug_2"):
+		current_remaining_lives -= 1
 
 	#if Input.is_action_just_pressed("await_test"):
 		#
@@ -673,25 +685,57 @@ func launch_hit_logic() -> void :
 #---
 
 func check_if_dead() -> void :
-	if player_current_hp <= 0 :
+	if player_current_hp <= 0  and is_alive:
+		is_alive = false
 		send_event_state_chart("IsDead")
+		current_remaining_lives -= 1
+
 
 #---
 
-func death() -> void :
+func handle_respawn_after_death() -> void : 
+	player.global_position = spawn_position
+	you_have_x_lives_remaining_container.visible = true
+	you_have_x_lives_remaining_label.text = "You have  " + str(current_remaining_lives) + " lives remaining"
+	camera_behavior_script.current_camera_offset = camera_behavior_script.base_camera_offset
+	player_current_hp = player_max_hp
+	base_state_machine.travel("MovementBlendSpace")
+	send_event_state_chart("IsMoving")
+	player_hud.visible = true
+	is_alive = true
+	can_move = true
 
+	health_bar.init_health(player_max_hp)
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	you_have_x_lives_remaining_container.visible = false
+#---
+
+func death() -> void :
+	
 	base_state_machine.travel("Death")
-	is_alive = false
+	player_hud.visible = false
+	you_are_dead_panel.visible = true
 	can_move = false
 	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
 
-	await get_tree().create_timer(1.5).timeout
-
-	death_pannel.visible = true
-	death_pannel_first_button.grab_focus()
-
-	#await get_tree().create_timer(0.5).timeout
-	Engine.time_scale = 0.0
+	await get_tree().create_timer(delay_before_respawn).timeout
+	you_are_dead_panel.visible = false
+	if current_remaining_lives <= 0 :
+		
+		death_pannel.visible = true
+		death_pannel_first_button.grab_focus()
+		#await get_tree().create_timer(0.5).timeout
+		Engine.time_scale = 0.0
+	else :
+	
+		handle_respawn_after_death()
+	
+	print("Is alive is : ", is_alive)
+	print("can_move is : ", can_move)
+	print("Engine. time_scale is : ", Engine.time_scale)
+	print("current node is : ", base_state_machine.get_current_node())
 
 #---
 
@@ -712,7 +756,7 @@ func player_is_blinking():
 #---
 
 func set_up_remaining_life_label() -> void : 
-	pass
+	remaining_life_counter.text = str(current_remaining_lives) + "/" + str(max_remaining_lives)
 # ----------------
 
 # --------------------------------------------------------------------------
@@ -1343,6 +1387,7 @@ func activate_charged_attack_swing_sound() -> void :
 func launch_dash_countdown(delta : float) -> void : 
 	if current_dash_countdown> 0 :
 		current_dash_countdown -= delta
+
 # --------------------------------------------------------------------------
 ## VFX
 func instantiate_foot_step_vfx() -> void :

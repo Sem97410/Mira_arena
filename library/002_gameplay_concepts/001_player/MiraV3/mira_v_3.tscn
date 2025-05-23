@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=174 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -15,6 +15,7 @@
 [ext_resource type="Material" uid="uid://dfbsp704n85ts" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_skirt.tres" id="9_dfj4j"]
 [ext_resource type="Material" uid="uid://ctbukj1n2g4we" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes_semelle.tres" id="10_dv1vs"]
 [ext_resource type="Material" uid="uid://dxbmnk70bggae" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shoes.tres" id="11_1yggv"]
+[ext_resource type="PackedScene" uid="uid://bypfkwwa3e4p8" path="res://library/002_gameplay_concepts/001_player/UI/you_are_dead_panel.tscn" id="11_x4wy3"]
 [ext_resource type="Material" uid="uid://d5d8486vlnmc" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_belt.tres" id="12_rwcnu"]
 [ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="13_5lelo"]
 [ext_resource type="PackedScene" uid="uid://db65kgtyar2lg" path="res://library/002_gameplay_concepts/001_player/MiraV3/player_hud.tscn" id="14_1wmhn"]
@@ -10067,13 +10068,14 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "health_area", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
 Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
 player = NodePath(".")
 aura_mesh = NodePath("Meshes/Group/Aura")
 player_mesh = NodePath("Meshes/Group/DeformationSystem")
+health_area = NodePath("HealthArea")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("Meshes/AnimationPlayer")
 state_chart = NodePath("StateChart")
@@ -10085,8 +10087,11 @@ health_bar = NodePath("UI/PlayerHUD/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
 death_pannel_first_button = NodePath("UI/death_pannel/Buttons_container/Reload")
 remaining_life_container = NodePath("UI/PlayerHUD/RemainingLifeContainer")
-remaining_life_title_text = NodePath("UI/PlayerHUD/RemainingLifeContainer/TextContainer/RemainingLifeTitleLabel")
-remaining_life_counter = NodePath("UI/PlayerHUD/RemainingLifeContainer/TextContainer/RemainingLifeCounterLabel")
+remaining_life_title_text = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeTitleLabel")
+remaining_life_counter = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeCounterLabel")
+you_are_dead_panel = NodePath("UI/YouAreDeadPanel")
+you_have_x_lives_remaining_container = NodePath("UI/YouHaveXLivesRemainingContainer")
+you_have_x_lives_remaining_label = NodePath("UI/YouHaveXLivesRemainingContainer/MarginContainer/YouHaveXLivesRemainingLabel")
 action_line_sprites = NodePath("UI/ActionLineSprites")
 light_attack_area = NodePath("LightAttackSystemArea3D")
 long_range_collision_shape = NodePath("LightAttackSystemArea3D/DistanceCollisionShape3D")
@@ -10120,6 +10125,7 @@ foot_step_vfx = ExtResource("2_5lelo")
 movement_vfx_storage = NodePath("VFX/FootStepVfxStorage")
 mira_step = NodePath("SFX/mira_step")
 footstep_sounds = Array[AudioStream]([ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc"), ExtResource("3_viusc")])
+delay_before_respawn = 2.0
 dash_length = 5.0
 light_attack_damage = 50.0
 charged_attack_damage = 100.0
@@ -10399,6 +10405,9 @@ text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="YouAreDeadPanel" parent="UI" instance=ExtResource("11_x4wy3")]
+visible = false
+
 [node name="death_pannel" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -10658,6 +10667,34 @@ animation = &"Action lines"
 frame_progress = 0.330083
 
 [node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
+
+[node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="UI/YouHaveXLivesRemainingContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/YouHaveXLivesRemainingContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="YouHaveXLivesRemainingLabel" type="Label" parent="UI/YouHaveXLivesRemainingContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "You have X lives remaining"
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
@@ -11718,6 +11755,12 @@ delay_in_seconds = "0.0"
 
 [node name="Death" type="Node" parent="StateChart/root"]
 script = ExtResource("37_bupnr")
+
+[node name="ToMovement" type="Node" parent="StateChart/root/Death"]
+script = ExtResource("38_uvhkw")
+to = NodePath("../../Movement")
+event = &"IsMoving"
+delay_in_seconds = "0.0"
 
 [node name="SFX" type="Node" parent="."]
 

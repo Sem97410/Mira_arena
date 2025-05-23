@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bypfkwwa3e4p8"]
+
+[node name="YouAreDeadPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/Panel"]
+layout_mode = 2
+offset_top = 275.0
+offset_right = 1920.0
+offset_bottom = 412.0
+theme_override_constants/line_spacing = -340
+theme_override_font_sizes/font_size = 40
+text = "(Oui c'est violent pour l'instant)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "YOU ARE DEAD"
+horizontal_alignment = 1
+vertical_alignment = 1

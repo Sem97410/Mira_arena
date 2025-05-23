@@ -20,36 +20,37 @@ offset_bottom = 147.0
 
 [node name="RemainingLifeContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+offset_left = 156.255
+offset_top = 82.605
+offset_right = 403.255
+offset_bottom = 116.605
 
-[node name="TextContainer" type="VBoxContainer" parent="RemainingLifeContainer"]
+[node name="Panel" type="Panel" parent="RemainingLifeContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
 
-[node name="RemainingLifeTitleLabel" type="Label" parent="RemainingLifeContainer/TextContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="RemainingLifeContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextContainer" type="HBoxContainer" parent="RemainingLifeContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RemainingLifeTitleLabel" type="Label" parent="RemainingLifeContainer/MarginContainer/TextContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ncej4")
-theme_override_font_sizes/font_size = 60
-text = "Remaining life "
+theme_override_font_sizes/font_size = 25
+text = "Remaining life : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RemainingLifeCounterLabel" type="Label" parent="RemainingLifeContainer/TextContainer"]
+[node name="RemainingLifeCounterLabel" type="Label" parent="RemainingLifeContainer/MarginContainer/TextContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ncej4")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 25
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
