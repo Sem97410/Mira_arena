@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://enaoa725ud25"]
+
+[ext_resource type="Script" uid="uid://dbr0vrw8k1fng" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.gd" id="1_mwx3n"]
+
+[node name="ScoringSystem" type="Node"]
+script = ExtResource("1_mwx3n")

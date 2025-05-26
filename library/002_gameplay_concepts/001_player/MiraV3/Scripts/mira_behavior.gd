@@ -301,10 +301,6 @@ func _process(delta: float) -> void:
 	charge_attack_movement_mode()
 
 	set_up_remaining_life_label()
-	
-	print("Current node : ", base_state_machine.get_current_node())
-		
-		
 		
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
@@ -726,7 +722,10 @@ func handle_respawn_after_death() -> void :
 
 	you_have_x_lives_remaining_container.visible = true
 	you_have_x_lives_remaining_label.text = "You have  " + str(current_remaining_lives) + " lives remaining"
+	
+
 	camera_behavior_script.current_camera_offset = camera_behavior_script.base_camera_offset
+	
 	player_current_hp = player_max_hp
 	base_state_machine.travel("MovementBlendSpace")
 	send_event_state_chart("IsMoving")
@@ -754,6 +753,7 @@ func death() -> void :
 	player_hud.visible = false
 	you_are_dead_panel.visible = true
 	can_move = false
+	camera_behavior_script.current_target_position = player.global_position
 	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
 	
 	player.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
