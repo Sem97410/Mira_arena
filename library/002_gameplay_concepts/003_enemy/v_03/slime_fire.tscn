@@ -5,8 +5,8 @@
 [ext_resource type="Material" uid="uid://c1l2ntb1tmsfk" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_flamme_slime_light_bublle.tres" id="3_tlxg8"]
 [ext_resource type="Material" uid="uid://nahnuwegiq7t" path="res://library/002_gameplay_concepts/003_enemy/v_03/mat_flamme_slime_eyes.tres" id="4_d6q3y"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="5_d6q3y"]
-[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Voronoi01.png" id="6_y3a2i"]
-[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame02.png" id="7_0836t"]
+[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="6_y3a2i"]
+[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="7_0836t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewgya"]
 
