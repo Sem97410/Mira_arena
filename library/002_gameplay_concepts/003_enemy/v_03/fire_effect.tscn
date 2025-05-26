@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://brifjyftuwirk"]
 
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="1_qudmx"]
-[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Voronoi01.png" id="2_d0r4s"]
-[ext_resource type="Texture2D" uid="uid://mc2qw0se60q5" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame01.png" id="3_5apaq"]
-[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame02.png" id="4_d0r4s"]
+[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="2_d0r4s"]
+[ext_resource type="Texture2D" uid="uid://mc2qw0se60q5" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame01.png" id="3_5apaq"]
+[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="4_d0r4s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8p7td"]
 render_priority = 0

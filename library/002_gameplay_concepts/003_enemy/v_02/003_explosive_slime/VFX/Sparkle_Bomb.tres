@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" load_steps=15 format=3 uid="uid://2kqb4uplbhec"]
 
-[ext_resource type="Texture2D" uid="uid://dfdaoo8dbpfxd" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/T_PerlinNoise_Tiled11_inv.png" id="1_6rxy6"]
-[ext_resource type="Texture2D" uid="uid://t7ka0fgrb47s" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/T_Fire.png" id="2_3gxgg"]
+[ext_resource type="Texture2D" uid="uid://dfdaoo8dbpfxd" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_PerlinNoise_Tiled11_inv.png" id="1_6rxy6"]
+[ext_resource type="Texture2D" uid="uid://t7ka0fgrb47s" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Fire.png" id="2_3gxgg"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_xylq0"]
 expanded_output_ports = [0]

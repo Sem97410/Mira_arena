@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://dragyvb8qnyho"]
 
-[ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Noise/T_VFX_Point.png" id="1_4nuh4"]
+[ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_VFX_Point.png" id="1_4nuh4"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_avdpj"]
 texture = ExtResource("1_4nuh4")

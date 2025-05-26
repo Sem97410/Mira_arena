@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://jvj6lda1sps1" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_externe.tres" id="1_q52iv"]
 [ext_resource type="Material" uid="uid://bcxsmiyioua8g" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_body.tres" id="2_288bj"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="3_288bj"]
-[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Voronoi01.png" id="4_kt6dq"]
-[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_texture/Flame02.png" id="5_5hih0"]
+[ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="4_kt6dq"]
+[ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="5_5hih0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdsuf"]
 resource_name = "fire_slim_jeilly"
