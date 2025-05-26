@@ -166,7 +166,9 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 @export_subgroup("Invincibility values")
 @onready var blink_interval : float = 0.2
 @onready var after_hit_invicibility : bool = false
-@export var invicibility_duration : float = 5.0 #base on the number of blink
+@export var after_hit_invicibility_duration : float = 5.0 #base on the number of blink
+@export var after_respawn_invincibility_duration : float = 5.0
+
 
 # ----------------
 
@@ -680,7 +682,7 @@ func launch_hit_logic() -> void :
 		return
 
 	base_state_machine.travel("Hit")	#Animation
-	player_is_blinking()				#Blink
+	player_is_blinking(after_hit_invicibility_duration)				#Blink
 
 #---
 
@@ -704,6 +706,10 @@ func handle_respawn_after_death() -> void :
 	player_hud.visible = true
 	is_alive = true
 	can_move = true
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().paused = false
+	
+	player_is_blinking(after_respawn_invincibility_duration)  #Invincibility after spawn
 
 	health_bar.init_health(player_max_hp)
 	
@@ -719,6 +725,10 @@ func death() -> void :
 	you_are_dead_panel.visible = true
 	can_move = false
 	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
+	#print("Process mode before : ", animation_player.process_mode )
+	player.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	get_tree().paused = true
+
 
 	await get_tree().create_timer(delay_before_respawn).timeout
 	you_are_dead_panel.visible = false
@@ -727,25 +737,21 @@ func death() -> void :
 		death_pannel.visible = true
 		death_pannel_first_button.grab_focus()
 		#await get_tree().create_timer(0.5).timeout
-		Engine.time_scale = 0.0
+		
 	else :
 	
 		handle_respawn_after_death()
-	
-	print("Is alive is : ", is_alive)
-	print("can_move is : ", can_move)
-	print("Engine. time_scale is : ", Engine.time_scale)
-	print("current node is : ", base_state_machine.get_current_node())
+
 
 #---
 
-func player_is_blinking():
+func player_is_blinking(duration : float):
 	if  after_hit_invicibility:
 		return # Exit if blinking is already in progress
 
 	after_hit_invicibility = true # Lock blinking
 
-	for i in range(invicibility_duration):
+	for i in range(duration):
 		player_mesh.visible = not player_mesh.visible
 		await get_tree().create_timer(blink_interval).timeout
 

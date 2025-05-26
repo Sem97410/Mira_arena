@@ -285,8 +285,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.46321, -0.1049
 shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3285, 0, 0)
-player_max_hp = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7122, 0, 0)
+player_max_hp = 1.0
+after_respawn_invincibility_duration = 20.0
 player_dash_countdown = 0.5
 
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]

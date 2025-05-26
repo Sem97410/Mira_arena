@@ -695,3 +695,8 @@ func instantiate_mortar_projectile() -> void:
 
 	#print("Spawn a projectile on the player")
 	instantiate_vfx(player_current_position, mortar_projectil)
+
+func freeze_enemies_when_player_dead() -> void : 
+	
+	if player.player_current_hp <= 0 :
+		get_tree().paused = true
