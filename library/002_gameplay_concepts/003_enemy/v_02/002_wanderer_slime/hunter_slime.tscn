@@ -259,6 +259,7 @@ _data = {
 collision_mask = 5
 dash_length = 4.0
 attack_cool_down = 2.0
+enemy_scoring_value = 20
 max_health_point = 100.0
 movement_speed = 5.0
 movement_interpolate_strength = 10.0

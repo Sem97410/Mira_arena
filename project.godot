@@ -45,6 +45,7 @@ enemy=""
 FootStepManager=""
 spawn_on_navmesh=""
 wave_manager=""
+scoring_system=""
 
 [input]
 

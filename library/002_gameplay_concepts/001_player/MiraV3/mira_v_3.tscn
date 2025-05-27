@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=175 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -74,6 +74,7 @@
 [ext_resource type="Shader" uid="uid://vein4pltlive" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Lock/Mortar_SolInterior.tres" id="66_1wmhn"]
 [ext_resource type="Shader" uid="uid://vi3nukj80v5e" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Lock/Mortar_Sol_Edge.tres" id="67_x4wy3"]
 [ext_resource type="Shader" uid="uid://cf00bqyai3jiw" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Lock/Particles_Sol.tres" id="68_aha3o"]
+[ext_resource type="PackedScene" uid="uid://enaoa725ud25" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.tscn" id="75_aha3o"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -10068,7 +10069,7 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "health_area", "deah_timer", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "health_area", "deah_timer", "scoring_system", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
 Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
@@ -10077,6 +10078,7 @@ aura_mesh = NodePath("Meshes/Group/Aura")
 player_mesh = NodePath("Meshes/Group/DeformationSystem")
 health_area = NodePath("HealthArea")
 deah_timer = NodePath("CheckDeathTimer")
+scoring_system = NodePath("ScoringSystem")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("Meshes/AnimationPlayer")
 state_chart = NodePath("StateChart")
@@ -10676,9 +10678,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -502.0
+offset_top = -380.95
+offset_right = 502.0
+offset_bottom = -184.95
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -10694,6 +10697,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="YouHaveXLivesRemainingLabel" type="Label" parent="UI/YouHaveXLivesRemainingContainer/MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 70
 text = "You have X lives remaining"
 
@@ -11965,6 +11969,8 @@ texture = ExtResource("55_rs7t3")
 
 [node name="CheckDeathTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ScoringSystem" parent="." instance=ExtResource("75_aha3o")]
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]

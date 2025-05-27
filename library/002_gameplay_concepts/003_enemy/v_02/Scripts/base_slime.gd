@@ -21,13 +21,9 @@ class_name BaseSlime
 #general variables
 var player_position : Vector3
 var target_position : Vector3
-@onready var wave_manager : WaveManager
+var wave_manager : WaveManager
 
-
-#----------------------
-#Health variables
-
-
+var scoring_system : Node
 
 #----------------------
 @export_category("Meshes variables")
@@ -117,6 +113,8 @@ var random_point_navmesh: Vector3
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") #Assign the player
 	wave_manager = get_tree().get_first_node_in_group("wave_manager")
+	scoring_system = get_tree().get_first_node_in_group("scoring_system")
+	
 	can_move = true
 	current_health_point = max_health_point
 
@@ -282,7 +280,7 @@ func _on_death_state_entered() -> void:
 	
 	decrease_current_enemies_number(wave_manager)
 
-	
+	scoring_system.enemy_is_dead.emit(enemy_scoring_value)
 	death(slime, 1.5)
 #----------------------------------------------
 #endregion
@@ -618,7 +616,7 @@ func explosion() -> void :
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-
+	scoring_system.enemy_is_dead.emit(enemy_scoring_value)
 	death(slime,1.1)
 
 	

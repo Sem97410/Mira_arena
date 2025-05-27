@@ -1,6 +1,185 @@
-[gd_scene load_steps=2 format=3 uid="uid://enaoa725ud25"]
+[gd_scene load_steps=3 format=3 uid="uid://enaoa725ud25"]
 
 [ext_resource type="Script" uid="uid://dbr0vrw8k1fng" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.gd" id="1_mwx3n"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_5vwmt"]
 
-[node name="ScoringSystem" type="Node"]
+[node name="ScoringSystem" type="Node" node_paths=PackedStringArray("reset_counter_label", "total_score_label", "group_point_label", "reset_multiplicator_counter_margin_container", "combo_multiplicator_value_label", "group_point_multiplicator_label", "add_point_group_point_container", "remove_point_group_point_container", "gauge_value_debug_label") groups=["scoring_system"]]
 script = ExtResource("1_mwx3n")
+reset_counter_label = NodePath("Control/ResetCounterMarginContainer/VBoxContainer/ResetCounterNumberLabel")
+total_score_label = NodePath("Control/GroupPointMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TotalScorePointLabel")
+group_point_label = NodePath("Control/GroupPointMarginContainer/VBoxContainer/GetPointHBoxContainer/GroupPointLabel")
+reset_multiplicator_counter_margin_container = NodePath("Control/ResetCounterMarginContainer")
+combo_multiplicator_value_label = NodePath("Control/ComboMarginContainer/ComboMultiplicatorValue")
+group_point_multiplicator_label = NodePath("Control/GroupPointMarginContainer/VBoxContainer/GetPointHBoxContainer/GroupPointMultiplicatorLabel")
+add_point_group_point_container = NodePath("Control/GroupPointMarginContainer/VBoxContainer/GetPointHBoxContainer")
+remove_point_group_point_container = NodePath("Control/GroupPointMarginContainer/VBoxContainer/RemovePointHBoxContainer")
+delay_before_add_points_to_total = 5.0
+gauge_value_debug_label = NodePath("Control/DebugMarginContainer/HBoxContainer/MultiplicatorGaugeDebugNumberLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResetCounterMarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_right = 313.0
+offset_bottom = 37.5
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ResetCounterMarginContainer"]
+layout_mode = 2
+
+[node name="ResetCounterTextLabel" type="Label" parent="Control/ResetCounterMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 25
+text = "Reset multiplicator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetCounterNumberLabel" type="Label" parent="Control/ResetCounterMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 25
+text = " 5.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GroupPointMarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GroupPointMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GetPointHBoxContainer" type="HBoxContainer" parent="Control/GroupPointMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GroupPointLabel" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/GetPointHBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(8.90419e-07, 0.515129, 0.138324, 1)
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 30
+text = "+ 0"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="GroupPointMultiplicatorLabel" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/GetPointHBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 30
+text = "x 1"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="RemovePointHBoxContainer" type="HBoxContainer" parent="Control/GroupPointMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MalusGroupPointLabel" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/RemovePointHBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.787785, 0, 0.265815, 1)
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 30
+text = "- 0"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GroupPointMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="TotalScoreTextLabel" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 50
+text = "Total score :"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GroupPointMarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="malus_number_label" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682072, 0, 0.322652, 1)
+text = "- 100"
+
+[node name="TotalScorePointLabel" type="Label" parent="Control/GroupPointMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugMarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -113.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/DebugMarginContainer"]
+layout_mode = 2
+
+[node name="MultiplicatorGaugeDebugTextLabel" type="Label" parent="Control/DebugMarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Gauge value : "
+
+[node name="MultiplicatorGaugeDebugNumberLabel" type="Label" parent="Control/DebugMarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ComboMarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.5
+offset_top = -187.0
+offset_right = 59.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="ComboMultiplicatorValue" type="Label" parent="Control/ComboMarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5vwmt")
+theme_override_font_sizes/font_size = 100
+text = "X1"

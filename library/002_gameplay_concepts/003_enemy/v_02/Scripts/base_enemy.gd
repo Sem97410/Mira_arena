@@ -25,6 +25,12 @@ class_name BaseEnemy
 var player : CharacterBody3D
 @export var state_chart : StateChart
 
+
+#----------------------
+#scoring values
+@export_category("Slime scoring")
+@export var enemy_scoring_value : int
+
 #----------------------
 @export_category("Health variables")
 
@@ -108,6 +114,7 @@ func activate_after_damage_invincibility(invincibility_duration : float) -> void
 #---
 func death(entity : CharacterBody3D, death_animation_duration : float) : 
 	freeze_movement()
+	
 	
 	await get_tree().create_timer(death_animation_duration).timeout
 	

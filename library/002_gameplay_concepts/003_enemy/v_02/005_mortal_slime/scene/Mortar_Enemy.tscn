@@ -1,15 +1,16 @@
-[gd_scene load_steps=51 format=3 uid="uid://eoh3er86dlaj"]
+[gd_scene load_steps=52 format=3 uid="uid://eoh3er86dlaj"]
 
 [ext_resource type="Material" uid="uid://d2ujkj8ij2n0h" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Mortar_Enemy_Explosive_Cloud.tres" id="1_upfgm"]
-[ext_resource type="Shader" uid="uid://s3my3eajqv5g" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Sparkle_Mortar.tres" id="2_jp4i0"]
+[ext_resource type="Shader" uid="uid://s3my3eajqv5g" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Sparkle_Mortar.tres" id="2_jp4i0"]
 [ext_resource type="Texture2D" uid="uid://w2bc1e8ixtdr" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_VFX_Point.png" id="3_ukmrl"]
 [ext_resource type="Texture2D" uid="uid://bimy7bs8ofgma" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque.png" id="4_4xnhs"]
 [ext_resource type="Texture2D" uid="uid://dgk7bw2cxesld" path="res://library/002_gameplay_concepts/006_VFX/Noise/T_Craque_E.png" id="5_qsjee"]
-[ext_resource type="Shader" uid="uid://dragyvb8qnyho" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Sparkle_2.tres" id="6_3h1r4"]
-[ext_resource type="Shader" uid="uid://cl76tpilq8bxa" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Wave.tres" id="7_6sdd1"]
-[ext_resource type="ArrayMesh" uid="uid://rdee0dyucfo7" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Wave.obj" id="8_kdw5f"]
-[ext_resource type="Shader" uid="uid://dp8qapka33nt1" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Mortar_Wave_2.tres" id="9_gxald"]
-[ext_resource type="ArrayMesh" uid="uid://dbvdox2cy041n" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/Explosion/Wave_3.obj" id="10_qkpux"]
+[ext_resource type="Shader" uid="uid://dragyvb8qnyho" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Mortar_Sparkle_2.tres" id="6_3h1r4"]
+[ext_resource type="Shader" uid="uid://cl76tpilq8bxa" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Mortar_Wave.tres" id="7_6sdd1"]
+[ext_resource type="ArrayMesh" uid="uid://rdee0dyucfo7" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Wave.obj" id="8_kdw5f"]
+[ext_resource type="Shader" uid="uid://dp8qapka33nt1" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Mortar_Wave_2.tres" id="9_gxald"]
+[ext_resource type="ArrayMesh" uid="uid://dbvdox2cy041n" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Explosion/Wave_3.obj" id="10_qkpux"]
+[ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="11_jp4i0"]
 
 [sub_resource type="Curve" id="Curve_yxbfi"]
 _data = [Vector2(0, 0.0337079), 0.0, 0.712265, 0, 0, Vector2(0.640816, 0.337079), 0.0, 0.0, 0, 0, Vector2(0.938775, 1), 4.12922, 0.0, 0, 0]
@@ -535,3 +536,8 @@ lifetime = 2.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tglfl")
 draw_pass_1 = ExtResource("10_qkpux")
+
+[node name="DestroyVfx" type="Node" parent="." node_paths=PackedStringArray("current_vfx")]
+script = ExtResource("11_jp4i0")
+current_vfx = NodePath("..")
+delay_before_queue_free = 5.0

@@ -23,6 +23,7 @@ extends CharacterBody3D
 @export var health_area : Area3D
 var spawn_position : Vector3
 @export var deah_timer : Timer
+@export var scoring_system : Node
 
 #---
 
@@ -36,6 +37,11 @@ var spawn_position : Vector3
 
 @export_subgroup("Behavior")
 @export var state_chart : StateChart
+
+#---
+
+@export_subgroup("Signals")
+
 
 #---
 
@@ -284,6 +290,7 @@ var original_position: Vector3  # Stocke la position d'origine
 # --------------------------------------------------------------------------
 
 func _ready():
+
 	spawn_position = player.global_position
 	_previous_position = global_position
 	original_position = camera_position.transform.origin  # Sauvegarde la position de base
@@ -669,6 +676,7 @@ func take_damage(damage: float) -> void:
 
 	player_current_hp -= damage
 	health_bar.health = player_current_hp
+	scoring_system.player_take_damage.emit()
 
 	# ✅ On check la mort **après** avoir mis à jour la vie
 	check_if_dead()
@@ -1071,6 +1079,7 @@ func make_damage(area : Area3D, damage : float) -> void :
 	var parent = area.get_parent()
 	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
+		scoring_system.player_is_attacking.emit()
 		trigger_shake()
 		return
 		

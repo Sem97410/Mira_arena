@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bypfkwwa3e4p8"]
+[gd_scene load_steps=2 format=3 uid="uid://bypfkwwa3e4p8"]
+
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_x2i2f"]
 
 [node name="YouAreDeadPanel" type="Control"]
 layout_mode = 3
@@ -30,6 +32,7 @@ offset_top = 275.0
 offset_right = 1920.0
 offset_bottom = 412.0
 theme_override_constants/line_spacing = -340
+theme_override_fonts/font = ExtResource("1_x2i2f")
 theme_override_font_sizes/font_size = 40
 text = "(Oui c'est violent pour l'instant)"
 horizontal_alignment = 1
@@ -37,6 +40,7 @@ vertical_alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x2i2f")
 theme_override_font_sizes/font_size = 100
 text = "YOU ARE DEAD"
 horizontal_alignment = 1
