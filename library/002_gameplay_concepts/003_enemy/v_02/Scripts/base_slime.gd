@@ -280,7 +280,7 @@ func _on_death_state_entered() -> void:
 	
 	decrease_current_enemies_number(wave_manager)
 
-	scoring_system.enemy_is_dead.emit(enemy_scoring_value)
+	scoring_system.player_kill_enemy.emit(enemy_scoring_value)
 	death(slime, 1.5)
 #----------------------------------------------
 #endregion
@@ -616,7 +616,7 @@ func explosion() -> void :
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-	scoring_system.enemy_is_dead.emit(enemy_scoring_value)
+	scoring_system.player_kill_enemy.emit(enemy_scoring_value)
 	death(slime,1.1)
 
 	

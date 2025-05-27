@@ -764,12 +764,16 @@ func death() -> void :
 	camera_behavior_script.current_target_position = player.global_position
 	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
 	
+	await get_tree().create_timer(1.0).timeout
 	player.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	get_tree().paused = true
 
 
 	await get_tree().create_timer(delay_before_respawn).timeout
+	
 	you_are_dead_panel.visible = false
+
+	
 	if current_remaining_lives <= 0 :
 		
 		death_pannel.visible = true

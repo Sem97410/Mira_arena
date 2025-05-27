@@ -1,23 +1,28 @@
 extends Node
 
 #Nodes
-@export_group("❗Required References❗ ⚠️")
-@export_subgroup("UI nodes")
+@export_group("UI Nodes")
+@export_subgroup("General nodes")
 @export var reset_counter_label : Label
 @export var total_score_label : Label
-@export var group_point_label : Label
 @export var reset_multiplicator_counter_margin_container : MarginContainer
 @export var combo_multiplicator_value_label : Label
-@export var group_point_multiplicator_label : Label
+@export var player : CharacterBody3D
+
+@export_subgroup("Get point nodes")
+@export var bonus_group_point_label : Label
+@export var bonus_group_point_multiplicator_label : Label
 @export var add_point_group_point_container : HBoxContainer
+
+@export_subgroup("Malus nodes")
 @export var remove_point_group_point_container : HBoxContainer
 @export var malus_group_point_label : Label
+@export var malus_group_text_label : Label
 @export var malus_number_label : Label
 
-var player : CharacterBody3D
 
 #---
-
+@export_group("Scoring Stats")
 @export_subgroup("Scoring values")
 @export var multiplicator_reset_delay : float = 5.0
 @onready var time_since_last_hit  : float = 0.0
@@ -28,10 +33,13 @@ var player : CharacterBody3D
 	60 : 4,
 	70 : 5
 }
-@export var hit_malus_point : float 
-var current_multiplicator : int 
-var group_point_value : int
 @export var delay_before_add_points_to_total : float = 3.0
+@export var hit_malus_point : float 
+@export var death_malus_point : float
+
+var current_multiplicator : int 
+var bonus_group_point_value : int
+
 var current_timer_before_add_points_to_total : float 
 var total_score_value : int
 
@@ -39,9 +47,9 @@ var total_score_value : int
 
 @export_subgroup("Signals")
 signal player_is_attacking
-signal enemy_is_dead(value : int)
+signal player_kill_enemy(value : int)
 signal player_take_damage
-signal player_is_dead
+
 
 #---
 
@@ -56,10 +64,10 @@ signal player_is_dead
 # BASE FUNCTIONS
 
 func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("player") #Assign the player
 	player_is_attacking.connect(player_hit_enemies)
-	enemy_is_dead.connect(set_up_group_score)
+	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
+
 	
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
@@ -115,9 +123,11 @@ func update_multiplicator() -> void :
 # KILLPOINTS
 
 func set_up_group_score(value : int) -> void : 
-	disable_remove_point_container()
-	group_point_value += value
-	group_point_label.text = "+"+ str(group_point_value)
+	enable_bonus_visual()
+	bonus_group_point_value += value
+	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
+	malus_number_label.visible = false
+	
 	
 	set_up_group_point_counter()
 
@@ -131,25 +141,44 @@ func launch_counter_that_add_point_to_total(delta : float) -> void:
 			flush_group_score()
 
 func flush_group_score() -> void : 
-	total_score_value += (group_point_value * current_multiplicator)
+	total_score_value += (bonus_group_point_value * current_multiplicator)
 	total_score_label.text = str(total_score_value)
-	group_point_value = 0
-	group_point_label.text = "+"+ str(group_point_value)
+	bonus_group_point_value = 0
+	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
 
 func set_up_group_point_multiplicator_label() -> void : 
-	group_point_multiplicator_label.text = "X " + str(current_multiplicator)
+	bonus_group_point_multiplicator_label.text = "X " + str(current_multiplicator)
 # --------------------------------------------------------------------------
 
 # MALUS
 
 func player_took_damages() -> void :
 	flush_group_score()
-	enable_remove_point_container()
-	malus_group_point_label.text = "- " + str(hit_malus_point)
 	
+	if player.player_current_hp > 0:
+		print("It's just a hit")
+		malus_group_text_label.text = "Hit :"
+		malus_group_point_label.text = "- " + str(hit_malus_point)
+		total_score_value -=  hit_malus_point
+		
+
+
+
+	else :
+		print("Suppose to be dead")
+		malus_group_text_label.text = "Death :"
+		malus_group_point_label.text = "- " + str(death_malus_point)
+		total_score_value -=  death_malus_point
+
+	total_score_label.text = str(total_score_value)
+	enable_malus_visuals()
 	reset_gauge_value()
 	
+	await get_tree().create_timer(4.0).timeout
 	
+	disable_malus_visuals()
+	
+
 
 # --------------------------------------------------------------------------
 
@@ -170,15 +199,29 @@ func assign_mutliplicator_values_to_label() -> void :
 
 #---
 
-func enable_remove_point_container() -> void : 
-	add_point_group_point_container.visible = false
-	remove_point_group_point_container.visible = true
+func enable_bonus_visual() -> void : 
+	add_point_group_point_container.visible = true
 	
 #---
 
-func disable_remove_point_container() -> void :
-	add_point_group_point_container.visible = true
+func disable_bonus_visual() -> void : 
+	add_point_group_point_container.visible = false
+
+#---
+
+func enable_malus_visuals() -> void :
+	remove_point_group_point_container.visible = true
+	malus_number_label.visible = true
+	malus_group_point_label.visible = true
+
+#---
+
+func disable_malus_visuals() -> void :
 	remove_point_group_point_container.visible = false
+	malus_number_label.visible = false
+	malus_group_point_label.visible = false
+
+
 # --------------------------------------------------------------------------
 
 # DEBUG

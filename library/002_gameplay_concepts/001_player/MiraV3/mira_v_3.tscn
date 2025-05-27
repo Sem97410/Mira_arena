@@ -10078,7 +10078,7 @@ aura_mesh = NodePath("Meshes/Group/Aura")
 player_mesh = NodePath("Meshes/Group/DeformationSystem")
 health_area = NodePath("HealthArea")
 deah_timer = NodePath("CheckDeathTimer")
-scoring_system = NodePath("ScoringSystem")
+scoring_system = NodePath("UI/ScoringSystem")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("Meshes/AnimationPlayer")
 state_chart = NodePath("StateChart")
@@ -10700,6 +10700,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 70
 text = "You have X lives remaining"
+
+[node name="ScoringSystem" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("75_aha3o")]
+player = NodePath("../..")
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
@@ -11969,8 +11972,6 @@ texture = ExtResource("55_rs7t3")
 
 [node name="CheckDeathTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="ScoringSystem" parent="." instance=ExtResource("75_aha3o")]
 
 [connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
 [connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
