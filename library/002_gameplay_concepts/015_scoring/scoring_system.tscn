@@ -27,6 +27,7 @@ remove_point_group_point_container = NodePath("Control/GroupPointMarginContainer
 malus_group_point_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/RemovePointHBoxContainer/MalusGroupPointLabel")
 malus_group_text_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/RemovePointHBoxContainer/MalusGroupTextLabel")
 malus_number_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/malus_number_label")
+new_wave_bonus = 1000.0
 delay_before_add_points_to_total = 5.0
 hit_malus_point = 100.0
 death_malus_point = 500.0

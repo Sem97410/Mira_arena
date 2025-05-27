@@ -4,6 +4,9 @@ class_name WaveManager
 # --------------------------------------------------------------------------
 ## Required references
 
+#A REMETTRE LA OU IL FAUT : 
+var scoring_system : Node
+
 @export_group("❗Required References❗ ⚠️")
 @export_subgroup("Manage enemies")
 @export var all_enemy_types : Array[PackedScene] #Index 0 and 1 MUST be Wanderer and hunter slime
@@ -69,6 +72,7 @@ var growth_factor : float = 1.0
 ## BASE FUNCTIONS
 
 func _ready() -> void:
+	scoring_system = get_tree().get_first_node_in_group("scoring_system")
 	launch_map_introduction()
 	calculate_growth_factor()
 
@@ -89,6 +93,9 @@ func _process(delta: float) -> void:
 ## WAVES MANAGMENT
 
 func start_wave() -> void : 
+	
+	# A RAJOUTER ICI ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	scoring_system.new_wave_is_launching.emit()
 	
 	check_if_reset_enemies_count() #Check if we need to reset the wave cycle (ex : after wave 5)
 	

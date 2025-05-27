@@ -33,6 +33,7 @@ extends Node
 	60 : 4,
 	70 : 5
 }
+@export var new_wave_bonus : float 
 @export var delay_before_add_points_to_total : float = 3.0
 @export var hit_malus_point : float 
 @export var death_malus_point : float
@@ -49,6 +50,7 @@ var total_score_value : int
 signal player_is_attacking
 signal player_kill_enemy(value : int)
 signal player_take_damage
+signal new_wave_is_launching
 
 
 #---
@@ -67,6 +69,7 @@ func _ready() -> void:
 	player_is_attacking.connect(player_hit_enemies)
 	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
+	new_wave_is_launching.connect(new_wave_scoring_logic)
 
 	
 func _process(delta: float) -> void:
@@ -177,9 +180,13 @@ func player_took_damages() -> void :
 	await get_tree().create_timer(4.0).timeout
 	
 	disable_malus_visuals()
-	
 
+# --------------------------------------------------------------------------
 
+# BONUS
+
+func new_wave_scoring_logic()-> void : 
+	total_score_value += new_wave_bonus
 # --------------------------------------------------------------------------
 
 # VISUAL
