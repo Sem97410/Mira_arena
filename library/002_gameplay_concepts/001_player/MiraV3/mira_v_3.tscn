@@ -10703,6 +10703,7 @@ text = "You have X lives remaining"
 
 [node name="ScoringSystem" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("75_aha3o")]
 player = NodePath("../..")
+multiplicator_reset_delay = 10.0
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 

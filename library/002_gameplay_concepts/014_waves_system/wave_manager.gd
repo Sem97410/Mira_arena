@@ -94,8 +94,6 @@ func _process(delta: float) -> void:
 
 func start_wave() -> void : 
 	
-	# A RAJOUTER ICI ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	scoring_system.new_wave_is_launching.emit()
 	
 	check_if_reset_enemies_count() #Check if we need to reset the wave cycle (ex : after wave 5)
 	
@@ -158,9 +156,12 @@ func start_wave() -> void :
 
 #---
 
-func check_if_can_start_new_wave() -> void: 
-	if can_change_wave and enemies_alive_in_wave  <= 0: 
+func check_if_can_start_new_wave() -> void:
+	if can_change_wave and enemies_alive_in_wave <= 0:
 		start_wave()
+
+		if current_wave > 1:
+			scoring_system.new_wave_is_launching.emit()
 
 #---
 

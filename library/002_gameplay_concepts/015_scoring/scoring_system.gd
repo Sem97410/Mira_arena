@@ -9,16 +9,17 @@ extends Node
 @export var combo_multiplicator_value_label : Label
 @export var player : CharacterBody3D
 
+@export var score_log_text_label : Label
+@export var score_log_number_label : Label
+
 @export_subgroup("Get point nodes")
 @export var bonus_group_point_label : Label
 @export var bonus_group_point_multiplicator_label : Label
 @export var add_point_group_point_container : HBoxContainer
 
 @export_subgroup("Malus nodes")
-@export var remove_point_group_point_container : HBoxContainer
+@export var log_point_group_point_container : HBoxContainer
 @export var malus_group_point_label : Label
-@export var malus_group_text_label : Label
-@export var malus_number_label : Label
 
 
 #---
@@ -89,13 +90,22 @@ func _process(delta: float) -> void:
 
 # MULTIPLICATOR
 
-func launch_reset_multiplicator_timer(delta : float) -> void : 
+func launch_reset_multiplicator_timer(delta: float) -> void:
 	if time_since_last_hit > 0:
-		toggle_multiplicator_combo_reset_visibility(true)
-		time_since_last_hit -= delta
-	else :
+		time_since_last_hit = max(0.0, time_since_last_hit - delta)
+
+		# Affiche le compteur uniquement s’il reste 5 secondes ou moins
+		if time_since_last_hit <= 5.0:
+			toggle_multiplicator_combo_reset_visibility(true)
+		else:
+			toggle_multiplicator_combo_reset_visibility(false)
+
+	else:
+		# Timer fini → on cache et on reset
 		toggle_multiplicator_combo_reset_visibility(false)
 		reset_gauge_value()
+
+
 
 #---
 
@@ -129,7 +139,7 @@ func set_up_group_score(value : int) -> void :
 	enable_bonus_visual()
 	bonus_group_point_value += value
 	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
-	malus_number_label.visible = false
+	score_log_text_label.visible = false
 	
 	
 	set_up_group_point_counter()
@@ -160,7 +170,7 @@ func player_took_damages() -> void :
 	
 	if player.player_current_hp > 0:
 		print("It's just a hit")
-		malus_group_text_label.text = "Hit :"
+		score_log_text_label.text = "Hit :"
 		malus_group_point_label.text = "- " + str(hit_malus_point)
 		total_score_value -=  hit_malus_point
 		
@@ -169,7 +179,8 @@ func player_took_damages() -> void :
 
 	else :
 		print("Suppose to be dead")
-		malus_group_text_label.text = "Death :"
+		score_log_text_label.text = "Death :"
+		score_log_number_label.text = "- " + str(death_malus_point)
 		malus_group_point_label.text = "- " + str(death_malus_point)
 		total_score_value -=  death_malus_point
 
@@ -179,14 +190,24 @@ func player_took_damages() -> void :
 	
 	await get_tree().create_timer(4.0).timeout
 	
-	disable_malus_visuals()
+	reset_text_label()
 
 # --------------------------------------------------------------------------
 
 # BONUS
 
 func new_wave_scoring_logic()-> void : 
+	log_point_group_point_container.visible = true
+	score_log_text_label.text = "Bonus end wave : "
+	score_log_number_label.text = str(new_wave_bonus)
 	total_score_value += new_wave_bonus
+	total_score_label.text = str(total_score_value)
+	print("Ca s'est bien lancé")
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	score_log_text_label. text = ""
+	score_log_number_label.text = ""
 # --------------------------------------------------------------------------
 
 # VISUAL
@@ -217,16 +238,16 @@ func disable_bonus_visual() -> void :
 #---
 
 func enable_malus_visuals() -> void :
-	remove_point_group_point_container.visible = true
-	malus_number_label.visible = true
+	log_point_group_point_container.visible = true
+	score_log_number_label.visible = true
 	malus_group_point_label.visible = true
 
 #---
 
-func disable_malus_visuals() -> void :
-	remove_point_group_point_container.visible = false
-	malus_number_label.visible = false
-	malus_group_point_label.visible = false
+func reset_text_label() -> void :
+	print("Reset sa mere")
+	score_log_number_label.text = "sa mere "
+	malus_group_point_label.text = " "
 
 
 # --------------------------------------------------------------------------
