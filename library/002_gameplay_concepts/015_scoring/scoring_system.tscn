@@ -22,6 +22,7 @@ reset_multiplicator_counter_margin_container = NodePath("Control/ResetCounterMar
 combo_multiplicator_value_label = NodePath("Control/ComboMarginContainer/ComboMultiplicatorValue")
 score_log_text_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/LogPointHBoxContainer/ScoreLogTextLabel")
 score_log_number_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/LogPointHBoxContainer/ScoreLogPointLabel")
+bonus_text_color = Color(4.81308e-08, 0.389976, 0.251448, 1)
 bonus_group_point_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/MarginContainer/HBoxContainer/BonusGroupPointLabel")
 bonus_group_point_multiplicator_label = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/BonusGroupPointMultiplicatorLabel")
 add_point_group_point_container = NodePath("Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer")
@@ -134,10 +135,10 @@ layout_mode = 2
 
 [node name="BonusGroupPointLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(8.90419e-07, 0.515129, 0.138324, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_5vwmt")
 theme_override_font_sizes/font_size = 40
-text = "+ 0"
+text = "0"
 horizontal_alignment = 3
 vertical_alignment = 1
 

@@ -12,6 +12,9 @@ extends Node
 @export var score_log_text_label : Label
 @export var score_log_number_label : Label
 
+@export var bonus_text_color : Color = Color(0.6, 0.1, 0.1) 
+@export var malus_text_color : Color = Color(0.6, 0.1, 0.1)
+@export var base_text_color : Color
 @export_subgroup("Get point nodes")
 @export var bonus_group_point_label : Label
 @export var bonus_group_point_multiplicator_label : Label
@@ -83,8 +86,6 @@ func _process(delta: float) -> void:
 	set_up_group_point_multiplicator_label()
 	assign_mutliplicator_values_to_label()
 	
-	if Input.is_action_just_pressed("Debug_2"):
-		launch_timer()
 
 # --------------------------------------------------------------------------
 
@@ -136,10 +137,19 @@ func update_multiplicator() -> void :
 # KILLPOINTS
 
 func set_up_group_score(value : int) -> void : 
+	
+	
+	bonus_group_point_label.add_theme_color_override("font_color",bonus_text_color)
+	
+	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
+	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
+	
+	
 	enable_bonus_visual()
+	
 	bonus_group_point_value += value
 	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
-	score_log_text_label.visible = false
+
 	
 	
 	set_up_group_point_counter()
@@ -155,8 +165,10 @@ func launch_counter_that_add_point_to_total(delta : float) -> void:
 
 func flush_group_score() -> void : 
 	total_score_value += (bonus_group_point_value * current_multiplicator)
+	handle_total_point_size()
 	total_score_label.text = str(total_score_value)
 	bonus_group_point_value = 0
+	bonus_group_point_label.add_theme_color_override("font_color",base_text_color)
 	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
 
 func set_up_group_point_multiplicator_label() -> void : 
@@ -166,7 +178,10 @@ func set_up_group_point_multiplicator_label() -> void :
 # MALUS
 
 func player_took_damages() -> void :
+
 	flush_group_score()
+	score_log_number_label.add_theme_color_override("font_color",malus_text_color)
+	score_log_text_label.add_theme_color_override("font_color",malus_text_color)
 	
 	if player.player_current_hp > 0:
 		print("It's just a hit")
@@ -183,7 +198,8 @@ func player_took_damages() -> void :
 		score_log_number_label.text = "- " + str(death_malus_point)
 		malus_group_point_label.text = "- " + str(death_malus_point)
 		total_score_value -=  death_malus_point
-
+		
+	handle_total_point_size()
 	total_score_label.text = str(total_score_value)
 	enable_malus_visuals()
 	reset_gauge_value()
@@ -197,17 +213,22 @@ func player_took_damages() -> void :
 # BONUS
 
 func new_wave_scoring_logic()-> void : 
-	log_point_group_point_container.visible = true
-	score_log_text_label.text = "Bonus end wave : "
-	score_log_number_label.text = str(new_wave_bonus)
+
+	
+	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
+	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
+	
+	score_log_text_label.text = "Bonus end wave :"
+	score_log_number_label.text = " + " + " " + str(int(new_wave_bonus))
+	print(score_log_number_label.text)
 	total_score_value += new_wave_bonus
+
+	
+	await get_tree().create_timer(4.0).timeout
+	
 	total_score_label.text = str(total_score_value)
-	print("Ca s'est bien lancé")
-	
-	await get_tree().create_timer(2.0).timeout
-	
-	score_log_text_label. text = ""
-	score_log_number_label.text = ""
+	handle_total_point_size()
+	reset_text_label()
 # --------------------------------------------------------------------------
 
 # VISUAL
@@ -245,9 +266,21 @@ func enable_malus_visuals() -> void :
 #---
 
 func reset_text_label() -> void :
-	print("Reset sa mere")
-	score_log_number_label.text = "sa mere "
+
+	score_log_number_label.text = " "
+	score_log_text_label.text = " "
 	malus_group_point_label.text = " "
+
+func handle_total_point_size() -> void : 
+
+	if total_score_value >= 1_000_000:
+		total_score_label.add_theme_font_size_override("font_size", 30)
+	elif total_score_value >= 100_000:
+		total_score_label.add_theme_font_size_override("font_size", 40)
+	elif total_score_value >= 10_000:
+		total_score_label.add_theme_font_size_override("font_size", 50)
+	else:
+		total_score_label.add_theme_font_size_override("font_size", 60)
 
 
 # --------------------------------------------------------------------------

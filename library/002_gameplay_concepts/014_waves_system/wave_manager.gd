@@ -160,8 +160,6 @@ func check_if_can_start_new_wave() -> void:
 	if can_change_wave and enemies_alive_in_wave <= 0:
 		start_wave()
 
-		if current_wave > 1:
-			scoring_system.new_wave_is_launching.emit()
 
 #---
 
@@ -174,6 +172,11 @@ func launch_map_introduction() -> void :
 func launch_pause_time_after_wave() -> void : 
 	announce_panel.visible = true
 	announce_label.text = "Wawe " + str(current_wave) + " : Completed"
+
+	#Add bonus point at the end of the current wave
+	if current_wave > 0:
+		scoring_system.new_wave_is_launching.emit()
+		
 	await get_tree().create_timer(2.0, false).timeout
 	visual_timer = pause_after_wave_duration
 	

@@ -10703,7 +10703,10 @@ text = "You have X lives remaining"
 
 [node name="ScoringSystem" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("75_aha3o")]
 player = NodePath("../..")
+bonus_text_color = Color(0, 0.388235, 0.25098, 1)
+base_text_color = Color(1, 1, 1, 1)
 multiplicator_reset_delay = 10.0
+new_wave_bonus = 50000.0
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
