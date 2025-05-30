@@ -24,7 +24,7 @@ shader = ExtResource("2_wu8ph")
 shader_parameter/ColorParameter = Color(0.909804, 0.741176, 0.47451, 1)
 shader_parameter/FloatParameter = 1.0
 
-[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("max_enemies_in_wave_label", "announce_label", "announce_panel", "current_wave_label", "enemies_alive_in_wave_label", "enemies_killed_in_this_wave_label") groups=["wave_manager"]]
+[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("max_enemies_in_wave_label", "announce_label", "announce_panel", "current_wave_label", "enemies_alive_in_wave_label", "enemies_killed_in_this_wave_label", "enemies_reported_to_spawn_label") groups=["wave_manager"]]
 script = ExtResource("1_g61uo")
 all_enemy_types = Array[PackedScene]([ExtResource("2_g6m7n"), ExtResource("3_0t4np"), ExtResource("4_xf2n4"), ExtResource("5_5jmtn"), ExtResource("6_nv04e")])
 initial_number_of_enemies = 2
@@ -34,6 +34,7 @@ announce_panel = NodePath("Control/MarginContainer2/PanelContainer")
 current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
 enemies_alive_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
 enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/EnemiesKilledInThisWaveLabel")
+enemies_reported_to_spawn_label = NodePath("Control/MarginContainer/VBoxContainer/EnemyReportedToSpawn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -78,6 +79,10 @@ text = "Enemies killed in this wave label"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Enemies killed in this wave label"
+
+[node name="EnemyReportedToSpawn" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "EnemyReportedToSpawn"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control"]
 layout_mode = 1

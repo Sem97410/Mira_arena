@@ -12,6 +12,9 @@ var scoring_system : Node
 @export var all_enemy_types : Array[PackedScene] #Index 0 and 1 MUST be Wanderer and hunter slime
 var enemy_types_unlock : Array[PackedScene] #All enemies that can be select in order to be spawn
 
+@onready var enemy_reported_spawn : int = 0
+
+
 #What percentage of every type of enemies are we allowed to have ( for exemple : 30% max of bomber in a wave)
 @export var enemy_spawn_limits : Dictionary = {
 	"hunter_slime" : 0.3,
@@ -65,6 +68,7 @@ var growth_factor : float = 1.0
 @export var current_wave_label : Label
 @export var enemies_alive_in_wave_label : Label
 @export var enemies_killed_in_this_wave_label : Label
+@export var enemies_reported_to_spawn_label : Label
 
 
 # --------------------------------------------------------------------------
@@ -87,6 +91,8 @@ func _process(delta: float) -> void:
 		
 	actualise_anounce_visual_timer()
 	
+	enemies_reported_to_spawn_label.text = "Enemy reported to spawn : " + str(enemy_reported_spawn)
+	
 	
 # --------------------------------------------------------------------------
 
@@ -94,7 +100,7 @@ func _process(delta: float) -> void:
 
 func start_wave() -> void : 
 	
-	
+	enemy_reported_spawn = 0
 	check_if_reset_enemies_count() #Check if we need to reset the wave cycle (ex : after wave 5)
 	
 	add_base_enemies_into_waves() # Add base enemies (Wander + hunter) into the array enemy_types_unlock
@@ -170,6 +176,7 @@ func launch_map_introduction() -> void :
 #---
 
 func launch_pause_time_after_wave() -> void : 
+
 	announce_panel.visible = true
 	announce_label.text = "Wawe " + str(current_wave) + " : Completed"
 
