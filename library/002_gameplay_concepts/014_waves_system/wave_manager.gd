@@ -48,6 +48,9 @@ var growth_factor : float = 1.0
 
 @export_subgroup("Statistic")
 @onready var enemies_killed_in_this_wave : int = 0
+@onready var spawners_that_finished_spawning : int = 0
+@onready var number_of_spawned_enemy : int = 0
+
 
 #----------------------
 
@@ -79,6 +82,9 @@ func _ready() -> void:
 #---
 
 func _process(delta: float) -> void:
+	#print("Number of finish spawner : ", spawners_that_finished_spawning)
+	#print("Spawner array size : ", spawners.size())
+	#print("Number of spawn ennemy : ", number_of_spawned_enemy)
 	assign_debug_labels_text()
 	check_if_can_start_new_wave()
 	
@@ -93,7 +99,7 @@ func _process(delta: float) -> void:
 ## WAVES MANAGMENT
 
 func start_wave() -> void : 
-	
+	number_of_spawned_enemy = 0
 	
 	check_if_reset_enemies_count() #Check if we need to reset the wave cycle (ex : after wave 5)
 	
@@ -147,6 +153,8 @@ func start_wave() -> void :
 		spawners[i].enemy_spawn_list = enemies_for_this_wave.duplicate()
 
 		spawners[i].start_spawning(to_spawn)  
+		print("Launch of the spawn")
+		spawners_that_finished_spawning = 0
 
 
 #---
@@ -157,15 +165,21 @@ func start_wave() -> void :
 #---
 
 func check_if_can_start_new_wave() -> void:
-	if can_change_wave and enemies_alive_in_wave <= 0:
-		start_wave()
 
+	if spawners_that_finished_spawning == spawners.size() : 
+
+		print("Je devrais commencer a vérifier now")
+
+		if can_change_wave and enemies_killed_in_this_wave == number_of_spawned_enemy:
+			print("Normalement ca lance une new vague")
+			start_wave()
 
 #---
 
 func launch_map_introduction() -> void : 
 	await get_tree().create_timer(cinematic_introduction_length, false).timeout
 	can_change_wave = true
+	start_wave()
 
 #---
 

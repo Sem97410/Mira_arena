@@ -49,7 +49,7 @@ func _ready():
 func _process(_delta):
 	if Engine.is_editor_hint(): #If we are in the editor
 		_update_spawn_indicator()
-
+	
 # --------------------------------------------------------------------------
 
 ## SPAWN BEHAVIOR
@@ -67,6 +67,8 @@ func _on_timer_timeout() -> void:
 	
 	if enemies_spawned >= enemies_to_spawn: # stop the spawner when reach the wanted number
 		spawner_timer.stop()
+		
+		wave_manager.spawners_that_finished_spawning += 1
 		is_active = false
 		return
 
@@ -91,6 +93,7 @@ func _on_timer_timeout() -> void:
 	
 	##Add an enemy in the wave manager enemies counter
 	wave_manager.enemies_alive_in_wave += 1
+	wave_manager.number_of_spawned_enemy += 1
 
 #---
 

@@ -184,7 +184,6 @@ func player_took_damages() -> void :
 	score_log_text_label.add_theme_color_override("font_color",malus_text_color)
 	
 	if player.player_current_hp > 0:
-		print("It's just a hit")
 		score_log_text_label.text = "Hit :"
 		malus_group_point_label.text = "- " + str(hit_malus_point)
 		total_score_value -=  hit_malus_point
@@ -193,7 +192,6 @@ func player_took_damages() -> void :
 
 
 	else :
-		print("Suppose to be dead")
 		score_log_text_label.text = "Death :"
 		score_log_number_label.text = "- " + str(death_malus_point)
 		malus_group_point_label.text = "- " + str(death_malus_point)
@@ -220,7 +218,6 @@ func new_wave_scoring_logic()-> void :
 	
 	score_log_text_label.text = "Bonus end wave :"
 	score_log_number_label.text = " + " + " " + str(int(new_wave_bonus))
-	print(score_log_number_label.text)
 	total_score_value += new_wave_bonus
 
 	
