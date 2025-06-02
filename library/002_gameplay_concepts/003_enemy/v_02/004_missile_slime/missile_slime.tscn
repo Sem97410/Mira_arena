@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ddtoebj46ohx5"]
+[gd_scene load_steps=29 format=4 uid="uid://ddtoebj46ohx5"]
 
 [ext_resource type="PackedScene" uid="uid://ck634gxyhffr" path="res://library/002_gameplay_concepts/003_enemy/v_02/base_slime.tscn" id="1_wfjqi"]
 [ext_resource type="PackedScene" uid="uid://d3vpj2mvu11d4" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/LittleExplosionVfx.tscn" id="2_26ubh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="3_luiaf"]
 [ext_resource type="Material" uid="uid://bcxsmiyioua8g" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_body.tres" id="3_rn5ff"]
 [ext_resource type="Material" uid="uid://jvj6lda1sps1" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_externe.tres" id="4_5j05c"]
+[ext_resource type="Animation" uid="uid://btw5fvrw5ue10" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/Slime_idle.res" id="5_5j05c"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="5_ogir0"]
 [ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="6_g61g6"]
 [ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="7_vmdph"]
@@ -270,6 +271,7 @@ _data = {
 &"Slime|Walk": SubResource("Animation_ay1ie"),
 &"Slime|death": SubResource("Animation_4gvve"),
 &"Slime|hit": SubResource("Animation_ntm2c"),
+&"Slime|idle": ExtResource("5_5j05c"),
 &"Slime|run": SubResource("Animation_0vmgs")
 }
 
@@ -298,8 +300,8 @@ angle_max = 360.0
 gravity = Vector3(0, 5, 0)
 damping_min = 2.0
 damping_max = 3.0
-scale_min = 2.25
-scale_max = 2.25
+scale_min = 0.0
+scale_max = 1.3
 scale_curve = SubResource("CurveTexture_bmgut")
 color = Color(43.646, 7.182, 8.84, 1)
 
@@ -329,7 +331,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Node3D" type="Node3D" parent="Mesh/Slime" index="0"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="flamme_slime" type="Node3D" parent="Mesh/Slime/Node3D" index="0"]
 
@@ -350,7 +352,7 @@ bones/1/name = "Middle"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.478125, -2.98428e-15, -6.03961e-16)
 bones/1/enabled = true
-bones/1/position = Vector3(0.45, -2.98428e-15, -6.03961e-16)
+bones/1/position = Vector3(0.49, -2.98428e-15, -6.03961e-16)
 bones/1/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Middle_2"
@@ -364,7 +366,7 @@ bones/3/name = "Top"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.565561, 0, -0.729169)
 bones/3/enabled = true
-bones/3/position = Vector3(0.599498, 0, 0)
+bones/3/position = Vector3(0.565561, 0, -0.729168)
 bones/3/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Head"
@@ -387,10 +389,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_xpmgi")
 }
 
-[node name="Node3D" type="Node3D" parent="Mesh/Slime/Node3D/flamme_slime" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93876, 0)
-
-[node name="Fire_Effect" type="GPUParticles3D" parent="Mesh/Slime/Node3D/flamme_slime/Node3D" index="0"]
+[node name="Fire_Effect" type="GPUParticles3D" parent="Mesh/Slime/Node3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12628e-08, 0.93876, -0.07459)
 material_override = SubResource("ShaderMaterial_d0r4s")
 amount = 20
 lifetime = 0.5
@@ -465,6 +465,9 @@ script = ExtResource("2_c4xbk")
 to = NodePath("../../HitReaction")
 event = &"IsHit"
 delay_in_seconds = "0.0"
+
+[node name="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.586665, 0.131757)
 
 [node name="ExplosionArea3D" parent="." index="9"]
 monitoring = true

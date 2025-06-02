@@ -103,9 +103,10 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_baove"]
-radius = 2.0
+radius = 1.35228
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l7mnk"]
+radius = 0.524704
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jf0rl"]
 radius = 0.785
