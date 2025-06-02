@@ -29,7 +29,6 @@ func make_projectile_zone_damages(attack_area : Area3D, damage : float) -> void:
 		if not parent.is_in_group("player"):
 			continue
 
-		print("Supposed to make damage")
 
 		if parent.has_method("take_damage"):
 			parent.take_damage(damage)

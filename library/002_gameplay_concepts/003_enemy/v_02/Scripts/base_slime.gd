@@ -21,16 +21,9 @@ class_name BaseSlime
 #general variables
 var player_position : Vector3
 var target_position : Vector3
+var wave_manager : WaveManager
 
-
-
-
-
-
-#----------------------
-#Health variables
-
-
+var scoring_system : Node
 
 #----------------------
 @export_category("Meshes variables")
@@ -68,6 +61,7 @@ var was_in_air = false  # Pour savoir si on était en l'air avant le dash
 @export var explosion_damage : float
 
 @onready var can_shoot = true
+@onready var has_already_exploded : bool = false
 @export var mortar_target : PackedScene
 @export var mortar_attack_cooldown : float = 3.0
 @export var min_mortar_delay_before_impact : float = 0.5
@@ -118,6 +112,9 @@ var random_point_navmesh: Vector3
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") #Assign the player
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
+	scoring_system = get_tree().get_first_node_in_group("scoring_system")
+	
 	can_move = true
 	current_health_point = max_health_point
 
@@ -280,6 +277,10 @@ func _on_death_state_entered() -> void:
 	slime_body.visible = false
 	drop_health_item(slime.global_position)
 	instantiate_vfx(slime.global_position, death_vfx )
+	
+	decrease_current_enemies_number(wave_manager)
+
+	scoring_system.player_kill_enemy.emit(enemy_scoring_value)
 	death(slime, 1.5)
 #----------------------------------------------
 #endregion
@@ -615,13 +616,13 @@ func explosion() -> void :
 	blink(slime_body, pre_explosion_duration)
 	pre_attack_indicator.visible = false
 	attack_indicator.visible = true
-
+	scoring_system.player_kill_enemy.emit(enemy_scoring_value)
 	death(slime,1.1)
-	#print("Step one")
+
 	
 	await get_tree().create_timer(1.0,false,true).timeout
 	
-	#print("Step two")
+
 	
 	explosion_area.visible = true
 	explosion_area.monitorable = true
@@ -637,8 +638,16 @@ func _on_pre_explosion_state_exited() -> void:
 
 
 func _on_death_explosion_state_entered() -> void:
-	print("Je suis dans death explosion")
+	
+	if has_already_exploded:
+		return
+		
+	has_already_exploded = true
+	
+	decrease_current_enemies_number(wave_manager)
+	
 	knockback(player_position)
+	
 	explosion()
 	
 
@@ -648,17 +657,14 @@ func _on_hunt_state_exited() -> void:
 
 
 func _on_stationary_state_processing(_delta: float) -> void:
-	#print("Je suis dans Stationary")
 	pass
 
 func _on_stationary_state_entered() -> void:
-	#print("Je viens d'entrer dans Stationary")
 	await  get_tree().create_timer(mortar_attack_cooldown, false,true).timeout
 	can_shoot = true
 	in_a_stationary_mode()
 
 func _on_shoot_state_entered() -> void:
-	#print("Je suis dans on_shoot")
 	shoot_mortar_projectile()
 
 func in_a_stationary_mode() -> void : 
@@ -687,3 +693,8 @@ func instantiate_mortar_projectile() -> void:
 
 	#print("Spawn a projectile on the player")
 	instantiate_vfx(player_current_position, mortar_projectil)
+
+func freeze_enemies_when_player_dead() -> void : 
+	
+	if player.player_current_hp <= 0 :
+		get_tree().paused = true

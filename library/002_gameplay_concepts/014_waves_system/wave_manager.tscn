@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://da14aowprjedb"]
+
+[ext_resource type="Script" uid="uid://ilq81kofajv5" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.gd" id="1_g61uo"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_cycfr"]
+[ext_resource type="PackedScene" uid="uid://c1wnqq3rpkhir" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/hunter_slime.tscn" id="2_g6m7n"]
+[ext_resource type="Shader" uid="uid://buvi0yvw6naft" path="res://library/002_gameplay_concepts/014_waves_system/AnnounceColor.tres" id="2_wu8ph"]
+[ext_resource type="PackedScene" uid="uid://dtt42muf3ssyq" path="res://library/002_gameplay_concepts/003_enemy/v_02/002_wanderer_slime/wanderer_slime.tscn" id="3_0t4np"]
+[ext_resource type="PackedScene" uid="uid://ddtoebj46ohx5" path="res://library/002_gameplay_concepts/003_enemy/v_02/004_missile_slime/missile_slime.tscn" id="4_xf2n4"]
+[ext_resource type="PackedScene" uid="uid://d0if4rs0pypox" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/explosive_slime.tscn" id="5_5jmtn"]
+[ext_resource type="PackedScene" uid="uid://dih30d47ynsi3" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/scene/mortar_slime.tscn" id="6_nv04e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu8ph"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ig0bh"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.768627, 0.54902, 0.32549, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwori"]
+shader = ExtResource("2_wu8ph")
+shader_parameter/ColorParameter = Color(0.909804, 0.741176, 0.47451, 1)
+shader_parameter/FloatParameter = 1.0
+
+[node name="WaveManager" type="Node3D" node_paths=PackedStringArray("max_enemies_in_wave_label", "announce_label", "announce_panel", "current_wave_label", "enemies_alive_in_wave_label", "enemies_killed_in_this_wave_label") groups=["wave_manager"]]
+script = ExtResource("1_g61uo")
+all_enemy_types = Array[PackedScene]([ExtResource("2_g6m7n"), ExtResource("3_0t4np"), ExtResource("4_xf2n4"), ExtResource("5_5jmtn"), ExtResource("6_nv04e")])
+initial_number_of_enemies = 2
+max_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/MaxEnemiesInThisWaveLabel")
+announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/AnounceText")
+announce_panel = NodePath("Control/MarginContainer2/PanelContainer")
+current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
+enemies_alive_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
+enemies_killed_in_this_wave_label = NodePath("Control/MarginContainer/VBoxContainer/EnemiesKilledInThisWaveLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 184.0
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Current wave"
+
+[node name="NumberOfEnemiesInWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Number of enemies"
+
+[node name="EnemiesKilledInThisWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Enemies killed in this wave label"
+
+[node name="MaxEnemiesInThisWaveLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Enemies killed in this wave label"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_right = 350.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer2"]
+visible = false
+material = SubResource("ShaderMaterial_wu8ph")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer2/PanelContainer"]
+material = SubResource("ShaderMaterial_ig0bh")
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_xwori")
+layout_mode = 2
+
+[node name="AnounceText" type="Label" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("2_cycfr")
+theme_override_font_sizes/font_size = 70
+text = "This is an announce"
+horizontal_alignment = 1
+vertical_alignment = 1

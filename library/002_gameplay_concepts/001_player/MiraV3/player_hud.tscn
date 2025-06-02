@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://db65kgtyar2lg"]
+
+[ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="1_rqdei"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_ncej4"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" parent="." instance=ExtResource("1_rqdei")]
+layout_mode = 1
+offset_left = 116.0
+offset_top = 119.0
+offset_right = 395.0
+offset_bottom = 147.0
+
+[node name="RemainingLifeContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_left = 156.255
+offset_top = 82.605
+offset_right = 403.255
+offset_bottom = 116.605
+
+[node name="Panel" type="Panel" parent="RemainingLifeContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RemainingLifeContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextContainer" type="HBoxContainer" parent="RemainingLifeContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RemainingLifeTitleLabel" type="Label" parent="RemainingLifeContainer/MarginContainer/TextContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ncej4")
+theme_override_font_sizes/font_size = 25
+text = "Remaining life : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RemainingLifeCounterLabel" type="Label" parent="RemainingLifeContainer/MarginContainer/TextContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ncej4")
+theme_override_font_sizes/font_size = 25
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1

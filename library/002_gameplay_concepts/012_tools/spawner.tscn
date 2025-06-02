@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bos7irsrmtw16"]
+
+[ext_resource type="Script" uid="uid://kbwb128dvfst" path="res://library/002_gameplay_concepts/012_tools/spawner.gd" id="1_6cdk7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cdk7"]
+albedo_color = Color(0.420445, 0.514306, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6cdk7"]
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_taxm0"]
+transparency = 1
+albedo_color = Color(0.133, 0.313, 0.36, 0.663)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jhric"]
+top_radius = 8.63
+bottom_radius = 8.63
+height = 0.1
+cap_bottom = false
+
+[node name="Spawner" type="Node3D" node_paths=PackedStringArray("spawner_timer", "spawner_placement_indicator", "spawner_range_indicator")]
+script = ExtResource("1_6cdk7")
+spawner_timer = NodePath("Timer")
+spawner_placement_indicator = NodePath("SpawnerPlacementIndicator")
+spawner_range_indicator = NodePath("SpawnRangeIndicator")
+spawn_range = 8.465
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SpawnerPlacementIndicator" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6cdk7")
+mesh = SubResource("CylinderMesh_6cdk7")
+
+[node name="Label3D" type="Label3D" parent="SpawnerPlacementIndicator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37264, 0)
+billboard = 1
+text = "Slime Spawner"
+font_size = 75
+
+[node name="SpawnRangeIndicator" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_taxm0")
+mesh = SubResource("CylinderMesh_jhric")
+skeleton = NodePath("../SpawnerPlacementIndicator")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

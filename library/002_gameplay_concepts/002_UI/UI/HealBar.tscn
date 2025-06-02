@@ -4,11 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://c0ees33k4plp7" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/HealthBarSF.png" id="2_ygbvl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgrlq"]
+content_margin_left = 0.0
+content_margin_top = 20.0
+content_margin_right = 0.0
+content_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va013"]
 bg_color = Color(0.431373, 0.298039, 0.45098, 1)
+expand_margin_left = 20.0
+expand_margin_right = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2milo"]
+content_margin_left = 0.0
+content_margin_right = 0.0
 bg_color = Color(0.122252, 0.122252, 0.122252, 1)
 expand_margin_left = 1.0
 expand_margin_top = 1.0
@@ -28,8 +36,10 @@ expand_margin_right = 35.0
 
 [node name="HealthBar" type="ProgressBar" node_paths=PackedStringArray("timer", "damage_bar")]
 z_index = 1
+offset_left = -18.0
+offset_top = -8.0
 offset_right = 240.0
-offset_bottom = 5.0
+offset_bottom = 28.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_jgrlq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_va013")
 value = 60.0

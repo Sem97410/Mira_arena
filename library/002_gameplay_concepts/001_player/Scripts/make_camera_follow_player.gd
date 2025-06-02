@@ -19,9 +19,11 @@ func _physics_process(_delta: float) -> void:
 
 	if player.velocity.length() <= 0.25:
 		current_target_position = player.global_position
-	else:
+	elif player.velocity.length() > 0.25 and player.is_alive:
 		current_target_position = target_in_front_player.global_position
-
+	
+	if player.is_alive == false:
+		current_target_position = player.global_position
 
 func make_camera_follow_player() -> void:
 	var target_position_with_offset = current_target_position + current_camera_offset

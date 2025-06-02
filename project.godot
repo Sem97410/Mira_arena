@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 SlimeAutoload="*res://library/002_gameplay_concepts/003_enemy/v_01/002_Script/slime_autoload.gd"
+GeneralScore="*res://library/002_gameplay_concepts/015_scoring/general_score.gd"
 
 [display]
 
@@ -43,6 +44,8 @@ player=""
 enemy=""
 FootStepManager=""
 spawn_on_navmesh=""
+wave_manager=""
+scoring_system=""
 
 [input]
 

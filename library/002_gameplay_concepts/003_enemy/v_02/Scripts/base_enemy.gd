@@ -25,6 +25,12 @@ class_name BaseEnemy
 var player : CharacterBody3D
 @export var state_chart : StateChart
 
+
+#----------------------
+#scoring values
+@export_category("Slime scoring")
+@export var enemy_scoring_value : int
+
 #----------------------
 @export_category("Health variables")
 
@@ -79,6 +85,19 @@ var vertical_velocity: float = 0.0  # Stocke la vitesse verticale
 ##FUNCTIONS
 
 #----------------------------------------------
+##General functions
+
+#----------------------------------------------
+##Waves functions
+
+func decrease_current_enemies_number(wave_manager : WaveManager) -> void: 
+	wave_manager.enemies_alive_in_wave -= 1
+	wave_manager.enemies_killed_in_this_wave += 1
+	
+	if wave_manager.enemies_killed_in_this_wave == wave_manager.max_enemies_in_this_wave: 
+		wave_manager.launch_pause_time_after_wave()
+
+#----------------------------------------------
 ##Health functions
 
 func take_damage(damage : float) -> void : 
@@ -95,7 +114,15 @@ func activate_after_damage_invincibility(invincibility_duration : float) -> void
 #---
 func death(entity : CharacterBody3D, death_animation_duration : float) : 
 	freeze_movement()
+	
+	
 	await get_tree().create_timer(death_animation_duration).timeout
+	
+	# 🔻 Empêche le jiggle de continuer
+	for child in get_children():
+		if child is JiggleBone:
+			child.set_physics_process(false)
+			
 	entity.queue_free()
 	
 #----------------------------------------------
@@ -159,6 +186,7 @@ func make_zone_damages(attack_area : Area3D,damage : float) -> void :
 			if child.has_method("take_damage"):
 				child.take_damage(damage)
 				break  # Stop dès qu’un enfant a été touché
+
 #----------------------------------------------
 
 func move(target: Vector3, _delta: float) -> void:
@@ -189,10 +217,6 @@ func move(target: Vector3, _delta: float) -> void:
 
 	# Appliquer le mouvement et mettre à jour `is_on_floor()`
 	slime.move_and_slide()
-
-
-
-
 
 #---
 func entity_rotation() -> void : 
@@ -229,7 +253,6 @@ func look_at_target_or_movement(entity: Node3D, target: Node3D, movement_directi
 
 		entity.look_at(look_at_position, up_vector)
 
-
 #--- A DOCUMENTER
 func knockback(attacker_position: Vector3) -> void:
 	# Si le knockback est déjà actif, on l'ignore
@@ -259,10 +282,6 @@ func knockback(attacker_position: Vector3) -> void:
 
 	# Debugging
 	#print("🚀 Knockback lancé ! Velocity :", knockback_velocity)
-
-
-
-
 
 #--- A DOCUMENTER
 func apply_knockback_movement(delta: float) -> void:
@@ -311,10 +330,6 @@ func apply_gravity(delta: float) -> void:
 		slime.velocity.y = max(slime.velocity.y, -max_fall_speed)  # Empêche la chute infinie
 	else:
 		slime.velocity.y = 0  # Réinitialise la vitesse verticale si au sol
-
-
-
-
 
 #----------------------------------------------
 ##Animation functions

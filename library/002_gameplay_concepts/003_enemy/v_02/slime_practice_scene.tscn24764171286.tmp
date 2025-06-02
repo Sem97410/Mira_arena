@@ -285,68 +285,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.46321, -0.1049
 shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7122, 0, 0)
-player_max_hp = 26.0
-max_remaining_lives = 1000
-delay_before_respawn = 1.0
-after_respawn_invincibility_duration = 1.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3285, 0, 0)
+player_max_hp = 10.0
 player_dash_countdown = 0.5
-
-[node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
-bones/1/rotation = Quaternion(0.407748, 0.546671, 0.419798, 0.598883)
-bones/2/rotation = Quaternion(-0.114061, 0.989708, 0.075274, 0.0424486)
-bones/4/rotation = Quaternion(0.140401, 0, 0, 0.990095)
-bones/5/rotation = Quaternion(-0.0641832, -0.124872, 0.880584, -0.452614)
-bones/6/rotation = Quaternion(0.122854, 0.0582347, 0.0960113, 0.986051)
-bones/7/rotation = Quaternion(-0.00592425, 0.00659936, 0.577465, 0.816368)
-bones/11/rotation = Quaternion(0.0369495, 0.0718873, -0.544211, 0.835046)
-bones/18/rotation = Quaternion(5.4426e-25, -4.42426e-18, 0.0722538, 0.997386)
-bones/19/rotation = Quaternion(0, -3.69778e-32, 0, 1)
-bones/20/rotation = Quaternion(0, -3.69778e-32, 0, 1)
-bones/21/rotation = Quaternion(8.40961e-26, 2.7613e-18, -0.0450955, 0.998983)
-bones/22/rotation = Quaternion(-1.21183e-26, -9.34549e-19, 0.0152624, 0.999884)
-bones/30/rotation = Quaternion(-0.197297, 0.300557, 0.325005, 0.874706)
-bones/33/rotation = Quaternion(-6.25469e-17, -1.4768e-17, 0.0556663, 0.998449)
-bones/34/rotation = Quaternion(1.73472e-18, -1.45283e-17, -6.9389e-18, 1)
-bones/35/rotation = Quaternion(1.73472e-18, -1.45283e-17, -6.9389e-18, 1)
-bones/36/rotation = Quaternion(0.00141819, -0.0472663, 0.119912, 0.991658)
-bones/37/rotation = Quaternion(-0.00221947, 0.087827, -0.114005, 0.989588)
-bones/38/rotation = Quaternion(0.00015628, 0.00480478, 0.0267677, 0.99963)
-bones/41/rotation = Quaternion(0.0249867, 0.0466412, 0.0657023, 0.996435)
-bones/42/rotation = Quaternion(-0.000387033, -0.00383166, -0.0115081, 0.999926)
-bones/44/rotation = Quaternion(0.00456326, 0.0758926, -0.0301938, 0.996648)
-bones/45/rotation = Quaternion(0.000112666, -0.0124605, -0.00904082, 0.999882)
-bones/47/rotation = Quaternion(0.0790802, 0.000226066, 0.0268436, 0.996507)
-bones/48/rotation = Quaternion(-0.102862, 0.0596893, -0.26274, 0.957509)
-bones/49/rotation = Quaternion(0.00209268, 0.0583685, 0.0236689, 0.998012)
-bones/51/rotation = Quaternion(-0.0779525, 0.0567274, -0.141386, 0.985249)
-bones/52/rotation = Quaternion(-0.00314307, 0.00997824, -0.066577, 0.997726)
-bones/54/rotation = Quaternion(0.701762, 0.426554, -0.516152, -0.243247)
-bones/55/rotation = Quaternion(-0.197297, 0.300557, 0.325005, 0.874706)
-bones/56/rotation = Quaternion(5.20415e-18, -2.12503e-17, -4.93616e-40, 1)
-bones/57/rotation = Quaternion(5.20415e-18, -2.12503e-17, -4.93616e-40, 1)
-bones/58/rotation = Quaternion(-2.25864e-17, -4.30011e-17, 0.0556663, 0.998449)
-bones/59/rotation = Quaternion(-1.73472e-18, 1.69136e-17, 8.60958e-42, 1)
-bones/60/rotation = Quaternion(-1.73472e-18, 1.69136e-17, 8.60958e-42, 1)
-bones/61/rotation = Quaternion(0.00141819, -0.0472663, 0.119912, 0.991658)
-bones/62/rotation = Quaternion(-0.00221947, 0.087827, -0.114005, 0.989588)
-bones/63/rotation = Quaternion(0.00015628, 0.00480478, 0.0267677, 0.99963)
-bones/66/rotation = Quaternion(0.0249867, 0.0466412, 0.0657023, 0.996435)
-bones/67/rotation = Quaternion(-0.000387033, -0.00383166, -0.0115081, 0.999926)
-bones/69/rotation = Quaternion(0.00456326, 0.0758926, -0.0301938, 0.996648)
-bones/70/rotation = Quaternion(0.000112666, -0.0124605, -0.00904082, 0.999882)
-bones/72/rotation = Quaternion(0.0790802, 0.000226066, 0.0268436, 0.996507)
-bones/73/rotation = Quaternion(-0.102862, 0.0596893, -0.26274, 0.957509)
-bones/74/rotation = Quaternion(0.00209268, 0.0583685, 0.0236689, 0.998012)
-bones/76/rotation = Quaternion(-0.0779525, 0.0567274, -0.141386, 0.985249)
-bones/77/rotation = Quaternion(-0.00314307, 0.00997824, -0.066577, 0.997726)
-bones/79/rotation = Quaternion(0.989708, 0.114061, -0.0424486, 0.075274)
-bones/80/rotation = Quaternion(1.38778e-17, 3.03577e-18, 3.46945e-18, 1)
-bones/81/rotation = Quaternion(-0.143339, 0, 0, 0.989674)
-bones/82/rotation = Quaternion(-0.114209, -0.0866159, -0.598035, 0.788548)
-bones/83/rotation = Quaternion(0.122854, 0.0582347, 0.0960113, 0.986051)
-bones/84/rotation = Quaternion(-0.00592424, 0.00659937, 0.577465, 0.816368)
-bones/88/rotation = Quaternion(-0.0597696, -0.0453295, -0.346853, 0.934915)
 
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
 surface_material_override/0 = null
@@ -382,25 +323,16 @@ surface_material_override/1 = null
 [node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
 surface_material_override/0 = null
 
-[node name="BoneAttachment3D2" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="12"]
-transform = Transform3D(0.0411021, -0.0635999, 0.997129, 0.984128, 0.175006, -0.0294038, -0.172633, 0.982511, 0.0697836, -0.0920972, 0.565419, -0.233163)
-
-[node name="Skeleton3D" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH" index="0"]
-bones/0/rotation = Quaternion(0.721776, 2.57086e-14, 0.692127, 2.67009e-14)
-
 [node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
 surface_material_override/0 = null
-
-[node name="BoneAttachment3D" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="1"]
-transform = Transform3D(0.0419211, 1.50948e-16, 0.999121, 7.40725e-14, -1, -2.95686e-15, 0.999121, 7.41313e-14, -0.0419213, -0.972292, 0.7482, 6.03041)
 
 [node name="AnimationTree" parent="MiraV3" index="3"]
 parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
-spawners = [NodePath("../Spawner"), NodePath("../Spawner2")]
-initial_number_of_enemies = 5
+spawners = [NodePath("../Spawner")]
+initial_number_of_enemies = 20
 max_enemies_in_the_scene = 100
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
@@ -408,10 +340,6 @@ pause_after_wave_duration = 2.0
 
 [node name="Spawner" parent="." instance=ExtResource("5_c30ce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9043, 0, 0)
-spawn_range = 8.63
-
-[node name="Spawner2" parent="." instance=ExtResource("5_c30ce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00287, 0, 0)
 spawn_range = 8.63
 
 [editable path="MiraV3"]

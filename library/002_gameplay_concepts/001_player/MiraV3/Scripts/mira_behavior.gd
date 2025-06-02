@@ -20,6 +20,10 @@ extends CharacterBody3D
 @export var player : CharacterBody3D
 @export var aura_mesh : MeshInstance3D #The colored circle effect around the player
 @export var player_mesh : Node3D
+@export var health_area : Area3D
+var spawn_position : Vector3
+@export var deah_timer : Timer
+@export var scoring_system : Node
 
 #---
 
@@ -36,6 +40,11 @@ extends CharacterBody3D
 
 #---
 
+@export_subgroup("Signals")
+
+
+#---
+
 @export_subgroup("Camera")
 @export var camera : Camera3D
 @export var camera_behavior_script : CameraBehavior
@@ -43,10 +52,17 @@ extends CharacterBody3D
 
 #---
 
-@export_subgroup("HealthBar")
+@export_subgroup("HUD")
+@export var player_hud :Control
 @export var health_bar : ProgressBar
 @export var death_pannel : Control
 @export var death_pannel_first_button : Button
+@export var remaining_life_container : MarginContainer
+@export var remaining_life_title_text : Label
+@export var remaining_life_counter : Label
+@export var you_are_dead_panel : Control
+@export var you_have_x_lives_remaining_container : PanelContainer
+@export var you_have_x_lives_remaining_label : Label
 
 #---
 
@@ -131,6 +147,7 @@ extends CharacterBody3D
 @onready var is_light_attacking : bool = false
 @onready var is_charged_attacking : bool = false
 @onready var is_recovering : bool = false
+@onready var is_in_death_sequence : bool = false
 
 @onready var can_transition : bool = true#Allow or not a transition during an animation
 @onready var can_move : bool = true #Disable/eneable movement
@@ -150,11 +167,16 @@ var _previous_position: Vector3 # used to calculate the real player's speed in u
 @export var player_max_hp : float = 100
 @onready var player_current_hp : float = player_max_hp
 @onready var is_alive : bool = true
+@export var max_remaining_lives : int = 10 #Number of life that a player has in a session
+@onready var current_remaining_lives : int = max_remaining_lives
+@export var delay_before_respawn : float
 
 @export_subgroup("Invincibility values")
 @onready var blink_interval : float = 0.2
 @onready var after_hit_invicibility : bool = false
-@export var invicibility_duration : float = 5.0 #base on the number of blink
+@export var after_hit_invicibility_duration : float = 5.0 #base on the number of blink
+@export var after_respawn_invincibility_duration : float = 5.0
+
 
 # ----------------
 
@@ -268,6 +290,8 @@ var original_position: Vector3  # Stocke la position d'origine
 # --------------------------------------------------------------------------
 
 func _ready():
+
+	spawn_position = player.global_position
 	_previous_position = global_position
 	original_position = camera_position.transform.origin  # Sauvegarde la position de base
 	health_bar.init_health(player_max_hp)
@@ -283,12 +307,7 @@ func _process(delta: float) -> void:
 	
 	charge_attack_movement_mode()
 
-	#if Input.is_action_just_pressed("await_test"):
-		#
-		#charged_attack_hit_vfx.visible = true
-		#charged_attack_hit_circle_animation_player.play("HitVFX")
-		#charged_attack_hit_slash_animation_player.play("RESET")
-		
+	set_up_remaining_life_label()
 		
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
@@ -336,16 +355,17 @@ func _on_idle_state_entered() -> void:
 	is_idle = true
 
 func _on_idle_state_processing(delta: float) -> void:
-	assign_movement_blend_position()  #Create a blend between idle walk and run
-	move_the_character()
-	enable_can_transition()
+	if is_alive:
+		assign_movement_blend_position()  #Create a blend between idle walk and run
+		move_the_character()
+		enable_can_transition()
 
-	activate_in_the_air_state()
+		activate_in_the_air_state()
 
-	activate_movement_state()
-	activate_charged_attack_state()
-	activate_light_attack_state()
-	activate_dash_state()
+		activate_movement_state()
+		activate_charged_attack_state()
+		activate_light_attack_state()
+		activate_dash_state()
 
 func _on_idle_state_exited() -> void:
 	is_idle = false
@@ -356,13 +376,14 @@ func _on_movement_state_entered() -> void:
 	
 
 func _on_movement_state_processing(delta: float) -> void:
-	assign_movement_blend_position()  #Create a blend between idle walk and run
-	move_the_character()
-	activate_idle_state()
-	activate_charged_attack_state()
-	activate_light_attack_state()
-	activate_dash_state()
-	activate_in_the_air_state()
+	if is_alive:
+		assign_movement_blend_position()  #Create a blend between idle walk and run
+		move_the_character()
+		activate_idle_state()
+		activate_charged_attack_state()
+		activate_light_attack_state()
+		activate_dash_state()
+		activate_in_the_air_state()
 
 func _on_movement_state_exited() -> void:
 	is_moving = false
@@ -512,7 +533,6 @@ func _on_charged_attack_state_exited() -> void:
 #---
 
 func _on_charged_attack_system_area_3d_area_entered(area: Area3D) -> void:
-	print("Something is inside the charged attack area")
 	make_damage(area, charged_attack_damage)
 
 #---
@@ -607,7 +627,7 @@ func activate_in_the_air_state() -> void :
 #If the player presses the dash action and a state transition is allowed
 #launch the dash state
 func activate_dash_state() -> void :
-	if Input.is_action_just_pressed("dash") and can_transition and current_dash_countdown <= 0.0:
+	if Input.is_action_just_pressed("dash") and can_transition and current_dash_countdown <= 0.0 and is_alive:
 		send_event_state_chart("IsDashing")
 
 #---
@@ -646,12 +666,26 @@ func activate_charged_attack_state() -> void  :
 
 ## HEALTH
 
-func take_damage(damage : float) -> void :
-	if not after_hit_invicibility :
-		player_current_hp -= damage
-		check_if_dead()
+func take_damage(damage: float) -> void:
+
+	if not is_alive:
+		return
+
+	if after_hit_invicibility:
+		return
+
+	player_current_hp -= damage
+	health_bar.health = player_current_hp
+	scoring_system.player_take_damage.emit()
+
+	# ✅ On check la mort **après** avoir mis à jour la vie
+	check_if_dead()
+
+	# ✅ On lance l’animation uniquement si toujours vivant
+	if is_alive:
 		launch_hit_logic()
-		health_bar.health = player_current_hp
+
+
 
 #---
 
@@ -663,40 +697,103 @@ func launch_hit_logic() -> void :
 		return
 
 	base_state_machine.travel("Hit")	#Animation
-	player_is_blinking()				#Blink
+	player_is_blinking(after_hit_invicibility_duration)				#Blink
 
 #---
 
-func check_if_dead() -> void :
-	if player_current_hp <= 0 :
-		send_event_state_chart("IsDead")
+func check_if_dead() -> void:
+	if not is_alive and not is_in_death_sequence:
+		return
 
+	if player_current_hp > 0:
+		return
+
+	is_alive = false
+	current_remaining_lives -= 1
+	
+	health_area.set_deferred("monitorable", false)
+
+	death() 
+
+
+
+
+#---
+
+func handle_respawn_after_death() -> void : 
+	player.global_position = spawn_position
+	is_alive = true
+	can_move = true
+	is_in_death_sequence = false
+	deah_timer.start()
+	health_area.set_deferred("monitorable", true)
+
+	you_have_x_lives_remaining_container.visible = true
+	you_have_x_lives_remaining_label.text = "You have  " + str(current_remaining_lives) + " lives remaining"
+	
+
+	camera_behavior_script.current_camera_offset = camera_behavior_script.base_camera_offset
+	
+	player_current_hp = player_max_hp
+	base_state_machine.travel("MovementBlendSpace")
+	send_event_state_chart("IsMoving")
+	player_hud.visible = true
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().paused = false
+	
+	player_is_blinking(after_respawn_invincibility_duration)  #Invincibility after spawn
+
+	health_bar.init_health(player_max_hp)
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	you_have_x_lives_remaining_container.visible = false
 #---
 
 func death() -> void :
+	if is_in_death_sequence:
+		return  # 🔒 on empêche tout double appel
 
-	base_state_machine.travel("Death")
+	is_in_death_sequence = true  # 🔐 lock activé
 	is_alive = false
+	deah_timer.stop()
+	base_state_machine.travel("Death")
+	player_hud.visible = false
+	you_are_dead_panel.visible = true
 	can_move = false
+	camera_behavior_script.current_target_position = player.global_position
 	camera_behavior_script.current_camera_offset = camera_behavior_script.death_camera_offset
+	
+	await get_tree().create_timer(1.0).timeout
+	player.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	get_tree().paused = true
 
-	await get_tree().create_timer(1.5).timeout
 
-	death_pannel.visible = true
-	death_pannel_first_button.grab_focus()
+	await get_tree().create_timer(delay_before_respawn).timeout
+	
+	you_are_dead_panel.visible = false
 
-	#await get_tree().create_timer(0.5).timeout
-	Engine.time_scale = 0.0
+	
+	if current_remaining_lives <= 0 :
+		
+		death_pannel.visible = true
+		death_pannel_first_button.grab_focus()
+		#await get_tree().create_timer(0.5).timeout
+		
+	else :
+	
+		handle_respawn_after_death()
+
 
 #---
 
-func player_is_blinking():
+func player_is_blinking(duration : float):
 	if  after_hit_invicibility:
 		return # Exit if blinking is already in progress
 
 	after_hit_invicibility = true # Lock blinking
 
-	for i in range(invicibility_duration):
+	for i in range(duration):
 		player_mesh.visible = not player_mesh.visible
 		await get_tree().create_timer(blink_interval).timeout
 
@@ -704,6 +801,10 @@ func player_is_blinking():
 	player_mesh.visible = true
 	after_hit_invicibility = false
 
+#---
+
+func set_up_remaining_life_label() -> void : 
+	remaining_life_counter.text = str(current_remaining_lives) + "/" + str(max_remaining_lives)
 # ----------------
 
 # --------------------------------------------------------------------------
@@ -850,8 +951,8 @@ func disable_movement() -> void :
 
 func initiate_dash() -> void :
 
-	
-	dash_countdown = latence_between_dash
+	if is_alive:
+		dash_countdown = latence_between_dash
 
 #---
 
@@ -880,6 +981,10 @@ func execute_dash():
 		var t = elapsed_time / dash_duration
 
 		if t >= 1:
+			stop_dash()
+			return
+			
+		if not is_alive:
 			stop_dash()
 			return
 
@@ -930,10 +1035,12 @@ func adjust_height_to_ground(target_position: Vector3) -> Vector3:
 func stop_dash():
 	start_time = 0
 	dash_cooldown_after_stop = 0.1  # 250 ms de protection post-dash
-	enable_can_transition()
-	activate_movement_state()
-	activate_idle_state()
-	activate_in_the_air_state()
+	if is_alive :
+
+		enable_can_transition()
+		activate_movement_state()
+		activate_idle_state()
+		activate_in_the_air_state()
 	
 
 #---
@@ -976,7 +1083,7 @@ func make_damage(area : Area3D, damage : float) -> void :
 	var parent = area.get_parent()
 	if parent.has_method("take_damage") and parent.is_in_group("enemy"):
 		parent.take_damage(damage)
-		#print("Suppose to make damage")
+		scoring_system.player_is_attacking.emit()
 		trigger_shake()
 		return
 		
@@ -1298,20 +1405,16 @@ func scale_charge_attack_range_indicator() -> void :
 #---
 
 func handle_charge_attack_sound_pitch() -> void : 
-	print("Gauge is : ", charged_attack_gauge)
 	if charged_attack_gauge <= 1 : 
-		print("Charge sound pitch in phase 1 is: ", charged_attack_charge_sound.pitch_scale)
 		charged_attack_charge_sound.pitch_scale = 1.0
 		
 	elif charged_attack_gauge == 1: 
 
 		charged_attack_charge_sound.pitch_scale = 1.5
-		print("Charge sound pitch in phase 2 is: ", charged_attack_charge_sound.pitch_scale)
 
 	elif charged_attack_gauge == 2 : 
 
 		charged_attack_charge_sound.pitch_scale = 2
-		print("Charge sound pitch in phase 3 is: ", charged_attack_charge_sound.pitch_scale)
 
 #---
 
@@ -1334,6 +1437,7 @@ func activate_charged_attack_swing_sound() -> void :
 func launch_dash_countdown(delta : float) -> void : 
 	if current_dash_countdown> 0 :
 		current_dash_countdown -= delta
+
 # --------------------------------------------------------------------------
 ## VFX
 func instantiate_foot_step_vfx() -> void :
@@ -1360,3 +1464,7 @@ func play_random_footstep() -> void:
 	mira_step.stream = footstep_sounds[random_index]
 	mira_step.pitch_scale = randf_range(0.9, 1.1)  # Légère variation du pitch pour plus de naturel
 	mira_step.play()
+
+
+func _on_check_death_timer_timeout() -> void:
+	check_if_dead()
