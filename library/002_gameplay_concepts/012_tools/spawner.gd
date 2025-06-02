@@ -8,7 +8,7 @@ class_name Spawner
 
 @export_subgroup("Nodes")
 @export var spawner_timer: Timer
-@export var wave_manager : WaveManager
+@onready var wave_manager : WaveManager
 @export var spawner_placement_indicator : MeshInstance3D
 @export var spawner_range_indicator : MeshInstance3D
 
@@ -42,7 +42,7 @@ func _ready():
 
 	spawner_timer.stop()
 	
-
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
 
 #---
 
@@ -88,7 +88,6 @@ func _on_timer_timeout() -> void:
 	#Spawn an enemy in a random range arround the spawner
 	new_enemy.global_position = global_position + _random_offset()
 	enemies_spawned += 1
-	wave_manager.enemy_reported_spawn += 1
 	
 	##Add an enemy in the wave manager enemies counter
 	wave_manager.enemies_alive_in_wave += 1
