@@ -80,6 +80,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Enemies killed in this wave label"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -91,7 +92,6 @@ grow_horizontal = 2
 theme_override_constants/margin_top = 50
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer2"]
-visible = false
 material = SubResource("ShaderMaterial_wu8ph")
 layout_mode = 2
 
