@@ -10424,7 +10424,6 @@ visible = false
 
 [node name="death_pannel" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10859,13 +10858,18 @@ frame_progress = 0.330083
 
 [node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
 
-[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player") instance=ExtResource("75_aha3o")]
+[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "number_of_enemies_killed_label", "number_of_hits_landed_label", "number_of_hits_taken_label", "number_of_death_label", "number_of_waves_completed_label") instance=ExtResource("75_aha3o")]
 layout_mode = 1
 player = NodePath("../../..")
 bonus_text_color = Color(0, 0.388235, 0.25098, 1)
 base_text_color = Color(1, 1, 1, 1)
 multiplicator_reset_delay = 10.0
 new_wave_bonus = 50000.0
+number_of_enemies_killed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
+number_of_hits_landed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
+number_of_hits_taken_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
+number_of_death_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
+number_of_waves_completed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
 
 [node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI/PlayerHUD"]
 visible = false
@@ -12217,6 +12221,7 @@ autostart = true
 [connection signal="area_entered" from="LightAttackSystemArea3D" to="." method="_on_light_attack_system_area_3d_area_entered"]
 
 [editable path="UI/PlayerHUD"]
+[editable path="UI/PlayerHUD/ScoringSystem"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="EndGamePannel"]

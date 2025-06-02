@@ -286,8 +286,8 @@ shape = SubResource("BoxShape3D_4kwbi")
 
 [node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7122, 0, 0)
-player_max_hp = 1.0
-max_remaining_lives = 1
+player_max_hp = 26.0
+max_remaining_lives = 2
 delay_before_respawn = 1.0
 after_respawn_invincibility_duration = 1.0
 player_dash_countdown = 0.5
@@ -351,6 +351,7 @@ spawn_range = 8.63
 
 [editable path="MiraV3"]
 [editable path="MiraV3/UI/PlayerHUD"]
+[editable path="MiraV3/UI/PlayerHUD/ScoringSystem"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]

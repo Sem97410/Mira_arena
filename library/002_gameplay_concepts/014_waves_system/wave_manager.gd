@@ -52,6 +52,10 @@ var growth_factor : float = 1.0
 @onready var number_of_spawned_enemy : int = 0
 
 
+
+
+
+
 #----------------------
 
 @export_group("Labels")
@@ -60,6 +64,11 @@ var growth_factor : float = 1.0
 @export var announce_label : Label
 @export var announce_panel : PanelContainer
 @onready var visual_timer : float = 0.0
+
+
+#----------------------
+
+
 
 # --------------------------------------------------------------------------
 ## DEBUGS
@@ -78,6 +87,9 @@ func _ready() -> void:
 	scoring_system = get_tree().get_first_node_in_group("scoring_system")
 	launch_map_introduction()
 	calculate_growth_factor()
+	
+
+	
 
 #---
 
@@ -347,6 +359,8 @@ func generate_enemy_spawn_list(max_enemies: int) -> Array[PackedScene]:
 func actualise_anounce_visual_timer() -> void:  
 	if visual_timer > 0:
 		announce_label.text = "Next wave will start in %.0f" % visual_timer
+
+#---
 
 # --------------------------------------------------------------------------
 

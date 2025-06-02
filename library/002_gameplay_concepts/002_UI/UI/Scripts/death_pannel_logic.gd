@@ -2,13 +2,13 @@ extends Control
 #------------------------------
 #REFERENCES
 #------------------------------
-@onready var first_button : Button = $Buttons_container/Reload
-@onready var pause_buttons_container : VBoxContainer = $Buttons_container
+@export var first_button : Button # = $Buttons_container/Reload
+@export var pause_buttons_container : VBoxContainer # = $Buttons_container
 
 @onready var is_pause_panel_activated : bool = false
 @onready var is_confirmation_quit_pannel_activated : bool = false
 
-@onready var not_ready_label : Label = $NotReadyLabel
+@export var not_ready_label : Label  #= $NotReadyLabel
 
 #------------------------------
 
@@ -16,16 +16,16 @@ extends Control
 
 #-----------------
 #Reload
-@onready var reload_confirmation_container : PanelContainer = $ReloadConfirmationPannel
-@onready var reload_confirmation_first_button : Button = $ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton #$ReloadConfirmationPannel/ConfirmationButtonContainer/VBoxContainer
+@export var reload_confirmation_container : PanelContainer #= $ReloadConfirmationPannel
+@export var reload_confirmation_first_button : Button #= $ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton #$ReloadConfirmationPannel/ConfirmationButtonContainer/VBoxContainer
 #-----------------
 #Main menu
-@onready var main_menu_confirmation_container : PanelContainer = $MainMenuConfirmationPannel
-@onready var main_menu_confirmation_first_button : Button = $MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton
+@export var main_menu_confirmation_container : PanelContainer #= $MainMenuConfirmationPannel
+@export var main_menu_confirmation_first_button : Button #= $MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton
 #-----------------
 #Quit
-@onready var quit_confirmations_container : PanelContainer = $QuitConfirmationPannel
-@onready var quit_confirmation_first_button : Button = $QuitConfirmationPannel/ConfirmationButtonContainer/NoButton
+@export var quit_confirmations_container : PanelContainer# = $QuitConfirmationPannel
+@export var quit_confirmation_first_button : Button #= $QuitConfirmationPannel/ConfirmationButtonContainer/NoButton
 
 
 # Called when the node enters the scene tree for the first time.

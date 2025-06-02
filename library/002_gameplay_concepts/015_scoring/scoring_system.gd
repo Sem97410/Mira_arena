@@ -48,6 +48,29 @@ var bonus_group_point_value : int
 var current_timer_before_add_points_to_total : float 
 var total_score_value : int
 
+@export_subgroup("End game")
+@onready var stat_labels : Dictionary = {
+	"enemies_killed" : Label,
+	"hits_done" : Label,
+	"hits_received" : Label,
+	"deaths" : Label,
+	"waves_completeds" : Label
+}
+
+@export var number_of_enemies_killed_label : Label
+@export var number_of_hits_landed_label : Label
+@export var number_of_hits_taken_label : Label
+@export var number_of_death_label : Label
+@export var number_of_waves_completed_label : Label
+
+@onready var stats : Dictionary = {
+	"enemies_killed": 0,
+	"hits_done": 0,
+	"hits_received": 0,
+	"deaths": 0,
+	"waves_completeds": 0
+}
+
 #---
 
 @export_subgroup("Signals")
@@ -70,12 +93,19 @@ signal new_wave_is_launching
 # BASE FUNCTIONS
 
 func _ready() -> void:
+
+	stat_labels = {
+		"enemies_killed": number_of_enemies_killed_label,
+		"hits_done": number_of_hits_landed_label,
+		"hits_received": number_of_hits_taken_label,
+		"deaths": number_of_death_label,
+		"waves_completed": number_of_waves_completed_label
+	}
+	
 	player_is_attacking.connect(player_hit_enemies)
 	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
 	new_wave_is_launching.connect(new_wave_scoring_logic)
-
-	
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
 	launch_counter_that_add_point_to_total(delta)
@@ -118,6 +148,8 @@ func launch_timer() -> void :
 func player_hit_enemies() -> void : 
 	launch_timer()
 	gauge_multiplicator_value += 1
+	
+	increment_stat("hits_done")
 
 #---
 
@@ -138,6 +170,7 @@ func update_multiplicator() -> void :
 
 func set_up_group_score(value : int) -> void : 
 	
+	increment_stat("enemies_killed")
 	
 	bonus_group_point_label.add_theme_color_override("font_color",bonus_text_color)
 	
@@ -179,6 +212,8 @@ func set_up_group_point_multiplicator_label() -> void :
 
 func player_took_damages() -> void :
 
+	increment_stat("hits_received")
+	
 	flush_group_score()
 	score_log_number_label.add_theme_color_override("font_color",malus_text_color)
 	score_log_text_label.add_theme_color_override("font_color",malus_text_color)
@@ -196,6 +231,7 @@ func player_took_damages() -> void :
 		score_log_number_label.text = "- " + str(death_malus_point)
 		malus_group_point_label.text = "- " + str(death_malus_point)
 		total_score_value -=  death_malus_point
+		increment_stat("deaths")
 		
 	handle_total_point_size()
 	total_score_label.text = str(total_score_value)
@@ -212,7 +248,7 @@ func player_took_damages() -> void :
 
 func new_wave_scoring_logic()-> void : 
 
-	
+	increment_stat("waves_completeds")
 	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
 	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
 	
@@ -278,6 +314,19 @@ func handle_total_point_size() -> void :
 		total_score_label.add_theme_font_size_override("font_size", 50)
 	else:
 		total_score_label.add_theme_font_size_override("font_size", 60)
+
+
+
+func increment_stat(stat_key: String) -> void:
+	if stats.has(stat_key) and stat_labels.has(stat_key):
+		stats[stat_key] += 1
+		stat_labels[stat_key].text = str(stats[stat_key])
+
+func reset_all_stats():
+	for key in stats.keys():
+		stats[key] = 0
+		if stat_labels.has(key):
+			stat_labels[key].text = "0"
 
 
 # --------------------------------------------------------------------------
