@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cigvn40sipu41"]
 
 [ext_resource type="ArrayMesh" uid="uid://b4l5wjkcj7sq1" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_End_L.obj" id="1_cc5ok"]
-[ext_resource type="Material" uid="uid://b2f6r1lq7i3dv" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/mat_platform_u.tres" id="2_dropc"]
+[ext_resource type="Material" uid="uid://b2f6r1lq7i3dv" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/material_01/mat_platform_u.tres" id="2_dropc"]
 [ext_resource type="PackedScene" uid="uid://x5m1p4oujc4n" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tree_03/tree.tscn" id="3_plkrw"]
 [ext_resource type="PackedScene" uid="uid://den6v5fh5vmff" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/rock_01/rock_01.tscn" id="4_5sa03"]
 [ext_resource type="PackedScene" uid="uid://ddrsg5e1h5653" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/tomb_04/tomb_04.tscn" id="5_suuuu"]

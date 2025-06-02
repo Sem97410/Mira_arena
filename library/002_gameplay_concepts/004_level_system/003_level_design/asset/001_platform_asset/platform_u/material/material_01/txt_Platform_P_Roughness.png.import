@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blfba1oh1xaju"
-path="res://.godot/imported/txt_Platform_P_Normal.png-f9b241b7776fb79e35c69d306d7631aa.ctex"
+uid="uid://ddn775f35wv1e"
+path="res://.godot/imported/txt_Platform_P_Roughness.png-77e5d1dc16d959ea8108395c9284eef3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/txt_Platform_P_Normal.png"
-dest_files=["res://.godot/imported/txt_Platform_P_Normal.png-f9b241b7776fb79e35c69d306d7631aa.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/material_01/txt_Platform_P_Roughness.png"
+dest_files=["res://.godot/imported/txt_Platform_P_Roughness.png-77e5d1dc16d959ea8108395c9284eef3.ctex"]
 
 [params]
 

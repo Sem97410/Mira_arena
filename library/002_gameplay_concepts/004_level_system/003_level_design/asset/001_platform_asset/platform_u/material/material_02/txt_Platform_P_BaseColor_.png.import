@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b000j4u4opohk"
-path.s3tc="res://.godot/imported/txt_Platform_P_BaseColor.png-3bde151cfd6039769ae675a15cce6c3c.s3tc.ctex"
+uid="uid://dvwqxn5a6iar2"
+path.s3tc="res://.godot/imported/txt_Platform_P_BaseColor_.png-9c6b468a35064d13042c80d4c02aa7f0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/txt_Platform_P_BaseColor.png"
-dest_files=["res://.godot/imported/txt_Platform_P_BaseColor.png-3bde151cfd6039769ae675a15cce6c3c.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/material_02/txt_Platform_P_BaseColor_.png"
+dest_files=["res://.godot/imported/txt_Platform_P_BaseColor_.png-9c6b468a35064d13042c80d4c02aa7f0.s3tc.ctex"]
 
 [params]
 

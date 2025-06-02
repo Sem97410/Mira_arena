@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36t0ctynla4e"
-path="res://.godot/imported/txt_Platform_P_ambient_occlusion.png-d015df41d8758c96f1013c57c9fb8726.ctex"
+uid="uid://blfba1oh1xaju"
+path="res://.godot/imported/txt_Platform_P_Normal.png-78c8f5fbcdc1ee00f2e2441830ed2036.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/txt_Platform_P_ambient_occlusion.png"
-dest_files=["res://.godot/imported/txt_Platform_P_ambient_occlusion.png-d015df41d8758c96f1013c57c9fb8726.ctex"]
+source_file="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_u/material/material_01/txt_Platform_P_Normal.png"
+dest_files=["res://.godot/imported/txt_Platform_P_Normal.png-78c8f5fbcdc1ee00f2e2441830ed2036.ctex"]
 
 [params]
 
