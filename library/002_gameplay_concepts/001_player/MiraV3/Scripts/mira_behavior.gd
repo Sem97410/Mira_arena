@@ -18,7 +18,7 @@ extends CharacterBody3D
 @export_group("❗Required References❗ ⚠️")
 @export_subgroup("Player")
 @export var player : CharacterBody3D
-@export var aura_mesh : MeshInstance3D #The colored circle effect around the player
+#@export var aura_mesh : MeshInstance3D #The colored circle effect around the player
 @export var player_mesh : Node3D
 
 #---
@@ -790,7 +790,7 @@ func launch_in_the_air_animation() -> void :
 	if not is_on_floor() and is_in_the_air:
 
 		base_state_machine.travel("Jump")
-		aura_mesh.visible = false
+		#aura_mesh.visible = false
 
 
 # --------------------------------------------------------------------------
