@@ -13611,6 +13611,7 @@ bomb_radius_around_player = 1.0
 
 [editable path="MiraV3"]
 [editable path="MiraV3/UI/PlayerHUD"]
+[editable path="MiraV3/UI/PlayerHUD/ScoringSystem"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]

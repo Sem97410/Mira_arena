@@ -10099,7 +10099,7 @@ camera_position = NodePath("CameraComponent/CameraController/CameraTarget/Camera
 player_hud = NodePath("UI/PlayerHUD")
 health_bar = NodePath("UI/PlayerHUD/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
-death_pannel_first_button = NodePath("UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
+death_pannel_first_button = NodePath("UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
 remaining_life_container = NodePath("UI/PlayerHUD/RemainingLifeContainer")
 remaining_life_title_text = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeTitleLabel")
 remaining_life_counter = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeCounterLabel")
@@ -10422,7 +10422,7 @@ vertical_alignment = 1
 [node name="YouAreDeadPanel" parent="UI" instance=ExtResource("11_x4wy3")]
 visible = false
 
-[node name="death_pannel" type="Control" parent="UI"]
+[node name="death_pannel" type="Control" parent="UI" node_paths=PackedStringArray("first_button", "game_over_general_container", "not_ready_label", "reload_confirmation_container", "reload_confirmation_first_button", "main_menu_confirmation_container", "main_menu_confirmation_first_button", "quit_confirmations_container", "quit_confirmation_first_button")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -10432,6 +10432,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("29_5lelo")
+first_button = NodePath("GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
+game_over_general_container = NodePath("GameOverGeneralContainer")
+not_ready_label = NodePath("NotReadyLabel")
+reload_confirmation_container = NodePath("ReloadConfirmationPannel")
+reload_confirmation_first_button = NodePath("ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton")
+main_menu_confirmation_container = NodePath("MainMenuConfirmationPannel")
+main_menu_confirmation_first_button = NodePath("MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton")
+quit_confirmations_container = NodePath("QuitConfirmationPannel")
+quit_confirmation_first_button = NodePath("QuitConfirmationPannel/ConfirmationButtonContainer/NoButton")
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/death_pannel"]
 layout_mode = 1
@@ -10461,7 +10470,7 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="UI/death_pannel"]
+[node name="GameOverGeneralContainer" type="MarginContainer" parent="UI/death_pannel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -10472,52 +10481,52 @@ offset_bottom = 371.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 200
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ScoreContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer"]
+[node name="ScoreContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = -45
 
-[node name="MarginContainer4" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Panel" type="Panel" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4"]
+[node name="Panel" type="Panel" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4"]
 material = SubResource("ShaderMaterial_xk4dx")
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Panel" type="Panel" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
+[node name="Panel" type="Panel" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
 material = SubResource("ShaderMaterial_rb3gw")
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 110
 
-[node name="ScoreTitleMarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
+[node name="ScoreTitleMarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_bottom = -90
 
-[node name="Label" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/ScoreTitleMarginContainer"]
+[node name="Label" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/ScoreTitleMarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
@@ -10526,105 +10535,105 @@ text = "Final score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ScoreStatsMarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="ScoreStatsMarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="StatsHBoxContainer" type="HBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer"]
+[node name="StatsHBoxContainer" type="HBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 35
 alignment = 1
 
-[node name="StatsTextVBoxContainer" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
+[node name="StatsTextVBoxContainer" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="EnemiesKilledTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+[node name="EnemiesKilledTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
 text = "	Enemies killed"
 
-[node name="HitsLandedTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+[node name="HitsLandedTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
 text = "Hits landed"
 
-[node name="HitsTakenTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+[node name="HitsTakenTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
 text = "Hits taken"
 
-[node name="NumberDeathTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+[node name="NumberDeathTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
 text = "Deaths"
 
-[node name="WavesCompletedTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+[node name="WavesCompletedTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
-text = "Waves completed"
+text = "Last wave reached"
 
-[node name="StatsNumberVBoxContainer2" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
+[node name="StatsNumberVBoxContainer2" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="EnemiesKilledNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+[node name="EnemiesKilledNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 2
 
-[node name="HitsLandedNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+[node name="HitsLandedNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 2
 
-[node name="HitsTakenNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+[node name="HitsTakenNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 2
 
-[node name="NumberDeathNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+[node name="NumberDeathNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 2
 
-[node name="WavesCompletedNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+[node name="WavesCompletedNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 2
 
-[node name="ScoreTotalMarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="ScoreTotalMarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 20
 
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer"]
 layout_mode = 2
 
-[node name="TotalScoreTextLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
+[node name="TotalScoreTextLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
@@ -10633,7 +10642,7 @@ text = "Total score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TotalScoreNumberLabel" type="Label" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
+[node name="TotalScoreNumberLabel" type="Label" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_font_sizes/font_size = 50
@@ -10641,15 +10650,15 @@ text = "1000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsMarginContainer" type="MarginContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer"]
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 30
 
-[node name="Buttons_container" type="HBoxContainer" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer"]
+[node name="Buttons_container" type="HBoxContainer" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 160
 
-[node name="Reload" type="Button" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+[node name="Reload" type="Button" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../Quit game")
@@ -10658,7 +10667,7 @@ theme = ExtResource("27_1yggv")
 theme_override_font_sizes/font_size = 56
 text = "Try again"
 
-[node name="Main menu" type="Button" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+[node name="Main menu" type="Button" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Reload")
 focus_neighbor_right = NodePath("../Quit game")
@@ -10666,7 +10675,7 @@ theme = ExtResource("27_1yggv")
 theme_override_font_sizes/font_size = 56
 text = "Main menu"
 
-[node name="Quit game" type="Button" parent="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+[node name="Quit game" type="Button" parent="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Main menu")
 focus_neighbor_right = NodePath("../Reload")
@@ -10857,19 +10866,21 @@ animation = &"Action lines"
 frame_progress = 0.330083
 
 [node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
+visible = false
 
-[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "number_of_enemies_killed_label", "number_of_hits_landed_label", "number_of_hits_taken_label", "number_of_death_label", "number_of_waves_completed_label") instance=ExtResource("75_aha3o")]
+[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "number_of_enemies_killed_label", "number_of_hits_landed_label", "number_of_hits_taken_label", "number_of_death_label", "number_of_waves_completed_label", "recap_total_score_label") instance=ExtResource("75_aha3o")]
 layout_mode = 1
 player = NodePath("../../..")
 bonus_text_color = Color(0, 0.388235, 0.25098, 1)
 base_text_color = Color(1, 1, 1, 1)
 multiplicator_reset_delay = 10.0
 new_wave_bonus = 50000.0
-number_of_enemies_killed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
-number_of_hits_landed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
-number_of_hits_taken_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
-number_of_death_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
-number_of_waves_completed_label = NodePath("../../death_pannel/MarginContainer3/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
+number_of_enemies_killed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
+number_of_hits_landed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
+number_of_hits_taken_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
+number_of_death_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
+number_of_waves_completed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
+recap_total_score_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
 
 [node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI/PlayerHUD"]
 visible = false
@@ -12183,9 +12194,9 @@ autostart = true
 [connection signal="button_down" from="UI/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/Pause_pannel" method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/Pause_pannel" method="_on_yes_button_button_down"]
 [connection signal="button_down" from="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/Pause_pannel" method="_on_no_button_button_down"]
-[connection signal="button_down" from="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload" to="UI/death_pannel" method="_on_reload_button_down"]
-[connection signal="button_down" from="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container/Main menu" to="UI/death_pannel" method="_on_main_menu_button_down"]
-[connection signal="button_down" from="UI/death_pannel/MarginContainer3/VBoxContainer/ButtonsMarginContainer/Buttons_container/Quit game" to="UI/death_pannel" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload" to="UI/death_pannel" method="_on_reload_button_down"]
+[connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Main menu" to="UI/death_pannel" method="_on_main_menu_button_down"]
+[connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Quit game" to="UI/death_pannel" method="_on_quit_game_button_down"]
 [connection signal="button_down" from="UI/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="UI/death_pannel" method="_on_reload_yes_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_reload_no_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/death_pannel" method="_on_main_menu_yes_button_button_down"]

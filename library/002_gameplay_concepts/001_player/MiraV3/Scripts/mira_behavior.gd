@@ -778,6 +778,7 @@ func death() -> void :
 		
 		death_pannel.visible = true
 		death_pannel_first_button.grab_focus()
+		scoring_system.session_is_ending.emit()
 		#await get_tree().create_timer(0.5).timeout
 		
 	else :

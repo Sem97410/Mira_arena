@@ -3,7 +3,7 @@ extends Control
 #REFERENCES
 #------------------------------
 @export var first_button : Button # = $Buttons_container/Reload
-@export var pause_buttons_container : VBoxContainer # = $Buttons_container
+@export var game_over_general_container : MarginContainer # = $Buttons_container
 
 @onready var is_pause_panel_activated : bool = false
 @onready var is_confirmation_quit_pannel_activated : bool = false
@@ -51,7 +51,7 @@ func _ready() -> void:
 #Retry
 func _on_reload_button_down() -> void:
 	print("Reload button was pressed")
-	pause_buttons_container.visible = false
+	game_over_general_container.visible = false
 	reload_confirmation_container.visible = true
 	reload_confirmation_first_button.grab_focus()
 	
@@ -62,7 +62,7 @@ func _on_reload_yes_button_button_down() -> void:
 
 func _on_reload_no_button_button_down() -> void:
 	reload_confirmation_container.visible = false
-	pause_buttons_container.visible = true
+	game_over_general_container.visible = true
 	first_button.grab_focus()
 
 #-----------------
@@ -70,7 +70,7 @@ func _on_reload_no_button_button_down() -> void:
 #Main Menu
 func _on_main_menu_button_down() -> void:
 	print("Main menu button was pressed") # Replace with function body.
-	pause_buttons_container.visible = false
+	game_over_general_container.visible = false
 	main_menu_confirmation_container.visible = true
 	main_menu_confirmation_first_button.grab_focus()
 	
@@ -82,7 +82,7 @@ func _on_main_menu_yes_button_button_down() -> void:
 
 func _on_main_menu_no_button_button_down() -> void:
 	main_menu_confirmation_container.visible = false
-	pause_buttons_container.visible = true
+	game_over_general_container.visible = true
 	first_button.grab_focus()
 	
 #-----------------
@@ -103,7 +103,7 @@ func _on_settings_button_down() -> void:
 #Quit
 func _on_quit_game_button_down() -> void:
 	print("Quit game button was pressed")
-	pause_buttons_container.visible = false
+	game_over_general_container.visible = false
 	quit_confirmations_container.visible = true
 	quit_confirmation_first_button.grab_focus()
 #------------------------------
@@ -113,5 +113,5 @@ func _on_yes_button_button_down() -> void:
 
 func _on_no_button_button_down() -> void:
 	quit_confirmations_container.visible = false
-	pause_buttons_container.visible = true
+	game_over_general_container.visible = true
 	first_button.grab_focus()

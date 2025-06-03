@@ -24,8 +24,8 @@ extends Node
 @export var log_point_group_point_container : HBoxContainer
 @export var malus_group_point_label : Label
 
-
 #---
+
 @export_group("Scoring Stats")
 @export_subgroup("Scoring values")
 @export var multiplicator_reset_delay : float = 5.0
@@ -54,7 +54,8 @@ var total_score_value : int
 	"hits_done" : Label,
 	"hits_received" : Label,
 	"deaths" : Label,
-	"waves_completeds" : Label
+	"waves_completeds" : Label,
+	"total_score" : Label
 }
 
 @export var number_of_enemies_killed_label : Label
@@ -62,6 +63,7 @@ var total_score_value : int
 @export var number_of_hits_taken_label : Label
 @export var number_of_death_label : Label
 @export var number_of_waves_completed_label : Label
+@export var recap_total_score_label : Label
 
 @onready var stats : Dictionary = {
 	"enemies_killed": 0,
@@ -78,7 +80,7 @@ signal player_is_attacking
 signal player_kill_enemy(value : int)
 signal player_take_damage
 signal new_wave_is_launching
-
+signal session_is_ending
 
 #---
 
@@ -99,13 +101,14 @@ func _ready() -> void:
 		"hits_done": number_of_hits_landed_label,
 		"hits_received": number_of_hits_taken_label,
 		"deaths": number_of_death_label,
-		"waves_completed": number_of_waves_completed_label
+		"waves_completeds": number_of_waves_completed_label
 	}
 	
 	player_is_attacking.connect(player_hit_enemies)
 	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
 	new_wave_is_launching.connect(new_wave_scoring_logic)
+	session_is_ending.connect(set_up_end_game_scoring)
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
 	launch_counter_that_add_point_to_total(delta)
@@ -222,9 +225,6 @@ func player_took_damages() -> void :
 		score_log_text_label.text = "Hit :"
 		malus_group_point_label.text = "- " + str(hit_malus_point)
 		total_score_value -=  hit_malus_point
-		
-
-
 
 	else :
 		score_log_text_label.text = "Death :"
@@ -328,6 +328,9 @@ func reset_all_stats():
 		if stat_labels.has(key):
 			stat_labels[key].text = "0"
 
+func set_up_end_game_scoring() -> void : 
+	
+	recap_total_score_label.text = str(total_score_value)
 
 # --------------------------------------------------------------------------
 
