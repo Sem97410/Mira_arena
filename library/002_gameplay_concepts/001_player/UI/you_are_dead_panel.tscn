@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bypfkwwa3e4p8"]
 
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_x2i2f"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="1_x2i2f"]
 
 [node name="YouAreDeadPanel" type="Control"]
 layout_mode = 3

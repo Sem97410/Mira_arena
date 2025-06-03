@@ -24,6 +24,7 @@ extends CharacterBody3D
 var spawn_position : Vector3
 @export var deah_timer : Timer
 @export var scoring_system : Node
+@export var wave_manager : WaveManager
 
 #---
 
@@ -41,7 +42,12 @@ var spawn_position : Vector3
 #---
 
 @export_subgroup("Signals")
+signal player_is_defeated
 
+#---
+
+@export_subgroup("General states")
+@onready var is_game_won : bool = false
 
 #---
 
@@ -57,6 +63,8 @@ var spawn_position : Vector3
 @export var health_bar : ProgressBar
 @export var death_pannel : Control
 @export var death_pannel_first_button : Button
+@export var victory_panel : Control
+@export var victory_panel_first_button : Button
 @export var remaining_life_container : MarginContainer
 @export var remaining_life_title_text : Label
 @export var remaining_life_counter : Label
@@ -296,6 +304,9 @@ func _ready():
 	original_position = camera_position.transform.origin  # Sauvegarde la position de base
 	health_bar.init_health(player_max_hp)
 	Engine.time_scale = 1.0
+	
+	wave_manager.player_win.connect(activate_victory_logic)
+
 
 
 func trigger_shake() -> void:
@@ -574,7 +585,14 @@ func _on_death_state_entered() -> void:
 	disable_charge_range_indicator()
 	death()
 
-
+func player_win_the_session()-> void : 
+	is_game_won = true
+	player_hud.visible = false
+	victory_panel.visible = true
+	victory_panel_first_button.grab_focus()
+	
+	
+	get_tree().paused = true
 
 # --------------------------------------------------------------------------
 
@@ -776,9 +794,11 @@ func death() -> void :
 	
 	if current_remaining_lives <= 0 :
 		
+		player_is_defeated.emit()
+		
 		death_pannel.visible = true
 		death_pannel_first_button.grab_focus()
-		scoring_system.session_is_ending.emit()
+
 		#await get_tree().create_timer(0.5).timeout
 		
 	else :
@@ -1469,3 +1489,13 @@ func play_random_footstep() -> void:
 
 func _on_check_death_timer_timeout() -> void:
 	check_if_dead()
+
+
+func activate_victory_logic()-> void : 
+	player_hud.visible = false
+	victory_panel.visible = true
+	can_move = false
+	player.velocity = Vector3.ZERO
+	get_tree().paused = true
+	is_game_won = true
+	victory_panel_first_button.grab_focus()

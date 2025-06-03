@@ -50,27 +50,45 @@ var total_score_value : int
 
 @export_subgroup("End game")
 @onready var stat_labels : Dictionary = {
-	"enemies_killed" : Label,
-	"hits_done" : Label,
-	"hits_received" : Label,
-	"deaths" : Label,
-	"waves_completeds" : Label,
-	"total_score" : Label
+	"game_over_enemies_killed" : Label,
+	"game_over_hits_done" : Label,
+	"game_over_hits_received" : Label,
+	"game_over_deaths" : Label,
+	"game_over_waves_completeds" : Label,
+	"game_over_total_score" : Label,
+	"victory_enemies_killed" : Label,
+	"victory_hits_done" : Label,
+	"victory_hits_received" : Label,
+	"victory_deaths" : Label,
+	"victory_waves_completeds" : Label,
+	"victory_total_score" : Label
 }
 
-@export var number_of_enemies_killed_label : Label
-@export var number_of_hits_landed_label : Label
-@export var number_of_hits_taken_label : Label
-@export var number_of_death_label : Label
-@export var number_of_waves_completed_label : Label
-@export var recap_total_score_label : Label
+@export var victory_panel : Control
+@export var game_over_number_of_enemies_killed_label : Label
+@export var game_over_number_of_hits_landed_label : Label
+@export var game_over_number_of_hits_taken_label : Label
+@export var game_over_number_of_death_label : Label
+@export var game_over_number_of_waves_completed_label : Label
+@export var game_over_recap_total_score_label : Label
+@export var victory_number_of_enemies_killed_label : Label
+@export var victory_number_of_hits_landed_label : Label
+@export var victory_number_of_hits_taken_label : Label
+@export var victory_number_of_death_label : Label
+@export var gvictory_number_of_waves_completed_label : Label
+@export var victory_recap_total_score_label : Label
 
 @onready var stats : Dictionary = {
-	"enemies_killed": 0,
-	"hits_done": 0,
-	"hits_received": 0,
-	"deaths": 0,
-	"waves_completeds": 0
+	"game_over_enemies_killed": 0,
+	"game_over_hits_done": 0,
+	"game_over_hits_received": 0,
+	"game_over_deaths": 0,
+	"game_over_waves_completeds": 0,
+	"victory_enemies_killed": 0,
+	"victory_hits_done": 0,
+	"victory_hits_received": 0,
+	"victory_deaths": 0,
+	"victory_waves_completeds": 0
 }
 
 #---
@@ -80,7 +98,6 @@ signal player_is_attacking
 signal player_kill_enemy(value : int)
 signal player_take_damage
 signal new_wave_is_launching
-signal session_is_ending
 
 #---
 
@@ -97,18 +114,25 @@ signal session_is_ending
 func _ready() -> void:
 
 	stat_labels = {
-		"enemies_killed": number_of_enemies_killed_label,
-		"hits_done": number_of_hits_landed_label,
-		"hits_received": number_of_hits_taken_label,
-		"deaths": number_of_death_label,
-		"waves_completeds": number_of_waves_completed_label
+		"game_over_enemies_killed": game_over_number_of_enemies_killed_label,
+		"game_over_hits_done": game_over_number_of_hits_landed_label,
+		"game_over_hits_received": game_over_number_of_hits_taken_label,
+		"game_over_deaths": game_over_number_of_death_label,
+		"game_over_waves_completeds": game_over_number_of_waves_completed_label,
+		"victory_enemies_killed": victory_number_of_enemies_killed_label,
+		"victory_hits_done": victory_number_of_hits_landed_label,
+		"victory_hits_received": victory_number_of_hits_taken_label,
+		"victory_deaths": victory_number_of_death_label,
+		"victory_waves_completeds": victory_recap_total_score_label,
 	}
 	
 	player_is_attacking.connect(player_hit_enemies)
 	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
 	new_wave_is_launching.connect(new_wave_scoring_logic)
-	session_is_ending.connect(set_up_end_game_scoring)
+	
+	player.player_is_defeated.connect(set_up_end_game_scoring)
+	
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
 	launch_counter_that_add_point_to_total(delta)
@@ -152,7 +176,8 @@ func player_hit_enemies() -> void :
 	launch_timer()
 	gauge_multiplicator_value += 1
 	
-	increment_stat("hits_done")
+	increment_stat("game_over_hits_done")
+	increment_stat("victory_hits_done")
 
 #---
 
@@ -173,7 +198,9 @@ func update_multiplicator() -> void :
 
 func set_up_group_score(value : int) -> void : 
 	
-	increment_stat("enemies_killed")
+	increment_stat("game_over_enemies_killed")
+	increment_stat("victory_enemies_killed")
+
 	
 	bonus_group_point_label.add_theme_color_override("font_color",bonus_text_color)
 	
@@ -215,7 +242,8 @@ func set_up_group_point_multiplicator_label() -> void :
 
 func player_took_damages() -> void :
 
-	increment_stat("hits_received")
+	increment_stat("game_over_hits_received")
+	increment_stat("victory_hits_received")
 	
 	flush_group_score()
 	score_log_number_label.add_theme_color_override("font_color",malus_text_color)
@@ -231,7 +259,8 @@ func player_took_damages() -> void :
 		score_log_number_label.text = "- " + str(death_malus_point)
 		malus_group_point_label.text = "- " + str(death_malus_point)
 		total_score_value -=  death_malus_point
-		increment_stat("deaths")
+		increment_stat("game_over_deaths")
+		increment_stat("victory_deaths")
 		
 	handle_total_point_size()
 	total_score_label.text = str(total_score_value)
@@ -248,7 +277,8 @@ func player_took_damages() -> void :
 
 func new_wave_scoring_logic()-> void : 
 
-	increment_stat("waves_completeds")
+	increment_stat("game_over_waves_completeds")
+	increment_stat("victory_waves_completeds")
 	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
 	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
 	
@@ -330,7 +360,12 @@ func reset_all_stats():
 
 func set_up_end_game_scoring() -> void : 
 	
-	recap_total_score_label.text = str(total_score_value)
+	flush_group_score()
+	game_over_recap_total_score_label.text = str(total_score_value)
+	victory_recap_total_score_label.text = str(total_score_value)
+	
+
+	
 
 # --------------------------------------------------------------------------
 

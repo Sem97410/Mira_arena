@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=180 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -20,10 +20,12 @@
 [ext_resource type="Material" uid="uid://brie8eo7c53nm" path="res://library/002_gameplay_concepts/001_player/Texture/material/body_material/mat_sourcil.tres" id="13_5lelo"]
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="13_m4xck"]
 [ext_resource type="PackedScene" uid="uid://db65kgtyar2lg" path="res://library/002_gameplay_concepts/001_player/MiraV3/player_hud.tscn" id="14_1wmhn"]
+[ext_resource type="Script" uid="uid://dj7e60wa3mrke" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/victory_pannel_logic.gd" id="14_rb3gw"]
 [ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="14_viusc"]
 [ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="15_6jfd8"]
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="16_71p4a"]
 [ext_resource type="PackedScene" uid="uid://c68r4on6xv3km" path="res://library/002_gameplay_concepts/001_player/player_aura.tscn" id="17_uvhkw"]
+[ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="17_xk4dx"]
 [ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="18_bupnr"]
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="19_v240w"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="20_a8wav"]
@@ -33,7 +35,7 @@
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="27_1yggv"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="28_rwcnu"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="28_rwcnu"]
 [ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="29_5lelo"]
 [ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="30_dv1vs"]
 [ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="31_1yggv"]
@@ -10080,7 +10082,7 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "health_area", "deah_timer", "scoring_system", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "aura_mesh", "player_mesh", "health_area", "deah_timer", "scoring_system", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "victory_panel", "victory_panel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
 Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
@@ -10100,6 +10102,8 @@ player_hud = NodePath("UI/PlayerHUD")
 health_bar = NodePath("UI/PlayerHUD/HealthBar")
 death_pannel = NodePath("UI/death_pannel")
 death_pannel_first_button = NodePath("UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
+victory_panel = NodePath("UI/VictoryPanel")
+victory_panel_first_button = NodePath("UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
 remaining_life_container = NodePath("UI/PlayerHUD/RemainingLifeContainer")
 remaining_life_title_text = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeTitleLabel")
 remaining_life_counter = NodePath("UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer/RemainingLifeCounterLabel")
@@ -10424,6 +10428,7 @@ visible = false
 
 [node name="death_pannel" type="Control" parent="UI" node_paths=PackedStringArray("first_button", "game_over_general_container", "not_ready_label", "reload_confirmation_container", "reload_confirmation_first_button", "main_menu_confirmation_container", "main_menu_confirmation_first_button", "quit_confirmations_container", "quit_confirmation_first_button")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10857,6 +10862,442 @@ text = "Not available yet ...."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VictoryPanel" type="Control" parent="UI" node_paths=PackedStringArray("first_button", "victory_general_container", "not_ready_label", "reload_confirmation_container", "reload_confirmation_first_button", "main_menu_confirmation_container", "main_menu_confirmation_first_button", "quit_confirmations_container", "quit_confirmation_first_button")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("14_rb3gw")
+first_button = NodePath("VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload")
+victory_general_container = NodePath("VictoryGeneralContainer")
+not_ready_label = NodePath("NotReadyLabel")
+reload_confirmation_container = NodePath("ReloadConfirmationPannel")
+reload_confirmation_first_button = NodePath("ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton")
+main_menu_confirmation_container = NodePath("MainMenuConfirmationPannel")
+main_menu_confirmation_first_button = NodePath("MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton")
+quit_confirmations_container = NodePath("QuitConfirmationPannel")
+quit_confirmation_first_button = NodePath("QuitConfirmationPannel/ConfirmationButtonContainer/NoButton")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGroundClockImage" type="TextureRect" parent="UI/VictoryPanel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("26_dv1vs")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="UI/VictoryPanel"]
+modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VictoryGeneralContainer" type="MarginContainer" parent="UI/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_right = 173.0
+offset_bottom = 371.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ScoreContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -45
+
+[node name="MarginContainer4" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4"]
+material = SubResource("ShaderMaterial_xk4dx")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
+material = SubResource("ShaderMaterial_rb3gw")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 110
+
+[node name="ScoreTitleMarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -90
+
+[node name="Label" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/ScoreTitleMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 80
+text = "Final score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ScoreStatsMarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsHBoxContainer" type="HBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="StatsTextVBoxContainer" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="EnemiesKilledTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 50
+text = "	Enemies killed"
+
+[node name="HitsLandedTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 50
+text = "Hits landed"
+
+[node name="HitsTakenTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 50
+text = "Hits taken"
+
+[node name="NumberDeathTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 50
+text = "Deaths"
+
+[node name="WavesCompletedTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 50
+text = "Last wave reached"
+
+[node name="StatsNumberVBoxContainer2" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="EnemiesKilledNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="HitsLandedNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="HitsTakenNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="NumberDeathNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="WavesCompletedNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="ScoreTotalMarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer"]
+layout_mode = 2
+
+[node name="TotalScoreTextLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 70
+text = "Total score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalScoreNumberLabel" type="Label" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
+theme_override_font_sizes/font_size = 50
+text = "1000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="Buttons_container" type="HBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="Reload" type="Button" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Quit game")
+focus_neighbor_right = NodePath("../Main menu")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Try again"
+
+[node name="Main menu" type="Button" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Reload")
+focus_neighbor_right = NodePath("../Quit game")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Main menu"
+
+[node name="Quit game" type="Button" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Main menu")
+focus_neighbor_right = NodePath("../Reload")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Quit game"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="Pause text" type="Label" parent="UI/VictoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 96
+text = "Victory !!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="UI/VictoryPanel"]
+visible = false
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.425
+offset_top = -118.5
+offset_right = 306.575
+offset_bottom = 131.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VictoryPanel/ReloadConfirmationPannel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ConfirmationText" type="Label" parent="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 40
+text = "Are you sure that you want to reload this level? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 185
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="UI/VictoryPanel"]
+visible = false
+custom_minimum_size = Vector2(548.33, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.165
+offset_top = -197.795
+offset_right = 274.165
+offset_bottom = 102.205
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="UI/VictoryPanel/MainMenuConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure you want to go back to the main menu? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/VictoryPanel/MainMenuConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 210
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/VictoryPanel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/VictoryPanel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="UI/VictoryPanel"]
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -202.0
+offset_right = 302.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="UI/VictoryPanel/QuitConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure that you want to quit? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/VictoryPanel/QuitConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 215
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="NotReadyLabel" type="Label" parent="UI/VictoryPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -46.0
+offset_right = 211.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 45
+text = "Not available yet ...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ActionLineSprites" type="AnimatedSprite2D" parent="UI"]
 visible = false
 position = Vector2(984, 514)
@@ -10866,21 +11307,33 @@ animation = &"Action lines"
 frame_progress = 0.330083
 
 [node name="PlayerHUD" parent="UI" instance=ExtResource("14_1wmhn")]
-visible = false
 
-[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "number_of_enemies_killed_label", "number_of_hits_landed_label", "number_of_hits_taken_label", "number_of_death_label", "number_of_waves_completed_label", "recap_total_score_label") instance=ExtResource("75_aha3o")]
+[node name="RemainingLifeTitleLabel" parent="UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer" index="0"]
+theme_override_fonts/font = ExtResource("17_xk4dx")
+
+[node name="RemainingLifeCounterLabel" parent="UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer" index="1"]
+theme_override_fonts/font = ExtResource("17_xk4dx")
+
+[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "victory_panel", "game_over_number_of_enemies_killed_label", "game_over_number_of_hits_landed_label", "game_over_number_of_hits_taken_label", "game_over_number_of_death_label", "game_over_number_of_waves_completed_label", "game_over_recap_total_score_label", "victory_number_of_enemies_killed_label", "victory_number_of_hits_landed_label", "victory_number_of_hits_taken_label", "victory_number_of_death_label", "gvictory_number_of_waves_completed_label", "victory_recap_total_score_label") instance=ExtResource("75_aha3o")]
 layout_mode = 1
 player = NodePath("../../..")
 bonus_text_color = Color(0, 0.388235, 0.25098, 1)
 base_text_color = Color(1, 1, 1, 1)
 multiplicator_reset_delay = 10.0
 new_wave_bonus = 50000.0
-number_of_enemies_killed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
-number_of_hits_landed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
-number_of_hits_taken_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
-number_of_death_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
-number_of_waves_completed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
-recap_total_score_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
+victory_panel = NodePath("../../VictoryPanel")
+game_over_number_of_enemies_killed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
+game_over_number_of_hits_landed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
+game_over_number_of_hits_taken_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
+game_over_number_of_death_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
+game_over_number_of_waves_completed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer/WavesCompletedTextLabel")
+game_over_recap_total_score_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
+victory_number_of_enemies_killed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
+victory_number_of_hits_landed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
+victory_number_of_hits_taken_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
+victory_number_of_death_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
+gvictory_number_of_waves_completed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
+victory_recap_total_score_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
 
 [node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI/PlayerHUD"]
 visible = false
@@ -12203,6 +12656,15 @@ autostart = true
 [connection signal="button_down" from="UI/death_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/death_pannel" method="_on_yes_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/death_pannel" method="_on_no_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload" to="UI/VictoryPanel" method="_on_reload_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Main menu" to="UI/VictoryPanel" method="_on_main_menu_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Quit game" to="UI/VictoryPanel" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="UI/VictoryPanel" method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="UI/VictoryPanel" method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/VictoryPanel" method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/VictoryPanel" method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/VictoryPanel" method="_on_yes_button_button_down"]
+[connection signal="button_down" from="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/VictoryPanel" method="_on_no_button_button_down"]
 [connection signal="area_entered" from="Meshes/ChargedAttackSystemArea3D" to="." method="_on_charged_attack_system_area_3d_area_entered"]
 [connection signal="state_entered" from="StateChart/root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/root/Idle" to="." method="_on_idle_state_exited"]

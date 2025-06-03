@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cmjq7a7f07m5l"]
 
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_j8glw"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="1_j8glw"]
 [ext_resource type="PackedScene" uid="uid://c6x03tnfna0py" path="res://library/002_gameplay_concepts/001_player/MiraV3/mira_v_3.tscn" id="4_6c41i"]
 [ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spawner.tscn" id="5_c30ce"]
 [ext_resource type="PackedScene" uid="uid://da14aowprjedb" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.tscn" id="10_k41v4"]
@@ -284,8 +284,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.294
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.46321, -0.104939)
 shape = SubResource("BoxShape3D_4kwbi")
 
-[node name="MiraV3" parent="." instance=ExtResource("4_6c41i")]
+[node name="MiraV3" parent="." node_paths=PackedStringArray("wave_manager") instance=ExtResource("4_6c41i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7122, 0, 0)
+wave_manager = NodePath("../WaveManager")
 player_max_hp = 1.0
 max_remaining_lives = 1
 delay_before_respawn = 1.0
@@ -339,6 +340,7 @@ initial_number_of_enemies = 5
 max_enemies_in_the_scene = 100
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
+victory_wave = 2
 pause_after_wave_duration = 2.0
 
 [node name="Spawner" parent="." instance=ExtResource("5_c30ce")]

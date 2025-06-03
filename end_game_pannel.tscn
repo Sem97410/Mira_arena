@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dm2ruywilprq3"]
 
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="1_xvbep"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="1_xvbep"]
 [ext_resource type="Script" uid="uid://bjqd7grcmp0a1" path="res://library/002_gameplay_concepts/002_UI/end_game_pannel.gd" id="1_ynyt2"]
 [ext_resource type="Texture2D" uid="uid://dpr61f5oq3w20" path="res://library/002_gameplay_concepts/002_UI/UI/team_work_Aby.png" id="3_3kwn5"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="3_ynyt2"]

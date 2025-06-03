@@ -6,6 +6,7 @@ class_name WaveManager
 
 #A REMETTRE LA OU IL FAUT : 
 var scoring_system : Node
+var player : CharacterBody3D
 
 @export_group("❗Required References❗ ⚠️")
 @export_subgroup("Manage enemies")
@@ -38,6 +39,8 @@ var growth_factor : float = 1.0
 @onready var can_change_wave : bool = false
 @onready var wave_is_in_progress : bool = false
 
+@export var victory_wave : int
+
 #----------------------
 
 @export_subgroup("Introduction & break between waves")
@@ -68,7 +71,9 @@ var growth_factor : float = 1.0
 
 #----------------------
 
+@export_group("Signal")
 
+signal player_win
 
 # --------------------------------------------------------------------------
 ## DEBUGS
@@ -85,8 +90,12 @@ var growth_factor : float = 1.0
 
 func _ready() -> void:
 	scoring_system = get_tree().get_first_node_in_group("scoring_system")
+	player = get_tree().get_first_node_in_group("player")
 	launch_map_introduction()
 	calculate_growth_factor()
+	#player_win.connect()
+
+	
 	
 
 	
@@ -122,6 +131,12 @@ func start_wave() -> void :
 	
 	cycle_wave_index += 1 #Increment the position in the wave cycle  (A wave cycle = 5 waves )
 	
+	if current_wave == victory_wave + 1  :
+		player_win_arena()
+		print("Player win the arena mode")
+		return
+		
+		
 	unlock_new_enemy_for_wave()
 	
 	can_change_wave = false  #Stop from launching  another wave if we are still in a wave
@@ -202,6 +217,13 @@ func launch_pause_time_after_wave() -> void :
 	#Add bonus point at the end of the current wave
 	if current_wave > 0:
 		scoring_system.new_wave_is_launching.emit()
+		
+	if current_wave == victory_wave :
+		announce_panel.visible = false
+		
+		await get_tree().create_timer(2.5).timeout
+		can_change_wave = true
+		return
 		
 	await get_tree().create_timer(2.0, false).timeout
 	visual_timer = pause_after_wave_duration
@@ -351,7 +373,8 @@ func generate_enemy_spawn_list(max_enemies: int) -> Array[PackedScene]:
 	return spawn_list
 
 
-
+func player_win_arena() -> void : 
+	player_win.emit()
 		# --------------------------------------------------------------------------
 
 ## ANNOUNCEMENT
@@ -361,6 +384,7 @@ func actualise_anounce_visual_timer() -> void:
 		announce_label.text = "Next wave will start in %.0f" % visual_timer
 
 #---
+
 
 # --------------------------------------------------------------------------
 

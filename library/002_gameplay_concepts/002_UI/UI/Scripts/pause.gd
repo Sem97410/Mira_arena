@@ -10,6 +10,7 @@ extends Control
 
 @onready var not_ready_label : Label = $NotReadyLabel
 
+var player : CharacterBody3D
 #@export var health_script : HealthSystem
 
 #------------------------------
@@ -35,13 +36,15 @@ func _ready() -> void:
 		self.visible = false
 		get_tree().paused = false
 		
+		player = get_tree().get_first_node_in_group("player")
+		
 		#print("Test en début de partie")
 		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause_game"): # and  health_script.is_alive:
+	if Input.is_action_just_pressed("pause_game") and player.is_alive and not player.is_game_won: # and  health_script.is_alive:
 		#print("Pause game was clicked")
 		toggle_pause_pannel()
 

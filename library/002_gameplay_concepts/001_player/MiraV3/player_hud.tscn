@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://db65kgtyar2lg"]
 
 [ext_resource type="PackedScene" uid="uid://b3retq7nbgcrj" path="res://library/002_gameplay_concepts/002_UI/UI/HealBar.tscn" id="1_rqdei"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_ncej4"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="2_ncej4"]
 
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
