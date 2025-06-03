@@ -29,6 +29,9 @@ extends Control
 @export var map_selection_main_button : Button
 @export var map_1_information : MarginContainer
 @export var map_2_information : MarginContainer 
+@export var max_score_value_label : Label
+@export var last_game_score_value_label : Label
+
 #-----------------
 #MUSICS
 @export var main_menu_music : AudioStreamPlayer
@@ -41,6 +44,11 @@ func _ready() -> void:
 	get_tree().paused = false
 	Engine.time_scale = 1
 	main_menu_music.play()
+	
+	max_score_value_label.text = str(GeneralScore.max_score)
+	last_game_score_value_label.text = str(GeneralScore.last_max_score)
+	
+	
 
 
 #------------------------------

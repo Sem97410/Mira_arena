@@ -290,8 +290,7 @@ func new_wave_scoring_logic()-> void :
 	total_score_value += new_wave_bonus
 	increment_stat("game_over_waves_completeds")
 	increment_stat("victory_waves_completeds")
-	print("victory_waves_completeds : ",  stats["victory_waves_completeds"])
-	print("game_over_waves_completeds : ",  stats["game_over_waves_completeds"])
+
 	
 	await get_tree().create_timer(4.0).timeout
 	
@@ -365,15 +364,21 @@ func reset_all_stats():
 			stat_labels[key].text = "0"
 
 func set_up_end_game_scoring() -> void : 
-	print("Set up end game scoring")
 	await get_tree().process_frame # laisse le bonus s'ajouter
 	flush_group_score()
 	game_over_recap_total_score_label.text = str(total_score_value)
 	victory_recap_total_score_label.text = str(total_score_value)
+	set_up_autoload()
 	
 
 	
-
+func set_up_autoload() -> void : 
+	print("Set up autoload")
+	GeneralScore.last_max_score = total_score_value
+	
+	if GeneralScore.max_score < total_score_value:
+		GeneralScore.max_score = total_score_value
+	
 # --------------------------------------------------------------------------
 
 # DEBUG

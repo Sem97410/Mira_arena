@@ -59,7 +59,6 @@ func _on_reload_no_button_button_down() -> void:
 
 #Main Menu
 func _on_main_menu_button_down() -> void:
-	print("Main menu button was pressed") # Replace with function body.
 	victory_general_container.visible = false
 	main_menu_confirmation_container.visible = true
 	main_menu_confirmation_first_button.grab_focus()

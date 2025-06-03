@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=15 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
 [ext_resource type="Texture2D" uid="uid://btwe8uepc4sob" path="res://library/002_gameplay_concepts/IllustrationLevel1.png" id="7_ruk6f"]
 [ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
+[ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="9_bafky"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -30,7 +31,7 @@ modulate_color = Color(1, 1, 1, 0.733333)
 
 [node name="MainMenu" type="Node3D"]
 
-[node name="MainMenuControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "main_menu_music")]
+[node name="MainMenuControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "max_score_value_label", "last_game_score_value_label", "main_menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +53,8 @@ map_selection_container = NodePath("LevelSelectionMargin")
 map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton")
 map_1_information = NodePath("Map1Information")
 map_2_information = NodePath("Map2Information")
+max_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel/SlimageddonMaxScoreScore")
+last_game_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel/SlimageddonMaxScoreScore")
 main_menu_music = NodePath("TitleScreenSoundPlaceHolder")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenuControl"]
@@ -292,6 +295,40 @@ custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("7_vg8no")
 expand_mode = 3
+
+[node name="MaxScoreLabel" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 40
+text = "Max score : "
+
+[node name="SlimageddonMaxScoreScore" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 30
+text = "1000000"
+
+[node name="LastMaxScoreLabel" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 40
+text = "Last score : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimageddonMaxScoreScore" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 30
+text = "1000000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

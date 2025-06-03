@@ -389,7 +389,7 @@ extent = 32.0
 bounds = AABB(-47, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ekj8a"]
@@ -461,7 +461,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -497,7 +497,7 @@ extent = 32.0
 bounds = AABB(17, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_wdjw3"]
@@ -5968,9 +5968,6 @@ transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109
 [node name="MainMenuControl" parent="MainMenu" index="0"]
 visible = false
 video_length = 67.5
-
-[node name="MarginContainer" parent="MainMenu/MainMenuControl" index="0"]
-visible = false
 
 [node name="VideoContainer" parent="MainMenu/VideoControl" index="0"]
 theme_override_constants/margin_right = 0

@@ -133,7 +133,6 @@ func start_wave() -> void :
 	
 	if current_wave == victory_wave + 1  :
 		player_win_arena()
-		print("Player win the arena mode")
 		return
 		
 		
@@ -180,7 +179,6 @@ func start_wave() -> void :
 		spawners[i].enemy_spawn_list = enemies_for_this_wave.duplicate()
 
 		spawners[i].start_spawning(to_spawn)  
-		print("Launch of the spawn")
 		spawners_that_finished_spawning = 0
 
 
@@ -195,10 +193,10 @@ func check_if_can_start_new_wave() -> void:
 
 	if spawners_that_finished_spawning == spawners.size() : 
 
-		print("Je devrais commencer a vérifier now")
+
 
 		if can_change_wave and enemies_killed_in_this_wave == number_of_spawned_enemy:
-			print("Normalement ca lance une new vague")
+
 			start_wave()
 
 #---
