@@ -11026,7 +11026,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 50
-text = "Last wave reached"
+text = "Waves completed"
 
 [node name="StatsNumberVBoxContainer2" type="VBoxContainer" parent="UI/VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer"]
 layout_mode = 2
@@ -11314,25 +11314,24 @@ theme_override_fonts/font = ExtResource("17_xk4dx")
 [node name="RemainingLifeCounterLabel" parent="UI/PlayerHUD/RemainingLifeContainer/MarginContainer/TextContainer" index="1"]
 theme_override_fonts/font = ExtResource("17_xk4dx")
 
-[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "victory_panel", "game_over_number_of_enemies_killed_label", "game_over_number_of_hits_landed_label", "game_over_number_of_hits_taken_label", "game_over_number_of_death_label", "game_over_number_of_waves_completed_label", "game_over_recap_total_score_label", "victory_number_of_enemies_killed_label", "victory_number_of_hits_landed_label", "victory_number_of_hits_taken_label", "victory_number_of_death_label", "gvictory_number_of_waves_completed_label", "victory_recap_total_score_label") instance=ExtResource("75_aha3o")]
+[node name="ScoringSystem" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "victory_panel", "game_over_number_of_enemies_killed_label", "game_over_number_of_hits_landed_label", "game_over_number_of_hits_taken_label", "game_over_number_of_death_label", "game_over_number_of_waves_completed_label", "game_over_recap_total_score_label", "victory_number_of_enemies_killed_label", "victory_number_of_hits_landed_label", "victory_number_of_hits_taken_label", "victory_number_of_death_label", "victory_number_of_waves_completed_label", "victory_recap_total_score_label") instance=ExtResource("75_aha3o")]
 layout_mode = 1
 player = NodePath("../../..")
 bonus_text_color = Color(0, 0.388235, 0.25098, 1)
 base_text_color = Color(1, 1, 1, 1)
 multiplicator_reset_delay = 10.0
-new_wave_bonus = 50000.0
 victory_panel = NodePath("../../VictoryPanel")
 game_over_number_of_enemies_killed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
 game_over_number_of_hits_landed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
 game_over_number_of_hits_taken_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
 game_over_number_of_death_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
-game_over_number_of_waves_completed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsTextVBoxContainer/WavesCompletedTextLabel")
+game_over_number_of_waves_completed_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
 game_over_recap_total_score_label = NodePath("../../death_pannel/GameOverGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
 victory_number_of_enemies_killed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/EnemiesKilledNumberLabel")
 victory_number_of_hits_landed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsLandedNumberLabel")
 victory_number_of_hits_taken_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/HitsTakenNumberLabel")
 victory_number_of_death_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/NumberDeathNumberLabel")
-gvictory_number_of_waves_completed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
+victory_number_of_waves_completed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
 victory_recap_total_score_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
 
 [node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI/PlayerHUD"]

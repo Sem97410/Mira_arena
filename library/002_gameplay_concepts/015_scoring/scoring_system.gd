@@ -8,6 +8,7 @@ extends Node
 @export var reset_multiplicator_counter_margin_container : MarginContainer
 @export var combo_multiplicator_value_label : Label
 @export var player : CharacterBody3D
+var wave_manager : WaveManager
 
 @export var score_log_text_label : Label
 @export var score_log_number_label : Label
@@ -75,7 +76,7 @@ var total_score_value : int
 @export var victory_number_of_hits_landed_label : Label
 @export var victory_number_of_hits_taken_label : Label
 @export var victory_number_of_death_label : Label
-@export var gvictory_number_of_waves_completed_label : Label
+@export var victory_number_of_waves_completed_label : Label
 @export var victory_recap_total_score_label : Label
 
 @onready var stats : Dictionary = {
@@ -119,19 +120,23 @@ func _ready() -> void:
 		"game_over_hits_received": game_over_number_of_hits_taken_label,
 		"game_over_deaths": game_over_number_of_death_label,
 		"game_over_waves_completeds": game_over_number_of_waves_completed_label,
+
 		"victory_enemies_killed": victory_number_of_enemies_killed_label,
 		"victory_hits_done": victory_number_of_hits_landed_label,
 		"victory_hits_received": victory_number_of_hits_taken_label,
 		"victory_deaths": victory_number_of_death_label,
-		"victory_waves_completeds": victory_recap_total_score_label,
+		"victory_waves_completeds": victory_number_of_waves_completed_label
 	}
 	
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
 	player_is_attacking.connect(player_hit_enemies)
 	player_kill_enemy.connect(set_up_group_score)
 	player_take_damage.connect(player_took_damages)
 	new_wave_is_launching.connect(new_wave_scoring_logic)
 	
 	player.player_is_defeated.connect(set_up_end_game_scoring)
+	
+	wave_manager.player_win.connect(set_up_end_game_scoring)
 	
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
@@ -277,15 +282,16 @@ func player_took_damages() -> void :
 
 func new_wave_scoring_logic()-> void : 
 
-	increment_stat("game_over_waves_completeds")
-	increment_stat("victory_waves_completeds")
 	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
 	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
 	
 	score_log_text_label.text = "Bonus end wave :"
 	score_log_number_label.text = " + " + " " + str(int(new_wave_bonus))
 	total_score_value += new_wave_bonus
-
+	increment_stat("game_over_waves_completeds")
+	increment_stat("victory_waves_completeds")
+	print("victory_waves_completeds : ",  stats["victory_waves_completeds"])
+	print("game_over_waves_completeds : ",  stats["game_over_waves_completeds"])
 	
 	await get_tree().create_timer(4.0).timeout
 	
@@ -359,7 +365,8 @@ func reset_all_stats():
 			stat_labels[key].text = "0"
 
 func set_up_end_game_scoring() -> void : 
-	
+	print("Set up end game scoring")
+	await get_tree().process_frame # laisse le bonus s'ajouter
 	flush_group_score()
 	game_over_recap_total_score_label.text = str(total_score_value)
 	victory_recap_total_score_label.text = str(total_score_value)
