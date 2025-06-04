@@ -13520,7 +13520,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_md38d")
 shape = SubResource("ConcavePolygonShape3D_ics6s")
 
 [node name="death_zone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ll27w")]
-transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, -34.907, -7, 30.407)
+transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, -8.61961, -4.41448, 7.50815)
 player = NodePath("../MiraV3")
 
 [node name="Spawner" parent="." instance=ExtResource("1_7l8ov")]

@@ -9,6 +9,7 @@
 [ext_resource type="Animation" uid="uid://btw5fvrw5ue10" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/Slime_idle.res" id="5_5j05c"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="5_ogir0"]
 [ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="6_g61g6"]
+[ext_resource type="Animation" uid="uid://bn2283obu6jg2" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/Slime_Walk.res" id="6_ogir0"]
 [ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="7_vmdph"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwphm"]
@@ -106,45 +107,6 @@ albedo_color = Color(0.8781, 0.325007, 0.31044, 1)
 emission_enabled = true
 emission = Color(0.822988, 0.258871, 0.388688, 1)
 emission_energy_multiplier = 9.87
-
-[sub_resource type="Animation" id="Animation_ay1ie"]
-resource_name = "walk"
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton/Root")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.5, 2.84217e-16, 0.0416667, 1, 0, 0.496091, 2.84217e-16, 0.0833333, 1, 0, 0.488552, 2.84217e-16, 0.1, 1, 0, 0.48469, 2.84217e-16, 0.125, 1, 0, 0.478141, 2.84217e-16, 0.166667, 1, 0, 0.465614, 2.84217e-16, 0.208333, 1, 0, 0.451727, 2.84217e-16, 0.266667, 1, 0, 0.431441, 2.84217e-16, 0.291667, 1, 0, 0.4229, 2.84217e-16, 0.333333, 1, 0, 0.409474, 2.84217e-16, 0.375, 1, 0, 0.397714, 2.84217e-16, 0.416667, 1, 0, 0.388377, 2.84217e-16, 0.433333, 1, 0, 0.385491, 2.84217e-16, 0.458333, 1, 0, 0.38222, 2.84217e-16, 0.5, 1, 0, 0.38, 2.84217e-16, 0.541667, 1, 0, 0.382036, 2.84217e-16, 0.583333, 1, 0, 0.387702, 2.84217e-16, 0.625, 1, 0, 0.396335, 2.84217e-16, 0.666667, 1, 0, 0.407273, 2.84217e-16, 0.708333, 1, 0, 0.419851, 2.84217e-16, 0.75, 1, 0, 0.433408, 2.84217e-16, 0.791667, 1, 0, 0.447279, 2.84217e-16, 0.833333, 1, 0, 0.460803, 2.84217e-16, 0.875, 1, 0, 0.473316, 2.84217e-16, 0.916667, 1, 0, 0.484155, 2.84217e-16, 0.933333, 1, 0, 0.487874, 2.84217e-16, 0.958333, 1, 0, 0.492658, 2.84217e-16, 1, 1, 0, 0.49816, 2.84217e-16)
-tracks/1/type = "scale_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton/Root")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
-tracks/2/type = "position_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Skeleton/Root/Skeleton3D:Middle")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.49, -2.98428e-15, -6.03961e-16, 0.0416667, 1, 0.486412, -2.98428e-15, -6.03961e-16, 0.0833333, 1, 0.482407, -2.98428e-15, -6.03961e-16, 0.1, 1, 0.480721, -2.98428e-15, -6.03961e-16, 0.125, 1, 0.478125, -2.98428e-15, -6.03961e-16, 0.208333, 1, 0.469282, -2.98428e-15, -6.03961e-16, 0.25, 1, 0.465, -2.98428e-15, -6.03961e-16, 0.266667, 1, 0.463358, -2.98428e-15, -6.03961e-16, 0.291667, 1, 0.460995, -2.98428e-15, -6.03961e-16, 0.333333, 1, 0.457407, -2.98428e-15, -6.03961e-16, 0.375, 1, 0.454375, -2.98428e-15, -6.03961e-16, 0.416667, 1, 0.452037, -2.98428e-15, -6.03961e-16, 0.458333, 1, 0.450532, -2.98428e-15, -6.03961e-16, 0.541667, 1, 0.450443, -2.98428e-15, -6.03961e-16, 0.583333, 1, 0.451702, -2.98428e-15, -6.03961e-16, 0.625, 1, 0.453674, -2.98428e-15, -6.03961e-16, 0.666667, 1, 0.456258, -2.98428e-15, -6.03961e-16, 0.708333, 1, 0.459348, -2.98428e-15, -6.03961e-16, 0.75, 1, 0.462844, -2.98428e-15, -6.03961e-16, 0.766667, 1, 0.464333, -2.98428e-15, -6.03961e-16, 0.791667, 1, 0.466642, -2.98428e-15, -6.03961e-16, 0.833333, 1, 0.470638, -2.98428e-15, -6.03961e-16, 0.916667, 1, 0.478816, -2.98428e-15, -6.03961e-16, 0.933333, 1, 0.480425, -2.98428e-15, -6.03961e-16, 0.958333, 1, 0.482791, -2.98428e-15, -6.03961e-16, 1, 1, 0.486553, -2.98428e-15, -6.03961e-16)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton/Root/Skeleton3D:Middle")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, -0.707107, 0.707107)
-tracks/4/type = "position_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton/Root/Skeleton3D:Top")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.565561, 0, -0.729168)
 
 [sub_resource type="Animation" id="Animation_4gvve"]
 resource_name = "death"
@@ -268,7 +230,7 @@ tracks/4/keys = PackedFloat32Array(-3.97364e-08, 1, 0.565561, 0, -0.729168, 0.05
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xpmgi"]
 _data = {
-&"Slime|Walk": SubResource("Animation_ay1ie"),
+&"Slime|Walk": ExtResource("6_ogir0"),
 &"Slime|death": SubResource("Animation_4gvve"),
 &"Slime|hit": SubResource("Animation_ntm2c"),
 &"Slime|idle": ExtResource("5_5j05c"),
@@ -338,7 +300,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="Skeleton" type="Node3D" parent="Mesh/Slime/Node3D/flamme_slime" index="0"]
 
 [node name="Root" type="Node3D" parent="Mesh/Slime/Node3D/flamme_slime/Skeleton" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461533, 2.84217e-16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.84217e-16)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Mesh/Slime/Node3D/flamme_slime/Skeleton/Root" index="0"]
 bones/0/name = "Root1"
@@ -352,7 +314,7 @@ bones/1/name = "Middle"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.478125, -2.98428e-15, -6.03961e-16)
 bones/1/enabled = true
-bones/1/position = Vector3(0.470877, -2.98428e-15, -6.03961e-16)
+bones/1/position = Vector3(0.49, -2.98428e-15, -6.03961e-16)
 bones/1/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Middle_2"
@@ -366,7 +328,7 @@ bones/3/name = "Top"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.565561, 0, -0.729169)
 bones/3/enabled = true
-bones/3/position = Vector3(0.565561, 0, -0.729168)
+bones/3/position = Vector3(0.60633, 0, -0.439039)
 bones/3/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Head"
