@@ -152,7 +152,6 @@ func _process(delta: float) -> void:
 	assign_gauge_value_to_label()
 	set_up_group_point_multiplicator_label()
 	assign_mutliplicator_values_to_label()
-	
 
 # --------------------------------------------------------------------------
 
@@ -374,6 +373,7 @@ func set_up_end_game_scoring() -> void :
 	game_over_recap_total_score_label.text = str(total_score_value)
 	victory_recap_total_score_label.text = str(total_score_value)
 	set_up_autoload()
+	GeneralScore.save()
 	
 
 	

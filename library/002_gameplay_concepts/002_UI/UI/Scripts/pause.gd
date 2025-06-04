@@ -11,6 +11,7 @@ extends Control
 @onready var not_ready_label : Label = $NotReadyLabel
 
 var player : CharacterBody3D
+@export var scoring_system : Control
 #@export var health_script : HealthSystem
 
 #------------------------------
@@ -112,6 +113,9 @@ func _on_main_menu_button_down() -> void:
 #Main menu confirmation pannel
 
 func _on_main_menu_yes_button_button_down() -> void:
+	scoring_system.set_up_end_game_scoring()
+	GeneralScore.save() #Save scores
+	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://library/002_gameplay_concepts/002_UI/title_screen/title_screen.tscn") # Replace with function body.
 
 func _on_main_menu_no_button_button_down() -> void:
@@ -143,6 +147,10 @@ func _on_quit_game_button_down() -> void:
 #------------------------------
 #Quit game confirmation pannel
 func _on_yes_button_button_down() -> void:
+	scoring_system.set_up_end_game_scoring()
+	GeneralScore.save() #Save scores
+	await get_tree().create_timer(0.2).timeout
+	
 	get_tree().quit()
 
 func _on_no_button_button_down() -> void:

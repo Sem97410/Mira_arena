@@ -10150,7 +10150,7 @@ charged_attack_damage = 100.0
 
 [node name="UI" type="Node" parent="."]
 
-[node name="Pause_pannel" type="Control" parent="UI"]
+[node name="Pause_pannel" type="Control" parent="UI" node_paths=PackedStringArray("scoring_system")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -10161,6 +10161,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("25_dfj4j")
+scoring_system = NodePath("../PlayerHUD/ScoringSystem")
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/Pause_pannel"]
 layout_mode = 1
