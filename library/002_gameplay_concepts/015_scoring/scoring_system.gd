@@ -9,6 +9,8 @@ extends Node
 @export var combo_multiplicator_value_label : Label
 @export var player : CharacterBody3D
 var wave_manager : WaveManager
+var arena_node : Node
+var arena_id : int
 
 @export var score_log_text_label : Label
 @export var score_log_number_label : Label
@@ -137,6 +139,9 @@ func _ready() -> void:
 	player.player_is_defeated.connect(set_up_end_game_scoring)
 	
 	wave_manager.player_win.connect(set_up_end_game_scoring)
+	
+	arena_node = get_tree().get_first_node_in_group("arena_id")
+	arena_id = arena_node.arena_id
 	
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
@@ -372,12 +377,16 @@ func set_up_end_game_scoring() -> void :
 	
 
 	
-func set_up_autoload() -> void : 
+func set_up_autoload() -> void:
 	print("Set up autoload")
-	GeneralScore.last_max_score = total_score_value
+	GeneralScore.last_scores[arena_id] = total_score_value
 	
-	if GeneralScore.max_score < total_score_value:
-		GeneralScore.max_score = total_score_value
+	var previous_max : int = GeneralScore.max_scores.get(arena_id, 0) #previous_max => give me that value in the dictionary and if it didn't exist give me 0
+	
+	if total_score_value > previous_max:
+		GeneralScore.max_scores[arena_id] = total_score_value
+
+
 	
 # --------------------------------------------------------------------------
 

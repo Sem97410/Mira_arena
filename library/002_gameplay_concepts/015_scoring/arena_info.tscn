@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc3grpdd38fp1"]
+
+[ext_resource type="Script" uid="uid://bgombgsrtbp8" path="res://library/002_gameplay_concepts/015_scoring/arena_id.gd" id="1_ddfsd"]
+
+[node name="ArenaInfo" type="Node" groups=["arena_id"]]
+script = ExtResource("1_ddfsd")

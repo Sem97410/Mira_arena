@@ -5964,10 +5964,7 @@ libraries = {
 transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109981, -0.572549, 0.0333695, -1.38603, 2.89504, 1.0544, 5.2783)
 
 [node name="MainMenu" parent="." instance=ExtResource("22_xo36d")]
-
-[node name="MainMenuControl" parent="MainMenu" index="0"]
 visible = false
-video_length = 67.5
 
 [node name="VideoContainer" parent="MainMenu/VideoControl" index="0"]
 theme_override_constants/margin_right = 0
@@ -7109,12 +7106,12 @@ transform = Transform3D(-0.00235607, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, -0.00
 [node name="SlimePresentation2" parent="." instance=ExtResource("31_qu1ls")]
 transform = Transform3D(-0.00674538, 0, -0.499955, 0, 0.5, 0, 0.499955, 0, -0.00674538, 2.92374, 1.98615, 5.55699)
 
-[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_pannel", "pre_menu_pannel", "first_main_button")]
+[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_panel", "pre_menu_panel", "first_main_button")]
 script = ExtResource("32_qu1ls")
 animation_player = NodePath("../CameraComponent/Camera3D/AnimationPlayer")
-main_menu_pannel = NodePath("../MainMenu/MainMenuControl")
-pre_menu_pannel = NodePath("../PremenuPannel/VBoxContainer")
-first_main_button = NodePath("../MainMenu/MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
+main_menu_panel = NodePath("../MainMenu/MainMenuGenralControl")
+pre_menu_panel = NodePath("../PremenuPannel/VBoxContainer")
+first_main_button = NodePath("../MainMenu/MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
 
 [node name="PremenuPannel" type="Node3D" parent="."]
 

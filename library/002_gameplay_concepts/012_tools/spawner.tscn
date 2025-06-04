@@ -13,8 +13,8 @@ transparency = 1
 albedo_color = Color(0.133, 0.313, 0.36, 0.663)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jhric"]
-top_radius = 8.465
-bottom_radius = 8.465
+top_radius = 3.89
+bottom_radius = 3.89
 height = 0.1
 cap_bottom = false
 

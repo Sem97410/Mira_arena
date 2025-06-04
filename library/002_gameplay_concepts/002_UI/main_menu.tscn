@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=22 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://btwe8uepc4sob" path="res://library/002_gameplay_concepts/IllustrationLevel1.png" id="7_ruk6f"]
 [ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="9_bafky"]
+[ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="9_lic3j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -29,9 +30,40 @@ expand_margin_right = 300.0
 expand_margin_bottom = 200.0
 modulate_color = Color(1, 1, 1, 0.733333)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2n41"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.823529, 0.607843, 0.380392, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2ydh"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erqrd"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lic3j"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.823529, 0.607843, 0.380392, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xsniu"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdeyw"]
+shader = ExtResource("9_lic3j")
+shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
+shader_parameter/FloatParameter = 1.0
+
 [node name="MainMenu" type="Node3D"]
 
-[node name="MainMenuControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "max_score_value_label", "last_game_score_value_label", "main_menu_music")]
+[node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,25 +82,27 @@ video_player_container = NodePath("../VideoControl")
 skip_video_button = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton")
 video_length = 125.0
 map_selection_container = NodePath("LevelSelectionMargin")
-map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton")
+map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonButton")
 map_1_information = NodePath("Map1Information")
 map_2_information = NodePath("Map2Information")
-max_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel/SlimageddonMaxScoreScore")
-last_game_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel/SlimageddonMaxScoreScore")
+slimaggedon_max_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel/MarginContainer2/SlimageddonMaxScoreValue")
+slimaggedon_last_game_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel/MarginContainer2/SlimageddonLastScoreScore")
+flugdrasil_max_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MaxScoreLabelHBox/FlugdrasilMaxScoreValue")
+flugdrasil_last_game_score_value_label = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/LastMaxScoreLabelHbox/SlimageddonLastScoreValue")
 main_menu_music = NodePath("TitleScreenSoundPlaceHolder")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1075.0
 
-[node name="BackGroundImage" type="TextureRect" parent="MainMenuControl/MarginContainer"]
+[node name="BackGroundImage" type="TextureRect" parent="MainMenuGenralControl/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("5_6yoec")
 expand_mode = 1
 
-[node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuControl"]
+[node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 2
@@ -83,18 +117,18 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuControl/Main_buttons_margin_container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Main_buttons_V_container" type="VBoxContainer" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer"]
+[node name="Main_buttons_V_container" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 35
 alignment = 1
 
-[node name="Story_mode" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Story_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit_game")
 focus_neighbor_bottom = NodePath("../Arena_mode")
@@ -103,7 +137,7 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
 text = "Story mode"
 
-[node name="Arena_mode" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Arena_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Story_mode")
 focus_neighbor_bottom = NodePath("../Settings")
@@ -114,7 +148,7 @@ text = "Arena mode"
 icon_alignment = 1
 expand_icon = true
 
-[node name="Practice_mode" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Practice_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 visible = false
 layout_mode = 2
 focus_neighbor_top = NodePath("../Arena_mode")
@@ -126,7 +160,7 @@ text = "Training area"
 icon_alignment = 1
 expand_icon = true
 
-[node name="Settings" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Settings" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 modulate = Color(0.415686, 0.415686, 0.415686, 1)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Arena_mode")
@@ -136,7 +170,7 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
-[node name="Quit_game" type="Button" parent="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Quit_game" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_bottom = NodePath("../Story_mode")
@@ -145,18 +179,18 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
 text = "Quit game"
 
-[node name="Logo_container" type="MarginContainer" parent="MainMenuControl"]
+[node name="Logo_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 1
 offset_right = 2819.3
 offset_bottom = 2252.8
 scale = Vector2(0.2, 0.2)
 theme_override_constants/margin_left = 515
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuControl/Logo_container"]
+[node name="TextureRect" type="TextureRect" parent="MainMenuGenralControl/Logo_container"]
 layout_mode = 2
 texture = ExtResource("5_vg8no")
 
-[node name="Not_ready_pannel" type="PanelContainer" parent="MainMenuControl"]
+[node name="Not_ready_pannel" type="PanelContainer" parent="MainMenuGenralControl"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -172,7 +206,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_03kb5")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl/Not_ready_pannel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Not_ready_pannel"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/margin_left = 25
@@ -180,14 +214,14 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Label" type="Label" parent="MainMenuControl/Not_ready_pannel/MarginContainer"]
+[node name="Label" type="Label" parent="MainMenuGenralControl/Not_ready_pannel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 50
 text = "This feature is not available yet"
 
-[node name="Quit_game_confirmation_pannel" type="PanelContainer" parent="MainMenuControl"]
+[node name="Quit_game_confirmation_pannel" type="PanelContainer" parent="MainMenuGenralControl"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -203,23 +237,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_hv76e")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuControl/Quit_game_confirmation_pannel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Label" type="Label" parent="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer"]
+[node name="Label" type="Label" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 60
 text = "Are you sure that you want to close the game?"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 195
 alignment = 1
 
-[node name="Quit_game_confirmation_button" type="Button" parent="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
+[node name="Quit_game_confirmation_button" type="Button" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Stay_in_game_confirmation_button")
 focus_neighbor_right = NodePath("../Stay_in_game_confirmation_button")
@@ -227,7 +261,7 @@ theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 40
 text = "Quit the game"
 
-[node name="Stay_in_game_confirmation_button" type="Button" parent="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
+[node name="Stay_in_game_confirmation_button" type="Button" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Quit_game_confirmation_button")
 focus_neighbor_right = NodePath("../Quit_game_confirmation_button")
@@ -235,7 +269,7 @@ theme = ExtResource("2_i0oc2")
 theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
 
-[node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuControl"]
+[node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuGenralControl"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -245,76 +279,136 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_i0oc2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin"]
 layout_mode = 2
 
-[node name="Panel" type="PanelContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("6_e4my3")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 100
 
-[node name="Label" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/Panel/MarginContainer"]
+[node name="Label" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 50
 text = "Map Selection"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer"]
+[node name="GeneralMapMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = -55
 theme_override_constants/margin_bottom = 205
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer"]
+[node name="GeneralMapHBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 285
 alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="SlimageddonVBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer"]
 layout_mode = 2
 
-[node name="SlimageddonButton" type="Button" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="SlimageddonButton" type="Button" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../../VBoxContainer3/FlugdrasilButton")
-focus_neighbor_right = NodePath("../../VBoxContainer3/FlugdrasilButton")
+focus_neighbor_left = NodePath("../../FlugdrasilGeneralVBox/FlugdrasilButton")
+focus_neighbor_right = NodePath("../../FlugdrasilGeneralVBox/FlugdrasilButton")
 focus_neighbor_bottom = NodePath("../../../../../GoToMainMenuContainer/GoToMainMenuButton")
 text = "Slimageddon"
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="SlimageddonMapImage" type="TextureRect" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("7_vg8no")
 expand_mode = 3
 
-[node name="MaxScoreLabel" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="SlimageddonScoreGeneralMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer"]
 layout_mode = 2
 
-[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel"]
+[node name="SlimageddonScoreGeneralPanel" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer"]
+material = SubResource("ShaderMaterial_j2n41")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlimageddonVboxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SlimageddonMaxScoreMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer"]
+material = SubResource("ShaderMaterial_e2ydh")
+layout_mode = 2
+
+[node name="MaxScoreLabel" type="HBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
 text = "Max score : "
 
-[node name="SlimageddonMaxScoreScore" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/MaxScoreLabel"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlimageddonMaxScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
 text = "1000000"
 
-[node name="LastMaxScoreLabel" type="HBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="SlimageddonLastScoreMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer"]
+material = SubResource("ShaderMaterial_erqrd")
 layout_mode = 2
 
-[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel"]
+[node name="LastMaxScoreLabel" type="HBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlimageddonLastScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
@@ -322,7 +416,14 @@ text = "Last score : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SlimageddonMaxScoreScore" type="Label" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/LastMaxScoreLabel"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlimageddonLastScoreScore" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
@@ -330,23 +431,110 @@ text = "1000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="FlugdrasilGeneralVBox" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer"]
 layout_mode = 2
 
-[node name="FlugdrasilButton" type="Button" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="FlugdrasilButton" type="Button" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../../VBoxContainer2/SlimageddonButton")
-focus_neighbor_right = NodePath("../../VBoxContainer2/SlimageddonButton")
+focus_neighbor_left = NodePath("../../SlimageddonVBoxContainer/SlimageddonButton")
+focus_neighbor_right = NodePath("../../SlimageddonVBoxContainer/SlimageddonButton")
 focus_neighbor_bottom = NodePath("../../../../../GoToMainMenuContainer/GoToMainMenuButton")
 text = "Flugdrasil"
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="FlugdrasilMapImage" type="TextureRect" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("7_ruk6f")
 expand_mode = 3
 
-[node name="GoToMainMenuContainer" type="MarginContainer" parent="MainMenuControl/LevelSelectionMargin"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer"]
+material = SubResource("ShaderMaterial_lic3j")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_xsniu")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MaxScoreLabelHBox" type="HBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FlugdrasilMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MaxScoreLabelHBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 40
+text = "Max score : "
+
+[node name="FlugdrasilMaxScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MaxScoreLabelHBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 30
+text = "1000000"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+material = SubResource("ShaderMaterial_fdeyw")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LastMaxScoreLabelHbox" type="HBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/LastMaxScoreLabelHbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 40
+text = "Last score : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimageddonLastScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/LastMaxScoreLabelHbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
+theme_override_font_sizes/font_size = 30
+text = "1000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoToMainMenuContainer" type="MarginContainer" parent="MainMenuGenralControl/LevelSelectionMargin"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -355,12 +543,12 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
 
-[node name="GoToMainMenuButton" type="Button" parent="MainMenuControl/LevelSelectionMargin/GoToMainMenuContainer"]
+[node name="GoToMainMenuButton" type="Button" parent="MainMenuGenralControl/LevelSelectionMargin/GoToMainMenuContainer"]
 layout_mode = 2
 theme = ExtResource("2_i0oc2")
 text = "Back to main menu"
 
-[node name="Map1Information" type="MarginContainer" parent="MainMenuControl"]
+[node name="Map1Information" type="MarginContainer" parent="MainMenuGenralControl"]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -375,10 +563,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 30
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenuControl/Map1Information"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuGenralControl/Map1Information"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuControl/Map1Information/PanelContainer"]
+[node name="Label" type="Label" parent="MainMenuGenralControl/Map1Information/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Small but fierce! Survive an endless wave of underestimated creatures in a tight arena. Hold your ground against their relentless fury!"
@@ -386,7 +574,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Map2Information" type="MarginContainer" parent="MainMenuControl"]
+[node name="Map2Information" type="MarginContainer" parent="MainMenuGenralControl"]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -401,10 +589,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 30
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenuControl/Map2Information"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuGenralControl/Map2Information"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuControl/Map2Information/PanelContainer"]
+[node name="Label" type="Label" parent="MainMenuGenralControl/Map2Information/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Relentless waves of monsters hunt you through a floating maze. Run, fight… but whatever you do, don’t fall!"
@@ -412,7 +600,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="TitleScreenSoundPlaceHolder" type="AudioStreamPlayer" parent="MainMenuControl"]
+[node name="TitleScreenSoundPlaceHolder" type="AudioStreamPlayer" parent="MainMenuGenralControl"]
 stream = ExtResource("7_3rw7x")
 volume_db = -20.0
 
@@ -462,18 +650,18 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 20
 text = "Pass the video"
 
-[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuControl" method="_on_story_mode_button_down"]
-[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuControl" method="_on_arena_mode_button_down"]
-[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Practice_mode" to="MainMenuControl" method="_on_practice_mode_button_down"]
-[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Settings" to="MainMenuControl" method="_on_settings_button_down"]
-[connection signal="button_down" from="MainMenuControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Quit_game" to="MainMenuControl" method="_on_quit_game_button_down"]
-[connection signal="button_down" from="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="MainMenuControl" method="_on_quit_game_confirmation_button_button_down"]
-[connection signal="button_down" from="MainMenuControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button" to="MainMenuControl" method="_on_stay_in_game_confirmation_button_button_down"]
-[connection signal="focus_entered" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton" to="MainMenuControl" method="_on_slimageddon_button_focus_entered"]
-[connection signal="focus_exited" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton" to="MainMenuControl" method="_on_slimageddon_button_focus_exited"]
-[connection signal="pressed" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SlimageddonButton" to="MainMenuControl" method="_on_slimageddon_button_pressed"]
-[connection signal="focus_entered" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3/FlugdrasilButton" to="MainMenuControl" method="_on_flugdrasil_button_focus_entered"]
-[connection signal="focus_exited" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3/FlugdrasilButton" to="MainMenuControl" method="_on_flugdrasil_button_focus_exited"]
-[connection signal="pressed" from="MainMenuControl/LevelSelectionMargin/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3/FlugdrasilButton" to="MainMenuControl" method="_on_flugdrasil_button_pressed"]
-[connection signal="pressed" from="MainMenuControl/LevelSelectionMargin/GoToMainMenuContainer/GoToMainMenuButton" to="MainMenuControl" method="_on_go_to_main_menu_button_pressed"]
-[connection signal="button_down" from="VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton" to="MainMenuControl" method="_on_skip_video_button_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuGenralControl" method="_on_story_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Practice_mode" to="MainMenuGenralControl" method="_on_practice_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Settings" to="MainMenuGenralControl" method="_on_settings_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_button_down"]
+[connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_entered"]
+[connection signal="focus_exited" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_exited"]
+[connection signal="pressed" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_pressed"]
+[connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/FlugdrasilButton" to="MainMenuGenralControl" method="_on_flugdrasil_button_focus_entered"]
+[connection signal="focus_exited" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/FlugdrasilButton" to="MainMenuGenralControl" method="_on_flugdrasil_button_focus_exited"]
+[connection signal="pressed" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/FlugdrasilButton" to="MainMenuGenralControl" method="_on_flugdrasil_button_pressed"]
+[connection signal="pressed" from="MainMenuGenralControl/LevelSelectionMargin/GoToMainMenuContainer/GoToMainMenuButton" to="MainMenuGenralControl" method="_on_go_to_main_menu_button_pressed"]
+[connection signal="button_down" from="VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton" to="MainMenuGenralControl" method="_on_skip_video_button_button_down"]

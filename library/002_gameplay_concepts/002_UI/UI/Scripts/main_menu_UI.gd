@@ -29,8 +29,11 @@ extends Control
 @export var map_selection_main_button : Button
 @export var map_1_information : MarginContainer
 @export var map_2_information : MarginContainer 
-@export var max_score_value_label : Label
-@export var last_game_score_value_label : Label
+
+@export var slimaggedon_max_score_value_label : Label
+@export var slimaggedon_last_game_score_value_label : Label
+@export var flugdrasil_max_score_value_label : Label
+@export var flugdrasil_last_game_score_value_label : Label
 
 #-----------------
 #MUSICS
@@ -44,9 +47,9 @@ func _ready() -> void:
 	get_tree().paused = false
 	Engine.time_scale = 1
 	main_menu_music.play()
-	
-	max_score_value_label.text = str(GeneralScore.max_score)
-	last_game_score_value_label.text = str(GeneralScore.last_max_score)
+	print("I'm in main menu")
+	set_up_arena_scores()
+
 	
 	
 
@@ -149,3 +152,10 @@ func _on_go_to_main_menu_button_pressed() -> void:
 	logo_container.visible = true
 	main_button_general_container.visible = true
 	first_main_button.grab_focus()
+	
+
+func set_up_arena_scores() -> void : 
+	slimaggedon_max_score_value_label.text = str(GeneralScore.max_scores[0])
+	slimaggedon_last_game_score_value_label.text = str(GeneralScore.last_scores[0])
+	flugdrasil_max_score_value_label.text = str(GeneralScore.max_scores[1])
+	flugdrasil_last_game_score_value_label.text = str(GeneralScore.last_scores[1])

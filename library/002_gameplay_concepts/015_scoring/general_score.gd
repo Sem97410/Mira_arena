@@ -1,7 +1,9 @@
 extends Node
+var number_of_maps : int = 2
+var last_scores : Dictionary = {}
+var max_scores : Dictionary = {}
 
-var slimaggedon_max_score : int
-var flugdrasil_max_score : int
-
-var max_score : int 
-var last_max_score : int
+func _ready() -> void:
+	for i in range(number_of_maps):  # 2 arènes par exemple
+		max_scores[i] = 0
+		last_scores[i] = 0
