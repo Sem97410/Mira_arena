@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://byqay2jci65ar"]
+[gd_scene load_steps=24 format=4 uid="uid://byqay2jci65ar"]
 
 [ext_resource type="Material" uid="uid://bcxsmiyioua8g" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_body.tres" id="1_kqswd"]
 [ext_resource type="Material" uid="uid://jvj6lda1sps1" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/material/mat_fire_slime_externe.tres" id="2_wx4nw"]
 [ext_resource type="Shader" uid="uid://60ds25cxrkq3" path="res://library/002_gameplay_concepts/003_enemy/v_03/ennemy_fire.tres" id="3_0a8fy"]
 [ext_resource type="Animation" uid="uid://btw5fvrw5ue10" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/Slime_idle.res" id="3_wx4nw"]
+[ext_resource type="Animation" uid="uid://bn2283obu6jg2" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/Slime_Walk.res" id="4_0a8fy"]
 [ext_resource type="Texture2D" uid="uid://mu5o0gi1hje4" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Voronoi01.png" id="4_v523v"]
 [ext_resource type="Texture2D" uid="uid://cb3y3qnoy4fhw" path="res://library/002_gameplay_concepts/003_enemy/v_03/fire_slime/fire_texture/Flame02.png" id="5_sunns"]
 
@@ -263,6 +264,7 @@ tracks/4/keys = PackedFloat32Array(0, 1, 0.565561, 0, -0.729168)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jmpu4"]
 _data = {
+&"Slime_Walk": ExtResource("4_0a8fy"),
 &"Slime_idle": ExtResource("3_wx4nw"),
 &"death": SubResource("Animation_iwdb6"),
 &"hit": SubResource("Animation_lpjjg"),
@@ -321,7 +323,7 @@ bones/1/name = "Middle"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.478125, -2.98428e-15, -6.03961e-16)
 bones/1/enabled = true
-bones/1/position = Vector3(0.45, -2.98428e-15, -6.03961e-16)
+bones/1/position = Vector3(0.49, -2.98428e-15, -6.03961e-16)
 bones/1/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Middle_2"
@@ -335,7 +337,7 @@ bones/3/name = "Top"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.565561, 0, -0.729169)
 bones/3/enabled = true
-bones/3/position = Vector3(0.599498, 0, 0)
+bones/3/position = Vector3(0.60633, 0, -0.439039)
 bones/3/rotation = Quaternion(0, 0, -0.707107, 0.707107)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Head"
