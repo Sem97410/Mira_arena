@@ -46,7 +46,7 @@ shadow_mesh = SubResource("ArrayMesh_kyhmp")
 [node name="Rock_SD3" type="Node3D"]
 
 [node name="big_rock_03" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.96046e-06, 100, -8.94069e-06, 0, 5.96046e-06, 100, 100, -8.94069e-06, 0, -3.69785, 0, -17.5866)
+transform = Transform3D(5.96046e-06, 100, -8.94069e-06, 0, 5.96046e-06, 100, 100, -8.94069e-06, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_k6ohs")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_u5t1b")
