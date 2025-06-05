@@ -354,6 +354,9 @@ spawn_range = 8.63
 [node name="HealthItem" parent="." instance=ExtResource("5_76nq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0.7, 5)
 
+[node name="HealthItem2" parent="." instance=ExtResource("5_76nq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5501, 0.7, 5)
+
 [node name="ArenaInfo" parent="." instance=ExtResource("6_76nq8")]
 
 [editable path="MiraV3"]
