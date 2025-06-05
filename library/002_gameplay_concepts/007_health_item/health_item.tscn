@@ -422,7 +422,7 @@ transform = Transform3D(-0.777962, 0.314155, -0.544132, -0.314156, 0.555509, 0.7
 shape = SubResource("SphereShape3D_x06wg")
 
 [node name="Fiole_soin" type="Node3D" parent="."]
-transform = Transform3D(0.791584, -8.04663e-08, -0.428246, -0.282025, 0.677277, -0.521304, 0.322268, 0.592702, 0.59569, 0, 0, 0)
+transform = Transform3D(0.791584, 1.87755e-07, -0.428246, -0.282025, 0.677277, -0.521304, 0.322268, 0.592703, 0.59569, 0, 0, 0)
 
 [node name="Fiole" type="Node3D" parent="Fiole_soin"]
 
