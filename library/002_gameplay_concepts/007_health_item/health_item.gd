@@ -1,38 +1,62 @@
 extends Node3D
 
-
-
+@export var indication_label : Label3D
 @export var health_point : float = 15.0
-# Called when the node enters the scene tree for the first time.
-#@export var blinking_duration : float = 3.0
-#@onready var blinking_interval : float = 1
-#@export var health_item_mesh : Node3D 
-#
-#func _ready() -> void:
-	#make_item_blink()
-func _process(_delta: float) -> void:
-	if self.global_position.y <= 7.0 :
-		#print("Trop bas donc sup")
-		self.queue_free()
+@export var health_potion_mesh: Node3D
+var player : CharacterBody3D
+var wave_manager : WaveManager
+@onready var potion_was_used : bool = false 
+@onready var player_is_in_health_zone : bool = false
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
+	wave_manager = get_tree().get_first_node_in_group("wave_manager")
+
+func _process(delta: float) -> void:
+	if indication_label.visible and Input.is_action_just_pressed("light_attack"):
+		activate_health_potion()
+
+	change_label_text()
+	handle_label_visibility()
+	
+	print("Player hp :", player.player_current_hp)
+
+		
+
+
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	#print("Area entered")
-	#print("Le nom de l'area est : ", area.name)
 	if area.is_in_group("player"):
+		player_is_in_health_zone = true
 		
-		var health_node = area.get_parent().find_child("HealthComponent", true, false)
-		#print("Player max hp is : ",health_node.player_current_hp)
-		if health_node.player_current_hp < health_node.player_max_hp :
-			health_node.player_current_hp += health_point
-			
-			if health_node.player_current_hp >= health_node.player_max_hp:
-				health_node.player_current_hp = health_node.player_max_hp
-				
-			health_node.health_bar.health = health_node.player_current_hp
+		
+	
 
-			queue_free()
-			
-#func make_item_blink() -> void : 
-	#for i in range(blinking_duration):
-		#health_item_mesh.visible = not health_item_mesh.visible
-		#await get_tree().create_timer(blinking_interval).timeout
+
+func _on_area_3d_area_exited(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		player_is_in_health_zone = false
+
+	
+	
+
+
+func handle_label_visibility() -> void : 
+	if player_is_in_health_zone == true: 
+		indication_label.visible = true
+	else : 
+		indication_label.visible = false
+
+func activate_health_potion() -> void : 
+	print("Health +10")
+	indication_label.text = " +10 HP"
+	health_potion_mesh.visible = false
+	player.player_current_hp += health_point
+	player.health_bar.init_health(health_point)
+	
+	await get_tree().create_timer(2.0).timeout
+	potion_was_used = true
+
+func change_label_text()  -> void : 
+	if potion_was_used == true : 
+		indication_label.text =  "Available in "+ str(6 - wave_manager.current_wave) + " waves"

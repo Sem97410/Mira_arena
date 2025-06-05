@@ -49,6 +49,8 @@ signal player_is_defeated
 @export_subgroup("General states")
 @onready var is_game_won : bool = false
 
+
+
 #---
 
 @export_subgroup("Camera")
@@ -315,7 +317,6 @@ func trigger_shake() -> void:
 
 func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
-	
 	charge_attack_movement_mode()
 
 	set_up_remaining_life_label()
@@ -659,9 +660,10 @@ func is_in_the_air_state() -> void :
 #launch light attack state
 func activate_light_attack_state() -> void :
 
-	if Input.is_action_just_pressed("light_attack") and is_on_floor() and can_transition :
+	if Input.is_action_just_pressed("light_attack") and is_on_floor() and can_transition  :
 		send_event_state_chart("IsLightAttacking")
 		launch_light_attack()
+
 		is_in_post_attack_phase = false
 		combo_window_is_active = false
 		light_attack_input_was_pressed = false
@@ -1117,6 +1119,8 @@ func launch_light_attack() -> void:
 	var target_state = "Combo" + str(animation_combo_index) + "BlendTree"
 	base_state_machine.stop()
 	await get_tree().process_frame
+
+		
 	base_state_machine.travel(target_state)
 	
 	if animation_combo_index == 1 :
