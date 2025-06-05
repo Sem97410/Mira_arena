@@ -11,9 +11,10 @@ var wave_manager : WaveManager
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	wave_manager = get_tree().get_first_node_in_group("wave_manager")
+	wave_manager.reset_wave_cycle.connect(reset_health_item)
 
 func _process(delta: float) -> void:
-	if indication_label.visible and Input.is_action_just_pressed("light_attack"):
+	if indication_label.visible and Input.is_action_just_pressed("light_attack") and not potion_was_used:
 		activate_health_potion()
 
 	change_label_text()
@@ -49,14 +50,24 @@ func handle_label_visibility() -> void :
 
 func activate_health_potion() -> void : 
 	print("Health +10")
+	if player.player_current_hp == player.player_max_hp : 
+		print("Can't use potion now")
+		return
 	indication_label.text = " +10 HP"
 	health_potion_mesh.visible = false
 	player.player_current_hp += health_point
 	player.health_bar.init_health(health_point)
+	potion_was_used = true
 	
 	await get_tree().create_timer(2.0).timeout
-	potion_was_used = true
+	indication_label.text =  "Available in "+ str(6 - wave_manager.current_wave) + " waves"
+
+func reset_health_item() -> void : 
+	potion_was_used = false
+	health_potion_mesh.visible = true
+	indication_label.text = "Press [X] to use potion"
 
 func change_label_text()  -> void : 
 	if potion_was_used == true : 
+		await get_tree().create_timer(2.0).timeout
 		indication_label.text =  "Available in "+ str(6 - wave_manager.current_wave) + " waves"

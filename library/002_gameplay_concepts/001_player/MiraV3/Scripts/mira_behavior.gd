@@ -318,7 +318,7 @@ func trigger_shake() -> void:
 func _process(delta: float) -> void:
 	var current_state = base_state_machine.get_current_node()
 	charge_attack_movement_mode()
-
+	clamp_player_max_health()
 	set_up_remaining_life_label()
 		
 	if shake_strength > 0:
@@ -705,7 +705,9 @@ func take_damage(damage: float) -> void:
 	if is_alive:
 		launch_hit_logic()
 
-
+func clamp_player_max_health() -> void : 
+	if player_current_hp > player_max_hp : 
+		player_current_hp = player_max_hp
 
 #---
 

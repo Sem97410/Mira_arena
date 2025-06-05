@@ -337,11 +337,10 @@ parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("10_k41v4")]
 spawners = [NodePath("../Spawner"), NodePath("../Spawner2")]
-initial_number_of_enemies = 5
 max_enemies_in_the_scene = 100
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
-victory_wave = 2
+victory_wave = 10
 pause_after_wave_duration = 2.0
 
 [node name="Spawner" parent="." instance=ExtResource("5_c30ce")]

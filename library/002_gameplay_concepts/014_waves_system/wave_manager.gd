@@ -74,6 +74,7 @@ var growth_factor : float = 1.0
 @export_group("Signal")
 
 signal player_win
+signal reset_wave_cycle
 
 # --------------------------------------------------------------------------
 ## DEBUGS
@@ -246,6 +247,7 @@ func calculate_growth_factor() -> void :
 func reset_enemy_count_for_cycle() -> void :
 	max_enemies_in_this_wave = initial_number_of_enemies 
 	cycle_wave_index = 0
+	reset_wave_cycle.emit() 
 
 #---
 
