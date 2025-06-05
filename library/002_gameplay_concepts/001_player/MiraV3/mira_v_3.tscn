@@ -24,13 +24,13 @@
 [ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="14_viusc"]
 [ext_resource type="Material" uid="uid://da8k8ytwnvd23" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache.tres" id="15_6jfd8"]
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="16_71p4a"]
-[ext_resource type="PackedScene" uid="uid://c68r4on6xv3km" path="res://library/002_gameplay_concepts/001_player/player_aura.tscn" id="17_uvhkw"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="17_xk4dx"]
 [ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="18_bupnr"]
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="19_v240w"]
+[ext_resource type="PackedScene" uid="uid://d28v4tmjb7c51" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.tscn" id="20_8k2uq"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="20_a8wav"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="21_0mfp3"]
-[ext_resource type="PackedScene" uid="uid://b0qnfixy3aaum" path="res://library/002_gameplay_concepts/001_player/Meshes/charged_attack_lock.tscn" id="22_7fune"]
+[ext_resource type="Texture2D" uid="uid://btrhqrbiuf8hk" path="res://library/002_gameplay_concepts/016_minimaps/player_indicator.png" id="21_tsm77"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://mig0o6j6cs6i" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/animation_logic_v2.tres" id="23_oc1db"]
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
@@ -10082,7 +10082,7 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bksx"]
 
-[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "player_mesh", "health_area", "deah_timer", "scoring_system", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "victory_panel", "victory_panel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charge_attack_lock_mesh", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
+[node name="MiraV3" type="CharacterBody3D" node_paths=PackedStringArray("player", "player_mesh", "health_area", "deah_timer", "scoring_system", "animation_tree", "animation_player", "state_chart", "camera", "camera_behavior_script", "camera_position", "player_hud", "health_bar", "death_pannel", "death_pannel_first_button", "victory_panel", "victory_panel_first_button", "remaining_life_container", "remaining_life_title_text", "remaining_life_counter", "you_are_dead_panel", "you_have_x_lives_remaining_container", "you_have_x_lives_remaining_label", "action_line_sprites", "light_attack_area", "long_range_collision_shape", "short_range_collision_shape", "light_attack_vfx_storage", "base_combo_position", "combo_3_animation_player", "combo_3_vfx", "attack_1_sound", "attack_2_sound", "attack_3_sound", "charged_attack_area", "charged_attack_impact_vfx_storage", "charged_attack_impact_vfx_spawn_position", "charged_attack_indicator", "charged_attack_hit_vfx", "slashes_group", "charged_attack_indicator_animation_player", "charged_attack_hit_circle_animation_player", "charged_attack_hit_slash_animation_player", "charged_attack_charge_sound", "charged_attack_swing_sound", "movement_vfx_storage", "mira_step") groups=["player"]]
 collision_layer = 3
 script = ExtResource("32_1yggv")
 Summary = "IMPORTANT :The elements in 'Required References' must be assigned. The others allow you to tweak values that adjust Mira's behavior."
@@ -10125,7 +10125,6 @@ combo_3_vfx = NodePath("Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/
 attack_1_sound = NodePath("SFX/LightAttack1")
 attack_2_sound = NodePath("SFX/LightAttack2")
 attack_3_sound = NodePath("SFX/LightAttack3V2")
-charge_attack_lock_mesh = NodePath("Meshes/Lock")
 charged_attack_area = NodePath("Meshes/ChargedAttackSystemArea3D")
 charged_attack_impact_vfx = ExtResource("42_5lhpq")
 charged_attack_impact_vfx_storage = NodePath("VFX/ChargeAttackImpactPosition")
@@ -11365,6 +11364,9 @@ theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 70
 text = "You have X lives remaining"
 
+[node name="MiniMap" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("20_8k2uq")]
+player = NodePath("../..")
+
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
 [node name="Group" type="Node3D" parent="Meshes"]
@@ -12025,6 +12027,7 @@ bones/92/rotation = Quaternion(0, 0, 0, 1)
 bones/92/scale = Vector3(1, 1, 1)
 
 [node name="Hat" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_5lhpq")
 skin = SubResource("Skin_uw203")
 surface_material_override/0 = ExtResource("1_wj3we")
@@ -12034,56 +12037,67 @@ surface_material_override/3 = ExtResource("4_gcd3x")
 surface_material_override/4 = ExtResource("5_32fnu")
 
 [node name="Hair1" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_h1fgh")
 skin = SubResource("Skin_3s860")
 surface_material_override/0 = ExtResource("6_ga88h")
 
 [node name="Body" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_hxp0k")
 skin = SubResource("Skin_8bksx")
 surface_material_override/0 = ExtResource("7_1xevk")
 surface_material_override/3 = ExtResource("8_u6c34")
 
 [node name="Jupe" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_qq7u7")
 skin = SubResource("Skin_7kj1n")
 surface_material_override/0 = ExtResource("9_dfj4j")
 
 [node name="Chaussures" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_irfkd")
 skin = SubResource("Skin_wypnt")
 surface_material_override/0 = ExtResource("10_dv1vs")
 surface_material_override/1 = ExtResource("11_1yggv")
 
 [node name="Belt" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_6gqq8")
 skin = SubResource("Skin_a84nm")
 surface_material_override/0 = ExtResource("12_rwcnu")
 
 [node name="Fiole_1" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_74klt")
 skin = SubResource("Skin_dqrel")
 
 [node name="Ring_4" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_ka47b")
 skin = SubResource("Skin_dqrel")
 
 [node name="Fiole_2" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_rs7t3")
 skin = SubResource("Skin_dqrel")
 
 [node name="Sourcils" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_iwvjk")
 skin = SubResource("Skin_84msl")
 surface_material_override/0 = ExtResource("13_5lelo")
 
 [node name="Attache" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_vmey8")
 skin = SubResource("Skin_r28i4")
 surface_material_override/0 = ExtResource("14_viusc")
 surface_material_override/1 = ExtResource("15_6jfd8")
 
 [node name="Haut" type="MeshInstance3D" parent="Meshes/Group/DeformationSystem/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_ifrub")
 skin = SubResource("Skin_24vaq")
 surface_material_override/0 = ExtResource("16_71p4a")
@@ -12099,8 +12113,6 @@ bone_idx = 18
 
 [node name="Mira_geo" type="Node3D" parent="Meshes/Group/Geometry/geo"]
 visible = false
-
-[node name="Aura" parent="Meshes/Group" instance=ExtResource("17_uvhkw")]
 
 [node name="Rig_Vorace_DONTTOUCH" type="Node3D" parent="Meshes"]
 
@@ -12142,6 +12154,7 @@ bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/4/scale = Vector3(1, 1, 1)
 
 [node name="Rig_Vorace_sweep27" type="MeshInstance3D" parent="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_ug33m")
 skin = SubResource("Skin_jt7a4")
 surface_material_override/0 = SubResource("StandardMaterial3D_kshfa")
@@ -12174,9 +12187,11 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_mio30")
 debug_color = Color(0.961438, 0.000296678, 0.310395, 0.712)
 
-[node name="Lock" parent="Meshes" instance=ExtResource("22_7fune")]
-transform = Transform3D(-1.80951e-08, 0, -1, 0, 1, 0, 0.413968, 0, -4.37114e-08, 0, 0.156602, 0)
-visible = false
+[node name="PlayerMinimapIndicatorSprite3D" type="Sprite3D" parent="Meshes"]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, -2.18557e-08, 0.25, 0, -0.5, -1.09278e-08, 0, 2, 0)
+layers = 1024
+texture = ExtResource("21_tsm77")
 
 [node name="MainCollisionShape" type="CollisionShape3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.851973, 0)
@@ -12220,6 +12235,7 @@ transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent/CameraController/CameraTarget"]
 transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0, 3.71616, 3.5845)
+cull_mask = 1047551
 
 [node name="post_process" parent="CameraComponent/CameraController/CameraTarget/Camera3D" instance=ExtResource("39_qq7u7")]
 

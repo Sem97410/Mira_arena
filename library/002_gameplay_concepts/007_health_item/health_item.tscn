@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=4 uid="uid://dwca7do31vyak"]
+[gd_scene load_steps=32 format=4 uid="uid://dwca7do31vyak"]
 
 [ext_resource type="Script" uid="uid://cw3vje0x307dl" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
+[ext_resource type="Texture2D" uid="uid://d3c78t1qmxq0k" path="res://library/002_gameplay_concepts/016_minimaps/health_icon.png" id="2_4qkro"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
 radius = 4.0
@@ -491,12 +492,19 @@ mesh = SubResource("CylinderMesh_6fcr5")
 
 [node name="IndicationLabel3D" type="Label3D" parent="."]
 transform = Transform3D(0.791584, -5.68752e-08, -0.428246, -0.282025, 0.677277, -0.521304, 0.322268, 0.592702, 0.59569, 2.98023e-08, 1.64564, 5.96046e-08)
+layers = 1024
 billboard = 1
 double_sided = false
 alpha_cut = 2
 outline_modulate = Color(1, 1, 1, 1)
 text = "Press [X] to use potion"
 font_size = 100
+
+[node name="HealthItemMinimapIndicatorSprite3D" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, 0.4, 0, -0.4, -1.74846e-08, 0, 2, 0)
+layers = 1024
+texture = ExtResource("2_4qkro")
 
 [connection signal="area_entered" from="ItemArea3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="ItemArea3D" to="." method="_on_area_3d_area_exited"]
