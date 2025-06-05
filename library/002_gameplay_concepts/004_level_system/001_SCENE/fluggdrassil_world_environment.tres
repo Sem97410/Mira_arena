@@ -1,0 +1,33 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://ca43aa3gadbpk"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w8tny"]
+
+[sub_resource type="Sky" id="Sky_fijkq"]
+sky_material = SubResource("PanoramaSkyMaterial_w8tny")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_fijkq")
+ambient_light_source = 3
+ambient_light_color = Color(0.122252, 0.122252, 0.122252, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 16.0
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 1.19
+glow_enabled = true
+glow_intensity = 1.72
+glow_strength = 0.62
+glow_bloom = 0.35
+glow_hdr_luminance_cap = 7.35
+fog_enabled = true
+fog_light_color = Color(0.660075, 0.785011, 0.960188, 1)
+fog_light_energy = 0.56
+fog_density = 0.0016
+fog_aerial_perspective = 0.085
+fog_sky_affect = 0.345
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0444
+volumetric_fog_albedo = Color(0.72061, 0.673048, 0.773086, 1)
+volumetric_fog_anisotropy = -0.06
+volumetric_fog_length = 30.0

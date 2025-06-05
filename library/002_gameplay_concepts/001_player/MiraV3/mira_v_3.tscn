@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=181 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -35,7 +35,7 @@
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="27_1yggv"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="28_rwcnu"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="28_rwcnu"]
 [ext_resource type="Script" uid="uid://ba4ifpvsujgd" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/death_pannel_logic.gd" id="29_5lelo"]
 [ext_resource type="Script" uid="uid://dpllylknw6gem" path="res://library/002_gameplay_concepts/001_player/Scripts/make_camera_follow_player.gd" id="30_dv1vs"]
 [ext_resource type="Script" uid="uid://cgqwplmh5brho" path="res://library/002_gameplay_concepts/001_player/Scripts/camera_shake.gd" id="31_1yggv"]
@@ -105,6 +105,9 @@ animations = [{
 "name": &"Action lines",
 "speed": 5.0
 }]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rb3gw"]
+viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5lhpq"]
 resource_name = "Hat"
@@ -11367,6 +11370,13 @@ text = "You have X lives remaining"
 [node name="MiniMap" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("20_8k2uq")]
 player = NodePath("../..")
 
+[node name="Camera3D" parent="UI/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+fov = 15.2
+
+[node name="ViewportTextureRect" parent="UI/MiniMap/MiniMapMarginContainer/MaskTesxtRect" index="0"]
+texture = SubResource("ViewportTexture_rb3gw")
+
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
 [node name="Group" type="Node3D" parent="Meshes"]
@@ -12710,6 +12720,7 @@ autostart = true
 
 [editable path="UI/PlayerHUD"]
 [editable path="UI/PlayerHUD/ScoringSystem"]
+[editable path="UI/MiniMap"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="EndGamePannel"]
