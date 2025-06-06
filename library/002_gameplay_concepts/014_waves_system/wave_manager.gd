@@ -7,10 +7,16 @@ class_name WaveManager
 #A REMETTRE LA OU IL FAUT : 
 var scoring_system : Node
 var player : CharacterBody3D
+var main_camera_position : Vector3
+var main_camera_rotation : Vector3
+@export var main_camera : Camera3D
+@export var player_hud : Control
+@export var ArenaInfo : Node
 
 @export_group("❗Required References❗ ⚠️")
 @export_subgroup("Manage enemies")
 @export var all_enemy_types : Array[PackedScene] #Index 0 and 1 MUST be Wanderer and hunter slime
+@export var camera_animation_player : AnimationPlayer
 var enemy_types_unlock : Array[PackedScene] #All enemies that can be select in order to be spawn
 
 #What percentage of every type of enemies are we allowed to have ( for exemple : 30% max of bomber in a wave)
@@ -90,6 +96,7 @@ signal reset_wave_cycle
 ## BASE FUNCTIONS
 
 func _ready() -> void:
+
 	scoring_system = get_tree().get_first_node_in_group("scoring_system")
 	player = get_tree().get_first_node_in_group("player")
 	launch_map_introduction()
@@ -203,8 +210,31 @@ func check_if_can_start_new_wave() -> void:
 #---
 
 func launch_map_introduction() -> void : 
-	await get_tree().create_timer(cinematic_introduction_length, false).timeout
-	can_change_wave = true
+	player.can_move = false
+	player_hud.visible = false
+	
+	if ArenaInfo.arena_id == 0:
+		camera_animation_player.play("SlimaggedonStartAnimation")
+		announce_panel.visible = true
+		announce_label.text = "Welcome to Slimmageddon."
+		await get_tree().create_timer(cinematic_introduction_length / 2, false).timeout
+		announce_label.text = "Survive the next 10 waves to complete the trial."
+		await get_tree().create_timer(cinematic_introduction_length, false).timeout
+		announce_panel.visible = false
+		player_hud.visible = true
+		player.can_move = true
+		can_change_wave = true
+	else :
+		camera_animation_player.play("FluggdrasilStartAnimation")
+		announce_panel.visible = true
+		announce_label.text = "Welcome to Fluggdrasil."
+		await get_tree().create_timer(cinematic_introduction_length / 2, false).timeout
+		announce_label.text = "Survive the next 10 waves to complete the trial."
+		await get_tree().create_timer(cinematic_introduction_length, false).timeout
+		announce_panel.visible = false
+		player_hud.visible = true
+		player.can_move = true
+		can_change_wave = true
 	start_wave()
 
 #---

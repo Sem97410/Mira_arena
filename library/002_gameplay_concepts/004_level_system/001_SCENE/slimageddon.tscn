@@ -1,4 +1,4 @@
-[gd_scene load_steps=789 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=793 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="1_71jrj"]
@@ -13377,6 +13377,168 @@ metadata/class = "Arborist"
 [sub_resource type="ViewportTexture" id="ViewportTexture_d6xic"]
 viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
+[sub_resource type="Animation" id="Animation_lbo7n"]
+resource_name = "SlimaggedonStartAnimation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-9.16926, 1.53041, -10.1939), Vector3(-9.16926, 1.53041, -10.1939), Vector3(-13.9029, -0.78395, 0.517691), Vector3(-13.9029, -0.78395, 0.517691), Vector3(0, 3.71616, 3.5845)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.193732, 0.394741, 5.89874e-09), Vector3(-0.193732, 1.07456, 1.17385e-08), Vector3(0.0418879, 1.1973, 0), Vector3(0.0418879, 2.28813, 0), Vector3(-0.351055, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraTarget/Camera3D:top_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2o26k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.71616, 3.5845)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.351055, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraTarget/Camera3D:top_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.71616, 3.5845)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.351055, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CameraController/CameraTarget/Camera3D:top_level")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nw7xs"]
+resource_name = "FluggdrasilStartAnimation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-31.5382, 3.0182, 31.082), Vector3(-24.6156, 1.62472, 21.5108), Vector3(-6.73445, 11.0999, 9.00301), Vector3(-6.73445, 11.0999, 9.00301), Vector3(0, 3.71616, 3.5845)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.316393, 0), Vector3(0.0191986, -0.823795, -0.0244346), Vector3(0, -0.750492, 0), Vector3(0, -0.750492, 0), Vector3(-0.351055, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraController/CameraTarget/Camera3D:top_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsf83"]
+_data = {
+&"FluggdrasilStartAnimation": SubResource("Animation_nw7xs"),
+&"RESET": SubResource("Animation_2o26k"),
+&"SlimaggedonStartAnimation": SubResource("Animation_lbo7n")
+}
+
 [node name="level_001" type="Node3D"]
 
 [node name="ArenaInfo" parent="." instance=ExtResource("21_pue36")]
@@ -13672,14 +13834,30 @@ surface_material_override/0 = null
 parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
 
-[node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_wnpcy")]
+[node name="Camera3D" parent="MiraV3/CameraComponent/CameraController/CameraTarget" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.93901, 0.343889, 0, -0.343889, 0.93901, 0, 3.71616, 3.5845)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MiraV3/CameraComponent/CameraController" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_xsf83")
+}
+
+[node name="WaveManager" parent="." node_paths=PackedStringArray("main_camera", "player_hud", "ArenaInfo", "camera_animation_player", "spawners") instance=ExtResource("19_wnpcy")]
+main_camera = NodePath("../MiraV3/CameraComponent/CameraController/CameraTarget/Camera3D")
+player_hud = NodePath("../MiraV3/UI/PlayerHUD")
+ArenaInfo = NodePath("../ArenaInfo")
+camera_animation_player = NodePath("../MiraV3/CameraComponent/CameraController/AnimationPlayer")
 spawners = [NodePath("../Spawners/Spawner"), NodePath("../Spawners/Spawner2"), NodePath("../Spawners/Spawner3"), NodePath("../Spawners/Spawner4")]
 initial_number_of_enemies = 10
 max_enemies_in_the_scene = 50
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
 victory_wave = 10
+cinematic_introduction_length = 5.0
 pause_after_wave_duration = 5.0
+
+[node name="MarginContainer2" parent="WaveManager/Control" index="1"]
+visible = true
 
 [node name="Spawners" type="Node" parent="."]
 
@@ -13721,3 +13899,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7497, -2.71774, -1.31825)
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]
+[editable path="WaveManager"]
