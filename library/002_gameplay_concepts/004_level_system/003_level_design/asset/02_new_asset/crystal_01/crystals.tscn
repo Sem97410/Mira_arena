@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ntugf57hq1nd"]
+
+[ext_resource type="PackedScene" uid="uid://8ah6cocaey3s" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/crystal_01/crystal_2.tscn" id="1_mbor7"]
+
+[node name="Crystals" type="Node3D"]
+
+[node name="Crystal3" parent="." instance=ExtResource("1_mbor7")]
+transform = Transform3D(1, 0, 0, 0, -0.998413, -0.0563095, 0, 0.0563095, -0.998413, 0, 0, 0)
+
+[node name="Crystal4" parent="." instance=ExtResource("1_mbor7")]
+transform = Transform3D(0.592596, 0, 0, 0, 0.550466, 0.219446, 0, -0.219446, 0.550466, 0, -1.8928, -0.223189)
+
+[node name="Crystal2" parent="." instance=ExtResource("1_mbor7")]
+transform = Transform3D(1, 0, 0, 0, -0.970662, 0.240448, 0, -0.240448, -0.970662, 0, -0.194142, 0.783732)
