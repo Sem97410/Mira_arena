@@ -1,4 +1,4 @@
-[gd_scene load_steps=793 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=797 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="1_71jrj"]
@@ -14,8 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/mask4.png" id="21_lbo7n"]
 [ext_resource type="PackedScene" uid="uid://dc3grpdd38fp1" path="res://library/002_gameplay_concepts/015_scoring/arena_info.tscn" id="21_pue36"]
 [ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="22_2o26k"]
+[ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="23_2o26k"]
+[ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="24_d6xic"]
 [ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="24_xsf83"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="25_2o26k"]
+[ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="25_83v5c"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="25_d6xic"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="25_lbo7n"]
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="26_83v5c"]
@@ -13377,37 +13380,40 @@ metadata/class = "Arborist"
 [sub_resource type="ViewportTexture" id="ViewportTexture_d6xic"]
 viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
-[sub_resource type="Animation" id="Animation_lbo7n"]
-resource_name = "SlimaggedonStartAnimation"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh1sj"]
+albedo_texture = ExtResource("25_83v5c")
+
+[sub_resource type="Animation" id="Animation_nw7xs"]
+resource_name = "FluggdrasilStartAnimation"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraTarget/Camera3D:position")
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
+"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-9.16926, 1.53041, -10.1939), Vector3(-9.16926, 1.53041, -10.1939), Vector3(-13.9029, -0.78395, 0.517691), Vector3(-13.9029, -0.78395, 0.517691), Vector3(0, 3.71616, 3.5845)]
+"values": [Vector3(-31.5382, 3.0182, 31.082), Vector3(-24.6156, 1.62472, 21.5108), Vector3(-6.73445, 11.0999, 9.00301), Vector3(-6.73445, 11.0999, 9.00301), Vector3(0, 3.71616, 3.5845)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CameraTarget/Camera3D:rotation")
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
+"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.193732, 0.394741, 5.89874e-09), Vector3(-0.193732, 1.07456, 1.17385e-08), Vector3(0.0418879, 1.1973, 0), Vector3(0.0418879, 2.28813, 0), Vector3(-0.351055, 0, 0)]
+"values": [Vector3(0, -0.316393, 0), Vector3(0.0191986, -0.823795, -0.0244346), Vector3(0, -0.750492, 0), Vector3(0, -0.750492, 0), Vector3(-0.351055, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CameraTarget/Camera3D:top_level")
+tracks/2/path = NodePath("CameraController/CameraTarget/Camera3D:top_level")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -13492,37 +13498,37 @@ tracks/5/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_nw7xs"]
-resource_name = "FluggdrasilStartAnimation"
+[sub_resource type="Animation" id="Animation_lbo7n"]
+resource_name = "SlimaggedonStartAnimation"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/path = NodePath("CameraTarget/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
+"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-31.5382, 3.0182, 31.082), Vector3(-24.6156, 1.62472, 21.5108), Vector3(-6.73445, 11.0999, 9.00301), Vector3(-6.73445, 11.0999, 9.00301), Vector3(0, 3.71616, 3.5845)]
+"values": [Vector3(-9.16926, 1.53041, -10.1939), Vector3(-9.16926, 1.53041, -10.1939), Vector3(-13.9029, -0.78395, 0.517691), Vector3(-13.9029, -0.78395, 0.517691), Vector3(0, 3.71616, 3.5845)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/path = NodePath("CameraTarget/Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.14, 4, 4.96667, 5),
+"times": PackedFloat32Array(0, 2, 2.1, 4, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -0.316393, 0), Vector3(0.0191986, -0.823795, -0.0244346), Vector3(0, -0.750492, 0), Vector3(0, -0.750492, 0), Vector3(-0.351055, 0, 0)]
+"values": [Vector3(-0.193732, 0.394741, 5.89874e-09), Vector3(-0.193732, 1.07456, 1.17385e-08), Vector3(0.0418879, 1.1973, 0), Vector3(0.0418879, 2.28813, 0), Vector3(-0.351055, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CameraController/CameraTarget/Camera3D:top_level")
+tracks/2/path = NodePath("CameraTarget/Camera3D:top_level")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -13794,41 +13800,13 @@ offset_bottom = 1.0
 texture = SubResource("ViewportTexture_d6xic")
 
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
-surface_material_override/0 = null
-surface_material_override/1 = null
-surface_material_override/2 = null
-surface_material_override/3 = null
-surface_material_override/4 = null
-
-[node name="Hair1" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="1"]
-surface_material_override/0 = null
-
-[node name="Body" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="2"]
-surface_material_override/0 = null
-surface_material_override/3 = null
-
-[node name="Jupe" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="3"]
-surface_material_override/0 = null
-
-[node name="Chaussures" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="4"]
-surface_material_override/0 = null
-surface_material_override/1 = null
+surface_material_override/1 = ExtResource("23_2o26k")
 
 [node name="Belt" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="5"]
-surface_material_override/0 = null
-
-[node name="Sourcils" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="9"]
-surface_material_override/0 = null
-
-[node name="Attache" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="10"]
-surface_material_override/0 = null
-surface_material_override/1 = null
-
-[node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
-surface_material_override/0 = null
+surface_material_override/1 = ExtResource("24_d6xic")
 
 [node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
-surface_material_override/0 = null
+surface_material_override/0 = SubResource("StandardMaterial3D_uh1sj")
 
 [node name="AnimationTree" parent="MiraV3" index="3"]
 parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
