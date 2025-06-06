@@ -13527,7 +13527,12 @@ shape = SubResource("ConcavePolygonShape3D_ics6s")
 
 [node name="death_zone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ll27w")]
 transform = Transform3D(-0.754034, 0, -0.656836, 0, 1, 0, 0.656836, 0, -0.754034, -8.61961, -4.41448, 7.50815)
+collision_layer = 6
+collision_mask = 6
 player = NodePath("../MiraV3")
+
+[node name="CollisionShape3D" parent="death_zone" index="0"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -21.0905, -7.62703, 16.9326)
 
 [node name="Gardener" type="Node3D" parent="."]
 script = ExtResource("24_xsf83")
@@ -13668,7 +13673,7 @@ offset_bottom = 1.0
 texture = SubResource("ViewportTexture_d6xic")
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_wnpcy")]
-spawners = [NodePath("../Spawner"), NodePath("../Spawner2")]
+spawners = [NodePath("../Spawners/Spawner"), NodePath("../Spawners/Spawner2"), NodePath("../Spawners/Spawner3"), NodePath("../Spawners/Spawner4")]
 initial_number_of_enemies = 5
 max_enemies_in_the_scene = 100
 wave_cycle_length = 5
@@ -13676,14 +13681,25 @@ enemy_count_increase_percentage_per_wave = 100
 victory_wave = 2
 pause_after_wave_duration = 2.0
 
-[node name="Spawner" parent="." instance=ExtResource("20_pue36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.558, -3.37207, 0)
+[node name="Spawners" type="Node" parent="."]
+
+[node name="Spawner" parent="Spawners" instance=ExtResource("20_pue36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.558, -3.37207, 8.78543)
 spawn_range = 8.63
 
-[node name="Spawner2" parent="." instance=ExtResource("20_pue36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34917, -3.37207, 0)
+[node name="Spawner2" parent="Spawners" instance=ExtResource("20_pue36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34917, -3.37207, 8.78543)
 spawn_range = 8.63
 
+[node name="Spawner3" parent="Spawners" instance=ExtResource("20_pue36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.558, -3.37207, -11.1274)
+spawn_range = 8.63
+
+[node name="Spawner4" parent="Spawners" instance=ExtResource("20_pue36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34917, -3.37207, -11.1274)
+spawn_range = 8.63
+
+[editable path="death_zone"]
 [editable path="MiraV3"]
 [editable path="MiraV3/UI/PlayerHUD"]
 [editable path="MiraV3/UI/PlayerHUD/ScoringSystem"]
