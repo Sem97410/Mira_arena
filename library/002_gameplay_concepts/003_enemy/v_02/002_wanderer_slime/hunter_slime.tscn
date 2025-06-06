@@ -154,7 +154,6 @@ emission_energy_multiplier = 12.64
 [sub_resource type="Animation" id="Animation_rg4nx"]
 resource_name = "Slime|Walk"
 length = 0.625
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -250,7 +249,6 @@ tracks/12/keys = PackedFloat32Array(-7.94729e-08, 1, -1, 0, 0, 8.72097e-15)
 [sub_resource type="Animation" id="Animation_sitgm"]
 resource_name = "Slime|death"
 length = 0.875
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -345,7 +343,6 @@ tracks/12/keys = PackedFloat32Array(7.94729e-08, 1, -1, 0, 0, 8.72097e-15)
 
 [sub_resource type="Animation" id="Animation_v254c"]
 resource_name = "Slime|pre_charge"
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -441,7 +438,6 @@ tracks/12/keys = PackedFloat32Array(-1.98682e-08, 1, -1, 0, 0, 8.72097e-15)
 [sub_resource type="Animation" id="Animation_p7tfh"]
 resource_name = "Slime|charge"
 length = 0.75
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -563,7 +559,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="Skeleton" type="Node3D" parent="Mesh/Slime/slime_cornu" index="0"]
 
 [node name="Root2" type="Node3D" parent="Mesh/Slime/slime_cornu/Skeleton" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57772e-32, 2.88118e-08, -9.39121e-09)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57772e-32, -1.57772e-32, 2.13163e-16)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Mesh/Slime/slime_cornu/Skeleton/Root2" index="0"]
 bones/0/name = "Root"
@@ -577,7 +573,7 @@ bones/1/name = "Middle"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.00373983, 0.990665, -0.136264, -0.0271785, 0.136316, 0.990293, 0.999624, -2.98023e-08, 0.0274346, 0.217732, -2.94987e-08, -6.34383e-10)
 bones/1/enabled = true
-bones/1/position = Vector3(0.217732, -3.29668e-08, -7.32441e-10)
+bones/1/position = Vector3(0.217732, -2.94987e-08, -6.34383e-10)
 bones/1/rotation = Quaternion(-0.458255, -0.525629, -0.471004, 0.540252)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Middle_2"
