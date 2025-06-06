@@ -410,11 +410,12 @@ albedo_color = Color(0.361317, 0.762155, 7.70092e-07, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_6fcr5"]
 height = 0.2
 
-[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh")]
+[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap")]
 script = ExtResource("1_w6eme")
 indication_label = NodePath("IndicationLabel3D")
 health_point = 20.0
 health_potion_mesh = NodePath("Fiole_soin")
+health_indicator_minimap = NodePath("HealthItemMinimapIndicatorSprite3D")
 
 [node name="ItemArea3D" type="Area3D" parent="."]
 transform = Transform3D(-0.777962, 0.314155, -0.544132, -0.314156, 0.555509, 0.76988, 0.544134, 0.76988, -0.333471, 0, 0, 0)
@@ -491,8 +492,8 @@ material_overlay = SubResource("StandardMaterial3D_4qkro")
 mesh = SubResource("CylinderMesh_6fcr5")
 
 [node name="IndicationLabel3D" type="Label3D" parent="."]
-transform = Transform3D(0.791584, -5.68752e-08, -0.428246, -0.282025, 0.677277, -0.521304, 0.322268, 0.592702, 0.59569, 2.98023e-08, 1.64564, 5.96046e-08)
-layers = 1024
+transform = Transform3D(0.791584, 2.14577e-07, -0.428246, -0.282025, 0.677277, -0.521304, 0.322268, 0.592702, 0.59569, 2.98023e-08, 1.64564, 5.96046e-08)
+layers = 2
 billboard = 1
 double_sided = false
 alpha_cut = 2
@@ -502,7 +503,7 @@ font_size = 100
 
 [node name="HealthItemMinimapIndicatorSprite3D" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, 0.4, 0, -0.4, -1.74846e-08, 0, 2, 0)
+transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0, 2, 0)
 layers = 1024
 texture = ExtResource("2_4qkro")
 

@@ -7,6 +7,7 @@ var player : CharacterBody3D
 var wave_manager : WaveManager
 @onready var potion_was_used : bool = false 
 @onready var player_is_in_health_zone : bool = false
+@export var health_indicator_minimap : Sprite3D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -55,6 +56,8 @@ func activate_health_potion() -> void :
 		return
 	indication_label.text = " +10 HP"
 	health_potion_mesh.visible = false
+	health_indicator_minimap.visible = false
+	
 	player.player_current_hp += health_point
 	player.health_bar.health = player.player_current_hp
 	potion_was_used = true
@@ -65,6 +68,7 @@ func activate_health_potion() -> void :
 func reset_health_item() -> void : 
 	potion_was_used = false
 	health_potion_mesh.visible = true
+	health_indicator_minimap.visible = true
 	indication_label.text = "Press [X] to use potion"
 
 func change_label_text()  -> void : 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=788 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=789 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="1_71jrj"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dc3grpdd38fp1" path="res://library/002_gameplay_concepts/015_scoring/arena_info.tscn" id="21_pue36"]
 [ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="22_2o26k"]
 [ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="24_xsf83"]
+[ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="25_2o26k"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="25_d6xic"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="25_lbo7n"]
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="26_83v5c"]
@@ -13551,8 +13552,7 @@ offset_left = 1478.0
 [node name="MiraV3" parent="." node_paths=PackedStringArray("wave_manager") instance=ExtResource("20_wnpcy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.14628, 10.4964)
 wave_manager = NodePath("../WaveManager")
-player_max_hp = 1.0
-max_remaining_lives = 5
+max_remaining_lives = 3
 delay_before_respawn = 1.0
 player_dash_countdown = 0.5
 
@@ -13674,12 +13674,12 @@ texture = SubResource("ViewportTexture_d6xic")
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_wnpcy")]
 spawners = [NodePath("../Spawners/Spawner"), NodePath("../Spawners/Spawner2"), NodePath("../Spawners/Spawner3"), NodePath("../Spawners/Spawner4")]
-initial_number_of_enemies = 5
-max_enemies_in_the_scene = 100
+initial_number_of_enemies = 10
+max_enemies_in_the_scene = 50
 wave_cycle_length = 5
 enemy_count_increase_percentage_per_wave = 100
-victory_wave = 2
-pause_after_wave_duration = 2.0
+victory_wave = 10
+pause_after_wave_duration = 5.0
 
 [node name="Spawners" type="Node" parent="."]
 
@@ -13698,6 +13698,21 @@ spawn_range = 8.63
 [node name="Spawner4" parent="Spawners" instance=ExtResource("20_pue36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34917, -3.37207, -11.1274)
 spawn_range = 8.63
+
+[node name="HealthItem" parent="." instance=ExtResource("25_2o26k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492781, -2.71774, -1.31825)
+
+[node name="HealthItem4" parent="." instance=ExtResource("25_2o26k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492781, -2.71774, 21.5078)
+
+[node name="HealthItem5" parent="." instance=ExtResource("25_2o26k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492781, -2.71774, -17.4333)
+
+[node name="HealthItem2" parent="." instance=ExtResource("25_2o26k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9585, -2.71774, -1.31825)
+
+[node name="HealthItem3" parent="." instance=ExtResource("25_2o26k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7497, -2.71774, -1.31825)
 
 [editable path="death_zone"]
 [editable path="MiraV3"]
