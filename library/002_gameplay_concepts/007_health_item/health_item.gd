@@ -54,7 +54,7 @@ func activate_health_potion() -> void :
 	if player.player_current_hp == player.player_max_hp : 
 		print("Can't use potion now")
 		return
-	indication_label.text = " +10 HP"
+	indication_label.text = " +" + str(health_point) + "HP"
 	health_potion_mesh.visible = false
 	health_indicator_minimap.visible = false
 	
