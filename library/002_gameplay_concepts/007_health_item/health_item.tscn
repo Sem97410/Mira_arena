@@ -413,7 +413,7 @@ height = 0.2
 [node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap")]
 script = ExtResource("1_w6eme")
 indication_label = NodePath("IndicationLabel3D")
-health_point = 20.0
+health_point = 25.0
 health_potion_mesh = NodePath("Fiole_soin")
 health_indicator_minimap = NodePath("HealthItemMinimapIndicatorSprite3D")
 

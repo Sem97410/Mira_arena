@@ -458,7 +458,7 @@ radius = 4.0
 [node name="Explosive_slime" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_x408e")]
 explosion_vfx = ExtResource("2_el4uy")
 pre_explosion_duration = 1.5
-explosion_damage = 20.0
+explosion_damage = 50.0
 animation_player = NodePath("Mesh/Slime/Node3D/bomber_slime/AnimationPlayer")
 
 [node name="Slime" parent="Mesh" index="0"]

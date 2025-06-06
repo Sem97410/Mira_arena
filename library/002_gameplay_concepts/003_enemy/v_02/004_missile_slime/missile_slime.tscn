@@ -281,7 +281,7 @@ radius = 1.5
 [node name="MissileSlime" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_wfjqi")]
 explosion_vfx = ExtResource("2_26ubh")
 pre_explosion_duration = 0.5
-explosion_damage = 5.0
+explosion_damage = 15.0
 max_health_point = 1.0
 movement_speed = 9.0
 animation_player = NodePath("Mesh/Slime/Node3D/flamme_slime/AnimationPlayer")

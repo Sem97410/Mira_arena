@@ -547,6 +547,7 @@ _data = {
 [node name="Wanderer" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_ip2ux")]
 dash_length = 5.0
 attack_cool_down = 3.0
+slime_attack_damage = 50.0
 time_before_new_target = 10.0
 enemy_scoring_value = 20
 max_health_point = 150.0
