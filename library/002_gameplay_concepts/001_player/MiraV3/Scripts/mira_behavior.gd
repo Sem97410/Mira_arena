@@ -113,7 +113,7 @@ signal player_is_defeated
 @export_subgroup("Charged attack")
 @export var charged_attack_vfx_duration : float = 0.5
 @export var charge_attack_charging : Node3D
-@export var charge_attack_lock_mesh : Node3D
+#@export var charge_attack_lock_mesh : Node3D
 @export var charged_attack_area : Area3D
 @export var charged_attack_collision : CollisionShape3D
 @export var charged_attack_impact_collision : CollisionShape3D
@@ -1340,13 +1340,13 @@ func disable_charge_attack_mode() -> void :
 
 #---
 
-func enable_charge_attack_lock_mesh() -> void :
-	charge_attack_lock_mesh.visible = true
+#func enable_charge_attack_lock_mesh() -> void :
+	#charge_attack_lock_mesh.visible = true
 
 #---
 
 func disable_charge_attack_lock_mesh() -> void :
-	charge_attack_lock_mesh.visible = false
+	#charge_attack_lock_mesh.visible = false
 	charged_attack_hit_vfx.visible = false
 
 #---

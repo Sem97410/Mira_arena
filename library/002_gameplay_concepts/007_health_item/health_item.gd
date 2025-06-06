@@ -56,7 +56,7 @@ func activate_health_potion() -> void :
 	indication_label.text = " +10 HP"
 	health_potion_mesh.visible = false
 	player.player_current_hp += health_point
-	player.health_bar.init_health(health_point)
+	player.health_bar.health = player.player_current_hp
 	potion_was_used = true
 	
 	await get_tree().create_timer(2.0).timeout
