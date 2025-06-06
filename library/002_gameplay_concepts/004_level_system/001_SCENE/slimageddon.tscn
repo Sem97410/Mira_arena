@@ -13375,7 +13375,7 @@ metadata/class = "Arborist"
 [sub_resource type="Environment" id="Environment_xsf83"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d6xic"]
-viewport_path = NodePath("MiraV3/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
+viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [node name="level_001" type="Node3D"]
 
@@ -13556,6 +13556,81 @@ max_remaining_lives = 3
 delay_before_respawn = 1.0
 player_dash_countdown = 0.5
 
+[node name="MiniMap" type="Control" parent="MiraV3/UI/PlayerHUD" index="4" node_paths=PackedStringArray("player", "minimap_camera")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_hh6v5")
+player = NodePath("../../..")
+minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
+
+[node name="MiniMapMarginContainer2" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -44.605
+offset_top = -398.705
+offset_right = 1039.4
+offset_bottom = 685.295
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer2"]
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 2
+texture = ExtResource("21_lbo7n")
+
+[node name="MiniMapMarginContainer" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -355.0
+offset_right = 571.0
+offset_bottom = 217.0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ViewFromAboveSubViewport" type="SubViewport" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+
+[node name="Camera3D" type="Camera3D" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+cull_mask = 1048573
+environment = SubResource("Environment_xsf83")
+projection = 1
+size = 85.49
+
+[node name="MaskTesxtRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
+clip_children = 1
+layout_mode = 2
+texture = ExtResource("22_2o26k")
+expand_mode = 2
+
+[node name="ViewportTextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+texture = SubResource("ViewportTexture_d6xic")
+
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
 surface_material_override/0 = null
 surface_material_override/1 = null
@@ -13596,81 +13671,6 @@ surface_material_override/0 = null
 [node name="AnimationTree" parent="MiraV3" index="3"]
 parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
-
-[node name="MiniMap" type="Control" parent="MiraV3" node_paths=PackedStringArray("player", "minimap_camera")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("20_hh6v5")
-player = NodePath("..")
-minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
-
-[node name="MiniMapMarginContainer2" type="MarginContainer" parent="MiraV3/MiniMap"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -44.605
-offset_top = -398.705
-offset_right = 1039.4
-offset_bottom = 685.295
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="MiraV3/MiniMap/MiniMapMarginContainer2"]
-modulate = Color(1, 1, 1, 0.7)
-layout_mode = 2
-texture = ExtResource("21_lbo7n")
-
-[node name="MiniMapMarginContainer" type="MarginContainer" parent="MiraV3/MiniMap"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -355.0
-offset_right = 571.0
-offset_bottom = 217.0
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="ViewFromAboveSubViewport" type="SubViewport" parent="MiraV3/MiniMap/MiniMapMarginContainer"]
-snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
-
-[node name="Camera3D" type="Camera3D" parent="MiraV3/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
-cull_mask = 1048573
-environment = SubResource("Environment_xsf83")
-projection = 1
-size = 85.49
-
-[node name="MaskTesxtRect" type="TextureRect" parent="MiraV3/MiniMap/MiniMapMarginContainer"]
-clip_children = 1
-layout_mode = 2
-texture = ExtResource("22_2o26k")
-expand_mode = 2
-
-[node name="ViewportTextureRect" type="TextureRect" parent="MiraV3/MiniMap/MiniMapMarginContainer/MaskTesxtRect"]
-layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 1.0
-texture = SubResource("ViewportTexture_d6xic")
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("spawners") instance=ExtResource("19_wnpcy")]
 spawners = [NodePath("../Spawners/Spawner"), NodePath("../Spawners/Spawner2"), NodePath("../Spawners/Spawner3"), NodePath("../Spawners/Spawner4")]
