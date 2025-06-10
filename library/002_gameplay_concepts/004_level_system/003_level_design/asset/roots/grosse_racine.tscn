@@ -177,7 +177,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_acimf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dkkpy"]
-size = Vector3(80.8945, 190.908, 201.121)
+size = Vector3(33.3832, 197.737, 81.1753)
 
 [node name="Grosse_Racine" type="Node3D"]
 
@@ -211,5 +211,5 @@ surface_material_override/0 = ExtResource("2_nmvq0")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7893, 38.5334, 39.0822)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.4293, 0)
 shape = SubResource("BoxShape3D_dkkpy")

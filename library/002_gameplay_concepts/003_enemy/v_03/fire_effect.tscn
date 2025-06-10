@@ -175,12 +175,15 @@ emission_sphere_radius = 0.2
 angle_min = -360.0
 angle_max = 360.0
 gravity = Vector3(0, 5, 0)
-damping_min = 2.0
-damping_max = 3.0
-scale_min = 0.6
-scale_max = 1.35
+damping_min = 1.76
+damping_max = 2.71
+scale_max = 1.15
 scale_curve = SubResource("CurveTexture_bmgut")
-color = Color(0, 9.392, 22.652, 1)
+color = Color(12.707, 16.022, 32.044, 1)
+anim_speed_min = 3.15
+anim_speed_max = 12.75
+anim_offset_min = 0.1245
+anim_offset_max = 0.206
 
 [sub_resource type="QuadMesh" id="QuadMesh_p8utj"]
 
