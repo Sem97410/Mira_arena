@@ -40,6 +40,7 @@ shadow_mesh = SubResource("ArrayMesh_ki06b")
 
 [node name="paver_square_02" type="MeshInstance3D" parent="."]
 transform = Transform3D(40.5414, 0, 0, 0, -3.56872e-06, 26.0796, 0, -29.9366, -3.10894e-06, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_0v4bt")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_g6s10")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ck634gxyhffr"]
+[gd_scene load_steps=27 format=3 uid="uid://ck634gxyhffr"]
 
 [ext_resource type="PackedScene" uid="uid://bi1es8bqohsjo" path="res://library/002_gameplay_concepts/003_enemy/v_01/001_SCENE/damage_stars.tscn" id="2_baove"]
 [ext_resource type="PackedScene" uid="uid://bg3ose75cjvem" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_enemy.tscn" id="2_m7hht"]
@@ -13,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bb7xvu32irgkb" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Aura.obj" id="6_xy22r"]
 [ext_resource type="Shader" uid="uid://cqx7o3keptnwj" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_particle.tres" id="7_l8g3y"]
 [ext_resource type="Texture2D" uid="uid://c5x8ylb75xcu2" path="res://library/002_gameplay_concepts/016_minimaps/enemy_indicator.png" id="8_xy22r"]
+[ext_resource type="Script" uid="uid://ep0v75hc1n4a" path="res://library/002_gameplay_concepts/016_minimaps/enemy_mini_map_indicator_sprite_3d_size.gd" id="9_l8g3y"]
 [ext_resource type="Texture2D" uid="uid://dh0rixjfldln2" path="res://library/002_gameplay_concepts/003_enemy/v_02/Assets2D/angry.png" id="10_jf0rl"]
 [ext_resource type="Texture2D" uid="uid://4fc0o1hq5b2t" path="res://library/002_gameplay_concepts/003_enemy/v_02/Assets2D/exclamationSF.png" id="11_8eyjs"]
 
@@ -174,6 +175,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.6, 0, 0, 0, -2.62268e-08, 0.6, 0, -0.6, -2.62268e-08, 0, 2, 0)
 layers = 1024
 texture = ExtResource("8_xy22r")
+script = ExtResource("9_l8g3y")
 
 [node name="StateChart" type="Node" parent="."]
 process_mode = 1
