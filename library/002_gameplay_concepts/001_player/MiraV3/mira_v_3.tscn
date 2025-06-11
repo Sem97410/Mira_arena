@@ -11333,6 +11333,9 @@ victory_number_of_death_label = NodePath("../../VictoryPanel/VictoryGeneralConta
 victory_number_of_waves_completed_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreStatsMarginContainer/StatsHBoxContainer/StatsNumberVBoxContainer2/WavesCompletedNumberLabel")
 victory_recap_total_score_label = NodePath("../../VictoryPanel/VictoryGeneralContainer/VBoxContainer/ScoreContainer/MarginContainer4/MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/ScoreTotalMarginContainer/HBoxContainer/TotalScoreNumberLabel")
 
+[node name="DebugMarginContainer" parent="UI/PlayerHUD/ScoringSystem/Control" index="2"]
+visible = false
+
 [node name="YouHaveXLivesRemainingContainer" type="PanelContainer" parent="UI/PlayerHUD"]
 visible = false
 layout_mode = 1
