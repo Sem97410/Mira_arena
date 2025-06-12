@@ -1,25 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://d28v4tmjb7c51"]
+[gd_scene load_steps=8 format=3 uid="uid://d28v4tmjb7c51"]
 
 [ext_resource type="Script" uid="uid://bx4od3o6ojmtf" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.gd" id="1_0qny0"]
 [ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="1_dvkms"]
 [ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/mask4.png" id="2_bnu1o"]
+[ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="4_umgy3"]
+[ext_resource type="Texture2D" uid="uid://cyxboetxw2t6j" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Iinput_button_left_stick.png" id="5_lv56h"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_niwnf"]
-viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
+[sub_resource type="Environment" id="Environment_lv56h"]
+background_mode = 1
+background_color = Color(0.219608, 0.219608, 0.219608, 1)
+background_energy_multiplier = 0.5
 
-[node name="MiniMap" type="Control" node_paths=PackedStringArray("minimap_camera") groups=["minimap"]]
+[sub_resource type="ViewportTexture" id="ViewportTexture_fquiv"]
+viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
+
+[node name="MiniMap" type="Control" groups=["minimap"]]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -420.0
+offset_top = 400.0
+offset_right = -420.0
+offset_bottom = 400.0
+grow_horizontal = 0
 script = ExtResource("1_0qny0")
-minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
 
 [node name="MiniMapMarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -50,6 +55,7 @@ anchor_bottom = 1.0
 offset_top = -355.0
 offset_right = 571.0
 offset_bottom = 217.0
+grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.6, 0.6)
 theme_override_constants/margin_left = 30
@@ -64,7 +70,9 @@ snap_2d_vertices_to_pixel = true
 [node name="Camera3D" type="Camera3D" parent="MiniMapMarginContainer/ViewFromAboveSubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 cull_mask = 1048573
-size = 60.0
+environment = SubResource("Environment_lv56h")
+projection = 1
+size = 85.49
 
 [node name="MaskTesxtRect" type="TextureRect" parent="MiniMapMarginContainer"]
 clip_children = 1
@@ -77,4 +85,39 @@ layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = 1.0
-texture = SubResource("ViewportTexture_niwnf")
+texture = SubResource("ViewportTexture_fquiv")
+
+[node name="MinimapToggleTextMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 367.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MinimapToggleTextMarginContainer"]
+layout_mode = 2
+
+[node name="MinimapToggleTextLabel" type="Label" parent="MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_umgy3")
+theme_override_font_sizes/font_size = 25
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_lv56h")
+expand_mode = 2
+
+[node name="MinimapToggleTextLabel3" type="Label" parent="MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_umgy3")
+theme_override_font_sizes/font_size = 25
+text = " to toggle minimap zoom"
+horizontal_alignment = 1
+vertical_alignment = 1

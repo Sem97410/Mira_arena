@@ -176,6 +176,8 @@ transform = Transform3D(0.6, 0, 0, 0, -2.62268e-08, 0.6, 0, -0.6, -2.62268e-08, 
 layers = 1024
 texture = ExtResource("8_xy22r")
 script = ExtResource("9_l8g3y")
+minimap_indicator_close_size = 0.4
+minimap_indicator_far_size = 1.5
 
 [node name="StateChart" type="Node" parent="."]
 process_mode = 1
