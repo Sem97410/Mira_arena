@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c6t5i7v5gwd8r"]
+
+[ext_resource type="Texture2D" uid="uid://dhnrer1sb53ew" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/txt_arene_02_BaseColor_.png" id="1_ym16x"]
+[ext_resource type="Texture2D" uid="uid://dwl3ojvfbf04t" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/txt_arene_Height.png" id="2_on0nv"]
+[ext_resource type="Texture2D" uid="uid://c2u8a4edbs4fm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/txt_arene_02_Normal.png" id="3_on0nv"]
+[ext_resource type="Texture2D" uid="uid://b1gpgjynwwalt" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/txt_arene_02_Roughness.png" id="4_wdfco"]
+
+[resource]
+albedo_texture = ExtResource("1_ym16x")
+roughness_texture = ExtResource("4_wdfco")
+normal_enabled = true
+normal_texture = ExtResource("3_on0nv")
+heightmap_scale = 0.135
+heightmap_deep_parallax = true
+heightmap_min_layers = 1
+heightmap_max_layers = 64
+heightmap_flip_tangent = true
+heightmap_texture = ExtResource("2_on0nv")
