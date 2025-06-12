@@ -20,8 +20,6 @@ func _process(delta: float) -> void:
 
 	change_label_text()
 	handle_label_visibility()
-	
-	print("Player hp :", player.player_current_hp)
 
 		
 
@@ -50,9 +48,7 @@ func handle_label_visibility() -> void :
 		indication_label.visible = false
 
 func activate_health_potion() -> void : 
-	print("Health +10")
 	if player.player_current_hp == player.player_max_hp : 
-		print("Can't use potion now")
 		return
 	indication_label.text = " +" + str(health_point) + "HP"
 	health_potion_mesh.visible = false

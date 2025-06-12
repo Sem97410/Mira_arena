@@ -12,6 +12,7 @@ var main_camera_rotation : Vector3
 @export var main_camera : Camera3D
 @export var player_hud : Control
 @export var ArenaInfo : Node
+@export var death_explosion : PackedScene
 
 @export_group("❗Required References❗ ⚠️")
 @export_subgroup("Manage enemies")
@@ -203,7 +204,7 @@ func check_if_can_start_new_wave() -> void:
 
 
 
-		if can_change_wave and enemies_killed_in_this_wave == number_of_spawned_enemy:
+		if can_change_wave and enemies_killed_in_this_wave >= max_enemies_in_this_wave:
 
 			start_wave()
 
@@ -242,6 +243,8 @@ func launch_map_introduction() -> void :
 func launch_pause_time_after_wave() -> void : 
 	announce_panel.visible = true
 	announce_label.text = "Wawe " + str(current_wave) + " : Completed"
+	kill_all_rest_enemies()
+
 
 	#Add bonus point at the end of the current wave
 	if current_wave > 0:
@@ -268,6 +271,17 @@ func launch_pause_time_after_wave() -> void :
 	announce_panel.visible = false
 	
 #---
+
+func kill_all_rest_enemies() -> void : 
+	for node in get_tree().get_nodes_in_group("enemy"):
+		if node.get_parent() is Node3D:
+			var enemy = node.get_parent()
+			var instance = death_explosion.instantiate()
+			get_parent().add_child(instance)
+			instance.global_transform = enemy.global_transform
+			enemy.decrease_current_enemies_number(self)
+
+			enemy.queue_free()
 
 func calculate_growth_factor() -> void : 
 	growth_factor =  1.0 +(enemy_count_increase_percentage_per_wave / 100.0) #1.6*
@@ -405,6 +419,7 @@ func generate_enemy_spawn_list(max_enemies: int) -> Array[PackedScene]:
 
 func player_win_arena() -> void : 
 	player_win.emit()
+
 		# --------------------------------------------------------------------------
 
 ## ANNOUNCEMENT
