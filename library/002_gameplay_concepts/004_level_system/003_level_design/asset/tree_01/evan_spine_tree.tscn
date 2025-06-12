@@ -81,6 +81,7 @@ shadow_mesh = SubResource("ArrayMesh_sc50o")
 
 [node name="Tree" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.042416, 0, 0, 0, -5.31646e-09, -0.0430044, 0, 0.0445977, -5.12652e-09, 1.90735e-06, 4.76837e-07, 0)
+layers = 2
 mesh = SubResource("ArrayMesh_8jnw8")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_tcehb")

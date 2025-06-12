@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=180 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://b7giv6sy8xd0e" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_1.png" id="39_v240w"]
 [ext_resource type="Texture2D" uid="uid://col0iffowx2jb" path="res://library/002_gameplay_concepts/001_player/UI/Trame_Manga_2.png" id="40_a8wav"]
 [ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="41_7fune"]
+[ext_resource type="Script" uid="uid://ep0v75hc1n4a" path="res://library/002_gameplay_concepts/016_minimaps/enemy_mini_map_indicator_sprite_3d_size.gd" id="41_rb3gw"]
 [ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="42_5lhpq"]
 [ext_resource type="AudioStream" uid="uid://1u6gl6l3opc5" path="res://library/002_gameplay_concepts/001_player/SFX/ChargedAttackChargePhase.wav" id="45_1wmhn"]
 [ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="46_8bksx"]
@@ -12188,6 +12189,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, 0.5, 0, -1, -2.18557e-08, 0, 2, 0)
 layers = 1024
 texture = ExtResource("21_tsm77")
+script = ExtResource("41_rb3gw")
 
 [node name="MainCollisionShape" type="CollisionShape3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.851973, 0)

@@ -65,7 +65,7 @@ func start_spawning(number_to_spawn: int) -> void:
 
 func _on_timer_timeout() -> void:  
 	
-	if enemies_spawned >= enemies_to_spawn: # stop the spawner when reach the wanted number
+	if enemies_spawned >= enemies_to_spawn + 1: # stop the spawner when reach the wanted number
 		spawner_timer.stop()
 		
 		wave_manager.spawners_that_finished_spawning += 1
