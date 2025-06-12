@@ -13370,7 +13370,7 @@ octree_managers = [SubResource("Resource_nu15i"), SubResource("Resource_xgmmd"),
 metadata/class = "Arborist"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vlq57"]
-viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
+viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [sub_resource type="Animation" id="Animation_nw7xs"]
 resource_name = "FluggdrasilStartAnimation"
