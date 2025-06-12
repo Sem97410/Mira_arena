@@ -1,12 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://ckw4w1855uic5"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ckw4w1855uic5"]
 
 [ext_resource type="Texture2D" uid="uid://coy36komcguec" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_water/material/txt_platform_water_02_BaseColor_.png" id="1_sxk85"]
 [ext_resource type="Texture2D" uid="uid://c2gnvqgnv80ly" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_water/material/txt_platform_water_02_Normal.png" id="2_64vd3"]
-[ext_resource type="Texture2D" uid="uid://b17p3ibr70v1w" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_water/material/txt_platform_water_02_Roughness.png" id="3_sg8vw"]
 
 [resource]
 albedo_texture = ExtResource("1_sxk85")
-roughness_texture = ExtResource("3_sg8vw")
+roughness = 0.92
 normal_enabled = true
 normal_scale = 0.5
 normal_texture = ExtResource("2_64vd3")

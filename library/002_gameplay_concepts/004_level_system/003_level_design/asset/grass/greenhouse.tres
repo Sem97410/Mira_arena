@@ -70,7 +70,7 @@ metadata/class = "Greenhouse_Plant"
 [sub_resource type="Resource" id="Resource_65kae"]
 resource_name = "Greenhouse_PlantState"
 script = ExtResource("4_012tp")
-plant/plant_brush_active = false
+plant/plant_brush_active = true
 plant/plant_label = ""
 plant/plant = SubResource("Resource_6s5g7")
 metadata/class = "Greenhouse_PlantState"
@@ -179,7 +179,7 @@ metadata/class = "Greenhouse_Plant"
 [sub_resource type="Resource" id="Resource_febm6"]
 resource_name = "Greenhouse_PlantState"
 script = ExtResource("4_012tp")
-plant/plant_brush_active = true
+plant/plant_brush_active = false
 plant/plant_label = ""
 plant/plant = SubResource("Resource_e5ess")
 metadata/class = "Greenhouse_PlantState"
@@ -230,7 +230,7 @@ metadata/class = "Greenhouse_Plant"
 [sub_resource type="Resource" id="Resource_rm2vj"]
 resource_name = "Greenhouse_PlantState"
 script = ExtResource("4_012tp")
-plant/plant_brush_active = true
+plant/plant_brush_active = false
 plant/plant_label = ""
 plant/plant = SubResource("Resource_wia12")
 metadata/class = "Greenhouse_PlantState"

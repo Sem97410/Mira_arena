@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://cgllu1qjn0t2w"]
+[gd_scene load_steps=8 format=4 uid="uid://cgllu1qjn0t2w"]
 
 [ext_resource type="Material" uid="uid://b3kvff7juwdqq" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/000_Material/Mat_fountain/mat_fountain.tres" id="1_82fxl"]
 
@@ -47,6 +47,12 @@ shadow_mesh = SubResource("ArrayMesh_yu4la")
 height = 0.0811157
 radius = 0.0244141
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_82fxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7r6t"]
+albedo_color = Color(0.685968, 0.296974, 0.315441, 1)
+roughness = 0.0
+
 [node name="Fontain_SD" type="Node3D"]
 
 [node name="Fontain_SD" type="MeshInstance3D" parent="."]
@@ -60,3 +66,8 @@ surface_material_override/0 = ExtResource("1_82fxl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Fontain_SD/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9.58038e-05, -0.000938028, 0.0531729)
 shape = SubResource("CylinderShape3D_82fxl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.29476, 0, 0, 0, 0.1308, 0, 0, 0, 4.29476, 0.0115063, 1.43342, 0)
+mesh = SubResource("CylinderMesh_82fxl")
+surface_material_override/0 = SubResource("StandardMaterial3D_a7r6t")
