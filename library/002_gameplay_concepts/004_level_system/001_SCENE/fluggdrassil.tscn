@@ -1,4 +1,4 @@
-[gd_scene load_steps=1408 format=4 uid="uid://dhn8ua4j1ihnh"]
+[gd_scene load_steps=1414 format=4 uid="uid://dhn8ua4j1ihnh"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_suwol"]
 [ext_resource type="Script" uid="uid://jjvv8q486nnj" path="res://library/002_gameplay_concepts/012_tools/find_non_uniform_object.gd" id="1_yv25p"]
@@ -84,12 +84,17 @@
 [ext_resource type="PackedScene" uid="uid://ckv86moot7pgw" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/paver/paver_litlle/paver_litlle_3.tscn" id="85_kuxd3"]
 [ext_resource type="PackedScene" uid="uid://b187c5in4fg3j" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/Mausolé/02_mausole_sd.tscn" id="86_kuxd3"]
 [ext_resource type="PackedScene" uid="uid://bmb4050xbsjpt" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/paver/paver_litlle/paver_litlle_2.tscn" id="86_lano3"]
+[ext_resource type="Script" uid="uid://bx4od3o6ojmtf" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.gd" id="87_0630i"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="87_lano3"]
 [ext_resource type="PackedScene" uid="uid://c1taas0qqwr4s" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/roks_02/rock_sd_3.tscn" id="87_oqtp5"]
 [ext_resource type="PackedScene" uid="uid://cc5gruqph44j3" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/crystal_01/crystal_3.tscn" id="87_ymjhv"]
+[ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/mask4.png" id="88_2cu3i"]
 [ext_resource type="PackedScene" uid="uid://ds71x510noffw" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/paver/paver_square/paver_square_2.tscn" id="88_ymjhv"]
+[ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="89_8rmja"]
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="90_qs5lb"]
+[ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="90_vpth8"]
 [ext_resource type="Material" uid="uid://diumthysipyc6" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_iron_ornement.tres" id="91_jeks3"]
+[ext_resource type="Texture2D" uid="uid://cyxboetxw2t6j" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Iinput_button_left_stick.png" id="91_yqxsc"]
 [ext_resource type="Material" uid="uid://cksbai1mefich" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_attache_ornement.tres" id="92_jeks3"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="92_nw7xs"]
 [ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="93_ehciv"]
@@ -22700,7 +22705,12 @@ size = Vector3(6.63541, 6.7695, 3.66911)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rvo5"]
 size = Vector3(1.30463, 4.81201, 1.80219)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qs5lb"]
+[sub_resource type="Environment" id="Environment_lv56h"]
+background_mode = 1
+background_color = Color(0.219608, 0.219608, 0.219608, 1)
+background_energy_multiplier = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0630i"]
 viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ehciv"]
@@ -24882,8 +24892,117 @@ bonus_text_color = Color(0.818723, 0.781252, 0, 1)
 [node name="MultiplicatorGaugeDebugTextLabel" parent="MiraV3/UI/PlayerHUD/ScoringSystem/Control/DebugMarginContainer/HBoxContainer" index="0"]
 visible = false
 
-[node name="ViewportTextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect" index="0"]
-texture = SubResource("ViewportTexture_qs5lb")
+[node name="MiniMap" type="Control" parent="MiraV3/UI/PlayerHUD" index="6" node_paths=PackedStringArray("player", "minimap_camera") groups=["minimap"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -420.0
+offset_top = 400.0
+offset_right = -420.0
+offset_bottom = 400.0
+grow_horizontal = 0
+script = ExtResource("87_0630i")
+player = NodePath("../../..")
+minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
+close_camera_distance = 85.49
+far_camera_distance = 250.0
+
+[node name="MiniMapMarginContainer2" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -44.605
+offset_top = -398.705
+offset_right = 1039.4
+offset_bottom = 685.295
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer2"]
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 2
+texture = ExtResource("88_2cu3i")
+
+[node name="MiniMapMarginContainer" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -355.0
+offset_right = 571.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ViewFromAboveSubViewport" type="SubViewport" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+
+[node name="Camera3D" type="Camera3D" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+cull_mask = 1048573
+environment = SubResource("Environment_lv56h")
+projection = 1
+size = 85.49
+
+[node name="MaskTesxtRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
+clip_children = 1
+layout_mode = 2
+texture = ExtResource("89_8rmja")
+expand_mode = 2
+
+[node name="ViewportTextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+texture = SubResource("ViewportTexture_0630i")
+
+[node name="MinimapToggleTextMarginContainer" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 367.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MiraV3/UI/PlayerHUD/MiniMap/MinimapToggleTextMarginContainer"]
+layout_mode = 2
+
+[node name="MinimapToggleTextLabel" type="Label" parent="MiraV3/UI/PlayerHUD/MiniMap/MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("90_vpth8")
+theme_override_font_sizes/font_size = 25
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("91_yqxsc")
+expand_mode = 2
+
+[node name="MinimapToggleTextLabel3" type="Label" parent="MiraV3/UI/PlayerHUD/MiniMap/MinimapToggleTextMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("90_vpth8")
+theme_override_font_sizes/font_size = 25
+text = " to toggle minimap zoom"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_ehciv")
@@ -25049,7 +25168,6 @@ skeleton = NodePath("../..")
 [editable path="MiraV3"]
 [editable path="MiraV3/UI/PlayerHUD"]
 [editable path="MiraV3/UI/PlayerHUD/ScoringSystem"]
-[editable path="MiraV3/UI/PlayerHUD/MiniMap"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]

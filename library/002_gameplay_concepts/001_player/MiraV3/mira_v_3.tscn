@@ -1,4 +1,4 @@
-[gd_scene load_steps=186 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=184 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -26,7 +26,6 @@
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="16_71p4a"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="17_xk4dx"]
 [ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="18_bupnr"]
-[ext_resource type="PackedScene" uid="uid://d28v4tmjb7c51" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.tscn" id="19_8k2uq"]
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="19_v240w"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="20_a8wav"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="21_0mfp3"]
@@ -107,9 +106,6 @@ animations = [{
 "name": &"Action lines",
 "speed": 5.0
 }]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_8k2uq"]
-viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
 light_mode = 1
@@ -11101,16 +11097,6 @@ theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 70
 text = "You have X lives remaining"
 
-[node name="MiniMap" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "minimap_camera") instance=ExtResource("19_8k2uq")]
-layout_mode = 1
-player = NodePath("../../..")
-minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
-close_camera_distance = 85.49
-far_camera_distance = 250.0
-
-[node name="ViewportTextureRect" parent="UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect" index="0"]
-texture = SubResource("ViewportTexture_8k2uq")
-
 [node name="Pause_pannel" type="Control" parent="UI/PlayerHUD" node_paths=PackedStringArray("scoring_system")]
 process_mode = 3
 visible = false
@@ -12810,7 +12796,6 @@ autostart = true
 
 [editable path="UI/PlayerHUD"]
 [editable path="UI/PlayerHUD/ScoringSystem"]
-[editable path="UI/PlayerHUD/MiniMap"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="EndGamePannel"]
