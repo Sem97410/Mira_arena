@@ -7,5 +7,5 @@ render_priority = 0
 shader = ExtResource("1_vrt5t")
 shader_parameter/outline_thickness = 0.001
 shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/depth_sensitivity = 0.002
+shader_parameter/depth_sensitivity = 0.005
 shader_parameter/normal_sensitivity = 0.3
