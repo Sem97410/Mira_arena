@@ -1,4 +1,4 @@
-[gd_scene load_steps=796 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=791 format=4 uid="uid://ddwwsd5jxgq35"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="1_71jrj"]
@@ -8,13 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c30l81sqhlqad" path="res://library/002_gameplay_concepts/004_level_system/001_SCENE/death_zone.tscn" id="5_ll27w"]
 [ext_resource type="Material" uid="uid://ct7o1r828htgm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/mat_arene.tres" id="6_w2xsd"]
 [ext_resource type="PackedScene" uid="uid://da14aowprjedb" path="res://library/002_gameplay_concepts/014_waves_system/wave_manager.tscn" id="19_wnpcy"]
-[ext_resource type="Script" uid="uid://bx4od3o6ojmtf" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.gd" id="20_hh6v5"]
 [ext_resource type="PackedScene" uid="uid://bos7irsrmtw16" path="res://library/002_gameplay_concepts/012_tools/spawner.tscn" id="20_pue36"]
 [ext_resource type="PackedScene" uid="uid://c6x03tnfna0py" path="res://library/002_gameplay_concepts/001_player/MiraV3/mira_v_3.tscn" id="20_wnpcy"]
-[ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/mask4.png" id="21_lbo7n"]
 [ext_resource type="PackedScene" uid="uid://dc3grpdd38fp1" path="res://library/002_gameplay_concepts/015_scoring/arena_info.tscn" id="21_pue36"]
-[ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="22_2o26k"]
-[ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="23_2o26k"]
 [ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="24_xsf83"]
 [ext_resource type="PackedScene" uid="uid://dwca7do31vyak" path="res://library/002_gameplay_concepts/007_health_item/health_item.tscn" id="25_2o26k"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="25_d6xic"]
@@ -13373,13 +13369,8 @@ script = ExtResource("27_uh1sj")
 octree_managers = [SubResource("Resource_nu15i"), SubResource("Resource_xgmmd"), SubResource("Resource_64h0l"), SubResource("Resource_rdcdl"), SubResource("Resource_o8qxn")]
 metadata/class = "Arborist"
 
-[sub_resource type="Environment" id="Environment_xsf83"]
-background_mode = 1
-background_color = Color(0.219608, 0.219608, 0.219608, 1)
-background_energy_multiplier = 0.5
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_d6xic"]
-viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_vlq57"]
+viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
 
 [sub_resource type="Animation" id="Animation_nw7xs"]
 resource_name = "FluggdrasilStartAnimation"
@@ -13737,104 +13728,14 @@ max_remaining_lives = 3
 delay_before_respawn = 1.0
 player_dash_countdown = 0.5
 
-[node name="MiniMap" type="Control" parent="MiraV3/UI/PlayerHUD" index="4" node_paths=PackedStringArray("player", "minimap_camera") groups=["minimap"]]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -390.0
-offset_top = 395.0
-offset_right = -390.0
-offset_bottom = 395.0
-grow_horizontal = 0
-script = ExtResource("20_hh6v5")
-player = NodePath("../../..")
-minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
-close_camera_distance = 85.49
-far_camera_distance = 150.0
+[node name="ScoringSystem" parent="MiraV3/UI/PlayerHUD" index="2"]
+bonus_text_color = Color(0.818723, 0.781252, 0, 1)
 
-[node name="MiniMapMarginContainer2" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -44.605
-offset_top = -398.705
-offset_right = 1039.4
-offset_bottom = 685.295
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+[node name="MiniMap" parent="MiraV3/UI/PlayerHUD" index="4"]
+far_camera_distance = 175.0
 
-[node name="TextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer2"]
-modulate = Color(1, 1, 1, 0.7)
-layout_mode = 2
-texture = ExtResource("21_lbo7n")
-
-[node name="MiniMapMarginContainer" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -355.0
-offset_right = 571.0
-offset_bottom = 217.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="ViewFromAboveSubViewport" type="SubViewport" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
-snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
-
-[node name="Camera3D" type="Camera3D" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
-cull_mask = 1048573
-environment = SubResource("Environment_xsf83")
-projection = 1
-size = 85.49
-
-[node name="MaskTesxtRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer"]
-clip_children = 1
-layout_mode = 2
-texture = ExtResource("22_2o26k")
-expand_mode = 2
-
-[node name="ViewportTextureRect" type="TextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect"]
-layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 1.0
-texture = SubResource("ViewportTexture_d6xic")
-
-[node name="MinimapToggleTextMarginContainer" type="MarginContainer" parent="MiraV3/UI/PlayerHUD/MiniMap"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_right = 367.0
-offset_bottom = 401.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = -20
-theme_override_constants/margin_bottom = 370
-
-[node name="MinimapToggleTextLabel" type="Label" parent="MiraV3/UI/PlayerHUD/MiniMap/MinimapToggleTextMarginContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("23_2o26k")
-theme_override_font_sizes/font_size = 25
-text = "Press left stick to toggle minimap zoom"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ViewportTextureRect" parent="MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect" index="0"]
+texture = SubResource("ViewportTexture_vlq57")
 
 [node name="Skeleton3D" parent="MiraV3/Meshes/Group/DeformationSystem" index="0"]
 bones/1/rotation = Quaternion(0.407748, 0.546671, 0.419798, 0.598883)
@@ -13956,6 +13857,10 @@ layers = 2
 [node name="Ball" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge/Charge" index="3"]
 layers = 2
 
+[node name="PlayerMinimapIndicatorSprite3D" parent="MiraV3/Meshes" index="4"]
+minimap_indicator_close_size = 0.5
+minimap_indicator_far_size = 1.5
+
 [node name="AnimationTree" parent="MiraV3" index="3"]
 parameters/MiraAnimations/ChargedAttackSwingPhaseBlendTree/Blend2/blend_amount = 0
 parameters/MiraAnimations/Combo3BlendTree/Blend2/blend_amount = 0
@@ -14059,6 +13964,7 @@ mesh = SubResource("SphereMesh_2o26k")
 [editable path="MiraV3"]
 [editable path="MiraV3/UI/PlayerHUD"]
 [editable path="MiraV3/UI/PlayerHUD/ScoringSystem"]
+[editable path="MiraV3/UI/PlayerHUD/MiniMap"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="MiraV3/EndGamePannel"]

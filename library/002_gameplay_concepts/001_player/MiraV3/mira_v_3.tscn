@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=4 uid="uid://c6x03tnfna0py"]
+[gd_scene load_steps=186 format=4 uid="uid://c6x03tnfna0py"]
 
 [ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="1_wj3we"]
 [ext_resource type="PackedScene" uid="uid://dndmd7b13m4ab" path="res://library/002_gameplay_concepts/006_VFX/001_scene/walk.tscn" id="2_5lelo"]
@@ -26,11 +26,16 @@
 [ext_resource type="Material" uid="uid://btpcba0l0ekl" path="res://library/002_gameplay_concepts/001_player/Texture/material/cloth_material/mat_shirt_material.tres" id="16_71p4a"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="17_xk4dx"]
 [ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="18_bupnr"]
+[ext_resource type="PackedScene" uid="uid://d28v4tmjb7c51" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.tscn" id="19_8k2uq"]
 [ext_resource type="Texture2D" uid="uid://bqgqseb0d724m" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_Normal.png" id="19_v240w"]
 [ext_resource type="PackedScene" uid="uid://x04g8nuvnr68" path="res://library/002_gameplay_concepts/006_VFX/001_scene/Third_attack.tscn" id="20_a8wav"]
 [ext_resource type="PackedScene" uid="uid://dmvq4s6nkkua6" path="res://library/002_gameplay_concepts/006_VFX/001_scene/CHARGE_Attack_Charge.tscn" id="21_0mfp3"]
+[ext_resource type="Texture2D" uid="uid://d1tn3vl7hl1ly" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/Iinput_button_x.png" id="21_fpcry"]
 [ext_resource type="Texture2D" uid="uid://btrhqrbiuf8hk" path="res://library/002_gameplay_concepts/016_minimaps/player_indicator.png" id="21_tsm77"]
+[ext_resource type="Texture2D" uid="uid://buvsbrrh4aguc" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button_y.png" id="22_yvt7c"]
+[ext_resource type="Texture2D" uid="uid://bnr4aladucwp8" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button_lb.png" id="23_e3ulf"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://mig0o6j6cs6i" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/animation_logic_v2.tres" id="23_oc1db"]
+[ext_resource type="Texture2D" uid="uid://cgo10n36kahhi" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button.png" id="24_oa0oc"]
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="27_1yggv"]
@@ -79,9 +84,6 @@
 [ext_resource type="Shader" uid="uid://cf00bqyai3jiw" path="res://library/002_gameplay_concepts/003_enemy/v_02/005_mortal_slime/Enemy_Mortar/vfx/Lock/Particles_Sol.tres" id="68_aha3o"]
 [ext_resource type="PackedScene" uid="uid://enaoa725ud25" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.tscn" id="75_aha3o"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
-light_mode = 1
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xk4dx"]
 shader = ExtResource("13_m4xck")
 shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
@@ -105,6 +107,12 @@ animations = [{
 "name": &"Action lines",
 "speed": 5.0
 }]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8k2uq"]
+viewport_path = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_viusc"]
+light_mode = 1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5lhpq"]
 resource_name = "Hat"
@@ -10148,280 +10156,6 @@ charged_attack_damage = 100.0
 
 [node name="UI" type="Node" parent="."]
 
-[node name="Pause_pannel" type="Control" parent="UI" node_paths=PackedStringArray("scoring_system")]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-script = ExtResource("25_dfj4j")
-scoring_system = NodePath("../PlayerHUD/ScoringSystem")
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/Pause_pannel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackGroundClockImage" type="TextureRect" parent="UI/Pause_pannel/MarginContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("26_dv1vs")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="UI/Pause_pannel"]
-modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Buttons_container" type="VBoxContainer" parent="UI/Pause_pannel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -56.5
-offset_right = 48.0
-offset_bottom = 56.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Resume" type="Button" parent="UI/Pause_pannel/Buttons_container"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../Quit game")
-focus_neighbor_bottom = NodePath("../Reload")
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 56
-text = "Resume"
-
-[node name="Reload" type="Button" parent="UI/Pause_pannel/Buttons_container"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../Resume")
-focus_neighbor_bottom = NodePath("../Main menu")
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 56
-text = "Reload scene"
-
-[node name="Main menu" type="Button" parent="UI/Pause_pannel/Buttons_container"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Reload")
-focus_neighbor_bottom = NodePath("../Settings")
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 56
-text = "Main menu"
-
-[node name="Settings" type="Button" parent="UI/Pause_pannel/Buttons_container"]
-modulate = Color(0.439049, 0.439049, 0.439049, 1)
-material = SubResource("CanvasItemMaterial_viusc")
-layout_mode = 2
-focus_neighbor_top = NodePath("../Main menu")
-focus_neighbor_bottom = NodePath("../Quit game")
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 56
-text = "Settings"
-
-[node name="Quit game" type="Button" parent="UI/Pause_pannel/Buttons_container"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Settings")
-focus_neighbor_bottom = NodePath("../Resume")
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 56
-text = "Quit game"
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Pause_pannel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 132.0
-grow_horizontal = 2
-
-[node name="Pause text" type="Label" parent="UI/Pause_pannel/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("28_rwcnu")
-theme_override_font_sizes/font_size = 96
-text = "Pause menu"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="ReloadConfirmationPannel" type="PanelContainer" parent="UI/Pause_pannel"]
-visible = false
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -293.425
-offset_top = -118.5
-offset_right = 306.575
-offset_bottom = 131.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause_pannel/ReloadConfirmationPannel"]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="ConfirmationText" type="Label" parent="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("28_rwcnu")
-theme_override_font_sizes/font_size = 40
-text = "Are you sure that you want to reload this level? "
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 185
-alignment = 1
-
-[node name="YesButton" type="Button" parent="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "Yes"
-
-[node name="NoButton" type="Button" parent="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "No"
-
-[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="UI/Pause_pannel"]
-visible = false
-custom_minimum_size = Vector2(548.33, 300)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -274.165
-offset_top = -197.795
-offset_right = 274.165
-offset_bottom = 102.205
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ConfirmationText" type="Label" parent="UI/Pause_pannel/MainMenuConfirmationPannel"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("28_rwcnu")
-theme_override_font_sizes/font_size = 30
-text = "Are you sure you want to go back to the main menu? "
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/Pause_pannel/MainMenuConfirmationPannel"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 210
-alignment = 1
-
-[node name="YesButton" type="Button" parent="UI/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "Yes"
-
-[node name="NoButton" type="Button" parent="UI/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "No"
-
-[node name="QuitConfirmationPannel" type="PanelContainer" parent="UI/Pause_pannel"]
-visible = false
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = -202.0
-offset_right = 302.0
-offset_bottom = 98.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ConfirmationText" type="Label" parent="UI/Pause_pannel/QuitConfirmationPannel"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("28_rwcnu")
-theme_override_font_sizes/font_size = 30
-text = "Are you sure that you want to quit? "
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/Pause_pannel/QuitConfirmationPannel"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 215
-alignment = 1
-
-[node name="YesButton" type="Button" parent="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "Yes"
-
-[node name="NoButton" type="Button" parent="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
-layout_mode = 2
-theme = ExtResource("27_1yggv")
-theme_override_font_sizes/font_size = 30
-text = "No"
-
-[node name="NotReadyLabel" type="Label" parent="UI/Pause_pannel"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = -46.0
-offset_right = 211.0
-offset_bottom = -18.0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("28_rwcnu")
-theme_override_font_sizes/font_size = 45
-text = "Not available yet ...."
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="YouAreDeadPanel" parent="UI" instance=ExtResource("11_x4wy3")]
 visible = false
 
@@ -11367,6 +11101,369 @@ theme_override_fonts/font = ExtResource("28_rwcnu")
 theme_override_font_sizes/font_size = 70
 text = "You have X lives remaining"
 
+[node name="MiniMap" parent="UI/PlayerHUD" node_paths=PackedStringArray("player", "minimap_camera") instance=ExtResource("19_8k2uq")]
+layout_mode = 1
+player = NodePath("../../..")
+minimap_camera = NodePath("MiniMapMarginContainer/ViewFromAboveSubViewport/Camera3D")
+close_camera_distance = 85.49
+far_camera_distance = 250.0
+
+[node name="ViewportTextureRect" parent="UI/PlayerHUD/MiniMap/MiniMapMarginContainer/MaskTesxtRect" index="0"]
+texture = SubResource("ViewportTexture_8k2uq")
+
+[node name="Pause_pannel" type="Control" parent="UI/PlayerHUD" node_paths=PackedStringArray("scoring_system")]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("25_dfj4j")
+scoring_system = NodePath("../ScoringSystem")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/PlayerHUD/Pause_pannel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGroundClockImage" type="TextureRect" parent="UI/PlayerHUD/Pause_pannel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("26_dv1vs")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="UI/PlayerHUD/Pause_pannel"]
+modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons_container" type="VBoxContainer" parent="UI/PlayerHUD/Pause_pannel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -56.5
+offset_right = 48.0
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="UI/PlayerHUD/Pause_pannel/Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Quit game")
+focus_neighbor_bottom = NodePath("../Reload")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Resume"
+
+[node name="Reload" type="Button" parent="UI/PlayerHUD/Pause_pannel/Buttons_container"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Main menu")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Reload scene"
+
+[node name="Main menu" type="Button" parent="UI/PlayerHUD/Pause_pannel/Buttons_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Reload")
+focus_neighbor_bottom = NodePath("../Settings")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Main menu"
+
+[node name="Settings" type="Button" parent="UI/PlayerHUD/Pause_pannel/Buttons_container"]
+modulate = Color(0.439049, 0.439049, 0.439049, 1)
+material = SubResource("CanvasItemMaterial_viusc")
+layout_mode = 2
+focus_neighbor_top = NodePath("../Main menu")
+focus_neighbor_bottom = NodePath("../Quit game")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Settings"
+
+[node name="Quit game" type="Button" parent="UI/PlayerHUD/Pause_pannel/Buttons_container"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Resume")
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 56
+text = "Quit game"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PlayerHUD/Pause_pannel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Pause text" type="Label" parent="UI/PlayerHUD/Pause_pannel/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 96
+text = "Pause menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ReloadConfirmationPannel" type="PanelContainer" parent="UI/PlayerHUD/Pause_pannel"]
+visible = false
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.425
+offset_top = -118.5
+offset_right = 306.575
+offset_bottom = 131.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ConfirmationText" type="Label" parent="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 40
+text = "Are you sure that you want to reload this level? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 185
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="MainMenuConfirmationPannel" type="PanelContainer" parent="UI/PlayerHUD/Pause_pannel"]
+visible = false
+custom_minimum_size = Vector2(548.33, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.165
+offset_top = -197.795
+offset_right = 274.165
+offset_bottom = 102.205
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure you want to go back to the main menu? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 210
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="QuitConfirmationPannel" type="PanelContainer" parent="UI/PlayerHUD/Pause_pannel"]
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -202.0
+offset_right = 302.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationText" type="Label" parent="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure that you want to quit? "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationButtonContainer" type="HBoxContainer" parent="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 215
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer"]
+layout_mode = 2
+theme = ExtResource("27_1yggv")
+theme_override_font_sizes/font_size = 30
+text = "No"
+
+[node name="NotReadyLabel" type="Label" parent="UI/PlayerHUD/Pause_pannel"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -46.0
+offset_right = 211.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("28_rwcnu")
+theme_override_font_sizes/font_size = 45
+text = "Not available yet ...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputVisualMarginContainer" type="MarginContainer" parent="UI/PlayerHUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerHUD/InputVisualMarginContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LightAttackHBoxContainer" type="HBoxContainer" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LightAttackLabel" type="Label" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/LightAttackHBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_xk4dx")
+theme_override_font_sizes/font_size = 20
+text = "Light attack"
+
+[node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/LightAttackHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("21_fpcry")
+expand_mode = 2
+
+[node name="ChargedAttackHBoxContainer2" type="HBoxContainer" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ChargedAttackLabel" type="Label" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/ChargedAttackHBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_xk4dx")
+theme_override_font_sizes/font_size = 20
+text = "Charged attack"
+
+[node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/ChargedAttackHBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("22_yvt7c")
+expand_mode = 2
+
+[node name="DodgeHBoxContainer3" type="HBoxContainer" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DodgeLabel" type="Label" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/DodgeHBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_xk4dx")
+theme_override_font_sizes/font_size = 20
+text = "Light attack"
+
+[node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/DodgeHBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("23_e3ulf")
+expand_mode = 2
+
+[node name="JumpHBoxContainer4" type="HBoxContainer" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="JumpLabel" type="Label" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/JumpHBoxContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_xk4dx")
+theme_override_font_sizes/font_size = 20
+text = "Jump"
+
+[node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/JumpHBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("24_oa0oc")
+expand_mode = 2
+
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
 
 [node name="Group" type="Node3D" parent="Meshes"]
@@ -12193,6 +12290,8 @@ transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, 0.5, 0, -1, -2.18557e-08, 0,
 layers = 1024
 texture = ExtResource("21_tsm77")
 script = ExtResource("41_rb3gw")
+minimap_indicator_close_size = 0.4
+minimap_indicator_far_size = 1.4
 
 [node name="MainCollisionShape" type="CollisionShape3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.851973, 0)
@@ -12636,7 +12735,7 @@ debug_color = Color(0, 0.494, 0.196, 0.696)
 
 [node name="EndGamePannel" parent="." node_paths=PackedStringArray("end_game_panel", "pause_panel", "death_panel") instance=ExtResource("51_7kj1n")]
 end_game_panel = NodePath("Control")
-pause_panel = NodePath("../UI/Pause_pannel")
+pause_panel = NodePath("../UI/PlayerHUD/Pause_pannel")
 death_panel = NodePath("../UI/death_pannel")
 
 [node name="Control" parent="EndGamePannel" index="0"]
@@ -12651,18 +12750,6 @@ texture = ExtResource("55_rs7t3")
 [node name="CheckDeathTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_button_down"]
-[connection signal="pressed" from="UI/Pause_pannel/Buttons_container/Resume" to="UI/Pause_pannel" method="_on_resume_pressed"]
-[connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Reload" to="UI/Pause_pannel" method="_on_reload_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Main menu" to="UI/Pause_pannel" method="_on_main_menu_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Settings" to="UI/Pause_pannel" method="_on_settings_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/Buttons_container/Quit game" to="UI/Pause_pannel" method="_on_quit_game_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="UI/Pause_pannel" method="_on_reload_yes_button_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="UI/Pause_pannel" method="_on_reload_no_button_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/Pause_pannel" method="_on_main_menu_yes_button_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/Pause_pannel" method="_on_main_menu_no_button_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/Pause_pannel" method="_on_yes_button_button_down"]
-[connection signal="button_down" from="UI/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/Pause_pannel" method="_on_no_button_button_down"]
 [connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Reload" to="UI/death_pannel" method="_on_reload_button_down"]
 [connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Main menu" to="UI/death_pannel" method="_on_main_menu_button_down"]
 [connection signal="button_down" from="UI/death_pannel/GameOverGeneralContainer/VBoxContainer/ButtonsMarginContainer/Buttons_container/Quit game" to="UI/death_pannel" method="_on_quit_game_button_down"]
@@ -12681,6 +12768,18 @@ autostart = true
 [connection signal="button_down" from="UI/VictoryPanel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/VictoryPanel" method="_on_main_menu_no_button_button_down"]
 [connection signal="button_down" from="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/VictoryPanel" method="_on_yes_button_button_down"]
 [connection signal="button_down" from="UI/VictoryPanel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/VictoryPanel" method="_on_no_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Resume" to="UI/PlayerHUD/Pause_pannel" method="_on_resume_button_down"]
+[connection signal="pressed" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Resume" to="UI/PlayerHUD/Pause_pannel" method="_on_resume_pressed"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Reload" to="UI/PlayerHUD/Pause_pannel" method="_on_reload_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Main menu" to="UI/PlayerHUD/Pause_pannel" method="_on_main_menu_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Settings" to="UI/PlayerHUD/Pause_pannel" method="_on_settings_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/Buttons_container/Quit game" to="UI/PlayerHUD/Pause_pannel" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/YesButton" to="UI/PlayerHUD/Pause_pannel" method="_on_reload_yes_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/ReloadConfirmationPannel/VBoxContainer/ConfirmationButtonContainer/NoButton" to="UI/PlayerHUD/Pause_pannel" method="_on_reload_no_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/PlayerHUD/Pause_pannel" method="_on_main_menu_yes_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/MainMenuConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/PlayerHUD/Pause_pannel" method="_on_main_menu_no_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/YesButton" to="UI/PlayerHUD/Pause_pannel" method="_on_yes_button_button_down"]
+[connection signal="button_down" from="UI/PlayerHUD/Pause_pannel/QuitConfirmationPannel/ConfirmationButtonContainer/NoButton" to="UI/PlayerHUD/Pause_pannel" method="_on_no_button_button_down"]
 [connection signal="area_entered" from="Meshes/ChargedAttackSystemArea3D" to="." method="_on_charged_attack_system_area_3d_area_entered"]
 [connection signal="state_entered" from="StateChart/root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/root/Idle" to="." method="_on_idle_state_exited"]
@@ -12711,6 +12810,7 @@ autostart = true
 
 [editable path="UI/PlayerHUD"]
 [editable path="UI/PlayerHUD/ScoringSystem"]
+[editable path="UI/PlayerHUD/MiniMap"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Third_Attack"]
 [editable path="Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D/BoneAttachment3D/Charge"]
 [editable path="EndGamePannel"]
