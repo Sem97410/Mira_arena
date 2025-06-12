@@ -177,7 +177,7 @@ layers = 1024
 texture = ExtResource("8_xy22r")
 script = ExtResource("9_l8g3y")
 minimap_indicator_close_size = 0.4
-minimap_indicator_far_size = 1.5
+minimap_indicator_far_size = 1.0
 
 [node name="StateChart" type="Node" parent="."]
 process_mode = 1
