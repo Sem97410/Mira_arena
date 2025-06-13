@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/Font/mengka.otf" id="3_426ai"]
+[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
 [ext_resource type="Texture2D" uid="uid://dqjg2cd2b2xwv" path="res://library/002_gameplay_concepts/013_main_menu/LogoBlancSF.png" id="5_vg8no"]
-[ext_resource type="VideoStream" uid="uid://dweo3ur4vrhmv" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinematique_Layout_UE5_V1_1.ogv" id="6_3rw7x"]
 [ext_resource type="Theme" uid="uid://ofw4ecxjby2m" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_pannel.tres" id="6_e4my3"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
 [ext_resource type="Texture2D" uid="uid://btwe8uepc4sob" path="res://library/002_gameplay_concepts/IllustrationLevel1.png" id="7_ruk6f"]
 [ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="9_bafky"]
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="9_lic3j"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -80,7 +80,7 @@ not_ready_pannel = NodePath("Not_ready_pannel")
 video_player = NodePath("../VideoControl/VideoContainer/AspectRatioContainer/VideoStreamPlayer")
 video_player_container = NodePath("../VideoControl")
 skip_video_button = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton")
-video_length = 125.0
+video_length = 72.0
 map_selection_container = NodePath("LevelSelectionMargin")
 map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonButton")
 map_1_information = NodePath("Map1Information")
@@ -631,7 +631,7 @@ stretch_mode = 3
 texture_filter = 1
 clip_contents = true
 layout_mode = 2
-stream = ExtResource("6_3rw7x")
+stream = ExtResource("13_lic3j")
 expand = true
 
 [node name="SkipButtonContainer" type="MarginContainer" parent="VideoControl/VideoContainer"]
