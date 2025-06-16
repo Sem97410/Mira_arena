@@ -15,6 +15,7 @@ var arena_id : int
 @export var score_log_text_label : Label
 @export var score_log_number_label : Label
 
+@onready var is_in_current_wave : bool = false
 
 @export var bonus_text_color : Color = Color(0.6, 0.1, 0.1) 
 @export var malus_text_color : Color = Color(0.6, 0.1, 0.1)
@@ -226,8 +227,6 @@ func set_up_group_score(value : int) -> void :
 	bonus_group_point_value += value
 	bonus_group_point_label.text = "+"+ str(bonus_group_point_value)
 
-	
-	
 	set_up_group_point_counter()
 
 func set_up_group_point_counter() -> void:
@@ -264,7 +263,7 @@ func player_took_damages() -> void :
 	
 	if player.player_current_hp > 0:
 		score_log_text_label.text = "Hit :"
-		malus_group_point_label.text = "- " + str(hit_malus_point)
+		malus_group_point_label.text = " - " + str(hit_malus_point)
 		total_score_value -=  hit_malus_point
 
 	else :
@@ -395,7 +394,8 @@ func set_up_current_wave_label() -> void :
 	current_wave_number_label.text = str(wave_manager.current_wave)
 
 func set_up_remaining_enemies_label() -> void : 
-	remaining_enemies_number_label.text = str(wave_manager.max_enemies_in_this_wave)
+	if is_in_current_wave:
+		remaining_enemies_number_label.text = str(wave_manager.enemies_killed_in_this_wave) + " / " + str(wave_manager.max_enemies_in_this_wave)
 # --------------------------------------------------------------------------
 
 # DEBUG

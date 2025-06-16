@@ -130,6 +130,7 @@ func _process(delta: float) -> void:
 
 func start_wave() -> void : 
 	number_of_spawned_enemy = 0
+	scoring_system.is_in_current_wave = true	
 	
 	check_if_reset_enemies_count() #Check if we need to reset the wave cycle (ex : after wave 5)
 	
@@ -208,6 +209,7 @@ func check_if_can_start_new_wave() -> void:
 
 			start_wave()
 
+
 #---
 
 func launch_map_introduction() -> void : 
@@ -244,6 +246,9 @@ func launch_pause_time_after_wave() -> void :
 	announce_panel.visible = true
 	announce_label.text = "Wawe " + str(current_wave) + " : Completed"
 	kill_all_rest_enemies()
+	scoring_system.is_in_current_wave = false
+	scoring_system.remaining_enemies_number_label.text = str(max_enemies_in_this_wave) + " / " + str(max_enemies_in_this_wave)
+	print("Sensé changer la et afficher", str(max_enemies_in_this_wave) + " / " + str(max_enemies_in_this_wave))
 
 
 	#Add bonus point at the end of the current wave
@@ -269,6 +274,8 @@ func launch_pause_time_after_wave() -> void :
 	await get_tree().create_timer(2.0, false).timeout
 	
 	announce_panel.visible = false
+	
+	scoring_system.is_in_current_wave = true	
 	
 #---
 
