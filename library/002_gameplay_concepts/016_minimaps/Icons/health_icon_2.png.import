@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5x8ylb75xcu2"
-path.s3tc="res://.godot/imported/enemy_indicator.png-3a03c9ce5f010a5e5717c5575ad50ff5.s3tc.ctex"
+uid="uid://ctc60o6lpiv45"
+path.s3tc="res://.godot/imported/health_icon_2.png-1e2484d4c0f61a705e6ffafd2629e6f6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/016_minimaps/enemy_indicator.png"
-dest_files=["res://.godot/imported/enemy_indicator.png-3a03c9ce5f010a5e5717c5575ad50ff5.s3tc.ctex"]
+source_file="res://library/002_gameplay_concepts/016_minimaps/Icons/health_icon_2.png"
+dest_files=["res://.godot/imported/health_icon_2.png-1e2484d4c0f61a705e6ffafd2629e6f6.s3tc.ctex"]
 
 [params]
 
@@ -27,7 +27,7 @@ mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=true
+process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false

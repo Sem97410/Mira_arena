@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=4 uid="uid://dwca7do31vyak"]
+[gd_scene load_steps=33 format=4 uid="uid://dwca7do31vyak"]
 
 [ext_resource type="Script" uid="uid://cw3vje0x307dl" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
-[ext_resource type="Texture2D" uid="uid://d3c78t1qmxq0k" path="res://library/002_gameplay_concepts/016_minimaps/health_icon.png" id="2_4qkro"]
+[ext_resource type="Texture2D" uid="uid://ctc60o6lpiv45" path="res://library/002_gameplay_concepts/016_minimaps/Icons/health_icon_2.png" id="2_4qkro"]
+[ext_resource type="PackedScene" uid="uid://chl7rt0d8go6e" path="res://library/002_gameplay_concepts/007_health_item/Meshes/health_item_socle.tscn" id="3_6fcr5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
 radius = 4.0
@@ -306,9 +307,9 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oxjvl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyrin"]
+albedo_color = Color(0.623529, 0.423529, 0.662745, 1)
 emission_enabled = true
-emission = Color(0.127692, 0.548839, 0, 1)
-emission_energy_multiplier = 10.0
+emission = Color(0.623529, 0.423529, 0.662745, 1)
 disable_receive_shadows = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1mtk"]
@@ -391,7 +392,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [10.0, 60.0, 10.0]
+"values": [1.0, 5.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_gwskb"]
@@ -405,17 +406,18 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qkro"]
-albedo_color = Color(0.361317, 0.762155, 7.70092e-07, 1)
+albedo_color = Color(0.623529, 0.423529, 0.662745, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_6fcr5"]
 height = 0.2
 
-[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap")]
+[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap", "health_item_visual_effect")]
 script = ExtResource("1_w6eme")
 indication_label = NodePath("IndicationLabel3D")
 health_point = 25.0
 health_potion_mesh = NodePath("Fiole_soin")
 health_indicator_minimap = NodePath("HealthItemMinimapIndicatorSprite3D")
+health_item_visual_effect = NodePath("health_item_socle/Fountain_Idle/Soin/Effects")
 
 [node name="ItemArea3D" type="Area3D" parent="."]
 transform = Transform3D(-0.777962, 0.314155, -0.544132, -0.314156, 0.555509, 0.76988, 0.544134, 0.76988, -0.333471, 0, 0, 0)
@@ -483,11 +485,12 @@ autoplay = "RESET"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Fiole_soin"]
 transform = Transform3D(0.977264, -0.348179, 0.397862, -8.17622e-08, 0.836144, 0.731731, -0.528699, -0.643585, 0.73542, 0, 0, 0)
-light_color = Color(0.462194, 0.876007, 0, 1)
+light_color = Color(0.623529, 0.423529, 0.662745, 1)
 light_energy = 2.0
 
 [node name="Socle" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.731414, 0)
+visible = false
 material_overlay = SubResource("StandardMaterial3D_4qkro")
 mesh = SubResource("CylinderMesh_6fcr5")
 
@@ -507,5 +510,10 @@ transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 
 layers = 1024
 texture = ExtResource("2_4qkro")
 
+[node name="health_item_socle" parent="." instance=ExtResource("3_6fcr5")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.83, 0)
+
 [connection signal="area_entered" from="ItemArea3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="ItemArea3D" to="." method="_on_area_3d_area_exited"]
+
+[editable path="health_item_socle"]

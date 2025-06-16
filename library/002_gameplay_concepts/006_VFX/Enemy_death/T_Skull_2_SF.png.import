@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t2xqngr2gsxl"
-path="res://.godot/imported/minimap_mask.png-c02ea56669fc4fa109d48426b23efdac.ctex"
+uid="uid://74no3bexud1q"
+path="res://.godot/imported/T_Skull_2_SF.png-fc8b1fc7aed36371288d6231969401d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png"
-dest_files=["res://.godot/imported/minimap_mask.png-c02ea56669fc4fa109d48426b23efdac.ctex"]
+source_file="res://library/002_gameplay_concepts/006_VFX/Enemy_death/T_Skull_2_SF.png"
+dest_files=["res://.godot/imported/T_Skull_2_SF.png-fc8b1fc7aed36371288d6231969401d0.ctex"]
 
 [params]
 

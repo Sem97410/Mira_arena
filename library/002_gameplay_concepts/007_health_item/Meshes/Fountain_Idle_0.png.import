@@ -2,16 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drya5ek22p1su"
-path="res://.godot/imported/mask4.png-be2fdec353fe7deb36b3964bbf30d81a.ctex"
+uid="uid://bcb7or0fkn7q2"
+path="res://.godot/imported/Fountain_Idle_0.png-655f721124753eec2a12661ad99b230e.ctex"
 metadata={
 "vram_texture": false
+}
+generator_parameters={
+"md5": "abe8d303cd0b0990cc5965060c51703d"
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/016_minimaps/mask4.png"
-dest_files=["res://.godot/imported/mask4.png-be2fdec353fe7deb36b3964bbf30d81a.ctex"]
+source_file="res://library/002_gameplay_concepts/007_health_item/Meshes/Fountain_Idle_0.png"
+dest_files=["res://.godot/imported/Fountain_Idle_0.png-655f721124753eec2a12661ad99b230e.ctex"]
 
 [params]
 
@@ -21,7 +24,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

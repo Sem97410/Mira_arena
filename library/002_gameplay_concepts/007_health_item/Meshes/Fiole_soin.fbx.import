@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ctu6ejxtegdtg"
-path="res://.godot/imported/Fiole_soin.fbx-27aa71d919d9655b4d0f824896a8f5a2.scn"
+path="res://.godot/imported/Fiole_soin.fbx-08a1b37ba49a0f5515fb7f9c74cce08f.scn"
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/007_health_item/Fiole_soin.fbx"
-dest_files=["res://.godot/imported/Fiole_soin.fbx-27aa71d919d9655b4d0f824896a8f5a2.scn"]
+source_file="res://library/002_gameplay_concepts/007_health_item/Meshes/Fiole_soin.fbx"
+dest_files=["res://.godot/imported/Fiole_soin.fbx-08a1b37ba49a0f5515fb7f9c74cce08f.scn"]
 
 [params]
 

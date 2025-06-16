@@ -8,6 +8,7 @@ var wave_manager : WaveManager
 @onready var potion_was_used : bool = false 
 @onready var player_is_in_health_zone : bool = false
 @export var health_indicator_minimap : Sprite3D
+@export var health_item_visual_effect : Node3D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -49,9 +50,13 @@ func handle_label_visibility() -> void :
 
 func activate_health_potion() -> void : 
 	if player.player_current_hp == player.player_max_hp : 
+		indication_label.text = "Too much HP to use potion"
+		await get_tree().create_timer(1.5).timeout
+		indication_label.text = "Press [X] to use potion"
 		return
 	indication_label.text = " +" + str(health_point) + "HP"
 	health_potion_mesh.visible = false
+	health_item_visual_effect.visible = false
 	health_indicator_minimap.visible = false
 	
 	player.player_current_hp += health_point
@@ -64,6 +69,7 @@ func activate_health_potion() -> void :
 func reset_health_item() -> void : 
 	potion_was_used = false
 	health_potion_mesh.visible = true
+	health_item_visual_effect.visible = true
 	health_indicator_minimap.visible = true
 	indication_label.text = "Press [X] to use potion"
 
