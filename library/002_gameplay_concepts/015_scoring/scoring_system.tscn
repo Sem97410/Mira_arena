@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://enaoa725ud25"]
+[gd_scene load_steps=10 format=3 uid="uid://enaoa725ud25"]
 
 [ext_resource type="Script" uid="uid://dbr0vrw8k1fng" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.gd" id="1_mwx3n"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="2_2i26k"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dlvnvimbfwlj1" path="res://library/002_gameplay_concepts/002_UI/UI/Font/Optima_Italic.ttf" id="3_arsj0"]
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="3_xrk00"]
 [ext_resource type="Texture2D" uid="uid://bfhhkdnwo7k1r" path="res://library/002_gameplay_concepts/002_UI/Panel.png" id="6_arsj0"]
+[ext_resource type="Texture2D" uid="uid://bvhvne4cqkids" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/T_Skull_2.png" id="7_r73u3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xrk00"]
 shader = ExtResource("3_xrk00")
@@ -146,6 +147,11 @@ text = "0"
 horizontal_alignment = 3
 vertical_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_r73u3")
+expand_mode = 2
+
 [node name="SeparationLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
@@ -211,6 +217,11 @@ theme_override_font_sizes/font_size = 60
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_r73u3")
+expand_mode = 2
 
 [node name="DebugMarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
