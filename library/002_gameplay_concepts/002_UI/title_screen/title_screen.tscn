@@ -318,7 +318,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -6782,7 +6782,7 @@ metadata/_custom_type_script = "uid://bc7pailucq83t"
 [node name="Characters" type="Node3D" parent="Environnement"]
 
 [node name="Mira_title" type="Node3D" parent="Environnement/Characters"]
-transform = Transform3D(0.902428, 0, 0.430843, 0, 1, 0, -0.430843, 0, 0.902428, -3.28918, 1.0197, 3.34382)
+transform = Transform3D(0.902428, 0, 0.430843, 0, 1, 0, -0.430843, 0, 0.902428, -1.69983, 1.0197, 0.528772)
 
 [node name="Group" type="Node3D" parent="Environnement/Characters/Mira_title"]
 
@@ -7563,6 +7563,18 @@ transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.499
 [node name="flambeau_cassé2" parent="Mausolé_title_screen" instance=ExtResource("35_0uvq1")]
 transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.49979, 2.25629, 0.242804, 0.732838)
 
+[node name="flambeau_cassé3" parent="Mausolé_title_screen" instance=ExtResource("35_0uvq1")]
+transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.49979, 1.88422, -1.14886, 5.06519)
+
+[node name="flambeau_cassé4" parent="Mausolé_title_screen" instance=ExtResource("35_0uvq1")]
+transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.49979, 1.46365, -1.14886, 11.2106)
+
+[node name="flambeau_cassé5" parent="Mausolé_title_screen" instance=ExtResource("35_0uvq1")]
+transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.49979, -2.68093, -1.14886, 4.75277)
+
+[node name="flambeau_cassé6" parent="Mausolé_title_screen" instance=ExtResource("35_0uvq1")]
+transform = Transform3D(-0.49979, 0, 0.0145016, 0, 0.5, 0, -0.0145016, 0, -0.49979, -3.10151, -1.14886, 10.8982)
+
 [node name="Platform_start" type="Node3D" parent="Mausolé_title_screen"]
 transform = Transform3D(-0.115128, 0, -0.993351, 0, 1, 0, 0.993351, 0, -0.115128, 0.653795, -0.0144406, -0.463918)
 script = ExtResource("18_xo36d")
@@ -7617,7 +7629,7 @@ shape = SubResource("ConcavePolygonShape3D_w7y3h")
 [node name="OmniLight3D" type="OmniLight3D" parent="Crystal2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77736, 0)
 light_color = Color(0.151903, 0.456569, 0.659194, 1)
-light_energy = 0.395
+light_energy = 6.332
 light_volumetric_fog_energy = 1.175
 omni_range = 20.0
 
@@ -7660,7 +7672,7 @@ shape = SubResource("ConcavePolygonShape3D_w7y3h")
 [node name="OmniLight3D" type="OmniLight3D" parent="Crystal4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77736, 0)
 light_color = Color(0.151903, 0.456569, 0.659194, 1)
-light_energy = 0.645
+light_energy = 15.576
 light_volumetric_fog_energy = 1.5
 omni_range = 20.0
 
@@ -7975,7 +7987,7 @@ bones/41/rotation = Quaternion(0, 0, 0, 1)
 bones/41/scale = Vector3(1, 1, 1)
 
 [node name="Vorace" type="MeshInstance3D" parent="Vorace/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171565, 0.228635, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525562, 0.228635, 0.397457)
 mesh = SubResource("ArrayMesh_lk4sf")
 skin = SubResource("Skin_r2r3o")
 surface_material_override/0 = ExtResource("40_tfj5a")
