@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://enaoa725ud25"]
+[gd_scene load_steps=6 format=3 uid="uid://enaoa725ud25"]
 
 [ext_resource type="Script" uid="uid://dbr0vrw8k1fng" path="res://library/002_gameplay_concepts/015_scoring/scoring_system.gd" id="1_mwx3n"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="2_2i26k"]
-[ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="2_5vwmt"]
-[ext_resource type="FontFile" uid="uid://dlvnvimbfwlj1" path="res://library/002_gameplay_concepts/002_UI/UI/Font/Optima_Italic.ttf" id="3_arsj0"]
 [ext_resource type="Texture2D" uid="uid://bfhhkdnwo7k1r" path="res://library/002_gameplay_concepts/002_UI/Panel.png" id="6_arsj0"]
 [ext_resource type="Texture2D" uid="uid://74no3bexud1q" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/T_Skull_2_SF.png" id="6_r73u3"]
 
@@ -67,7 +65,6 @@ layout_mode = 2
 
 [node name="ResetCounterTextLabel" type="Label" parent="Control/ResetCounterMarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 25
 text = "Reset multiplicator"
 horizontal_alignment = 1
@@ -75,7 +72,6 @@ vertical_alignment = 1
 
 [node name="ResetCounterNumberLabel" type="Label" parent="Control/ResetCounterMarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_arsj0")
 theme_override_font_sizes/font_size = 25
 text = " 5.0"
 horizontal_alignment = 1
@@ -124,13 +120,11 @@ size_flags_horizontal = 4
 
 [node name="CurrentWaveTextLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/CurrentWaveHBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_arsj0")
 theme_override_font_sizes/font_size = 30
 text = "Current wave : "
 
 [node name="CurrentWaveNumberLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/CurrentWaveHBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 30
 text = "0"
 
@@ -139,13 +133,11 @@ layout_mode = 2
 
 [node name="RemainingEnemiesTextLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/RemainingEnemiesHBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_arsj0")
 theme_override_font_sizes/font_size = 25
 text = "Elimination goal : "
 
 [node name="RemainingEnemiesNumberLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/RemainingEnemiesHBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 25
 text = "0"
 
@@ -169,7 +161,6 @@ alignment = 1
 [node name="BonusGroupPointLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/LAMarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 3
@@ -195,7 +186,6 @@ text = "       "
 [node name="ScoreLogTextLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/LAMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/LogPointHBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.787785, 0, 0.265815, 1)
-theme_override_fonts/font = ExtResource("3_arsj0")
 theme_override_font_sizes/font_size = 17
 horizontal_alignment = 3
 vertical_alignment = 1
@@ -203,7 +193,6 @@ vertical_alignment = 1
 [node name="ScoreLogPointLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer/LAMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/LogPointHBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.787785, 0, 0.265815, 1)
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 17
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -219,14 +208,12 @@ stretch_mode = 5
 [node name="SeparationLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
-theme_override_fonts/font = ExtResource("2_5vwmt")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
 [node name="BonusGroupPointMultiplicatorLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/GetPointHBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.818723, 0.781252, 0, 1)
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 40
 text = "x 1"
 horizontal_alignment = 2
@@ -238,9 +225,8 @@ theme_override_constants/separation = 10
 
 [node name="TotalScoreTextLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_arsj0")
-theme_override_font_sizes/font_size = 50
-text = "Total score :"
+theme_override_font_sizes/font_size = 30
+text = "Souls Collected:"
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -251,12 +237,10 @@ size_flags_horizontal = 4
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.682072, 0, 0.322652, 1)
-theme_override_fonts/font = ExtResource("2_2i26k")
 text = "- 100"
 
 [node name="TotalScorePointLabel" type="Label" parent="Control/GroupPointMarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2i26k")
 theme_override_font_sizes/font_size = 60
 text = "0"
 horizontal_alignment = 1
