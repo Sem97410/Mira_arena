@@ -109,12 +109,12 @@ size = Vector3(7.33899, 3.896, 6.13184)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w8tny"]
 
-[sub_resource type="Sky" id="Sky_fijkq"]
+[sub_resource type="Sky" id="Sky_piews"]
 sky_material = SubResource("PanoramaSkyMaterial_w8tny")
 
 [sub_resource type="Environment" id="Environment_d7nw5"]
 background_mode = 2
-sky = SubResource("Sky_fijkq")
+sky = SubResource("Sky_piews")
 ambient_light_source = 3
 ambient_light_color = Color(0.122252, 0.122252, 0.122252, 1)
 ambient_light_sky_contribution = 0.0

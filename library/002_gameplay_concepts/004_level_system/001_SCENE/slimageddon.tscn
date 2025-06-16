@@ -1,4 +1,4 @@
-[gd_scene load_steps=1070 format=4 uid="uid://ddwwsd5jxgq35"]
+[gd_scene load_steps=1067 format=4 uid="uid://bcg5ca4i01xpc"]
 
 [ext_resource type="AudioStream" uid="uid://bv22h0ldhpsa7" path="res://library/002_gameplay_concepts/009_SFX/ambiance_sound_01.ogg" id="1_1jcri"]
 [ext_resource type="PackedScene" uid="uid://xdab2qa5grxv" path="res://library/002_gameplay_concepts/012_tools/fps_counter/fps_counter.tscn" id="1_71jrj"]
@@ -27,9 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://d2vj1623a1u1s" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/crystal_01/crystal.tscn" id="31_wch70"]
 [ext_resource type="PackedScene" uid="uid://bmb4050xbsjpt" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/paver/paver_litlle/paver_litlle_2.tscn" id="32_gfw52"]
 [ext_resource type="Texture2D" uid="uid://cyxboetxw2t6j" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Iinput_button_left_stick.png" id="32_r10nb"]
-[ext_resource type="Material" uid="uid://byxttwxihr5fd" path="res://library/002_gameplay_concepts/001_player/Texture/material/hat_material/mat_gold_ornement.tres" id="33_3u7mf"]
 [ext_resource type="PackedScene" uid="uid://8ah6cocaey3s" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/crystal_01/crystal_2.tscn" id="34_3u7mf"]
-[ext_resource type="Texture2D" uid="uid://crbwvvofki8ft" path="res://library/002_gameplay_concepts/001_player/Texture/Vorace_BaseColor.png" id="34_r10nb"]
 [ext_resource type="PackedScene" uid="uid://b187c5in4fg3j" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/Mausolé/02_mausole_sd.tscn" id="35_r10nb"]
 [ext_resource type="PackedScene" uid="uid://cy1sgbf8kwyhd" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/02_new_asset/flambeau/flambeau_cassé.tscn" id="36_3u7mf"]
 [ext_resource type="Texture2D" uid="uid://dalp7aaworjrb" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/paver/material/pave02_low_DefaultMaterial_BaseColor.png" id="89_1kvqu"]
@@ -18279,9 +18277,6 @@ metadata/class = "Arborist"
 [sub_resource type="ViewportTexture" id="ViewportTexture_d6xic"]
 viewport_path = NodePath("MiraV3/UI/PlayerHUD/MiniMap/MiniMapMarginContainer/ViewFromAboveSubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14ivc"]
-albedo_texture = ExtResource("34_r10nb")
-
 [sub_resource type="Animation" id="Animation_nw7xs"]
 resource_name = "FluggdrasilStartAnimation"
 length = 5.0
@@ -18881,9 +18876,37 @@ bones/84/rotation = Quaternion(-0.00592424, 0.00659937, 0.577465, 0.816368)
 bones/88/rotation = Quaternion(-0.0597696, -0.0453295, -0.346853, 0.934915)
 
 [node name="Hat" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="0"]
-surface_material_override/1 = ExtResource("33_3u7mf")
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Hair1" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="1"]
+surface_material_override/0 = null
+
+[node name="Body" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/3 = null
+
+[node name="Jupe" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="3"]
+surface_material_override/0 = null
+
+[node name="Chaussures" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="4"]
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="Belt" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="5"]
+surface_material_override/0 = null
+
+[node name="Sourcils" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="9"]
+surface_material_override/0 = null
+
+[node name="Attache" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="10"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Haut" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="11"]
 surface_material_override/0 = null
 
 [node name="BoneAttachment3D2" parent="MiraV3/Meshes/Group/DeformationSystem/Skeleton3D" index="12"]
@@ -18893,7 +18916,7 @@ transform = Transform3D(0.0411021, -0.0635999, 0.997129, 0.984128, 0.175006, -0.
 bones/0/rotation = Quaternion(0.721776, 2.57086e-14, 0.692127, 2.67009e-14)
 
 [node name="Rig_Vorace_sweep27" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_14ivc")
+surface_material_override/0 = null
 
 [node name="BoneAttachment3D" parent="MiraV3/Meshes/Rig_Vorace_DONTTOUCH/Skeleton3D" index="1"]
 transform = Transform3D(0.0419211, 1.50948e-16, 0.999121, 7.40725e-14, -1, -2.95686e-15, 0.999121, 7.41313e-14, -0.0419213, -0.972292, 0.7482, 6.03041)
