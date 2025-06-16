@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=26 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -8,11 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://dqjg2cd2b2xwv" path="res://library/002_gameplay_concepts/013_main_menu/LogoBlancSF.png" id="5_vg8no"]
 [ext_resource type="Theme" uid="uid://ofw4ecxjby2m" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_pannel.tres" id="6_e4my3"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
+[ext_resource type="Texture2D" uid="uid://dwqx1x1a2730k" path="res://library/002_gameplay_concepts/002_UI/MapSelection/MainMenuBackground.jpg" id="7_j2n41"]
 [ext_resource type="Texture2D" uid="uid://btwe8uepc4sob" path="res://library/002_gameplay_concepts/IllustrationLevel1.png" id="7_ruk6f"]
 [ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="9_bafky"]
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="9_lic3j"]
-[ext_resource type="VideoStream" uid="uid://bf60jylyygv48" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
+[ext_resource type="Shader" uid="uid://cxuo2820q0pl3" path="res://library/002_gameplay_concepts/002_UI/MapSelection/map_selection_background2.tres" id="13_e2ydh"]
+[ext_resource type="VideoStream" uid="uid://darmkv62wtosq" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -29,6 +31,8 @@ expand_margin_top = 200.0
 expand_margin_right = 300.0
 expand_margin_bottom = 200.0
 modulate_color = Color(1, 1, 1, 0.733333)
+
+[sub_resource type="Theme" id="Theme_erqrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j2n41"]
 shader = ExtResource("9_lic3j")
@@ -60,10 +64,14 @@ shader = ExtResource("9_lic3j")
 shader_parameter/ColorParameter = Color(0.431373, 0.298039, 0.45098, 1)
 shader_parameter/FloatParameter = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q05rp"]
+shader = ExtResource("13_e2ydh")
+shader_parameter/blur_size = 4.0
+shader_parameter/blur_strength = 0.3
+
 [node name="MainMenu" type="Node3D"]
 
 [node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,7 +278,6 @@ theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
 
 [node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuGenralControl"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,6 +285,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_i0oc2")
+
+[node name="MapSelectionBackGroundTextureRect" type="TextureRect" parent="MainMenuGenralControl/LevelSelectionMargin"]
+layout_mode = 2
+theme = SubResource("Theme_erqrd")
+texture = ExtResource("7_j2n41")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin"]
 layout_mode = 2
@@ -547,6 +560,10 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme = ExtResource("2_i0oc2")
 text = "Back to main menu"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuGenralControl/LevelSelectionMargin"]
+material = SubResource("ShaderMaterial_q05rp")
+layout_mode = 2
 
 [node name="Map1Information" type="MarginContainer" parent="MainMenuGenralControl"]
 visible = false

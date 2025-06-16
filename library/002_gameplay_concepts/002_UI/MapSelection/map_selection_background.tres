@@ -1,0 +1,35 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://brk24sgw01n7g"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_qcnx4"]
+parameter_name = "FloatParameter"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_43j50"]
+parameter_name = "FloatParameter2"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float FloatParameter2;
+
+
+
+void fragment() {
+// FloatParameter:2
+	float n_out2p0 = FloatParameter2;
+
+
+// Output:0
+	NORMAL_MAP_DEPTH = n_out2p0;
+
+
+}
+"
+graph_offset = Vector2(57.6312, 223.582)
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatParameter_43j50")
+nodes/fragment/2/position = Vector2(80, 280)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 4)
+nodes/fog/2/node = SubResource("VisualShaderNodeFloatParameter_qcnx4")
+nodes/fog/2/position = Vector2(0, 140)

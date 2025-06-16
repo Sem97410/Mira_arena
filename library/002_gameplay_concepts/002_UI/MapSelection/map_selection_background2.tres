@@ -1,0 +1,29 @@
+[gd_resource type="Shader" format=3 uid="uid://cxuo2820q0pl3"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+uniform float blur_size = 4.0;
+uniform float blur_strength = 0.3;
+
+void fragment() {
+    vec4 sum = vec4(0.0);
+    vec2 size = blur_size * SCREEN_PIXEL_SIZE;
+    
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2(-1.0, -1.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 0.0, -1.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 1.0, -1.0));
+    
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2(-1.0,  0.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 0.0,  0.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 1.0,  0.0));
+    
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2(-1.0,  1.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 0.0,  1.0));
+    sum += texture(SCREEN_TEXTURE, SCREEN_UV + size * vec2( 1.0,  1.0));
+    
+    COLOR = sum / 9.0 * blur_strength;
+}
+"
