@@ -15,6 +15,7 @@ var arena_id : int
 @export var score_log_text_label : Label
 @export var score_log_number_label : Label
 
+
 @export var bonus_text_color : Color = Color(0.6, 0.1, 0.1) 
 @export var malus_text_color : Color = Color(0.6, 0.1, 0.1)
 @export var base_text_color : Color
@@ -80,6 +81,8 @@ var total_score_value : int
 @export var victory_number_of_death_label : Label
 @export var victory_number_of_waves_completed_label : Label
 @export var victory_recap_total_score_label : Label
+@export var current_wave_number_label : Label
+@export var remaining_enemies_number_label : Label
 
 @onready var stats : Dictionary = {
 	"game_over_enemies_killed": 0,
@@ -146,8 +149,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	launch_reset_multiplicator_timer(delta)
 	launch_counter_that_add_point_to_total(delta)
-	
+	set_up_current_wave_label()
 	set_reset_counter_label()
+	set_up_remaining_enemies_label()
 	update_multiplicator()
 	assign_gauge_value_to_label()
 	set_up_group_point_multiplicator_label()
@@ -289,7 +293,7 @@ func new_wave_scoring_logic()-> void :
 	score_log_number_label.add_theme_color_override("font_color",bonus_text_color)
 	score_log_text_label.add_theme_color_override("font_color",bonus_text_color)
 	
-	score_log_text_label.text = "Bonus end wave :"
+	score_log_text_label.text = "Bonus end :"
 	score_log_number_label.text = " + " + " " + str(int(new_wave_bonus))
 	total_score_value += new_wave_bonus
 	increment_stat("game_over_waves_completeds")
@@ -387,7 +391,11 @@ func set_up_autoload() -> void:
 		GeneralScore.max_scores[arena_id] = total_score_value
 
 
-	
+func set_up_current_wave_label() -> void : 
+	current_wave_number_label.text = str(wave_manager.current_wave)
+
+func set_up_remaining_enemies_label() -> void : 
+	remaining_enemies_number_label.text = str(wave_manager.max_enemies_in_this_wave)
 # --------------------------------------------------------------------------
 
 # DEBUG
