@@ -411,12 +411,13 @@ albedo_color = Color(0.623529, 0.423529, 0.662745, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_6fcr5"]
 height = 0.2
 
-[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap")]
+[node name="HealthItem" type="Node3D" node_paths=PackedStringArray("indication_label", "health_potion_mesh", "health_indicator_minimap", "health_item_visual_effect")]
 script = ExtResource("1_w6eme")
 indication_label = NodePath("IndicationLabel3D")
 health_point = 25.0
 health_potion_mesh = NodePath("Fiole_soin")
 health_indicator_minimap = NodePath("HealthItemMinimapIndicatorSprite3D")
+health_item_visual_effect = NodePath("health_item_socle/Fountain_Idle/Soin/Effects")
 
 [node name="ItemArea3D" type="Area3D" parent="."]
 transform = Transform3D(-0.777962, 0.314155, -0.544132, -0.314156, 0.555509, 0.76988, 0.544134, 0.76988, -0.333471, 0, 0, 0)

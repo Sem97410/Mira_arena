@@ -526,17 +526,19 @@ _data = {
 
 [node name="Soin" type="Node3D" parent="Fountain_Idle"]
 
-[node name="pPlane1" type="MeshInstance3D" parent="Fountain_Idle/Soin"]
+[node name="Effects" type="Node3D" parent="Fountain_Idle/Soin"]
+
+[node name="pPlane1" type="MeshInstance3D" parent="Fountain_Idle/Soin/Effects"]
 transform = Transform3D(0.00652623, 0, 0, 0, 0.00652623, 0, 0, 0, 0.00652623, 0.0615395, 0.0051006, -0.0373248)
 mesh = SubResource("ArrayMesh_xqsk1")
 skeleton = NodePath("")
 
-[node name="pPlane2" type="MeshInstance3D" parent="Fountain_Idle/Soin"]
+[node name="pPlane2" type="MeshInstance3D" parent="Fountain_Idle/Soin/Effects"]
 transform = Transform3D(-0.015143, 0, 0, 0, 0.0129042, 0.00792433, 0, -0.00792433, 0.0129042, -0.0702557, 0.0336522, 0.0317978)
 mesh = SubResource("ArrayMesh_mp4ot")
 skeleton = NodePath("")
 
-[node name="pPlane3" type="MeshInstance3D" parent="Fountain_Idle/Soin"]
+[node name="pPlane3" type="MeshInstance3D" parent="Fountain_Idle/Soin/Effects"]
 transform = Transform3D(2.69833e-05, 0.00206913, -3.45212e-05, 0.00127423, -4.38162e-05, -0.0016302, -0.00163052, 1.00228e-10, -0.00127455, -0.00350274, 0.0357344, -0.00601827)
 mesh = SubResource("ArrayMesh_ply68")
 skeleton = NodePath("")
