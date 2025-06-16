@@ -1,18 +1,18 @@
 [gd_scene load_steps=11 format=3 uid="uid://bgjm2vu4dpac7"]
 
-[ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="1_yy4ef"]
-[ext_resource type="ArrayMesh" uid="uid://bb7xvu32irgkb" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Aura.obj" id="2_v5phq"]
-[ext_resource type="Shader" uid="uid://cqx7o3keptnwj" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_particle.tres" id="3_3lld0"]
+[ext_resource type="Shader" uid="uid://bbptxj4ug2277" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_auraDetail.tres" id="1_jaepj"]
+[ext_resource type="ArrayMesh" uid="uid://bb7xvu32irgkb" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Aura.obj" id="2_ju0kh"]
+[ext_resource type="Shader" uid="uid://cqx7o3keptnwj" path="res://library/002_gameplay_concepts/006_VFX/Enemy/Enemy_particle.tres" id="3_4udm8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnfqo"]
 render_priority = 0
-shader = ExtResource("1_yy4ef")
+shader = ExtResource("1_jaepj")
 shader_parameter/ColorParameter = Color(0, 2, 0, 1)
 shader_parameter/Vector2Parameter2 = Vector2(0.555, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmu8v"]
 render_priority = 0
-shader = ExtResource("3_3lld0")
+shader = ExtResource("3_4udm8")
 shader_parameter/ColorParameter = Color(4, 2, 0, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b56vn"]
@@ -94,7 +94,7 @@ _data = {
 [node name="Aura" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00524175, 0, -0.0183431)
 material_override = SubResource("ShaderMaterial_vnfqo")
-mesh = ExtResource("2_v5phq")
+mesh = ExtResource("2_ju0kh")
 skeleton = NodePath("../..")
 
 [node name="Particles" type="GPUParticles3D" parent="."]
@@ -107,6 +107,6 @@ draw_pass_1 = SubResource("QuadMesh_17khm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_yutt6")
+&"": SubResource("AnimationLibrary_yutt6")
 }
 autoplay = "Aura_Enemy"

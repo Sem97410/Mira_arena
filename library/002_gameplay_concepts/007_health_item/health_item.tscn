@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=4 uid="uid://dwca7do31vyak"]
+[gd_scene load_steps=33 format=4 uid="uid://dwca7do31vyak"]
 
 [ext_resource type="Script" uid="uid://cw3vje0x307dl" path="res://library/002_gameplay_concepts/007_health_item/health_item.gd" id="1_w6eme"]
-[ext_resource type="Texture2D" uid="uid://ctc60o6lpiv45" path="res://library/002_gameplay_concepts/016_minimaps/health_icon_2.png" id="2_4qkro"]
+[ext_resource type="Texture2D" uid="uid://ctc60o6lpiv45" path="res://library/002_gameplay_concepts/016_minimaps/Icons/health_icon_2.png" id="2_4qkro"]
+[ext_resource type="PackedScene" uid="uid://chl7rt0d8go6e" path="res://library/002_gameplay_concepts/007_health_item/Meshes/health_item_socle.tscn" id="3_6fcr5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x06wg"]
 radius = 4.0
@@ -488,6 +489,7 @@ light_energy = 2.0
 
 [node name="Socle" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.731414, 0)
+visible = false
 material_overlay = SubResource("StandardMaterial3D_4qkro")
 mesh = SubResource("CylinderMesh_6fcr5")
 
@@ -507,5 +509,10 @@ transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 
 layers = 1024
 texture = ExtResource("2_4qkro")
 
+[node name="health_item_socle" parent="." instance=ExtResource("3_6fcr5")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.83, 0)
+
 [connection signal="area_entered" from="ItemArea3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="ItemArea3D" to="." method="_on_area_3d_area_exited"]
+
+[editable path="health_item_socle"]

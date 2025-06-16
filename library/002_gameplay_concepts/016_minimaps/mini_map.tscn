@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d28v4tmjb7c51"]
 
 [ext_resource type="Script" uid="uid://bx4od3o6ojmtf" path="res://library/002_gameplay_concepts/016_minimaps/mini_map.gd" id="1_0qny0"]
-[ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/minimap_mask.png" id="1_dvkms"]
-[ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/mask4.png" id="2_bnu1o"]
+[ext_resource type="Texture2D" uid="uid://t2xqngr2gsxl" path="res://library/002_gameplay_concepts/016_minimaps/MinimapVisual/minimap_mask.png" id="1_dvkms"]
+[ext_resource type="Texture2D" uid="uid://drya5ek22p1su" path="res://library/002_gameplay_concepts/016_minimaps/MinimapVisual/mask4.png" id="2_bnu1o"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="4_umgy3"]
 [ext_resource type="Texture2D" uid="uid://cyxboetxw2t6j" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Iinput_button_left_stick.png" id="5_lv56h"]
 

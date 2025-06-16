@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c01nq5ejq6gkm"
-path="res://.godot/imported/Sablier.fbx-8d74764164b3d06a15a956ac4ae0e7ca.scn"
+path="res://.godot/imported/Sablier.fbx-81a6543d285fba7a04460b69b96231b4.scn"
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/007_health_item/Sablier.fbx"
-dest_files=["res://.godot/imported/Sablier.fbx-8d74764164b3d06a15a956ac4ae0e7ca.scn"]
+source_file="res://library/002_gameplay_concepts/007_health_item/Meshes/Sablier.fbx"
+dest_files=["res://.godot/imported/Sablier.fbx-81a6543d285fba7a04460b69b96231b4.scn"]
 
 [params]
 

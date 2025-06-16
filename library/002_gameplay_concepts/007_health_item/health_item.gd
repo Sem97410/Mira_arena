@@ -49,6 +49,9 @@ func handle_label_visibility() -> void :
 
 func activate_health_potion() -> void : 
 	if player.player_current_hp == player.player_max_hp : 
+		indication_label.text = "Too much HP to use potion"
+		await get_tree().create_timer(1.5).timeout
+		indication_label.text = "Press [X] to use potion"
 		return
 	indication_label.text = " +" + str(health_point) + "HP"
 	health_potion_mesh.visible = false

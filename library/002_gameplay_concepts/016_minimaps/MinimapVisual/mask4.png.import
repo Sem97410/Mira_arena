@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crr5elajyy46i"
-path="res://.godot/imported/mask_v2.png-9b194762fdb36161d4646ad1ba4b6038.ctex"
+uid="uid://drya5ek22p1su"
+path="res://.godot/imported/mask4.png-f491bf9da5b972e2f61c250c02d2a5bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://library/002_gameplay_concepts/016_minimaps/mask_v2.png"
-dest_files=["res://.godot/imported/mask_v2.png-9b194762fdb36161d4646ad1ba4b6038.ctex"]
+source_file="res://library/002_gameplay_concepts/016_minimaps/MinimapVisual/mask4.png"
+dest_files=["res://.godot/imported/mask4.png-f491bf9da5b972e2f61c250c02d2a5bb.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=true
+process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
