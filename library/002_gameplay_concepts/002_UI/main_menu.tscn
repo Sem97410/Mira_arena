@@ -72,6 +72,7 @@ shader_parameter/blur_strength = 0.3
 [node name="MainMenu" type="Node3D"]
 
 [node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,6 +279,7 @@ theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
 
 [node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuGenralControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
