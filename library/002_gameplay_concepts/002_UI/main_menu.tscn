@@ -986,6 +986,7 @@ libraries = {
 autoplay = "quit_button_focus_indicator"
 
 [node name="Map1Information" type="MarginContainer" parent="MainMenuGenralControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1022,7 +1023,7 @@ texture = SubResource("CanvasTexture_fdeyw")
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("3_426ai")
+theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 25
 text = "Small but fierce! Survive an endless wave of underestimated creatures in a tight arena. Hold your ground against their relentless fury!"
 horizontal_alignment = 1
@@ -1053,18 +1054,32 @@ offset_top = -200.0
 offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_bottom = 30
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenuGenralControl/Map2Information"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Map2Information"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuGenralControl/Map2Information/PanelContainer"]
+[node name="WhiteButtonSeparation3" type="TextureRect" parent="MainMenuGenralControl/Map2Information/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="Label" type="Label" parent="MainMenuGenralControl/Map2Information/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 25
 text = "Relentless waves of monsters hunt you through a floating maze. Run, fight… but whatever you do, don’t fall!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Map2Information/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
 
 [node name="TitleScreenSoundPlaceHolder" type="AudioStreamPlayer" parent="MainMenuGenralControl"]
 stream = ExtResource("7_3rw7x")
