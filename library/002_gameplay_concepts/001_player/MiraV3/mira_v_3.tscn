@@ -11428,7 +11428,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("17_xk4dx")
 theme_override_font_sizes/font_size = 20
-text = "Light attack"
+text = "Dash"
 
 [node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/DodgeHBoxContainer3"]
 layout_mode = 2

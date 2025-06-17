@@ -1,0 +1,186 @@
+[gd_scene load_steps=19 format=3 uid="uid://baspvv464vwno"]
+
+[ext_resource type="Shader" uid="uid://cbimcintchoa3" path="res://VFX_Attack/Mortar_Lock/Mortar lock.tres" id="1_cu465"]
+[ext_resource type="Texture2D" uid="uid://2yffbyufy0q8" path="res://VFX_Attack/Mortar_Lock/T_Circle_4.png" id="1_ty5g0"]
+[ext_resource type="ArrayMesh" uid="uid://fvci12v71uti" path="res://VFX_Attack/Mortar_Lock/Zone_2.obj" id="2_ty5g0"]
+
+[sub_resource type="Gradient" id="Gradient_dgdlw"]
+offsets = PackedFloat32Array(0, 0.41954, 0.91358, 0.969136, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.000113828, 0.000113828, 0.000113828, 1, 0.0177324, 0.0177324, 0.0177324, 1, 0.601223, 0.601223, 0.601223, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6nlsn"]
+gradient = SubResource("Gradient_dgdlw")
+fill_from = Vector2(0, 0.162393)
+fill_to = Vector2(0, 0.824786)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6r0t4"]
+expanded_output_ports = [0]
+texture = SubResource("GradientTexture2D_6nlsn")
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_burdp"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_1xhoq"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_puo48"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_hry1n"]
+parameter_name = "Vector2Parameter"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_r07wq"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ou85l"]
+texture = ExtResource("1_ty5g0")
+
+[sub_resource type="VisualShader" id="VisualShader_i6ber"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ColorParameter : source_color;
+uniform vec2 Vector2Parameter;
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorParameter:7
+	vec4 n_out7p0 = ColorParameter;
+
+
+// Input:5
+	float n_out5p0 = TIME;
+
+
+// Vector2Parameter:6
+	vec2 n_out6p0 = Vector2Parameter;
+
+
+// VectorOp:4
+	vec2 n_out4p0 = vec2(n_out5p0) * n_out6p0;
+
+
+// UVFunc:3
+	vec2 n_in3p1 = vec2(1.00000, 1.00000);
+	vec2 n_out3p0 = n_out4p0 * n_in3p1 + UV;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out3p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out7p0.xyz);
+	ALPHA = n_out2p0.x;
+
+
+}
+"
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_6r0t4")
+nodes/fragment/2/position = Vector2(-980, 180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeUVFunc_burdp")
+nodes/fragment/3/position = Vector2(-1380, 200)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_1xhoq")
+nodes/fragment/4/position = Vector2(-1640, 280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_puo48")
+nodes/fragment/5/position = Vector2(-2140, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVec2Parameter_hry1n")
+nodes/fragment/6/position = Vector2(-2120, 280)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_r07wq")
+nodes/fragment/7/position = Vector2(-60, 40)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_ou85l")
+nodes/fragment/8/position = Vector2(-380, 400)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 3, 2, 6, 0, 4, 1, 5, 0, 4, 0, 7, 0, 0, 0, 2, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33tjd"]
+render_priority = 0
+shader = SubResource("VisualShader_i6ber")
+shader_parameter/ColorParameter = Color(0.8, 1, 0, 1)
+shader_parameter/Vector2Parameter = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6r0t4"]
+render_priority = 0
+shader = ExtResource("1_cu465")
+shader_parameter/ColorParameter = Color(0, 1.5, 0.4, 1)
+shader_parameter/Vector2Parameter = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_gt8tc"]
+resource_name = "Lock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zone3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0800041, 0.0800041, 0.0800041), Vector3(0.22, 0.22, 0.22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zone2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.217906, 0.217906, 0.217906)]
+}
+
+[sub_resource type="Animation" id="Animation_ggqsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zone3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0800041, 0.0800041, 0.0800041)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zone2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.217906, 0.217906, 0.217906)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewrxt"]
+_data = {
+&"Lock": SubResource("Animation_gt8tc"),
+&"RESET": SubResource("Animation_ggqsj")
+}
+
+[node name="MortarLock" type="Node3D"]
+
+[node name="Zone3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0800041, 0, 0, 0, 0.0800041, 0, 0, 0, 0.0800041, 0.00389875, -0.0305262, -0.00638199)
+material_override = SubResource("ShaderMaterial_33tjd")
+mesh = ExtResource("2_ty5g0")
+
+[node name="Zone2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.217906, 0, 0, 0, 0.217906, 0, 0, 0, 0.217906, 0.00389875, -0.0305262, -0.00638199)
+material_override = SubResource("ShaderMaterial_6r0t4")
+mesh = ExtResource("2_ty5g0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ewrxt")
+}

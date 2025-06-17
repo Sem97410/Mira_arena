@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3javhuw7vsgp"]
+
+[ext_resource type="Shader" uid="uid://crockt7ugdi43" path="res://VFX_Attack/Enemy_Bomb/Bomb_Explosion.tres" id="1_m2urx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m2urx")
+shader_parameter/Speed = Vector2(0, 0.8)
+shader_parameter/Density = 0.44
+shader_parameter/Explosion_Color = Color(1, 0.3, 0.1, 1)

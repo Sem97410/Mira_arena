@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://cwu83wdxbd6lu"]
+
+[ext_resource type="Shader" uid="uid://v4tnmung0vog" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Slash_R/Charge.gdshader" id="1_ng6od"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0i3wr"]
+noise_type = 2
+fractal_lacunarity = 1.8
+fractal_gain = 1.0
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0a2a4"]
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_0i3wr")
+
+[sub_resource type="Gradient" id="Gradient_ck8tq"]
+offsets = PackedFloat32Array(0.0802469, 0.277778, 0.54321, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.324049, 0.000547535, 0.894669, 1, 0, 0, 0, 1, 4, 4, 4, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eextt"]
+gradient = SubResource("Gradient_ck8tq")
+
+[sub_resource type="Gradient" id="Gradient_k4ayp"]
+offsets = PackedFloat32Array(0.5, 0.52, 0.54)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8jljp"]
+gradient = SubResource("Gradient_k4ayp")
+
+[sub_resource type="Gradient" id="Gradient_yvme7"]
+offsets = PackedFloat32Array(0.0147059, 0.433824, 0.617647)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gysbv"]
+gradient = SubResource("Gradient_yvme7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ywt2"]
+render_priority = 0
+shader = ExtResource("1_ng6od")
+shader_parameter/progress = 1.0
+shader_parameter/derive_progress = 0.0
+shader_parameter/ease_progress = 0.0
+shader_parameter/time_scale = 1.0
+shader_parameter/anim_rot_amt = 1.0
+shader_parameter/base_noise = SubResource("NoiseTexture2D_0a2a4")
+shader_parameter/width_gradient_mask = SubResource("GradientTexture1D_gysbv")
+shader_parameter/highlight = SubResource("GradientTexture1D_8jljp")
+shader_parameter/zoom = 0.6
+shader_parameter/rotate_all = 0.0
+shader_parameter/emission_strength = 1.0
+shader_parameter/mix_strength = 1.0
+shader_parameter/color_lookup = SubResource("GradientTexture2D_eextt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xipcu"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_ng6od"]
+resource_name = "Charge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Charge:material_override:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1ju4u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Charge:material_override:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mbt4m"]
+_data = {
+&"Charge": SubResource("Animation_ng6od"),
+&"RESET": SubResource("Animation_1ju4u")
+}
+
+[node name="Charge" type="Node3D"]
+transform = Transform3D(0.982604, 0, 0, 0, 0.982604, 0, 0, 0, 0.982604, 0, 0, 0)
+
+[node name="Charge" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_6ywt2")
+mesh = SubResource("PlaneMesh_xipcu")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mbt4m")
+}

@@ -35,6 +35,22 @@ extends Control
 @export var flugdrasil_max_score_value_label : Label
 @export var flugdrasil_last_game_score_value_label : Label
 
+@export var slimaggedon_focus_indicator_left_text_rect : TextureRect
+@export var slimaggedon_focus_indicator_right_text_rect : TextureRect
+@export var slimaggedon_temp_separation_margin_container_left : MarginContainer
+@export var slimaggedon_temp_separation_margin_container_right : MarginContainer
+@export var flugdrasil_focus_indicator_left_text_rect : TextureRect
+@export var flugdrasil_focus_indicator_right_text_rect : TextureRect
+@export var flugdrasil_temp_separation_margin_container_left : MarginContainer
+@export var flugdrasil_temp_separation_margin_container_right : MarginContainer
+
+@export var quit_focus_indicator_left_text_rect : TextureRect
+@export var quit_focus_indicator_right_text_rect : TextureRect
+@export var  quit_temp_separation_margin_container_left : MarginContainer
+@export var  quit_temp_separation_margin_container_right : MarginContainer
+
+
+
 #-----------------
 #MUSICS
 @export var main_menu_music : AudioStreamPlayer
@@ -125,18 +141,32 @@ func _on_practice_mode_button_down() -> void:
 
 func _on_slimageddon_button_focus_entered() -> void:
 	map_1_information.visible = true
-
+	slimaggedon_temp_separation_margin_container_left.visible = false
+	slimaggedon_focus_indicator_left_text_rect.visible = true
+	slimaggedon_temp_separation_margin_container_right.visible = false
+	slimaggedon_focus_indicator_right_text_rect.visible = true
 
 func _on_slimageddon_button_focus_exited() -> void:
 	map_1_information.visible = false
-
+	slimaggedon_temp_separation_margin_container_left.visible = true
+	slimaggedon_focus_indicator_left_text_rect.visible = false
+	slimaggedon_temp_separation_margin_container_right.visible = true
+	slimaggedon_focus_indicator_right_text_rect.visible = false
 
 func _on_flugdrasil_button_focus_entered() -> void:
 	map_2_information.visible = true
+	flugdrasil_temp_separation_margin_container_left.visible = false
+	flugdrasil_focus_indicator_left_text_rect.visible = true
+	flugdrasil_temp_separation_margin_container_right.visible = false
+	flugdrasil_focus_indicator_right_text_rect.visible = true
 
 
 func _on_flugdrasil_button_focus_exited() -> void:
 	map_2_information.visible = false
+	flugdrasil_temp_separation_margin_container_left.visible = true
+	flugdrasil_focus_indicator_left_text_rect.visible = false
+	flugdrasil_temp_separation_margin_container_right.visible = true
+	flugdrasil_focus_indicator_right_text_rect.visible = false
 
 
 func _on_slimageddon_button_pressed() -> void:
@@ -159,3 +189,17 @@ func set_up_arena_scores() -> void :
 	slimaggedon_last_game_score_value_label.text = str(GeneralScore.last_scores[0])
 	flugdrasil_max_score_value_label.text = str(GeneralScore.max_scores[1])
 	flugdrasil_last_game_score_value_label.text = str(GeneralScore.last_scores[1])
+
+
+func _on_go_to_main_menu_button_focus_entered() -> void:
+	quit_focus_indicator_left_text_rect.visible = true
+	quit_temp_separation_margin_container_left.visible = false
+	quit_focus_indicator_right_text_rect.visible = true
+	quit_temp_separation_margin_container_right.visible = false
+
+
+func _on_go_to_main_menu_button_focus_exited() -> void:
+	quit_focus_indicator_left_text_rect.visible = false
+	quit_temp_separation_margin_container_left.visible = true
+	quit_focus_indicator_right_text_rect.visible = false
+	quit_temp_separation_margin_container_right.visible = true

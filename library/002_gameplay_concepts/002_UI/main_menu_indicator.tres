@@ -1,0 +1,31 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://cph7n4uvtssl1"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ek7j4"]
+parameter_name = "Opacity"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_add;
+
+uniform float Opacity;
+
+
+
+void fragment() {
+// FloatParameter:2
+	float n_out2p0 = Opacity;
+
+
+// Output:0
+	COLOR.a = n_out2p0;
+
+
+}
+"
+graph_offset = Vector2(4.72012, 14.2538)
+mode = 1
+modes/blend = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatParameter_ek7j4")
+nodes/fragment/2/position = Vector2(40, 280)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1)

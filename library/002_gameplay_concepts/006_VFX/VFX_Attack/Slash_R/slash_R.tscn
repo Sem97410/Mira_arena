@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsxbuehxhfcgf"]
+
+[ext_resource type="Material" uid="uid://vm6wepcyvuh2" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/AttackCharge/Attack_Charge.tres" id="1_57n3c"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6quhy"]
+size = Vector2(0.07, 0.07)
+
+[sub_resource type="Animation" id="Animation_57n3c"]
+resource_name = "Slash_R"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash_R_v3:material_override:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.07, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qf2wi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash_R_v3:material_override:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v5lj"]
+_data = {
+&"RESET": SubResource("Animation_qf2wi"),
+&"Slash_R": SubResource("Animation_57n3c")
+}
+
+[node name="Slash_R" type="Node3D"]
+
+[node name="Slash_R_v3" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 7.54979e-06, 0, -7.54979e-06, 100, 0, 0, 0)
+material_override = ExtResource("1_57n3c")
+mesh = SubResource("PlaneMesh_6quhy")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5v5lj")
+}

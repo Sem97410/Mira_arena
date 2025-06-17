@@ -6409,9 +6409,6 @@ visible = false
 [node name="MainMenuGenralControl" parent="MainMenu" index="0"]
 video_length = 90.0
 
-[node name="MapSelectionBackGroundTextureRect" parent="MainMenu/MainMenuGenralControl/LevelSelectionMargin" index="0"]
-expand_mode = 2
-
 [node name="VideoContainer" parent="MainMenu/VideoControl" index="0"]
 theme_override_constants/margin_right = 0
 

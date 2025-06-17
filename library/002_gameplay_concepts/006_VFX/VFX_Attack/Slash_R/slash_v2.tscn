@@ -1,0 +1,99 @@
+[gd_scene load_steps=20 format=3 uid="uid://cnhx54m4ak4es"]
+
+[ext_resource type="PackedScene" uid="uid://6jaljmk7ft5e" path="res://VFX_Attack/Slash.fbx" id="1_d5xe1"]
+[ext_resource type="Material" uid="uid://vm6wepcyvuh2" path="res://VFX_Attack/AttackCharge/Attack_Charge.tres" id="2_5o560"]
+[ext_resource type="Shader" uid="uid://dqgxr2ophcsry" path="res://GPUTrail-main/shaders/trail.gdshader" id="5_5o560"]
+[ext_resource type="Texture2D" uid="uid://csowhhou46dq2" path="res://VFX_Attack/Slash_R/T_Slash_3.png" id="6_6quhy"]
+[ext_resource type="Shader" uid="uid://bidhdlroi0emq" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_yewrc"]
+[ext_resource type="PackedScene" uid="uid://cwu83wdxbd6lu" path="res://charge.tscn" id="7_5o560"]
+[ext_resource type="Script" uid="uid://dlbdcqk1ty1jf" path="res://GPUTrail-main/GPUTrail3D.gd" id="8_0i3wr"]
+[ext_resource type="PackedScene" uid="uid://dvsbuofih04ne" path="res://slash_L.tscn" id="8_yewrc"]
+
+[sub_resource type="Animation" id="Animation_yewrc"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_5o560"]
+resource_name = "Slash"
+length = 0.4
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6quhy"]
+_data = {
+&"RESET": SubResource("Animation_yewrc"),
+&"Slash": SubResource("Animation_5o560")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0a2a4"]
+shader = ExtResource("5_5o560")
+
+[sub_resource type="Gradient" id="Gradient_edwrx"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.595238)
+colors = PackedColorArray(0.981926, 0, 5, 1, 0.552, 0, 5, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ck8tq"]
+gradient = SubResource("Gradient_edwrx")
+
+[sub_resource type="Curve" id="Curve_eextt"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4ayp"]
+curve = SubResource("Curve_eextt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jljp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_yewrc")
+shader_parameter/tex = ExtResource("6_6quhy")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_ck8tq")
+shader_parameter/curve = SubResource("CurveTexture_k4ayp")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+
+[sub_resource type="QuadMesh" id="QuadMesh_2rhj4"]
+material = SubResource("ShaderMaterial_8jljp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6quhy"]
+size = Vector2(0.07, 0.07)
+
+[node name="Slash" instance=ExtResource("1_d5xe1")]
+
+[node name="Slash" parent="." index="0"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -17.0508, 0, 0)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_6quhy")
+}
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="AnimationPlayer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.09382, 5.5163, -5.55699)
+amount = 49
+lifetime = 49.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_0a2a4")
+draw_pass_1 = SubResource("QuadMesh_2rhj4")
+script = ExtResource("8_0i3wr")
+length = 49
+length_seconds = 0.816667
+texture = ExtResource("6_6quhy")
+color_ramp = SubResource("GradientTexture1D_ck8tq")
+curve = SubResource("CurveTexture_k4ayp")
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dlbdcqk1ty1jf"
+
+[node name="Slash_R_v3" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(100, 0, 0, 0, 100, 7.54979e-06, 0, -7.54979e-06, 100, 5.92086, -0.0140076, -0.0259767)
+material_override = ExtResource("2_5o560")
+mesh = SubResource("PlaneMesh_6quhy")
+skeleton = NodePath("")
+
+[node name="Charge" parent="." index="3" instance=ExtResource("7_5o560")]
+transform = Transform3D(0.982604, 0, 0, 0, 0.982604, 0, 0, 0, 0.982604, -1.45792, 0.00525188, 0.0519872)
+
+[node name="Slash_L" parent="." index="4" instance=ExtResource("8_yewrc")]
+transform = Transform3D(-100, -1.50996e-05, 0, 1.50996e-05, -100, 0, 0, 0, 100, -8.64157, 0.00525188, 0.0519872)
