@@ -246,7 +246,7 @@ extent = 32.0
 bounds = AABB(-47, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ekj8a"]
@@ -318,7 +318,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -354,7 +354,7 @@ extent = 32.0
 bounds = AABB(17, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_wdjw3"]
@@ -6391,7 +6391,7 @@ environment = SubResource("Environment_0uvq1")
 [node name="CameraComponent" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent"]
-transform = Transform3D(-0.999336, 0.0165926, -0.0324408, 0.00943542, 0.977774, 0.209449, 0.0351951, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
+transform = Transform3D(-0.999335, 0.0165926, -0.0324408, 0.00943542, 0.977774, 0.209449, 0.0351951, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
 fov = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraComponent/Camera3D"]
@@ -7492,12 +7492,11 @@ transform = Transform3D(-0.00235607, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, -0.00
 [node name="SlimePresentation2" parent="." instance=ExtResource("31_qu1ls")]
 transform = Transform3D(-0.00674538, 0, -0.499955, 0, 0.5, 0, 0.499955, 0, -0.00674538, 2.92374, 1.98615, 5.55699)
 
-[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_panel", "pre_menu_panel", "first_main_button")]
+[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_panel", "pre_menu_panel")]
 script = ExtResource("32_qu1ls")
 animation_player = NodePath("../CameraComponent/Camera3D/AnimationPlayer")
 main_menu_panel = NodePath("../MainMenu/MainMenuGenralControl")
 pre_menu_panel = NodePath("../PremenuPannel/VBoxContainer")
-first_main_button = NodePath("../MainMenu/MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
 
 [node name="PremenuPannel" type="Node3D" parent="."]
 

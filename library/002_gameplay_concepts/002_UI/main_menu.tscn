@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=51 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
+[ext_resource type="Texture2D" uid="uid://cbsk4w0vjxa86" path="res://library/002_gameplay_concepts/002_UI/MainMenu/Clock.png" id="2_q05rp"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
@@ -18,6 +19,49 @@
 [ext_resource type="Texture2D" uid="uid://buut8kp1afkvb" path="res://library/002_gameplay_concepts/002_UI/MapSelection/map_selection_flugdrasil_image.png" id="13_fdeyw"]
 [ext_resource type="VideoStream" uid="uid://darmkv62wtosq" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
 [ext_resource type="Shader" uid="uid://cph7n4uvtssl1" path="res://library/002_gameplay_concepts/002_UI/main_menu_indicator.tres" id="13_q05rp"]
+
+[sub_resource type="Animation" id="Animation_q05rp"]
+resource_name = "make_clock_round"
+length = 100.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackGroundClock:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 100),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nbl41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackGroundClock:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlw1c"]
+_data = {
+&"RESET": SubResource("Animation_nbl41"),
+&"make_clock_roll": SubResource("Animation_q05rp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erqrd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fdeyw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -49,9 +93,6 @@ shader_parameter/FloatParameter = 0.2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlw1c"]
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erqrd"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5adu"]
 shader = ExtResource("13_q05rp")
@@ -221,8 +262,6 @@ shader_parameter/FloatParameter = 1.0
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 0.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_fdeyw"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obmjr"]
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 0.0
@@ -300,7 +339,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wp124")
 main_button_general_container = NodePath("Main_buttons_margin_container")
-first_main_button = NodePath("Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
+first_main_button = NodePath("Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer/StoryVBoxContainer/Story_mode")
 logo_container = NodePath("Logo_container")
 quit_game_confirmation_pannel = NodePath("Quit_game_confirmation_pannel")
 quit_game_confirmation_pannel_first_button = NodePath("Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button")
@@ -331,6 +370,27 @@ quit_temp_separation_margin_container_left = NodePath("LevelSelectionMargin/GoTo
 quit_temp_separation_margin_container_right = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitTempSeparationRightMarginContainer")
 main_menu_music = NodePath("TitleScreenSoundPlaceHolder")
 
+[node name="BackGroundClock" type="TextureRect" parent="MainMenuGenralControl"]
+modulate = Color(1, 1, 1, 0.1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.521
+anchor_bottom = 0.521
+offset_left = -845.0
+offset_top = -801.68
+offset_right = 842.0
+offset_bottom = 802.32
+rotation = -6.28319
+pivot_offset = Vector2(843.5, 802)
+texture = ExtResource("2_q05rp")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl"]
+libraries = {
+&"": SubResource("AnimationLibrary_dlw1c")
+}
+autoplay = "make_clock_roll"
+
 [node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 0
 offset_right = 1920.0
@@ -353,71 +413,132 @@ offset_top = -681.095
 offset_right = 404.2
 offset_bottom = -73.095
 grow_vertical = 0
-theme_override_constants/margin_left = 0
+theme_override_constants/margin_left = -55
 theme_override_constants/margin_bottom = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Main_buttons_V_container" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer"]
+[node name="Main_buttons_V_container" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 35
+theme_override_constants/separation = 90
 alignment = 1
 
-[node name="Story_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Quit_game")
-focus_neighbor_bottom = NodePath("../Arena_mode")
-theme = ExtResource("2_i0oc2")
-theme_override_fonts/font = ExtResource("3_426ai")
-theme_override_font_sizes/font_size = 30
-text = "Story mode"
-
-[node name="Arena_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Story_mode")
-focus_neighbor_bottom = NodePath("../Settings")
-theme = ExtResource("2_i0oc2")
-theme_override_fonts/font = ExtResource("3_426ai")
-theme_override_font_sizes/font_size = 30
-text = "Arena mode"
-icon_alignment = 1
-expand_icon = true
-
-[node name="Practice_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Practice_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
 visible = false
 layout_mode = 2
-focus_neighbor_top = NodePath("../Arena_mode")
+focus_neighbor_top = NodePath("../ArenaHBoxContainer2/VBoxContainer/Arena_mode")
 focus_neighbor_bottom = NodePath("../Settings")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
 text = "Training area"
+flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Settings" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="Settings" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
+visible = false
 modulate = Color(0.415686, 0.415686, 0.415686, 1)
 layout_mode = 2
-focus_neighbor_top = NodePath("../Arena_mode")
-focus_neighbor_bottom = NodePath("../Quit_game")
+focus_neighbor_top = NodePath("../ArenaHBoxContainer2/VBoxContainer/Arena_mode")
+focus_neighbor_bottom = NodePath("../QuitHBoxContainer3/VBoxContainer/Quit_game")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
 text = "Settings"
+flat = true
 
-[node name="Quit_game" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container"]
+[node name="StoryHBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Settings")
-focus_neighbor_bottom = NodePath("../Story_mode")
+
+[node name="StoryVBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer"]
+layout_mode = 2
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer/StoryVBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="Story_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer/StoryVBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../QuitHBoxContainer3/VBoxContainer/Quit_game")
+focus_neighbor_bottom = NodePath("../../../ArenaHBoxContainer2/VBoxContainer/Arena_mode")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
+text = "Story mode"
+flat = true
+
+[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer/StoryVBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="ArenaHBoxContainer2" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaHBoxContainer2"]
+layout_mode = 2
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaHBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="Arena_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaHBoxContainer2/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../StoryHBoxContainer/StoryVBoxContainer/Story_mode")
+focus_neighbor_bottom = NodePath("../../../Settings")
+theme = ExtResource("2_i0oc2")
+theme_override_fonts/font = ExtResource("3_426ai")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
+text = "Arena mode"
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaHBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="QuitHBoxContainer3" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitHBoxContainer3"]
+layout_mode = 2
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitHBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="Quit_game" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitHBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Settings")
+focus_neighbor_bottom = NodePath("../../../StoryHBoxContainer/StoryVBoxContainer/Story_mode")
+theme = ExtResource("2_i0oc2")
+theme_override_fonts/font = ExtResource("3_426ai")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
 text = "Quit game"
+flat = true
+
+[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitHBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
 
 [node name="Logo_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 1
@@ -1131,11 +1252,11 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 20
 text = "Pass the video"
 
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode" to="MainMenuGenralControl" method="_on_story_mode_button_down"]
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_button_down"]
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Practice_mode" to="MainMenuGenralControl" method="_on_practice_mode_button_down"]
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Settings" to="MainMenuGenralControl" method="_on_settings_button_down"]
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/Practice_mode" to="MainMenuGenralControl" method="_on_practice_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/Settings" to="MainMenuGenralControl" method="_on_settings_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryHBoxContainer/StoryVBoxContainer/Story_mode" to="MainMenuGenralControl" method="_on_story_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaHBoxContainer2/VBoxContainer/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_button_down"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitHBoxContainer3/VBoxContainer/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_button_down"]
 [connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_button_down"]
 [connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_button_down"]
 [connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_entered"]
