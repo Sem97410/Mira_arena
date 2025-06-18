@@ -246,7 +246,7 @@ extent = 32.0
 bounds = AABB(-47, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ekj8a"]
@@ -282,7 +282,7 @@ extent = 32.0
 bounds = AABB(-47, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_x1pjj"]
@@ -300,7 +300,7 @@ extent = 32.0
 bounds = AABB(17, -85, -31, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xo36d"]
@@ -318,7 +318,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -354,7 +354,7 @@ extent = 32.0
 bounds = AABB(17, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = -1
+active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_wdjw3"]
@@ -6391,7 +6391,7 @@ environment = SubResource("Environment_0uvq1")
 [node name="CameraComponent" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent"]
-transform = Transform3D(-0.999334, 0.0165926, -0.0324408, 0.00943541, 0.977774, 0.209449, 0.035195, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
+transform = Transform3D(-0.999334, 0.0165926, -0.0324408, 0.0094354, 0.977774, 0.209449, 0.035195, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
 fov = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraComponent/Camera3D"]

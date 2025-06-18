@@ -21,6 +21,11 @@ extends Control
 @export var main_quit_temp_separation_margin_container_left : MarginContainer
 @export var main_quit_temp_separation_margin_container_right : MarginContainer
 
+@export var skip_focus_indicator_left_text_rect : TextureRect
+@export var skip_focus_indicator_right_text_rect : TextureRect
+@export var skip_temp_separation_margin_container_left : MarginContainer
+@export var skip_temp_separation_margin_container_right : MarginContainer
+
 #------------------------------
 #LOGO
 @export var logo_container : MarginContainer
@@ -281,3 +286,17 @@ func _on_quit_button_focus_exited() -> void:
 	main_quit_temp_separation_margin_container_left.visible = true
 	main_quit_focus_indicator_right_text_rect.visible = false
 	main_quit_temp_separation_margin_container_right.visible = true
+
+
+func _on_skip_video_button_focus_entered() -> void:
+	skip_focus_indicator_left_text_rect.visible = true
+	skip_temp_separation_margin_container_left.visible = false
+	skip_focus_indicator_right_text_rect.visible = true
+	skip_temp_separation_margin_container_right.visible = false
+
+
+func _on_skip_video_button_focus_exited() -> void:
+	skip_focus_indicator_left_text_rect.visible = false
+	skip_temp_separation_margin_container_left.visible = true
+	skip_focus_indicator_right_text_rect.visible = false
+	skip_temp_separation_margin_container_right.visible = true

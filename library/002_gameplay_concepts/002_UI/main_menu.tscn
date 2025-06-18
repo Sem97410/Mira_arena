@@ -71,6 +71,33 @@ shader_parameter/Opacity = 1.0
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 1.0
 
+[sub_resource type="Animation" id="Animation_olk8i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StoryButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StoryButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_urdhe"]
 resource_name = "story_mode_focus_animation"
 loop_mode = 1
@@ -99,33 +126,6 @@ tracks/1/keys = {
 "values": [1.0, 0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_olk8i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StoryButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("StoryButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6cwnk"]
 _data = {
 &"RESET": SubResource("Animation_olk8i"),
@@ -139,6 +139,33 @@ shader_parameter/Opacity = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_olk8i"]
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 0.0
+
+[sub_resource type="Animation" id="Animation_pvj5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArenaButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArenaButtonFocusIndicatorRightTextRect2:material:shader_parameter/Opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_6cwnk"]
 resource_name = "arena_button_focus"
@@ -168,33 +195,6 @@ tracks/1/keys = {
 "values": [1.0, 0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_pvj5v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ArenaButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ArenaButtonFocusIndicatorRightTextRect2:material:shader_parameter/Opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_elm4v"]
 _data = {
 &"RESET": SubResource("Animation_pvj5v"),
@@ -209,13 +209,40 @@ shader_parameter/Opacity = 1.0
 shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 1.0
 
+[sub_resource type="Animation" id="Animation_nqamp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PassVIdeoButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PassVideoButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_elm4v"]
 resource_name = "quit_game_focus"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
+tracks/0/path = NodePath("PassVIdeoButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -227,7 +254,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
+tracks/1/path = NodePath("PassVideoButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -235,33 +262,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [1.0, 0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_nqamp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q3ak"]
@@ -536,7 +536,7 @@ _data = {
 
 [node name="MainMenu" type="Node3D"]
 
-[node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "story_focus_indicator_left_text_rect", "story_focus_indicator_right_text_rect", "story_temp_separation_margin_container_left", "story_temp_separation_margin_container_right", "arena_focus_indicator_left_text_rect", "arena_focus_indicator_right_text_rect", "arena_temp_separation_margin_container_left", "arena_temp_separation_margin_container_right", "main_quit_focus_indicator_left_text_rect", "main_quit_focus_indicator_right_text_rect", "main_quit_temp_separation_margin_container_left", "main_quit_temp_separation_margin_container_right", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "slimaggedon_focus_indicator_left_text_rect", "slimaggedon_focus_indicator_right_text_rect", "slimaggedon_temp_separation_margin_container_left", "slimaggedon_temp_separation_margin_container_right", "flugdrasil_focus_indicator_left_text_rect", "flugdrasil_focus_indicator_right_text_rect", "flugdrasil_temp_separation_margin_container_left", "flugdrasil_temp_separation_margin_container_right", "quit_focus_indicator_left_text_rect", "quit_focus_indicator_right_text_rect", "quit_temp_separation_margin_container_left", "quit_temp_separation_margin_container_right", "main_menu_music")]
+[node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "story_focus_indicator_left_text_rect", "story_focus_indicator_right_text_rect", "story_temp_separation_margin_container_left", "story_temp_separation_margin_container_right", "arena_focus_indicator_left_text_rect", "arena_focus_indicator_right_text_rect", "arena_temp_separation_margin_container_left", "arena_temp_separation_margin_container_right", "main_quit_focus_indicator_left_text_rect", "main_quit_focus_indicator_right_text_rect", "main_quit_temp_separation_margin_container_left", "main_quit_temp_separation_margin_container_right", "skip_focus_indicator_left_text_rect", "skip_focus_indicator_right_text_rect", "skip_temp_separation_margin_container_left", "skip_temp_separation_margin_container_right", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "slimaggedon_focus_indicator_left_text_rect", "slimaggedon_focus_indicator_right_text_rect", "slimaggedon_temp_separation_margin_container_left", "slimaggedon_temp_separation_margin_container_right", "flugdrasil_focus_indicator_left_text_rect", "flugdrasil_focus_indicator_right_text_rect", "flugdrasil_temp_separation_margin_container_left", "flugdrasil_temp_separation_margin_container_right", "quit_focus_indicator_left_text_rect", "quit_focus_indicator_right_text_rect", "quit_temp_separation_margin_container_left", "quit_temp_separation_margin_container_right", "main_menu_music")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -559,13 +559,17 @@ main_quit_focus_indicator_left_text_rect = NodePath("Main_buttons_margin_contain
 main_quit_focus_indicator_right_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/QuitButtonFocusIndicatorRightTextRect")
 main_quit_temp_separation_margin_container_left = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/QuitTempSeparationLeftMarginContainer")
 main_quit_temp_separation_margin_container_right = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitTempSeparationRightMarginContainer")
+skip_focus_indicator_left_text_rect = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/PassVIdeoButtonFocusIndicatorLeftTextRect2")
+skip_focus_indicator_right_text_rect = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/PassVideoButtonFocusIndicatorRightTextRect")
+skip_temp_separation_margin_container_left = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/PassVideoTempSeparationLeftMarginContainer")
+skip_temp_separation_margin_container_right = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/PassVideoTempSeparationRightMarginContainer")
 logo_container = NodePath("Logo_container")
 quit_game_confirmation_pannel = NodePath("Quit_game_confirmation_pannel")
 quit_game_confirmation_pannel_first_button = NodePath("Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button")
 not_ready_pannel = NodePath("Not_ready_pannel")
 video_player = NodePath("../VideoControl/VideoContainer/AspectRatioContainer/VideoStreamPlayer")
 video_player_container = NodePath("../VideoControl")
-skip_video_button = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton")
+skip_video_button = NodePath("../VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SkipVideoButton")
 video_length = 72.0
 map_selection_container = NodePath("LevelSelectionMargin")
 map_selection_main_button = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton")
@@ -1592,17 +1596,77 @@ expand = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = -70
+theme_override_constants/margin_bottom = 20
 
-[node name="SkipVideoButton" type="Button" parent="VideoControl/VideoContainer/SkipButtonContainer"]
+[node name="PassVideoMarginContainer" type="MarginContainer" parent="VideoControl/VideoContainer/SkipButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PassVideoTempSeparationLeftMarginContainer" type="MarginContainer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(76, 50)
+layout_mode = 2
+
+[node name="PassVIdeoButtonFocusIndicatorLeftTextRect2" type="TextureRect" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_6cwnk")
+layout_mode = 2
+texture = ExtResource("11_xsniu")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WhiteButtonSeparation3" type="TextureRect" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="SkipVideoButton" type="Button" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_erqrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_erqrd")
 text = "Pass the video"
+flat = true
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="PassVideoButtonFocusIndicatorRightTextRect" type="TextureRect" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_pvj5v")
+layout_mode = 2
+texture = ExtResource("11_xsniu")
+expand_mode = 2
+flip_h = true
+
+[node name="PassVideoTempSeparationRightMarginContainer" type="MarginContainer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(76, 50)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_4q3ak")
+}
+autoplay = "quit_game_focus"
 
 [connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/Practice_mode" to="MainMenuGenralControl" method="_on_practice_mode_button_down"]
 [connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/Settings" to="MainMenuGenralControl" method="_on_settings_button_down"]
@@ -1626,4 +1690,6 @@ text = "Pass the video"
 [connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/VBoxContainer/GoToMainMenuButton" to="MainMenuGenralControl" method="_on_go_to_main_menu_button_focus_entered"]
 [connection signal="focus_exited" from="MainMenuGenralControl/LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/VBoxContainer/GoToMainMenuButton" to="MainMenuGenralControl" method="_on_go_to_main_menu_button_focus_exited"]
 [connection signal="pressed" from="MainMenuGenralControl/LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/VBoxContainer/GoToMainMenuButton" to="MainMenuGenralControl" method="_on_go_to_main_menu_button_pressed"]
-[connection signal="button_down" from="VideoControl/VideoContainer/SkipButtonContainer/SkipVideoButton" to="MainMenuGenralControl" method="_on_skip_video_button_button_down"]
+[connection signal="button_down" from="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SkipVideoButton" to="MainMenuGenralControl" method="_on_skip_video_button_button_down"]
+[connection signal="focus_entered" from="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SkipVideoButton" to="MainMenuGenralControl" method="_on_skip_video_button_focus_entered"]
+[connection signal="focus_exited" from="VideoControl/VideoContainer/SkipButtonContainer/PassVideoMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SkipVideoButton" to="MainMenuGenralControl" method="_on_skip_video_button_focus_exited"]
