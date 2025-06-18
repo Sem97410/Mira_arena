@@ -1,14 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://6bqt8je5v34i"]
+[gd_scene load_steps=26 format=3 uid="uid://6bqt8je5v34i"]
 
+[ext_resource type="Shader" uid="uid://cpigeeyfypg0e" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Smoke_Bomb.tres" id="1_qs68i"]
 [ext_resource type="Shader" uid="uid://2kqb4uplbhec" path="res://library/002_gameplay_concepts/003_enemy/v_02/003_explosive_slime/VFX/Sparkle_Bomb.tres" id="2_qs68i"]
 [ext_resource type="Script" uid="uid://b61kheqwsajd1" path="res://library/002_gameplay_concepts/001_player/Scripts/destroy_vfx.gd" id="3_pdbln"]
 [ext_resource type="Script" uid="uid://4224sacgiaay" path="res://library/002_gameplay_concepts/006_VFX/Enemy_death/death_vfx_logic.gd" id="3_qik3b"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xdhu"]
-transparency = 1
-albedo_color = Color(0.743945, 0.471892, 0.960423, 1)
-emission_enabled = true
-emission = Color(0.743945, 0.471892, 0.960423, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qik3b"]
+render_priority = 0
+shader = ExtResource("1_qs68i")
+shader_parameter/Distance_Fade = 0.3
+shader_parameter/White = 0.0
+shader_parameter/Black = 0.0
 
 [sub_resource type="Curve" id="Curve_jjj7n"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -50,7 +52,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_y0fqr")
-color = Color(4, 0.8, 0.2, 1)
+color = Color(1, 4, 0.2, 1)
 color_ramp = SubResource("GradientTexture1D_dgoyx")
 color_initial_ramp = SubResource("GradientTexture1D_mql51")
 alpha_curve = SubResource("CurveTexture_5k67n")
@@ -60,7 +62,7 @@ alpha_curve = SubResource("CurveTexture_5k67n")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
 render_priority = 0
 shader = ExtResource("2_qs68i")
-shader_parameter/ColorParameter = Color(0.748279, 0.303508, 0.781565, 1)
+shader_parameter/ColorParameter = Color(0.123176, 0.611716, 0.431687, 1)
 
 [sub_resource type="Curve" id="Curve_5xs7k"]
 _data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
@@ -200,7 +202,7 @@ _data = {
 
 [node name="Puff" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_5xdhu")
+material_override = SubResource("ShaderMaterial_qik3b")
 amount = 10
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_06nvl")
