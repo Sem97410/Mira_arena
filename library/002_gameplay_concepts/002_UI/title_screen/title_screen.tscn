@@ -1,4 +1,4 @@
-[gd_scene load_steps=325 format=4 uid="uid://h5ki6o7xpk76"]
+[gd_scene load_steps=330 format=4 uid="uid://h5ki6o7xpk76"]
 
 [ext_resource type="ArrayMesh" uid="uid://pyan2uxq2utm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/000_fbx/fbx/platform/Platform_Arene.obj" id="1_ekj8a"]
 [ext_resource type="Material" uid="uid://ct7o1r828htgm" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/001_platform_asset/platform_arena/material/mat_arene.tres" id="2_hpyr5"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://c31ef40j87w1l" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/Menhirs/Menhir_4_Game.fbx" id="26_wfy38"]
 [ext_resource type="PackedScene" uid="uid://uybglvwn00n7" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/dalle_02/dalle_02.tscn" id="27_wfy38"]
 [ext_resource type="PackedScene" uid="uid://doer8uov0k3bc" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/dalle_03/dalle_03.tscn" id="28_qu1ls"]
+[ext_resource type="Shader" uid="uid://cph7n4uvtssl1" path="res://library/002_gameplay_concepts/002_UI/main_menu_indicator.tres" id="29_tfj5a"]
 [ext_resource type="PackedScene" uid="uid://dtbqkjo1e3v04" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/dalle_04/dalle_04.tscn" id="29_u2tiu"]
 [ext_resource type="PackedScene" uid="uid://103e8vwjbklb" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/dalle_05/dalle_05.tscn" id="30_1w1ml"]
 [ext_resource type="PackedScene" uid="uid://bkr2ep0sa3vlo" path="res://library/002_gameplay_concepts/004_level_system/003_level_design/asset/MainMenuSlime.tscn" id="31_qu1ls"]
@@ -246,7 +247,7 @@ extent = 32.0
 bounds = AABB(-47, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_ekj8a"]
@@ -282,7 +283,7 @@ extent = 32.0
 bounds = AABB(-47, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_x1pjj"]
@@ -300,7 +301,7 @@ extent = 32.0
 bounds = AABB(17, -85, -31, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xo36d"]
@@ -318,7 +319,7 @@ extent = 32.0
 bounds = AABB(17, -85, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_34jtm"]
@@ -354,7 +355,7 @@ extent = 32.0
 bounds = AABB(17, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_wdjw3"]
@@ -5796,6 +5797,18 @@ _data = {
 &"idlee_02": SubResource("Animation_hfpjf")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsyn1"]
+shader = ExtResource("29_tfj5a")
+shader_parameter/Opacity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rkhsd"]
+shader = ExtResource("29_tfj5a")
+shader_parameter/Opacity = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3fp63"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l8ks"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opnf4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dbb1y"]
@@ -7516,25 +7529,66 @@ theme_override_constants/margin_bottom = -175
 [node name="TextureRect" type="TextureRect" parent="PremenuPannel/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 texture = ExtResource("34_0uvq1")
-expand_mode = 1
+expand_mode = 2
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="PremenuPannel/VBoxContainer"]
+material = SubResource("ShaderMaterial_nsyn1")
 layout_mode = 2
 theme_override_constants/margin_left = 700
 theme_override_constants/margin_top = 980
 theme_override_constants/margin_right = 700
 
 [node name="Panel" type="Panel" parent="PremenuPannel/VBoxContainer/MarginContainer"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_rkhsd")
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="IntroMarginContainer" type="MarginContainer" parent="PremenuPannel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="StoryHBoxContainer" type="HBoxContainer" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer/MarginContainer/StoryHBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PremenuPannel/VBoxContainer/MarginContainer"]
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_3fp63")
+
+[node name="Label" type="Label" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_6l8ks")
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "... Press Start ..."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WhiteButtonSeparation" type="TextureRect" parent="PremenuPannel/VBoxContainer/MarginContainer/IntroMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_3fp63")
 
 [node name="candlle_01" parent="." instance=ExtResource("33_u2tiu")]
 transform = Transform3D(-0.674521, 0, -0.738255, 0, 1, 0, 0.738255, 0, -0.674521, 1.93665, 1.20409, 5.59821)

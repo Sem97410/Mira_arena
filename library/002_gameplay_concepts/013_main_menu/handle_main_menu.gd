@@ -12,10 +12,6 @@ func _ready() -> void:
 	get_tree().paused = false
 	animation_player.play("StartAnimation")
 
-
-
-
-
 func _process(delta: float) -> void:
 	launch_transition_animation()
 

@@ -932,6 +932,7 @@ theme_override_constants/margin_bottom = 25
 [node name="Label" type="Label" parent="MainMenuGenralControl/Not_ready_pannel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 50
 text = "This feature is not available yet"
@@ -974,6 +975,7 @@ theme_override_constants/separation = 125
 
 [node name="Label" type="Label" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 60
 text = "Are you sure that you want to close the game?"
@@ -983,83 +985,6 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 195
 alignment = 1
-
-[node name="StayMarginContainer2" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="Panel" type="Panel" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 20
-
-[node name="StayHBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer"]
-layout_mode = 2
-
-[node name="StayTempSeparationLeftMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-custom_minimum_size = Vector2(76, 50)
-layout_mode = 2
-
-[node name="StayButtonFocusIndicatorLeftTextRect" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-visible = false
-material = SubResource("ShaderMaterial_3kpvy")
-layout_mode = 2
-texture = ExtResource("11_xsniu")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-layout_mode = 2
-
-[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("CanvasTexture_fdeyw")
-
-[node name="Stay_in_game_confirmation_button" type="Button" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button")
-focus_neighbor_right = NodePath("../../../../../FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button")
-theme = ExtResource("2_i0oc2")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_erqrd")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_erqrd")
-text = "Stay in main menu"
-flat = true
-
-[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("CanvasTexture_fdeyw")
-
-[node name="StayButtonFocusIndicatorRightTextRect" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-visible = false
-material = SubResource("ShaderMaterial_xsg7n")
-layout_mode = 2
-texture = ExtResource("11_xsniu")
-expand_mode = 2
-flip_h = true
-
-[node name="StayTempSeparationRightMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-custom_minimum_size = Vector2(76, 50)
-layout_mode = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_6cwnk")
-}
-autoplay = "story_mode_focus_animation"
 
 [node name="FinalQuitMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer"]
 layout_mode = 2
@@ -1138,6 +1063,83 @@ libraries = {
 }
 autoplay = "story_mode_focus_animation"
 
+[node name="StayMarginContainer2" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="StayHBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="StayTempSeparationLeftMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+custom_minimum_size = Vector2(76, 50)
+layout_mode = 2
+
+[node name="StayButtonFocusIndicatorLeftTextRect" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_3kpvy")
+layout_mode = 2
+texture = ExtResource("11_xsniu")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+layout_mode = 2
+
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="Stay_in_game_confirmation_button" type="Button" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button")
+focus_neighbor_right = NodePath("../../../../../FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button")
+theme = ExtResource("2_i0oc2")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_erqrd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_erqrd")
+text = "Stay in main menu"
+flat = true
+
+[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_fdeyw")
+
+[node name="StayButtonFocusIndicatorRightTextRect" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_xsg7n")
+layout_mode = 2
+texture = ExtResource("11_xsniu")
+expand_mode = 2
+flip_h = true
+
+[node name="StayTempSeparationRightMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+custom_minimum_size = Vector2(76, 50)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_6cwnk")
+}
+autoplay = "story_mode_focus_animation"
+
 [node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -1183,6 +1185,7 @@ theme_override_constants/margin_top = 50
 [node name="Label" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 150
 text = "Map Selection"
@@ -1336,6 +1339,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
 text = "Max score : "
@@ -1349,6 +1353,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SlimageddonMaxScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonMaxScoreMarginContainer/MaxScoreLabel/MarginContainer2"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
 text = "1000000"
@@ -1378,6 +1383,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SlimageddonLastScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
 text = "Last score : "
@@ -1393,6 +1399,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SlimageddonLastScoreScore" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/SlimageddonScoreGeneralMarginContainer/MarginContainer/SlimageddonVboxContainer/SlimageddonLastScoreMarginContainer/LastMaxScoreLabel/MarginContainer2"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
 text = "1000000"
@@ -1500,12 +1507,14 @@ layout_mode = 2
 
 [node name="FlugdrasilMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MaxScoreLabelHBox"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
 text = "Max score : "
 
 [node name="FlugdrasilMaxScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MaxScoreLabelHBox"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
 text = "1000000"
@@ -1535,6 +1544,7 @@ layout_mode = 2
 
 [node name="SlimageddonMaxScoreText" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/LastMaxScoreLabelHbox"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 40
 text = "Last score : "
@@ -1543,6 +1553,7 @@ vertical_alignment = 1
 
 [node name="SlimageddonLastScoreValue" type="Label" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/LastMaxScoreLabelHbox"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 30
 text = "1000000"
@@ -1658,6 +1669,7 @@ texture = SubResource("CanvasTexture_fdeyw")
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 25
 text = "Small but fierce! Survive an endless wave of underestimated creatures in a tight arena. Hold your ground against their relentless fury!"
@@ -1703,6 +1715,7 @@ texture = SubResource("CanvasTexture_fdeyw")
 
 [node name="Label" type="Label" parent="MainMenuGenralControl/Map2Information/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("9_bafky")
 theme_override_font_sizes/font_size = 25
 text = "Relentless waves of monsters hunt you through a floating maze. Run, fight… but whatever you do, don’t fall!"
@@ -1837,12 +1850,12 @@ autoplay = "quit_game_focus"
 [connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_button_down"]
 [connection signal="focus_entered" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_focus_entered"]
 [connection signal="focus_exited" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_focus_exited"]
-[connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_button_down"]
-[connection signal="focus_entered" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_focus_entered"]
-[connection signal="focus_exited" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_focus_exited"]
 [connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_button_down"]
 [connection signal="focus_entered" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_focus_entered"]
 [connection signal="focus_exited" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/FinalQuitMarginContainer/MarginContainer/FinalQuitHBoxContainer/VBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_focus_exited"]
+[connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_button_down"]
+[connection signal="focus_entered" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_focus_entered"]
+[connection signal="focus_exited" from="MainMenuGenralControl/Quit_game_confirmation_pannel/MarginContainer/VBoxContainer2/VBoxContainer/ButtonHBoxContainer/StayMarginContainer2/MarginContainer/StayHBoxContainer/VBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_focus_exited"]
 [connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_entered"]
 [connection signal="focus_exited" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_exited"]
 [connection signal="pressed" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_pressed"]
