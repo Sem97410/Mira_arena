@@ -3,13 +3,17 @@ extends Node
 @export var animation_player : AnimationPlayer
 @export var main_menu_panel : Control
 @export var pre_menu_panel : VBoxContainer
-@export var first_main_button : Button # = $Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode
+@export var first_main_button : Button 
+@export var main_menu_clock_background : TextureRect
+
 @onready var is_in_main_menu : bool = false
 
 func _ready() -> void:
 	get_tree().paused = false
 	animation_player.play("StartAnimation")
-	print("There is a handleMainMenu here")
+
+
+
 
 
 func _process(delta: float) -> void:
@@ -27,7 +31,11 @@ func activate_pre_menu() -> void :
 
 func activate_main_menu() -> void : 
 	main_menu_panel.visible = true
+	main_menu_clock_background.visible = true
 	is_in_main_menu = true
+
+
+
 	first_main_button.grab_focus()
 	
 	
@@ -36,6 +44,7 @@ func hide_pre_menu() -> void :
 
 func hide_main_menu() -> void : 
 	main_menu_panel.visible = false
+	main_menu_clock_background.visible = false
 
 func launch_transition_animation() -> void : 
 	if Input.is_action_just_pressed("launch_main_menu") and is_in_main_menu == false:

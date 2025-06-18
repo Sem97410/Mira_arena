@@ -282,7 +282,7 @@ extent = 32.0
 bounds = AABB(-47, -21, 33, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_x1pjj"]
@@ -300,7 +300,7 @@ extent = 32.0
 bounds = AABB(17, -85, -31, 64, 64, 64)
 max_bounds_to_center_dist = 55.4256
 min_bounds_to_center_dist = 32.0
-active_LOD_index = 0
+active_LOD_index = -1
 metadata/class = "MMIOctreeNode"
 
 [sub_resource type="Resource" id="Resource_xo36d"]
@@ -6391,7 +6391,7 @@ environment = SubResource("Environment_0uvq1")
 [node name="CameraComponent" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent"]
-transform = Transform3D(-0.999335, 0.0165926, -0.0324408, 0.00943542, 0.977774, 0.209449, 0.0351951, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
+transform = Transform3D(-0.999334, 0.0165926, -0.0324408, 0.00943541, 0.977774, 0.209449, 0.035195, 0.209003, -0.977281, -0.41124, 3.6347, -6.00686)
 fov = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraComponent/Camera3D"]
@@ -6404,7 +6404,6 @@ libraries = {
 transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109981, -0.572549, 0.0333695, -1.38603, 2.89504, 1.0544, 5.2783)
 
 [node name="MainMenu" parent="." instance=ExtResource("22_xo36d")]
-visible = false
 
 [node name="MainMenuGenralControl" parent="MainMenu" index="0"]
 video_length = 90.0
@@ -7492,11 +7491,13 @@ transform = Transform3D(-0.00235607, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, -0.00
 [node name="SlimePresentation2" parent="." instance=ExtResource("31_qu1ls")]
 transform = Transform3D(-0.00674538, 0, -0.499955, 0, 0.5, 0, 0.499955, 0, -0.00674538, 2.92374, 1.98615, 5.55699)
 
-[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_panel", "pre_menu_panel")]
+[node name="HandleMainMenu" type="Node" parent="." node_paths=PackedStringArray("animation_player", "main_menu_panel", "pre_menu_panel", "first_main_button", "main_menu_clock_background")]
 script = ExtResource("32_qu1ls")
 animation_player = NodePath("../CameraComponent/Camera3D/AnimationPlayer")
 main_menu_panel = NodePath("../MainMenu/MainMenuGenralControl")
 pre_menu_panel = NodePath("../PremenuPannel/VBoxContainer")
+first_main_button = NodePath("../MainMenu/MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer/Story_mode")
+main_menu_clock_background = NodePath("../MainMenu/MainMenuGenralControl/BackGroundClock")
 
 [node name="PremenuPannel" type="Node3D" parent="."]
 
@@ -7694,36 +7695,36 @@ bones/0/name = "Rig_Main"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0, -1, 0, -0.0792349, 0, -0.996856, 0.996856, 0, -0.079235, 0.00447448, 0.0867795, 0.375783)
 bones/0/enabled = true
-bones/0/position = Vector3(0.00447448, -0.0949891, 0.375436)
-bones/0/rotation = Quaternion(0.496676, -0.496676, 0.503302, 0.503302)
+bones/0/position = Vector3(0.00447448, -0.0689493, 0.37553)
+bones/0/rotation = Quaternion(0.50295, -0.50295, 0.497033, 0.497033)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Rig_Embout_1"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.999782, 1.15417e-16, -0.0208683, -1.04493e-16, -1, -1.05369e-14, -0.0208683, 1.05368e-14, -0.999782, 0.113762, -1.3289e-17, -0.00989257)
 bones/1/enabled = true
 bones/1/position = Vector3(0.113793, 9.82132e-05, -0.00983628)
-bones/1/rotation = Quaternion(0.99736, 0.00276318, -0.043335, 0.0582018)
+bones/1/rotation = Quaternion(0.996398, -0.0134615, -0.0407422, 0.0731438)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Rig_Embout_2"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999989, -6.04629e-17, 0.00459991, 2.88024e-17, 1, 6.88292e-15, -0.00459991, -6.88271e-15, 0.999989, 0.0795828, -3.2604e-16, 0.0494839)
 bones/2/enabled = true
 bones/2/position = Vector3(0.0795828, 2.91433e-16, 0.0494839)
-bones/2/rotation = Quaternion(-5.55115e-17, -0.0216893, 3.40445e-17, 0.999765)
+bones/2/rotation = Quaternion(-8.79065e-23, 0.00229996, 0, 0.999997)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Rig_Tete"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, -1.2326e-32, 0, 1.2326e-32, 1, 2.55186e-33, 0, -2.55186e-33, 1, 0.161095, -9.1027e-17, -1.16226e-16)
 bones/3/enabled = true
 bones/3/position = Vector3(0.161095, 1.38778e-17, -3.19744e-16)
-bones/3/rotation = Quaternion(-5.55117e-17, -0.0310564, 2.0058e-16, 0.999518)
+bones/3/rotation = Quaternion(-5.55111e-17, 2.77556e-16, 1.66533e-16, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Rig_Mach_Sup_1"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.944287, 4.00642e-17, -0.329123, -4.26592e-15, 1, -1.21176e-14, 0.329123, 1.28465e-14, 0.944287, 0.0412995, -3.81976e-16, 0.032882)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0412995, 2.42584e-16, 0.032882)
-bones/4/rotation = Quaternion(2.26963e-17, -0.173762, 2.01807e-16, 0.984788)
+bones/4/rotation = Quaternion(-8.68999e-23, -0.166903, 1.05879e-22, 0.985973)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Rig_Mach_Sup_2"
 bones/5/parent = 4
@@ -7744,14 +7745,14 @@ bones/7/parent = 3
 bones/7/rest = Transform3D(0.931553, 1.35478e-16, -0.363607, 4.70864e-15, -1, 1.16909e-14, -0.363607, -1.26027e-14, -0.931553, -0.00204277, 3.71744e-16, -0.0265116)
 bones/7/enabled = true
 bones/7/position = Vector3(-0.00190571, -1.06026e-16, -0.0263947)
-bones/7/rotation = Quaternion(0.999996, 1.40714e-16, 0.00286606, 7.09396e-17)
+bones/7/rotation = Quaternion(0.999996, 1.40714e-16, 0.00286604, 7.09393e-17)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Rig_Mach_Inf_2"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.997774, 1.27865e-17, -0.0666922, 1.57991e-18, -1, -1.68088e-16, -0.0666922, 1.67608e-16, -0.997774, 0.114427, -3.30888e-17, -4.16334e-16)
 bones/8/enabled = true
 bones/8/position = Vector3(0.114427, -9.32587e-17, -7.10543e-17)
-bones/8/rotation = Quaternion(0.999728, -1.50004e-15, -0.0233108, -3.39187e-15)
+bones/8/rotation = Quaternion(0.999443, 2.04293e-18, -0.0333647, 6.11962e-17)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "Rig_Mach_Inf_3"
 bones/9/parent = 8
@@ -7793,7 +7794,7 @@ bones/14/parent = 0
 bones/14/rest = Transform3D(-0.999145, 2.03652e-16, 0.041339, 8.76913e-17, -1, 7.04586e-15, 0.041339, 7.04346e-15, 0.999145, -0.147323, 7.64387e-17, 0.0148138)
 bones/14/enabled = true
 bones/14/position = Vector3(-0.147297, 7.66054e-17, 0.014863)
-bones/14/rotation = Quaternion(-0.0108711, -1.95992e-15, 0.999941, -8.32648e-17)
+bones/14/rotation = Quaternion(-0.0176488, -2.02616e-15, 0.999844, -2.22043e-16)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Rig_Manche_2"
 bones/15/parent = 14
@@ -7807,14 +7808,14 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(0.999438, 5.70116e-17, 0.0335241, 1.47651e-15, 1, -4.5719e-14, -0.0335241, 4.57428e-14, 0.999438, 0.2407, 5.89429e-16, -0.0130939)
 bones/16/enabled = true
 bones/16/position = Vector3(0.240644, 2.22044e-18, -0.013136)
-bones/16/rotation = Quaternion(-6.57609e-22, -0.0166584, -2.65594e-16, 0.999861)
+bones/16/rotation = Quaternion(-2.77583e-17, -0.0315062, -2.22045e-16, 0.999504)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "Rig_Manche_4"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.997023, 9.95368e-17, -0.0770993, 1.31811e-16, 1, 2.99556e-15, 0.0770993, -2.9968e-15, 0.997023, 0.308852, 1.87138e-17, 0.00721865)
 bones/17/enabled = true
 bones/17/position = Vector3(0.309401, -2.24265e-16, 0.00716592)
-bones/17/rotation = Quaternion(1.64077e-17, -0.13296, -2.04409e-16, 0.991122)
+bones/17/rotation = Quaternion(9.60564e-23, -0.16364, -3.60823e-16, 0.98652)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Rig_Paille_G_1"
 bones/18/parent = 17
@@ -7849,7 +7850,7 @@ bones/22/parent = 21
 bones/22/rest = Transform3D(0.999413, 1.27345e-16, 0.0342461, -1.84905e-16, 1, 1.67763e-15, -0.0342461, -1.68297e-15, 0.999413, 0.100144, 0.139116, -0.000810569)
 bones/22/enabled = true
 bones/22/position = Vector3(0.100144, 0.139116, -0.000810569)
-bones/22/rotation = Quaternion(-0.000318794, 0.0171226, 0.0186123, 0.99968)
+bones/22/rotation = Quaternion(4.18894e-23, 0.0171256, 3.30872e-24, 0.999853)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "Rig_Paille_Sup_3"
 bones/23/parent = 22
@@ -7870,7 +7871,7 @@ bones/25/parent = 24
 bones/25/rest = Transform3D(0.999413, 3.28778e-17, 0.0342461, -6.32374e-17, 1, 8.8543e-16, -0.0342461, -8.87077e-16, 0.999413, 0.100144, 0.139116, -0.000810569)
 bones/25/enabled = true
 bones/25/position = Vector3(0.100144, 0.139116, -0.000810569)
-bones/25/rotation = Quaternion(5.55112e-17, 0.0210269, -7.31764e-16, 0.999779)
+bones/25/rotation = Quaternion(-2.82704e-24, 0.0171256, 1.65436e-24, 0.999853)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "Rig_Paille_D_3"
 bones/26/parent = 25
@@ -7891,7 +7892,7 @@ bones/28/parent = 27
 bones/28/rest = Transform3D(0.999413, -7.76935e-17, 0.0342461, 5.41454e-17, 1, 6.88541e-16, -0.0342461, -6.86283e-16, 0.999413, 0.100144, 0.139116, -0.000810569)
 bones/28/enabled = true
 bones/28/position = Vector3(0.0997607, 0.139126, -0.000810569)
-bones/28/rotation = Quaternion(-0.00172558, 0.0170384, 0.100745, 0.994765)
+bones/28/rotation = Quaternion(-0.00227901, 0.0169733, 0.133057, 0.99096)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/name = "Rig_Paille_Inf_3"
 bones/29/parent = 28

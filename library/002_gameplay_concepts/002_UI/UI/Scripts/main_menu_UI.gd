@@ -5,6 +5,22 @@ extends Control
 #MAIN BUTTONS
 @export var main_button_general_container : MarginContainer  #= $Main_buttons_margin_container
 @export var first_main_button : Button # = $Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode
+
+@export var story_focus_indicator_left_text_rect : TextureRect
+@export var story_focus_indicator_right_text_rect : TextureRect
+@export var story_temp_separation_margin_container_left : MarginContainer
+@export var story_temp_separation_margin_container_right : MarginContainer
+
+@export var arena_focus_indicator_left_text_rect : TextureRect
+@export var arena_focus_indicator_right_text_rect : TextureRect
+@export var arena_temp_separation_margin_container_left : MarginContainer
+@export var arena_temp_separation_margin_container_right : MarginContainer
+
+@export var main_quit_focus_indicator_left_text_rect : TextureRect
+@export var main_quit_focus_indicator_right_text_rect : TextureRect
+@export var main_quit_temp_separation_margin_container_left : MarginContainer
+@export var main_quit_temp_separation_margin_container_right : MarginContainer
+
 #------------------------------
 #LOGO
 @export var logo_container : MarginContainer
@@ -203,3 +219,45 @@ func _on_go_to_main_menu_button_focus_exited() -> void:
 	quit_temp_separation_margin_container_left.visible = true
 	quit_focus_indicator_right_text_rect.visible = false
 	quit_temp_separation_margin_container_right.visible = true
+
+
+func _on_story_mode_focus_entered() -> void:
+	story_focus_indicator_left_text_rect.visible = true
+	story_temp_separation_margin_container_left.visible = false
+	story_focus_indicator_right_text_rect.visible = true
+	story_temp_separation_margin_container_right.visible = false
+
+
+func _on_story_mode_focus_exited() -> void:
+	story_focus_indicator_left_text_rect.visible = false
+	story_temp_separation_margin_container_left.visible = true
+	story_focus_indicator_right_text_rect.visible = false
+	story_temp_separation_margin_container_right.visible = true
+
+
+func _on_arena_mode_focus_entered() -> void:
+	arena_focus_indicator_left_text_rect.visible = true
+	arena_temp_separation_margin_container_left.visible = false
+	arena_focus_indicator_right_text_rect.visible = true
+	arena_temp_separation_margin_container_right.visible = false
+
+
+func _on_arena_mode_focus_exited() -> void:
+	arena_focus_indicator_left_text_rect.visible = false
+	arena_temp_separation_margin_container_left.visible = true
+	arena_focus_indicator_right_text_rect.visible = false
+	arena_temp_separation_margin_container_right.visible = true
+
+
+func _on_quit_game_focus_entered() -> void:
+	main_quit_focus_indicator_left_text_rect.visible = true
+	main_quit_temp_separation_margin_container_left.visible = false
+	main_quit_focus_indicator_right_text_rect.visible = true
+	main_quit_temp_separation_margin_container_right.visible = false
+
+
+func _on_quit_game_focus_exited() -> void:
+	main_quit_focus_indicator_left_text_rect.visible = false
+	main_quit_temp_separation_margin_container_left.visible = true
+	main_quit_focus_indicator_right_text_rect.visible = false
+	main_quit_temp_separation_margin_container_right.visible = true
