@@ -26,6 +26,16 @@ extends Control
 @export var skip_temp_separation_margin_container_left : MarginContainer
 @export var skip_temp_separation_margin_container_right : MarginContainer
 
+@export var final_quit_focus_indicator_left_text_rect : TextureRect
+@export var final_quit_focus_indicator_right_text_rect : TextureRect
+@export var final_quit_temp_separation_margin_container_left : MarginContainer
+@export var final_quit_temp_separation_margin_container_right : MarginContainer
+
+
+@export var stay_focus_indicator_left_text_rect : TextureRect
+@export var stay_focus_indicator_right_text_rect : TextureRect
+@export var stay_temp_separation_margin_container_left : MarginContainer
+@export var stay_temp_separation_margin_container_right : MarginContainer
 #------------------------------
 #LOGO
 @export var logo_container : MarginContainer
@@ -300,3 +310,31 @@ func _on_skip_video_button_focus_exited() -> void:
 	skip_temp_separation_margin_container_left.visible = true
 	skip_focus_indicator_right_text_rect.visible = false
 	skip_temp_separation_margin_container_right.visible = true
+
+
+func _on_stay_in_game_confirmation_button_focus_entered() -> void:
+	stay_focus_indicator_left_text_rect.visible = true
+	stay_temp_separation_margin_container_left.visible = false
+	stay_focus_indicator_right_text_rect.visible = true
+	stay_temp_separation_margin_container_right.visible = false
+
+
+func _on_stay_in_game_confirmation_button_focus_exited() -> void:
+	stay_focus_indicator_left_text_rect.visible = false
+	stay_temp_separation_margin_container_left.visible = true
+	stay_focus_indicator_right_text_rect.visible = false
+	stay_temp_separation_margin_container_right.visible = true
+
+
+func _on_quit_game_confirmation_button_focus_entered() -> void:
+	final_quit_focus_indicator_left_text_rect.visible = true
+	final_quit_temp_separation_margin_container_left.visible = false
+	final_quit_focus_indicator_right_text_rect.visible = true
+	final_quit_temp_separation_margin_container_right.visible = false
+
+
+func _on_quit_game_confirmation_button_focus_exited() -> void:
+	final_quit_focus_indicator_left_text_rect.visible = false
+	final_quit_temp_separation_margin_container_left.visible = true
+	final_quit_focus_indicator_right_text_rect.visible = false
+	final_quit_temp_separation_margin_container_right.visible = true

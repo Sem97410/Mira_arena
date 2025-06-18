@@ -6415,9 +6415,6 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_right = 155
 theme_override_constants/margin_bottom = 190
 
-[node name="SkipVideoButton" parent="MainMenu/VideoControl/VideoContainer/SkipButtonContainer" index="0"]
-text = "Skip the video"
-
 [node name="Environnement" type="Node3D" parent="."]
 
 [node name="Dalles" type="Node3D" parent="Environnement"]
