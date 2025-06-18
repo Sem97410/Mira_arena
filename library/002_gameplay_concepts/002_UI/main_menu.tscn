@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=66 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
@@ -138,7 +138,7 @@ shader_parameter/Opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_olk8i"]
 shader = ExtResource("13_q05rp")
-shader_parameter/Opacity = 1.0
+shader_parameter/Opacity = 0.0
 
 [sub_resource type="Animation" id="Animation_6cwnk"]
 resource_name = "arena_button_focus"
@@ -192,7 +192,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_elm4v"]
@@ -203,10 +203,6 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cwnk"]
 shader = ExtResource("13_q05rp")
-shader_parameter/Opacity = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_elm4v"]
-shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pvj5v"]
@@ -214,12 +210,12 @@ shader = ExtResource("13_q05rp")
 shader_parameter/Opacity = 1.0
 
 [sub_resource type="Animation" id="Animation_elm4v"]
-resource_name = "quit_button_focus"
+resource_name = "quit_game_focus"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
+tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -228,16 +224,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.0, 1.0]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect2:material:shader_parameter/Opacity")
+tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_nqamp"]
@@ -245,7 +242,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect:material:shader_parameter/Opacity")
+tracks/0/path = NodePath("QuitButtonFocusIndicatorLeftTextRect2:material:shader_parameter/Opacity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -254,22 +251,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect2:material:shader_parameter/Opacity")
+tracks/1/path = NodePath("QuitButtonFocusIndicatorRightTextRect:material:shader_parameter/Opacity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqamp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4q3ak"]
 _data = {
 &"RESET": SubResource("Animation_nqamp"),
-&"quit_button_focus": SubResource("Animation_elm4v")
+&"quit_game_focus": SubResource("Animation_elm4v")
 }
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
@@ -539,7 +537,6 @@ _data = {
 [node name="MainMenu" type="Node3D"]
 
 [node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "story_focus_indicator_left_text_rect", "story_focus_indicator_right_text_rect", "story_temp_separation_margin_container_left", "story_temp_separation_margin_container_right", "arena_focus_indicator_left_text_rect", "arena_focus_indicator_right_text_rect", "arena_temp_separation_margin_container_left", "arena_temp_separation_margin_container_right", "main_quit_focus_indicator_left_text_rect", "main_quit_focus_indicator_right_text_rect", "main_quit_temp_separation_margin_container_left", "main_quit_temp_separation_margin_container_right", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "slimaggedon_focus_indicator_left_text_rect", "slimaggedon_focus_indicator_right_text_rect", "slimaggedon_temp_separation_margin_container_left", "slimaggedon_temp_separation_margin_container_right", "flugdrasil_focus_indicator_left_text_rect", "flugdrasil_focus_indicator_right_text_rect", "flugdrasil_temp_separation_margin_container_left", "flugdrasil_temp_separation_margin_container_right", "quit_focus_indicator_left_text_rect", "quit_focus_indicator_right_text_rect", "quit_temp_separation_margin_container_left", "quit_temp_separation_margin_container_right", "main_menu_music")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -557,10 +554,10 @@ arena_focus_indicator_left_text_rect = NodePath("Main_buttons_margin_container/M
 arena_focus_indicator_right_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/ArenaButtonFocusIndicatorRightTextRect2")
 arena_temp_separation_margin_container_left = NodePath("Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/ArenaTempSeparationLeftMarginContainer")
 arena_temp_separation_margin_container_right = NodePath("Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/ArenaTempSeparationRightMarginContainer")
-main_quit_focus_indicator_left_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/QuitButtonFocusIndicatorLeftTextRect")
-main_quit_focus_indicator_right_text_rect = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitButtonFocusIndicatorRightTextRect")
-main_quit_temp_separation_margin_container_left = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/QuitTempSeparationLeftMarginContainer")
-main_quit_temp_separation_margin_container_right = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/QuitTempSeparationRightMarginContainer")
+main_quit_focus_indicator_left_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/QuitButtonFocusIndicatorLeftTextRect2")
+main_quit_focus_indicator_right_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/QuitButtonFocusIndicatorRightTextRect")
+main_quit_temp_separation_margin_container_left = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/QuitTempSeparationLeftMarginContainer")
+main_quit_temp_separation_margin_container_right = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitTempSeparationRightMarginContainer")
 logo_container = NodePath("Logo_container")
 quit_game_confirmation_pannel = NodePath("Quit_game_confirmation_pannel")
 quit_game_confirmation_pannel_first_button = NodePath("Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button")
@@ -586,21 +583,28 @@ flugdrasil_focus_indicator_right_text_rect = NodePath("LevelSelectionMargin/VBox
 flugdrasil_temp_separation_margin_container_left = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/HBoxContainer/FlugdrasilTempSeparationLeftMarginContainer")
 flugdrasil_temp_separation_margin_container_right = NodePath("LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/FlugdrasilGeneralVBox/HBoxContainer/FlugdrasilTempSeparationRightMarginContainer")
 quit_focus_indicator_left_text_rect = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitButtonFocusIndicatorLeftTextRect")
-quit_focus_indicator_right_text_rect = NodePath("Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/QuitButtonFocusIndicatorRightTextRect2")
+quit_focus_indicator_right_text_rect = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitButtonFocusIndicatorRightTextRect")
 quit_temp_separation_margin_container_left = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitTempSeparationLeftMarginContainer")
 quit_temp_separation_margin_container_right = NodePath("LevelSelectionMargin/GoToMainMenuContainer/HBoxContainer/QuitTempSeparationRightMarginContainer")
 main_menu_music = NodePath("TitleScreenSoundPlaceHolder")
 
+[node name="Panel" type="Panel" parent="MainMenuGenralControl"]
+layout_mode = 0
+offset_left = -44.0
+offset_top = -72.0
+offset_right = 592.0
+offset_bottom = 1093.0
+
 [node name="BackGroundClock" type="TextureRect" parent="MainMenuGenralControl"]
-modulate = Color(1, 1, 1, 0.1)
+modulate = Color(1, 1, 1, 0.3)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.521
 anchor_bottom = 0.521
-offset_left = -845.0
-offset_top = -801.68
-offset_right = 842.0
-offset_bottom = 802.32
+offset_left = -957.0
+offset_top = -1830.68
+offset_right = 738.0
+offset_bottom = -218.68
 rotation = -6.28319
 pivot_offset = Vector2(843.5, 802)
 texture = ExtResource("2_q05rp")
@@ -634,15 +638,14 @@ offset_top = -681.095
 offset_right = 404.2
 offset_bottom = -73.095
 grow_vertical = 0
-theme_override_constants/margin_left = -55
+theme_override_constants/margin_left = -135
 theme_override_constants/margin_bottom = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Main_buttons_V_container" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container"]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 90
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Practice_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
@@ -664,7 +667,6 @@ visible = false
 modulate = Color(0.415686, 0.415686, 0.415686, 1)
 layout_mode = 2
 focus_neighbor_top = NodePath("../ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode")
-focus_neighbor_bottom = NodePath("../QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
@@ -718,7 +720,6 @@ texture = SubResource("CanvasTexture_fdeyw")
 
 [node name="Story_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/StoryMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game")
 focus_neighbor_bottom = NodePath("../../../../../ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
@@ -791,7 +792,7 @@ texture = SubResource("CanvasTexture_fdeyw")
 [node name="Arena_mode" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../../StoryMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer/Story_mode")
-focus_neighbor_bottom = NodePath("../../../../../QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game")
+focus_neighbor_bottom = NodePath("../../../../../QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button")
 theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 60
@@ -829,38 +830,34 @@ autoplay = "arena_button_focus"
 [node name="QuitMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container"]
 layout_mode = 2
 
-[node name="QuitTempSeparationLeftMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer"]
 layout_mode = 2
 
-[node name="QuitHBoxContainer3" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="QuitTempSeparationLeftMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
-material = SubResource("ShaderMaterial_6cwnk")
+[node name="QuitTempSeparationLeftMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(76, 50)
 layout_mode = 2
 
-[node name="QuitButtonFocusIndicatorLeftTextRect" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
+[node name="QuitButtonFocusIndicatorLeftTextRect2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 visible = false
-material = SubResource("ShaderMaterial_elm4v")
+material = SubResource("ShaderMaterial_6cwnk")
 layout_mode = 2
 texture = ExtResource("11_xsniu")
 expand_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer"]
+[node name="WhiteButtonSeparation3" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("CanvasTexture_fdeyw")
 
-[node name="Quit_game" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer"]
+[node name="Quit_button" type="Button" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode")
-focus_neighbor_bottom = NodePath("../../../../../StoryMarginContainer/MarginContainer/StoryHBoxContainer/VBoxContainer/Story_mode")
-theme = ExtResource("2_i0oc2")
 theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxFlat_erqrd")
@@ -868,13 +865,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_erqrd")
 text = "Quit game"
 flat = true
 
-[node name="WhiteButtonSeparation" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer"]
+[node name="WhiteButtonSeparation2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("CanvasTexture_fdeyw")
 
-[node name="QuitButtonFocusIndicatorRightTextRect2" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
+[node name="QuitButtonFocusIndicatorRightTextRect" type="TextureRect" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 visible = false
 material = SubResource("ShaderMaterial_pvj5v")
 layout_mode = 2
@@ -882,15 +879,15 @@ texture = ExtResource("11_xsniu")
 expand_mode = 2
 flip_h = true
 
-[node name="QuitTempSeparationRightMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
+[node name="QuitTempSeparationRightMarginContainer" type="MarginContainer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(76, 50)
 layout_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer"]
 libraries = {
-&"": SubResource("AnimationLibrary_nqamp")
+&"": SubResource("AnimationLibrary_4q3ak")
 }
-autoplay = "quit_button_focus"
+autoplay = "quit_game_focus"
 
 [node name="Logo_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 1
@@ -1614,9 +1611,9 @@ text = "Pass the video"
 [connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_button_down"]
 [connection signal="focus_entered" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_focus_entered"]
 [connection signal="focus_exited" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/ArenaMarginContainer/MarginContainer/ArenaHBoxContainer/VBoxContainer/Arena_mode" to="MainMenuGenralControl" method="_on_arena_mode_focus_exited"]
-[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_button_down"]
-[connection signal="focus_entered" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_focus_entered"]
-[connection signal="focus_exited" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/QuitTempSeparationLeftMarginContainer/QuitHBoxContainer3/VBoxContainer/Quit_game" to="MainMenuGenralControl" method="_on_quit_game_focus_exited"]
+[connection signal="button_down" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_button_down"]
+[connection signal="focus_entered" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_focus_entered"]
+[connection signal="focus_exited" from="MainMenuGenralControl/Main_buttons_margin_container/Main_buttons_V_container/QuitMarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit_button" to="MainMenuGenralControl" method="_on_quit_button_focus_exited"]
 [connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Quit_game_confirmation_button" to="MainMenuGenralControl" method="_on_quit_game_confirmation_button_button_down"]
 [connection signal="button_down" from="MainMenuGenralControl/Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button" to="MainMenuGenralControl" method="_on_stay_in_game_confirmation_button_button_down"]
 [connection signal="focus_entered" from="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer/SlimageddonVBoxContainer/HBoxContainer/SlimageddonButton" to="MainMenuGenralControl" method="_on_slimageddon_button_focus_entered"]

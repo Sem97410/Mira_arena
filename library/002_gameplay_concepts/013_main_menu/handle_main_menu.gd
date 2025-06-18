@@ -31,7 +31,7 @@ func activate_pre_menu() -> void :
 
 func activate_main_menu() -> void : 
 	main_menu_panel.visible = true
-	main_menu_clock_background.visible = true
+	#main_menu_clock_background.visible = true
 	is_in_main_menu = true
 
 

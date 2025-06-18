@@ -83,7 +83,6 @@ func _ready() -> void:
 	set_up_arena_scores()
 
 	
-	
 
 
 #------------------------------
@@ -257,6 +256,27 @@ func _on_quit_game_focus_entered() -> void:
 
 
 func _on_quit_game_focus_exited() -> void:
+	main_quit_focus_indicator_left_text_rect.visible = false
+	main_quit_temp_separation_margin_container_left.visible = true
+	main_quit_focus_indicator_right_text_rect.visible = false
+	main_quit_temp_separation_margin_container_right.visible = true
+
+
+func _on_quit_button_button_down() -> void:
+	main_button_general_container.visible = false
+	quit_game_confirmation_pannel.visible = true
+	logo_container.visible = false
+	quit_game_confirmation_pannel_first_button.grab_focus()
+
+
+func _on_quit_button_focus_entered() -> void:
+	main_quit_focus_indicator_left_text_rect.visible = true
+	main_quit_temp_separation_margin_container_left.visible = false
+	main_quit_focus_indicator_right_text_rect.visible = true
+	main_quit_temp_separation_margin_container_right.visible = false
+
+
+func _on_quit_button_focus_exited() -> void:
 	main_quit_focus_indicator_left_text_rect.visible = false
 	main_quit_temp_separation_margin_container_left.visible = true
 	main_quit_focus_indicator_right_text_rect.visible = false
