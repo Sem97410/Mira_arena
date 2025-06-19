@@ -8,6 +8,8 @@ extends Control
 #------------------------------
 #LOGO
 @export var logo_container : MarginContainer
+@export var clock_background : TextureRect
+@export var background_color : TextureRect
 #-----------------
 #Quit
 @export var quit_game_confirmation_pannel : PanelContainer # $Quit_game_confirmation_pannel
@@ -63,6 +65,8 @@ func _on_arena_mode_button_down() -> void:
 	#get_tree().change_scene_to_file("res://main_scene.tscn") 
 	main_button_general_container.visible = false
 	logo_container.visible = false
+	background_color.visible = false
+	clock_background.visible = false
 	map_selection_container.visible = true
 	map_selection_main_button.grab_focus()
 	
@@ -73,6 +77,8 @@ func _on_quit_game_button_down() -> void:
 	main_button_general_container.visible = false
 	quit_game_confirmation_pannel.visible = true
 	logo_container.visible = false
+	clock_background.visible = false
+	background_color.visible = false
 	quit_game_confirmation_pannel_first_button.grab_focus()
 
 func _on_quit_game_confirmation_button_button_down() -> void:
@@ -82,6 +88,8 @@ func _on_stay_in_game_confirmation_button_button_down() -> void:
 	quit_game_confirmation_pannel.visible = false
 	main_button_general_container.visible = true
 	logo_container.visible = true
+	clock_background.visible = true
+	background_color.visible = true
 	first_main_button.grab_focus()
 		
 #-----------------
@@ -150,6 +158,8 @@ func _on_flugdrasil_button_pressed() -> void:
 func _on_go_to_main_menu_button_pressed() -> void:
 	map_selection_container.visible = false
 	logo_container.visible = true
+	clock_background.visible = true
+	background_color.visible = true
 	main_button_general_container.visible = true
 	first_main_button.grab_focus()
 	

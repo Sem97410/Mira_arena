@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqgs8cu8r6yfc"]
+[gd_scene load_steps=27 format=3 uid="uid://cqgs8cu8r6yfc"]
 
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
+[ext_resource type="Texture2D" uid="uid://dlrajm1rqtj4p" path="res://library/002_gameplay_concepts/002_UI/MainMenuAssets/mainmenuBackground3.png" id="3_e2ydh"]
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
+[ext_resource type="Texture2D" uid="uid://dqqdaf5jt28xe" path="res://library/002_gameplay_concepts/002_UI/MainMenuAssets/Clock.png" id="5_j2n41"]
 [ext_resource type="Texture2D" uid="uid://dqjg2cd2b2xwv" path="res://library/002_gameplay_concepts/013_main_menu/LogoBlancSF.png" id="5_vg8no"]
 [ext_resource type="Theme" uid="uid://ofw4ecxjby2m" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_pannel.tres" id="6_e4my3"]
 [ext_resource type="AudioStream" uid="uid://dsrtwv28ikd0l" path="res://library/002_gameplay_concepts/009_SFX/title_screen_sound_place_holder.ogg" id="7_3rw7x"]
@@ -12,7 +14,45 @@
 [ext_resource type="Texture2D" uid="uid://s787fmecorwl" path="res://library/IllustrationLevel2SF.png" id="7_vg8no"]
 [ext_resource type="FontFile" uid="uid://dpukcfnm25ynw" path="res://library/002_gameplay_concepts/002_UI/UI/Font/bodoni-72-bold.ttf" id="9_bafky"]
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="9_lic3j"]
-[ext_resource type="VideoStream" uid="uid://bf60jylyygv48" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
+
+[sub_resource type="Animation" id="Animation_e2ydh"]
+resource_name = "MakeBackGroundRound"
+length = 100.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClockBackgroundTextRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 100),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_erqrd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClockBackgroundTextRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsniu"]
+_data = {
+&"MakeBackGroundRound": SubResource("Animation_e2ydh"),
+&"RESET": SubResource("Animation_erqrd")
+}
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03kb5"]
 texture = ExtResource("5_htqbf")
@@ -62,7 +102,7 @@ shader_parameter/FloatParameter = 1.0
 
 [node name="MainMenu" type="Node3D"]
 
-[node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
+[node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "clock_background", "background_color", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -74,6 +114,8 @@ script = ExtResource("1_wp124")
 main_button_general_container = NodePath("Main_buttons_margin_container")
 first_main_button = NodePath("Main_buttons_margin_container/HBoxContainer/Main_buttons_V_container/Story_mode")
 logo_container = NodePath("Logo_container")
+clock_background = NodePath("ClockBackgroundTextRect")
+background_color = NodePath("ColorBackGroundTextureRect")
 quit_game_confirmation_pannel = NodePath("Quit_game_confirmation_pannel")
 quit_game_confirmation_pannel_first_button = NodePath("Quit_game_confirmation_pannel/VBoxContainer/HBoxContainer/Stay_in_game_confirmation_button")
 not_ready_pannel = NodePath("Not_ready_pannel")
@@ -102,6 +144,16 @@ layout_mode = 2
 texture = ExtResource("5_6yoec")
 expand_mode = 1
 
+[node name="ColorBackGroundTextureRect" type="TextureRect" parent="MainMenuGenralControl"]
+self_modulate = Color(1, 1, 1, 0.9)
+layout_mode = 0
+offset_left = -208.0
+offset_top = -184.0
+offset_right = 872.0
+offset_bottom = 1736.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_e2ydh")
+
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_direction = 1
 layout_mode = 1
@@ -113,7 +165,7 @@ offset_top = -681.095
 offset_right = 404.2
 offset_bottom = -73.095
 grow_vertical = 0
-theme_override_constants/margin_left = 0
+theme_override_constants/margin_left = -15
 theme_override_constants/margin_bottom = 0
 metadata/_edit_use_anchors_ = true
 
@@ -179,14 +231,34 @@ theme_override_fonts/font = ExtResource("3_426ai")
 theme_override_font_sizes/font_size = 30
 text = "Quit game"
 
+[node name="ClockBackgroundTextRect" type="TextureRect" parent="MainMenuGenralControl"]
+self_modulate = Color(1, 1, 1, 0.3)
+layout_mode = 2
+anchor_top = -0.086
+anchor_right = 0.323
+anchor_bottom = 0.494
+offset_left = -755.0
+offset_top = -735.12
+offset_right = 712.84
+offset_bottom = 726.48
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(1044, 1044)
+texture = ExtResource("5_j2n41")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuGenralControl"]
+libraries = {
+&"": SubResource("AnimationLibrary_xsniu")
+}
+autoplay = "MakeBackGroundRound"
+
 [node name="Logo_container" type="MarginContainer" parent="MainMenuGenralControl"]
 layout_mode = 1
 offset_right = 2819.3
 offset_bottom = 2252.8
 scale = Vector2(0.2, 0.2)
-theme_override_constants/margin_left = 515
+theme_override_constants/margin_left = 210
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuGenralControl/Logo_container"]
+[node name="LogoTextRect" type="TextureRect" parent="MainMenuGenralControl/Logo_container"]
 layout_mode = 2
 texture = ExtResource("5_vg8no")
 
