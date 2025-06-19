@@ -32,8 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://d1tn3vl7hl1ly" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/Iinput_button_x.png" id="21_fpcry"]
 [ext_resource type="Texture2D" uid="uid://buvsbrrh4aguc" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button_y.png" id="22_yvt7c"]
 [ext_resource type="Texture2D" uid="uid://bnr4aladucwp8" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button_lb.png" id="23_e3ulf"]
+[ext_resource type="Texture2D" uid="uid://c03127dgwsg06" path="res://library/002_gameplay_concepts/016_minimaps/Icons/A_input.png" id="23_hn5x4"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://mig0o6j6cs6i" path="res://library/002_gameplay_concepts/001_player/BlendTreeLogics/animation_logic_v2.tres" id="23_oc1db"]
-[ext_resource type="Texture2D" uid="uid://cgo10n36kahhi" path="res://library/002_gameplay_concepts/002_UI/UI/HUD/input_button.png" id="24_oa0oc"]
 [ext_resource type="Script" uid="uid://ojym70oybk7d" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/pause.gd" id="25_dfj4j"]
 [ext_resource type="Texture2D" uid="uid://crshhxurss31g" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Clock.png" id="26_dv1vs"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="27_1yggv"]
@@ -52,7 +52,7 @@
 [ext_resource type="Script" uid="uid://w8fa8kn55355" path="res://library/002_gameplay_concepts/001_player/Scripts/instantiate_charged_attack_impact_vfx.gd" id="41_7fune"]
 [ext_resource type="Script" uid="uid://ep0v75hc1n4a" path="res://library/002_gameplay_concepts/016_minimaps/enemy_mini_map_indicator_sprite_3d_size.gd" id="41_rb3gw"]
 [ext_resource type="PackedScene" uid="uid://dqgtkqdgp03hr" path="res://library/002_gameplay_concepts/006_VFX/001_scene/hit_charge.tscn" id="42_5lhpq"]
-[ext_resource type="Texture2D" uid="uid://p7xh6613rke3" path="res://library/002_gameplay_concepts/016_minimaps/Icons/player_indicator2.png" id="44_hn5x4"]
+[ext_resource type="Texture2D" uid="uid://pie51fc7hh55" path="res://library/002_gameplay_concepts/016_minimaps/Icons/player_indicator3.png" id="44_hn5x4"]
 [ext_resource type="AudioStream" uid="uid://1u6gl6l3opc5" path="res://library/002_gameplay_concepts/001_player/SFX/ChargedAttackChargePhase.wav" id="45_1wmhn"]
 [ext_resource type="AudioStream" uid="uid://5eg6xqx5cwaj" path="res://library/002_gameplay_concepts/001_player/SFX/Light Attack 3_V2.wav" id="46_8bksx"]
 [ext_resource type="AudioStream" uid="uid://bbtjwtw1lrc7d" path="res://library/002_gameplay_concepts/001_player/SFX/chargedAttackSwingPhase.wav" id="46_x4wy3"]
@@ -11428,7 +11428,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("17_xk4dx")
 theme_override_font_sizes/font_size = 20
-text = "Light attack"
+text = "Dash"
 
 [node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/DodgeHBoxContainer3"]
 layout_mode = 2
@@ -11447,7 +11447,7 @@ text = "Jump"
 
 [node name="LightAttackTextureRect" type="TextureRect" parent="UI/PlayerHUD/InputVisualMarginContainer/VBoxContainer/JumpHBoxContainer4"]
 layout_mode = 2
-texture = ExtResource("24_oa0oc")
+texture = ExtResource("23_hn5x4")
 expand_mode = 2
 
 [node name="Meshes" type="Node3D" parent="." groups=["player"]]
