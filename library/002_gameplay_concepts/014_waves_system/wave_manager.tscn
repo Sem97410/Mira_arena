@@ -32,7 +32,7 @@ all_enemy_types = Array[PackedScene]([ExtResource("2_g6m7n"), ExtResource("3_0t4
 initial_number_of_enemies = 2
 victory_wave = 1
 max_enemies_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/MaxEnemiesInThisWaveLabel")
-announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/AnounceText")
+announce_label = NodePath("Control/MarginContainer2/PanelContainer/MarginContainer/MarginContainer/AnounceText")
 announce_panel = NodePath("Control/MarginContainer2/PanelContainer")
 current_wave_label = NodePath("Control/MarginContainer/VBoxContainer/CurrentWaveLabel")
 enemies_alive_in_wave_label = NodePath("Control/MarginContainer/VBoxContainer/NumberOfEnemiesInWaveLabel")
@@ -47,6 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -110,11 +111,18 @@ theme_override_constants/margin_bottom = 10
 material = SubResource("ShaderMaterial_xwori")
 layout_mode = 2
 
-[node name="AnounceText" type="Label" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="AnounceText" type="Label" parent="Control/MarginContainer2/PanelContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.298039, 0.45098, 1)
 theme_override_fonts/font = ExtResource("2_cycfr")
 theme_override_font_sizes/font_size = 70
-text = "This is an announce"
+text = "This is an announcedzdzzdzdzdzdzd"
 horizontal_alignment = 1
 vertical_alignment = 1
