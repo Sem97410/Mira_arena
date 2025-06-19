@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dr5fa3yj77fs7" path="res://library/002_gameplay_concepts/002_UI/UI/Scripts/main_menu_UI.gd" id="1_wp124"]
 [ext_resource type="Theme" uid="uid://c0ceoa82xgs0j" path="res://library/002_gameplay_concepts/002_UI/UI/Resources/custom_button.tres" id="2_i0oc2"]
 [ext_resource type="FontFile" uid="uid://b41ytc2rag15y" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/mengka.otf" id="3_426ai"]
-[ext_resource type="Texture2D" uid="uid://dlrajm1rqtj4p" path="res://library/002_gameplay_concepts/002_UI/MainMenuAssets/mainmenuBackground3.png" id="3_e2ydh"]
+[ext_resource type="Texture2D" uid="uid://c0jxgvgci4df6" path="res://library/002_gameplay_concepts/002_UI/MainMenuAssets/mainmenuBackground4.png" id="3_e2ydh"]
 [ext_resource type="Texture2D" uid="uid://c7dagnvtqcvde" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/MainMenuIllustration.png" id="5_6yoec"]
 [ext_resource type="Texture2D" uid="uid://b2yp2i8vxj40u" path="res://library/002_gameplay_concepts/002_UI/UI/UI MIRA/Panel.png" id="5_htqbf"]
 [ext_resource type="Texture2D" uid="uid://dqqdaf5jt28xe" path="res://library/002_gameplay_concepts/002_UI/MainMenuAssets/Clock.png" id="5_j2n41"]
@@ -103,7 +103,6 @@ shader_parameter/FloatParameter = 1.0
 [node name="MainMenu" type="Node3D"]
 
 [node name="MainMenuGenralControl" type="Control" parent="." node_paths=PackedStringArray("main_button_general_container", "first_main_button", "logo_container", "clock_background", "background_color", "quit_game_confirmation_pannel", "quit_game_confirmation_pannel_first_button", "not_ready_pannel", "video_player", "video_player_container", "skip_video_button", "map_selection_container", "map_selection_main_button", "map_1_information", "map_2_information", "slimaggedon_max_score_value_label", "slimaggedon_last_game_score_value_label", "flugdrasil_max_score_value_label", "flugdrasil_last_game_score_value_label", "main_menu_music")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,16 +144,18 @@ texture = ExtResource("5_6yoec")
 expand_mode = 1
 
 [node name="ColorBackGroundTextureRect" type="TextureRect" parent="MainMenuGenralControl"]
-self_modulate = Color(1, 1, 1, 0.9)
+visible = false
+self_modulate = Color(1, 1, 1, 0.6)
 layout_mode = 0
-offset_left = -208.0
-offset_top = -184.0
-offset_right = 872.0
-offset_bottom = 1736.0
+offset_left = -306.0
+offset_top = -86.0
+offset_right = 1023.0
+offset_bottom = 1513.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_e2ydh")
 
 [node name="Main_buttons_margin_container" type="MarginContainer" parent="MainMenuGenralControl"]
+visible = false
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 2
@@ -232,6 +233,7 @@ theme_override_font_sizes/font_size = 30
 text = "Quit game"
 
 [node name="ClockBackgroundTextRect" type="TextureRect" parent="MainMenuGenralControl"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.3)
 layout_mode = 2
 anchor_top = -0.086
@@ -252,6 +254,7 @@ libraries = {
 autoplay = "MakeBackGroundRound"
 
 [node name="Logo_container" type="MarginContainer" parent="MainMenuGenralControl"]
+visible = false
 layout_mode = 1
 offset_right = 2819.3
 offset_bottom = 2252.8
@@ -342,7 +345,6 @@ theme_override_font_sizes/font_size = 40
 text = "Stay in main menu"
 
 [node name="LevelSelectionMargin" type="MarginContainer" parent="MainMenuGenralControl"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -383,7 +385,7 @@ theme_override_constants/margin_bottom = 205
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 285
+theme_override_constants/separation = 815
 alignment = 1
 
 [node name="SlimageddonVBoxContainer" type="VBoxContainer" parent="MainMenuGenralControl/LevelSelectionMargin/VBoxContainer/GeneralMapMarginContainer/GeneralMapHBoxContainer"]
