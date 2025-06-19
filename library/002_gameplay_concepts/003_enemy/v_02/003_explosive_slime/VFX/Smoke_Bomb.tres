@@ -17,7 +17,7 @@ expanded_output_ports = [0]
 input_name = "color"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_hhwl0"]
-constant = 1.0
+constant = 0.2
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_mmtxt"]
 operator = 2
@@ -47,14 +47,14 @@ op_type = 3
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_3ybao"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_g5djw"]
-constant = 0.1
+constant = 1.5
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_s1vng"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0), 2, Vector3(1, 1, 1)]
 op_type = 4
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_cpw2c"]
-constant = 0.1
+constant = 0.6
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_a0vn3"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
@@ -189,7 +189,7 @@ void light() {
 
 
 // FloatConstant:7
-	float n_out7p0 = 0.100000;
+	float n_out7p0 = 1.500000;
 
 
 // Fresnel:4
@@ -207,7 +207,7 @@ void light() {
 
 
 // FloatConstant:9
-	float n_out9p0 = 0.100000;
+	float n_out9p0 = 0.600000;
 
 
 // FloatParameter:16
@@ -219,7 +219,7 @@ void light() {
 
 
 // FloatConstant:10
-	float n_out10p0 = 1.000000;
+	float n_out10p0 = 0.200000;
 
 
 // FloatParameter:15

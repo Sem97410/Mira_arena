@@ -51,7 +51,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_y0fqr")
-color = Color(4, 0.8, 0.2, 1)
+color = Color(4, 0, 0.559, 1)
 color_ramp = SubResource("GradientTexture1D_dgoyx")
 color_initial_ramp = SubResource("GradientTexture1D_mql51")
 alpha_curve = SubResource("CurveTexture_5k67n")
@@ -61,7 +61,7 @@ alpha_curve = SubResource("CurveTexture_5k67n")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
 render_priority = 0
 shader = ExtResource("2_kkp6u")
-shader_parameter/ColorParameter = Color(4, 0.8, 0.2, 1)
+shader_parameter/ColorParameter = Color(4, 0.1, 0.2, 1)
 
 [sub_resource type="Curve" id="Curve_5xs7k"]
 _data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
