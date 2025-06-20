@@ -41,7 +41,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_y0fqr")
-color = Color(0.215902, 0.215902, 0.215902, 1)
 alpha_curve = SubResource("CurveTexture_5k67n")
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4sx5"]
@@ -49,7 +48,7 @@ alpha_curve = SubResource("CurveTexture_5k67n")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr6lm"]
 render_priority = 0
 shader = ExtResource("2_fh5fs")
-shader_parameter/ColorParameter = Color(1.5, 3, 1, 1)
+shader_parameter/ColorParameter = Color(2, 2, 2, 1)
 
 [sub_resource type="Curve" id="Curve_5xs7k"]
 _data = [Vector2(0, 0), 0.0, 3.16483, 0, 0, Vector2(1, 1), 0.0402607, 0.0, 0, 0]
@@ -296,7 +295,7 @@ light_energy = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.297243, 0)
 material_override = SubResource("ShaderMaterial_vnksy")
 emitting = false
-amount = 5
+amount = 12
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_8i1oc")
 draw_pass_1 = SubResource("QuadMesh_pk6mo")

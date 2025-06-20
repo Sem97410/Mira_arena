@@ -1,0 +1,207 @@
+[gd_scene load_steps=28 format=3 uid="uid://bsui77jdli7yl"]
+
+[ext_resource type="Shader" uid="uid://colnbufcxky33" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Enemy_Bomb/Ground_Zone.tres" id="1_tt331"]
+[ext_resource type="ArrayMesh" uid="uid://cu71n0bx0hp2p" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Enemy_Bomb/Zone.obj" id="2_1nqe5"]
+[ext_resource type="Material" uid="uid://3javhuw7vsgp" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Enemy_Bomb/Explosion_Cloud.tres" id="3_fu5hp"]
+[ext_resource type="Shader" uid="uid://ctl17usr2t750" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Enemy_Bomb/Spark.tres" id="4_u5v86"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y67yl"]
+render_priority = 0
+shader = ExtResource("1_tt331")
+shader_parameter/ColorParameter = Color(0.993568, 0, 0.273453, 1)
+shader_parameter/Vector2Parameter = Vector2(0, 0)
+shader_parameter/Opacity = Vector2(0, -1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_b437m"]
+
+[sub_resource type="Curve" id="Curve_x6w5p"]
+_data = [Vector2(0.455882, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 5.70487, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b437m"]
+texture_mode = 1
+curve = SubResource("Curve_x6w5p")
+
+[sub_resource type="Gradient" id="Gradient_stk3y"]
+offsets = PackedFloat32Array(0.327273, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a5msk"]
+gradient = SubResource("Gradient_stk3y")
+
+[sub_resource type="Curve" id="Curve_y67yl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.353333, 0.325843), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x6w5p"]
+curve = SubResource("Curve_y67yl")
+
+[sub_resource type="Curve" id="Curve_b437m"]
+_data = [Vector2(0, 0.258427), 0.0, 2.90262, 0, 0, Vector2(1, 1), -0.127682, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_stk3y"]
+curve = SubResource("Curve_b437m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a5msk"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+radial_velocity_min = 6.49998
+radial_velocity_max = 7.49998
+radial_velocity_curve = SubResource("CurveTexture_x6w5p")
+gravity = Vector3(0, 0, 0)
+scale_min = 1.7
+scale_max = 1.8
+scale_curve = SubResource("CurveTexture_stk3y")
+color_ramp = SubResource("GradientTexture1D_a5msk")
+alpha_curve = SubResource("CurveTexture_b437m")
+
+[sub_resource type="SphereMesh" id="SphereMesh_j35cs"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j35cs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3aob"]
+render_priority = 0
+shader = ExtResource("4_u5v86")
+shader_parameter/ColorParameter = Color(4, 0.8, 0.2, 1)
+
+[sub_resource type="Curve" id="Curve_stk3y"]
+_data = [Vector2(0.00735295, 0), 0.0, 3.25993, 0, 0, Vector2(0.852941, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a5msk"]
+texture_mode = 1
+curve = SubResource("Curve_stk3y")
+
+[sub_resource type="Curve" id="Curve_3f73r"]
+_data = [Vector2(0, 0.505618), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s2sto"]
+curve = SubResource("Curve_3f73r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sybn0"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_s2sto")
+alpha_curve = SubResource("CurveTexture_a5msk")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ewvlh"]
+size = Vector2(0.25, 1)
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Animation" id="Animation_j35cs"]
+resource_name = "Enemy_Bomb"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VFX_Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VFX_Sparkle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_k3aob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VFX_Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VFX_Sparkle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3f73r"]
+_data = {
+&"Enemy_Bomb": SubResource("Animation_j35cs"),
+&"RESET": SubResource("Animation_k3aob")
+}
+
+[node name="BombZone" type="Node3D"]
+
+[node name="Zone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0188211, 0, -0.0246288)
+visible = false
+material_override = SubResource("ShaderMaterial_y67yl")
+mesh = ExtResource("2_1nqe5")
+
+[node name="Cloud" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0117712)
+visible = false
+material_override = ExtResource("3_fu5hp")
+mesh = SubResource("SphereMesh_b437m")
+
+[node name="VFX_Smoke" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112594, 1.06658, 0.365924)
+material_override = ExtResource("3_fu5hp")
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_a5msk")
+draw_pass_1 = SubResource("SphereMesh_j35cs")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.5372, 0, 0, 0, 6.5372, 0, 0, 0, 6.5372, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_j35cs")
+skeleton = NodePath("../VFX_Smoke")
+
+[node name="VFX_Sparkle" type="GPUParticles3D" parent="."]
+transform = Transform3D(6.5372, 0, 0, 0, 6.5372, 0, 0, 0, 6.5372, 0.000531584, -0.0118806, 0)
+material_override = SubResource("ShaderMaterial_k3aob")
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sybn0")
+draw_pass_1 = SubResource("QuadMesh_ewvlh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3f73r")
+}
+autoplay = "Enemy_Bomb"

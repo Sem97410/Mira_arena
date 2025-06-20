@@ -1,0 +1,60 @@
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://cmx3vhm8q23dw"]
+
+[ext_resource type="Shader" uid="uid://lpt2tutbgmgx" path="res://VFX_Attack/Slash_R/Slash_v3.gdshader" id="1_2sopj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0i3wr"]
+noise_type = 2
+fractal_gain = 4.0
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0a2a4"]
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_0i3wr")
+
+[sub_resource type="Gradient" id="Gradient_ufscs"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.74902, 0.25098, 0.74902, 1, 0, 0.501961, 0.501961, 1, 0.678431, 0.847059, 0.901961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_usb2e"]
+gradient = SubResource("Gradient_ufscs")
+
+[sub_resource type="Gradient" id="Gradient_e17im"]
+offsets = PackedFloat32Array(0.5, 0.52, 0.54)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u0etn"]
+gradient = SubResource("Gradient_e17im")
+
+[sub_resource type="Gradient" id="Gradient_b7urn"]
+offsets = PackedFloat32Array(0.0679012, 0.382716, 0.45679, 0.567901, 0.703704)
+colors = PackedColorArray(1, 1, 1, 1, 0.498039, 0.498039, 0.498039, 1, 0, 0, 0, 1, 0.498039, 0.498039, 0.498039, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yrf7j"]
+gradient = SubResource("Gradient_b7urn")
+
+[sub_resource type="Gradient" id="Gradient_k4ayp"]
+offsets = PackedFloat32Array(0.2, 0.5, 0.52)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8jljp"]
+gradient = SubResource("Gradient_k4ayp")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2sopj")
+shader_parameter/progress = 0.0
+shader_parameter/derive_progress = -1.0
+shader_parameter/ease_progress = 0.0
+shader_parameter/time_scale = 0.25
+shader_parameter/anim_rot_amt = 1.0
+shader_parameter/base_noise = SubResource("NoiseTexture2D_0a2a4")
+shader_parameter/width_gradient_mask = SubResource("GradientTexture1D_8jljp")
+shader_parameter/length_gradient_mask = SubResource("GradientTexture1D_yrf7j")
+shader_parameter/highlight = SubResource("GradientTexture1D_u0etn")
+shader_parameter/zoom = 0.6
+shader_parameter/rotate_all = 285.0
+shader_parameter/emission_strength = 1.0
+shader_parameter/mix_strength = 1.0
+shader_parameter/color_lookup = SubResource("GradientTexture1D_usb2e")

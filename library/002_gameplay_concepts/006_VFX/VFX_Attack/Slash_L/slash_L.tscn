@@ -1,0 +1,113 @@
+[gd_scene load_steps=17 format=3 uid="uid://dvsbuofih04ne"]
+
+[ext_resource type="Shader" uid="uid://dfqx6y7eh33ry" path="res://VFX_Attack/Slash_L/slash_L.gdshader" id="1_h2owe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yewrc"]
+noise_type = 2
+fractal_gain = 0.77
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6quhy"]
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_yewrc")
+
+[sub_resource type="Gradient" id="Gradient_0i3wr"]
+offsets = PackedFloat32Array(0, 0.358025, 0.574074)
+colors = PackedColorArray(0, 0, 0, 1, 0.44826, 0.105373, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0a2a4"]
+gradient = SubResource("Gradient_0i3wr")
+
+[sub_resource type="Gradient" id="Gradient_eextt"]
+offsets = PackedFloat32Array(0.5, 0.52, 0.54)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k4ayp"]
+gradient = SubResource("Gradient_eextt")
+
+[sub_resource type="Gradient" id="Gradient_8jljp"]
+offsets = PackedFloat32Array(0.376543, 0.419753, 0.561728, 0.660494)
+colors = PackedColorArray(1, 1, 1, 1, 0.427493, 0.427493, 0.427493, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2rhj4"]
+gradient = SubResource("Gradient_8jljp")
+
+[sub_resource type="Gradient" id="Gradient_i0nl1"]
+offsets = PackedFloat32Array(0.2, 0.308642, 0.5, 0.641975)
+colors = PackedColorArray(1, 1, 1, 1, 0.051971, 0.051971, 0.051971, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yvme7"]
+gradient = SubResource("Gradient_i0nl1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gysbv"]
+render_priority = 0
+shader = ExtResource("1_h2owe")
+shader_parameter/progress = 0.0
+shader_parameter/derive_progress = -1.0
+shader_parameter/ease_progress = 0.0
+shader_parameter/time_scale = 0.8
+shader_parameter/anim_rot_amt = 1.0
+shader_parameter/base_noise = SubResource("NoiseTexture2D_6quhy")
+shader_parameter/width_gradient_mask = SubResource("GradientTexture1D_yvme7")
+shader_parameter/length_gradient_mask = SubResource("GradientTexture1D_2rhj4")
+shader_parameter/highlight = SubResource("GradientTexture1D_k4ayp")
+shader_parameter/zoom = 0.6
+shader_parameter/rotate_all = 0.0
+shader_parameter/emission_strength = 1.0
+shader_parameter/mix_strength = 1.0
+shader_parameter/color_lookup = SubResource("GradientTexture2D_0a2a4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ywt2"]
+size = Vector2(0.07, 0.07)
+
+[sub_resource type="Animation" id="Animation_h2owe"]
+resource_name = "Slash_L"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash_L:material_override:shader_parameter/derive_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_shmbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash_L:material_override:shader_parameter/derive_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgxd7"]
+_data = {
+&"RESET": SubResource("Animation_shmbd"),
+&"Slash_L": SubResource("Animation_h2owe")
+}
+
+[node name="Slash_L" type="Node3D"]
+transform = Transform3D(-100, -1.50996e-05, 0, 1.50996e-05, -100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Slash_L" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_gysbv")
+mesh = SubResource("PlaneMesh_6ywt2")
+skeleton = NodePath("../../Charge/Charge")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tgxd7")
+}
