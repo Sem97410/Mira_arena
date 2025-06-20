@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dvsbuofih04ne"]
 
-[ext_resource type="Shader" uid="uid://dfqx6y7eh33ry" path="res://VFX_Attack/Slash_L/slash_L.gdshader" id="1_h2owe"]
+[ext_resource type="Shader" uid="uid://dfqx6y7eh33ry" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/Slash_L/slash_L.gdshader" id="1_h2owe"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yewrc"]
 noise_type = 2
@@ -61,6 +61,21 @@ shader_parameter/color_lookup = SubResource("GradientTexture2D_0a2a4")
 [sub_resource type="PlaneMesh" id="PlaneMesh_6ywt2"]
 size = Vector2(0.07, 0.07)
 
+[sub_resource type="Animation" id="Animation_shmbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash_L:material_override:shader_parameter/derive_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+
 [sub_resource type="Animation" id="Animation_h2owe"]
 resource_name = "Slash_L"
 length = 0.5
@@ -76,21 +91,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_shmbd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slash_L:material_override:shader_parameter/derive_progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tgxd7"]

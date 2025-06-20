@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsxbuehxhfcgf"]
 
-[ext_resource type="Material" uid="uid://vm6wepcyvuh2" path="res://VFX_Attack/AttackCharge/Attack_Charge.tres" id="1_57n3c"]
+[ext_resource type="Material" uid="uid://vm6wepcyvuh2" path="res://library/002_gameplay_concepts/006_VFX/VFX_Attack/AttackCharge/Attack_Charge.tres" id="1_57n3c"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6quhy"]
 size = Vector2(0.07, 0.07)
