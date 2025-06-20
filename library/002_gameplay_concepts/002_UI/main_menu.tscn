@@ -14,7 +14,7 @@
 [ext_resource type="Shader" uid="uid://bc3ntmo2xhdsc" path="res://library/002_gameplay_concepts/015_scoring/scoring_temp_panel.tres" id="9_lic3j"]
 [ext_resource type="Texture2D" uid="uid://cp0amw3e0clwn" path="res://library/002_gameplay_concepts/002_UI/MapSelection/map_selection_slimaggedon_image_new_color3.png" id="10_e2ydh"]
 [ext_resource type="Texture2D" uid="uid://bteh0vwspa6xt" path="res://library/002_gameplay_concepts/002_UI/MapSelection/map_selection_flugdrasil_image_new_color3.png" id="13_e2ydh"]
-[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/Cinématique_Godot.ogv" id="13_lic3j"]
+[ext_resource type="VideoStream" path="res://library/002_gameplay_concepts/002_UI/UI/Videos/FinalCinematique.ogv" id="15_e2ydh"]
 
 [sub_resource type="Animation" id="Animation_e2ydh"]
 resource_name = "MakeBackGroundRound"
@@ -804,7 +804,7 @@ stretch_mode = 3
 texture_filter = 1
 clip_contents = true
 layout_mode = 2
-stream = ExtResource("13_lic3j")
+stream = ExtResource("15_e2ydh")
 expand = true
 
 [node name="SkipButtonContainer" type="MarginContainer" parent="VideoControl/VideoContainer"]
