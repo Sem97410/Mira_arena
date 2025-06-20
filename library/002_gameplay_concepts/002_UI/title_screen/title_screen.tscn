@@ -6407,7 +6407,7 @@ transform = Transform3D(-1.37474, -0.208013, 0.562873, -0.179686, 1.48513, 0.109
 visible = false
 
 [node name="MainMenuGenralControl" parent="MainMenu" index="0"]
-video_length = 90.0
+video_length = 88.0
 
 [node name="VideoContainer" parent="MainMenu/VideoControl" index="0"]
 theme_override_constants/margin_right = 0
