@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bymvvlfbsnbsc"]
+[gd_scene load_steps=19 format=3 uid="uid://bymvvlfbsnbsc"]
 
 [ext_resource type="Shader" uid="uid://dsp0pjm1rwsoc" path="res://library/002_gameplay_concepts/006_VFX/Attack/Distortion.gdshader" id="2_ae0et"]
 [ext_resource type="Texture2D" uid="uid://bbusclyoap1na" path="res://library/002_gameplay_concepts/006_VFX/Noise/PerlinExample.png" id="3_bpnal"]
@@ -80,47 +80,7 @@ shader_parameter/noiseVertex = ExtResource("3_bpnal")
 radius = 0.6
 height = 1.2
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w8tny"]
-
-[sub_resource type="Sky" id="Sky_piews"]
-sky_material = SubResource("PanoramaSkyMaterial_w8tny")
-
-[sub_resource type="Environment" id="Environment_d7nw5"]
-background_mode = 2
-sky = SubResource("Sky_piews")
-ambient_light_source = 3
-ambient_light_color = Color(0.122252, 0.122252, 0.122252, 1)
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 16.0
-reflected_light_source = 2
-tonemap_mode = 2
-tonemap_exposure = 1.19
-glow_enabled = true
-glow_intensity = 0.39
-glow_strength = 0.32
-glow_bloom = 0.18
-glow_hdr_threshold = 0.81
-glow_hdr_luminance_cap = 7.35
-glow_map_strength = 0.76
-fog_enabled = true
-fog_light_color = Color(0.660075, 0.785011, 0.960188, 1)
-fog_light_energy = 0.56
-fog_density = 0.001
-fog_aerial_perspective = 0.244
-fog_sky_affect = 0.345
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0407
-volumetric_fog_albedo = Color(0.72061, 0.673048, 0.773086, 1)
-volumetric_fog_emission_energy = 4.55
-volumetric_fog_length = 26.15
-volumetric_fog_temporal_reprojection_enabled = false
-adjustment_enabled = true
-adjustment_brightness = 1.2
-adjustment_contrast = 0.67
-adjustment_saturation = 1.2
-
 [sub_resource type="World3D" id="World3D_x4g65"]
-environment = SubResource("Environment_d7nw5")
 
 [node name="Portal" type="Node3D"]
 
