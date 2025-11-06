@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 
-const Logger = preload("logger.gd")
+const LogUtil = preload("logger.gd")
 const Globals = preload("globals.gd")
 enum TimeTrimMode {NONE, EXACT, EXTRA_ONE, KEEP_ONE, KEEP_TWO, KEEP_THREE}
 
@@ -303,7 +303,7 @@ static func get_setting_safe(setting:String, default_value = null):
 
 static func save_res(res:Resource, dir:String, res_name:String):
 	assert(res)
-	var logger = Logger.get_for_string("FunLib")
+	var logger = LogUtil.get_for_string("FunLib")
 	var full_path = combine_dir_and_file(dir, res_name)
 	if !is_dir_valid(dir): 
 		logger.warn("Unable to save '%s', directory is invalid!" % [full_path])
@@ -332,7 +332,7 @@ static func save_res(res:Resource, dir:String, res_name:String):
 static func load_res(dir:String, res_name:String, no_cache: bool = true, silent: bool = false) -> Resource:
 	var full_path = combine_dir_and_file(dir, res_name)
 	var res = null
-	var logger = Logger.get_for_string("FunLib")
+	var logger = LogUtil.get_for_string("FunLib")
 	
 	if ResourceLoader.exists(full_path):
 		res = ResourceLoader.load(full_path, "", ResourceLoader.CacheMode.CACHE_MODE_REPLACE if no_cache else ResourceLoader.CacheMode.CACHE_MODE_REUSE)
@@ -351,7 +351,7 @@ static func remove_res(dir:String, res_name:String):
 	var full_path = combine_dir_and_file(dir, res_name)
 	var abs_path = ProjectSettings.globalize_path(full_path)
 	var err = DirAccess.remove_absolute(abs_path)
-	var logger = Logger.get_for_string("FunLib")
+	var logger = LogUtil.get_for_string("FunLib")
 	if err != OK:
 		logger.error("Could not remove '%s', error %s!" % [abs_path, Globals.get_err_message(err)])
 

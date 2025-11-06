@@ -15,7 +15,7 @@ extends Resource
 # However, these functions are very closely related, so maybe I'm overthinking this
 
 
-const Logger = preload("../utility/logger.gd")
+const LogUtil = preload("../utility/logger.gd")
 const Globals = preload("../utility/globals.gd")
 const FunLib = preload("../utility/fun_lib.gd")
 const Greenhouse_Plant = preload("../greenhouse/greenhouse_plant.gd")
@@ -84,7 +84,7 @@ signal transplanted_member(plant_index: int, new_address: PackedByteArray, new_i
 func _init():
 	set_meta("class", "Arborist")
 	resource_local_to_scene = true
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	mutex_octree = Mutex.new()
 	mutex_LOD_update_meta = Mutex.new()
 	thread_LOD_update = Thread.new()

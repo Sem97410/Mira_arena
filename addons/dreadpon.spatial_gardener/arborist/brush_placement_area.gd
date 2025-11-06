@@ -55,7 +55,7 @@ extends RefCounted
 
 const Globals = preload("../utility/globals.gd")
 const FunLib = preload("../utility/fun_lib.gd")
-const Logger = preload("../utility/logger.gd")
+const LogUtil = preload("../utility/logger.gd")
 const MMIOctreeManager = preload("mmi_octree/mmi_octree_manager.gd")
 const MMIOctreeNode = preload("mmi_octree/mmi_octree_node.gd")
 
@@ -91,7 +91,7 @@ var logger = null
 
 
 func _init(__sphere_pos:Vector3,__sphere_radius:float,__plane_normal:Vector3,__jitter_fraction:float = 0.6):
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	sphere_pos = __sphere_pos
 	sphere_radius = __sphere_radius
 	sphere_diameter = sphere_radius * 2.0

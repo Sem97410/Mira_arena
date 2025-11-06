@@ -1,6 +1,6 @@
 extends RefCounted
 
-const Logger = preload("../utility/logger.gd")
+const LogUtil = preload("../utility/logger.gd")
 const Globals = preload("../utility/globals.gd")
 const FunLib = preload("../utility/fun_lib.gd")
 const Defaults = preload("../utility/defaults.gd")
@@ -25,7 +25,7 @@ var toolshed: Toolshed = null
 
 
 func _init(_arborist: Arborist, _greenhouse: Greenhouse, _toolshed: Toolshed = null):
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	arborist = _arborist
 	greenhouse = _greenhouse
 	toolshed = _toolshed

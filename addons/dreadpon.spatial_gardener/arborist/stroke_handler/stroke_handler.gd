@@ -7,7 +7,7 @@ extends RefCounted
 #-------------------------------------------------------------------------------
 
 
-const Logger = preload("../../utility/logger.gd")
+const LogUtil = preload("../../utility/logger.gd")
 const FunLib = preload("../../utility/fun_lib.gd")
 const DponDebugDraw = preload("../../utility/debug_draw.gd")
 const Greenhouse_Plant = preload("../../greenhouse/greenhouse_plant.gd")
@@ -58,7 +58,7 @@ func _init(_brush:Toolshed_Brush, _plant_states:Array, _octree_managers:Array, _
 	
 	randomizer = RandomNumberGenerator.new()
 	randomizer.seed = Time.get_ticks_msec()
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	
 	debug_draw_enabled 			= FunLib.get_setting_safe("dreadpons_spatial_gardener/debug/stroke_handler_debug_draw", true)
 	simplify_projection_frustum = FunLib.get_setting_safe("dreadpons_spatial_gardener/painting/simplify_projection_frustum", true)

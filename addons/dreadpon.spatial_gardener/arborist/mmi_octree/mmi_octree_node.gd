@@ -13,7 +13,7 @@ extends Resource
 
 
 const FunLib = preload("../../utility/fun_lib.gd")
-const Logger = preload("../../utility/logger.gd")
+const LogUtil = preload("../../utility/logger.gd")
 const Placeform = preload("../placeform.gd")
 const OctreeLeaf = preload("octree_leaf.gd")
 const Greenhouse_LODVariant = preload("../../greenhouse/greenhouse_LOD_variant.gd")
@@ -69,7 +69,7 @@ func _init(__parent:Resource = null, __max_members:int = 0, __extent:float = 0.0
 	set_meta("class", "MMIOctreeNode")
 	resource_name = "MMIOctreeNode"
 	
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	
 	max_members = __max_members
 	child_nodes.clear()

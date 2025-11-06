@@ -15,7 +15,7 @@ extends PanelContainer
 
 const ThemeAdapter = preload("../theme_adapter.gd")
 const FunLib = preload("../../utility/fun_lib.gd")
-const Logger = preload("../../utility/logger.gd")
+const LogUtil = preload("../../utility/logger.gd")
 const PropAction = preload("../../utility/input_field_resource/prop_action.gd")
 const PA_PropSet = preload("../../utility/input_field_resource/pa_prop_set.gd")
 const PA_PropEdit = preload("../../utility/input_field_resource/pa_prop_edit.gd")
@@ -71,7 +71,7 @@ signal prop_action_requested(prop_action)
 func _init(__init_val, __labelText:String = "NONE", __prop_name:String = "", settings:Dictionary = {}, tooltip:String = ""):
 	set_meta("class", "UI_InputField")
 	
-	logger = Logger.get_for(self)
+	logger = LogUtil.get_for(self)
 	init_val = __init_val
 	prop_name = __prop_name
 	

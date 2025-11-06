@@ -14,7 +14,7 @@ extends Node3D
 
 
 const FunLib = preload("../utility/fun_lib.gd")
-const Logger = preload("../utility/logger.gd")
+const LogUtil = preload("../utility/logger.gd")
 const Defaults = preload("../utility/defaults.gd")
 const Greenhouse = preload("../greenhouse/greenhouse.gd")
 const Toolshed = preload("../toolshed/toolshed.gd")
@@ -113,7 +113,7 @@ static func get_storage_ver():
 func _ready():
 	update_plugin_ver()
 	
-	logger = Logger.get_for(self, name)
+	logger = LogUtil.get_for(self, name)
 	
 	painting_node = Node3D.new()
 	add_child(painting_node, true, Node.INTERNAL_MODE_FRONT)
@@ -232,7 +232,7 @@ func propagate_camera(camera:Camera3D):
 # This is supposed to address a problem decribed in "start_gardener_edit()" of "plugin.gd"
 # Instead of recalculating everything, we hope it's enough to just restore the member references
 func restore_references():
-	logger = Logger.get_for(self, name)
+	logger = LogUtil.get_for(self, name)
 	if !Engine.is_editor_hint(): return
 	
 	init_painter()
